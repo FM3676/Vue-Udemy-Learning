@@ -1,0 +1,152 @@
+1
+00:00:02,220 --> 00:00:04,680
+So now, with all the knowledge
+
+2
+00:00:04,680 --> 00:00:06,330
+about the Composition API
+
+3
+00:00:06,330 --> 00:00:09,940
+we gained over the last lectures in this module,
+
+4
+00:00:09,940 --> 00:00:13,040
+we can come back to this project I showed you
+
+5
+00:00:13,040 --> 00:00:15,870
+in the second lecture of this module,
+
+6
+00:00:15,870 --> 00:00:18,670
+where I mentioned why you could consider
+
+7
+00:00:18,670 --> 00:00:22,670
+using the Composition API instead of the Options API.
+
+8
+00:00:22,670 --> 00:00:25,370
+Now, you'll find this project attached.
+
+9
+00:00:25,370 --> 00:00:28,400
+If you install everything and start the development server,
+
+10
+00:00:28,400 --> 00:00:30,950
+you'll see this application here.
+
+11
+00:00:30,950 --> 00:00:35,650
+Here you can sort the users, you can filter for users.
+
+12
+00:00:35,650 --> 00:00:38,390
+It's a very simple filter here, but it works.
+
+13
+00:00:38,390 --> 00:00:41,300
+You can select a user to view the projects,
+
+14
+00:00:41,300 --> 00:00:46,120
+and you can also filter those projects here, if you want to.
+
+15
+00:00:46,120 --> 00:00:48,700
+So, that is the project we have here,
+
+16
+00:00:48,700 --> 00:00:52,480
+and that's entirely built with the Options API.
+
+17
+00:00:52,480 --> 00:00:55,810
+I strongly recommend that you maybe pause the video here
+
+18
+00:00:55,810 --> 00:00:57,870
+and go through the project real quick,
+
+19
+00:00:57,870 --> 00:00:59,950
+so that you see how it is built,
+
+20
+00:00:59,950 --> 00:01:02,470
+how it is made up of different components,
+
+21
+00:01:02,470 --> 00:01:05,960
+that you see how the different pieces work together.
+
+22
+00:01:05,960 --> 00:01:09,060
+In the end, it's not a super complex project,
+
+23
+00:01:09,060 --> 00:01:12,110
+it's basically all about having a list of users
+
+24
+00:01:12,110 --> 00:01:15,250
+where every user then has a list of projects,
+
+25
+00:01:15,250 --> 00:01:18,010
+but we've got a couple of components that work together here
+
+26
+00:01:18,010 --> 00:01:21,060
+for displaying the users, for displaying the projects,
+
+27
+00:01:21,060 --> 00:01:22,500
+and, of course, also for,
+
+28
+00:01:22,500 --> 00:01:24,743
+for example, adding search, and so on.
+
+29
+00:01:25,690 --> 00:01:28,600
+So, take that break to analyze the project.
+
+30
+00:01:28,600 --> 00:01:31,600
+And thereafter, we'll start migrating this
+
+31
+00:01:31,600 --> 00:01:33,310
+to the Composition API.
+
+32
+00:01:33,310 --> 00:01:36,670
+Of course, you can also try this on your own.
+
+33
+00:01:36,670 --> 00:01:38,830
+This might be a great practice,
+
+34
+00:01:38,830 --> 00:01:41,320
+but if you get stuck or if you're not sure,
+
+35
+00:01:41,320 --> 00:01:44,500
+definitely also feel free to do this together with me.
+
+36
+00:01:44,500 --> 00:01:46,340
+Starting in the next lecture,
+
+37
+00:01:46,340 --> 00:01:50,530
+we'll dive into this, and we'll migrate this entire project
+
+38
+00:01:50,530 --> 00:01:53,893
+from the Options API to the Composition API.
+

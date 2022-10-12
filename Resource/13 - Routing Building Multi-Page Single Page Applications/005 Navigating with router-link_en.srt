@@ -1,0 +1,408 @@
+1
+00:00:02,389 --> 00:00:04,320
+(Narrator)So now with our routes registered,
+
+2
+00:00:04,320 --> 00:00:06,470
+let's make sure we can also reach those routes
+
+3
+00:00:06,470 --> 00:00:08,960
+from inside our application.
+
+4
+00:00:08,960 --> 00:00:12,610
+And we got this that navigation.vue file
+
+5
+00:00:12,610 --> 00:00:14,550
+where I got two buttons,
+
+6
+00:00:14,550 --> 00:00:16,420
+where I emit a custom event
+
+7
+00:00:16,420 --> 00:00:19,730
+to which I previously listened to hear in an app view.
+
+8
+00:00:19,730 --> 00:00:21,120
+I'm still listening to it.
+
+9
+00:00:21,120 --> 00:00:24,400
+But actually, now we're not going to navigate like this,
+
+10
+00:00:24,400 --> 00:00:27,570
+we now don't need to manage manually
+
+11
+00:00:27,570 --> 00:00:29,800
+which page should be loaded,
+
+12
+00:00:29,800 --> 00:00:33,830
+we can get rid of the active page data property in app view,
+
+13
+00:00:33,830 --> 00:00:36,870
+we can get rid of this event listener here
+
+14
+00:00:36,870 --> 00:00:40,510
+on then navigation, and therefore we can also get rid
+
+15
+00:00:40,510 --> 00:00:44,410
+of this set active page method here of course,
+
+16
+00:00:44,410 --> 00:00:47,403
+we can get rid of the entire methods block therefore.
+
+17
+00:00:48,410 --> 00:00:52,520
+In the navigation we no longer emit set page
+
+18
+00:00:54,400 --> 00:00:58,420
+and we therefore no longer have to set active page method
+
+19
+00:00:58,420 --> 00:01:00,970
+and we can hence get rid of the entire methods here.
+
+20
+00:01:00,970 --> 00:01:03,254
+And therefore actually, we can get rid of
+
+21
+00:01:03,254 --> 00:01:04,099
+of the entire script block since
+
+22
+00:01:04,099 --> 00:01:07,750
+we got no specific component configuration in there anyways
+
+23
+00:01:09,260 --> 00:01:11,710
+Instead, we'll now navigate differently
+
+24
+00:01:11,710 --> 00:01:13,700
+and will not use a button anymore,
+
+25
+00:01:13,700 --> 00:01:16,846
+instead we will use another built-in component that comes
+
+26
+00:01:16,846 --> 00:01:19,400
+with the view router.
+
+27
+00:01:19,400 --> 00:01:23,710
+And that is the router link component.
+
+28
+00:01:23,710 --> 00:01:27,720
+It's a little bit like the built-in anchor tag,
+
+29
+00:01:27,720 --> 00:01:29,920
+HTML element, you could say,
+
+30
+00:01:29,920 --> 00:01:32,330
+but it's a special anchor tag,
+
+31
+00:01:32,330 --> 00:01:33,680
+A special anchor tag,
+
+32
+00:01:33,680 --> 00:01:37,010
+which actually will not load a different page
+
+33
+00:01:37,010 --> 00:01:38,005
+and reload the entire app,
+
+34
+00:01:38,005 --> 00:01:40,630
+and hence loose the current state.
+
+35
+00:01:40,630 --> 00:01:44,280
+But instead a special anchor tag where the browser default
+
+36
+00:01:44,280 --> 00:01:46,720
+of loading a different page is prevented.
+
+37
+00:01:46,720 --> 00:01:49,300
+and instead, the view router takes over,
+
+38
+00:01:49,300 --> 00:01:51,717
+analyzes the link the user clicked
+
+39
+00:01:51,717 --> 00:01:54,410
+and that downloads the appropriate component
+
+40
+00:01:54,410 --> 00:01:55,443
+and updates the URL.
+
+41
+00:01:56,400 --> 00:01:59,660
+Things like that are handled by router link.
+
+42
+00:01:59,660 --> 00:02:02,440
+You can still pass your text between there,
+
+43
+00:02:02,440 --> 00:02:05,305
+you can actually pass any HTML element in there,
+
+44
+00:02:05,305 --> 00:02:08,009
+which you might need because
+
+45
+00:02:08,009 --> 00:02:10,850
+router link internally uses slots.
+
+46
+00:02:10,850 --> 00:02:13,240
+But here I just want some text.
+
+47
+00:02:13,240 --> 00:02:16,430
+And now of course, we need to configure router link.
+
+48
+00:02:16,430 --> 00:02:20,460
+And the most important configuration here is the to prop,
+
+49
+00:02:20,460 --> 00:02:22,010
+which it expects.
+
+50
+00:02:22,010 --> 00:02:25,490
+The to prop takes various different values.
+
+51
+00:02:25,490 --> 00:02:28,950
+and the simple way of using it is to provide a string to it
+
+52
+00:02:28,950 --> 00:02:31,110
+which holds the path you want to go to.
+
+53
+00:02:31,110 --> 00:02:34,040
+So in this case, slash teams.
+
+54
+00:02:34,040 --> 00:02:36,200
+So of course, that should be one of the routes
+
+55
+00:02:36,200 --> 00:02:39,423
+you are supporting in your routes configuration.
+
+56
+00:02:41,250 --> 00:02:43,080
+And that's already all then
+
+57
+00:02:43,080 --> 00:02:45,470
+we can also replace the second button
+
+58
+00:02:45,470 --> 00:02:47,980
+with such a router link.
+
+59
+00:02:47,980 --> 00:02:51,260
+Here, I want to go to my users,
+
+60
+00:02:51,260 --> 00:02:53,863
+and hence the two probe points at users.
+
+61
+00:02:55,460 --> 00:02:57,830
+Now we'll get some problems with styling here
+
+62
+00:02:57,830 --> 00:02:59,530
+because previously I used a button
+
+63
+00:02:59,530 --> 00:03:01,337
+now it's a Link hence I will replace the
+
+64
+00:03:01,337 --> 00:03:05,760
+button CSS selector down there with an anchor tag,
+
+65
+00:03:05,760 --> 00:03:09,170
+because router link under the hood will render
+
+66
+00:03:09,170 --> 00:03:12,683
+an anchor tag so we can style an anchor tag here,
+
+67
+00:03:14,360 --> 00:03:18,190
+and I'll delete this font CSS property.
+
+68
+00:03:18,190 --> 00:03:19,840
+Keep the rest though,
+
+69
+00:03:19,840 --> 00:03:22,990
+and also replace button hover and button active
+
+70
+00:03:22,990 --> 00:03:26,610
+with an anchor tag,also add a new CSS property
+
+71
+00:03:26,610 --> 00:03:31,213
+to the anchor tag rule here and set text decoration to none.
+
+72
+00:03:34,440 --> 00:03:38,680
+With that styling updated, if we save this and reload,
+
+73
+00:03:38,680 --> 00:03:41,210
+we get the same buttons as before,
+
+74
+00:03:41,210 --> 00:03:43,280
+but now these are actually links
+
+75
+00:03:43,280 --> 00:03:44,800
+and if we click them,
+
+76
+00:03:44,800 --> 00:03:48,000
+we switch between these different routes.
+
+77
+00:03:48,000 --> 00:03:50,040
+And if we inspect these elements,
+
+78
+00:03:50,040 --> 00:03:53,060
+we see what I just explained in theory.
+
+79
+00:03:53,060 --> 00:03:54,980
+We got anchor tax here,
+
+80
+00:03:54,980 --> 00:03:57,290
+which has href attribute but
+
+81
+00:03:57,290 --> 00:04:01,370
+this router link component actually makes sure that,
+
+82
+00:04:01,370 --> 00:04:03,430
+the browser default is prevented,
+
+83
+00:04:03,430 --> 00:04:05,540
+and the browser doesn't really try
+
+84
+00:04:05,540 --> 00:04:08,320
+to load a different HTML file.
+
+85
+00:04:08,320 --> 00:04:10,980
+But instead, the router then analyzes
+
+86
+00:04:10,980 --> 00:04:13,150
+the value in the ref attribute
+
+87
+00:04:13,150 --> 00:04:15,220
+and checks your routing config
+
+88
+00:04:15,220 --> 00:04:17,579
+to find the appropriate view component
+
+89
+00:04:17,579 --> 00:04:18,680
+that should be loaded.
+
+90
+00:04:19,529 --> 00:04:23,280
+In addition, you see that some CSS classes were added here,
+
+91
+00:04:23,280 --> 00:04:26,940
+router link active and router link exact active.
+
+92
+00:04:26,940 --> 00:04:29,830
+And we only have this on teams at the moment.
+
+93
+00:04:29,830 --> 00:04:31,219
+If I inspect the upper list item,
+
+94
+00:04:31,219 --> 00:04:33,770
+we don't have the classes there.
+
+95
+00:04:33,770 --> 00:04:37,320
+These classes are added automatically by view router
+
+96
+00:04:37,320 --> 00:04:39,710
+on the link which is currently selected.
+
+97
+00:04:39,710 --> 00:04:42,010
+So for the route that's currently active,
+
+98
+00:04:42,010 --> 00:04:45,070
+so that you can actually style these links based
+
+99
+00:04:45,070 --> 00:04:48,200
+on the selection to give the user a feedback
+
+100
+00:04:48,200 --> 00:04:51,380
+regarding the route he or she is currently on.
+
+101
+00:04:51,380 --> 00:04:52,610
+Now, that's something we're going
+
+102
+00:04:52,610 --> 00:04:53,803
+to explore next.
+

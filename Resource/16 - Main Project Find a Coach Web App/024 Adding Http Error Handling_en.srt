@@ -1,0 +1,744 @@
+1
+00:00:02,050 --> 00:00:05,070
+We are checking if a response is okay or not.
+
+2
+00:00:05,070 --> 00:00:08,340
+But besides that, we could also have a technical error.
+
+3
+00:00:08,340 --> 00:00:11,370
+In both cases, I want to throw an error,
+
+4
+00:00:11,370 --> 00:00:13,720
+which I can then handle in the component
+
+5
+00:00:13,720 --> 00:00:16,170
+that dispatched this action.
+
+6
+00:00:16,170 --> 00:00:17,970
+Now, if we've got a technical error,
+
+7
+00:00:17,970 --> 00:00:21,000
+an error object will be thrown automatically,
+
+8
+00:00:21,000 --> 00:00:23,480
+but otherwise I want to throw one manually.
+
+9
+00:00:23,480 --> 00:00:26,350
+So here, when I get an error
+
+10
+00:00:26,350 --> 00:00:30,270
+or create a new error and in this error object,
+
+11
+00:00:30,270 --> 00:00:31,720
+I want to set the message either
+
+12
+00:00:31,720 --> 00:00:35,870
+to response data dot message, if we have such a field,
+
+13
+00:00:35,870 --> 00:00:38,973
+or to fail to fetch as a fallback.
+
+14
+00:00:40,200 --> 00:00:43,170
+And then I want to throw this error object.
+
+15
+00:00:43,170 --> 00:00:45,310
+So I'm creating a new error object
+
+16
+00:00:45,310 --> 00:00:48,150
+and the error constructor function is built
+
+17
+00:00:48,150 --> 00:00:49,350
+into Java script.
+
+18
+00:00:49,350 --> 00:00:50,833
+And I'm throwing this here.
+
+19
+00:00:51,720 --> 00:00:54,220
+Now, whenever an error is thrown here
+
+20
+00:00:54,220 --> 00:00:56,210
+in this dispatched action,
+
+21
+00:00:56,210 --> 00:00:58,660
+the components that did dispatch it,
+
+22
+00:00:58,660 --> 00:01:01,940
+in this case coach's list, can handle it.
+
+23
+00:01:01,940 --> 00:01:04,181
+And that's exactly what we want to do here.
+
+24
+00:01:04,181 --> 00:01:07,670
+So here in load coaches,
+
+25
+00:01:07,670 --> 00:01:10,590
+besides changing the is loading status,
+
+26
+00:01:10,590 --> 00:01:14,630
+I'll now also add a new second data property,
+
+27
+00:01:14,630 --> 00:01:16,750
+the error data property,
+
+28
+00:01:16,750 --> 00:01:20,910
+which initially is null, like this.
+
+29
+00:01:20,910 --> 00:01:23,880
+And this error should be set whenever
+
+30
+00:01:23,880 --> 00:01:26,253
+this dispatched action froze in error.
+
+31
+00:01:27,653 --> 00:01:28,810
+Here, we can use try catch,
+
+32
+00:01:28,810 --> 00:01:33,810
+which is built into JavaScript to try executing this line.
+
+33
+00:01:35,390 --> 00:01:37,440
+But then if we fail,
+
+34
+00:01:37,440 --> 00:01:42,020
+I want to catch the error and do something
+
+35
+00:01:42,020 --> 00:01:45,440
+in the error scenario so that the app doesn't crash,
+
+36
+00:01:45,440 --> 00:01:49,113
+but we can define which coach would execute if it fails.
+
+37
+00:01:50,330 --> 00:01:52,340
+So what do I want to do here?
+
+38
+00:01:52,340 --> 00:01:57,340
+I want to set this error equal to error dot message
+
+39
+00:01:58,090 --> 00:02:01,270
+or as a fallback in case this error object
+
+40
+00:02:01,270 --> 00:02:03,700
+shouldn't have a message property
+
+41
+00:02:03,700 --> 00:02:06,143
+to something went wrong.
+
+42
+00:02:08,300 --> 00:02:11,400
+And now we're setting this error data property,
+
+43
+00:02:11,400 --> 00:02:13,830
+which we now can use in our template
+
+44
+00:02:13,830 --> 00:02:17,010
+to show the user an error.
+
+45
+00:02:17,010 --> 00:02:19,840
+And now it's up to you how you want to show such
+
+46
+00:02:19,840 --> 00:02:21,720
+an error message to the user.
+
+47
+00:02:21,720 --> 00:02:25,660
+I want to show the error message by opening an overlay,
+
+48
+00:02:25,660 --> 00:02:28,580
+a modal that shows the error to the user,
+
+49
+00:02:28,580 --> 00:02:30,300
+and then the user has to confirm,
+
+50
+00:02:30,300 --> 00:02:33,510
+and maybe he or she wants to try again or whatever,
+
+51
+00:02:33,510 --> 00:02:37,110
+but at least we will show the error to the user.
+
+52
+00:02:37,110 --> 00:02:39,600
+So let's add such a modal here.
+
+53
+00:02:39,600 --> 00:02:42,360
+Now for this error modal, which I wanted to show,
+
+54
+00:02:42,360 --> 00:02:44,623
+I prepared a number of component for you.
+
+55
+00:02:45,530 --> 00:02:48,490
+It's the base dialogue component which you'll find attached,
+
+56
+00:02:48,490 --> 00:02:51,260
+which you can copy into your UI folder.
+
+57
+00:02:51,260 --> 00:02:54,530
+Now I've prepared this component for you simply so that we
+
+58
+00:02:54,530 --> 00:02:58,580
+don't waste too much time on creating yet another component
+
+59
+00:02:58,580 --> 00:03:00,760
+that's really not doing that much.
+
+60
+00:03:00,760 --> 00:03:04,630
+It's just a dialogue, a default HTML dialogue,
+
+61
+00:03:04,630 --> 00:03:07,950
+being rendered with a backdrop behind it.
+
+62
+00:03:07,950 --> 00:03:11,530
+It's shown with a show prop that is received here,
+
+63
+00:03:11,530 --> 00:03:14,060
+which has to be a Boolean and which is required.
+
+64
+00:03:14,060 --> 00:03:18,240
+We used that to show both the backdrop and the dialogue.
+
+65
+00:03:18,240 --> 00:03:23,100
+And I use teleport here to teleport that to the body so that
+
+66
+00:03:23,100 --> 00:03:26,400
+it's not rendered in the Dom hierarchy where we use
+
+67
+00:03:26,400 --> 00:03:29,453
+this component, but always directly in the body.
+
+68
+00:03:30,800 --> 00:03:34,020
+Then we get a title prop and a fixed prop title
+
+69
+00:03:34,020 --> 00:03:35,610
+is for the title, which is shown
+
+70
+00:03:35,610 --> 00:03:37,320
+in the header off the dialogue.
+
+71
+00:03:37,320 --> 00:03:40,380
+The main content is dynamic. We can use a slot here.
+
+72
+00:03:40,380 --> 00:03:43,130
+We could also use a slot to replace the header
+
+73
+00:03:43,130 --> 00:03:46,500
+and also use a slot to replace the actions,
+
+74
+00:03:46,500 --> 00:03:47,960
+the button we show here.
+
+75
+00:03:47,960 --> 00:03:50,460
+But by default, I show a close button here,
+
+76
+00:03:50,460 --> 00:03:53,130
+which triggers the try close method,
+
+77
+00:03:53,130 --> 00:03:55,690
+just as clicking on the backdrop does.
+
+78
+00:03:55,690 --> 00:03:59,460
+And the try close method is a method which emits
+
+79
+00:03:59,460 --> 00:04:03,130
+to close event, but it checks if the fixed prop
+
+80
+00:04:03,130 --> 00:04:05,890
+is set and if it is set to true,
+
+81
+00:04:05,890 --> 00:04:08,450
+it actually does not emit to close event.
+
+82
+00:04:08,450 --> 00:04:11,640
+The idea is that you could use this dialogue also
+
+83
+00:04:11,640 --> 00:04:13,770
+in a non-closable way,
+
+84
+00:04:13,770 --> 00:04:16,209
+which ensures that it can't be closed
+
+85
+00:04:16,209 --> 00:04:17,570
+by clicking the backdrop.
+
+86
+00:04:17,570 --> 00:04:19,760
+That could be useful if you, for example,
+
+87
+00:04:19,760 --> 00:04:23,850
+want to show the dialogue to hold a loading spinner
+
+88
+00:04:23,850 --> 00:04:26,770
+and it should then automatically go away controlled
+
+89
+00:04:26,770 --> 00:04:28,590
+from outside of this component
+
+90
+00:04:28,590 --> 00:04:31,860
+when the loading spinner isn't needed anymore.
+
+91
+00:04:31,860 --> 00:04:35,030
+So it's really just a flexible dialogue component,
+
+92
+00:04:35,030 --> 00:04:36,370
+which shows an overlay.
+
+93
+00:04:36,370 --> 00:04:38,870
+And we're going to use this component.
+
+94
+00:04:38,870 --> 00:04:41,640
+For dad and main JS we have to register it
+
+95
+00:04:41,640 --> 00:04:43,750
+as a global component.
+
+96
+00:04:43,750 --> 00:04:47,220
+So base dialogue from components,
+
+97
+00:04:47,220 --> 00:04:49,620
+UI base dialogue dot vue.
+
+98
+00:04:49,620 --> 00:04:51,240
+That's the import we need.
+
+99
+00:04:51,240 --> 00:04:53,090
+And then with that import added,
+
+100
+00:04:53,090 --> 00:04:55,277
+we can register it as a component
+
+101
+00:04:55,277 --> 00:04:59,020
+with the app component method here,
+
+102
+00:04:59,020 --> 00:05:02,220
+base dialogue pointing at base dialogue.
+
+103
+00:05:02,220 --> 00:05:04,733
+And now that component is available.
+
+104
+00:05:06,030 --> 00:05:08,380
+And I want to use it in coach's list
+
+105
+00:05:08,380 --> 00:05:10,847
+to show an error message to the user
+
+106
+00:05:10,847 --> 00:05:13,743
+if fetching data failed.
+
+107
+00:05:14,780 --> 00:05:18,410
+For that here, we can simply add base dialogue
+
+108
+00:05:18,410 --> 00:05:20,580
+in the template of this component.
+
+109
+00:05:20,580 --> 00:05:23,290
+Again, it will not be rendered in that position
+
+110
+00:05:23,290 --> 00:05:24,600
+of the Dom hierarchy.
+
+111
+00:05:24,600 --> 00:05:26,930
+Instead, it will always be teleported
+
+112
+00:05:26,930 --> 00:05:31,450
+to the body because of the teleport inside of base dialogue.
+
+113
+00:05:31,450 --> 00:05:34,230
+But I want to use it in this coach's list component
+
+114
+00:05:34,230 --> 00:05:37,280
+because here I want to show the error message.
+
+115
+00:05:37,280 --> 00:05:38,940
+So in a paragraph,
+
+116
+00:05:38,940 --> 00:05:42,140
+which we pass between the base dialogue text
+
+117
+00:05:42,140 --> 00:05:44,490
+to use the default slot in there,
+
+118
+00:05:44,490 --> 00:05:48,404
+which is this slot in this content section here,
+
+119
+00:05:48,404 --> 00:05:51,430
+this slot receives this paragraph,
+
+120
+00:05:51,430 --> 00:05:52,770
+and here in this paragraph,
+
+121
+00:05:52,770 --> 00:05:55,170
+I want to output error
+
+122
+00:05:55,170 --> 00:05:59,650
+because the error data property in coach's list
+
+123
+00:05:59,650 --> 00:06:04,240
+is null initially, but is actually set to an error message
+
+124
+00:06:04,240 --> 00:06:05,743
+if we do have an error.
+
+125
+00:06:07,530 --> 00:06:10,660
+And now I, of course, only want to show the dialogue
+
+126
+00:06:10,660 --> 00:06:12,150
+if we do have an error,
+
+127
+00:06:12,150 --> 00:06:16,440
+so we can bind to show prop off base dialogue queue, not,
+
+128
+00:06:17,370 --> 00:06:19,520
+not error.
+
+129
+00:06:19,520 --> 00:06:20,710
+That might look strange,
+
+130
+00:06:20,710 --> 00:06:23,870
+but this ensures that if error is truthy,
+
+131
+00:06:23,870 --> 00:06:26,670
+it's converted into a real Boolean.
+
+132
+00:06:26,670 --> 00:06:28,920
+If it would pass and just error,
+
+133
+00:06:28,920 --> 00:06:32,550
+I would pass in a string as a value for show,
+
+134
+00:06:32,550 --> 00:06:34,650
+but show once a Boolean.
+
+135
+00:06:34,650 --> 00:06:36,350
+If I add one exclamation mark,
+
+136
+00:06:36,350 --> 00:06:39,940
+I pass the opposite and I don't want the opposite.
+
+137
+00:06:39,940 --> 00:06:43,480
+So two exclamation marks convert a string,
+
+138
+00:06:43,480 --> 00:06:47,070
+a truthy value into a real true Boolean.
+
+139
+00:06:47,070 --> 00:06:49,130
+That's why I'm using that here.
+
+140
+00:06:49,130 --> 00:06:52,110
+So here we pass in true if we have an error, and false
+
+141
+00:06:52,110 --> 00:06:55,620
+if we don't have one and internally the show prop
+
+142
+00:06:55,620 --> 00:06:59,783
+is then used to show or hide the dialogue and the backdrop.
+
+143
+00:07:01,030 --> 00:07:02,610
+We can also pass in a title
+
+144
+00:07:02,610 --> 00:07:05,990
+and set this to an error occurred.
+
+145
+00:07:05,990 --> 00:07:06,823
+And with that,
+
+146
+00:07:06,823 --> 00:07:09,950
+we should show this dialogue whenever we have an error.
+
+147
+00:07:09,950 --> 00:07:12,800
+So if I reload since fetching always fails,
+
+148
+00:07:12,800 --> 00:07:15,683
+we now see this error dialogue.
+
+149
+00:07:16,540 --> 00:07:18,540
+Now it would be great if we could close it
+
+150
+00:07:18,540 --> 00:07:22,500
+and the base dialogue does emit the close event.
+
+151
+00:07:22,500 --> 00:07:26,520
+Whenever we click on the backdrop or the close button,
+
+152
+00:07:26,520 --> 00:07:28,960
+and therefore back in coaches list,
+
+153
+00:07:28,960 --> 00:07:32,360
+we can listen to the close event here.
+
+154
+00:07:32,360 --> 00:07:36,410
+And then, for example, execute a handle error method
+
+155
+00:07:36,410 --> 00:07:38,690
+which we have yet to add.
+
+156
+00:07:38,690 --> 00:07:40,920
+So handle errors should be added here
+
+157
+00:07:42,190 --> 00:07:46,410
+maybe after loading to coaches.
+
+158
+00:07:46,410 --> 00:07:50,490
+And in here, I simply want to set error back to null.
+
+159
+00:07:50,490 --> 00:07:51,950
+And once it is null,
+
+160
+00:07:51,950 --> 00:07:56,530
+it's a falsey value and therefore show will receive false
+
+161
+00:07:56,530 --> 00:07:59,563
+as a value and therefore it will not be shown anymore.
+
+162
+00:08:01,140 --> 00:08:04,850
+So with that, if we reload, you see this is the error,
+
+163
+00:08:04,850 --> 00:08:08,980
+but if I click the backdrop, for example, then we close it.
+
+164
+00:08:08,980 --> 00:08:11,080
+Or if I click close.
+
+165
+00:08:11,080 --> 00:08:11,913
+Now at the moment,
+
+166
+00:08:11,913 --> 00:08:15,120
+you always get this error because this is a forced error.
+
+167
+00:08:15,120 --> 00:08:20,120
+After all I manipulated the URL here in the coach's actions.
+
+168
+00:08:20,630 --> 00:08:22,200
+This needs the end at the end.
+
+169
+00:08:22,200 --> 00:08:23,800
+So we'll bring this back,
+
+170
+00:08:23,800 --> 00:08:27,980
+but now we can see that error handling also works here.
+
+171
+00:08:27,980 --> 00:08:32,450
+Now we could also bring a loading spinner and error handling
+
+172
+00:08:32,450 --> 00:08:36,070
+to the coach registration if we want to,
+
+173
+00:08:36,070 --> 00:08:37,350
+but I will not do it here,
+
+174
+00:08:37,350 --> 00:08:40,572
+but you can absolutely do this and think of ways of adding
+
+175
+00:08:40,572 --> 00:08:43,799
+it there as well, that would be a nice practice.
+
+176
+00:08:43,799 --> 00:08:47,420
+But another practice, which I also want to implement here,
+
+177
+00:08:47,420 --> 00:08:52,160
+or which I want to do here in the next lectures is bringing
+
+178
+00:08:52,160 --> 00:08:56,513
+that loading spinner and the error handling to requests.
+
+179
+00:08:57,440 --> 00:08:59,228
+When we fetch requests here,
+
+180
+00:08:59,228 --> 00:09:01,730
+I want to fetch them from the backend.
+
+181
+00:09:01,730 --> 00:09:03,230
+We're not doing this yet.
+
+182
+00:09:03,230 --> 00:09:06,290
+And I also want to store requests on the back end.
+
+183
+00:09:06,290 --> 00:09:09,740
+I want to store requests on Firebase.
+
+184
+00:09:09,740 --> 00:09:13,000
+As always in this entire module, try this on your own.
+
+185
+00:09:13,000 --> 00:09:13,910
+Tn the next lecture,
+
+186
+00:09:13,910 --> 00:09:15,860
+we'll start implementing this together.
+

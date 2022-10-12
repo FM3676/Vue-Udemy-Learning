@@ -1,0 +1,612 @@
+1
+00:00:02,220 --> 00:00:05,120
+Now we got "Mutations and Getters,"
+
+2
+00:00:05,120 --> 00:00:06,860
+what could be missing?
+
+3
+00:00:06,860 --> 00:00:08,453
+There is another important concept,
+
+4
+00:00:08,453 --> 00:00:12,230
+another important feature Vuex exposes.
+
+5
+00:00:12,230 --> 00:00:14,560
+But in order to understand it,
+
+6
+00:00:14,560 --> 00:00:16,760
+let's go back to our code.
+
+7
+00:00:16,760 --> 00:00:21,130
+Let's say, in the increment mutation,
+
+8
+00:00:21,130 --> 00:00:24,180
+we don't wanna increment immediately.
+
+9
+00:00:24,180 --> 00:00:26,510
+Instead, we wanna wait two seconds
+
+10
+00:00:26,510 --> 00:00:28,760
+and then increment.
+
+11
+00:00:28,760 --> 00:00:31,140
+Now this might be a dumb example,
+
+12
+00:00:31,140 --> 00:00:33,060
+but a better example could be an app
+
+13
+00:00:33,060 --> 00:00:35,870
+where you send an HTTP request
+
+14
+00:00:35,870 --> 00:00:37,730
+and you wait for the response.
+
+15
+00:00:37,730 --> 00:00:39,810
+And only once the response is there,
+
+16
+00:00:39,810 --> 00:00:41,463
+you wanna change your state.
+
+17
+00:00:42,600 --> 00:00:45,630
+Put in other words, you sometimes have code,
+
+18
+00:00:45,630 --> 00:00:47,820
+which runs asynchronously,
+
+19
+00:00:47,820 --> 00:00:49,940
+which doesn't finish immediately,
+
+20
+00:00:49,940 --> 00:00:51,683
+but sometimes in the future.
+
+21
+00:00:52,620 --> 00:00:57,430
+The problem is that Mutations must be synchronous.
+
+22
+00:00:57,430 --> 00:01:01,040
+You're not allowed to have any asynchronous code in there.
+
+23
+00:01:01,040 --> 00:01:03,370
+So if you run a Mutation,
+
+24
+00:01:03,370 --> 00:01:07,090
+it needs to execute step-by-step-by-step without any pause
+
+25
+00:01:07,090 --> 00:01:09,610
+and immediately change the state.
+
+26
+00:01:09,610 --> 00:01:14,290
+It's not allowed to do anything that may take a bit longer.
+
+27
+00:01:14,290 --> 00:01:17,070
+The reason for that simply is that if multiple
+
+28
+00:01:17,070 --> 00:01:18,550
+Mutations execute,
+
+29
+00:01:18,550 --> 00:01:21,820
+every mutation should get the latest state.
+
+30
+00:01:21,820 --> 00:01:24,540
+And if another mutation was committed,
+
+31
+00:01:24,540 --> 00:01:26,330
+but didn't finish yet,
+
+32
+00:01:26,330 --> 00:01:30,540
+that is unexpected and will lead to errors in your program.
+
+33
+00:01:30,540 --> 00:01:33,680
+That's why a key requirement of Mutations
+
+34
+00:01:33,680 --> 00:01:37,150
+is that they have to be synchronous.
+
+35
+00:01:37,150 --> 00:01:40,770
+But what if I do want to wait for two seconds?
+
+36
+00:01:40,770 --> 00:01:43,140
+We could do it as we've set timeout.
+
+37
+00:01:43,140 --> 00:01:45,600
+There, we could wait two seconds,
+
+38
+00:01:45,600 --> 00:01:47,350
+and then the function here,
+
+39
+00:01:47,350 --> 00:01:49,800
+which then executes after two seconds,
+
+40
+00:01:49,800 --> 00:01:51,283
+we update our state.
+
+41
+00:01:52,220 --> 00:01:53,910
+But this is actually not allowed.
+
+42
+00:01:53,910 --> 00:01:55,570
+It will work if you try it,
+
+43
+00:01:55,570 --> 00:01:59,320
+but it is a very bad practice and nothing you should do.
+
+44
+00:01:59,320 --> 00:02:02,700
+Instead Vuex has a better concept in place
+
+45
+00:02:02,700 --> 00:02:05,550
+for working with asynchronous code.
+
+46
+00:02:05,550 --> 00:02:10,169
+Besides Mutations and Getters, it also has Actions.
+
+47
+00:02:10,169 --> 00:02:13,200
+And Components should trigger Actions,
+
+48
+00:02:13,200 --> 00:02:15,863
+which then in turn commit Mutations.
+
+49
+00:02:16,810 --> 00:02:21,810
+Because Actions can now use asynchronous code.
+
+50
+00:02:21,880 --> 00:02:22,820
+And because of that,
+
+51
+00:02:22,820 --> 00:02:26,410
+it's actually considered a good practice in general,
+
+52
+00:02:26,410 --> 00:02:31,270
+to always put Actions between Components and Mutations,
+
+53
+00:02:31,270 --> 00:02:34,790
+even though Components could commit Mutations themselves.
+
+54
+00:02:34,790 --> 00:02:36,760
+And that wouldn't be a problem
+
+55
+00:02:36,760 --> 00:02:39,380
+if you only had synchronous code.
+
+56
+00:02:39,380 --> 00:02:43,300
+But even with that fact that directly committing Mutations
+
+57
+00:02:43,300 --> 00:02:46,580
+from inside Components often would not be a problem.
+
+58
+00:02:46,580 --> 00:02:50,000
+Even with that, it is considered a good practice
+
+59
+00:02:50,000 --> 00:02:52,300
+to always put Actions in between
+
+60
+00:02:52,300 --> 00:02:57,040
+to ensure that you never accidentally put asynchronous code
+
+61
+00:02:57,040 --> 00:02:58,483
+into Mutations.
+
+62
+00:02:59,570 --> 00:03:00,900
+So how do Actions work then?
+
+63
+00:03:00,900 --> 00:03:02,633
+How do we add them to our store?
+
+64
+00:03:03,640 --> 00:03:05,280
+In main js,
+
+65
+00:03:05,280 --> 00:03:08,320
+besides Mutations and Getters and State,
+
+66
+00:03:08,320 --> 00:03:10,770
+we can add Actions.
+
+67
+00:03:10,770 --> 00:03:14,063
+And I'm doing this here, I'll add Actions here.
+
+68
+00:03:15,710 --> 00:03:17,880
+And Action also takes an object
+
+69
+00:03:17,880 --> 00:03:20,403
+just like Getters and Mutations did.
+
+70
+00:03:21,520 --> 00:03:24,350
+An action again is just a method.
+
+71
+00:03:24,350 --> 00:03:29,140
+For example, increment: You can use the same name here
+
+72
+00:03:29,140 --> 00:03:31,820
+as you do in your Mutations.
+
+73
+00:03:31,820 --> 00:03:33,840
+So here I've got an increment mutation.
+
+74
+00:03:33,840 --> 00:03:36,143
+I'm also using an increment action.
+
+75
+00:03:37,100 --> 00:03:38,890
+You don't have to use the same name,
+
+76
+00:03:38,890 --> 00:03:42,360
+but often you will because often you just have an action
+
+77
+00:03:42,360 --> 00:03:45,080
+in between a component and a mutation.
+
+78
+00:03:45,080 --> 00:03:47,513
+So using the same name makes sense.
+
+79
+00:03:49,120 --> 00:03:53,970
+Now, this action will get an object as a argument,
+
+80
+00:03:53,970 --> 00:03:56,030
+a context object.
+
+81
+00:03:56,030 --> 00:04:00,700
+And this context object is full of interesting things.
+
+82
+00:04:00,700 --> 00:04:04,360
+The actual get this argument automatically by Vuex,
+
+83
+00:04:04,360 --> 00:04:06,503
+like all these Veux features do.
+
+84
+00:04:07,630 --> 00:04:11,470
+Now context, for example, has a commit method,
+
+85
+00:04:11,470 --> 00:04:12,750
+which you can call.
+
+86
+00:04:12,750 --> 00:04:17,750
+And it's does what you think, it commits a mutation,
+
+87
+00:04:18,040 --> 00:04:21,709
+just like you could commit it from inside a component.
+
+88
+00:04:21,709 --> 00:04:24,300
+You can pass a second argument as a payload
+
+89
+00:04:24,300 --> 00:04:27,280
+and you can pass an object alternatively
+
+90
+00:04:27,280 --> 00:04:30,150
+to the two argument way of using it.
+
+91
+00:04:30,150 --> 00:04:32,100
+But here I only need one argument
+
+92
+00:04:32,100 --> 00:04:34,230
+and that will be the name of the mutation
+
+93
+00:04:34,230 --> 00:04:35,480
+that should be committed.
+
+94
+00:04:36,370 --> 00:04:38,240
+Now we'll have a look at the other things
+
+95
+00:04:38,240 --> 00:04:40,530
+inside of context in a second,
+
+96
+00:04:40,530 --> 00:04:42,690
+but for the moment, let's leave it like this.
+
+97
+00:04:42,690 --> 00:04:45,810
+And now we got an action which commits increment.
+
+98
+00:04:45,810 --> 00:04:48,310
+The interesting thing is that Actions,
+
+99
+00:04:48,310 --> 00:04:52,603
+unlike Mutations are allowed to run asynchronous code.
+
+100
+00:04:53,780 --> 00:04:56,460
+So we can take our timeout here
+
+101
+00:04:57,890 --> 00:05:00,663
+and wrap context commit with it.
+
+102
+00:05:02,140 --> 00:05:05,530
+With that, the mutation is synchronous again,
+
+103
+00:05:05,530 --> 00:05:07,940
+but the action is asynchronous,
+
+104
+00:05:07,940 --> 00:05:10,450
+which is allowed by Veux.
+
+105
+00:05:10,450 --> 00:05:12,650
+It simply commits the mutation only
+
+106
+00:05:12,650 --> 00:05:14,493
+once the two seconds have passed.
+
+107
+00:05:15,640 --> 00:05:18,280
+And now we need to change our component code
+
+108
+00:05:18,280 --> 00:05:20,290
+and make sure that we don't commit
+
+109
+00:05:20,290 --> 00:05:21,970
+from inside the component,
+
+110
+00:05:21,970 --> 00:05:24,690
+but that we use the action instead.
+
+111
+00:05:24,690 --> 00:05:26,950
+And how do we use an action then?
+
+112
+00:05:26,950 --> 00:05:30,343
+How is that meant to happen in Veux?
+
+113
+00:05:31,210 --> 00:05:33,090
+Well, inside of the component
+
+114
+00:05:33,090 --> 00:05:35,430
+where we previously committed,
+
+115
+00:05:35,430 --> 00:05:39,000
+we can now dispatch an action.
+
+116
+00:05:39,000 --> 00:05:42,070
+And the cool thing is the syntax for dispatching
+
+117
+00:05:42,070 --> 00:05:44,830
+is pretty much the same as for committing.
+
+118
+00:05:44,830 --> 00:05:48,270
+You can either dispatch with two arguments
+
+119
+00:05:48,270 --> 00:05:51,480
+where the first argument is the action name.
+
+120
+00:05:51,480 --> 00:05:54,010
+So in my case increments here.
+
+121
+00:05:54,010 --> 00:05:57,910
+And the second argument is a potential payload you want,
+
+122
+00:05:57,910 --> 00:06:01,293
+or you use the one argument syntax.
+
+123
+00:06:02,160 --> 00:06:04,640
+Here however, I'm dispatching increase,
+
+124
+00:06:04,640 --> 00:06:06,990
+which doesn't exist as an action yet.
+
+125
+00:06:06,990 --> 00:06:10,240
+So I will quickly also add an increase action
+
+126
+00:06:10,240 --> 00:06:12,080
+so that this will work.
+
+127
+00:06:12,080 --> 00:06:15,050
+Simply add a new action named Increase,
+
+128
+00:06:15,050 --> 00:06:18,173
+and context commit Increase here.
+
+129
+00:06:19,410 --> 00:06:22,190
+Your action will receive the payload
+
+130
+00:06:22,190 --> 00:06:24,890
+that was added to the dispatch function
+
+131
+00:06:25,790 --> 00:06:28,830
+like value here, or like this second object
+
+132
+00:06:28,830 --> 00:06:30,530
+as an extra argument.
+
+133
+00:06:30,530 --> 00:06:32,830
+So here we will automatically get payload,
+
+134
+00:06:32,830 --> 00:06:36,263
+which we then can forward to the committed mutation.
+
+135
+00:06:37,560 --> 00:06:39,860
+So this is how we can set up an action
+
+136
+00:06:39,860 --> 00:06:41,730
+that also has a payload
+
+137
+00:06:41,730 --> 00:06:44,930
+and forwards that payload to the mutation.
+
+138
+00:06:44,930 --> 00:06:47,270
+Of course, you could also change the payload
+
+139
+00:06:47,270 --> 00:06:49,240
+before you commit this mutation.
+
+140
+00:06:49,240 --> 00:06:51,990
+You can do whatever you wanna do in this action.
+
+141
+00:06:51,990 --> 00:06:54,860
+Whatever needs to be done for your application
+
+142
+00:06:54,860 --> 00:06:56,033
+to work correctly.
+
+143
+00:06:57,670 --> 00:06:59,490
+But let's get back to the Components.
+
+144
+00:06:59,490 --> 00:07:04,170
+We dispatch Actions just as we committed Mutations
+
+145
+00:07:04,170 --> 00:07:06,370
+with the difference that we now run Actions
+
+146
+00:07:06,370 --> 00:07:07,633
+instead of Mutations.
+
+147
+00:07:08,540 --> 00:07:11,230
+And therefore we can also do this and change counter
+
+148
+00:07:11,230 --> 00:07:14,263
+and simply dispatch the increment action here.
+
+149
+00:07:15,440 --> 00:07:18,160
+And with all those changes in place,
+
+150
+00:07:18,160 --> 00:07:21,580
+if you go back, this still works.
+
+151
+00:07:21,580 --> 00:07:23,540
+And only after two seconds
+
+152
+00:07:23,540 --> 00:07:27,100
+do you add two button click is having an effect.
+
+153
+00:07:27,100 --> 00:07:30,903
+But now we're doing this in the proper way using Actions.
+

@@ -1,0 +1,312 @@
+1
+00:00:02,040 --> 00:00:03,240
+So for updating the UI,
+
+2
+00:00:03,240 --> 00:00:05,140
+I got two main areas.
+
+3
+00:00:05,140 --> 00:00:07,280
+And that's this register as coach button,
+
+4
+00:00:07,280 --> 00:00:09,900
+which I wanna replace if we're not logged in.
+
+5
+00:00:09,900 --> 00:00:12,650
+And requests also shouldn't be visible here
+
+6
+00:00:12,650 --> 00:00:13,850
+if we're not logged in.
+
+7
+00:00:13,850 --> 00:00:17,053
+Instead, maybe we wanna show a login button.
+
+8
+00:00:18,450 --> 00:00:20,790
+For that, I will start in my getters
+
+9
+00:00:20,790 --> 00:00:23,650
+in the auth module though.
+
+10
+00:00:23,650 --> 00:00:25,530
+So, there in getters.
+
+11
+00:00:25,530 --> 00:00:28,273
+I'll add a new getter isAuthenticated.
+
+12
+00:00:29,980 --> 00:00:34,580
+And here, I wanna check if we are authenticated.
+
+13
+00:00:34,580 --> 00:00:38,230
+And how can we tell whether we are authenticated or not?
+
+14
+00:00:38,230 --> 00:00:42,030
+Well, if we got a token, then we are authenticated.
+
+15
+00:00:42,030 --> 00:00:44,360
+Because we start without one,
+
+16
+00:00:44,360 --> 00:00:46,410
+and I will later reset it
+
+17
+00:00:46,410 --> 00:00:48,890
+once we added a log out functionality.
+
+18
+00:00:48,890 --> 00:00:52,180
+So, if we have a token, we are authenticated.
+
+19
+00:00:52,180 --> 00:00:54,870
+So, I will return state.token;
+
+20
+00:00:54,870 --> 00:00:57,340
+and convert this to a true Boolean
+
+21
+00:00:57,340 --> 00:00:59,573
+by adding the double exclamation mark again.
+
+22
+00:01:01,490 --> 00:01:04,110
+Now, we can use the isAuthenticated getter
+
+23
+00:01:04,110 --> 00:01:05,890
+into different parts of this app.
+
+24
+00:01:05,890 --> 00:01:08,810
+For example, under a coach's list.
+
+25
+00:01:08,810 --> 00:01:11,770
+Here, we have this register as coach button,
+
+26
+00:01:11,770 --> 00:01:15,550
+and that should not be visible if we're not even logged in.
+
+27
+00:01:15,550 --> 00:01:20,240
+Instead, I wanna show a login button or link instead.
+
+28
+00:01:20,240 --> 00:01:22,670
+So, therefore, we can add a new computed property
+
+29
+00:01:22,670 --> 00:01:26,049
+here to coach's list,
+
+30
+00:01:26,049 --> 00:01:31,049
+the isLoggedIn computed property, for example,
+
+31
+00:01:32,220 --> 00:01:37,220
+where I return this.$store.getters.isAuthenticated;
+
+32
+00:01:38,930 --> 00:01:41,420
+Since this module is not namespaced,
+
+33
+00:01:41,420 --> 00:01:43,573
+we can access the getter just like this.
+
+34
+00:01:44,860 --> 00:01:46,240
+Now, we can use isLoggedIn
+
+35
+00:01:47,090 --> 00:01:50,470
+and only show this register as coach button
+
+36
+00:01:50,470 --> 00:01:52,090
+if we're not a coach,
+
+37
+00:01:52,090 --> 00:01:56,730
+we're not loading and we are logged in.
+
+38
+00:01:56,730 --> 00:01:59,550
+So, if we are logged in and we're not a coach
+
+39
+00:01:59,550 --> 00:02:00,780
+and we're not loading,
+
+40
+00:02:00,780 --> 00:02:02,500
+then I wanna show this button.
+
+41
+00:02:02,500 --> 00:02:04,330
+And, of course, you could also put this all
+
+42
+00:02:04,330 --> 00:02:06,180
+into one computed property
+
+43
+00:02:06,180 --> 00:02:08,613
+to take this logic out of the template.
+
+44
+00:02:09,770 --> 00:02:12,710
+Now, I will add a new base-button here,
+
+45
+00:02:12,710 --> 00:02:15,723
+which will act as a link to="/auth"
+
+46
+00:02:19,300 --> 00:02:24,300
+where I say login if we are not logged in.
+
+47
+00:02:24,890 --> 00:02:29,750
+So, if we're not logged in,
+
+48
+00:02:29,750 --> 00:02:31,010
+if we're not logged in,
+
+49
+00:02:31,010 --> 00:02:32,363
+this button will be shown.
+
+50
+00:02:33,980 --> 00:02:35,450
+Now, with that saved,
+
+51
+00:02:35,450 --> 00:02:37,560
+here we see the login button.
+
+52
+00:02:37,560 --> 00:02:38,410
+And we click it,
+
+53
+00:02:38,410 --> 00:02:40,780
+we go to the login page.
+
+54
+00:02:40,780 --> 00:02:43,430
+Now, for the navigation bar,
+
+55
+00:02:43,430 --> 00:02:47,633
+that's TheHeader in the layout folder under components.
+
+56
+00:02:48,630 --> 00:02:51,560
+And here, we now also need to add a script,
+
+57
+00:02:51,560 --> 00:02:53,110
+to add a computed property
+
+58
+00:02:53,110 --> 00:02:54,913
+to get access to our getters.
+
+59
+00:02:56,870 --> 00:02:59,390
+I will also add a isLoggedIn getter
+
+60
+00:02:59,390 --> 00:03:01,720
+at our computed property here
+
+61
+00:03:01,720 --> 00:03:06,720
+and return this.$store.getters.isAuthenticated;
+
+62
+00:03:06,920 --> 00:03:09,343
+That getter we added a couple of minutes ago.
+
+63
+00:03:11,260 --> 00:03:13,370
+And I'll only show this list item
+
+64
+00:03:13,370 --> 00:03:17,310
+with the requests link if we are logged in.
+
+65
+00:03:17,310 --> 00:03:22,310
+Otherwise, I'll show a different list item
+
+66
+00:03:22,450 --> 00:03:26,393
+with a <router-link to="/auth"
+
+67
+00:03:28,640 --> 00:03:32,003
+where I say login.
+
+68
+00:03:33,420 --> 00:03:35,010
+With that, if we save this,
+
+69
+00:03:35,010 --> 00:03:39,850
+we now see login here as a navigation item.
+
+70
+00:03:39,850 --> 00:03:44,850
+If I do log in, you see,
+
+71
+00:03:45,030 --> 00:03:47,310
+we have requests instead,
+
+72
+00:03:47,310 --> 00:03:48,620
+And on all coaches,
+
+73
+00:03:48,620 --> 00:03:51,090
+we would see the register as coach button
+
+74
+00:03:51,090 --> 00:03:53,920
+if we wouldn't be registered already.
+
+75
+00:03:53,920 --> 00:03:56,090
+So, now let's also add a log out button
+
+76
+00:03:56,090 --> 00:03:58,120
+and a log out functionality
+
+77
+00:03:58,120 --> 00:04:00,340
+and check a couple of other things we can do
+
+78
+00:04:00,340 --> 00:04:02,073
+here on our front end.
+

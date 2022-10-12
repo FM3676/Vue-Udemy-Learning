@@ -1,0 +1,544 @@
+1
+00:00:02,210 --> 00:00:04,210
+So we learned about v-if,
+
+2
+00:00:04,210 --> 00:00:07,230
+which is great for showing content conditionally,
+
+3
+00:00:07,230 --> 00:00:10,930
+but we all have an array of content here,
+
+4
+00:00:10,930 --> 00:00:12,970
+potentially we have multiple goals,
+
+5
+00:00:12,970 --> 00:00:16,930
+and it would be nice if we could output those actual goals
+
+6
+00:00:16,930 --> 00:00:18,970
+which we store in our view app,
+
+7
+00:00:18,970 --> 00:00:22,163
+instead of this dummy goal goal.
+
+8
+00:00:23,090 --> 00:00:26,640
+Well, of course view has us covered for that, as well.
+
+9
+00:00:26,640 --> 00:00:30,100
+We now need to output a list of content,
+
+10
+00:00:30,100 --> 00:00:33,650
+and that's also something you commonly have to do in apps,
+
+11
+00:00:33,650 --> 00:00:36,960
+consider lists of products, users' to do's,
+
+12
+00:00:36,960 --> 00:00:40,020
+lists are everywhere in web apps.
+
+13
+00:00:40,020 --> 00:00:42,820
+And therefore, of course, view gives us a tool
+
+14
+00:00:42,820 --> 00:00:44,720
+for working with lists of data
+
+15
+00:00:44,720 --> 00:00:47,240
+and outputting repeated content.
+
+16
+00:00:47,240 --> 00:00:50,520
+Here we wanna repeat this list item
+
+17
+00:00:50,520 --> 00:00:54,490
+with different content for all the goals we have.
+
+18
+00:00:54,490 --> 00:00:56,980
+And view has another directive for that.
+
+19
+00:00:56,980 --> 00:00:58,633
+The v-for directive.
+
+20
+00:00:59,740 --> 00:01:01,680
+And you might see a pattern here.
+
+21
+00:01:01,680 --> 00:01:06,680
+We have v-if, just as we have if statements in JavaScript.
+
+22
+00:01:07,700 --> 00:01:12,700
+And we have v-for just as we have for loops in JavaScript
+
+23
+00:01:13,580 --> 00:01:16,320
+for dealing with repeated code.
+
+24
+00:01:16,320 --> 00:01:18,223
+And it's the same logic here.
+
+25
+00:01:18,223 --> 00:01:22,873
+V-for is there to help us output content that's repeated.
+
+26
+00:01:24,370 --> 00:01:27,390
+So for example here, we wanna output the same list item
+
+27
+00:01:27,390 --> 00:01:30,660
+over and over again for every goal which we have.
+
+28
+00:01:30,660 --> 00:01:33,870
+And we can do this by setting up value to v-for,
+
+29
+00:01:33,870 --> 00:01:35,650
+and between those double quotes,
+
+30
+00:01:35,650 --> 00:01:38,000
+as always, with those view features,
+
+31
+00:01:38,000 --> 00:01:41,210
+we can execute a JavaScript expression.
+
+32
+00:01:41,210 --> 00:01:44,660
+And here we can point at goals,
+
+33
+00:01:44,660 --> 00:01:48,450
+which is our data property that holds the goal's array.
+
+34
+00:01:48,450 --> 00:01:50,030
+But not just like this,
+
+35
+00:01:50,030 --> 00:01:52,280
+instead in a for loop in JavaScript,
+
+36
+00:01:52,280 --> 00:01:55,680
+we have something like const goal of goals.
+
+37
+00:01:55,680 --> 00:01:59,400
+This is how a for loop could look like in JavaScript.
+
+38
+00:01:59,400 --> 00:02:01,640
+It looks quite similar in view.
+
+39
+00:02:01,640 --> 00:02:04,370
+Here, we wanna go through all goals,
+
+40
+00:02:04,370 --> 00:02:07,480
+but of course we also wanna get hold of each goal,
+
+41
+00:02:07,480 --> 00:02:10,840
+so that we can take that goal's text for example,
+
+42
+00:02:10,840 --> 00:02:13,950
+and output it between the list item text.
+
+43
+00:02:13,950 --> 00:02:17,360
+That's why the v-for syntax looks a bit different,
+
+44
+00:02:17,360 --> 00:02:19,680
+we have goal in goals.
+
+45
+00:02:19,680 --> 00:02:23,390
+Goal of goals also is supported but you should use
+
+46
+00:02:23,390 --> 00:02:25,020
+goal in goals.
+
+47
+00:02:25,020 --> 00:02:26,130
+Which is a bit different
+
+48
+00:02:26,130 --> 00:02:28,560
+than the standard for loop in JavaScript
+
+49
+00:02:28,560 --> 00:02:31,300
+but you just have to memorize it like this,
+
+50
+00:02:31,300 --> 00:02:34,810
+v loop, through an array, with the in keyword
+
+51
+00:02:34,810 --> 00:02:38,110
+when using v-for and now this name here,
+
+52
+00:02:38,110 --> 00:02:39,400
+goal in this case,
+
+53
+00:02:39,400 --> 00:02:40,450
+is totally up to you.
+
+54
+00:02:40,450 --> 00:02:44,690
+You can name it G or GO or hello, whatever you want.
+
+55
+00:02:44,690 --> 00:02:46,310
+I'm going to go for goal,
+
+56
+00:02:46,310 --> 00:02:50,150
+because this will hold every goal in goals,
+
+57
+00:02:50,150 --> 00:02:54,480
+for every iteration v-for does for us.
+
+58
+00:02:54,480 --> 00:02:57,520
+And v-for will go through all the goals
+
+59
+00:02:57,520 --> 00:03:00,430
+and give us access to every goal here.
+
+60
+00:03:00,430 --> 00:03:02,130
+And why is that useful?
+
+61
+00:03:02,130 --> 00:03:05,660
+Well, our goals are just strings, in the end.
+
+62
+00:03:05,660 --> 00:03:07,840
+We just add whatever the user entered,
+
+63
+00:03:07,840 --> 00:03:10,040
+which is a string, to goals.
+
+64
+00:03:10,040 --> 00:03:12,990
+So goals is an array full of strings.
+
+65
+00:03:12,990 --> 00:03:16,370
+So every goal here is also just a string,
+
+66
+00:03:16,370 --> 00:03:17,290
+enhanced here between
+
+67
+00:03:17,290 --> 00:03:19,690
+the opening of the closing list item tack
+
+68
+00:03:19,690 --> 00:03:22,060
+we can use double curly braces
+
+69
+00:03:22,060 --> 00:03:23,983
+to output goal like this.
+
+70
+00:03:25,320 --> 00:03:27,180
+And this now has to be goal here,
+
+71
+00:03:27,180 --> 00:03:28,650
+if you used goal here.
+
+72
+00:03:28,650 --> 00:03:31,600
+If you used hello here, for whatever reason,
+
+73
+00:03:31,600 --> 00:03:34,730
+it has to be hello here, as well.
+
+74
+00:03:34,730 --> 00:03:37,423
+But I'm using goal so let's revert to that.
+
+75
+00:03:38,320 --> 00:03:40,550
+Now what this does, is, it tells view
+
+76
+00:03:40,550 --> 00:03:42,620
+that it should repeat this list item
+
+77
+00:03:43,540 --> 00:03:46,150
+for all the goals in goals,
+
+78
+00:03:46,150 --> 00:03:49,600
+so render as many list items as we have goals
+
+79
+00:03:49,600 --> 00:03:51,150
+in the goals array,
+
+80
+00:03:51,150 --> 00:03:53,000
+and give us access to every goal,
+
+81
+00:03:53,000 --> 00:03:55,890
+and then inside, and that's really important,
+
+82
+00:03:55,890 --> 00:03:58,590
+inside of the v-for controlled element,
+
+83
+00:03:58,590 --> 00:04:02,330
+so between the opening and closing tags of that element,
+
+84
+00:04:02,330 --> 00:04:04,540
+and also on the element itself,
+
+85
+00:04:04,540 --> 00:04:06,530
+we have access to that goal.
+
+86
+00:04:06,530 --> 00:04:08,300
+We don't have access to goal
+
+87
+00:04:08,300 --> 00:04:11,650
+outside of the list item element here.
+
+88
+00:04:11,650 --> 00:04:15,860
+So if I tried to output goal here,
+
+89
+00:04:15,860 --> 00:04:17,519
+in another paragraph,
+
+90
+00:04:17,519 --> 00:04:20,000
+which is not inside of the list item here,
+
+91
+00:04:20,000 --> 00:04:21,990
+that would not work.
+
+92
+00:04:21,990 --> 00:04:24,010
+And I guess that makes a lot of sense.
+
+93
+00:04:24,010 --> 00:04:25,620
+In regular JavaScript,
+
+94
+00:04:25,620 --> 00:04:27,400
+if you have a for loop,
+
+95
+00:04:27,400 --> 00:04:29,150
+even though it looks a bit different,
+
+96
+00:04:29,150 --> 00:04:33,480
+if you have for loop here, you also can't use this
+
+97
+00:04:33,480 --> 00:04:35,990
+constant outside of the for loop.
+
+98
+00:04:35,990 --> 00:04:37,707
+And it's the same with v-for.
+
+99
+00:04:38,940 --> 00:04:41,380
+So now just we'll repeat as many list items
+
+100
+00:04:41,380 --> 00:04:43,260
+as we need for all our goals,
+
+101
+00:04:43,260 --> 00:04:46,280
+and output the goal text in our case
+
+102
+00:04:46,280 --> 00:04:48,200
+between the list item tags.
+
+103
+00:04:48,200 --> 00:04:51,840
+So for now I've saved it, and reload this page,
+
+104
+00:04:51,840 --> 00:04:53,480
+we can add finish the course,
+
+105
+00:04:53,480 --> 00:04:56,220
+click add goal, and here is our goal.
+
+106
+00:04:56,220 --> 00:04:58,430
+We can also add master view,
+
+107
+00:04:58,430 --> 00:05:01,080
+click add goal, and here's the second goal.
+
+108
+00:05:01,080 --> 00:05:05,460
+And you see that this list grows with every new item we add.
+
+109
+00:05:05,460 --> 00:05:07,850
+And this is v for and why it matters
+
+110
+00:05:07,850 --> 00:05:11,780
+because now we can really build a dynamic application
+
+111
+00:05:11,780 --> 00:05:16,320
+where we render lists of content and also update that list
+
+112
+00:05:16,320 --> 00:05:18,260
+when the content changes.
+
+113
+00:05:18,260 --> 00:05:20,760
+And view does that updating for us,
+
+114
+00:05:20,760 --> 00:05:23,253
+and it also does it in a smart way.
+
+115
+00:05:24,090 --> 00:05:28,120
+If you inspect the list item here with the depth tools,
+
+116
+00:05:28,120 --> 00:05:30,210
+I mentioned before that the parts
+
+117
+00:05:30,210 --> 00:05:34,050
+which are updated in the DOM, will flash.
+
+118
+00:05:34,050 --> 00:05:35,800
+So if I add a new goal,
+
+119
+00:05:35,800 --> 00:05:38,840
+watch what happens here on the right to those first
+
+120
+00:05:38,840 --> 00:05:41,220
+two existing list items.
+
+121
+00:05:41,220 --> 00:05:42,053
+You see?
+
+122
+00:05:42,053 --> 00:05:43,530
+They did not flash.
+
+123
+00:05:43,530 --> 00:05:46,200
+Only the third one, the new one did.
+
+124
+00:05:46,200 --> 00:05:48,730
+And that is how view updates the DOM,
+
+125
+00:05:48,730 --> 00:05:51,110
+it does it in a very efficient way,
+
+126
+00:05:51,110 --> 00:05:53,740
+leaving the unchanged list items alone,
+
+127
+00:05:53,740 --> 00:05:55,790
+and only adding a new list item,
+
+128
+00:05:55,790 --> 00:05:57,970
+which, of course, is great for performance.
+
+129
+00:05:57,970 --> 00:06:01,870
+It would be bad if view would re-render the entire list
+
+130
+00:06:01,870 --> 00:06:03,660
+with every new item that we add.
+
+131
+00:06:03,660 --> 00:06:05,700
+This would not be good for performance
+
+132
+00:06:05,700 --> 00:06:08,430
+and thankfully view doesn't do it.
+
+133
+00:06:08,430 --> 00:06:11,160
+It's just important to be aware of such things
+
+134
+00:06:11,160 --> 00:06:13,510
+because that helps you understand a bit more
+
+135
+00:06:13,510 --> 00:06:16,240
+how view works under the hood.
+
+136
+00:06:16,240 --> 00:06:18,343
+Now let's dig a bit deeper into v-for.
+

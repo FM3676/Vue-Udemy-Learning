@@ -1,0 +1,284 @@
+1
+00:00:02,310 --> 00:00:04,430
+Now the style guide is one thing.
+
+2
+00:00:04,430 --> 00:00:06,130
+It helps you write good code,
+
+3
+00:00:06,130 --> 00:00:08,620
+it helps you name your files.
+
+4
+00:00:08,620 --> 00:00:10,520
+But there's another aspect
+
+5
+00:00:10,520 --> 00:00:11,710
+that you should keep in mind
+
+6
+00:00:11,710 --> 00:00:14,140
+if you're working on bigger projects
+
+7
+00:00:14,140 --> 00:00:18,479
+and that is related to how you organize your files.
+
+8
+00:00:18,479 --> 00:00:21,010
+(indistinct), we have to source folder,
+
+9
+00:00:21,010 --> 00:00:22,730
+and in there we have a components folder
+
+10
+00:00:22,730 --> 00:00:25,360
+with all our review components.
+
+11
+00:00:25,360 --> 00:00:27,230
+This is a typical structure
+
+12
+00:00:27,230 --> 00:00:29,290
+and there's nothing wrong with it,
+
+13
+00:00:29,290 --> 00:00:31,950
+but in bigger projects,
+
+14
+00:00:31,950 --> 00:00:34,710
+this of course we'll reach certain limits.
+
+15
+00:00:34,710 --> 00:00:38,130
+If you have a project with hundreds of components,
+
+16
+00:00:38,130 --> 00:00:40,870
+having them all in one folder,
+
+17
+00:00:40,870 --> 00:00:42,920
+can be very hard to manage.
+
+18
+00:00:42,920 --> 00:00:45,740
+You might have a hard time finding the components
+
+19
+00:00:45,740 --> 00:00:47,340
+you are looking for.
+
+20
+00:00:47,340 --> 00:00:48,180
+Therefore,
+
+21
+00:00:48,180 --> 00:00:51,130
+you might want to consider creating sub folders.
+
+22
+00:00:51,130 --> 00:00:51,963
+For example,
+
+23
+00:00:51,963 --> 00:00:55,800
+we could create a sub folder named base or UI
+
+24
+00:00:56,770 --> 00:01:00,000
+for all those base components like the card here.
+
+25
+00:01:00,000 --> 00:01:02,050
+So I'm moving to BaseCard there.
+
+26
+00:01:02,050 --> 00:01:03,903
+I'm moving the BaseBadge here.
+
+27
+00:01:05,349 --> 00:01:06,950
+Of course, when you do that,
+
+28
+00:01:06,950 --> 00:01:08,660
+you want to make sure that you update
+
+29
+00:01:08,660 --> 00:01:10,470
+all the imports you're using.
+
+30
+00:01:10,470 --> 00:01:12,320
+So in main.js,
+
+31
+00:01:12,320 --> 00:01:14,773
+I'm now importing BaseBadge from components/UI/BaseBadge,
+
+32
+00:01:17,150 --> 00:01:20,098
+and the same for the BaseCard.
+
+33
+00:01:20,098 --> 00:01:21,890
+Otherwise Vue will not be able
+
+34
+00:01:21,890 --> 00:01:23,100
+to find these things
+
+35
+00:01:23,100 --> 00:01:24,633
+and your project will break.
+
+36
+00:01:26,240 --> 00:01:27,247
+Now that's the folder
+
+37
+00:01:27,247 --> 00:01:29,990
+for the general base components.
+
+38
+00:01:29,990 --> 00:01:31,970
+We could also create a subfolder
+
+39
+00:01:31,970 --> 00:01:35,130
+inside of the components folder named layout
+
+40
+00:01:35,130 --> 00:01:38,510
+where replace things like the header or the footer
+
+41
+00:01:38,510 --> 00:01:40,150
+if you have one.
+
+42
+00:01:40,150 --> 00:01:41,120
+So therefore of course,
+
+43
+00:01:41,120 --> 00:01:45,270
+make sure you also updates the import here
+
+44
+00:01:45,270 --> 00:01:47,363
+in app.vue in our case.
+
+45
+00:01:48,910 --> 00:01:52,460
+And then you might have various other components,
+
+46
+00:01:52,460 --> 00:01:55,060
+which you might want to organize by feature.
+
+47
+00:01:55,060 --> 00:01:57,390
+If you're building an online shop application,
+
+48
+00:01:57,390 --> 00:01:58,470
+for example,
+
+49
+00:01:58,470 --> 00:02:00,660
+you could have a subfolder named cart
+
+50
+00:02:00,660 --> 00:02:03,850
+where you have all the cart related components.
+
+51
+00:02:03,850 --> 00:02:05,750
+You could have a subfolder named checkout
+
+52
+00:02:05,750 --> 00:02:08,250
+for the checkout related components,
+
+53
+00:02:08,250 --> 00:02:11,140
+one named products for the components
+
+54
+00:02:11,140 --> 00:02:15,290
+that are dealing with outputting products and so on.
+
+55
+00:02:15,290 --> 00:02:18,240
+Now here I have various demo components
+
+56
+00:02:18,240 --> 00:02:19,430
+because this here in the end,
+
+57
+00:02:19,430 --> 00:02:21,230
+isn't a real app which we're building
+
+58
+00:02:21,230 --> 00:02:23,630
+and therefore I will just leave them here.
+
+59
+00:02:23,630 --> 00:02:25,230
+But in the next module,
+
+60
+00:02:25,230 --> 00:02:26,760
+we're going to use everything
+
+61
+00:02:26,760 --> 00:02:30,450
+we learned about components over the last modules,
+
+62
+00:02:30,450 --> 00:02:32,730
+and we're going to build a full application
+
+63
+00:02:32,730 --> 00:02:33,740
+from scratch.
+
+64
+00:02:33,740 --> 00:02:37,150
+And there you will see a proper folder structure
+
+65
+00:02:37,150 --> 00:02:39,770
+in place to manage all the components.
+
+66
+00:02:39,770 --> 00:02:42,460
+Because there will then have a real application
+
+67
+00:02:42,460 --> 00:02:44,600
+where this makes more sense.
+
+68
+00:02:44,600 --> 00:02:47,560
+For now, just be aware of the fact
+
+69
+00:02:47,560 --> 00:02:50,170
+that you might need to restructure
+
+70
+00:02:50,170 --> 00:02:52,330
+your folders here at some point
+
+71
+00:02:52,330 --> 00:02:54,143
+to keep your code manageable.
+

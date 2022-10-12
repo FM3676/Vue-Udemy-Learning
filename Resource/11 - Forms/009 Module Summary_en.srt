@@ -1,0 +1,104 @@
+1
+00:00:02,120 --> 00:00:04,660
+And that is it for this module.
+
+2
+00:00:04,660 --> 00:00:06,740
+We had another look at v-model,
+
+3
+00:00:06,740 --> 00:00:09,150
+and how we can use it to get user input,
+
+4
+00:00:09,150 --> 00:00:11,820
+but also how we can manipulate this user input,
+
+5
+00:00:11,820 --> 00:00:13,463
+for example, to reset it.
+
+6
+00:00:14,560 --> 00:00:17,730
+We had a first look at validating user input,
+
+7
+00:00:17,730 --> 00:00:19,750
+and how we could show an error message
+
+8
+00:00:19,750 --> 00:00:21,780
+before the forum was submitted,
+
+9
+00:00:21,780 --> 00:00:23,430
+which is not a must to do,
+
+10
+00:00:23,430 --> 00:00:25,920
+but simply an option you could use.
+
+11
+00:00:25,920 --> 00:00:28,070
+And we had to look at different inputs,
+
+12
+00:00:28,070 --> 00:00:30,150
+different ways of using v-model
+
+13
+00:00:30,150 --> 00:00:32,960
+with trim or with number inputs.
+
+14
+00:00:32,960 --> 00:00:34,620
+We had to look at using v-model
+
+15
+00:00:34,620 --> 00:00:36,910
+with selects, with check boxes,
+
+16
+00:00:36,910 --> 00:00:40,720
+both groups of check boxes and single check boxes.
+
+17
+00:00:40,720 --> 00:00:42,663
+And we had a look at radio buttons.
+
+18
+00:00:43,510 --> 00:00:44,670
+And last but not least,
+
+19
+00:00:44,670 --> 00:00:47,410
+you learned how to build your own control on
+
+20
+00:00:47,410 --> 00:00:51,600
+which you can use v-model thanks to this special prop
+
+21
+00:00:51,600 --> 00:00:55,360
+and to special event, which v-model uses under the hood
+
+22
+00:00:55,360 --> 00:00:58,553
+if you use it on a custom component.
+
+23
+00:00:59,640 --> 00:01:02,350
+And that's all we got to know about forms for now,
+
+24
+00:01:02,350 --> 00:01:06,560
+with that, you should have a pretty good toolbox full
+
+25
+00:01:06,560 --> 00:01:10,130
+of useful tools that help you build the user experiences
+
+26
+00:01:10,130 --> 00:01:12,203
+you need in your applications.
+

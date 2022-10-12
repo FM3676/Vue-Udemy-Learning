@@ -1,0 +1,696 @@
+1
+00:00:02,210 --> 00:00:03,060
+Are you ready
+
+2
+00:00:03,060 --> 00:00:05,920
+for more Vue component features?
+
+3
+00:00:05,920 --> 00:00:07,670
+We're slowly getting to an end
+
+4
+00:00:07,670 --> 00:00:09,370
+of this module though promised,
+
+5
+00:00:09,370 --> 00:00:12,070
+and you already know a lot of the core features
+
+6
+00:00:12,070 --> 00:00:13,400
+you got to know.
+
+7
+00:00:13,400 --> 00:00:14,870
+But here's another nice feature
+
+8
+00:00:14,870 --> 00:00:17,093
+which sometimes can be very nice to have.
+
+9
+00:00:17,980 --> 00:00:20,430
+Let me stick to this manage goals component,
+
+10
+00:00:20,430 --> 00:00:22,450
+even though it's not super beautiful.
+
+11
+00:00:22,450 --> 00:00:24,300
+And let's say here, we have a button.
+
+12
+00:00:25,690 --> 00:00:28,540
+Where I have a text of set goal,
+
+13
+00:00:28,540 --> 00:00:32,439
+and when this button is clicked, I wanna save my goal.
+
+14
+00:00:32,439 --> 00:00:35,660
+So for that I'm going to add a script here in managed goals
+
+15
+00:00:35,660 --> 00:00:39,070
+and add a method and I'll keep it very simple here,
+
+16
+00:00:39,070 --> 00:00:42,210
+I'll named as goal at this method setGoal.
+
+17
+00:00:42,210 --> 00:00:44,810
+And in here, I then want to check
+
+18
+00:00:44,810 --> 00:00:47,560
+what's inside of the input, and if it's empty,
+
+19
+00:00:47,560 --> 00:00:50,150
+I wanna show an error message to the user.
+
+20
+00:00:50,150 --> 00:00:52,680
+If it's a valid goal, will not do anything here
+
+21
+00:00:52,680 --> 00:00:55,450
+because I want to focus on that error part
+
+22
+00:00:55,450 --> 00:00:57,003
+and on the error message.
+
+23
+00:00:58,070 --> 00:01:01,800
+So here we point at setGoal, and instead of setGoal,
+
+24
+00:01:01,800 --> 00:01:06,800
+we can get our entered value with help of refs, for example,
+
+25
+00:01:07,290 --> 00:01:10,150
+or with V-model and two-way binding.
+
+26
+00:01:10,150 --> 00:01:12,890
+But here, I'll bring back that ref concept,
+
+27
+00:01:12,890 --> 00:01:15,210
+add my ref key to the input element
+
+28
+00:01:16,470 --> 00:01:20,203
+and give it an identifier of my choice, in this case goal.
+
+29
+00:01:21,370 --> 00:01:23,940
+And then here with dollar sign refs.goal,
+
+30
+00:01:23,940 --> 00:01:26,180
+we can get access to this input element
+
+31
+00:01:26,180 --> 00:01:27,700
+and therefore, with dot value,
+
+32
+00:01:27,700 --> 00:01:29,603
+we can get the value the user entered.
+
+33
+00:01:30,930 --> 00:01:35,303
+And now if entered value is an empty string, let's say,
+
+34
+00:01:36,260 --> 00:01:38,700
+then I want to show an error.
+
+35
+00:01:38,700 --> 00:01:39,900
+Now here in the browser,
+
+36
+00:01:39,900 --> 00:01:42,560
+we can use the alert function for that.
+
+37
+00:01:42,560 --> 00:01:45,230
+Input must not be empty.
+
+38
+00:01:45,230 --> 00:01:46,813
+That's a message we could output here,
+
+39
+00:01:46,813 --> 00:01:48,820
+and the alert function is availiable
+
+40
+00:01:48,820 --> 00:01:50,193
+in the browser like that.
+
+41
+00:01:51,060 --> 00:01:55,997
+So if we now save that, and go back here and manage goals,
+
+42
+00:01:57,410 --> 00:01:58,840
+we now have a button,
+
+43
+00:01:58,840 --> 00:02:02,520
+and if I enter nothing here and I press Set Goal,
+
+44
+00:02:02,520 --> 00:02:04,083
+I get my alert here.
+
+45
+00:02:05,180 --> 00:02:07,280
+This works, but in most applications,
+
+46
+00:02:07,280 --> 00:02:10,300
+you probably don't wanna show an alert like this.
+
+47
+00:02:10,300 --> 00:02:14,020
+This built in alert is not really nice to look at,
+
+48
+00:02:14,020 --> 00:02:16,360
+it probably doesn't fit the styling
+
+49
+00:02:16,360 --> 00:02:18,160
+of the rest of your application,
+
+50
+00:02:18,160 --> 00:02:21,800
+and therefore, this is maybe not what you wanna do.
+
+51
+00:02:21,800 --> 00:02:24,940
+Instead, maybe you want to build your own alert,
+
+52
+00:02:24,940 --> 00:02:26,470
+your own model.
+
+53
+00:02:26,470 --> 00:02:30,300
+So your own overlay dialogue, which you wanna show.
+
+54
+00:02:30,300 --> 00:02:32,300
+And that's exactly what I'll do here.
+
+55
+00:02:32,300 --> 00:02:36,780
+I'll build my ErrorAlert.vue component here.
+
+56
+00:02:36,780 --> 00:02:40,210
+And that will be a very simple component,
+
+57
+00:02:40,210 --> 00:02:42,760
+which uses to build in dialogue element,
+
+58
+00:02:42,760 --> 00:02:47,760
+which has a default HTML element, to output some content.
+
+59
+00:02:49,070 --> 00:02:50,390
+And actually here,
+
+60
+00:02:50,390 --> 00:02:53,870
+we could use some slot content to be flexible
+
+61
+00:02:53,870 --> 00:02:56,573
+regarding what's shown in that dialogue.
+
+62
+00:02:59,050 --> 00:03:02,850
+Now I will add some scoped styling here real quick,
+
+63
+00:03:02,850 --> 00:03:04,780
+targeting this dialogue,
+
+64
+00:03:04,780 --> 00:03:09,780
+giving it a position of fixed top 20vh
+
+65
+00:03:10,060 --> 00:03:14,580
+to move it 20% down from the top of your window,
+
+66
+00:03:14,580 --> 00:03:19,250
+left 30% here, whoops, like this,
+
+67
+00:03:19,250 --> 00:03:24,250
+and give it a width of, let's say 40%,
+
+68
+00:03:24,600 --> 00:03:28,130
+so that we have a centered dialogue here in the end,
+
+69
+00:03:28,130 --> 00:03:33,113
+and give it a background color of white and a box shadow
+
+70
+00:03:35,700 --> 00:03:37,900
+to have a light drop shadow here in the end.
+
+71
+00:03:39,170 --> 00:03:41,190
+But that's just some basic styling,
+
+72
+00:03:41,190 --> 00:03:44,650
+I'll always add a padding of one REM and that's it for now.
+
+73
+00:03:44,650 --> 00:03:46,820
+You can definitely style this in a more beautiful way,
+
+74
+00:03:46,820 --> 00:03:48,670
+but that should do the trick for now.
+
+75
+00:03:49,800 --> 00:03:52,900
+So now we have this dialog where the exact content
+
+76
+00:03:52,900 --> 00:03:56,680
+inside of it is flexible, thanks to our slot here.
+
+77
+00:03:56,680 --> 00:03:59,850
+So now in managed goals, I wanna show that dialogue,
+
+78
+00:03:59,850 --> 00:04:02,930
+if the user entered something invalid.
+
+79
+00:04:02,930 --> 00:04:04,093
+How could we do that?
+
+80
+00:04:05,360 --> 00:04:08,200
+Well, we could use v-if for that.
+
+81
+00:04:08,200 --> 00:04:10,193
+We could manage some data here,
+
+82
+00:04:12,490 --> 00:04:14,943
+in our managed goals component,
+
+83
+00:04:16,320 --> 00:04:21,019
+and have an InputIsInvalid data property,
+
+84
+00:04:21,019 --> 00:04:23,320
+which initially is false because initially,
+
+85
+00:04:23,320 --> 00:04:24,900
+the input is not invalid.
+
+86
+00:04:24,900 --> 00:04:27,443
+After all the user hasn't entered anything yet.
+
+87
+00:04:28,600 --> 00:04:30,940
+But we'll set this to true here,
+
+88
+00:04:30,940 --> 00:04:34,150
+if we see that what the user entered is invalid.
+
+89
+00:04:34,150 --> 00:04:38,143
+So we can then set this input is invalid to true.
+
+90
+00:04:41,840 --> 00:04:46,760
+And now we wanna show our error alert here,
+
+91
+00:04:46,760 --> 00:04:50,160
+if input is invalid is true.
+
+92
+00:04:50,160 --> 00:04:52,530
+So for that here in this template,
+
+93
+00:04:52,530 --> 00:04:56,720
+we could simply add error alert, this component,
+
+94
+00:04:56,720 --> 00:04:58,320
+and in order to use it here,
+
+95
+00:04:58,320 --> 00:05:01,650
+of course, here we should import ErrorAlert
+
+96
+00:05:01,650 --> 00:05:06,650
+from ./ErrorAlert.vue, not dot slash components,
+
+97
+00:05:07,520 --> 00:05:10,500
+but just dot slash error alert of Vue,
+
+98
+00:05:10,500 --> 00:05:13,840
+because it's in the same folder as managed goals,
+
+99
+00:05:13,840 --> 00:05:16,820
+which is where I'm adding this input.
+
+100
+00:05:16,820 --> 00:05:20,900
+And then we can register this as a local component here.
+
+101
+00:05:20,900 --> 00:05:24,120
+It's the first time we're registering a local component
+
+102
+00:05:24,120 --> 00:05:27,430
+outside of app.Vue, but as I mentioned earlier,
+
+103
+00:05:27,430 --> 00:05:29,670
+this is absolutely possible.
+
+104
+00:05:29,670 --> 00:05:32,690
+So error alert is now a local component,
+
+105
+00:05:32,690 --> 00:05:34,283
+here in managed goals.
+
+106
+00:05:35,610 --> 00:05:40,610
+And now I only wanna output error alert if with v-if,
+
+107
+00:05:41,070 --> 00:05:45,270
+if input is invalid is true.
+
+108
+00:05:45,270 --> 00:05:50,270
+And then in here we could have a title, for example,
+
+109
+00:05:50,950 --> 00:05:54,420
+input is invalid and a paragraph
+
+110
+00:05:54,420 --> 00:05:57,070
+where we provide more information,
+
+111
+00:05:57,070 --> 00:06:02,070
+please enter at least a few characters, anything like that.
+
+112
+00:06:03,690 --> 00:06:06,140
+This here is the markup that will be provided
+
+113
+00:06:06,140 --> 00:06:08,773
+for the slot in error alert.
+
+114
+00:06:10,060 --> 00:06:13,700
+So with that, we should hopefully show an error alert
+
+115
+00:06:13,700 --> 00:06:16,440
+if the user enters something invalid.
+
+116
+00:06:16,440 --> 00:06:18,450
+So if the user enters nothing,
+
+117
+00:06:18,450 --> 00:06:21,470
+then thanks to this data property and v-if,
+
+118
+00:06:21,470 --> 00:06:23,833
+we show this error alert.
+
+119
+00:06:24,750 --> 00:06:26,170
+Let's give it a try.
+
+120
+00:06:26,170 --> 00:06:29,220
+Let's save that, reload, go to manage goals
+
+121
+00:06:29,220 --> 00:06:32,590
+and enter nothing, click set goal,
+
+122
+00:06:32,590 --> 00:06:34,100
+and we see nothing,
+
+123
+00:06:34,100 --> 00:06:37,980
+that's my bad though the built in dialogue element
+
+124
+00:06:37,980 --> 00:06:42,550
+needs an open attribute to be displayed.
+
+125
+00:06:42,550 --> 00:06:45,260
+Therefore we could, of course, also display the visibility
+
+126
+00:06:45,260 --> 00:06:48,490
+of this dialogue by toggling the open attribute,
+
+127
+00:06:48,490 --> 00:06:53,150
+but I will always add open and instead just show or hide it
+
+128
+00:06:53,150 --> 00:06:56,670
+by adding or removing the entire component
+
+129
+00:06:56,670 --> 00:06:59,010
+to the dom with v-if.
+
+130
+00:06:59,010 --> 00:07:02,450
+But make sure you have that open attribute on the dialogue,
+
+131
+00:07:02,450 --> 00:07:04,440
+otherwise it won't work.
+
+132
+00:07:04,440 --> 00:07:08,260
+And, with that, if I reload and try to submit an empty goal,
+
+133
+00:07:08,260 --> 00:07:10,750
+and this is our error dialogue.
+
+134
+00:07:10,750 --> 00:07:13,833
+Now it looks like the styling was messed up a bit,
+
+135
+00:07:15,050 --> 00:07:18,343
+and we can fix that by adding a marginal zero here.
+
+136
+00:07:20,860 --> 00:07:23,710
+If we do that, we should have dead centered dialogue.
+
+137
+00:07:23,710 --> 00:07:25,920
+But it's not so much about the styling anyways,
+
+138
+00:07:25,920 --> 00:07:28,220
+I mean that can still be improved.
+
+139
+00:07:28,220 --> 00:07:33,220
+But we see that we can now open our custom overly like this.
+
+140
+00:07:34,090 --> 00:07:36,080
+And of course we could tweak it in more detail,
+
+141
+00:07:36,080 --> 00:07:39,203
+but this is already a useful pattern to be aware of.
+
+142
+00:07:40,640 --> 00:07:44,720
+We can also make it closable now by going to manage goals
+
+143
+00:07:44,720 --> 00:07:47,770
+where we do pass our markup to this component,
+
+144
+00:07:47,770 --> 00:07:51,910
+and for example, there we could add a button, okay,
+
+145
+00:07:51,910 --> 00:07:54,790
+which we can press to handle this error,
+
+146
+00:07:54,790 --> 00:07:57,190
+and upon a click on this button here,
+
+147
+00:07:57,190 --> 00:08:01,903
+instead of manage goals, we can trigger another method,
+
+148
+00:08:02,870 --> 00:08:05,840
+ConfirmError could be the name,
+
+149
+00:08:05,840 --> 00:08:09,500
+where we simply set input is invalid back to false
+
+150
+00:08:09,500 --> 00:08:12,110
+to give the user another chance.
+
+151
+00:08:12,110 --> 00:08:14,770
+So ConfirmError is now triggered
+
+152
+00:08:14,770 --> 00:08:16,393
+upon a click on this button.
+
+153
+00:08:17,610 --> 00:08:20,100
+This is also showing you as a side note,
+
+154
+00:08:20,100 --> 00:08:23,280
+why the concept of slots is so powerful.
+
+155
+00:08:23,280 --> 00:08:27,820
+We can add the content for a totally different component
+
+156
+00:08:27,820 --> 00:08:30,430
+in the component where we have all the logic
+
+157
+00:08:30,430 --> 00:08:32,683
+for showing the error alert component.
+
+158
+00:08:33,770 --> 00:08:36,960
+So we don't need to pass data around with custom events,
+
+159
+00:08:36,960 --> 00:08:39,039
+which the error alert emits here.
+
+160
+00:08:39,039 --> 00:08:42,450
+Instead, we can handle everything here in the component
+
+161
+00:08:42,450 --> 00:08:47,450
+where the error is generated and yet hand off the styling
+
+162
+00:08:47,810 --> 00:08:50,130
+and the markup off that dialogue
+
+163
+00:08:50,130 --> 00:08:51,950
+to a totally different component.
+
+164
+00:08:51,950 --> 00:08:55,330
+Which is a really nice way of splitting responsibility.
+
+165
+00:08:55,330 --> 00:08:57,143
+If you wanna look at it like that.
+
+166
+00:08:58,500 --> 00:09:00,860
+But with that, if I now reload again,
+
+167
+00:09:00,860 --> 00:09:02,630
+and I confirm an empty goal,
+
+168
+00:09:02,630 --> 00:09:06,040
+we now also got the button to close this dialog.
+
+169
+00:09:06,040 --> 00:09:07,930
+And that's very useful.
+
+170
+00:09:07,930 --> 00:09:09,640
+But this again is nothing new,
+
+171
+00:09:09,640 --> 00:09:13,080
+it's just a nice pattern to see, which also not bad,
+
+172
+00:09:13,080 --> 00:09:16,410
+but this is not showing any new feature.
+
+173
+00:09:16,410 --> 00:09:19,010
+Well, we're going to dive into a new feature next
+
+174
+00:09:19,010 --> 00:09:22,693
+because our current implementation has a slight problem.
+

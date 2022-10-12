@@ -1,0 +1,512 @@
+1
+00:00:02,040 --> 00:00:03,800
+Now we already learned about
+
+2
+00:00:03,800 --> 00:00:08,570
+a couple of nice behind the scenes and core features of Vue.
+
+3
+00:00:08,570 --> 00:00:11,440
+Let's now understand how it actually updates
+
+4
+00:00:11,440 --> 00:00:13,090
+what we see on the screen.
+
+5
+00:00:13,090 --> 00:00:16,149
+Of course we learned about it's built in reactivity,
+
+6
+00:00:16,149 --> 00:00:19,270
+but this is basically just how Vue detects
+
+7
+00:00:19,270 --> 00:00:23,060
+that an update is needed and where the update is needed.
+
+8
+00:00:23,060 --> 00:00:27,480
+But performing that update in a performance optimized way
+
+9
+00:00:27,480 --> 00:00:29,540
+is yet another thing.
+
+10
+00:00:29,540 --> 00:00:31,030
+And I mentioned this before,
+
+11
+00:00:31,030 --> 00:00:33,410
+and I'm going to show it to you again.
+
+12
+00:00:33,410 --> 00:00:38,410
+If I inspect an element here in the browser developer tools,
+
+13
+00:00:38,790 --> 00:00:42,790
+you will notice that if I type here,
+
+14
+00:00:42,790 --> 00:00:46,280
+and I click set text, only the paragraph
+
+15
+00:00:46,280 --> 00:00:49,863
+with the text inside of it flashed here on the right.
+
+16
+00:00:50,720 --> 00:00:53,950
+So Vue only updated this paragraph,
+
+17
+00:00:53,950 --> 00:00:56,080
+and nothing else on the screen.
+
+18
+00:00:56,080 --> 00:01:01,080
+And Vue does that with a concept called the virtual DOM.
+
+19
+00:01:01,820 --> 00:01:02,970
+So how does that work?
+
+20
+00:01:02,970 --> 00:01:06,670
+And why does view update to DOM like this?
+
+21
+00:01:06,670 --> 00:01:09,070
+We got our Vue Instance, our view app,
+
+22
+00:01:09,070 --> 00:01:11,270
+and we got the DOM, the Browser DOM.
+
+23
+00:01:11,270 --> 00:01:14,660
+So the HTML content rendered by the browser,
+
+24
+00:01:14,660 --> 00:01:16,220
+and therefore essentially
+
+25
+00:01:16,220 --> 00:01:18,473
+what the user is able to see on the screen.
+
+26
+00:01:19,650 --> 00:01:23,000
+Our Vue app, our Vue Instance, stores data,
+
+27
+00:01:23,000 --> 00:01:25,080
+computed properties, and methods.
+
+28
+00:01:25,080 --> 00:01:28,060
+And the Browser DOM is then influenced
+
+29
+00:01:28,060 --> 00:01:30,640
+with help of the view controlled template.
+
+30
+00:01:30,640 --> 00:01:33,440
+That template content is rendered to the DOM.
+
+31
+00:01:33,440 --> 00:01:37,620
+And during that rendering process, which Vue controls,
+
+32
+00:01:37,620 --> 00:01:41,760
+the dynamic parts and placeholders, the interpolations,
+
+33
+00:01:41,760 --> 00:01:44,220
+and bindings, are removed,
+
+34
+00:01:44,220 --> 00:01:47,470
+and the actual values are inserted.
+
+35
+00:01:47,470 --> 00:01:49,970
+I mean, that is what you can see here as well.
+
+36
+00:01:49,970 --> 00:01:51,760
+We got the paragraph tag,
+
+37
+00:01:51,760 --> 00:01:54,220
+with the test text being rendered here.
+
+38
+00:01:54,220 --> 00:01:56,080
+We don't have the curly braces here,
+
+39
+00:01:56,080 --> 00:01:59,793
+yet we of course do have them here in our template.
+
+40
+00:02:00,740 --> 00:02:03,860
+On the button, we got this @click thing,
+
+41
+00:02:03,860 --> 00:02:05,860
+which is an instruction to Vue,
+
+42
+00:02:05,860 --> 00:02:07,580
+and that's why we don't see it
+
+43
+00:02:07,580 --> 00:02:10,699
+in the actual DOM that's rendered in the browser.
+
+44
+00:02:10,699 --> 00:02:14,730
+Because those Vue instructions are removed by Vue
+
+45
+00:02:14,730 --> 00:02:18,040
+when it renders its template to the DOM.
+
+46
+00:02:18,040 --> 00:02:21,010
+So when it basically converts its template,
+
+47
+00:02:21,010 --> 00:02:23,710
+to the actual HTML elements
+
+48
+00:02:23,710 --> 00:02:26,033
+that should be shown on the screen.
+
+49
+00:02:27,380 --> 00:02:29,210
+That's what Vue does here.
+
+50
+00:02:29,210 --> 00:02:31,930
+And therefore, if we have data like this,
+
+51
+00:02:31,930 --> 00:02:34,600
+we see something like this on the screen instead,
+
+52
+00:02:34,600 --> 00:02:38,800
+if we use interpolation for outputting the data for example.
+
+53
+00:02:38,800 --> 00:02:40,910
+Now of course our data,
+
+54
+00:02:40,910 --> 00:02:44,020
+and our computed properties might change.
+
+55
+00:02:44,020 --> 00:02:46,510
+For example, because the user entered something
+
+56
+00:02:46,510 --> 00:02:49,100
+or clicked a button and those updates
+
+57
+00:02:49,100 --> 00:02:50,840
+should of course be reflected,
+
+58
+00:02:50,840 --> 00:02:54,070
+but Vue should not re-render the entire page,
+
+59
+00:02:54,070 --> 00:02:55,920
+every time something changes,
+
+60
+00:02:55,920 --> 00:02:58,760
+but only the parts that did change.
+
+61
+00:02:58,760 --> 00:03:01,360
+Because if Vue would reevaluate
+
+62
+00:03:01,360 --> 00:03:03,820
+and re-render the entire page,
+
+63
+00:03:03,820 --> 00:03:06,570
+well that would not be great for performance
+
+64
+00:03:06,570 --> 00:03:09,470
+if just one piece of text changed.
+
+65
+00:03:09,470 --> 00:03:12,130
+For example, if just the title changed,
+
+66
+00:03:12,130 --> 00:03:14,430
+but not the text property here,
+
+67
+00:03:14,430 --> 00:03:17,630
+then only the h2 tag, which outputs the title
+
+68
+00:03:17,630 --> 00:03:20,203
+should be updated and not the paragraph.
+
+69
+00:03:21,140 --> 00:03:24,190
+Now, how could Vue ensure that this is the case
+
+70
+00:03:24,190 --> 00:03:27,760
+that it does not re-render the entire screen?
+
+71
+00:03:27,760 --> 00:03:30,130
+Well, one possible solution would be
+
+72
+00:03:30,130 --> 00:03:33,970
+that it basically compares the old DOM values
+
+73
+00:03:33,970 --> 00:03:35,240
+with the new ones.
+
+74
+00:03:35,240 --> 00:03:38,870
+So it basically goes through the entire rendered DOM,
+
+75
+00:03:38,870 --> 00:03:41,150
+sees which content is in there,
+
+76
+00:03:41,150 --> 00:03:44,610
+and compares that to the content it has stored
+
+77
+00:03:44,610 --> 00:03:47,150
+in the data properties of the Vue app.
+
+78
+00:03:47,150 --> 00:03:49,433
+And if there's a difference, it updates it.
+
+79
+00:03:51,000 --> 00:03:52,770
+Well it could do that.
+
+80
+00:03:52,770 --> 00:03:56,770
+And at least it would not update the entire screen then,
+
+81
+00:03:56,770 --> 00:03:59,330
+but actually it's not what it does
+
+82
+00:03:59,330 --> 00:04:03,540
+because reading the entire real DOM,
+
+83
+00:04:03,540 --> 00:04:06,440
+which is rendered by the browser all the time,
+
+84
+00:04:06,440 --> 00:04:07,980
+whenever something changes
+
+85
+00:04:07,980 --> 00:04:10,610
+is also pretty performance intensive.
+
+86
+00:04:10,610 --> 00:04:14,470
+Maybe not as bad as re rendering the entire page
+
+87
+00:04:14,470 --> 00:04:17,820
+all the time, but definitely not great.
+
+88
+00:04:17,820 --> 00:04:20,019
+Instead, as mentioned before,
+
+89
+00:04:20,019 --> 00:04:24,010
+Vue uses a concept called the Virtual DOM.
+
+90
+00:04:24,010 --> 00:04:28,580
+It basically has a virtual copy of the real DOM,
+
+91
+00:04:28,580 --> 00:04:31,740
+which is managed entirely in JavaScript,
+
+92
+00:04:31,740 --> 00:04:33,423
+and therefore in memory.
+
+93
+00:04:34,610 --> 00:04:36,150
+It could look something like this,
+
+94
+00:04:36,150 --> 00:04:40,500
+a bunch of JavaScript objects where Vue memorizes
+
+95
+00:04:40,500 --> 00:04:42,720
+which HTML tag is needed,
+
+96
+00:04:42,720 --> 00:04:45,023
+and what the content of that tag is.
+
+97
+00:04:46,490 --> 00:04:50,260
+And when data changes, it basically just creates
+
+98
+00:04:50,260 --> 00:04:52,600
+a new Virtual DOM you could say,
+
+99
+00:04:52,600 --> 00:04:57,600
+and compares the new Virtual DOM to the old Virtual DOM,
+
+100
+00:04:57,720 --> 00:05:02,360
+and only differences between those Virtual DOMS
+
+101
+00:05:02,360 --> 00:05:04,710
+are written to the real DOM.
+
+102
+00:05:04,710 --> 00:05:06,610
+And that is way more efficient
+
+103
+00:05:06,610 --> 00:05:10,930
+because doing such comparisons and updates in a Virtual DOM
+
+104
+00:05:10,930 --> 00:05:13,360
+and therefore entirely in memory,
+
+105
+00:05:13,360 --> 00:05:16,830
+is way more efficient than doing it in the real DOM,
+
+106
+00:05:16,830 --> 00:05:18,653
+which was rendered to the screen.
+
+107
+00:05:19,860 --> 00:05:22,150
+And that's how Vue does that behind the scenes.
+
+108
+00:05:22,150 --> 00:05:23,600
+Whenever we change something,
+
+109
+00:05:23,600 --> 00:05:25,520
+whenever I changed this text here,
+
+110
+00:05:25,520 --> 00:05:29,260
+and I click set text, Vue detects this change,
+
+111
+00:05:29,260 --> 00:05:32,700
+thanks to the reactivity we discussed earlier
+
+112
+00:05:32,700 --> 00:05:37,320
+in this module, and then it creates a new Virtual DOM,
+
+113
+00:05:37,320 --> 00:05:40,340
+compares it to the old Virtual DOM,
+
+114
+00:05:40,340 --> 00:05:44,120
+and detects the differences, and then updates the part
+
+115
+00:05:44,120 --> 00:05:48,130
+in the real DOM where the differences were detected.
+
+116
+00:05:48,130 --> 00:05:50,800
+That is what Vue does in a nutshell.
+
+117
+00:05:50,800 --> 00:05:53,090
+Now it should be needless to say
+
+118
+00:05:53,090 --> 00:05:56,600
+that Vue has a bunch of optimizations in place
+
+119
+00:05:56,600 --> 00:06:00,160
+that actually make this way more performant.
+
+120
+00:06:00,160 --> 00:06:02,840
+In reality, it does not recreate
+
+121
+00:06:02,840 --> 00:06:05,370
+entire virtual DOM's all the time.
+
+122
+00:06:05,370 --> 00:06:07,850
+It has a bunch of optimizations for that,
+
+123
+00:06:07,850 --> 00:06:10,020
+but this is beyond the scope of this course.
+
+124
+00:06:10,020 --> 00:06:11,890
+And really also not something
+
+125
+00:06:11,890 --> 00:06:13,760
+you'd need to know necessarily.
+
+126
+00:06:13,760 --> 00:06:16,740
+You should just know how it generally works
+
+127
+00:06:16,740 --> 00:06:21,000
+to be aware of what Vue does, that it's not all magic,
+
+128
+00:06:21,000 --> 00:06:23,860
+but that it's pretty, pretty performant.
+

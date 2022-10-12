@@ -1,0 +1,652 @@
+1
+00:00:02,090 --> 00:00:04,610
+Now, again, attached to find a starting project,
+
+2
+00:00:04,610 --> 00:00:07,570
+which gives you this page essentially,
+
+3
+00:00:07,570 --> 00:00:09,610
+it's a little dummy application
+
+4
+00:00:09,610 --> 00:00:12,590
+where you can keep a list of your friends around
+
+5
+00:00:12,590 --> 00:00:15,130
+and store the phone number and email address
+
+6
+00:00:15,130 --> 00:00:16,309
+of your friends.
+
+7
+00:00:16,309 --> 00:00:18,780
+It's just a dummy application,
+
+8
+00:00:18,780 --> 00:00:23,240
+but it will allow us to explore the concept of components.
+
+9
+00:00:23,240 --> 00:00:25,290
+Now, if we inspect the code for this,
+
+10
+00:00:25,290 --> 00:00:29,340
+we get an index HTML file with some markup,
+
+11
+00:00:29,340 --> 00:00:31,500
+to be precise with an unordered list
+
+12
+00:00:31,500 --> 00:00:34,700
+that holds the two friend list items.
+
+13
+00:00:34,700 --> 00:00:36,510
+So one list item per friend
+
+14
+00:00:36,510 --> 00:00:39,170
+and then we have a nested list in every friend
+
+15
+00:00:39,170 --> 00:00:41,200
+with the phone and email number.
+
+16
+00:00:41,200 --> 00:00:42,820
+We got the name, we got a button
+
+17
+00:00:42,820 --> 00:00:45,020
+which currently does nothing
+
+18
+00:00:45,020 --> 00:00:48,650
+and important, we also got an empty app.js file.
+
+19
+00:00:48,650 --> 00:00:50,990
+So no view app at all
+
+20
+00:00:52,290 --> 00:00:55,630
+and now it would not be totally unrealistic
+
+21
+00:00:55,630 --> 00:00:58,690
+that this should be managed as one app
+
+22
+00:00:58,690 --> 00:01:02,560
+and we may be don't want to hard to code this friend data
+
+23
+00:01:02,560 --> 00:01:04,599
+into the HTML code.
+
+24
+00:01:04,599 --> 00:01:07,520
+But instead we wanna keep that friend data around
+
+25
+00:01:07,520 --> 00:01:11,980
+in our view code, in our view application
+
+26
+00:01:11,980 --> 00:01:15,410
+and we don't want to hard code those list items
+
+27
+00:01:15,410 --> 00:01:18,440
+into the HTML code, but we want to render
+
+28
+00:01:18,440 --> 00:01:21,820
+those list items dynamically with view.js
+
+29
+00:01:23,290 --> 00:01:27,370
+and it turns out that with the knowledge we gained thus far,
+
+30
+00:01:27,370 --> 00:01:29,340
+that is possible,
+
+31
+00:01:29,340 --> 00:01:32,860
+but actually has some tricky elements to it.
+
+32
+00:01:32,860 --> 00:01:34,710
+But let's try implementing this
+
+33
+00:01:34,710 --> 00:01:37,130
+with what we learned thus far.
+
+34
+00:01:37,130 --> 00:01:41,040
+So in the app.js file, I'm going to create a new view app
+
+35
+00:01:41,040 --> 00:01:43,450
+with view create app
+
+36
+00:01:43,450 --> 00:01:45,430
+and of course, we're going to mount this
+
+37
+00:01:45,430 --> 00:01:48,350
+to control a part off the Dom with it
+
+38
+00:01:48,350 --> 00:01:50,730
+and here I wanna control this section,
+
+39
+00:01:50,730 --> 00:01:53,170
+which has an idea of app.
+
+40
+00:01:53,170 --> 00:01:58,170
+So let's target this with this ID selector here
+
+41
+00:01:58,570 --> 00:02:01,480
+and now let's say we wanna implement this
+
+42
+00:02:01,480 --> 00:02:03,210
+by adding some data here
+
+43
+00:02:04,130 --> 00:02:08,889
+and actually in here, we have our friend's property,
+
+44
+00:02:08,889 --> 00:02:13,150
+which should be an array full of data about our friends
+
+45
+00:02:13,150 --> 00:02:16,550
+and each friend could be represented by an object
+
+46
+00:02:16,550 --> 00:02:21,470
+where we, for example, have an ID manual, for example,
+
+47
+00:02:21,470 --> 00:02:26,470
+then a name field Manuel Lorenz for my friend Manuel here,
+
+48
+00:02:27,220 --> 00:02:31,260
+a phone field with that imaginary phone number
+
+49
+00:02:31,260 --> 00:02:32,731
+you can try calling it.
+
+50
+00:02:32,731 --> 00:02:36,970
+Maybe you get someone there, but I just made that number up
+
+51
+00:02:36,970 --> 00:02:41,370
+and the email address, which of course also is fictionally
+
+52
+00:02:41,370 --> 00:02:43,500
+so let's store that as well
+
+53
+00:02:43,500 --> 00:02:46,940
+and with that we would have an entry for Manuel.
+
+54
+00:02:46,940 --> 00:02:49,470
+Now let's add a second one for Julie,
+
+55
+00:02:49,470 --> 00:02:53,430
+so here we have Julie Jones,
+
+56
+00:02:53,430 --> 00:02:56,940
+we can grab her imaginary phone number
+
+57
+00:02:56,940 --> 00:02:58,640
+and store that here
+
+58
+00:02:58,640 --> 00:03:02,600
+and also grab her imaginary email address
+
+59
+00:03:02,600 --> 00:03:03,800
+and store it at here
+
+60
+00:03:04,770 --> 00:03:07,580
+and now we have that data managed in Java script
+
+61
+00:03:07,580 --> 00:03:10,260
+and as before in the course, data is a scenario
+
+62
+00:03:10,260 --> 00:03:11,720
+you will typically have.
+
+63
+00:03:11,720 --> 00:03:14,970
+That could be data, which you fetched from a database,
+
+64
+00:03:14,970 --> 00:03:18,090
+it could be data which the user entered.
+
+65
+00:03:18,090 --> 00:03:22,140
+You will rarely have websites where you hard code
+
+66
+00:03:22,140 --> 00:03:24,670
+data like this into the HTML code.
+
+67
+00:03:24,670 --> 00:03:28,230
+That's why this approach, which we had here initially
+
+68
+00:03:28,230 --> 00:03:29,950
+is not very realistic
+
+69
+00:03:29,950 --> 00:03:32,733
+and why we instead might want to use vue.
+
+70
+00:03:34,370 --> 00:03:37,320
+Also to for example make this button work
+
+71
+00:03:37,320 --> 00:03:40,680
+and ensure that we only show our details here
+
+72
+00:03:40,680 --> 00:03:42,570
+with the phone number and the email,
+
+73
+00:03:42,570 --> 00:03:44,033
+if the button is pressed.
+
+74
+00:03:45,430 --> 00:03:47,890
+So therefore now we have that data
+
+75
+00:03:47,890 --> 00:03:52,325
+with that data, we can delete one of the two list items
+
+76
+00:03:52,325 --> 00:03:56,290
+and then use the for here as we learned it
+
+77
+00:03:56,290 --> 00:03:58,310
+to go through all the friends
+
+78
+00:03:58,310 --> 00:04:00,633
+in this friends' data property.
+
+79
+00:04:02,500 --> 00:04:06,170
+So in this data property, which holds this array,
+
+80
+00:04:06,170 --> 00:04:10,710
+so we're looping through this two array elements now,
+
+81
+00:04:10,710 --> 00:04:13,370
+and therefore now inside of this list item
+
+82
+00:04:13,370 --> 00:04:18,370
+inside of we-for we can now interpolate friend.name
+
+83
+00:04:18,500 --> 00:04:22,480
+for example, here for the phone number
+
+84
+00:04:22,480 --> 00:04:27,480
+we can output with double curly braces, friend.phone
+
+85
+00:04:28,350 --> 00:04:33,220
+and instead of the email address, we can output friend.email
+
+86
+00:04:35,110 --> 00:04:37,960
+and we can also assign a key here
+
+87
+00:04:37,960 --> 00:04:41,250
+and bind it dynamically to friend.id
+
+88
+00:04:41,250 --> 00:04:45,500
+because we have that ID field on every friend entry
+
+89
+00:04:47,250 --> 00:04:50,320
+and with that, if we save all that and reload,
+
+90
+00:04:50,320 --> 00:04:52,030
+we get the same as before,
+
+91
+00:04:52,030 --> 00:04:55,893
+but now with less HTML code leveraging view.
+
+92
+00:04:57,010 --> 00:04:59,580
+But the show details button is not working
+
+93
+00:04:59,580 --> 00:05:03,880
+and that's the part where it gets tricky.
+
+94
+00:05:03,880 --> 00:05:07,110
+Of course we could add methods here
+
+95
+00:05:07,110 --> 00:05:11,490
+and then add a method which we could call toggle details,
+
+96
+00:05:11,490 --> 00:05:14,290
+which should be connected to the button
+
+97
+00:05:14,290 --> 00:05:16,010
+and we wanna show the details
+
+98
+00:05:16,010 --> 00:05:17,620
+if they're not currently visible
+
+99
+00:05:17,620 --> 00:05:20,290
+and hide them if they were visible.
+
+100
+00:05:20,290 --> 00:05:22,950
+So we could add a second data property
+
+101
+00:05:22,950 --> 00:05:27,470
+details are visible, which initially let's say is false
+
+102
+00:05:27,470 --> 00:05:28,970
+to initially not show them
+
+103
+00:05:29,940 --> 00:05:32,450
+and then here in toggle details,
+
+104
+00:05:32,450 --> 00:05:36,330
+we set details are visible to what they're currently not
+
+105
+00:05:36,330 --> 00:05:38,400
+to basically invert the value
+
+106
+00:05:38,400 --> 00:05:40,770
+as we also did it many times before
+
+107
+00:05:42,040 --> 00:05:46,040
+and with that, we can go back to the HTML code
+
+108
+00:05:46,040 --> 00:05:47,930
+and connect that button.
+
+109
+00:05:47,930 --> 00:05:52,040
+Upon a click, I want to trigger toggle details
+
+110
+00:05:53,220 --> 00:05:56,960
+so I wanna execute this newly added method here
+
+111
+00:05:56,960 --> 00:06:00,220
+and then we get that detailed are visible property,
+
+112
+00:06:00,220 --> 00:06:03,330
+which we can use with the v-if on this unordered list
+
+113
+00:06:03,330 --> 00:06:05,600
+to control whether that list should be shown.
+
+114
+00:06:05,600 --> 00:06:08,743
+So whether it should be added to the Dom or not,
+
+115
+00:06:09,990 --> 00:06:12,590
+we can then even replace this label
+
+116
+00:06:12,590 --> 00:06:14,240
+on the button dynamically
+
+117
+00:06:14,240 --> 00:06:16,490
+by checking if details are visible
+
+118
+00:06:16,490 --> 00:06:19,870
+and if they are the button should say hide details
+
+119
+00:06:19,870 --> 00:06:23,580
+and only otherwise say show details
+
+120
+00:06:23,580 --> 00:06:26,460
+and of course, we could also use a computed property here,
+
+121
+00:06:26,460 --> 00:06:28,900
+but I wanna keep this simple and to the point
+
+122
+00:06:28,900 --> 00:06:30,603
+so I will not do it here.
+
+123
+00:06:31,780 --> 00:06:34,840
+If we now reload, we get the button,
+
+124
+00:06:34,840 --> 00:06:36,850
+but the problem is no matter
+
+125
+00:06:36,850 --> 00:06:39,260
+on which friend we press the button,
+
+126
+00:06:39,260 --> 00:06:41,320
+we always showed a details
+
+127
+00:06:41,320 --> 00:06:45,010
+or hide the details of all friends
+
+128
+00:06:45,010 --> 00:06:47,980
+and it should be obvious why that happens
+
+129
+00:06:47,980 --> 00:06:52,180
+with v-for we output multiple list items here,
+
+130
+00:06:52,180 --> 00:06:54,280
+one for every friend,
+
+131
+00:06:54,280 --> 00:06:57,780
+but the button always points at the same method.
+
+132
+00:06:57,780 --> 00:06:59,970
+So every button for every friend
+
+133
+00:06:59,970 --> 00:07:04,660
+gets the same event handler it points at the same method.
+
+134
+00:07:04,660 --> 00:07:07,780
+So no matter which button on which friend we press,
+
+135
+00:07:07,780 --> 00:07:10,210
+we always call the same method
+
+136
+00:07:10,210 --> 00:07:13,150
+and we just have details are visible here,
+
+137
+00:07:13,150 --> 00:07:15,730
+which is just one property that controls
+
+138
+00:07:15,730 --> 00:07:19,033
+the visibility of the details in both contacts.
+
+139
+00:07:20,650 --> 00:07:24,840
+Now there would be work arounds we could pass the ID here
+
+140
+00:07:24,840 --> 00:07:27,130
+to toggle details.
+
+141
+00:07:27,130 --> 00:07:30,540
+We could forward the friend ID to toggle details
+
+142
+00:07:31,820 --> 00:07:36,370
+and then inside of toggle details, we could expect that ID
+
+143
+00:07:36,370 --> 00:07:38,860
+and now manage two properties.
+
+144
+00:07:38,860 --> 00:07:42,510
+Details are visible A, details are visible B
+
+145
+00:07:42,510 --> 00:07:45,840
+and we could try to make it work with properties like that,
+
+146
+00:07:45,840 --> 00:07:48,730
+but still it would be very cumbersome,
+
+147
+00:07:48,730 --> 00:07:51,890
+I'm not sure how we would make it work with v-if
+
+148
+00:07:51,890 --> 00:07:54,740
+to find out on which friend we are here.
+
+149
+00:07:54,740 --> 00:07:58,290
+So ultimately this is not what we wanna do,
+
+150
+00:07:58,290 --> 00:08:00,160
+I also don't even wanna get started
+
+151
+00:08:00,160 --> 00:08:03,660
+with having a ABC and whatever a here
+
+152
+00:08:03,660 --> 00:08:07,170
+because this list may grow dynamically.
+
+153
+00:08:07,170 --> 00:08:10,450
+It doesn't in this application because it's a simple one
+
+154
+00:08:10,450 --> 00:08:13,070
+but if you allow users to add new friends,
+
+155
+00:08:13,070 --> 00:08:16,890
+you can't anticipate how many properties you will need
+
+156
+00:08:16,890 --> 00:08:19,430
+to toggle the visibility of the details.
+
+157
+00:08:19,430 --> 00:08:21,220
+So this will lead nowhere
+
+158
+00:08:21,220 --> 00:08:23,560
+and therefore I'll reverts this here,
+
+159
+00:08:23,560 --> 00:08:25,513
+this is not how I wanna solve that.
+
+160
+00:08:26,920 --> 00:08:30,230
+Instead, that's exactly the kind of problem
+
+161
+00:08:30,230 --> 00:08:32,429
+we can solve with components.
+
+162
+00:08:32,429 --> 00:08:34,850
+So let's see what components are,
+
+163
+00:08:34,850 --> 00:08:37,283
+how we create them and how we work with them.
+

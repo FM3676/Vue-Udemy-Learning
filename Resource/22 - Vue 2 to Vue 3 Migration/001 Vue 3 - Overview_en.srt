@@ -1,0 +1,332 @@
+1
+00:00:02,210 --> 00:00:11,090
+In this module, I will dive into view free and explain what changed with View Free and which new features
+
+2
+00:00:11,090 --> 00:00:12,070
+we have now.
+
+3
+00:00:12,140 --> 00:00:16,300
+I want to start with one important note view version.
+
+4
+00:00:16,309 --> 00:00:24,080
+Free is the latest version of a view, but there is a but if you visit the official GitHub repository
+
+5
+00:00:24,080 --> 00:00:31,250
+of View version free, which at the moment is the view next repository, not view the view next repository,
+
+6
+00:00:31,520 --> 00:00:33,290
+you'll find the release notes there.
+
+7
+00:00:33,320 --> 00:00:35,630
+You also find them linked below the video.
+
+8
+00:00:36,020 --> 00:00:41,180
+And the interesting thing here is that they follow a phased release process.
+
+9
+00:00:41,450 --> 00:00:46,910
+Now, what that means is that view core, the core framework is finished.
+
+10
+00:00:46,910 --> 00:00:48,710
+It's stable, it's out there.
+
+11
+00:00:49,040 --> 00:00:55,250
+But some other parts of the framework, for example, the router and Buick's integration in the def
+
+12
+00:00:55,250 --> 00:00:55,700
+tools.
+
+13
+00:00:55,910 --> 00:01:03,050
+So some other packages and things that belong to the framework and to the Vuko system are not final
+
+14
+00:01:03,050 --> 00:01:03,420
+yet.
+
+15
+00:01:03,920 --> 00:01:11,570
+That's why The View team decided to go with this phased release process where for the moment, if you,
+
+16
+00:01:11,570 --> 00:01:18,320
+for example, visit Viejas dot org, you'll still end up in the view to docs there.
+
+17
+00:01:18,500 --> 00:01:21,170
+So you still start with view to their.
+
+18
+00:01:22,080 --> 00:01:30,690
+Also, if you install view via NPM, so if you run NPM install, you also see that at the moment you
+
+19
+00:01:30,690 --> 00:01:38,370
+get viewers in queue on that latest tag you need to run NPM install you at next to get dead.
+
+20
+00:01:38,490 --> 00:01:40,380
+Real latest version.
+
+21
+00:01:40,620 --> 00:01:48,030
+And you need to visit the free dog Viejas Dog to get to the view free version of the official website
+
+22
+00:01:48,030 --> 00:01:49,230
+and documentation.
+
+23
+00:01:49,890 --> 00:01:53,190
+Nonetheless, viewership of free is final.
+
+24
+00:01:53,190 --> 00:01:57,480
+And the word and you should learn right now, do the work and you should dive into right now.
+
+25
+00:01:57,720 --> 00:02:05,370
+You just should be aware of this phased release process and that all parts like the Web page and and
+
+26
+00:02:05,550 --> 00:02:11,470
+install latest version will only be switched to view free at the end of the year.
+
+27
+00:02:11,520 --> 00:02:13,640
+That's the plan, at least as you can see here.
+
+28
+00:02:14,670 --> 00:02:17,200
+So that's something to be aware of nonetheless.
+
+29
+00:02:17,220 --> 00:02:19,140
+Now is the time to learn you free.
+
+30
+00:02:19,260 --> 00:02:25,110
+And if you're just starting with you, I would recommend that you do that with viewers and free because
+
+31
+00:02:25,110 --> 00:02:28,440
+it is stable and it is the future of view.
+
+32
+00:02:28,440 --> 00:02:32,590
+And the parts which still get some work might not matter to you.
+
+33
+00:02:32,730 --> 00:02:38,400
+You can find the next steps on which to view team focuses here, and none of these parts should have
+
+34
+00:02:38,400 --> 00:02:42,750
+a strong impact on you if you're just getting started with the view at the moment.
+
+35
+00:02:43,260 --> 00:02:48,360
+So with that, let's now explore what changed with View Free and what's new now.
+
+36
+00:02:48,360 --> 00:02:51,240
+The good news is that not a lot of things changed.
+
+37
+00:02:51,240 --> 00:02:55,440
+And what you learned for of you two generally still applies.
+
+38
+00:02:55,740 --> 00:03:01,080
+There aren't any major breaking changes that would force you to relearn everything.
+
+39
+00:03:01,080 --> 00:03:02,700
+That is not the case.
+
+40
+00:03:02,970 --> 00:03:07,190
+But there are a couple of changes and a couple of new features you should be aware of.
+
+41
+00:03:07,560 --> 00:03:11,790
+I will highlight all important changes you should be aware of in this module, though.
+
+42
+00:03:12,480 --> 00:03:15,930
+So let's start with the changes here.
+
+43
+00:03:15,930 --> 00:03:22,800
+I will just highlight the most important changes which will likely affect everyone, or at least a lot
+
+44
+00:03:22,800 --> 00:03:30,690
+of people for an exhaustive list of all changes, no matter how big or small they are and all new features,
+
+45
+00:03:30,870 --> 00:03:36,560
+definitely check out the official migration guide, which you also find attached to this video.
+
+46
+00:03:37,380 --> 00:03:42,650
+Now, the changes I'm going to list here will also all be shown in detail throughout this video.
+
+47
+00:03:43,440 --> 00:03:49,230
+One change that will affect everyone is that you now create your view instances, your view apps differently
+
+48
+00:03:49,230 --> 00:03:54,600
+than before the syntax changed and therefore you will need to change this in your apps as well.
+
+49
+00:03:54,810 --> 00:03:57,150
+But changing it as simple as you will see.
+
+50
+00:03:57,660 --> 00:04:02,280
+In addition, the data option now must always be a method.
+
+51
+00:04:02,340 --> 00:04:05,220
+It's no longer allowed to be just an object.
+
+52
+00:04:05,940 --> 00:04:11,730
+And another change that will affect everyone is related to how you register components, directives
+
+53
+00:04:11,730 --> 00:04:13,110
+and third party modules.
+
+54
+00:04:13,530 --> 00:04:16,500
+This will now also work a bit differently, as you will see.
+
+55
+00:04:16,649 --> 00:04:19,620
+But updating this and changing this will also be simple.
+
+56
+00:04:20,459 --> 00:04:27,120
+If you're using transitions in your app, the transition component, see us as class name changed the
+
+57
+00:04:27,120 --> 00:04:32,040
+dash enter class is now dash enter from and I'll show this in an example as well.
+
+58
+00:04:32,460 --> 00:04:35,310
+And that's almost it when it comes to just view.
+
+59
+00:04:35,490 --> 00:04:40,290
+As I mentioned, check the official migration guide for all minor changes as well.
+
+60
+00:04:40,380 --> 00:04:45,930
+But these are the most important changes you should definitely know now if you're using the view router
+
+61
+00:04:46,110 --> 00:04:51,270
+there, we now also create De Ruyter differently and transitions with the router.
+
+62
+00:04:51,270 --> 00:04:56,010
+So if you have animations for switching pages, that also works differently.
+
+63
+00:04:56,010 --> 00:05:03,330
+Now, for a viewer, it generally works as you learned it, but we now create our store differently.
+
+64
+00:05:04,480 --> 00:05:09,340
+So these are the changes, and I'll cover them with concrete examples from the video.
+
+65
+00:05:10,450 --> 00:05:13,310
+We also got a couple of new features, which I'll cover.
+
+66
+00:05:13,660 --> 00:05:19,600
+We got two minor, but nice to have changes, a teleport component and support for fragments.
+
+67
+00:05:19,750 --> 00:05:24,160
+And I'll explain both what it is and why and how we use it in this video.
+
+68
+00:05:24,170 --> 00:05:31,030
+Of course, the biggest new feature, which was added with View Free, is the new composition API,
+
+69
+00:05:31,180 --> 00:05:36,120
+which and this is important, is 100 percent optional.
+
+70
+00:05:36,700 --> 00:05:43,510
+You can use it to replace the options API so you can use it to build your components differently.
+
+71
+00:05:43,720 --> 00:05:50,680
+Instead of using data, watch methods and computers, you can use something else, but it is optional.
+
+72
+00:05:50,680 --> 00:05:53,020
+It will not replace the options API.
+
+73
+00:05:53,050 --> 00:05:55,020
+You can use it, but you don't have to.
+
+74
+00:05:55,120 --> 00:05:57,850
+And all also dive into that in detail, of course.
+
+75
+00:05:58,720 --> 00:06:01,180
+And then kind of a new feature.
+
+76
+00:06:01,210 --> 00:06:03,100
+We got better typescript support.
+
+77
+00:06:03,600 --> 00:06:05,980
+You could always use typescript with view.
+
+78
+00:06:06,100 --> 00:06:13,330
+But since View Free was internally rewritten from scratch and uses TypeScript internally, it now has
+
+79
+00:06:13,330 --> 00:06:14,200
+better support.
+
+80
+00:06:14,560 --> 00:06:21,460
+Now using typescript is still optional and at the moment at least, I'm not using it for most view projects.
+
+81
+00:06:21,640 --> 00:06:23,820
+But if you want to use it, you got better support.
+
+82
+00:06:24,490 --> 00:06:25,870
+So that's the overview.
+
+83
+00:06:25,900 --> 00:06:28,510
+With that, let's dive into the concrete examples.
+

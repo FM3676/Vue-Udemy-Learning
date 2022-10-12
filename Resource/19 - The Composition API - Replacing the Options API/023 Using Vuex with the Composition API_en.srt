@@ -1,0 +1,360 @@
+1
+00:00:02,120 --> 00:00:04,370
+Now we know how we can use routing
+
+2
+00:00:04,370 --> 00:00:06,040
+with the composition API.
+
+3
+00:00:06,040 --> 00:00:07,580
+What about Vuex?
+
+4
+00:00:07,580 --> 00:00:10,900
+How can we use that with the composition API?
+
+5
+00:00:10,900 --> 00:00:12,730
+For this, attached you find another
+
+6
+00:00:12,730 --> 00:00:15,050
+very simple dummy project.
+
+7
+00:00:15,050 --> 00:00:16,500
+We've got a counter there and a button,
+
+8
+00:00:16,500 --> 00:00:18,430
+which currently does nothing,
+
+9
+00:00:18,430 --> 00:00:20,870
+but this is built with the composition API.
+
+10
+00:00:20,870 --> 00:00:22,950
+I mean, these are very simple components,
+
+11
+00:00:22,950 --> 00:00:26,210
+but I plan on using the composition API there.
+
+12
+00:00:26,210 --> 00:00:29,870
+The App.vue file is pretty straightforward and simple,
+
+13
+00:00:29,870 --> 00:00:32,049
+just a couple of local components here.
+
+14
+00:00:32,049 --> 00:00:34,620
+And then in the counter, I output the counter,
+
+15
+00:00:34,620 --> 00:00:38,390
+but I plan on getting the counter with the composition API.
+
+16
+00:00:38,390 --> 00:00:40,900
+At the moment I just have a dummy counter here,
+
+17
+00:00:40,900 --> 00:00:42,610
+which does never change.
+
+18
+00:00:42,610 --> 00:00:44,430
+And in the control center,
+
+19
+00:00:44,430 --> 00:00:47,300
+I also plan on defining this function with the composition
+
+20
+00:00:47,300 --> 00:00:51,250
+API, but at the moment, it's does nothing.
+
+21
+00:00:51,250 --> 00:00:53,367
+Now, obviously we don't need Vuex
+
+22
+00:00:53,367 --> 00:00:55,440
+for this simple of an application.
+
+23
+00:00:55,440 --> 00:00:57,560
+We don't need Vuex for this demo,
+
+24
+00:00:57,560 --> 00:01:01,366
+but I want to show you how you can utilize Vuex with the
+
+25
+00:01:01,366 --> 00:01:04,519
+composition API in case you're building more complex
+
+26
+00:01:04,519 --> 00:01:06,930
+projects where you need Vuex.
+
+27
+00:01:06,930 --> 00:01:08,750
+So how does this work?
+
+28
+00:01:08,750 --> 00:01:12,320
+In main JS, I already set up a store with createStore,
+
+29
+00:01:12,320 --> 00:01:14,650
+as you learned in the Vuex module.
+
+30
+00:01:14,650 --> 00:01:18,870
+I have a state, mutations, an action and a getter.
+
+31
+00:01:18,870 --> 00:01:20,970
+And how can we now utilize that store,
+
+32
+00:01:20,970 --> 00:01:24,980
+which I'm already using in my app, in these components?
+
+33
+00:01:24,980 --> 00:01:26,900
+Well, just as the router,
+
+34
+00:01:26,900 --> 00:01:31,610
+the Vue router offered us a custom composition function,
+
+35
+00:01:31,610 --> 00:01:34,810
+which we could call inside of our setup method
+
+36
+00:01:34,810 --> 00:01:36,630
+to use routing features.
+
+37
+00:01:36,630 --> 00:01:39,920
+Just as the router did this, the Vuex package has
+
+38
+00:01:39,920 --> 00:01:41,890
+something similar in store.
+
+39
+00:01:41,890 --> 00:01:43,640
+So in the control center,
+
+40
+00:01:43,640 --> 00:01:47,450
+where I in the end want to dispatch the increment action.
+
+41
+00:01:47,450 --> 00:01:52,440
+I can import something from Vuex.
+
+42
+00:01:53,660 --> 00:01:57,870
+And that something, is the useStore hook,
+
+43
+00:01:57,870 --> 00:02:00,140
+or the useStore composable.
+
+44
+00:02:00,140 --> 00:02:03,410
+The useStore custom composition function,
+
+45
+00:02:03,410 --> 00:02:07,930
+which is meant to be executed inside of the setup method.
+
+46
+00:02:07,930 --> 00:02:10,910
+Here we can then call useStore,
+
+47
+00:02:10,910 --> 00:02:13,460
+and what we get as a result is access to the...
+
+48
+00:02:13,460 --> 00:02:15,230
+well to the Vuex store,
+
+49
+00:02:15,230 --> 00:02:17,780
+which we have attached to this application.
+
+50
+00:02:17,780 --> 00:02:22,780
+So the Vuex store, we are using with Use here on our app.
+
+51
+00:02:23,530 --> 00:02:26,550
+We get access to that store by calling useStore
+
+52
+00:02:26,550 --> 00:02:27,623
+inside of setup.
+
+53
+00:02:28,530 --> 00:02:31,990
+Well, and once we got access it'll of course be simple.
+
+54
+00:02:31,990 --> 00:02:34,480
+We can just use store, dispatch
+
+55
+00:02:34,480 --> 00:02:37,230
+and then dispatch the action.
+
+56
+00:02:37,230 --> 00:02:39,830
+So dispatch any action, like in this case,
+
+57
+00:02:39,830 --> 00:02:44,070
+the increment action, which we registered on this store.
+
+58
+00:02:44,070 --> 00:02:47,220
+And you can then use any Vuex feature you learn about.
+
+59
+00:02:47,220 --> 00:02:50,330
+Modules, namespacing... all of that is available.
+
+60
+00:02:50,330 --> 00:02:54,310
+And you just use useStore to get access to the store,
+
+61
+00:02:54,310 --> 00:02:57,010
+instead of using this dollar sign store,
+
+62
+00:02:57,010 --> 00:02:59,300
+which you would use if you would be
+
+63
+00:02:59,300 --> 00:03:01,223
+working with the options API.
+
+64
+00:03:02,300 --> 00:03:04,870
+Well, and therefore it's the same here in the counter,
+
+65
+00:03:04,870 --> 00:03:08,740
+where I want to get access to some data stored in the store.
+
+66
+00:03:08,740 --> 00:03:13,740
+I can simply import useStore from Vuex.
+
+67
+00:03:15,030 --> 00:03:19,353
+Then, get access to the store by calling useStore.
+
+68
+00:03:20,350 --> 00:03:23,610
+And thereafter when we want to get a counter that
+
+69
+00:03:23,610 --> 00:03:26,080
+depends on a getter in the store,
+
+70
+00:03:26,080 --> 00:03:28,620
+we just need to create a computed variable,
+
+71
+00:03:28,620 --> 00:03:33,270
+a computed value just as we do it in the options API world.
+
+72
+00:03:33,270 --> 00:03:38,040
+So therefore we import computed from Vue,
+
+73
+00:03:38,040 --> 00:03:41,590
+and then counter should be a computed value,
+
+74
+00:03:41,590 --> 00:03:43,250
+by calling computed,
+
+75
+00:03:43,250 --> 00:03:46,680
+where we provide a function that will be executed whenever
+
+76
+00:03:46,680 --> 00:03:48,690
+one of its dependencies changed.
+
+77
+00:03:48,690 --> 00:03:50,240
+And here in this function,
+
+78
+00:03:50,240 --> 00:03:54,740
+we returned store.getters.counter,
+
+79
+00:03:54,740 --> 00:03:58,883
+because counter is the getter name I defined here.
+
+80
+00:04:00,700 --> 00:04:03,640
+And whenever the counter changes, Vue will detect this
+
+81
+00:04:03,640 --> 00:04:06,677
+in the end and recalculate this computed value,
+
+82
+00:04:06,677 --> 00:04:09,210
+which we then expose to the template.
+
+83
+00:04:09,210 --> 00:04:12,520
+And since you learned that computed values are refs,
+
+84
+00:04:12,520 --> 00:04:14,300
+whatever the counter does change,
+
+85
+00:04:14,300 --> 00:04:17,420
+Vue will notice this and it will update the template
+
+86
+00:04:17,420 --> 00:04:19,713
+in the place where we use the counter.
+
+87
+00:04:20,700 --> 00:04:22,370
+With that we can save that,
+
+88
+00:04:22,370 --> 00:04:26,053
+and now if I reload, you see this works.
+
+89
+00:04:27,660 --> 00:04:30,120
+And that's how easy it is to use Vuex,
+
+90
+00:04:30,120 --> 00:04:31,743
+with the composition API.
+

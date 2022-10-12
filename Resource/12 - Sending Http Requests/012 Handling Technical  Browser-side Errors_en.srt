@@ -1,0 +1,500 @@
+1
+00:00:02,340 --> 00:00:05,310
+For that, let me show you how a real error
+
+2
+00:00:05,310 --> 00:00:06,760
+could occur here.
+
+3
+00:00:06,760 --> 00:00:09,640
+We can simply manipulate this URL.
+
+4
+00:00:09,640 --> 00:00:11,280
+Of course, that is an error
+
+5
+00:00:11,280 --> 00:00:13,240
+you typically would be able to avoid
+
+6
+00:00:13,240 --> 00:00:16,093
+because you as a developer add that URL.
+
+7
+00:00:17,010 --> 00:00:19,990
+But since I have no influence on the server side code here,
+
+8
+00:00:19,990 --> 00:00:22,460
+I can't fake a server side error.
+
+9
+00:00:22,460 --> 00:00:25,220
+Hence sending a request to an invalid URL
+
+10
+00:00:25,220 --> 00:00:27,670
+is the best thing I can do right now.
+
+11
+00:00:27,670 --> 00:00:29,623
+Let's remove dot .json at the end.
+
+12
+00:00:30,800 --> 00:00:33,140
+This is something Firebase doesn't like,
+
+13
+00:00:33,140 --> 00:00:36,290
+and if you then send the request to this invalid URL,
+
+14
+00:00:36,290 --> 00:00:39,273
+Firebase will respond with an error message.
+
+15
+00:00:40,690 --> 00:00:45,690
+So let's save that and reload and everything is red.
+
+16
+00:00:45,740 --> 00:00:48,673
+We see a bunch of red, so clearly this failed.
+
+17
+00:00:51,300 --> 00:00:53,160
+We can handle such errors,
+
+18
+00:00:53,160 --> 00:00:56,890
+which in this case actually is thrown by the browser here.
+
+19
+00:00:56,890 --> 00:01:00,670
+We can handle such errors by adding another block
+
+20
+00:01:00,670 --> 00:01:02,870
+in our then chain.
+
+21
+00:01:02,870 --> 00:01:06,770
+After all those then blocks, we can add a catch method.
+
+22
+00:01:06,770 --> 00:01:11,203
+So .catch on this long chain of thens and thens.
+
+23
+00:01:12,610 --> 00:01:17,250
+Catch all the works on promises and it takes a function.
+
+24
+00:01:17,250 --> 00:01:19,240
+I'll also use an arrow function here,
+
+25
+00:01:19,240 --> 00:01:22,800
+which will be triggered whenever any error occurs
+
+26
+00:01:22,800 --> 00:01:25,170
+related to the previous, then blocks.
+
+27
+00:01:25,170 --> 00:01:27,740
+So related to the original request
+
+28
+00:01:27,740 --> 00:01:30,583
+or thrown in a later then block.
+
+29
+00:01:31,810 --> 00:01:35,230
+Here, we'll get the error and here we can handle it.
+
+30
+00:01:35,230 --> 00:01:36,150
+So here for example,
+
+31
+00:01:36,150 --> 00:01:39,083
+we can console log the error to get started.
+
+32
+00:01:40,550 --> 00:01:44,143
+If I do that and reload, here that's my console log.
+
+33
+00:01:45,760 --> 00:01:48,160
+Of course, I'm not here to just log it.
+
+34
+00:01:48,160 --> 00:01:51,200
+So instead, I wanna show something to the user
+
+35
+00:01:51,200 --> 00:01:52,240
+on the screen,
+
+36
+00:01:52,240 --> 00:01:55,410
+because typically your users are not going to open
+
+37
+00:01:55,410 --> 00:01:56,740
+the developer tools.
+
+38
+00:01:56,740 --> 00:01:59,784
+So they just see loading and they are wondering
+
+39
+00:01:59,784 --> 00:02:03,760
+whether they will eventually see some data or not.
+
+40
+00:02:03,760 --> 00:02:06,864
+So I wanna improve this experience and show an actual
+
+41
+00:02:06,864 --> 00:02:08,984
+error message to the user,
+
+42
+00:02:08,984 --> 00:02:12,350
+either a dialogue or in my case here,
+
+43
+00:02:12,350 --> 00:02:14,033
+simply a message down there.
+
+44
+00:02:14,870 --> 00:02:18,770
+And for that, we can simply manage another data property
+
+45
+00:02:18,770 --> 00:02:21,723
+in the component where we are sending the request.
+
+46
+00:02:22,900 --> 00:02:26,250
+The error property for example,
+
+47
+00:02:26,250 --> 00:02:28,950
+the name is up to you though, doesn't have to be error.
+
+48
+00:02:28,950 --> 00:02:30,853
+Like for all those properties.
+
+49
+00:02:32,010 --> 00:02:33,800
+Initially, I'll set it to null
+
+50
+00:02:33,800 --> 00:02:36,205
+because initially we have no error,
+
+51
+00:02:36,205 --> 00:02:39,440
+but down here we do have an error.
+
+52
+00:02:39,440 --> 00:02:41,900
+So here I'll set this error equal to
+
+53
+00:02:42,877 --> 00:02:47,877
+"Failed to fetch data - please try again later."
+
+54
+00:02:49,770 --> 00:02:53,570
+Of course you could also analyze this error object,
+
+55
+00:02:53,570 --> 00:02:56,980
+which we're getting and see if you got more detailed steer
+
+56
+00:02:56,980 --> 00:03:00,483
+and show a more specific error message to your users.
+
+57
+00:03:01,330 --> 00:03:03,800
+That really depends on your application,
+
+58
+00:03:03,800 --> 00:03:06,823
+which kind of errors you wanna handle and so on.
+
+59
+00:03:07,760 --> 00:03:10,560
+But this at least is a generic error message
+
+60
+00:03:10,560 --> 00:03:13,163
+that tells the user that something went wrong.
+
+61
+00:03:14,620 --> 00:03:19,583
+So here I now wanna use error to show an error message.
+
+62
+00:03:21,790 --> 00:03:25,170
+For that I'll add another paragraph here
+
+63
+00:03:26,210 --> 00:03:31,020
+with v-else-if in that long block of v-else statements
+
+64
+00:03:31,020 --> 00:03:33,410
+and check if we're not loading,
+
+65
+00:03:33,410 --> 00:03:34,960
+because of course if we're loading,
+
+66
+00:03:34,960 --> 00:03:37,270
+I definitely don't wanna show the error message,
+
+67
+00:03:37,270 --> 00:03:39,323
+and if I have an error.
+
+68
+00:03:40,190 --> 00:03:43,330
+And if I do, I simply output the error here
+
+69
+00:03:43,330 --> 00:03:48,030
+because error is simply set to a string here,
+
+70
+00:03:48,030 --> 00:03:50,723
+so of course we can't just output it in our template.
+
+71
+00:03:52,320 --> 00:03:55,280
+And now we can also use v-else here in the end,
+
+72
+00:03:55,280 --> 00:03:58,270
+because we know if we reach that block here,
+
+73
+00:03:58,270 --> 00:04:00,320
+we will have results which we can output,
+
+74
+00:04:00,320 --> 00:04:02,179
+because we're handling all our cases
+
+75
+00:04:02,179 --> 00:04:05,573
+before we handle this case here.
+
+76
+00:04:08,030 --> 00:04:10,330
+Of course, I also wanna reset error
+
+77
+00:04:10,330 --> 00:04:12,160
+whenever we send a new request.
+
+78
+00:04:12,160 --> 00:04:14,860
+So when we start sending a new request here,
+
+79
+00:04:14,860 --> 00:04:16,600
+when we set isLoading to true,
+
+80
+00:04:16,600 --> 00:04:18,890
+I'll also set error back to null,
+
+81
+00:04:18,890 --> 00:04:21,163
+to reset the error at this point.
+
+82
+00:04:22,079 --> 00:04:23,263
+And now with that,
+
+83
+00:04:27,160 --> 00:04:31,690
+my project here complains that this error argument
+
+84
+00:04:31,690 --> 00:04:34,780
+is never getting used so we'll console log it here
+
+85
+00:04:36,900 --> 00:04:37,970
+like this,
+
+86
+00:04:37,970 --> 00:04:40,870
+alternatively, we simply leave that blank,
+
+87
+00:04:40,870 --> 00:04:43,890
+but I wanna show you that you would get this error object
+
+88
+00:04:43,890 --> 00:04:46,310
+that was thrown as an error here.
+
+89
+00:04:46,310 --> 00:04:50,020
+And therefore with that, if I reload,
+
+90
+00:04:50,020 --> 00:04:52,063
+we still see a loading.
+
+91
+00:04:56,120 --> 00:04:57,633
+Let me check why?
+
+92
+00:04:58,540 --> 00:05:00,380
+Oh yeah, because of course here,
+
+93
+00:05:00,380 --> 00:05:03,230
+I'm just checking if we're loading, and if we are,
+
+94
+00:05:03,230 --> 00:05:05,330
+I'm always setting loading.
+
+95
+00:05:05,330 --> 00:05:08,530
+Now the problem is we are loading if we get an error,
+
+96
+00:05:08,530 --> 00:05:11,140
+because we only set isLoading to false
+
+97
+00:05:11,140 --> 00:05:13,360
+if we're able to read some data,
+
+98
+00:05:13,360 --> 00:05:15,913
+which is not happening here, if we catch an error.
+
+99
+00:05:18,660 --> 00:05:22,230
+So of course we should set this isLoading to false here
+
+100
+00:05:22,230 --> 00:05:24,050
+in the error case as well,
+
+101
+00:05:24,050 --> 00:05:26,283
+because we are not loading anymore.
+
+102
+00:05:27,310 --> 00:05:30,440
+We were unsuccessful, but we're not loading anymore.
+
+103
+00:05:30,440 --> 00:05:33,610
+So we need to reset this here as well.
+
+104
+00:05:33,610 --> 00:05:37,700
+But I also noticed another issue, the order here.
+
+105
+00:05:37,700 --> 00:05:39,020
+We're checking if we're loading,
+
+106
+00:05:39,020 --> 00:05:41,420
+but they're afterward checking if we're not loading,
+
+107
+00:05:41,420 --> 00:05:44,200
+but then if we maybe got no result data,
+
+108
+00:05:44,200 --> 00:05:48,490
+and if that's the case, we'll show our no data message.
+
+109
+00:05:48,490 --> 00:05:50,690
+Actually I wanna switch the order
+
+110
+00:05:50,690 --> 00:05:53,000
+and first check if we have an error,
+
+111
+00:05:53,000 --> 00:05:55,900
+so that this overrides the no data case,
+
+112
+00:05:55,900 --> 00:05:57,610
+and we show the error message
+
+113
+00:05:57,610 --> 00:06:00,713
+instead of the no data message if we have an error.
+
+114
+00:06:02,700 --> 00:06:05,150
+So with all that, let's save that,
+
+115
+00:06:05,150 --> 00:06:06,070
+and now if a reload,
+
+116
+00:06:06,070 --> 00:06:08,793
+we see this "Failed to fetch data" message here.
+
+117
+00:06:10,570 --> 00:06:13,570
+On the other hand, if we do fix this URL here,
+
+118
+00:06:13,570 --> 00:06:15,483
+if I add .json,
+
+119
+00:06:17,840 --> 00:06:19,160
+then you see if I reload,
+
+120
+00:06:19,160 --> 00:06:22,053
+the data gets loaded and displayed correctly again.
+
+121
+00:06:23,190 --> 00:06:27,240
+And if I delete my data here, let's check this case as well.
+
+122
+00:06:27,240 --> 00:06:30,573
+If I now load the data, we see the no data message.
+
+123
+00:06:31,910 --> 00:06:33,510
+And if I add data again
+
+124
+00:06:34,980 --> 00:06:37,110
+and then load it, that works.
+
+125
+00:06:37,110 --> 00:06:39,803
+So now this is also how we can handle errors.
+

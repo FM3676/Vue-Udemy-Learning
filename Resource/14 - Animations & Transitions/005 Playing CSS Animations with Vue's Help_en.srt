@@ -1,0 +1,380 @@
+1
+00:00:02,310 --> 00:00:03,880
+And I will show this to you
+
+2
+00:00:03,880 --> 00:00:07,590
+by going to App.vue, and there I'll add a new div.
+
+3
+00:00:07,590 --> 00:00:08,980
+I'll come back to the modal later,
+
+4
+00:00:08,980 --> 00:00:10,810
+but I wanna start with that.
+
+5
+00:00:10,810 --> 00:00:12,970
+Give it a class of container,
+
+6
+00:00:12,970 --> 00:00:17,237
+and in there, let's just add a regular button.
+
+7
+00:00:17,237 --> 00:00:21,830
+"Toggle Paragraph" could be the text we have on the button.
+
+8
+00:00:21,830 --> 00:00:26,377
+And then I'll add a little a paragraph above that button.
+
+9
+00:00:26,377 --> 00:00:29,400
+"This is only sometimes visible..."
+
+10
+00:00:29,400 --> 00:00:31,640
+and this paragraph should be toggled
+
+11
+00:00:31,640 --> 00:00:33,253
+whenever this button is clicked.
+
+12
+00:00:34,320 --> 00:00:36,200
+Now, you know how that works.
+
+13
+00:00:36,200 --> 00:00:39,163
+We can add a new data property, paraIsVisible,
+
+14
+00:00:40,620 --> 00:00:43,090
+which initially is false, for example.
+
+15
+00:00:43,090 --> 00:00:46,480
+We can add a new method anywhere in the methods key.
+
+16
+00:00:46,480 --> 00:00:50,130
+toggleParagraph, could be the name,
+
+17
+00:00:50,130 --> 00:00:52,460
+and in that method we now control this
+
+18
+00:00:52,460 --> 00:00:54,680
+newly added data property.
+
+19
+00:00:54,680 --> 00:00:58,320
+So we set, paraIsVisible, to what it's currently not
+
+20
+00:00:58,320 --> 00:01:00,123
+to invert its value.
+
+21
+00:01:01,470 --> 00:01:05,260
+And then we can use paraIsVisible with, v if,
+
+22
+00:01:05,260 --> 00:01:08,193
+to only sometimes show that paragraph.
+
+23
+00:01:09,350 --> 00:01:13,100
+And the only remaining step now is to wire up this button
+
+24
+00:01:13,100 --> 00:01:16,393
+with a click listener pointing at, toggleParagraph.
+
+25
+00:01:18,080 --> 00:01:21,870
+And if we do that, well, we have that paragraph,
+
+26
+00:01:21,870 --> 00:01:25,090
+which instantly appears and instantly disappears.
+
+27
+00:01:25,090 --> 00:01:27,070
+Now let's animate both and let's see
+
+28
+00:01:27,070 --> 00:01:28,473
+how Vue helps us there.
+
+29
+00:01:29,370 --> 00:01:31,100
+There is a built in component,
+
+30
+00:01:31,100 --> 00:01:33,630
+which you can wrap around the elements
+
+31
+00:01:33,630 --> 00:01:35,850
+where you wanna control the appearance
+
+32
+00:01:35,850 --> 00:01:38,410
+and removal animation with Vue.
+
+33
+00:01:38,410 --> 00:01:40,653
+And that's the transition component.
+
+34
+00:01:41,590 --> 00:01:44,300
+You can wrap the element, which should be animated,
+
+35
+00:01:44,300 --> 00:01:46,420
+with transition, and of course,
+
+36
+00:01:46,420 --> 00:01:48,410
+you can wrap multiple elements
+
+37
+00:01:48,410 --> 00:01:51,480
+per Vue app and per Vue component,
+
+38
+00:01:51,480 --> 00:01:54,470
+and transition, this built in component,
+
+39
+00:01:54,470 --> 00:01:58,010
+will then manipulate this wrapped element.
+
+40
+00:01:58,010 --> 00:02:01,840
+Important, transition must only contain one element,
+
+41
+00:02:01,840 --> 00:02:03,550
+one direct child.
+
+42
+00:02:03,550 --> 00:02:06,540
+There is an exception about which I'll talk later,
+
+43
+00:02:06,540 --> 00:02:08,169
+but for the moment, keep in mind
+
+44
+00:02:08,169 --> 00:02:11,693
+that you must only have one direct child in transition.
+
+45
+00:02:12,890 --> 00:02:17,050
+And what does transition do with that wrapped element now?
+
+46
+00:02:17,050 --> 00:02:18,980
+Well, it's this wrapped element,
+
+47
+00:02:18,980 --> 00:02:21,840
+which at some point of time is mounted,
+
+48
+00:02:21,840 --> 00:02:23,890
+but which of course in this case also
+
+49
+00:02:23,890 --> 00:02:26,030
+is not mounted initially.
+
+50
+00:02:26,030 --> 00:02:28,173
+It's not always visible on the screen.
+
+51
+00:02:29,370 --> 00:02:32,380
+Transition now adds a couple of
+
+52
+00:02:32,380 --> 00:02:36,090
+CSS utility classes to that element.
+
+53
+00:02:36,090 --> 00:02:39,120
+It adds a enter-from class,
+
+54
+00:02:39,120 --> 00:02:42,810
+an enter-active class, and a enter-to class.
+
+55
+00:02:42,810 --> 00:02:47,360
+And it adds enter-from first, enter-active at the same time,
+
+56
+00:02:47,360 --> 00:02:50,850
+then it removes from, but enter-active stays on the element
+
+57
+00:02:50,850 --> 00:02:55,180
+and enter-to is added, right when the animation finishes.
+
+58
+00:02:55,180 --> 00:02:58,850
+And Vue finds out how long that process should take
+
+59
+00:02:58,850 --> 00:03:02,020
+by analyzing these special CSS classes
+
+60
+00:03:02,020 --> 00:03:05,650
+and looking for transitions and animations inside of them
+
+61
+00:03:05,650 --> 00:03:08,930
+to then read the duration from them.
+
+62
+00:03:08,930 --> 00:03:11,500
+So Vue will analyze your CSS code
+
+63
+00:03:11,500 --> 00:03:14,590
+for these special CSS class names.
+
+64
+00:03:14,590 --> 00:03:16,380
+Find out the duration,
+
+65
+00:03:16,380 --> 00:03:21,380
+then actually add those CSS classes over the duration.
+
+66
+00:03:21,610 --> 00:03:23,750
+And that in turn will allow you
+
+67
+00:03:23,750 --> 00:03:27,560
+to set different styles during that appear,
+
+68
+00:03:27,560 --> 00:03:30,363
+during that entering phase of the element.
+
+69
+00:03:31,520 --> 00:03:32,540
+And of course you have
+
+70
+00:03:32,540 --> 00:03:35,100
+a similar concept for removing elements.
+
+71
+00:03:35,100 --> 00:03:36,880
+So when an element is mounted
+
+72
+00:03:36,880 --> 00:03:38,910
+and now is not mounted anymore,
+
+73
+00:03:38,910 --> 00:03:42,370
+because with v if, the condition turns false,
+
+74
+00:03:42,370 --> 00:03:45,370
+then Vue adds a leave-from class,
+
+75
+00:03:45,370 --> 00:03:48,580
+and at the same time, a leave-active class,
+
+76
+00:03:48,580 --> 00:03:50,670
+then it removes the leave-from class
+
+77
+00:03:50,670 --> 00:03:52,360
+and adds a leave-to class,
+
+78
+00:03:52,360 --> 00:03:56,890
+and this allows you to animate the removal of elements.
+
+79
+00:03:56,890 --> 00:03:58,780
+And the important thing again is that
+
+80
+00:03:58,780 --> 00:04:02,880
+Vue will analyze the CSS code you write for these classes,
+
+81
+00:04:02,880 --> 00:04:05,790
+it will read the duration of the transitions
+
+82
+00:04:05,790 --> 00:04:08,360
+and animations you define in those classes,
+
+83
+00:04:08,360 --> 00:04:10,120
+and then, and that's the key thing,
+
+84
+00:04:10,120 --> 00:04:14,360
+it will only really remove the element from the dom
+
+85
+00:04:14,360 --> 00:04:16,730
+once that duration is over.
+
+86
+00:04:16,730 --> 00:04:20,200
+And that's the key difference to the non-Vue behavior,
+
+87
+00:04:20,200 --> 00:04:23,011
+their elements are instantly added and removed
+
+88
+00:04:23,011 --> 00:04:25,470
+with the transition component,
+
+89
+00:04:25,470 --> 00:04:29,760
+and these special CSS classes Vue will add and look for,
+
+90
+00:04:29,760 --> 00:04:33,440
+Vue is able to tell that an animation has taken place
+
+91
+00:04:33,440 --> 00:04:36,090
+and how long that animation takes,
+
+92
+00:04:36,090 --> 00:04:38,620
+and it then only removes the element
+
+93
+00:04:38,620 --> 00:04:41,350
+once that animation is done.
+
+94
+00:04:41,350 --> 00:04:42,530
+Now that's the theory.
+
+95
+00:04:42,530 --> 00:04:43,983
+Let's see it in practice.
+

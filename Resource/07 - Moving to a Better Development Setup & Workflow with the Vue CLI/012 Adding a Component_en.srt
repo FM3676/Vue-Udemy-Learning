@@ -1,0 +1,660 @@
+1
+00:00:02,290 --> 00:00:04,970
+So let's now add our first component
+
+2
+00:00:04,970 --> 00:00:08,420
+because this is just our main Vue app.
+
+3
+00:00:08,420 --> 00:00:11,900
+But I mentioned before in the component introduction module,
+
+4
+00:00:11,900 --> 00:00:14,180
+that in Vue you have both.
+
+5
+00:00:14,180 --> 00:00:18,240
+You have Vue apps and you have Vue components.
+
+6
+00:00:18,240 --> 00:00:22,580
+And every component is like a mini app where you just have
+
+7
+00:00:22,580 --> 00:00:25,290
+the possibility of combining multiple components
+
+8
+00:00:25,290 --> 00:00:28,940
+into one app and where eventually covered
+
+9
+00:00:28,940 --> 00:00:30,370
+in the next module.
+
+10
+00:00:30,370 --> 00:00:31,530
+Those mini apps,
+
+11
+00:00:31,530 --> 00:00:34,750
+those components will also be able to talk to each other
+
+12
+00:00:34,750 --> 00:00:38,270
+and you'll be able to build complex user interfaces
+
+13
+00:00:38,270 --> 00:00:41,820
+by combining different components together.
+
+14
+00:00:41,820 --> 00:00:45,270
+Now, it is a convention that you create a new folder
+
+15
+00:00:45,270 --> 00:00:48,260
+and you fold another file named components
+
+16
+00:00:48,260 --> 00:00:51,683
+and your source folder to hold your components.
+
+17
+00:00:53,540 --> 00:00:57,250
+Simply just to make it clear that these are now components
+
+18
+00:00:57,250 --> 00:00:59,423
+and not just any Vue app.
+
+19
+00:01:00,430 --> 00:01:01,263
+Now in here,
+
+20
+00:01:01,263 --> 00:01:06,263
+I'm going to add my new FriendContact.vue file to hold
+
+21
+00:01:06,360 --> 00:01:08,180
+the friend-contact component,
+
+22
+00:01:08,180 --> 00:01:09,480
+which I want to create.
+
+23
+00:01:09,480 --> 00:01:12,320
+You might remember that is the component we created
+
+24
+00:01:12,320 --> 00:01:14,453
+in the component introduction module.
+
+25
+00:01:15,490 --> 00:01:17,930
+Now, if we have a look at the file name,
+
+26
+00:01:17,930 --> 00:01:19,830
+just like with app.vue,
+
+27
+00:01:19,830 --> 00:01:22,790
+I want to make clear what's inside of this file.
+
+28
+00:01:22,790 --> 00:01:24,830
+It will be a component of otherwise,
+
+29
+00:01:24,830 --> 00:01:26,930
+it wouldn't be in a components folder,
+
+30
+00:01:26,930 --> 00:01:28,330
+but it will be the component
+
+31
+00:01:28,330 --> 00:01:31,520
+for displaying a friend contact.
+
+32
+00:01:31,520 --> 00:01:33,710
+You could name just whatever you want.
+
+33
+00:01:33,710 --> 00:01:36,400
+Could all just name it, just contact.
+
+34
+00:01:36,400 --> 00:01:39,320
+But since I plan on naming the component
+
+35
+00:01:39,320 --> 00:01:42,590
+to custom HTML element FriendContact,
+
+36
+00:01:42,590 --> 00:01:45,160
+I want to reflect this and the file name as well.
+
+37
+00:01:45,160 --> 00:01:47,720
+And you could also name it like this.
+
+38
+00:01:47,720 --> 00:01:50,910
+This is the so called cab up case naming convention,
+
+39
+00:01:50,910 --> 00:01:55,280
+but it is more common to use this PacalCase naming,
+
+40
+00:01:55,280 --> 00:01:57,130
+where you have one word
+
+41
+00:01:57,130 --> 00:01:59,580
+possibly consisting of multiple words,
+
+42
+00:01:59,580 --> 00:02:02,020
+where you start every word,
+
+43
+00:02:02,020 --> 00:02:04,110
+including the word inside of the word
+
+44
+00:02:04,110 --> 00:02:05,623
+with a capital character.
+
+45
+00:02:07,040 --> 00:02:09,990
+Now inside of FriendContact.vue,
+
+46
+00:02:09,990 --> 00:02:11,570
+since it's a Vue file,
+
+47
+00:02:11,570 --> 00:02:14,940
+we can again create our template area here
+
+48
+00:02:15,950 --> 00:02:20,923
+and also our script area just like before.
+
+49
+00:02:22,390 --> 00:02:24,530
+And again, in this script area,
+
+50
+00:02:24,530 --> 00:02:28,000
+I'll export a default object.
+
+51
+00:02:28,000 --> 00:02:31,710
+This will be the configuration object for this component.
+
+52
+00:02:31,710 --> 00:02:33,130
+Because keep in mind,
+
+53
+00:02:33,130 --> 00:02:36,120
+an app component is like a small Vue app.
+
+54
+00:02:36,120 --> 00:02:38,490
+It takes the same configuration object.
+
+55
+00:02:38,490 --> 00:02:40,653
+So of course we need to export one.
+
+56
+00:02:42,490 --> 00:02:45,120
+Now in the component introduction module,
+
+57
+00:02:45,120 --> 00:02:48,700
+we then added a template key here to define
+
+58
+00:02:48,700 --> 00:02:52,760
+the HTML code of this component in a string.
+
+59
+00:02:52,760 --> 00:02:54,370
+We don't need to do this anymore.
+
+60
+00:02:54,370 --> 00:02:56,370
+We now got this template area
+
+61
+00:02:56,370 --> 00:02:58,720
+in the FriendContact of Vue file.
+
+62
+00:02:58,720 --> 00:03:01,950
+And that's exactly why we use those .vue files.
+
+63
+00:03:01,950 --> 00:03:05,530
+It makes it much more convenient to create such components
+
+64
+00:03:05,530 --> 00:03:07,450
+and defined their templates.
+
+65
+00:03:07,450 --> 00:03:10,660
+We don't need to do this in JavaScript strings anymore,
+
+66
+00:03:10,660 --> 00:03:14,416
+where we get no auto completion and which is really,
+
+67
+00:03:14,416 --> 00:03:17,030
+really just not fun.
+
+68
+00:03:17,030 --> 00:03:18,170
+So instead here,
+
+69
+00:03:18,170 --> 00:03:21,456
+I'm going to create my component markup.
+
+70
+00:03:21,456 --> 00:03:23,410
+So that's the same markup I used
+
+71
+00:03:23,410 --> 00:03:27,030
+in the component, introduction module, our list item,
+
+72
+00:03:27,030 --> 00:03:31,880
+and in there and h2 tag where I output
+
+73
+00:03:31,880 --> 00:03:34,263
+the friend.name,
+
+74
+00:03:35,330 --> 00:03:39,443
+and then also a button below that,
+
+75
+00:03:40,770 --> 00:03:45,770
+where I said show details though,
+
+76
+00:03:46,910 --> 00:03:48,970
+we're soon going to make this dynamic
+
+77
+00:03:49,980 --> 00:03:53,110
+and then a nested unordered list in here
+
+78
+00:03:54,110 --> 00:03:55,053
+like this,
+
+79
+00:03:56,990 --> 00:03:58,470
+whoops, like this,
+
+80
+00:03:58,470 --> 00:04:01,240
+where we then have to list items
+
+81
+00:04:01,240 --> 00:04:02,470
+one for the phone number,
+
+82
+00:04:02,470 --> 00:04:04,610
+one for the email address,
+
+83
+00:04:04,610 --> 00:04:07,973
+and here I have a strong tag where I say phone,
+
+84
+00:04:09,810 --> 00:04:14,193
+and then here we output friend.phone,
+
+85
+00:04:15,140 --> 00:04:19,910
+and on the second list element we say email
+
+86
+00:04:21,310 --> 00:04:25,100
+and then we output friend.email.
+
+87
+00:04:25,100 --> 00:04:27,430
+That's just the same markup we used before
+
+88
+00:04:27,430 --> 00:04:29,603
+in the component introduction module.
+
+89
+00:04:30,650 --> 00:04:31,820
+Now for this to work,
+
+90
+00:04:31,820 --> 00:04:34,728
+we need to add the data field again here
+
+91
+00:04:34,728 --> 00:04:37,450
+and return some data for this component,
+
+92
+00:04:37,450 --> 00:04:39,890
+which is now specific to that component,
+
+93
+00:04:39,890 --> 00:04:41,740
+and only to that component.
+
+94
+00:04:41,740 --> 00:04:46,040
+So which is independent from our main Vue app data.
+
+95
+00:04:46,040 --> 00:04:49,570
+And there we had the details or visible property,
+
+96
+00:04:49,570 --> 00:04:51,820
+which initially is false,
+
+97
+00:04:51,820 --> 00:04:54,650
+which we'll use to make this button work
+
+98
+00:04:54,650 --> 00:04:56,163
+and toggled this list.
+
+99
+00:04:57,060 --> 00:05:00,040
+And we had a dummy friend property,
+
+100
+00:05:00,040 --> 00:05:02,020
+which will later replace,
+
+101
+00:05:02,020 --> 00:05:03,810
+but where for the moment
+
+102
+00:05:03,810 --> 00:05:07,180
+I will just store manual so that
+
+103
+00:05:07,180 --> 00:05:08,480
+we can output something here.
+
+104
+00:05:08,480 --> 00:05:11,760
+Again that is something will change later though.
+
+105
+00:05:11,760 --> 00:05:14,620
+And now we will also need to add methods here
+
+106
+00:05:14,620 --> 00:05:16,260
+in our conflict object
+
+107
+00:05:16,260 --> 00:05:19,710
+and add a toggle details method here
+
+108
+00:05:21,610 --> 00:05:24,240
+to set this details are available
+
+109
+00:05:24,240 --> 00:05:25,990
+to what they're currently not.
+
+110
+00:05:25,990 --> 00:05:27,710
+And here I'm already getting
+
+111
+00:05:27,710 --> 00:05:30,142
+better IDE auto-completion
+
+112
+00:05:30,142 --> 00:05:33,740
+simply because we're in such a .vue file
+
+113
+00:05:33,740 --> 00:05:36,530
+and we got the virtual extension installed.
+
+114
+00:05:36,530 --> 00:05:39,640
+So that's already one first advantage in action.
+
+115
+00:05:39,640 --> 00:05:42,520
+Which we have just by switching to this project set up,
+
+116
+00:05:42,520 --> 00:05:44,653
+with this extra view extension.
+
+117
+00:05:46,380 --> 00:05:50,490
+Now we can connect our template here
+
+118
+00:05:50,490 --> 00:05:53,460
+and add a click event listener to the button
+
+119
+00:05:53,460 --> 00:05:57,320
+where we trigger toggle details and
+
+120
+00:05:57,320 --> 00:06:01,070
+add V=if here on the onward list and check
+
+121
+00:06:01,070 --> 00:06:03,660
+if details are visible is true
+
+122
+00:06:03,660 --> 00:06:05,423
+and only showed us if it is true.
+
+123
+00:06:06,600 --> 00:06:10,260
+And now we've got the finished friend contact component.
+
+124
+00:06:10,260 --> 00:06:13,360
+Now we register it just as you learned it
+
+125
+00:06:13,360 --> 00:06:16,290
+in the Vue component introduction module.
+
+126
+00:06:16,290 --> 00:06:20,060
+In main.js, we create our app.
+
+127
+00:06:20,060 --> 00:06:23,070
+We can store this app in a constant
+
+128
+00:06:23,070 --> 00:06:27,310
+and call mount on this app,
+
+129
+00:06:27,310 --> 00:06:30,283
+but then we can also call the component method here.
+
+130
+00:06:32,170 --> 00:06:33,160
+And again, here,
+
+131
+00:06:33,160 --> 00:06:35,800
+I'm now getting auto-completion by the way,
+
+132
+00:06:35,800 --> 00:06:38,670
+the IDE suggests to me that there is a component method
+
+133
+00:06:38,670 --> 00:06:42,270
+and it even tells me which arguments I should provide.
+
+134
+00:06:42,270 --> 00:06:45,610
+And we provide a name friend contact.
+
+135
+00:06:45,610 --> 00:06:47,000
+And as a second argument,
+
+136
+00:06:47,000 --> 00:06:49,930
+the conflict object for this component,
+
+137
+00:06:49,930 --> 00:06:52,070
+which lives in a different file
+
+138
+00:06:52,070 --> 00:06:54,320
+and therefore needs to be imported.
+
+139
+00:06:54,320 --> 00:06:58,810
+So I'm importing FriendContact from ./
+
+140
+00:06:58,810 --> 00:07:01,090
+now we need to go into the components folder
+
+141
+00:07:01,090 --> 00:07:04,103
+and in there, we have FriendContact.vue.
+
+142
+00:07:05,794 --> 00:07:07,952
+So that's the import path we need here
+
+143
+00:07:07,952 --> 00:07:10,590
+to reach the friend contact of your file,
+
+144
+00:07:10,590 --> 00:07:12,360
+and friend contact.
+
+145
+00:07:12,360 --> 00:07:13,640
+Now, again, in the end,
+
+146
+00:07:13,640 --> 00:07:16,820
+just points at this JavaScript object,
+
+147
+00:07:16,820 --> 00:07:21,470
+which we're exporting in the friend contact.vue file.
+
+148
+00:07:21,470 --> 00:07:24,240
+And that's now what we pass as a second argument
+
+149
+00:07:24,240 --> 00:07:25,657
+to the component method .
+
+150
+00:07:26,500 --> 00:07:27,333
+With that,
+
+151
+00:07:27,333 --> 00:07:30,750
+we unlock the friend-contact component in our app.
+
+152
+00:07:30,750 --> 00:07:34,410
+So we unlocked as custom HTML element.
+
+153
+00:07:34,410 --> 00:07:38,380
+And now in app view here in our onward list,
+
+154
+00:07:38,380 --> 00:07:42,900
+we can add friend-contact as often as we want.
+
+155
+00:07:42,900 --> 00:07:44,503
+And here I'll edit twice.
+
+156
+00:07:45,500 --> 00:07:47,200
+And if we saved it all,
+
+157
+00:07:47,200 --> 00:07:52,000
+it'll rebuild and on our connected page,
+
+158
+00:07:52,000 --> 00:07:54,310
+we'll see our components.
+
+159
+00:07:54,310 --> 00:07:55,550
+Without the styling,
+
+160
+00:07:55,550 --> 00:07:58,300
+because for the moment the CSS code is missing,
+
+161
+00:07:58,300 --> 00:08:02,802
+but we see our components and it works just as before.
+
+162
+00:08:02,802 --> 00:08:05,270
+Of course it's pretty ugly like this.
+
+163
+00:08:05,270 --> 00:08:08,270
+So let's next also see how we add styling here
+
+164
+00:08:08,270 --> 00:08:09,650
+before we then ultimately
+
+165
+00:08:09,650 --> 00:08:12,523
+learn more and new things about components.
+

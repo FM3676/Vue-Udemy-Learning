@@ -1,0 +1,160 @@
+1
+00:00:02,130 --> 00:00:03,370
+So now that we've learned
+
+2
+00:00:03,370 --> 00:00:06,850
+the basics about Vuex, I want you to practice it
+
+3
+00:00:06,850 --> 00:00:10,410
+in at least a little bit of a bigger application.
+
+4
+00:00:10,410 --> 00:00:12,500
+You'll find this application attached,
+
+5
+00:00:12,500 --> 00:00:16,730
+as always, NPM install, and NPM run serve, are your friends.
+
+6
+00:00:16,730 --> 00:00:20,120
+And we've got this very simple demo online shop there.
+
+7
+00:00:20,120 --> 00:00:22,490
+Got a few products, we can add them to a cart,
+
+8
+00:00:22,490 --> 00:00:25,120
+and you see this cart counter increases
+
+9
+00:00:25,120 --> 00:00:27,250
+every time I add a product.
+
+10
+00:00:27,250 --> 00:00:31,280
+We can then view our cart, see the cart's total here,
+
+11
+00:00:31,280 --> 00:00:33,580
+see our items here.
+
+12
+00:00:33,580 --> 00:00:35,500
+And we can remove items from the cart,
+
+13
+00:00:35,500 --> 00:00:36,900
+and everything updates.
+
+14
+00:00:36,900 --> 00:00:38,600
+We also got this login button,
+
+15
+00:00:38,600 --> 00:00:41,700
+which doesn't do anything at the moment, actually,
+
+16
+00:00:41,700 --> 00:00:42,810
+even though it should,
+
+17
+00:00:42,810 --> 00:00:45,110
+but here we're facing some limitations
+
+18
+00:00:45,110 --> 00:00:47,210
+by a provide and inject.
+
+19
+00:00:47,210 --> 00:00:49,950
+If you update something which is not an array,
+
+20
+00:00:49,950 --> 00:00:52,840
+or not an object, like in this case,
+
+21
+00:00:52,840 --> 00:00:56,070
+where I'm in the end updating, is logged in,
+
+22
+00:00:56,070 --> 00:00:57,420
+which is a bullion,
+
+23
+00:00:57,420 --> 00:00:59,560
+the changes to that will not be reflected
+
+24
+00:00:59,560 --> 00:01:03,283
+back to the components that inject that status.
+
+25
+00:01:04,379 --> 00:01:06,300
+We don't have to worry too much about this though,
+
+26
+00:01:06,300 --> 00:01:09,450
+because your goal is a different one anyways.
+
+27
+00:01:09,450 --> 00:01:14,320
+I want you to try to migrate this entire state,
+
+28
+00:01:14,320 --> 00:01:18,520
+which is managed application-wide, to Vuex.
+
+29
+00:01:18,520 --> 00:01:19,680
+So, the products
+
+30
+00:01:19,680 --> 00:01:23,570
+and the, is locked, in state, also the cart.
+
+31
+00:01:23,570 --> 00:01:26,460
+Set up Vuex in whichever way you want
+
+32
+00:01:26,460 --> 00:01:29,460
+using modules, or not using modules,
+
+33
+00:01:29,460 --> 00:01:31,930
+using namespaces, or not using them.
+
+34
+00:01:31,930 --> 00:01:34,833
+And try this on your own as a practice.
+
+35
+00:01:35,670 --> 00:01:37,350
+From the next lecture on,
+
+36
+00:01:37,350 --> 00:01:39,530
+we'll migrate this together
+
+37
+00:01:39,530 --> 00:01:42,053
+so that you see my possible solution.
+
+38
+00:01:43,050 --> 00:01:44,480
+This will be a great practice,
+
+39
+00:01:44,480 --> 00:01:46,100
+and hopefully helps you understand
+
+40
+00:01:46,100 --> 00:01:49,513
+how you really use Vuex in projects.
+

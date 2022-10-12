@@ -1,0 +1,288 @@
+1
+00:00:02,260 --> 00:00:05,689
+So let's say we now optimized our project.
+
+2
+00:00:05,689 --> 00:00:09,350
+We've fixed all errors, we refactored the code
+
+3
+00:00:09,350 --> 00:00:12,023
+and we added asynchronous components.
+
+4
+00:00:13,100 --> 00:00:16,200
+Now we got our Vue project finished up
+
+5
+00:00:16,200 --> 00:00:19,433
+and we want to upload it onto some static host.
+
+6
+00:00:20,490 --> 00:00:24,100
+Now we have to differentiate between two kinds of projects.
+
+7
+00:00:24,100 --> 00:00:26,190
+If you have a very simple project,
+
+8
+00:00:26,190 --> 00:00:28,370
+as we had it in the beginning of the course
+
+9
+00:00:28,370 --> 00:00:31,530
+for the monster killer project, for example,
+
+10
+00:00:31,530 --> 00:00:33,660
+we really just had a couple of custom
+
+11
+00:00:33,660 --> 00:00:36,850
+HTML, CSS and JavaScript files.
+
+12
+00:00:36,850 --> 00:00:40,560
+We had no project set up created with the Vue CLI
+
+13
+00:00:40,560 --> 00:00:42,360
+or anything like that.
+
+14
+00:00:42,360 --> 00:00:45,140
+In that case, you can just grab those files
+
+15
+00:00:45,140 --> 00:00:47,473
+and upload them onto a server.
+
+16
+00:00:48,530 --> 00:00:51,500
+If you have a project that's a bit more complex,
+
+17
+00:00:51,500 --> 00:00:53,670
+like the one we've been working with
+
+18
+00:00:53,670 --> 00:00:56,480
+over all the last modules,
+
+19
+00:00:56,480 --> 00:00:59,270
+typically created with the Vue CLI,
+
+20
+00:00:59,270 --> 00:01:02,320
+then you have a couple of other steps.
+
+21
+00:01:02,320 --> 00:01:04,670
+You want to optimize your code as shown,
+
+22
+00:01:04,670 --> 00:01:06,350
+so let's say we did that,
+
+23
+00:01:06,350 --> 00:01:09,650
+but then you need to build your project.
+
+24
+00:01:09,650 --> 00:01:12,450
+And this will then also automatically optimize your code
+
+25
+00:01:12,450 --> 00:01:14,910
+even more, automatically for you,
+
+26
+00:01:14,910 --> 00:01:16,993
+without you doing anything for that.
+
+27
+00:01:17,960 --> 00:01:20,560
+Building your code is required
+
+28
+00:01:20,560 --> 00:01:24,540
+because the code we've got here, with all those .vue files,
+
+29
+00:01:24,540 --> 00:01:28,080
+that is not code the browser would understand.
+
+30
+00:01:28,080 --> 00:01:30,560
+That's code, which needs to be transformed
+
+31
+00:01:30,560 --> 00:01:33,770
+into regular JavaScript code first.
+
+32
+00:01:33,770 --> 00:01:38,070
+And these CLI-created projects have a built in script,
+
+33
+00:01:38,070 --> 00:01:42,053
+which you can execute, which will do that transformation.
+
+34
+00:01:43,120 --> 00:01:47,270
+And only once you've got that built and optimized code,
+
+35
+00:01:47,270 --> 00:01:49,940
+only then you will have a couple of files,
+
+36
+00:01:49,940 --> 00:01:51,660
+which are generated for you,
+
+37
+00:01:51,660 --> 00:01:55,500
+which you can then take and upload onto a server.
+
+38
+00:01:55,500 --> 00:01:57,730
+And it's therefore this second part,
+
+39
+00:01:57,730 --> 00:02:02,103
+this right part of this slide I want to focus on, of course.
+
+40
+00:02:03,020 --> 00:02:05,373
+So let's now build our project.
+
+41
+00:02:06,340 --> 00:02:10,729
+To build your project, projects generated with the Vue CLI
+
+42
+00:02:10,729 --> 00:02:13,290
+will have scripts you can execute.
+
+43
+00:02:13,290 --> 00:02:17,710
+in package.json, you find all the scripts you can execute.
+
+44
+00:02:17,710 --> 00:02:21,050
+And thus far, we always used the serve script
+
+45
+00:02:21,050 --> 00:02:23,440
+to bring up that development server
+
+46
+00:02:23,440 --> 00:02:25,980
+and test our application.
+
+47
+00:02:25,980 --> 00:02:28,293
+Now we need the build script.
+
+48
+00:02:29,340 --> 00:02:31,430
+That will do what the name implies,
+
+49
+00:02:31,430 --> 00:02:36,030
+it builds the application and it builds it for production
+
+50
+00:02:36,030 --> 00:02:38,423
+and optimizes it for production.
+
+51
+00:02:39,620 --> 00:02:42,600
+And we run this script in a terminal,
+
+52
+00:02:42,600 --> 00:02:45,180
+navigated into this project folder,
+
+53
+00:02:45,180 --> 00:02:47,543
+by running NPM run build.
+
+54
+00:02:49,730 --> 00:02:52,380
+And this will now go through all our code,
+
+55
+00:02:52,380 --> 00:02:54,290
+bundle it all into,
+
+56
+00:02:54,290 --> 00:02:57,180
+all those files we need, one big app file,
+
+57
+00:02:57,180 --> 00:03:00,830
+and then these smaller chunk files for the async components,
+
+58
+00:03:00,830 --> 00:03:02,880
+and it will transform the code
+
+59
+00:03:02,880 --> 00:03:06,800
+into code the browser understands and optimize it
+
+60
+00:03:06,800 --> 00:03:10,073
+to make it as small and efficient as possible.
+
+61
+00:03:11,090 --> 00:03:13,930
+And once this process is finished,
+
+62
+00:03:13,930 --> 00:03:16,470
+you will find a dist folder.
+
+63
+00:03:16,470 --> 00:03:20,640
+And that dist folder now contains your single page,
+
+64
+00:03:20,640 --> 00:03:22,520
+the index HTML file,
+
+65
+00:03:22,520 --> 00:03:27,460
+and then a JavaScript folder with all those code chunks,
+
+66
+00:03:27,460 --> 00:03:31,520
+with highly optimized to JavaScript code, as you can tell,
+
+67
+00:03:31,520 --> 00:03:35,130
+and a CSS folder with all the generated CSS files
+
+68
+00:03:35,130 --> 00:03:39,170
+with the CSS rules, all minified and optimized
+
+69
+00:03:39,170 --> 00:03:42,570
+to take up as little space as possible.
+
+70
+00:03:42,570 --> 00:03:45,230
+And it's the content of this dist folder,
+
+71
+00:03:45,230 --> 00:03:50,230
+which you now need to put onto a static hosting server.
+
+72
+00:03:50,240 --> 00:03:52,140
+So that's what we're going to do next.
+

@@ -1,0 +1,332 @@
+1
+00:00:02,130 --> 00:00:05,740
+So let's work on the Add Resource screen.
+
+2
+00:00:05,740 --> 00:00:08,010
+On this screen here,
+
+3
+00:00:08,010 --> 00:00:10,350
+I in the end, want to have a form.
+
+4
+00:00:10,350 --> 00:00:13,340
+And I'll wrap that form into my good old base card
+
+5
+00:00:13,340 --> 00:00:15,760
+to have the card look around the form.
+
+6
+00:00:15,760 --> 00:00:19,390
+And then we can add the form element in there,
+
+7
+00:00:19,390 --> 00:00:21,550
+the native HTML element,
+
+8
+00:00:21,550 --> 00:00:25,280
+and now add the different input fields which we'll need.
+
+9
+00:00:25,280 --> 00:00:30,280
+That will be input field for the title of the resource.
+
+10
+00:00:30,950 --> 00:00:33,600
+I also want to give it a label to make it clear
+
+11
+00:00:33,600 --> 00:00:35,410
+what the user should enter here,
+
+12
+00:00:35,410 --> 00:00:37,580
+and I'll say Title here.
+
+13
+00:00:37,580 --> 00:00:40,760
+And I'll give the input here, not just a type,
+
+14
+00:00:40,760 --> 00:00:45,053
+but also an id of title and a name of title.
+
+15
+00:00:46,210 --> 00:00:47,340
+And on the label,
+
+16
+00:00:47,340 --> 00:00:51,180
+we can add the four attribute and point at title
+
+17
+00:00:51,180 --> 00:00:53,700
+to make it a bit more accessible and make it clear
+
+18
+00:00:53,700 --> 00:00:55,223
+what we're referring to.
+
+19
+00:00:56,210 --> 00:00:58,160
+I'll also wrap that all into a div,
+
+20
+00:00:58,160 --> 00:01:00,173
+which will help me with styling later.
+
+21
+00:01:02,130 --> 00:01:05,740
+And I'll give this div a class of form-control
+
+22
+00:01:05,740 --> 00:01:08,090
+because that is a CSS class
+
+23
+00:01:08,090 --> 00:01:10,240
+for which I already prepared some styling,
+
+24
+00:01:10,240 --> 00:01:11,683
+which we can soon add.
+
+25
+00:01:12,750 --> 00:01:14,600
+Now let's copy this entire div
+
+26
+00:01:14,600 --> 00:01:16,720
+because we need more than one control.
+
+27
+00:01:16,720 --> 00:01:20,770
+We also need a control for the description of the resource.
+
+28
+00:01:20,770 --> 00:01:21,780
+And actually there,
+
+29
+00:01:21,780 --> 00:01:25,270
+I don't want to use an input element, but a text area
+
+30
+00:01:25,270 --> 00:01:28,900
+so that the user has a multi line input field available,
+
+31
+00:01:28,900 --> 00:01:32,630
+which makes entering longer texts more convenient.
+
+32
+00:01:32,630 --> 00:01:35,490
+So here, I'll set the id to description
+
+33
+00:01:35,490 --> 00:01:39,130
+and therefore also set the for attribute on the label
+
+34
+00:01:39,130 --> 00:01:40,143
+to description,
+
+35
+00:01:41,030 --> 00:01:43,930
+set the name to description here,
+
+36
+00:01:43,930 --> 00:01:48,000
+and set the rows attribute here to three,
+
+37
+00:01:48,000 --> 00:01:50,823
+to define how big this text area will be.
+
+38
+00:01:52,370 --> 00:01:54,940
+Now I'll copy the first div again,
+
+39
+00:01:54,940 --> 00:01:59,160
+because now I want an input again for the link.
+
+40
+00:01:59,160 --> 00:02:01,610
+So here I'll set the for attribute to link,
+
+41
+00:02:01,610 --> 00:02:06,160
+the id to link, the name to link, and the type to URL,
+
+42
+00:02:06,160 --> 00:02:09,860
+which is one of the native HTML input elements types,
+
+43
+00:02:09,860 --> 00:02:12,793
+helping us with entering a URL here.
+
+44
+00:02:14,070 --> 00:02:16,540
+And now last but not the least, one other div.
+
+45
+00:02:16,540 --> 00:02:19,420
+And in that div we want to have the button
+
+46
+00:02:19,420 --> 00:02:21,210
+for submitting this.
+
+47
+00:02:21,210 --> 00:02:26,210
+So I'll add the base button, set the type to submit,
+
+48
+00:02:26,380 --> 00:02:28,900
+and also give it a caption, of course,
+
+49
+00:02:28,900 --> 00:02:31,760
+which will be Add Resource.
+
+50
+00:02:31,760 --> 00:02:35,010
+One short note about the type on the base button,
+
+51
+00:02:35,010 --> 00:02:36,860
+I added this type prop,
+
+52
+00:02:36,860 --> 00:02:40,640
+and I forwarded to the regular type attribute
+
+53
+00:02:40,640 --> 00:02:41,710
+on the button.
+
+54
+00:02:41,710 --> 00:02:45,410
+I did mention this fall through behavior earlier though,
+
+55
+00:02:45,410 --> 00:02:48,100
+and therefore we could actually also remove that
+
+56
+00:02:48,100 --> 00:02:50,140
+and remove this prop here,
+
+57
+00:02:50,140 --> 00:02:52,010
+and therefore just use the props
+
+58
+00:02:52,010 --> 00:02:54,510
+which we really added on our own.
+
+59
+00:02:54,510 --> 00:02:57,990
+And it would still work because this type,
+
+60
+00:02:57,990 --> 00:03:00,050
+which I'm setting here on the base button
+
+61
+00:03:00,050 --> 00:03:05,050
+will automatically fall through to the root HTML element
+
+62
+00:03:05,170 --> 00:03:07,070
+inside of the base button template,
+
+63
+00:03:07,070 --> 00:03:08,460
+which is this button.
+
+64
+00:03:08,460 --> 00:03:10,463
+That's just another note on that.
+
+65
+00:03:11,560 --> 00:03:14,400
+With that, I have to submit button in place though,
+
+66
+00:03:14,400 --> 00:03:16,660
+and now I want to add some styling,
+
+67
+00:03:16,660 --> 00:03:19,400
+which I, of course, prepared in advance.
+
+68
+00:03:19,400 --> 00:03:23,140
+So I'll add some scoped style slots here.
+
+69
+00:03:23,140 --> 00:03:27,560
+And attached you find, Add Resource CSS file.
+
+70
+00:03:27,560 --> 00:03:31,260
+As always, copy the CSS roots you'll find in there
+
+71
+00:03:31,260 --> 00:03:35,300
+into this style tag in the addresource.view file.
+
+72
+00:03:35,300 --> 00:03:39,023
+And this will give us some nice styling for this component.
+
+73
+00:03:42,110 --> 00:03:43,170
+Okay.
+
+74
+00:03:43,170 --> 00:03:45,230
+So if we save this now,
+
+75
+00:03:45,230 --> 00:03:47,760
+we should see this form on the screen.
+
+76
+00:03:47,760 --> 00:03:50,800
+Not too bad, but of course, it's not doing anything.
+
+77
+00:03:50,800 --> 00:03:53,280
+And we want to ensure that the user is able
+
+78
+00:03:53,280 --> 00:03:54,760
+to click this button.
+
+79
+00:03:54,760 --> 00:03:57,670
+We then collect all the user input,
+
+80
+00:03:57,670 --> 00:04:01,800
+and then we add a new resource based on that input.
+
+81
+00:04:01,800 --> 00:04:06,620
+Now as before, definitely feel free to try this on your own.
+
+82
+00:04:06,620 --> 00:04:09,380
+We'll implement it together, step by step
+
+83
+00:04:09,380 --> 00:04:10,523
+in the next lecture.
+

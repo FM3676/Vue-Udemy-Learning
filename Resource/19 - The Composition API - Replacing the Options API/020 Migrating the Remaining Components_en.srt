@@ -1,0 +1,904 @@
+1
+00:00:02,100 --> 00:00:04,130
+So let's move on to the next component.
+
+2
+00:00:04,130 --> 00:00:05,760
+Let's say the UserItem.
+
+3
+00:00:05,760 --> 00:00:07,300
+This is a simple component.
+
+4
+00:00:07,300 --> 00:00:09,730
+It doesn't have a lot of logic in it,
+
+5
+00:00:09,730 --> 00:00:12,580
+just props, a custom event and then one method.
+
+6
+00:00:12,580 --> 00:00:13,900
+So we could, of course,
+
+7
+00:00:13,900 --> 00:00:17,630
+absolutely keep the options API here and you know what?
+
+8
+00:00:17,630 --> 00:00:19,290
+I will actually do, just that.
+
+9
+00:00:19,290 --> 00:00:21,820
+I wanna make it clear that the composition API
+
+10
+00:00:21,820 --> 00:00:24,480
+is not a must use and that it is fine
+
+11
+00:00:24,480 --> 00:00:26,312
+to mix and match components using
+
+12
+00:00:26,312 --> 00:00:29,720
+different APIs in the same project.
+
+13
+00:00:29,720 --> 00:00:34,040
+You also might have reasons for moving every component
+
+14
+00:00:34,040 --> 00:00:37,390
+to a certain approach in an entire project.
+
+15
+00:00:37,390 --> 00:00:38,223
+But on the other hand,
+
+16
+00:00:38,223 --> 00:00:40,570
+you could also argue that there's nothing wrong
+
+17
+00:00:40,570 --> 00:00:43,820
+with the options API in such a simple component.
+
+18
+00:00:43,820 --> 00:00:45,750
+So I will leave it here, but of course,
+
+19
+00:00:45,750 --> 00:00:49,200
+be aware that migrating it to the composition API
+
+20
+00:00:49,200 --> 00:00:50,493
+would also be fine.
+
+21
+00:00:51,370 --> 00:00:53,420
+But with that, I'm done with Users.
+
+22
+00:00:53,420 --> 00:00:55,160
+Let's move on to UI.
+
+23
+00:00:55,160 --> 00:00:58,800
+Here in BaseSearch we get another simple component
+
+24
+00:00:58,800 --> 00:01:00,180
+and for the same reason as before
+
+25
+00:01:00,180 --> 00:01:03,220
+I will keep the options API approach here.
+
+26
+00:01:03,220 --> 00:01:04,620
+But again, as I just said,
+
+27
+00:01:04,620 --> 00:01:07,810
+you could also migrate simply to have
+
+28
+00:01:07,810 --> 00:01:11,743
+all components using the same API in a given project.
+
+29
+00:01:13,020 --> 00:01:16,390
+The BaseContainer doesn't even have any scripting logic.
+
+30
+00:01:16,390 --> 00:01:20,260
+The ProjectItem.vue also doesn't really have anything
+
+31
+00:01:20,260 --> 00:01:23,680
+just gets a title prop, so there is nothing to migrate here.
+
+32
+00:01:23,680 --> 00:01:27,113
+And that leaves us with the ProjectList component.
+
+33
+00:01:27,970 --> 00:01:30,790
+Here, just as with the UserList component,
+
+34
+00:01:30,790 --> 00:01:32,100
+we get a bunch of logic,
+
+35
+00:01:32,100 --> 00:01:33,890
+so that will be the last component
+
+36
+00:01:33,890 --> 00:01:38,040
+I now migrate from options to composition API.
+
+37
+00:01:38,040 --> 00:01:41,077
+So, to do that as before,
+
+38
+00:01:41,077 --> 00:01:44,120
+let's add to set up method here
+
+39
+00:01:44,120 --> 00:01:46,510
+and let's start with the data.
+
+40
+00:01:46,510 --> 00:01:49,300
+You might notice SearchTerm thing.
+
+41
+00:01:49,300 --> 00:01:52,470
+It's basically what we did in the UserList.vue file.
+
+42
+00:01:52,470 --> 00:01:56,280
+And therefore, we will just repeat what we did there.
+
+43
+00:01:56,280 --> 00:02:01,280
+I will import from Vue and I will import ref here
+
+44
+00:02:01,820 --> 00:02:05,420
+to manage two refs and then create the
+
+45
+00:02:05,420 --> 00:02:08,470
+enteredSearchTerm ref,
+
+46
+00:02:08,470 --> 00:02:12,250
+which is an empty string and the activeSearchTerm,
+
+47
+00:02:12,250 --> 00:02:14,863
+which is a ref with an empty string initially.
+
+48
+00:02:16,070 --> 00:02:20,053
+And then we can comment out data or delete it of course.
+
+49
+00:02:20,900 --> 00:02:22,650
+Now for computed.
+
+50
+00:02:22,650 --> 00:02:25,810
+There, I got a hasProjects computed property,
+
+51
+00:02:25,810 --> 00:02:28,910
+which basically just checks whether this user
+
+52
+00:02:28,910 --> 00:02:30,730
+has any project at all,
+
+53
+00:02:30,730 --> 00:02:34,240
+and we've got the availableProjects computed property.
+
+54
+00:02:34,240 --> 00:02:35,520
+Now I will start with the
+
+55
+00:02:35,520 --> 00:02:38,380
+availableProjects computed property.
+
+56
+00:02:38,380 --> 00:02:40,930
+So let me use computed here,
+
+57
+00:02:40,930 --> 00:02:45,163
+import computed and call computed here,
+
+58
+00:02:46,310 --> 00:02:51,210
+stored the result in the availableProjects constant
+
+59
+00:02:51,210 --> 00:02:55,150
+to keep that name and then just copy the logic from here
+
+60
+00:02:56,570 --> 00:02:59,840
+into the function that we passed to computed,
+
+61
+00:02:59,840 --> 00:03:03,620
+where I'm checking the activeSearchTerm value.
+
+62
+00:03:03,620 --> 00:03:05,890
+And then I wanna work with props again,
+
+63
+00:03:05,890 --> 00:03:09,240
+so we should again, accept props here as our argument,
+
+64
+00:03:09,240 --> 00:03:11,570
+as a parameter in the setup method,
+
+65
+00:03:11,570 --> 00:03:15,780
+so that we can access props,user.projects.
+
+66
+00:03:15,780 --> 00:03:20,270
+And then here again, use activeSearchTerm.value
+
+67
+00:03:20,270 --> 00:03:23,460
+and here again, props.user.projects.
+
+68
+00:03:23,460 --> 00:03:26,960
+And with that, I migrated the computed property
+
+69
+00:03:26,960 --> 00:03:29,083
+to this new computed property.
+
+70
+00:03:30,830 --> 00:03:33,530
+So, let's now continue with hasProjects maybe
+
+71
+00:03:33,530 --> 00:03:36,100
+with the second computed property.
+
+72
+00:03:36,100 --> 00:03:39,920
+I will already copy the logic and then simply create
+
+73
+00:03:39,920 --> 00:03:44,920
+a new hasProjects computed property by calling computed,
+
+74
+00:03:47,060 --> 00:03:50,830
+and in the function we pass here,
+
+75
+00:03:50,830 --> 00:03:54,230
+I return props.user.projects,
+
+76
+00:03:54,230 --> 00:03:58,867
+and availableProjects.value.length now.
+
+77
+00:03:58,867 --> 00:04:02,190
+.value because availableProject is a computed property,
+
+78
+00:04:02,190 --> 00:04:03,920
+therefore now a ref,
+
+79
+00:04:03,920 --> 00:04:07,083
+and therefore we get the value by accessing .value.
+
+80
+00:04:09,330 --> 00:04:12,310
+And now both computer properties are migrated
+
+81
+00:04:12,310 --> 00:04:14,233
+and we can comment this out as well.
+
+82
+00:04:15,145 --> 00:04:17,339
+updateSearch is a function we have to add
+
+83
+00:04:17,339 --> 00:04:20,220
+so that should be pretty straightforward,
+
+84
+00:04:20,220 --> 00:04:22,980
+function, updateSearch,
+
+85
+00:04:22,980 --> 00:04:26,560
+where I simply update enteredSearchTerm.value
+
+86
+00:04:26,560 --> 00:04:28,750
+and set it equal to val.
+
+87
+00:04:28,750 --> 00:04:30,720
+And then last but not least,
+
+88
+00:04:30,720 --> 00:04:35,720
+I have my watcher here where I again will copy this logic.
+
+89
+00:04:40,170 --> 00:04:42,010
+I got a second watcher thereafter as well,
+
+90
+00:04:42,010 --> 00:04:43,420
+but I'll start with this first one.
+
+91
+00:04:43,420 --> 00:04:48,180
+So copy that logic, import watch from Vue
+
+92
+00:04:50,290 --> 00:04:54,120
+and then add the watcher maybe here
+
+93
+00:04:54,120 --> 00:04:55,843
+below the computed properties.
+
+94
+00:04:57,130 --> 00:04:59,090
+Add this watcher,
+
+95
+00:04:59,090 --> 00:05:03,360
+add this function with that watcher logic
+
+96
+00:05:03,360 --> 00:05:06,273
+and add enteredSearchTerm as a dependency,
+
+97
+00:05:07,570 --> 00:05:08,460
+because in the end,
+
+98
+00:05:08,460 --> 00:05:10,390
+it's the value of the enteredSearchTerm
+
+99
+00:05:10,390 --> 00:05:15,350
+we're interested in, and here I wanna compare the newValue
+
+100
+00:05:17,440 --> 00:05:19,253
+to my enteredSearchTerm value.
+
+101
+00:05:20,310 --> 00:05:23,150
+So it's the same logic as the UserList component
+
+102
+00:05:23,150 --> 00:05:28,150
+and update the activeSearchTerm value whenever that changed.
+
+103
+00:05:29,670 --> 00:05:31,150
+And just in case you're wondering,
+
+104
+00:05:31,150 --> 00:05:33,790
+activeSearchTerm isn't a dependency here
+
+105
+00:05:33,790 --> 00:05:35,940
+because changes is an activeSearchTerm
+
+106
+00:05:35,940 --> 00:05:37,763
+shouldn't trigger this watcher.
+
+107
+00:05:39,400 --> 00:05:41,820
+And then I got a second watcher here.
+
+108
+00:05:41,820 --> 00:05:46,070
+This one where I basically reset the enteredSearchTerm
+
+109
+00:05:46,070 --> 00:05:47,710
+whenever we got a new user.
+
+110
+00:05:47,710 --> 00:05:49,693
+So here, I'm watching the user prop.
+
+111
+00:05:50,800 --> 00:05:52,240
+And I'm doing this so that if I
+
+112
+00:05:52,240 --> 00:05:55,080
+just searched here, let's say, and I switch users,
+
+113
+00:05:55,080 --> 00:05:57,240
+I reset that and show all the projects
+
+114
+00:05:57,240 --> 00:05:58,863
+of the newly selected user.
+
+115
+00:06:00,360 --> 00:06:02,640
+So that's why I have this watcher,
+
+116
+00:06:02,640 --> 00:06:05,410
+and therefore, I'll copy that watcher logic
+
+117
+00:06:05,410 --> 00:06:10,360
+and add a new watcher function here.
+
+118
+00:06:10,360 --> 00:06:14,280
+And the watcher function holds that logic, of course,
+
+119
+00:06:14,280 --> 00:06:16,960
+where I set enteredSearchTerm.value.
+
+120
+00:06:16,960 --> 00:06:20,470
+But now the dependency is of course not enteredSearchTerm,
+
+121
+00:06:20,470 --> 00:06:23,423
+but as before, my user prop.
+
+122
+00:06:25,030 --> 00:06:28,380
+Now here, you could do props.user,
+
+123
+00:06:28,380 --> 00:06:30,780
+but this would not work as you will see.
+
+124
+00:06:30,780 --> 00:06:33,140
+But let's try this first and then I'll explain
+
+125
+00:06:33,140 --> 00:06:34,363
+why this won't work.
+
+126
+00:06:36,150 --> 00:06:39,600
+And now let's comment out the watcher,
+
+127
+00:06:39,600 --> 00:06:42,390
+and save everything, and now of course,
+
+128
+00:06:42,390 --> 00:06:44,880
+expose with return to the template
+
+129
+00:06:44,880 --> 00:06:46,220
+what we need in the template.
+
+130
+00:06:46,220 --> 00:06:47,610
+Because right now we're getting an error
+
+131
+00:06:47,610 --> 00:06:51,270
+that some things are missing or are not being used.
+
+132
+00:06:51,270 --> 00:06:56,270
+Now in the template we absolutely need our user,
+
+133
+00:06:56,700 --> 00:06:59,900
+this user prop, and that will be available automatically.
+
+134
+00:06:59,900 --> 00:07:01,980
+We don't need to expose it because props,
+
+135
+00:07:01,980 --> 00:07:03,420
+which you would assign here,
+
+136
+00:07:03,420 --> 00:07:06,200
+are automatically available in the template.
+
+137
+00:07:06,200 --> 00:07:07,960
+That logic doesn't change.
+
+138
+00:07:07,960 --> 00:07:10,670
+So you don't need to expose props here,
+
+139
+00:07:10,670 --> 00:07:13,780
+but we need to expose hasProjects,
+
+140
+00:07:13,780 --> 00:07:15,543
+the updateSearchFunction, the enteredSearchTerm,
+
+141
+00:07:18,094 --> 00:07:20,570
+the availableProjects.
+
+142
+00:07:20,570 --> 00:07:23,550
+Yeah, that should be the things we need to expose.
+
+143
+00:07:23,550 --> 00:07:27,960
+So the enteredSearchTerm, availableProjects,
+
+144
+00:07:27,960 --> 00:07:31,467
+hasProjects, and updateSearch.
+
+145
+00:07:34,830 --> 00:07:38,350
+And with that I'm getting val is not defined
+
+146
+00:07:38,350 --> 00:07:43,350
+and an unnecessary semi-colon, yeah, here in this watcher.
+
+147
+00:07:44,420 --> 00:07:47,000
+I renamed the argument to newValue,
+
+148
+00:07:47,000 --> 00:07:49,190
+something you don't have to do, but since I did it,
+
+149
+00:07:49,190 --> 00:07:51,450
+I should also rename it here,
+
+150
+00:07:51,450 --> 00:07:54,190
+reformat everything to get rid of that extra semi-colon,
+
+151
+00:07:54,190 --> 00:07:55,490
+which I have somewhere.
+
+152
+00:07:55,490 --> 00:07:58,050
+And now there's loads,
+
+153
+00:07:58,050 --> 00:08:00,320
+but now I'm getting an error or a warning here,
+
+154
+00:08:00,320 --> 00:08:02,623
+invalid watch source, null.
+
+155
+00:08:04,860 --> 00:08:08,553
+And that is coming from the watcher where I watch my user.
+
+156
+00:08:09,930 --> 00:08:12,080
+I mentioned that this wouldn't work.
+
+157
+00:08:12,080 --> 00:08:15,880
+The problem with drilling into props here to access the user
+
+158
+00:08:15,880 --> 00:08:19,230
+is that we're basically drilling into a reactive object
+
+159
+00:08:19,230 --> 00:08:22,710
+to then watch a non-reactive value.
+
+160
+00:08:22,710 --> 00:08:24,090
+Initially user is null
+
+161
+00:08:24,090 --> 00:08:26,283
+because initially no user is selected.
+
+162
+00:08:27,290 --> 00:08:31,300
+And now we're watching null, which makes no sense to Vue.
+
+163
+00:08:31,300 --> 00:08:34,200
+Instead, we need to watch something reactive.
+
+164
+00:08:34,200 --> 00:08:36,980
+A ref, or a reactive object.
+
+165
+00:08:36,980 --> 00:08:39,059
+Props is a reactive object,
+
+166
+00:08:39,059 --> 00:08:41,659
+but just as we had it before in the module,
+
+167
+00:08:41,659 --> 00:08:46,050
+the values inside of props are not reactive, are not refs.
+
+168
+00:08:46,050 --> 00:08:49,770
+And therefore, we should watch props as a whole here.
+
+169
+00:08:49,770 --> 00:08:54,073
+And if we do this and reload, now that works.
+
+170
+00:08:55,180 --> 00:08:56,643
+Now of course, here that's fine
+
+171
+00:08:56,643 --> 00:08:58,810
+because we only have one prop,
+
+172
+00:08:58,810 --> 00:09:02,264
+but if you had multiple props, and they could change,
+
+173
+00:09:02,264 --> 00:09:05,600
+the problem you would have is that your watcher
+
+174
+00:09:05,600 --> 00:09:09,673
+runs whenever any prop changes, not just a user prop.
+
+175
+00:09:10,770 --> 00:09:13,040
+So if you would want to handle this,
+
+176
+00:09:13,040 --> 00:09:14,930
+which again is not necessary here,
+
+177
+00:09:14,930 --> 00:09:16,530
+because we only have one prop,
+
+178
+00:09:16,530 --> 00:09:18,490
+but if you would want to be sure that only
+
+179
+00:09:18,490 --> 00:09:21,540
+changes in user triggered this watcher,
+
+180
+00:09:21,540 --> 00:09:25,010
+you could use a feature provided by Vue.
+
+181
+00:09:25,010 --> 00:09:27,750
+We can use the two refs function,
+
+182
+00:09:27,750 --> 00:09:30,790
+which we also saw earlier in this module,
+
+183
+00:09:30,790 --> 00:09:35,163
+in this optional, deep dive, reactivity, deep dive lecture,
+
+184
+00:09:37,230 --> 00:09:41,160
+We can call two refs on props.
+
+185
+00:09:41,160 --> 00:09:46,160
+And now we got our props with refs object, you could say,
+
+186
+00:09:46,520 --> 00:09:50,627
+and from there we can extract our user like this,
+
+187
+00:09:52,990 --> 00:09:57,990
+or with a bit of a more modern, shorter syntax,
+
+188
+00:09:58,490 --> 00:10:01,527
+using object de-structuring like this,
+
+189
+00:10:04,950 --> 00:10:09,410
+this will pull out the user key from that props object.
+
+190
+00:10:09,410 --> 00:10:11,323
+And now because of two refs,
+
+191
+00:10:11,323 --> 00:10:14,030
+that will be a ref and will then store this
+
+192
+00:10:14,030 --> 00:10:15,570
+in a constant of the same name.
+
+193
+00:10:15,570 --> 00:10:18,220
+And now we could add user as a dependency here,
+
+194
+00:10:18,220 --> 00:10:22,193
+which now thanks to two refs, will be a ref.
+
+195
+00:10:23,230 --> 00:10:25,620
+That is the alternative if you don't want to watch
+
+196
+00:10:25,620 --> 00:10:28,100
+all props, but just one prop.
+
+197
+00:10:28,100 --> 00:10:29,210
+It's a bit advanced,
+
+198
+00:10:29,210 --> 00:10:31,503
+but I hope it's clear why we're doing this.
+
+199
+00:10:32,600 --> 00:10:35,280
+With that, If I reload, this works.
+
+200
+00:10:35,280 --> 00:10:37,570
+I can switch to different users.
+
+201
+00:10:37,570 --> 00:10:39,100
+Searching here works.
+
+202
+00:10:39,100 --> 00:10:41,913
+Resetting, if I switched the user all the works,
+
+203
+00:10:44,040 --> 00:10:46,440
+and with that overall,
+
+204
+00:10:46,440 --> 00:10:49,430
+it looks like we're able to,
+
+205
+00:10:49,430 --> 00:10:51,440
+well, make this app work.
+
+206
+00:10:51,440 --> 00:10:54,791
+And it looks like we migrated this app successfully
+
+207
+00:10:54,791 --> 00:10:59,440
+from the options API queue to composition API.
+
+208
+00:10:59,440 --> 00:11:01,850
+And that hopefully does not just show you
+
+209
+00:11:01,850 --> 00:11:04,830
+why the composition API might be better,
+
+210
+00:11:04,830 --> 00:11:07,670
+especially for large components like userList,
+
+211
+00:11:07,670 --> 00:11:10,580
+but it also, hopefully now helps you understand
+
+212
+00:11:10,580 --> 00:11:12,870
+how the composition API works
+
+213
+00:11:12,870 --> 00:11:16,913
+and how you can use it in your next projects if you want to.
+
+214
+00:11:17,990 --> 00:11:20,760
+I just want to come back to one thing real quick,
+
+215
+00:11:20,760 --> 00:11:22,880
+and that is this second argument
+
+216
+00:11:22,880 --> 00:11:25,290
+for using the composition API.
+
+217
+00:11:25,290 --> 00:11:28,760
+I mentioned that reusing logic across components
+
+218
+00:11:28,760 --> 00:11:32,130
+can be tricky or cumbersome and could be easier
+
+219
+00:11:32,130 --> 00:11:34,280
+when using the composition API.
+
+220
+00:11:34,280 --> 00:11:36,960
+Well, this is something we're not going to have a look at
+
+221
+00:11:36,960 --> 00:11:40,310
+in this module, but instead in the next module,
+
+222
+00:11:40,310 --> 00:11:44,430
+which will be about reusing code and logic in general,
+
+223
+00:11:44,430 --> 00:11:46,570
+not just with the composition API,
+
+224
+00:11:46,570 --> 00:11:49,100
+but also still with the options API,
+
+225
+00:11:49,100 --> 00:11:52,380
+because the composition API is just an alternative,
+
+226
+00:11:52,380 --> 00:11:54,023
+not a must use.
+

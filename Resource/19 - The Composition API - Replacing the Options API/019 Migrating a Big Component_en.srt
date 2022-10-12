@@ -1,0 +1,940 @@
+1
+00:00:02,330 --> 00:00:04,410
+As a next component to migrate,
+
+2
+00:00:04,410 --> 00:00:07,970
+I'll tackle a big one UserList.vue.
+
+3
+00:00:07,970 --> 00:00:10,700
+This component contains a lot of logic.
+
+4
+00:00:10,700 --> 00:00:13,540
+This is actually the component I used
+
+5
+00:00:13,540 --> 00:00:16,300
+as an example of seeing logic
+
+6
+00:00:16,300 --> 00:00:19,170
+that is scattered out across options.
+
+7
+00:00:19,170 --> 00:00:21,420
+So now we finally can hopefully see
+
+8
+00:00:21,420 --> 00:00:24,540
+how we can keep the logic in one place
+
+9
+00:00:24,540 --> 00:00:26,163
+with the Composition API.
+
+10
+00:00:27,240 --> 00:00:29,170
+So here in the UserList.vue file,
+
+11
+00:00:29,170 --> 00:00:33,140
+again, I'll start by adding the setup method,
+
+12
+00:00:33,140 --> 00:00:34,960
+and I also wanna make it clear
+
+13
+00:00:34,960 --> 00:00:38,500
+that we leave components and props untouched.
+
+14
+00:00:38,500 --> 00:00:41,170
+These options still exist,
+
+15
+00:00:41,170 --> 00:00:44,500
+they are not replaced by the Composition API.
+
+16
+00:00:44,500 --> 00:00:46,520
+They still work as you learned it,
+
+17
+00:00:46,520 --> 00:00:48,730
+we still tell Vue which local components
+
+18
+00:00:48,730 --> 00:00:50,300
+we wanna use in this component,
+
+19
+00:00:50,300 --> 00:00:52,660
+and we still inform Vue about the props
+
+20
+00:00:52,660 --> 00:00:55,913
+this component receives, so that stays where it is.
+
+21
+00:00:57,040 --> 00:01:00,470
+But of course, I am going to replace my data here.
+
+22
+00:01:00,470 --> 00:01:03,870
+So instead of setup, I now got three pieces of data
+
+23
+00:01:03,870 --> 00:01:05,000
+which I wanna manage,
+
+24
+00:01:05,000 --> 00:01:08,420
+and all three pieces of data should be reactive,
+
+25
+00:01:08,420 --> 00:01:10,240
+they can change and Vue should be able
+
+26
+00:01:10,240 --> 00:01:12,163
+to notice these changes.
+
+27
+00:01:13,100 --> 00:01:14,420
+And again, it's up to you,
+
+28
+00:01:14,420 --> 00:01:17,280
+whether you wanna use an object or refs,
+
+29
+00:01:17,280 --> 00:01:20,680
+or maybe group these search things into an object
+
+30
+00:01:20,680 --> 00:01:24,293
+and use a ref for sorting, totally up to you.
+
+31
+00:01:25,290 --> 00:01:27,570
+I will go for refs here again,
+
+32
+00:01:27,570 --> 00:01:31,220
+because I like the simplicity refs offer us.
+
+33
+00:01:31,220 --> 00:01:36,200
+So here I'll simply import the ref function from Vue,
+
+34
+00:01:36,200 --> 00:01:40,230
+and then in setup, I got three refs I wanna create
+
+35
+00:01:40,230 --> 00:01:42,690
+and I'll keep the names we have down there.
+
+36
+00:01:42,690 --> 00:01:46,350
+So the enteredSearchTerm is a ref
+
+37
+00:01:46,350 --> 00:01:48,440
+where the initial value is an empty string.
+
+38
+00:01:48,440 --> 00:01:52,600
+The activeSearchTerm is a ref
+
+39
+00:01:52,600 --> 00:01:54,010
+that initially is an empty string,
+
+40
+00:01:54,010 --> 00:01:56,440
+or that holds an empty string,
+
+41
+00:01:56,440 --> 00:02:01,440
+and sorting is a ref which initially holds null as a value.
+
+42
+00:02:02,940 --> 00:02:05,540
+So now these are our three pieces of data,
+
+43
+00:02:05,540 --> 00:02:07,490
+and now I'll do one thing already,
+
+44
+00:02:07,490 --> 00:02:10,130
+which we can't do with the Options API,
+
+45
+00:02:10,130 --> 00:02:13,900
+I'll split the place where I defined data,
+
+46
+00:02:13,900 --> 00:02:17,820
+because I now wanna put all the other search related things,
+
+47
+00:02:17,820 --> 00:02:22,820
+functions and so on, directly below these refs here
+
+48
+00:02:23,110 --> 00:02:27,140
+and put all the sorting related logic below this ref.
+
+49
+00:02:27,140 --> 00:02:30,450
+So that we have search logic first and then sorting logic,
+
+50
+00:02:30,450 --> 00:02:34,740
+so that we don't have is splitting of logic
+
+51
+00:02:34,740 --> 00:02:37,550
+across different places so that now we can keep
+
+52
+00:02:37,550 --> 00:02:39,953
+the things that belong together, together.
+
+53
+00:02:42,100 --> 00:02:44,510
+Anyway, we can get rid of data and again,
+
+54
+00:02:44,510 --> 00:02:46,320
+you can remove it or comment it out.
+
+55
+00:02:46,320 --> 00:02:48,260
+And here I'll comment that out for now
+
+56
+00:02:48,260 --> 00:02:50,900
+so that we still see where we're coming from,
+
+57
+00:02:50,900 --> 00:02:52,760
+and so that we later can see the difference
+
+58
+00:02:52,760 --> 00:02:55,593
+between Composition API and Options API.
+
+59
+00:02:56,510 --> 00:02:59,010
+And we can continue with computed,
+
+60
+00:02:59,010 --> 00:03:01,550
+here we got the availableUsers
+
+61
+00:03:01,550 --> 00:03:04,400
+where in the end I'm checking my activeSearchTerm
+
+62
+00:03:04,400 --> 00:03:07,410
+to filter down the users based on the search term
+
+63
+00:03:08,440 --> 00:03:11,440
+and displayedUsers is another computed property,
+
+64
+00:03:11,440 --> 00:03:12,920
+which deals with sorting.
+
+65
+00:03:12,920 --> 00:03:15,430
+So here we got two different pieces of logic,
+
+66
+00:03:15,430 --> 00:03:17,263
+search and sorting.
+
+67
+00:03:18,480 --> 00:03:20,740
+Anyways, we get computed properties
+
+68
+00:03:20,740 --> 00:03:24,390
+and therefore we should import computed from Vue
+
+69
+00:03:24,390 --> 00:03:27,320
+because that is our Composition API equivalent
+
+70
+00:03:27,320 --> 00:03:29,250
+to the computed option.
+
+71
+00:03:29,250 --> 00:03:32,920
+And then let's start with the computed property for search.
+
+72
+00:03:32,920 --> 00:03:34,770
+So we can call computed it here,
+
+73
+00:03:34,770 --> 00:03:38,610
+and then pass in a function like this,
+
+74
+00:03:38,610 --> 00:03:43,610
+where I now want to compute well, my availableUsers,
+
+75
+00:03:43,690 --> 00:03:45,440
+and we can copy the logic
+
+76
+00:03:45,440 --> 00:03:50,440
+from the computed property down there, copy it in here,
+
+77
+00:03:50,760 --> 00:03:53,760
+but now of course, it's not this activeSearchTerm,
+
+78
+00:03:53,760 --> 00:03:58,410
+but activeSearchTerm.value because activeSearchTerm is a ref
+
+79
+00:03:58,410 --> 00:04:01,240
+and you learned we need to access to value property
+
+80
+00:04:01,240 --> 00:04:02,483
+to read the value.
+
+81
+00:04:03,730 --> 00:04:05,970
+It also will not be this.users,
+
+82
+00:04:05,970 --> 00:04:09,320
+but well, where are users coming from?
+
+83
+00:04:09,320 --> 00:04:10,820
+What is users here?
+
+84
+00:04:10,820 --> 00:04:14,390
+this.Users, Well that's our props,
+
+85
+00:04:14,390 --> 00:04:18,720
+in the Options API we can refer to props with this keyword,
+
+86
+00:04:18,720 --> 00:04:22,063
+this and then the prop name and users is a prop.
+
+87
+00:04:23,000 --> 00:04:24,263
+In the setup method you learned
+
+88
+00:04:24,263 --> 00:04:27,760
+that this keyword is undefined, so that won't work.
+
+89
+00:04:27,760 --> 00:04:29,863
+How can we get access to prop there?
+
+90
+00:04:30,900 --> 00:04:33,310
+Well, you might remember the setup method
+
+91
+00:04:33,310 --> 00:04:35,870
+gets two parameters, which you can accept
+
+92
+00:04:35,870 --> 00:04:38,460
+and which can work with it gets them always
+
+93
+00:04:38,460 --> 00:04:40,080
+automatically by Vue,
+
+94
+00:04:40,080 --> 00:04:43,160
+and here, the first parameter is the one that helps us.
+
+95
+00:04:43,160 --> 00:04:46,450
+This is an object full of the props this component receives.
+
+96
+00:04:46,450 --> 00:04:48,893
+So in this case, this will have a users key,
+
+97
+00:04:49,820 --> 00:04:54,280
+so here becomes that props.users instead of this.users.
+
+98
+00:04:54,280 --> 00:04:56,120
+We do this in all the places
+
+99
+00:04:56,120 --> 00:04:58,653
+where we access this.users here.
+
+100
+00:05:00,210 --> 00:05:03,170
+And here again, instead of this.activeSearchTerm,
+
+101
+00:05:03,170 --> 00:05:05,403
+it's activeSearchTerm.value,
+
+102
+00:05:07,410 --> 00:05:11,200
+and that's now the migrated computed property code.
+
+103
+00:05:11,200 --> 00:05:15,570
+Now I will name my computed property avaliableUsers,
+
+104
+00:05:15,570 --> 00:05:18,470
+because that is the name we also used here
+
+105
+00:05:18,470 --> 00:05:20,190
+in the Options API.
+
+106
+00:05:20,190 --> 00:05:24,773
+But with that, we migrated this computed property over.
+
+107
+00:05:26,010 --> 00:05:28,760
+Now let's work on the other computed property,
+
+108
+00:05:28,760 --> 00:05:30,950
+and for that, I can already copied the code
+
+109
+00:05:30,950 --> 00:05:35,340
+we have in there in displayedUsers, so copy that code.
+
+110
+00:05:35,340 --> 00:05:37,460
+But since it is related to sorting,
+
+111
+00:05:37,460 --> 00:05:40,770
+I will now put this here below my sorting ref,
+
+112
+00:05:40,770 --> 00:05:43,210
+again, so that I keep all the search logic
+
+113
+00:05:43,210 --> 00:05:44,700
+together in one place
+
+114
+00:05:44,700 --> 00:05:47,280
+and then the sorting logic together in one place.
+
+115
+00:05:47,280 --> 00:05:49,157
+That is one of the key advantages
+
+116
+00:05:49,157 --> 00:05:51,623
+the Composition API can offer us.
+
+117
+00:05:52,980 --> 00:05:56,780
+So here I have my displayedUsers where I use computed
+
+118
+00:06:00,390 --> 00:06:04,950
+and I have a function here, copy in the code.
+
+119
+00:06:04,950 --> 00:06:07,730
+And then here, I'm referring to this sorting,
+
+120
+00:06:07,730 --> 00:06:10,090
+well, that is now my sorting ref here.
+
+121
+00:06:10,090 --> 00:06:14,300
+So instead of this.sorting, it's sorting.value,
+
+122
+00:06:14,300 --> 00:06:16,340
+this.availableUsers won't work
+
+123
+00:06:16,340 --> 00:06:19,720
+because availableUsers is my computed property from up there
+
+124
+00:06:19,720 --> 00:06:23,450
+and computed properties as you also learned in this module
+
+125
+00:06:23,450 --> 00:06:26,470
+are all just refs, read only refs,
+
+126
+00:06:26,470 --> 00:06:29,263
+and they offer you also access .value there,
+
+127
+00:06:30,230 --> 00:06:34,770
+and of course it's not just there, but also here,
+
+128
+00:06:34,770 --> 00:06:36,760
+I'm calling slice by the way here,
+
+129
+00:06:36,760 --> 00:06:40,060
+to create a copy first of this array,
+
+130
+00:06:40,060 --> 00:06:42,600
+because otherwise I also sort the existing array,
+
+131
+00:06:42,600 --> 00:06:45,973
+which I don't wanna do, I wanna return a new sorted array.
+
+132
+00:06:47,170 --> 00:06:51,470
+Here, it's again sorting.value,
+
+133
+00:06:51,470 --> 00:06:53,330
+and then here in all these places,
+
+134
+00:06:53,330 --> 00:06:58,077
+it's sorting.value, like that..
+
+135
+00:06:59,810 --> 00:07:02,653
+With that, we migrated to our displayedUsers.
+
+136
+00:07:04,010 --> 00:07:07,270
+So we can comment out the entire computed property block
+
+137
+00:07:07,270 --> 00:07:12,270
+now, let me do this here and one to the methods.
+
+138
+00:07:13,890 --> 00:07:16,000
+Here we got a method related to search
+
+139
+00:07:16,000 --> 00:07:17,890
+and one related to sorting
+
+140
+00:07:17,890 --> 00:07:22,370
+and in updateSearch, I just updated my enteredSearchTerm.
+
+141
+00:07:22,370 --> 00:07:25,950
+I'm just going to copy this, this entire method
+
+142
+00:07:25,950 --> 00:07:28,170
+and go up to my search functionality,
+
+143
+00:07:28,170 --> 00:07:31,390
+maybe here below the computed property
+
+144
+00:07:31,390 --> 00:07:34,910
+and add a function and then copy in that name,
+
+145
+00:07:34,910 --> 00:07:37,520
+updateSearch, where I get a value.
+
+146
+00:07:37,520 --> 00:07:40,540
+And now of course it's not this.enteredSearchTerm,
+
+147
+00:07:40,540 --> 00:07:42,710
+but enteredSearchTerm.value
+
+148
+00:07:42,710 --> 00:07:45,363
+which is equal to the val chosen by the user.
+
+149
+00:07:47,400 --> 00:07:52,040
+And with that we can move on to the sort method here
+
+150
+00:07:52,040 --> 00:07:55,160
+and already comment out methods I guess,
+
+151
+00:07:55,160 --> 00:07:58,440
+and bring that sort method below our sorting logic here
+
+152
+00:07:58,440 --> 00:08:03,263
+into setup method, so that would be here,
+
+153
+00:08:04,290 --> 00:08:07,270
+there I now add a new function sort
+
+154
+00:08:08,850 --> 00:08:12,490
+where I set sorting.value = mode,
+
+155
+00:08:12,490 --> 00:08:13,963
+referring to my sorting ref,
+
+156
+00:08:15,750 --> 00:08:18,250
+and with that we migrated methods.
+
+157
+00:08:18,250 --> 00:08:22,350
+Now we gotta watcher, this watcher is basically here
+
+158
+00:08:22,350 --> 00:08:25,890
+to not update the search logic on every keystroke,
+
+159
+00:08:25,890 --> 00:08:29,850
+but add a slight delay and only if what the user entered
+
+160
+00:08:29,850 --> 00:08:33,299
+didn't change for a period of 300 milliseconds
+
+161
+00:08:33,299 --> 00:08:36,610
+only then I wanna take this as a new search trip,
+
+162
+00:08:36,610 --> 00:08:38,610
+that's the logic I have here in the end.
+
+163
+00:08:39,780 --> 00:08:43,159
+So therefore, copy this logic I have in the watcher
+
+164
+00:08:44,049 --> 00:08:46,460
+and then comment out is watcher.
+
+165
+00:08:46,460 --> 00:08:50,330
+And now, since I want to add a watcher related to search,
+
+166
+00:08:50,330 --> 00:08:53,380
+I first of all import watch from Vue
+
+167
+00:08:54,260 --> 00:08:58,500
+and then maybe here below to computed property,
+
+168
+00:08:58,500 --> 00:09:02,050
+we can call watch, and as a second argument
+
+169
+00:09:02,050 --> 00:09:04,380
+pass in a function, which holds that code
+
+170
+00:09:04,380 --> 00:09:07,450
+I just copied from the Options API watcher,
+
+171
+00:09:07,450 --> 00:09:10,210
+and of course set the dependency of the watcher,
+
+172
+00:09:10,210 --> 00:09:12,290
+which is the entered search term.
+
+173
+00:09:12,290 --> 00:09:14,710
+So point at entered search term here
+
+174
+00:09:14,710 --> 00:09:18,130
+to make it clear to Vue that this function should run
+
+175
+00:09:18,130 --> 00:09:20,593
+whenever the entered search term changes.
+
+176
+00:09:21,810 --> 00:09:23,350
+Here, we then get our newValue
+
+177
+00:09:24,820 --> 00:09:27,480
+and a newValue is then compared
+
+178
+00:09:27,480 --> 00:09:32,373
+to the value we currently have in enteredSearchTerm.value,
+
+179
+00:09:33,340 --> 00:09:37,650
+and I wanna set activeSearchTerm.value = newValue
+
+180
+00:09:38,940 --> 00:09:41,460
+if we don't have a difference here,
+
+181
+00:09:41,460 --> 00:09:43,680
+so if the user didn't change the input
+
+182
+00:09:43,680 --> 00:09:45,943
+for a period of 300 milliseconds.
+
+183
+00:09:47,090 --> 00:09:50,890
+Now with that, I've migrated all the logic,
+
+184
+00:09:50,890 --> 00:09:54,290
+now it is time to expose the things
+
+185
+00:09:54,290 --> 00:09:56,940
+that we need in the template to template.
+
+186
+00:09:56,940 --> 00:09:58,810
+So at the end of this setup function,
+
+187
+00:09:58,810 --> 00:10:01,580
+we now we'll add our returned object
+
+188
+00:10:01,580 --> 00:10:03,180
+and now return all the things
+
+189
+00:10:03,180 --> 00:10:05,070
+that should be available to the template.
+
+190
+00:10:05,070 --> 00:10:07,970
+And that's for example, the enteredSearchTerm,
+
+191
+00:10:07,970 --> 00:10:09,480
+we're using it here.
+
+192
+00:10:09,480 --> 00:10:11,910
+We will also need to the updateSearch function,
+
+193
+00:10:11,910 --> 00:10:13,063
+as we can see here.
+
+194
+00:10:14,330 --> 00:10:17,863
+We need to sorting ref as we can see we're using it here.
+
+195
+00:10:18,750 --> 00:10:23,030
+We need to sort function, which you can see here.
+
+196
+00:10:23,030 --> 00:10:27,343
+We need to displayedUsers, and that should be it.
+
+197
+00:10:29,270 --> 00:10:32,040
+And I even noticed a slight glitch here,
+
+198
+00:10:32,040 --> 00:10:33,810
+I'm emitting a custom event here
+
+199
+00:10:33,810 --> 00:10:36,110
+of course we should add emits here,
+
+200
+00:10:36,110 --> 00:10:37,860
+and that should have been added before
+
+201
+00:10:37,860 --> 00:10:40,500
+with the Options API as well.
+
+202
+00:10:40,500 --> 00:10:41,830
+Well, I just noticed it,
+
+203
+00:10:41,830 --> 00:10:45,070
+so to follow all best practices here,
+
+204
+00:10:45,070 --> 00:10:50,070
+let's add list-projects as an emitted event here,
+
+205
+00:10:50,450 --> 00:10:53,310
+but that's just a side note should have been added before.
+
+206
+00:10:53,310 --> 00:10:55,570
+Now let's expose what we need
+
+207
+00:10:55,570 --> 00:11:00,257
+and that was the enteredSeartchTerm, the displayedUsers,
+
+208
+00:11:02,944 --> 00:11:07,420
+the updateSearch function, the sorting ref,
+
+209
+00:11:07,420 --> 00:11:11,263
+and the sort function, and I think that'll be it.
+
+210
+00:11:12,120 --> 00:11:17,120
+So sorting and sort and I'm getting an error,
+
+211
+00:11:19,860 --> 00:11:21,630
+availableUser is assigned a value,
+
+212
+00:11:21,630 --> 00:11:23,133
+looks like I have a typo,
+
+213
+00:11:26,359 --> 00:11:28,290
+this should be availableUsers here,
+
+214
+00:11:28,290 --> 00:11:29,983
+the name of my computer property.
+
+215
+00:11:31,300 --> 00:11:33,700
+With that, it compiles,
+
+216
+00:11:33,700 --> 00:11:35,770
+and if I reload, this is looking good.
+
+217
+00:11:35,770 --> 00:11:37,440
+Let me open the dev tool to see
+
+218
+00:11:37,440 --> 00:11:39,320
+if we've got any errors here
+
+219
+00:11:39,320 --> 00:11:44,320
+and sorting seems to work, searching all the works,
+
+220
+00:11:46,020 --> 00:11:50,160
+and selecting a user also seems to do the trick here.
+
+221
+00:11:50,160 --> 00:11:53,090
+So it looks like the App works as before
+
+222
+00:11:53,090 --> 00:11:55,710
+and with that, we migrated the user list
+
+223
+00:11:55,710 --> 00:11:57,570
+that you find from the Options API,
+
+224
+00:11:57,570 --> 00:12:01,930
+which you can still see down there to the Composition API.
+
+225
+00:12:01,930 --> 00:12:04,310
+And of course that's still a lot of code,
+
+226
+00:12:04,310 --> 00:12:07,260
+I mean, the amount of logic didn't really change,
+
+227
+00:12:07,260 --> 00:12:11,010
+but one advantage, a possible advantage is that
+
+228
+00:12:11,010 --> 00:12:14,750
+now all the search functionality is in one block
+
+229
+00:12:14,750 --> 00:12:18,740
+and all the sorting functionality is in one block of code.
+
+230
+00:12:18,740 --> 00:12:22,200
+And that can make managing components like this easier
+
+231
+00:12:22,200 --> 00:12:24,100
+since you don't have to scroll as much,
+
+232
+00:12:24,100 --> 00:12:26,580
+if I need to change something related to search,
+
+233
+00:12:26,580 --> 00:12:30,400
+it's all in that area, not somewhere down the component.
+
+234
+00:12:30,400 --> 00:12:32,510
+Now, of course, that might or might not matter to you,
+
+235
+00:12:32,510 --> 00:12:35,763
+but it can be an advantage in bigger components.
+

@@ -1,0 +1,108 @@
+1
+00:00:02,220 --> 00:00:03,460
+Now, there is another
+
+2
+00:00:03,460 --> 00:00:07,060
+global guard we can add on the router
+
+3
+00:00:07,060 --> 00:00:10,370
+and that is the afterEach guard.
+
+4
+00:00:10,370 --> 00:00:12,690
+This also wants a function,
+
+5
+00:00:12,690 --> 00:00:14,090
+and of course, as always here,
+
+6
+00:00:14,090 --> 00:00:16,660
+it doesn't matter how you define the function,
+
+7
+00:00:16,660 --> 00:00:19,080
+if you do it like this or as an arrow function,
+
+8
+00:00:19,080 --> 00:00:21,980
+and this also it gets the to and from argument,
+
+9
+00:00:21,980 --> 00:00:26,490
+but not the next function because afterEach
+
+10
+00:00:26,490 --> 00:00:30,353
+will only run once a navigation has been confirmed.
+
+11
+00:00:31,460 --> 00:00:35,100
+So in here, you can't change that anymore.
+
+12
+00:00:35,100 --> 00:00:37,110
+You can't deny a navigation.
+
+13
+00:00:37,110 --> 00:00:39,420
+You can only do this in the before hooks,
+
+14
+00:00:39,420 --> 00:00:41,860
+in the before guards.
+
+15
+00:00:41,860 --> 00:00:46,830
+The afterEach guard could be nice for sending analytics data
+
+16
+00:00:46,830 --> 00:00:48,740
+to your own server, for example,
+
+17
+00:00:48,740 --> 00:00:51,010
+to log every navigation action
+
+18
+00:00:51,010 --> 00:00:53,650
+and log when a user changes pages.
+
+19
+00:00:53,650 --> 00:00:55,793
+That's something you could do here.
+
+20
+00:00:56,640 --> 00:00:59,790
+You don't use it to control what the user sees
+
+21
+00:00:59,790 --> 00:01:03,310
+on the screen because as I just said, it's too late here.
+
+22
+00:01:03,310 --> 00:01:06,720
+You can just console.log to and from
+
+23
+00:01:06,720 --> 00:01:10,920
+or send data to your server, as I said, but that's about it.
+
+24
+00:01:10,920 --> 00:01:14,983
+So here, I will console.log Global afterEach.
+
+25
+00:01:15,820 --> 00:01:18,550
+And if I do that and save this,
+
+26
+00:01:18,550 --> 00:01:21,330
+we see if I load that, Global afterEach
+
+27
+00:01:21,330 --> 00:01:25,103
+is the last thing we see on every navigation action.
+

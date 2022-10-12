@@ -1,0 +1,1604 @@
+1
+00:00:01,320 --> 00:00:03,160
+I prepared a little project.
+
+2
+00:00:03,160 --> 00:00:05,340
+You find a link to the GitHub repository
+
+3
+00:00:05,340 --> 00:00:08,380
+with all those examples attached to the video.
+
+4
+00:00:08,380 --> 00:00:11,700
+And here we can walk through all those important changes.
+
+5
+00:00:11,700 --> 00:00:13,840
+And let's start with the basic-app.
+
+6
+00:00:13,840 --> 00:00:15,940
+With basic-app-v2.
+
+7
+00:00:15,940 --> 00:00:20,890
+Here, I'm creating a basic Vue app with Vue version 2.
+
+8
+00:00:20,890 --> 00:00:22,170
+Creating my Vue instance,
+
+9
+00:00:22,170 --> 00:00:23,060
+having some data,
+
+10
+00:00:23,060 --> 00:00:25,280
+having a method to change that data
+
+11
+00:00:25,280 --> 00:00:27,510
+and having a component with a template,
+
+12
+00:00:27,510 --> 00:00:31,730
+which basically has a button where I emit a custom event.
+
+13
+00:00:31,730 --> 00:00:33,340
+That's what I'm doing here.
+
+14
+00:00:33,340 --> 00:00:35,510
+And if we view this application
+
+15
+00:00:35,510 --> 00:00:39,403
+by simply opening this HTML file in the browser,
+
+16
+00:00:40,340 --> 00:00:41,610
+this is what we see
+
+17
+00:00:41,610 --> 00:00:43,880
+and when we click the button, this works.
+
+18
+00:00:43,880 --> 00:00:47,180
+Now, this is Vue 2 and this is probably what you know.
+
+19
+00:00:47,180 --> 00:00:50,940
+With Vue 3, a couple of things change here.
+
+20
+00:00:50,940 --> 00:00:54,670
+To be precise, I'll now cover these first three changes,
+
+21
+00:00:54,670 --> 00:00:55,860
+which are outlined here
+
+22
+00:00:55,860 --> 00:01:00,240
+because all these changes affect what we see here.
+
+23
+00:01:00,240 --> 00:01:02,363
+So let's go to basic-app-v3.
+
+24
+00:01:03,710 --> 00:01:05,780
+There, we first of all have to make sure
+
+25
+00:01:05,780 --> 00:01:09,740
+we import the latest version of Vue.
+
+26
+00:01:09,740 --> 00:01:12,900
+And for that, I currently have to add @next here
+
+27
+00:01:12,900 --> 00:01:15,050
+since at the time I'm recording this,
+
+28
+00:01:15,050 --> 00:01:17,380
+Vue 3 is in release candidate phase
+
+29
+00:01:17,380 --> 00:01:19,900
+and not really finally released yet.
+
+30
+00:01:19,900 --> 00:01:20,950
+In the future, of course,
+
+31
+00:01:20,950 --> 00:01:22,580
+this default CDN link
+
+32
+00:01:22,580 --> 00:01:25,600
+will automatically pull in Vue 3.
+
+33
+00:01:25,600 --> 00:01:27,880
+And I will update this repository as such
+
+34
+00:01:27,880 --> 00:01:31,450
+that all the CDN links are correct all the time.
+
+35
+00:01:31,450 --> 00:01:34,470
+So here I'm now importing Vue 3 by adding this.
+
+36
+00:01:34,470 --> 00:01:37,260
+And with that added here,
+
+37
+00:01:37,260 --> 00:01:41,700
+we'll see that if I now open this index.html file
+
+38
+00:01:41,700 --> 00:01:44,330
+in the browser, this fails.
+
+39
+00:01:44,330 --> 00:01:47,330
+Now we clearly don't see the message anymore
+
+40
+00:01:47,330 --> 00:01:50,720
+because this base syntax here changed a little bit
+
+41
+00:01:50,720 --> 00:01:52,330
+with Vue 3.
+
+42
+00:01:52,330 --> 00:01:54,840
+Here in app.js, in the v3 folder,
+
+43
+00:01:54,840 --> 00:01:56,520
+I got the Vue 2 syntax
+
+44
+00:01:56,520 --> 00:01:58,620
+but this will not work anymore.
+
+45
+00:01:58,620 --> 00:02:00,700
+Instead, to create a Vue app,
+
+46
+00:02:00,700 --> 00:02:02,770
+we now no longer instantiate
+
+47
+00:02:02,770 --> 00:02:05,180
+the Vue constructor function here.
+
+48
+00:02:05,180 --> 00:02:08,389
+Instead on Vue, we calculate createApp.
+
+49
+00:02:08,389 --> 00:02:09,280
+That's a new method
+
+50
+00:02:09,280 --> 00:02:12,030
+that was added with Vue 3.
+
+51
+00:02:12,030 --> 00:02:13,730
+Now, to this createApp method,
+
+52
+00:02:13,730 --> 00:02:16,810
+we now need to pass our app config object
+
+53
+00:02:16,810 --> 00:02:20,080
+and here we can pretty much copy the object we used
+
+54
+00:02:20,080 --> 00:02:22,140
+in Vue 2 as well.
+
+55
+00:02:22,140 --> 00:02:25,070
+But there are two other changes you should be aware of.
+
+56
+00:02:25,070 --> 00:02:27,880
+The el property doesn't work anymore.
+
+57
+00:02:27,880 --> 00:02:31,950
+Instead, we now mount our app to the DOM
+
+58
+00:02:31,950 --> 00:02:36,120
+by calling mount on the created app object.
+
+59
+00:02:36,120 --> 00:02:38,580
+So on the result of createApp.
+
+60
+00:02:38,580 --> 00:02:41,740
+And to mount, we pass that CSS selector,
+
+61
+00:02:41,740 --> 00:02:43,960
+which we previously had in el.
+
+62
+00:02:43,960 --> 00:02:46,630
+And we can get rid of new Vue now.
+
+63
+00:02:46,630 --> 00:02:48,950
+That's the first change.
+
+64
+00:02:48,950 --> 00:02:50,740
+In addition, well, I mentioned
+
+65
+00:02:50,740 --> 00:02:53,040
+that the data option also changed
+
+66
+00:02:53,040 --> 00:02:55,253
+and now always needs to be a method.
+
+67
+00:02:56,120 --> 00:02:58,670
+Now, in Vue 2, both was allowed.
+
+68
+00:02:58,670 --> 00:03:00,410
+You could have just an object
+
+69
+00:03:00,410 --> 00:03:01,750
+and you could have a method,
+
+70
+00:03:01,750 --> 00:03:04,980
+though a method was recommended in Vue 2 as well,
+
+71
+00:03:04,980 --> 00:03:08,330
+especially if you worked with multiple components and so on,
+
+72
+00:03:08,330 --> 00:03:09,723
+then you needed a method.
+
+73
+00:03:10,670 --> 00:03:12,490
+Well, now, with Vue 3,
+
+74
+00:03:12,490 --> 00:03:14,820
+data always needs to be a method.
+
+75
+00:03:14,820 --> 00:03:17,970
+So we simply should turn data into a method,
+
+76
+00:03:17,970 --> 00:03:21,830
+which then returns our data object.
+
+77
+00:03:21,830 --> 00:03:24,090
+So that's the only change we need to make here.
+
+78
+00:03:24,090 --> 00:03:26,420
+Besides that, it works as before.
+
+79
+00:03:26,420 --> 00:03:28,900
+And for example, methods computed in watch,
+
+80
+00:03:28,900 --> 00:03:32,060
+those things all work as you learned.
+
+81
+00:03:32,060 --> 00:03:33,743
+Nothing needs to change there.
+
+82
+00:03:34,810 --> 00:03:35,957
+And with that, we already covered
+
+83
+00:03:35,957 --> 00:03:38,500
+the first two changes here.
+
+84
+00:03:38,500 --> 00:03:39,950
+Now, the third change,
+
+85
+00:03:39,950 --> 00:03:41,110
+which we should be aware of,
+
+86
+00:03:41,110 --> 00:03:43,680
+also affects this demo app I prepared.
+
+87
+00:03:43,680 --> 00:03:46,300
+Components, directive, their-party modules,
+
+88
+00:03:46,300 --> 00:03:49,340
+all those things are now registered on the app
+
+89
+00:03:49,340 --> 00:03:51,688
+instead of the global Vue object.
+
+90
+00:03:51,688 --> 00:03:56,160
+So calling Vue.component, that's not how this works anymore.
+
+91
+00:03:56,160 --> 00:03:58,170
+Instead createApp creates an app
+
+92
+00:03:58,170 --> 00:04:00,450
+and we can store this in a constant
+
+93
+00:04:00,450 --> 00:04:03,393
+and then on this app, we can call mount, for example.
+
+94
+00:04:04,480 --> 00:04:06,500
+Now, it's also on this app
+
+95
+00:04:06,500 --> 00:04:09,840
+that we have to call component, directive
+
+96
+00:04:09,840 --> 00:04:12,750
+and use to use third-party modules,
+
+97
+00:04:12,750 --> 00:04:14,250
+which we'll see in action later
+
+98
+00:04:14,250 --> 00:04:16,260
+with the router and Vuex.
+
+99
+00:04:16,260 --> 00:04:19,019
+So here, we can call component
+
+100
+00:04:19,019 --> 00:04:21,810
+and then pass this component code,
+
+101
+00:04:21,810 --> 00:04:24,790
+which we also passed to the component method before,
+
+102
+00:04:24,790 --> 00:04:26,660
+so these two arguments,
+
+103
+00:04:26,660 --> 00:04:28,470
+to this component method here.
+
+104
+00:04:28,470 --> 00:04:30,610
+So it works as before
+
+105
+00:04:30,610 --> 00:04:34,934
+but now it's on the app instead of the global Vue object.
+
+106
+00:04:34,934 --> 00:04:38,173
+So with that, we get rid of this line here as well.
+
+107
+00:04:39,380 --> 00:04:43,104
+With that, however, if I save all of that,
+
+108
+00:04:43,104 --> 00:04:46,100
+and I reload, we got our message back,
+
+109
+00:04:46,100 --> 00:04:48,660
+we got the button and it works.
+
+110
+00:04:48,660 --> 00:04:50,500
+Now, one minor change,
+
+111
+00:04:50,500 --> 00:04:52,520
+which I didn't highlight on the slide,
+
+112
+00:04:52,520 --> 00:04:53,890
+if you have a component
+
+113
+00:04:53,890 --> 00:04:57,140
+that emits a custom method,
+
+114
+00:04:57,140 --> 00:04:58,810
+like here, this component.
+
+115
+00:04:58,810 --> 00:05:00,230
+It emits update,
+
+116
+00:05:00,230 --> 00:05:02,740
+there also is a new option you can pass
+
+117
+00:05:02,740 --> 00:05:05,670
+to this Vue instance config object here
+
+118
+00:05:05,670 --> 00:05:08,020
+and that's the emits options.
+
+119
+00:05:08,020 --> 00:05:11,480
+It's basically the counterpart to props you could say.
+
+120
+00:05:11,480 --> 00:05:13,690
+With props, you could specify all the props
+
+121
+00:05:13,690 --> 00:05:15,030
+a component receives,
+
+122
+00:05:15,030 --> 00:05:17,950
+and that was already the case with Vue 2.
+
+123
+00:05:17,950 --> 00:05:19,880
+With emits, you now can
+
+124
+00:05:19,880 --> 00:05:24,430
+and should also specify the custom events a component emits.
+
+125
+00:05:24,430 --> 00:05:26,170
+It's technically not required
+
+126
+00:05:26,170 --> 00:05:28,870
+but it makes your component easier to understand.
+
+127
+00:05:28,870 --> 00:05:31,630
+Now I can immediately see which custom event
+
+128
+00:05:31,630 --> 00:05:34,380
+will be emitted somewhere in this component.
+
+129
+00:05:34,380 --> 00:05:37,443
+It's a minor change but also something to be aware of.
+
+130
+00:05:38,387 --> 00:05:39,780
+And with that,
+
+131
+00:05:39,780 --> 00:05:43,700
+we covered these first three changes you should know.
+
+132
+00:05:43,700 --> 00:05:46,840
+Now, the fourth change is related to transitions.
+
+133
+00:05:46,840 --> 00:05:49,233
+There a CSS class name changed.
+
+134
+00:05:50,160 --> 00:05:52,610
+I also prepared an example for that.
+
+135
+00:05:52,610 --> 00:05:55,150
+The transitions folders here.
+
+136
+00:05:55,150 --> 00:05:58,030
+Let's start with transitions-v2.
+
+137
+00:05:58,030 --> 00:06:00,050
+If we open that in the browser,
+
+138
+00:06:00,050 --> 00:06:01,860
+we get this button and with that,
+
+139
+00:06:01,860 --> 00:06:03,430
+we can toggle the box here,
+
+140
+00:06:03,430 --> 00:06:05,800
+which has a transition attached to it.
+
+141
+00:06:05,800 --> 00:06:09,760
+This transition works simply because I'm wrapping the box
+
+142
+00:06:09,760 --> 00:06:11,720
+with the built-in transition component
+
+143
+00:06:11,720 --> 00:06:15,350
+and then adding my transition CSS classes down there
+
+144
+00:06:15,350 --> 00:06:17,260
+in the CSS file.
+
+145
+00:06:17,260 --> 00:06:19,470
+And this all worked with Vue 2.
+
+146
+00:06:19,470 --> 00:06:22,870
+Of course, because that's a Vue 2 example here.
+
+147
+00:06:22,870 --> 00:06:25,025
+Now, with Vue 3, this changes.
+
+148
+00:06:25,025 --> 00:06:29,130
+If I make sure that I import Vue 3 here
+
+149
+00:06:29,130 --> 00:06:32,210
+in the v3 folder, this example,
+
+150
+00:06:32,210 --> 00:06:36,190
+if I load the v3 example breaks.
+
+151
+00:06:36,190 --> 00:06:37,490
+Now, it breaks because we need
+
+152
+00:06:37,490 --> 00:06:39,190
+to create the app differently.
+
+153
+00:06:39,190 --> 00:06:40,743
+So let's quickly do that.
+
+154
+00:06:41,610 --> 00:06:42,443
+Vue.createApp.
+
+155
+00:06:43,670 --> 00:06:47,310
+Instead of el, call mount here.
+
+156
+00:06:49,105 --> 00:06:51,260
+And then also make sure data is a method.
+
+157
+00:06:51,260 --> 00:06:52,410
+That's what we just learned.
+
+158
+00:06:52,410 --> 00:06:54,913
+I just wanted to practice it here again.
+
+159
+00:06:55,790 --> 00:06:58,100
+But that's a simple change of course.
+
+160
+00:06:58,100 --> 00:07:01,230
+With that, we create the app properly.
+
+161
+00:07:01,230 --> 00:07:04,260
+And hence if we reload, now this works.
+
+162
+00:07:04,260 --> 00:07:07,000
+But you'll notice that the remove animation works
+
+163
+00:07:07,000 --> 00:07:09,600
+but the enter animation does not work.
+
+164
+00:07:09,600 --> 00:07:11,561
+Because a CSS class name changed,
+
+165
+00:07:11,561 --> 00:07:16,561
+the -enter class is now -enter-from.
+
+166
+00:07:16,890 --> 00:07:19,600
+Basically, to be in line with the other class names
+
+167
+00:07:19,600 --> 00:07:22,350
+because we had -enter-active
+
+168
+00:07:22,350 --> 00:07:24,760
+and -enter-to already.
+
+169
+00:07:24,760 --> 00:07:27,180
+Now we also have -enter-from
+
+170
+00:07:27,180 --> 00:07:30,880
+for the starting class instead of just -enter.
+
+171
+00:07:30,880 --> 00:07:32,610
+And it's the same for leaving.
+
+172
+00:07:32,610 --> 00:07:35,290
+This here should be -leave-from
+
+173
+00:07:35,290 --> 00:07:37,950
+instead of just -leave.
+
+174
+00:07:37,950 --> 00:07:41,110
+So a simple renaming of the class names is enough here
+
+175
+00:07:41,110 --> 00:07:43,620
+and once we do that, save everything.
+
+176
+00:07:43,620 --> 00:07:47,163
+Now we've got the animations back in Vue 3 as well.
+
+177
+00:07:48,010 --> 00:07:50,010
+So that were transitions.
+
+178
+00:07:50,010 --> 00:07:53,910
+We also got changes when we're using the Vue Router.
+
+179
+00:07:53,910 --> 00:07:56,320
+So let's see what changed there.
+
+180
+00:07:56,320 --> 00:07:58,440
+For that, I also prepared two projects.
+
+181
+00:07:58,440 --> 00:08:01,480
+Here's the Vue 2 version, here's the Vue 3 version.
+
+182
+00:08:01,480 --> 00:08:05,630
+And here I used the Vue CLI to create projects,
+
+183
+00:08:05,630 --> 00:08:09,180
+so it's no longer just an index.html file.
+
+184
+00:08:09,180 --> 00:08:12,540
+Therefore, I'll navigate in router-v2.
+
+185
+00:08:12,540 --> 00:08:14,370
+Run npm install
+
+186
+00:08:14,370 --> 00:08:16,200
+and then npm run serve
+
+187
+00:08:16,200 --> 00:08:18,500
+and this will install all the dependencies
+
+188
+00:08:18,500 --> 00:08:20,680
+and then also bring up the development server
+
+189
+00:08:20,680 --> 00:08:23,913
+for the Vue 2 version of this app here.
+
+190
+00:08:25,180 --> 00:08:26,430
+Once you load the app,
+
+191
+00:08:26,430 --> 00:08:28,120
+this is what you should see on the screen.
+
+192
+00:08:28,120 --> 00:08:29,080
+You've got two routes
+
+193
+00:08:29,080 --> 00:08:30,550
+and you can switch between them
+
+194
+00:08:30,550 --> 00:08:32,123
+and we've got a nice animation.
+
+195
+00:08:34,240 --> 00:08:35,909
+Now, how was this built?
+
+196
+00:08:35,909 --> 00:08:39,919
+I simply have my router set up in main.js
+
+197
+00:08:39,919 --> 00:08:41,429
+by using VueRouter,
+
+198
+00:08:41,429 --> 00:08:43,150
+which is imported from vue-router
+
+199
+00:08:43,150 --> 00:08:46,670
+and by adding the router here to the global Vue instance.
+
+200
+00:08:46,670 --> 00:08:48,070
+Registering all the routes,
+
+201
+00:08:48,070 --> 00:08:49,580
+setting mode to history
+
+202
+00:08:49,580 --> 00:08:52,070
+and we have the animation because the router-view
+
+203
+00:08:52,070 --> 00:08:54,540
+is wrapped with this transition.
+
+204
+00:08:54,540 --> 00:08:56,330
+This is how it works in Vue 2.
+
+205
+00:08:56,330 --> 00:08:58,587
+That's what you also learned in my course.
+
+206
+00:08:58,587 --> 00:09:03,450
+If we go to the v3 version
+
+207
+00:09:03,450 --> 00:09:05,490
+and also install everything there
+
+208
+00:09:05,490 --> 00:09:07,610
+and start the development server,
+
+209
+00:09:07,610 --> 00:09:09,760
+we'll see a difference.
+
+210
+00:09:09,760 --> 00:09:11,280
+To be precise, initially,
+
+211
+00:09:11,280 --> 00:09:13,320
+we'll not see anything
+
+212
+00:09:13,320 --> 00:09:15,453
+because I haven't added routing there yet.
+
+213
+00:09:16,380 --> 00:09:19,150
+In the router-v3 folder, in main.js,
+
+214
+00:09:19,150 --> 00:09:22,120
+we still have to add the router for good reason
+
+215
+00:09:22,120 --> 00:09:25,340
+because we now added differently than before.
+
+216
+00:09:25,340 --> 00:09:29,420
+Instead of importing VueRouter from vue-router,
+
+217
+00:09:29,420 --> 00:09:31,910
+I already installed the vue-router package here.
+
+218
+00:09:31,910 --> 00:09:33,320
+That's why it's available.
+
+219
+00:09:33,320 --> 00:09:35,240
+But instead of importing it like this,
+
+220
+00:09:35,240 --> 00:09:38,060
+you import createRouter from vue-router.
+
+221
+00:09:38,060 --> 00:09:39,850
+So you might see a theme here.
+
+222
+00:09:39,850 --> 00:09:41,463
+We have createApp from vue to create our app.
+
+223
+00:09:42,525 --> 00:09:44,014
+We have createRouter from the router
+
+224
+00:09:44,014 --> 00:09:45,295
+to create a router.
+
+225
+00:09:45,295 --> 00:09:49,150
+This is the new way of creating things in Vue 3.
+
+226
+00:09:49,150 --> 00:09:50,508
+Now, once this is imported,
+
+227
+00:09:50,508 --> 00:09:55,508
+we can create our router by calling createRouter.
+
+228
+00:09:55,750 --> 00:09:59,470
+And we then use this router on our Vue app.
+
+229
+00:09:59,470 --> 00:10:01,910
+So we can store the app in a constant
+
+230
+00:10:01,910 --> 00:10:04,260
+and then call use on the app
+
+231
+00:10:04,260 --> 00:10:07,320
+instead of on the global object.
+
+232
+00:10:07,320 --> 00:10:09,770
+I mentioned before that we no longer do that.
+
+233
+00:10:09,770 --> 00:10:12,920
+Instead we call app.use and use the router.
+
+234
+00:10:12,920 --> 00:10:15,130
+This is how we add the router.
+
+235
+00:10:15,130 --> 00:10:17,360
+But now we also need to configure the router.
+
+236
+00:10:17,360 --> 00:10:21,350
+For that, we still pass a config object to createRouter
+
+237
+00:10:21,350 --> 00:10:24,700
+and now we can generally grab the configuration
+
+238
+00:10:24,700 --> 00:10:26,100
+from Vue 2.
+
+239
+00:10:26,100 --> 00:10:28,530
+So here, I will grab the object,
+
+240
+00:10:28,530 --> 00:10:31,433
+which was previously passed to VueRouter
+
+241
+00:10:32,279 --> 00:10:37,279
+and paste this here into my createRouter function call.
+
+242
+00:10:39,270 --> 00:10:41,270
+The routes configuration works
+
+243
+00:10:41,270 --> 00:10:42,470
+just as you learned it.
+
+244
+00:10:42,470 --> 00:10:44,010
+That's the good news.
+
+245
+00:10:44,010 --> 00:10:46,250
+The mode, however, is set up differently.
+
+246
+00:10:46,250 --> 00:10:48,500
+Instead of setting mode to History,
+
+247
+00:10:48,500 --> 00:10:51,620
+you now need to set a history property
+
+248
+00:10:51,620 --> 00:10:53,070
+in this config object
+
+249
+00:10:53,070 --> 00:10:56,930
+and then create a history with another function.
+
+250
+00:10:56,930 --> 00:11:00,560
+And here you typically import createWebHistory
+
+251
+00:11:00,560 --> 00:11:02,500
+and then simply execute this here.
+
+252
+00:11:02,500 --> 00:11:06,355
+And the result of that is provided as a value to history.
+
+253
+00:11:06,355 --> 00:11:08,700
+This is how you set up a default router
+
+254
+00:11:08,700 --> 00:11:11,870
+using the HTML5 history mode for routing.
+
+255
+00:11:11,870 --> 00:11:14,780
+With that, we just have to add the imports
+
+256
+00:11:14,780 --> 00:11:17,240
+to WelcomeScreen and UsersList.
+
+257
+00:11:17,240 --> 00:11:19,370
+Copy that from the v2 example
+
+258
+00:11:19,370 --> 00:11:23,620
+into main.js in the v3 example like this
+
+259
+00:11:23,620 --> 00:11:27,910
+and now if you reload, our routes work again.
+
+260
+00:11:27,910 --> 00:11:30,460
+But you will notice that the transition is missing.
+
+261
+00:11:30,460 --> 00:11:32,200
+We've got no animation.
+
+262
+00:11:32,200 --> 00:11:35,410
+I also have another small addition or note,
+
+263
+00:11:35,410 --> 00:11:36,908
+which I wanna bring up first.
+
+264
+00:11:36,908 --> 00:11:41,360
+In TheHeader component, in the v3 project,
+
+265
+00:11:41,360 --> 00:11:44,070
+there is the exact prop on router-link.
+
+266
+00:11:44,070 --> 00:11:46,680
+This prop was needed with Vue 2
+
+267
+00:11:46,680 --> 00:11:48,480
+and the router for Vue 2
+
+268
+00:11:48,480 --> 00:11:52,490
+to make sure that the home link wasn't marked as active
+
+269
+00:11:52,490 --> 00:11:54,050
+when we were on Users
+
+270
+00:11:54,050 --> 00:11:57,360
+because Users also starts with a slash.
+
+271
+00:11:57,360 --> 00:12:00,120
+With Vue 3 and the router for Vue 3,
+
+272
+00:12:00,120 --> 00:12:02,530
+the router works differently internally
+
+273
+00:12:02,530 --> 00:12:04,060
+and you no longer need this.
+
+274
+00:12:04,060 --> 00:12:07,380
+It will automatically detect that home isn't active
+
+275
+00:12:07,380 --> 00:12:08,844
+if you are on Users.
+
+276
+00:12:08,844 --> 00:12:12,820
+That's just a minor thing but also worth noting.
+
+277
+00:12:12,820 --> 00:12:14,250
+More important than that,
+
+278
+00:12:14,250 --> 00:12:17,262
+as I just mentioned, the transitions don't work anymore.
+
+279
+00:12:17,262 --> 00:12:21,130
+The reason for that is that with Vue 3
+
+280
+00:12:21,130 --> 00:12:22,968
+and the router for Vue 3,
+
+281
+00:12:22,968 --> 00:12:27,440
+you no longer may wrap router-view with transition.
+
+282
+00:12:27,440 --> 00:12:29,790
+Instead, it needs to be the other way around.
+
+283
+00:12:29,790 --> 00:12:34,240
+Now you need to pass transition into the router-view,
+
+284
+00:12:34,240 --> 00:12:37,057
+so the router-view should wrap transition.
+
+285
+00:12:37,057 --> 00:12:40,830
+This is related to changes made internally
+
+286
+00:12:40,830 --> 00:12:43,240
+in the view-router package.
+
+287
+00:12:43,240 --> 00:12:46,660
+So router-view in the end has a slot internally
+
+288
+00:12:46,660 --> 00:12:48,400
+and needs this transition.
+
+289
+00:12:48,400 --> 00:12:50,930
+The problem just is transition, of course,
+
+290
+00:12:50,930 --> 00:12:54,450
+should wrap the component that is swapped.
+
+291
+00:12:54,450 --> 00:12:57,490
+And for that, you can use another feature built into Vue.
+
+292
+00:12:57,490 --> 00:12:59,930
+It's the dynamic component feature.
+
+293
+00:12:59,930 --> 00:13:02,230
+You can use the built-in component component.
+
+294
+00:13:02,230 --> 00:13:05,150
+This tells Vue which component to render.
+
+295
+00:13:05,150 --> 00:13:07,710
+Now, the router determines which component
+
+296
+00:13:07,710 --> 00:13:08,750
+should be rendered.
+
+297
+00:13:08,750 --> 00:13:12,400
+And you can get access here in this slot in the end
+
+298
+00:13:12,400 --> 00:13:15,170
+by using a feature called scoped slots.
+
+299
+00:13:15,170 --> 00:13:17,660
+This feature already existed in Vue 2.
+
+300
+00:13:17,660 --> 00:13:19,690
+And in my latest course update,
+
+301
+00:13:19,690 --> 00:13:20,950
+the Vue 3 course update,
+
+302
+00:13:20,950 --> 00:13:23,480
+which I added to my existing Vue course,
+
+303
+00:13:23,480 --> 00:13:25,879
+I cover it in detail as well.
+
+304
+00:13:25,879 --> 00:13:28,810
+You simply have a directive, the v-slot directive,
+
+305
+00:13:28,810 --> 00:13:30,850
+which you add to router-view.
+
+306
+00:13:30,850 --> 00:13:33,410
+And there you can then get access to special props,
+
+307
+00:13:33,410 --> 00:13:36,260
+which the router-view exposes to you.
+
+308
+00:13:36,260 --> 00:13:37,950
+You can now use these props here
+
+309
+00:13:37,950 --> 00:13:39,600
+between the router-view tags
+
+310
+00:13:41,000 --> 00:13:43,840
+and bind the is prop on component,
+
+311
+00:13:43,840 --> 00:13:45,520
+which component needs,
+
+312
+00:13:45,520 --> 00:13:50,510
+to slotProps.Component with a capital C.
+
+313
+00:13:50,510 --> 00:13:54,100
+This prop here is exposed to you by the router
+
+314
+00:13:54,100 --> 00:13:56,980
+and it holds the component that should be loaded
+
+315
+00:13:56,980 --> 00:13:59,150
+for the selected route.
+
+316
+00:13:59,150 --> 00:14:01,430
+This syntax certainly looks strange
+
+317
+00:14:01,430 --> 00:14:04,180
+but you only need it if you plan on using transitions
+
+318
+00:14:04,180 --> 00:14:05,330
+with the router,
+
+319
+00:14:05,330 --> 00:14:07,390
+otherwise you don't need it.
+
+320
+00:14:07,390 --> 00:14:09,883
+With that, however, if I save this,
+
+321
+00:14:11,430 --> 00:14:14,240
+now the transitions are back.
+
+322
+00:14:14,240 --> 00:14:16,040
+Well, at least almost.
+
+323
+00:14:16,040 --> 00:14:18,740
+We also need to adjust the transition names.
+
+324
+00:14:18,740 --> 00:14:20,660
+As you learned a second ago,
+
+325
+00:14:20,660 --> 00:14:25,140
+it's now enter-from and leave-from.
+
+326
+00:14:25,140 --> 00:14:28,960
+And once we do that, now the transitions are fully fixed
+
+327
+00:14:28,960 --> 00:14:33,490
+and now we've got nice animations for entering and leaving.
+
+328
+00:14:33,490 --> 00:14:35,097
+You might notice that if you load the app,
+
+329
+00:14:35,097 --> 00:14:38,020
+you've also got an initial transition here
+
+330
+00:14:38,020 --> 00:14:39,300
+and that's also related
+
+331
+00:14:39,300 --> 00:14:41,860
+to how the Vue router works internally.
+
+332
+00:14:41,860 --> 00:14:43,303
+If you wanna avoid this,
+
+333
+00:14:43,303 --> 00:14:46,280
+you need to mount your app only once the router
+
+334
+00:14:46,280 --> 00:14:47,880
+is fully initialized
+
+335
+00:14:47,880 --> 00:14:49,840
+and you can do this by going to main.js
+
+336
+00:14:49,840 --> 00:14:52,220
+and calling router.isReady,
+
+337
+00:14:52,220 --> 00:14:53,370
+which gives you a promise,
+
+338
+00:14:53,370 --> 00:14:55,870
+which resolves once the router is ready.
+
+339
+00:14:55,870 --> 00:14:58,350
+So if you mount your app in the function you pass
+
+340
+00:14:58,350 --> 00:14:59,690
+to this then block,
+
+341
+00:14:59,690 --> 00:15:02,150
+then you make sure that the app is only mounted
+
+342
+00:15:02,150 --> 00:15:04,313
+once the router is fully initialized.
+
+343
+00:15:06,350 --> 00:15:07,480
+And this will ensure
+
+344
+00:15:07,480 --> 00:15:10,020
+that you don't get this initial transition.
+
+345
+00:15:10,020 --> 00:15:12,640
+So with this change made to main.js,
+
+346
+00:15:12,640 --> 00:15:15,230
+now we can load without the initial transition
+
+347
+00:15:15,230 --> 00:15:18,200
+and we still got the transition for route changes.
+
+348
+00:15:18,200 --> 00:15:20,210
+So as you can tell, we have a couple of changes
+
+349
+00:15:20,210 --> 00:15:22,930
+to the Vue router, not to its core logic
+
+350
+00:15:22,930 --> 00:15:23,970
+but how you set it up
+
+351
+00:15:23,970 --> 00:15:25,650
+and how you add transitions
+
+352
+00:15:25,650 --> 00:15:28,430
+and now I guess you are aware of these changes.
+
+353
+00:15:28,430 --> 00:15:29,280
+Great.
+
+354
+00:15:29,280 --> 00:15:31,550
+Now, the last change I wanna cover here
+
+355
+00:15:31,550 --> 00:15:33,540
+is a change to Vuex.
+
+356
+00:15:33,540 --> 00:15:37,178
+The store is now created with createStore there.
+
+357
+00:15:37,178 --> 00:15:40,550
+I also got an example for that.
+
+358
+00:15:40,550 --> 00:15:44,050
+You find it in the Vuex folders
+
+359
+00:15:44,050 --> 00:15:46,680
+and if we have a look at the Vue 2 version here
+
+360
+00:15:46,680 --> 00:15:49,470
+with npm install and npm run serve,
+
+361
+00:15:49,470 --> 00:15:52,470
+you will see that it works just as you learned it.
+
+362
+00:15:52,470 --> 00:15:54,750
+We create our Vuex store
+
+363
+00:15:54,750 --> 00:15:57,770
+by instantiating new Vuex.Store
+
+364
+00:15:57,770 --> 00:15:59,850
+and passing our store config to it
+
+365
+00:15:59,850 --> 00:16:03,573
+and then we add the store to the Vue app, like this.
+
+366
+00:16:05,060 --> 00:16:06,930
+With that, this is what we get
+
+367
+00:16:06,930 --> 00:16:08,673
+and here we've got a basic store,
+
+368
+00:16:08,673 --> 00:16:11,323
+which is managing this list of users here.
+
+369
+00:16:12,400 --> 00:16:15,180
+Now, with Vue 3, this works differently.
+
+370
+00:16:15,180 --> 00:16:18,703
+If I dive into the v3 version of this,
+
+371
+00:16:19,990 --> 00:16:21,570
+and start this all,
+
+372
+00:16:21,570 --> 00:16:24,510
+we first of all, have to add Vuex again,
+
+373
+00:16:24,510 --> 00:16:26,620
+just as we had to add the router before
+
+374
+00:16:26,620 --> 00:16:30,520
+because now we added differently as you might guess.
+
+375
+00:16:30,520 --> 00:16:35,520
+Now we import createStore from vuex,
+
+376
+00:16:35,730 --> 00:16:40,270
+again to be in line with how we create things in Vue 3.
+
+377
+00:16:40,270 --> 00:16:43,846
+Then we create our store by calling createStore
+
+378
+00:16:43,846 --> 00:16:46,440
+and now the good news is to createStore,
+
+379
+00:16:46,440 --> 00:16:50,250
+we pass exactly the same store config object
+
+380
+00:16:50,250 --> 00:16:51,750
+as we did with Vue 2
+
+381
+00:16:51,750 --> 00:16:53,820
+and Vuex for Vue 2.
+
+382
+00:16:53,820 --> 00:16:56,049
+So we can grab this object here,
+
+383
+00:16:56,049 --> 00:17:00,760
+which holds the state and mutations and actions and getters
+
+384
+00:17:00,760 --> 00:17:03,713
+and we use that same object here for Vue 3.
+
+385
+00:17:06,000 --> 00:17:07,270
+And that's important.
+
+386
+00:17:07,270 --> 00:17:09,140
+How you work with Vuex
+
+387
+00:17:09,140 --> 00:17:10,930
+and which features it has,
+
+388
+00:17:10,930 --> 00:17:13,180
+that has all not changed.
+
+389
+00:17:13,180 --> 00:17:16,920
+You still have actions, getters, mutations, state.
+
+390
+00:17:16,920 --> 00:17:18,700
+You can use modules.
+
+391
+00:17:18,700 --> 00:17:20,200
+That's the same.
+
+392
+00:17:20,200 --> 00:17:21,997
+But now we create the store like this.
+
+393
+00:17:21,997 --> 00:17:24,380
+And we then add it to our app
+
+394
+00:17:24,380 --> 00:17:27,410
+by you might also be guessing it already,
+
+395
+00:17:27,410 --> 00:17:29,300
+by using it.
+
+396
+00:17:29,300 --> 00:17:33,070
+So on our app, we simply use the store.
+
+397
+00:17:33,070 --> 00:17:34,960
+And if we also had a router here,
+
+398
+00:17:34,960 --> 00:17:37,760
+we would simply use the router as well.
+
+399
+00:17:37,760 --> 00:17:41,280
+We don't have it here but this is how you would use it.
+
+400
+00:17:41,280 --> 00:17:44,680
+And with that, if you reload the Vue 3 version,
+
+401
+00:17:44,680 --> 00:17:48,823
+this also works without any other changes.
+

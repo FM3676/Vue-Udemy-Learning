@@ -1,0 +1,544 @@
+1
+00:00:02,160 --> 00:00:05,580
+With all the knowledge we gained over the last lectures,
+
+2
+00:00:05,580 --> 00:00:08,620
+we are nearing the end of this module now.
+
+3
+00:00:08,620 --> 00:00:11,840
+You now know pretty much all the key features
+
+4
+00:00:11,840 --> 00:00:14,560
+you have to know about registering routes,
+
+5
+00:00:14,560 --> 00:00:17,590
+loading components and navigating.
+
+6
+00:00:17,590 --> 00:00:20,150
+But there are two other nice features,
+
+7
+00:00:20,150 --> 00:00:22,570
+which can help you provide the user experience
+
+8
+00:00:22,570 --> 00:00:23,880
+you wanna provide.
+
+9
+00:00:23,880 --> 00:00:27,280
+And that will be controlling the scroll behavior
+
+10
+00:00:27,280 --> 00:00:30,960
+of your pages and navigation guards.
+
+11
+00:00:30,960 --> 00:00:34,190
+Let's start with controlling the scrolling behavior.
+
+12
+00:00:34,190 --> 00:00:35,800
+What do I mean by that?
+
+13
+00:00:35,800 --> 00:00:38,660
+Well, let's say we're on the Teams page,
+
+14
+00:00:38,660 --> 00:00:41,300
+we load our team here and then I scroll down
+
+15
+00:00:41,300 --> 00:00:45,470
+so that I can load the Client Consulting team.
+
+16
+00:00:45,470 --> 00:00:48,220
+If I click that, of course you component updates,
+
+17
+00:00:48,220 --> 00:00:50,923
+but I have to scroll up there to see that.
+
+18
+00:00:51,970 --> 00:00:55,840
+Maybe we want to scroll up there automatically,
+
+19
+00:00:55,840 --> 00:00:58,320
+when we switch the route here.
+
+20
+00:00:58,320 --> 00:01:00,740
+That could be something we might wanna do,
+
+21
+00:01:00,740 --> 00:01:02,490
+in general, maybe.
+
+22
+00:01:02,490 --> 00:01:04,920
+Whenever we switch a route,
+
+23
+00:01:04,920 --> 00:01:08,550
+we wanna scroll to top so that the user always sees
+
+24
+00:01:08,550 --> 00:01:13,330
+the full new page and isn't stuck somewhere down the page.
+
+25
+00:01:13,330 --> 00:01:16,190
+And that's something we can add with the vue router.
+
+26
+00:01:16,190 --> 00:01:19,220
+In main js, where we create our router,
+
+27
+00:01:19,220 --> 00:01:21,840
+besides registering all those routes
+
+28
+00:01:21,840 --> 00:01:23,740
+and then setting some global conflict
+
+29
+00:01:23,740 --> 00:01:25,800
+like the link active class.
+
+30
+00:01:25,800 --> 00:01:29,330
+You can also add a scroll behavior
+
+31
+00:01:29,330 --> 00:01:30,173
+property.
+
+32
+00:01:31,420 --> 00:01:35,070
+That scroll behavior property actually
+
+33
+00:01:35,070 --> 00:01:37,130
+is a method.
+
+34
+00:01:37,130 --> 00:01:40,440
+A method which will be called by the vue router,
+
+35
+00:01:40,440 --> 00:01:42,653
+whenever your page changes.
+
+36
+00:01:45,000 --> 00:01:48,170
+And this stroll behavior method will then receive
+
+37
+00:01:48,170 --> 00:01:51,290
+free arguments, automatically.
+
+38
+00:01:51,290 --> 00:01:52,310
+A to,
+
+39
+00:01:52,310 --> 00:01:53,380
+a from
+
+40
+00:01:53,380 --> 00:01:55,330
+and a saved position
+
+41
+00:01:55,330 --> 00:01:56,163
+argument.
+
+42
+00:01:57,157 --> 00:01:58,660
+You can name them however you want,
+
+43
+00:01:58,660 --> 00:02:00,830
+but that is what will be in there.
+
+44
+00:02:00,830 --> 00:02:03,393
+But what is to from and saved position?
+
+45
+00:02:04,400 --> 00:02:05,540
+Let's simply
+
+46
+00:02:05,540 --> 00:02:06,740
+lock this.
+
+47
+00:02:06,740 --> 00:02:08,840
+Let's lock to,
+
+48
+00:02:08,840 --> 00:02:09,860
+from
+
+49
+00:02:09,860 --> 00:02:11,263
+and saved position,
+
+50
+00:02:12,210 --> 00:02:13,960
+and save this.
+
+51
+00:02:13,960 --> 00:02:15,340
+Now I reload
+
+52
+00:02:15,340 --> 00:02:16,640
+and I click
+
+53
+00:02:16,640 --> 00:02:18,430
+on a link here,
+
+54
+00:02:18,430 --> 00:02:21,070
+and you'll see I got this locked to the console,
+
+55
+00:02:21,070 --> 00:02:25,170
+actually we already got it when I first loaded this page.
+
+56
+00:02:25,170 --> 00:02:29,070
+Q and from in the end are route objects.
+
+57
+00:02:29,070 --> 00:02:33,630
+Q and from basically are what you also get with this route
+
+58
+00:02:33,630 --> 00:02:35,370
+inside of a component.
+
+59
+00:02:35,370 --> 00:02:36,520
+To and from,
+
+60
+00:02:36,520 --> 00:02:38,580
+are the pages we're going to
+
+61
+00:02:38,580 --> 00:02:39,803
+and we're coming from.
+
+62
+00:02:40,840 --> 00:02:42,660
+When I first load this page,
+
+63
+00:02:42,660 --> 00:02:46,940
+the page we're going to is having this full path,
+
+64
+00:02:46,940 --> 00:02:50,720
+which this path without the query parameter and so on.
+
+65
+00:02:50,720 --> 00:02:53,850
+It has this params object, the query object,
+
+66
+00:02:53,850 --> 00:02:56,710
+and this is exactly the kind of object you would get
+
+67
+00:02:56,710 --> 00:02:58,800
+with this dollar signed route,
+
+68
+00:02:58,800 --> 00:03:01,860
+inside of the component that is loaded.
+
+69
+00:03:01,860 --> 00:03:04,230
+And we're coming from this path,
+
+70
+00:03:04,230 --> 00:03:07,440
+It's pretty much all empty because I just loaded the page.
+
+71
+00:03:07,440 --> 00:03:10,020
+If I cleared a console and I click a link,
+
+72
+00:03:10,020 --> 00:03:11,460
+you'll see this looks different.
+
+73
+00:03:11,460 --> 00:03:13,985
+Now we're going to this path,
+
+74
+00:03:13,985 --> 00:03:16,370
+with a parameter of t2,
+
+75
+00:03:16,370 --> 00:03:20,823
+and the route we're coming from has a parameter of t1.
+
+76
+00:03:22,320 --> 00:03:24,353
+And saved position is null here,
+
+77
+00:03:24,353 --> 00:03:28,180
+because saved position is only set,
+
+78
+00:03:28,180 --> 00:03:30,340
+if you're using the back button.
+
+79
+00:03:30,340 --> 00:03:34,030
+Then you see saved position is actually an object
+
+80
+00:03:34,030 --> 00:03:36,700
+with a left and a top property,
+
+81
+00:03:36,700 --> 00:03:40,110
+describing where the user scroll to,
+
+82
+00:03:40,110 --> 00:03:44,960
+when this page, you just went back to what's left.
+
+83
+00:03:44,960 --> 00:03:45,793
+For example,
+
+84
+00:03:45,793 --> 00:03:47,260
+if I scroll all the way down,
+
+85
+00:03:47,260 --> 00:03:49,100
+and they go to a different page,
+
+86
+00:03:49,100 --> 00:03:50,660
+and I go back,
+
+87
+00:03:50,660 --> 00:03:51,960
+then this
+
+88
+00:03:51,960 --> 00:03:53,190
+scroll
+
+89
+00:03:53,190 --> 00:03:54,023
+position,
+
+90
+00:03:54,023 --> 00:03:56,890
+which is saved here is the scroll position I had
+
+91
+00:03:56,890 --> 00:04:00,453
+when I left this page before I clicked the back button.
+
+92
+00:04:02,050 --> 00:04:03,943
+How can this all be useful?
+
+93
+00:04:05,120 --> 00:04:09,450
+This scroll behavior method should return
+
+94
+00:04:09,450 --> 00:04:14,120
+an object describing where the browser should scroll to,
+
+95
+00:04:14,120 --> 00:04:15,670
+up on the page change.
+
+96
+00:04:15,670 --> 00:04:17,870
+And here the object you return,
+
+97
+00:04:17,870 --> 00:04:21,293
+should have a left and the top property.
+
+98
+00:04:22,200 --> 00:04:24,540
+Just as the safe position has it,
+
+99
+00:04:24,540 --> 00:04:26,870
+when it is available.
+
+100
+00:04:26,870 --> 00:04:29,470
+And if you, for example, said left to zero,
+
+101
+00:04:29,470 --> 00:04:31,010
+and top to zero,
+
+102
+00:04:31,010 --> 00:04:32,930
+that means that you wanna scroll,
+
+103
+00:04:32,930 --> 00:04:34,943
+all the way to the top of the page.
+
+104
+00:04:35,960 --> 00:04:38,350
+If I always returned this,
+
+105
+00:04:38,350 --> 00:04:41,990
+and I've for the moment still console log to, from
+
+106
+00:04:41,990 --> 00:04:45,840
+and saved positions so that my IDE doesn't complain
+
+107
+00:04:45,840 --> 00:04:48,310
+about these being unused.
+
+108
+00:04:48,310 --> 00:04:49,710
+If I locked that,
+
+109
+00:04:49,710 --> 00:04:51,960
+but we always return this object,
+
+110
+00:04:51,960 --> 00:04:55,050
+the effect is, that if I scroll down
+
+111
+00:04:55,050 --> 00:04:56,960
+and switch to a different page,
+
+112
+00:04:56,960 --> 00:04:58,720
+we jump to the top
+
+113
+00:04:58,720 --> 00:05:01,133
+and that's exactly the behavior I want here.
+
+114
+00:05:02,490 --> 00:05:05,010
+Of course, on the other hand, if we go back,
+
+115
+00:05:05,010 --> 00:05:07,760
+I might want to go back down here
+
+116
+00:05:07,760 --> 00:05:09,620
+so that I really go back,
+
+117
+00:05:09,620 --> 00:05:12,750
+not just to the page we're coming from,
+
+118
+00:05:12,750 --> 00:05:16,810
+but also to the place on the page we were on.
+
+119
+00:05:16,810 --> 00:05:19,630
+And that's now where the saved position comes in handy
+
+120
+00:05:19,630 --> 00:05:23,843
+because that is saving the exact place we were scrolled to.
+
+121
+00:05:24,690 --> 00:05:29,660
+We can tweak this and check if saved position exists,
+
+122
+00:05:29,660 --> 00:05:32,210
+if it is not now, and if that's the case
+
+123
+00:05:32,210 --> 00:05:34,860
+we return to saved position.
+
+124
+00:05:34,860 --> 00:05:37,360
+So that for example, if we do go back,
+
+125
+00:05:37,360 --> 00:05:41,220
+we use the saved position instead of jumping to the top.
+
+126
+00:05:41,220 --> 00:05:45,053
+But if saved position does not exist, we do jump to the top.
+
+127
+00:05:46,800 --> 00:05:50,430
+And with that advice, save that and reload.
+
+128
+00:05:50,430 --> 00:05:52,743
+I can go to my teams,
+
+129
+00:05:53,710 --> 00:05:55,220
+load a team,
+
+130
+00:05:55,220 --> 00:05:56,690
+scroll down,
+
+131
+00:05:56,690 --> 00:05:58,170
+jump the top.
+
+132
+00:05:58,170 --> 00:06:01,710
+But if I now click back, I'm scroll down again.
+
+133
+00:06:01,710 --> 00:06:04,420
+And that can of course enhance the user experience
+
+134
+00:06:04,420 --> 00:06:07,970
+because now we scroll the user to the place
+
+135
+00:06:07,970 --> 00:06:12,420
+where he or she is able to see exactly the content,
+
+136
+00:06:12,420 --> 00:06:15,053
+that we wanna present at this moment.
+

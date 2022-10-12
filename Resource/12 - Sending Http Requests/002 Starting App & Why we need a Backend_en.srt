@@ -1,0 +1,512 @@
+1
+00:00:02,240 --> 00:00:04,550
+Attached you find another starting
+
+2
+00:00:04,550 --> 00:00:07,013
+application downloaded, extracted.
+
+3
+00:00:07,013 --> 00:00:10,639
+Run, npm install followed by npm run serve
+
+4
+00:00:10,639 --> 00:00:13,210
+and this brings up another Vue app
+
+5
+00:00:13,210 --> 00:00:14,803
+which I prepared for you.
+
+6
+00:00:16,090 --> 00:00:17,840
+It's a basic view app.
+
+7
+00:00:17,840 --> 00:00:19,967
+This one, where you can
+
+8
+00:00:19,967 --> 00:00:21,814
+fill out this basic survey,
+
+9
+00:00:21,814 --> 00:00:25,030
+provide your opinion on this learning experience
+
+10
+00:00:25,030 --> 00:00:26,730
+and then your data will be saved
+
+11
+00:00:26,730 --> 00:00:28,596
+and output down there.
+
+12
+00:00:28,596 --> 00:00:29,886
+This application
+
+13
+00:00:29,886 --> 00:00:32,862
+uses features we already learned about.
+
+14
+00:00:32,862 --> 00:00:34,331
+We have
+
+15
+00:00:34,331 --> 00:00:37,640
+two main components in the App.vue file.
+
+16
+00:00:37,640 --> 00:00:40,270
+The survey component and the component
+
+17
+00:00:40,270 --> 00:00:43,231
+which outputs the submitted results in the end.
+
+18
+00:00:43,231 --> 00:00:45,270
+I'm managing my list of
+
+19
+00:00:45,270 --> 00:00:47,954
+submitted survey results here in App.vue.
+
+20
+00:00:47,954 --> 00:00:50,921
+Here I got a method for adding a new result
+
+21
+00:00:50,921 --> 00:00:54,060
+and the learning survey itself does component
+
+22
+00:00:54,060 --> 00:00:57,202
+holds this form with an input element,
+
+23
+00:00:57,202 --> 00:00:59,880
+which is bound with the model
+
+24
+00:00:59,880 --> 00:01:01,920
+and with a bunch of radio buttons
+
+25
+00:01:01,920 --> 00:01:04,208
+which are also bound with v-model.
+
+26
+00:01:04,208 --> 00:01:06,400
+And then this form is managed
+
+27
+00:01:06,400 --> 00:01:09,450
+just as you learned it in the forms module.
+
+28
+00:01:09,450 --> 00:01:10,920
+Got a submit method.
+
+29
+00:01:10,920 --> 00:01:12,470
+I'm validating the input,
+
+30
+00:01:12,470 --> 00:01:14,110
+showing an error message
+
+31
+00:01:14,974 --> 00:01:16,030
+here.
+
+32
+00:01:16,030 --> 00:01:18,616
+If one or more of the input fields are invalid,
+
+33
+00:01:18,616 --> 00:01:21,140
+a custom event is emitted,
+
+34
+00:01:21,140 --> 00:01:23,160
+the survey submit event
+
+35
+00:01:23,160 --> 00:01:25,735
+which holds the entered user name and rating
+
+36
+00:01:25,735 --> 00:01:28,053
+and that survey submit event
+
+37
+00:01:28,053 --> 00:01:29,386
+is then caught in
+
+38
+00:01:29,386 --> 00:01:31,990
+App.vue.
+
+39
+00:01:31,990 --> 00:01:34,700
+Here on the learning survey component
+
+40
+00:01:34,700 --> 00:01:37,890
+and that then triggers the store survey method
+
+41
+00:01:37,890 --> 00:01:40,659
+where this survey data is enriched with an Id
+
+42
+00:01:40,659 --> 00:01:42,337
+and then stored in (mumbles).
+
+43
+00:01:43,655 --> 00:01:47,058
+And then we have the user experience's component.
+
+44
+00:01:47,058 --> 00:01:49,040
+That's this component here,
+
+45
+00:01:49,040 --> 00:01:50,620
+which simply outputs all
+
+46
+00:01:50,620 --> 00:01:53,559
+submitted survey results with v-for.
+
+47
+00:01:53,559 --> 00:01:55,647
+I got another component in here,
+
+48
+00:01:55,647 --> 00:01:57,790
+the survey result component,
+
+49
+00:01:57,790 --> 00:01:59,970
+which is just responsible for outputting
+
+50
+00:01:59,970 --> 00:02:01,980
+the individual list items.
+
+51
+00:02:01,980 --> 00:02:04,140
+Got some conditional styles in there,
+
+52
+00:02:04,140 --> 00:02:06,248
+some conditional CSS classes.
+
+53
+00:02:06,248 --> 00:02:09,423
+And overall, this is nothing too fancy.
+
+54
+00:02:10,530 --> 00:02:11,363
+Now of course,
+
+55
+00:02:11,363 --> 00:02:13,550
+this application has one problem.
+
+56
+00:02:13,550 --> 00:02:15,771
+If I submit a bunch of data here,
+
+57
+00:02:15,771 --> 00:02:17,800
+we see all that data here,
+
+58
+00:02:17,800 --> 00:02:20,000
+but whenever we reload the page,
+
+59
+00:02:20,000 --> 00:02:21,504
+all the data is lost.
+
+60
+00:02:21,504 --> 00:02:23,520
+And this is not a bug,
+
+61
+00:02:23,520 --> 00:02:26,300
+this is, well, the only way it can behave
+
+62
+00:02:26,300 --> 00:02:27,950
+because thus far,
+
+63
+00:02:27,950 --> 00:02:31,441
+we always stored all the data just in Vue
+
+64
+00:02:31,441 --> 00:02:34,610
+and therefore just in the computer memory,
+
+65
+00:02:34,610 --> 00:02:36,180
+that is what happened here.
+
+66
+00:02:36,180 --> 00:02:37,810
+So all the data we create
+
+67
+00:02:37,810 --> 00:02:39,340
+with all those components
+
+68
+00:02:39,340 --> 00:02:41,212
+is just stored locally
+
+69
+00:02:41,212 --> 00:02:43,587
+in memory and therefore lost
+
+70
+00:02:43,587 --> 00:02:46,440
+whenever this website is reloaded
+
+71
+00:02:46,440 --> 00:02:48,292
+therefore the Vue app is dumped
+
+72
+00:02:48,292 --> 00:02:51,280
+and a new instance of the Vue app starts up
+
+73
+00:02:51,280 --> 00:02:53,440
+and therefore all the data attached
+
+74
+00:02:53,440 --> 00:02:55,923
+to the previously running Vue app is lost.
+
+75
+00:02:57,020 --> 00:02:59,190
+This is just how browsers work.
+
+76
+00:02:59,190 --> 00:03:01,542
+There's nothing you can do about that.
+
+77
+00:03:01,542 --> 00:03:03,215
+But of course, in reality,
+
+78
+00:03:03,215 --> 00:03:05,554
+you are often building applications
+
+79
+00:03:05,554 --> 00:03:08,280
+where data should be saved
+
+80
+00:03:08,280 --> 00:03:10,160
+and where it may be
+
+81
+00:03:10,160 --> 00:03:12,329
+should not just be saved locally
+
+82
+00:03:12,329 --> 00:03:14,578
+on the computer of your user
+
+83
+00:03:14,578 --> 00:03:17,696
+for example, in a file or anything like that
+
+84
+00:03:17,696 --> 00:03:20,090
+but instead where it should be stored
+
+85
+00:03:20,090 --> 00:03:23,434
+on a server, which you, as the developer own.
+
+86
+00:03:23,434 --> 00:03:26,377
+Think of Amazon.com.
+
+87
+00:03:26,377 --> 00:03:28,785
+All the products which are listed there,
+
+88
+00:03:28,785 --> 00:03:30,220
+they are of course,
+
+89
+00:03:30,220 --> 00:03:32,590
+stored on Amazon's servers
+
+90
+00:03:32,590 --> 00:03:35,429
+and shown to the users that visit Amazon.
+
+91
+00:03:35,429 --> 00:03:37,260
+So it is quite common that you
+
+92
+00:03:37,260 --> 00:03:39,600
+need a server that holds data
+
+93
+00:03:39,600 --> 00:03:41,890
+and then the Vue applications running
+
+94
+00:03:41,890 --> 00:03:43,970
+on the computers of your users,
+
+95
+00:03:43,970 --> 00:03:46,200
+running in the browsers of your users.
+
+96
+00:03:46,200 --> 00:03:48,770
+Those Vue applications should connect
+
+97
+00:03:48,770 --> 00:03:51,564
+to your servers and fetch data from there
+
+98
+00:03:51,564 --> 00:03:54,670
+or send data to them.
+
+99
+00:03:54,670 --> 00:03:57,560
+So here this survey application, for example,
+
+100
+00:03:57,560 --> 00:03:59,090
+should probably not just
+
+101
+00:03:59,090 --> 00:04:01,370
+output survey results down there,
+
+102
+00:04:01,370 --> 00:04:03,710
+but instead the data should also be submitted
+
+103
+00:04:03,710 --> 00:04:06,123
+to your server where it's saved.
+
+104
+00:04:06,960 --> 00:04:09,220
+In a reality, this year might even
+
+105
+00:04:09,220 --> 00:04:11,860
+be two separate Vue applications
+
+106
+00:04:11,860 --> 00:04:13,393
+where the survey form
+
+107
+00:04:13,393 --> 00:04:16,358
+is the application you show to your users
+
+108
+00:04:16,358 --> 00:04:18,447
+and this dashboard here
+
+109
+00:04:18,447 --> 00:04:21,100
+where you see the submitted surveys.
+
+110
+00:04:21,100 --> 00:04:24,163
+That might be a Vue application only you can visit.
+
+111
+00:04:25,670 --> 00:04:27,360
+But here it's merged into one so
+
+112
+00:04:27,360 --> 00:04:29,140
+that we can see both in action.
+
+113
+00:04:29,140 --> 00:04:31,530
+Nonetheless, we typically want a server
+
+114
+00:04:31,530 --> 00:04:33,433
+to which we can send our data.
+
+115
+00:04:34,560 --> 00:04:37,070
+And that's exactly what a back end is.
+
+116
+00:04:37,070 --> 00:04:38,460
+It's the other end.
+
+117
+00:04:38,460 --> 00:04:40,730
+It's the part that does not run
+
+118
+00:04:40,730 --> 00:04:42,570
+in the browser of your users
+
+119
+00:04:42,570 --> 00:04:44,150
+like your Vue app does
+
+120
+00:04:44,150 --> 00:04:47,400
+but instead it's about code running on a server,
+
+121
+00:04:47,400 --> 00:04:49,180
+you as a developer own.
+
+122
+00:04:49,180 --> 00:04:51,080
+It's about a database you
+
+123
+00:04:51,080 --> 00:04:52,680
+as a developer might own.
+
+124
+00:04:52,680 --> 00:04:55,256
+And that database would also be
+
+125
+00:04:55,256 --> 00:04:57,097
+on that server which you own.
+
+126
+00:04:57,097 --> 00:04:58,780
+So it's detached from the Vue app.
+
+127
+00:04:58,780 --> 00:05:00,713
+Nonetheless, we want to communicate,
+
+128
+00:05:01,692 --> 00:05:03,363
+and that's what this module is about.
+

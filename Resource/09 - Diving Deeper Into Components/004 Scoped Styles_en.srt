@@ -1,0 +1,456 @@
+1
+00:00:02,130 --> 00:00:06,550
+We're going to stick to this global local theme.
+
+2
+00:00:06,550 --> 00:00:08,440
+Let's talk about styling.
+
+3
+00:00:08,440 --> 00:00:11,120
+We know how to add dynamic styling and so on,
+
+4
+00:00:11,120 --> 00:00:12,970
+but I don't want to talk about this,
+
+5
+00:00:12,970 --> 00:00:15,620
+I want to talk about component styling.
+
+6
+00:00:15,620 --> 00:00:18,320
+You can that you can add this style tag
+
+7
+00:00:18,320 --> 00:00:20,060
+to your '.vue' files,
+
+8
+00:00:20,060 --> 00:00:22,790
+and in here you can set up some styling.
+
+9
+00:00:22,790 --> 00:00:26,920
+Now maybe you remember that earlier in the course.
+
+10
+00:00:26,920 --> 00:00:31,660
+I mentioned that no matter where you added your styling,
+
+11
+00:00:31,660 --> 00:00:35,420
+it would always be treated as global styling
+
+12
+00:00:35,420 --> 00:00:37,373
+that affects the entire app.
+
+13
+00:00:38,350 --> 00:00:41,264
+So if I define a section h2 style
+
+14
+00:00:41,264 --> 00:00:44,530
+here in the Badgelist.vue file
+
+15
+00:00:44,530 --> 00:00:46,430
+This does not,
+
+16
+00:00:46,430 --> 00:00:49,430
+important, this does not mean
+
+17
+00:00:49,430 --> 00:00:53,320
+that this styling would only affect this template.
+
+18
+00:00:53,320 --> 00:00:56,590
+Instead, indeed, it affects all files.
+
+19
+00:00:56,590 --> 00:00:58,150
+And I can show this to you
+
+20
+00:00:58,150 --> 00:00:59,950
+in TheHeader.vue file
+
+21
+00:00:59,950 --> 00:01:03,270
+I am selecting the header element by its tag
+
+22
+00:01:03,270 --> 00:01:05,522
+and I'm applying a certain style here.
+
+23
+00:01:06,930 --> 00:01:08,720
+Now, in user info,
+
+24
+00:01:08,720 --> 00:01:11,460
+I'm wrapping this h3 tag and my BaseBadge
+
+25
+00:01:11,460 --> 00:01:15,730
+with a div and actually using a header element here,
+
+26
+00:01:15,730 --> 00:01:18,493
+makes more sense semantically in my opinion.
+
+27
+00:01:19,770 --> 00:01:22,440
+But if I switch to a header here,
+
+28
+00:01:22,440 --> 00:01:23,273
+you will see
+
+29
+00:01:23,273 --> 00:01:26,930
+that now I got the header styling being applied here
+
+30
+00:01:26,930 --> 00:01:29,670
+in my Userinfo component as well.
+
+31
+00:01:29,670 --> 00:01:32,113
+And that of course breaks my style there.
+
+32
+00:01:32,990 --> 00:01:34,510
+Now this is happening
+
+33
+00:01:34,510 --> 00:01:37,830
+because I do have my header styling set up
+
+34
+00:01:37,830 --> 00:01:38,930
+in header.vue,
+
+35
+00:01:38,930 --> 00:01:40,150
+and as I explained,
+
+36
+00:01:40,150 --> 00:01:42,290
+even though it's set up in that file
+
+37
+00:01:42,290 --> 00:01:44,123
+it affects the entire app.
+
+38
+00:01:44,960 --> 00:01:46,990
+Sometimes this is what you want.
+
+39
+00:01:46,990 --> 00:01:49,080
+For example in App.vue,
+
+40
+00:01:49,080 --> 00:01:50,850
+you typically do define
+
+41
+00:01:50,850 --> 00:01:53,780
+your global application wide styles,
+
+42
+00:01:53,780 --> 00:01:56,840
+like setting the body or some font family.
+
+43
+00:01:56,840 --> 00:02:00,170
+So styles that should affect everything in your app,
+
+44
+00:02:00,170 --> 00:02:03,400
+typically are defined in the style tags
+
+45
+00:02:03,400 --> 00:02:05,170
+of your App.vue file.
+
+46
+00:02:05,170 --> 00:02:06,850
+Since this is your entry point
+
+47
+00:02:06,850 --> 00:02:08,393
+of the entire application.
+
+48
+00:02:10,210 --> 00:02:13,580
+But if you have styles in individual components,
+
+49
+00:02:13,580 --> 00:02:16,690
+it often would be nice if you could scope
+
+50
+00:02:16,690 --> 00:02:19,230
+these styles to those components
+
+51
+00:02:19,230 --> 00:02:22,640
+to ensure that they really only affect the template
+
+52
+00:02:22,640 --> 00:02:25,480
+of the component in which you define them,
+
+53
+00:02:25,480 --> 00:02:27,450
+and vue supports this,
+
+54
+00:02:27,450 --> 00:02:31,810
+there is a scoped attribute which you can add to
+
+55
+00:02:31,810 --> 00:02:33,033
+that style tag.
+
+56
+00:02:34,320 --> 00:02:35,840
+And if you do add it,
+
+57
+00:02:35,840 --> 00:02:39,970
+that tells vue that the styles defined in here should
+
+58
+00:02:39,970 --> 00:02:43,750
+only affect the template that lives in the same file,
+
+59
+00:02:43,750 --> 00:02:47,349
+and no other component, no child component,
+
+60
+00:02:47,349 --> 00:02:49,210
+no sibling component,
+
+61
+00:02:49,210 --> 00:02:51,403
+nothing else in your app.
+
+62
+00:02:52,270 --> 00:02:55,140
+And we can do this in all those components therefore,
+
+63
+00:02:55,140 --> 00:02:56,310
+so in the header,
+
+64
+00:02:56,310 --> 00:02:57,143
+I add scoped,
+
+65
+00:02:57,143 --> 00:02:59,754
+in Userinfo I just added it
+
+66
+00:02:59,754 --> 00:03:03,170
+in BaseBadge I'm going to add it here
+
+67
+00:03:04,760 --> 00:03:08,260
+And in BadgeList, I'm also going to add it
+
+68
+00:03:08,260 --> 00:03:10,713
+to make all those styles scoped.
+
+69
+00:03:12,350 --> 00:03:13,800
+And if we do that,
+
+70
+00:03:13,800 --> 00:03:17,190
+you see now we no longer have this style
+
+71
+00:03:17,190 --> 00:03:19,790
+this header style being applied here.
+
+72
+00:03:19,790 --> 00:03:24,230
+We also see that some styles broke because I relied
+
+73
+00:03:24,230 --> 00:03:26,050
+on this global sharing,
+
+74
+00:03:26,050 --> 00:03:28,711
+but I actually rather fix those broken styles
+
+75
+00:03:28,711 --> 00:03:31,050
+than having this side effect
+
+76
+00:03:31,050 --> 00:03:33,586
+of being restricted which element I can use where
+
+77
+00:03:33,586 --> 00:03:37,310
+or of being forced that I have to ensure manually
+
+78
+00:03:37,310 --> 00:03:39,140
+that styles don't spill over
+
+79
+00:03:39,140 --> 00:03:40,673
+and destroy my layout.
+
+80
+00:03:41,570 --> 00:03:44,020
+So therefore here, in Userinfo,
+
+81
+00:03:44,020 --> 00:03:46,700
+I'm simply targeting the section header here
+
+82
+00:03:46,700 --> 00:03:49,763
+to fix the styling in my Userinfo header.
+
+83
+00:03:50,950 --> 00:03:53,210
+And regarding the available badges,
+
+84
+00:03:53,210 --> 00:03:54,930
+here in BadgeList.
+
+85
+00:03:54,930 --> 00:03:57,880
+The problem is that the section lost its styling,
+
+86
+00:03:57,880 --> 00:04:00,823
+because I did define that styling here in Userinfo.
+
+87
+00:04:01,880 --> 00:04:04,100
+Well, I'm simply going to copy that over
+
+88
+00:04:04,100 --> 00:04:05,530
+to BadgeList,
+
+89
+00:04:05,530 --> 00:04:08,720
+add it there, save everything,
+
+90
+00:04:08,720 --> 00:04:09,713
+and it's back.
+
+91
+00:04:10,870 --> 00:04:13,100
+So that's scoped styling,
+
+92
+00:04:13,100 --> 00:04:16,779
+a super useful feature to make sure that your styles,
+
+93
+00:04:16,779 --> 00:04:18,880
+really only affects the component
+
+94
+00:04:18,880 --> 00:04:20,850
+in which you're defining it.
+
+95
+00:04:20,850 --> 00:04:22,010
+Now in case you're wondering
+
+96
+00:04:22,010 --> 00:04:25,100
+how vue actually implements this.
+
+97
+00:04:25,100 --> 00:04:27,860
+If you inspect this with your developer tools
+
+98
+00:04:27,860 --> 00:04:29,110
+in the browser.
+
+99
+00:04:29,110 --> 00:04:31,360
+You will notice that vue achieves this
+
+100
+00:04:31,360 --> 00:04:35,670
+by giving your elements special attributes,
+
+101
+00:04:35,670 --> 00:04:39,193
+like this data-, V- something attribute.
+
+102
+00:04:40,220 --> 00:04:41,940
+Now this is added by vue,
+
+103
+00:04:41,940 --> 00:04:43,640
+and you've seen the styling
+
+104
+00:04:43,640 --> 00:04:47,940
+actually vue changes your selector behind the scenes
+
+105
+00:04:47,940 --> 00:04:49,990
+like this header selector here,
+
+106
+00:04:49,990 --> 00:04:52,430
+to actually now be header plus
+
+107
+00:04:52,430 --> 00:04:54,450
+this generated attribute.
+
+108
+00:04:54,450 --> 00:04:56,580
+And since every component's template
+
+109
+00:04:56,580 --> 00:04:58,510
+will receive its own attribute.
+
+110
+00:04:58,510 --> 00:05:01,740
+This ensures that styling is scoped
+
+111
+00:05:01,740 --> 00:05:04,263
+to that component's template markup.
+
+112
+00:05:06,420 --> 00:05:09,490
+That's how vue implements this behind the scenes
+
+113
+00:05:09,490 --> 00:05:11,190
+with this custom attribute,
+
+114
+00:05:11,190 --> 00:05:13,223
+and by adjusting your selectors.
+

@@ -1,0 +1,328 @@
+1
+00:00:02,080 --> 00:00:04,150
+So, how could we remove items,
+
+2
+00:00:04,150 --> 00:00:05,573
+from this list here?
+
+3
+00:00:06,710 --> 00:00:08,440
+Well, we have our list item,
+
+4
+00:00:08,440 --> 00:00:10,730
+which is repeated for every new Goal.
+
+5
+00:00:10,730 --> 00:00:13,840
+It's still our regular HTML element though,
+
+6
+00:00:13,840 --> 00:00:16,020
+even though we're using before on it.
+
+7
+00:00:16,020 --> 00:00:18,890
+And that means we can still add event listeners to it.
+
+8
+00:00:18,890 --> 00:00:22,530
+For example, a click listener here,
+
+9
+00:00:22,530 --> 00:00:25,440
+to react, to clicks on the list item.
+
+10
+00:00:25,440 --> 00:00:27,850
+And now let's say when a list item is clicked,
+
+11
+00:00:27,850 --> 00:00:31,513
+we wanna remove that respect of Goal from the Goal's array.
+
+12
+00:00:32,600 --> 00:00:35,630
+Now for that, of course, in our JavaScript code,
+
+13
+00:00:35,630 --> 00:00:37,507
+we can add a method,
+
+14
+00:00:37,507 --> 00:00:40,653
+removeGoal, sounds like a name that makes sense.
+
+15
+00:00:41,840 --> 00:00:45,090
+Now, we definitely need some identifier off to Goal,
+
+16
+00:00:45,090 --> 00:00:46,520
+we wanna remove.
+
+17
+00:00:46,520 --> 00:00:50,240
+And I would say since we have the index anyways,
+
+18
+00:00:50,240 --> 00:00:52,380
+we can't just use that.
+
+19
+00:00:52,380 --> 00:00:54,940
+So here in this removeGoal method,
+
+20
+00:00:54,940 --> 00:00:58,510
+we could expect to get the index as an argument,
+
+21
+00:00:58,510 --> 00:01:02,070
+and then, use the splice method,
+
+22
+00:01:02,070 --> 00:01:04,890
+which is also a built in method in JavaScript,
+
+23
+00:01:04,890 --> 00:01:08,770
+to splice this one element at this index,
+
+24
+00:01:08,770 --> 00:01:10,710
+in case you don't know this method yet,
+
+25
+00:01:10,710 --> 00:01:12,550
+this method use like this,
+
+26
+00:01:12,550 --> 00:01:16,420
+we'll find the element at this index, and simply remove it
+
+27
+00:01:16,420 --> 00:01:17,623
+from the Goals array.
+
+28
+00:01:18,660 --> 00:01:20,300
+So this removedGoal method,
+
+29
+00:01:20,300 --> 00:01:23,180
+should remove a Goal at this index.
+
+30
+00:01:23,180 --> 00:01:27,460
+Now we just need to make sure we pass in that index.
+
+31
+00:01:27,460 --> 00:01:29,540
+And how do we do that?
+
+32
+00:01:29,540 --> 00:01:32,210
+Well, let's go back to HTML,
+
+33
+00:01:32,210 --> 00:01:35,850
+here on this click listener, on this list item,
+
+34
+00:01:35,850 --> 00:01:38,310
+we wanna point at removeGoal,
+
+35
+00:01:38,310 --> 00:01:40,700
+but we also wanna ensure that the index
+
+36
+00:01:40,700 --> 00:01:43,350
+is forwarded to that method.
+
+37
+00:01:43,350 --> 00:01:47,490
+So for that we can call it explicitly by adding parentheses,
+
+38
+00:01:47,490 --> 00:01:49,440
+and we got the index here,
+
+39
+00:01:49,440 --> 00:01:51,990
+and both Goal and index
+
+40
+00:01:51,990 --> 00:01:55,060
+can only be used inside of this element,
+
+41
+00:01:55,060 --> 00:01:57,240
+which has v-for on it.
+
+42
+00:01:57,240 --> 00:01:59,990
+So that means between the opening and closing tags,
+
+43
+00:01:59,990 --> 00:02:03,120
+in any child elements, but also,
+
+44
+00:02:03,120 --> 00:02:07,260
+and that is what helps us here, on the element itself.
+
+45
+00:02:07,260 --> 00:02:10,650
+So, we can simply forward index,
+
+46
+00:02:10,650 --> 00:02:14,120
+which is the index we're retrieving with v-for,
+
+47
+00:02:14,120 --> 00:02:15,480
+to removeGoal.
+
+48
+00:02:16,960 --> 00:02:20,830
+And that will be the index zero one and so on,
+
+49
+00:02:20,830 --> 00:02:22,883
+off the goal, on which be clicked.
+
+50
+00:02:23,800 --> 00:02:26,463
+So if I reformat that and save that and reload,
+
+51
+00:02:27,360 --> 00:02:29,070
+we can add finished the course,
+
+52
+00:02:29,070 --> 00:02:29,980
+and
+
+53
+00:02:29,980 --> 00:02:31,660
+Master Vue,
+
+54
+00:02:31,660 --> 00:02:34,400
+and learn all about Vue.
+
+55
+00:02:34,400 --> 00:02:36,600
+If I now click on Master Vue,
+
+56
+00:02:36,600 --> 00:02:40,003
+you see that disappears, and we only have two elements.
+
+57
+00:02:41,600 --> 00:02:44,780
+We can do that with all the elements until they're all gone.
+
+58
+00:02:44,780 --> 00:02:49,170
+And then, thanks to v-if, we see our paragraph again.
+
+59
+00:02:49,170 --> 00:02:51,290
+So that is how we could remove items,
+
+60
+00:02:51,290 --> 00:02:53,210
+by leveraging this index,
+
+61
+00:02:53,210 --> 00:02:55,660
+and by connecting it with a click listener,
+
+62
+00:02:55,660 --> 00:02:58,050
+to a method that updates the array,
+
+63
+00:02:58,050 --> 00:03:03,050
+and since we told Vue to output this array with v-for,
+
+64
+00:03:03,500 --> 00:03:05,910
+it has this built in reactivity,
+
+65
+00:03:05,910 --> 00:03:09,070
+which by now you can certainly tell Vue is all about,
+
+66
+00:03:09,070 --> 00:03:13,680
+that, automatically goes to the page and updates the list,
+
+67
+00:03:13,680 --> 00:03:16,700
+whenever the array changes, it adds more items
+
+68
+00:03:16,700 --> 00:03:19,930
+if we added more items to the array, and it updates the list
+
+69
+00:03:19,930 --> 00:03:24,090
+to remove Dom elements, if we removed items from the array.
+
+70
+00:03:24,090 --> 00:03:26,450
+That's all Vue does behind the scenes.
+
+71
+00:03:26,450 --> 00:03:29,020
+And again, I'm really saying that a lot, I know,
+
+72
+00:03:29,020 --> 00:03:31,260
+but that is why Vue is great.
+
+73
+00:03:31,260 --> 00:03:35,340
+That is so much work we don't have to do in JavaScript.
+
+74
+00:03:35,340 --> 00:03:38,450
+I mean, look how simple our JavaScript code is,
+
+75
+00:03:38,450 --> 00:03:40,710
+it's barely any code at all.
+
+76
+00:03:40,710 --> 00:03:43,690
+And yet we got a full dynamic list,
+
+77
+00:03:43,690 --> 00:03:45,460
+to which we can add items,
+
+78
+00:03:45,460 --> 00:03:47,810
+and from where we can remove items.
+
+79
+00:03:47,810 --> 00:03:50,510
+And writing that with just vanilla JavaScript,
+
+80
+00:03:50,510 --> 00:03:53,400
+in the same efficient way, without re-rendering
+
+81
+00:03:53,400 --> 00:03:55,020
+the whole list all the time,
+
+82
+00:03:55,020 --> 00:03:57,393
+that would definitely be a bit more difficult.
+

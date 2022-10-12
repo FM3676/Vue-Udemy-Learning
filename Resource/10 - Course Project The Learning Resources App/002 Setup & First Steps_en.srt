@@ -1,0 +1,456 @@
+1
+00:00:02,050 --> 00:00:04,730
+Now to get started again as before,
+
+2
+00:00:04,730 --> 00:00:06,890
+attached you find a starting project
+
+3
+00:00:06,890 --> 00:00:10,110
+which you can download, run NPM install in there
+
+4
+00:00:10,110 --> 00:00:13,330
+in the downloaded and extractive folder
+
+5
+00:00:13,330 --> 00:00:16,070
+and once you installed all the dependencies
+
+6
+00:00:16,070 --> 00:00:18,810
+with NPM install, you can start that
+
+7
+00:00:18,810 --> 00:00:21,470
+development server with NPM runs serv.
+
+8
+00:00:21,470 --> 00:00:23,740
+So basically what we did all the time
+
+9
+00:00:23,740 --> 00:00:25,963
+throughout the last modules as well.
+
+10
+00:00:26,800 --> 00:00:29,100
+Now, we got a huge project to build
+
+11
+00:00:29,100 --> 00:00:31,040
+and as you can imagine, we'll also use
+
+12
+00:00:31,040 --> 00:00:33,810
+a couple of components to build this project.
+
+13
+00:00:33,810 --> 00:00:36,910
+Because, and I wanna really emphasize this here,
+
+14
+00:00:36,910 --> 00:00:40,460
+because that is what Vue and Vue projects
+
+15
+00:00:40,460 --> 00:00:41,293
+are all about, you could say.
+
+16
+00:00:41,293 --> 00:00:46,293
+You wanna build a user interface by combining
+
+17
+00:00:46,389 --> 00:00:48,630
+multiple components.
+
+18
+00:00:48,630 --> 00:00:51,460
+And every component has it's clearly defined job.
+
+19
+00:00:51,460 --> 00:00:55,040
+The job could be to just look good
+
+20
+00:00:55,040 --> 00:00:57,290
+and provide a certain styling and just
+
+21
+00:00:57,290 --> 00:01:00,530
+output some information or the job could be to
+
+22
+00:01:00,530 --> 00:01:03,810
+fetch some user input, show a warning if that
+
+23
+00:01:03,810 --> 00:01:07,080
+input is invalid or otherwise use that input
+
+24
+00:01:07,080 --> 00:01:09,690
+to generate some data.
+
+25
+00:01:09,690 --> 00:01:11,490
+And we are going to see all those different
+
+26
+00:01:11,490 --> 00:01:13,690
+kinds of components in action
+
+27
+00:01:13,690 --> 00:01:15,510
+in this module here.
+
+28
+00:01:15,510 --> 00:01:17,210
+Now how do we get started
+
+29
+00:01:17,210 --> 00:01:19,400
+with this kind of project?
+
+30
+00:01:19,400 --> 00:01:22,590
+Well, you might remember the monsters layer
+
+31
+00:01:22,590 --> 00:01:25,950
+project we built earlier in this course.
+
+32
+00:01:25,950 --> 00:01:29,760
+And there I also just get started step by step
+
+33
+00:01:29,760 --> 00:01:32,440
+by adding feature after feature.
+
+34
+00:01:32,440 --> 00:01:34,140
+I wanna do the same thing here
+
+35
+00:01:34,140 --> 00:01:36,370
+and we can always split our code
+
+36
+00:01:36,370 --> 00:01:40,440
+into more components when we get a feeling that
+
+37
+00:01:40,440 --> 00:01:42,760
+a component is getting too big and we might wanna
+
+38
+00:01:42,760 --> 00:01:45,260
+split it up because that will also be
+
+39
+00:01:45,260 --> 00:01:47,790
+an important part of writing Vue code,
+
+40
+00:01:47,790 --> 00:01:51,180
+that you from time to time re-evaluate the code
+
+41
+00:01:51,180 --> 00:01:53,370
+and split it into smaller pieces
+
+42
+00:01:53,370 --> 00:01:55,520
+to keep it manageable.
+
+43
+00:01:55,520 --> 00:01:57,162
+Now was that enough of talking.
+
+44
+00:01:57,162 --> 00:01:59,980
+I'll start by adding a components folder,
+
+45
+00:01:59,980 --> 00:02:02,970
+into source folder because we will need that
+
+46
+00:02:02,970 --> 00:02:04,990
+and in the source folder
+
+47
+00:02:04,990 --> 00:02:07,180
+not in the components folder but in the source
+
+48
+00:02:07,180 --> 00:02:10,100
+folder, I'll also add a App.vue file.
+
+49
+00:02:10,100 --> 00:02:12,130
+Because we'll definitely need that
+
+50
+00:02:12,130 --> 00:02:13,760
+route component.
+
+51
+00:02:13,760 --> 00:02:18,130
+That route Vue application that will hold all our
+
+52
+00:02:18,130 --> 00:02:19,653
+other components in the end.
+
+53
+00:02:21,410 --> 00:02:23,700
+Well and then, I'm going to start by adding a
+
+54
+00:02:23,700 --> 00:02:27,612
+template here in App.vue and in that template
+
+55
+00:02:27,612 --> 00:02:32,612
+here, I want to start by out putting a list of
+
+56
+00:02:32,790 --> 00:02:35,160
+dummy learning resources.
+
+57
+00:02:35,160 --> 00:02:37,200
+Later the user will be able to add
+
+58
+00:02:37,200 --> 00:02:39,520
+his or her own ones but we'll start with
+
+59
+00:02:39,520 --> 00:02:41,330
+some dummy resources.
+
+60
+00:02:41,330 --> 00:02:44,330
+Hence we can start by adding an order list
+
+61
+00:02:44,330 --> 00:02:48,670
+and we can of course then manage those resources
+
+62
+00:02:48,670 --> 00:02:53,670
+here in the data property off this App.vue file.
+
+63
+00:02:53,890 --> 00:02:56,870
+So we can return our data object here and then
+
+64
+00:02:56,870 --> 00:03:00,530
+have some stored resources here for example
+
+65
+00:03:00,530 --> 00:03:03,790
+which could be an array, an array full of objects
+
+66
+00:03:03,790 --> 00:03:07,403
+where every object is one learning resource.
+
+67
+00:03:08,300 --> 00:03:12,030
+And in that an order list, we could use V4,
+
+68
+00:03:12,030 --> 00:03:15,510
+the V4 directive to output those storage
+
+69
+00:03:15,510 --> 00:03:16,433
+resources.
+
+70
+00:03:17,690 --> 00:03:19,760
+And that sounds like a good start to me.
+
+71
+00:03:19,760 --> 00:03:23,240
+So I'll start here by populating this with some
+
+72
+00:03:23,240 --> 00:03:25,430
+dummy data because for the moment,
+
+73
+00:03:25,430 --> 00:03:28,520
+we have no way of letting the user generate data.
+
+74
+00:03:28,520 --> 00:03:31,750
+And every learning resource should have an ID.
+
+75
+00:03:31,750 --> 00:03:34,761
+for example because we need that ID to add a key
+
+76
+00:03:34,761 --> 00:03:38,860
+when we use V4 but an ID will also be helpful
+
+77
+00:03:38,860 --> 00:03:40,870
+when we later add functionality
+
+78
+00:03:40,870 --> 00:03:42,323
+to delete resources.
+
+79
+00:03:43,650 --> 00:03:47,350
+I'll have the official-guide as an ID,
+
+80
+00:03:47,350 --> 00:03:49,670
+you can use any string you want here.
+
+81
+00:03:49,670 --> 00:03:51,320
+And then let's say every resource
+
+82
+00:03:51,320 --> 00:03:54,230
+should have a title, official-guide.
+
+83
+00:03:54,230 --> 00:03:55,600
+Because the official-guide,
+
+84
+00:03:55,600 --> 00:03:57,760
+the official documentation of course is a
+
+85
+00:03:57,760 --> 00:03:59,930
+learning resource, you wanna keep around
+
+86
+00:03:59,930 --> 00:04:01,283
+when diving into Vue.
+
+87
+00:04:02,220 --> 00:04:03,730
+We can then add a description,
+
+88
+00:04:03,730 --> 00:04:06,600
+because I also to output a short description
+
+89
+00:04:06,600 --> 00:04:08,560
+of the resource on the screen
+
+90
+00:04:08,560 --> 00:04:11,190
+and that description here could be
+
+91
+00:04:12,567 --> 00:04:16,403
+"The official Vue.js documentation"
+
+92
+00:04:18,000 --> 00:04:19,440
+and last but not least,
+
+93
+00:04:19,440 --> 00:04:22,040
+I'll add another field here, let's say a link
+
+94
+00:04:22,040 --> 00:04:25,570
+property which is to link to that documentation,
+
+95
+00:04:25,570 --> 00:04:27,393
+which is vuejs.org.
+
+96
+00:04:28,350 --> 00:04:31,020
+Now that's my first resource with which I wanna
+
+97
+00:04:31,020 --> 00:04:32,030
+start.
+
+98
+00:04:32,030 --> 00:04:35,501
+I'll also add a second resource here and that
+
+99
+00:04:35,501 --> 00:04:37,954
+second resource is Google because Google is
+
+100
+00:04:37,954 --> 00:04:40,663
+super important if you are learning anything.
+
+101
+00:04:41,960 --> 00:04:44,580
+Because you need to learn to Google.
+
+102
+00:04:44,580 --> 00:04:46,860
+There you will find all the resources you could
+
+103
+00:04:46,860 --> 00:04:47,973
+possibly want.
+
+104
+00:04:49,070 --> 00:04:51,562
+Okay, now we get two dummy resources here and
+
+105
+00:04:51,562 --> 00:04:53,940
+now we can output them here in our
+
+106
+00:04:53,940 --> 00:04:57,520
+an ordered list and I'm fully aware that this
+
+107
+00:04:57,520 --> 00:05:00,160
+is quite a bit away from the final
+
+108
+00:05:00,160 --> 00:05:03,000
+app we wanna build but we can simply get there
+
+109
+00:05:03,000 --> 00:05:06,760
+step by step by adding feature after feature.
+
+110
+00:05:06,760 --> 00:05:09,990
+So feel free to now output those resources
+
+111
+00:05:09,990 --> 00:05:14,590
+on your own, in list items and potentially
+
+112
+00:05:14,590 --> 00:05:17,670
+also consider creating a separate component
+
+113
+00:05:17,670 --> 00:05:19,373
+for every list item.
+
+114
+00:05:20,270 --> 00:05:22,683
+We'll do that together in the next lecture.
+

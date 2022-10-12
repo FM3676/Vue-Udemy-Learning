@@ -1,0 +1,1112 @@
+1
+00:00:02,130 --> 00:00:05,010
+So let's move on to the battle log.
+
+2
+00:00:05,010 --> 00:00:06,650
+And there are certainly many ways
+
+3
+00:00:06,650 --> 00:00:08,840
+of implementing such a log.
+
+4
+00:00:08,840 --> 00:00:11,759
+I want to have a log where we can add messages
+
+5
+00:00:11,759 --> 00:00:16,110
+that basically keep track of which action occurred?
+
+6
+00:00:16,110 --> 00:00:18,670
+And who started this action?
+
+7
+00:00:18,670 --> 00:00:22,040
+And which value was connected to this action?
+
+8
+00:00:22,040 --> 00:00:24,740
+For example, how much damage was dealt.
+
+9
+00:00:24,740 --> 00:00:27,210
+For that we should go back to app.js
+
+10
+00:00:27,210 --> 00:00:29,400
+and add a new method here,
+
+11
+00:00:29,400 --> 00:00:31,990
+which could be called addLogMessage,
+
+12
+00:00:31,990 --> 00:00:34,420
+because that's what we're going to do.
+
+13
+00:00:34,420 --> 00:00:38,760
+This method should take three parameters.
+
+14
+00:00:38,760 --> 00:00:42,113
+It should take the information, who did something.
+
+15
+00:00:43,360 --> 00:00:45,580
+So I'm going to name it who.
+
+16
+00:00:45,580 --> 00:00:48,160
+Then I want to know what happened.
+
+17
+00:00:48,160 --> 00:00:51,210
+Did we attack? Did we heal?
+
+18
+00:00:51,210 --> 00:00:54,180
+So I'm going to add a what here
+
+19
+00:00:54,180 --> 00:00:58,110
+and I need to know the value, how much damage was dealt.
+
+20
+00:00:58,110 --> 00:00:59,920
+How much did we heal for?
+
+21
+00:00:59,920 --> 00:01:02,360
+So these are the free parameters we need here.
+
+22
+00:01:02,360 --> 00:01:04,959
+Who, what and value.
+
+23
+00:01:04,959 --> 00:01:06,430
+And with this information,
+
+24
+00:01:06,430 --> 00:01:08,850
+I want to add a new log message
+
+25
+00:01:08,850 --> 00:01:11,800
+to a growing list of logMessages,
+
+26
+00:01:11,800 --> 00:01:14,300
+which then can be output here
+
+27
+00:01:14,300 --> 00:01:17,380
+in this battle log on the screen.
+
+28
+00:01:17,380 --> 00:01:20,460
+Hence, what we need a data property
+
+29
+00:01:20,460 --> 00:01:22,620
+an array of logMessages,
+
+30
+00:01:22,620 --> 00:01:25,890
+which can change and which Vue tracks
+
+31
+00:01:25,890 --> 00:01:27,390
+to be aware of changes
+
+32
+00:01:27,390 --> 00:01:31,000
+so that it updates the UI when it changed?
+
+33
+00:01:31,000 --> 00:01:35,640
+So therefore here, I'm going to add a logMessages array,
+
+34
+00:01:35,640 --> 00:01:37,960
+which is empty initially.
+
+35
+00:01:37,960 --> 00:01:39,570
+And whilst we're at it,
+
+36
+00:01:39,570 --> 00:01:42,700
+we can also already reset it to an empty array
+
+37
+00:01:42,700 --> 00:01:44,350
+when we start a new game.
+
+38
+00:01:44,350 --> 00:01:47,563
+So set logMessages back to an empty array here,
+
+39
+00:01:48,420 --> 00:01:52,894
+but now that we got logMessages in addLogMessage
+
+40
+00:01:52,894 --> 00:01:56,640
+I want to add a new log message to this array
+
+41
+00:01:56,640 --> 00:01:58,910
+whenever this method is called.
+
+42
+00:01:58,910 --> 00:02:01,860
+And I want to add it at the beginning of the array,
+
+43
+00:02:01,860 --> 00:02:05,560
+so that the latest message is always right on top.
+
+44
+00:02:05,560 --> 00:02:07,630
+So it's the first one in the array,
+
+45
+00:02:07,630 --> 00:02:10,220
+and we can do it as by reaching out to logMessages
+
+46
+00:02:10,220 --> 00:02:11,793
+and using unshift.
+
+47
+00:02:12,990 --> 00:02:15,430
+Unshift is basically like push,
+
+48
+00:02:15,430 --> 00:02:19,978
+but where push adds something at the end of the array
+
+49
+00:02:19,978 --> 00:02:23,803
+unshift adds something at the beginning of the array.
+
+50
+00:02:25,050 --> 00:02:28,730
+And now it's up to you how a log message should look like.
+
+51
+00:02:28,730 --> 00:02:32,460
+Thus far in the course in the other lectures and modules.
+
+52
+00:02:32,460 --> 00:02:36,660
+When we worked with lists and arrays and v-for,
+
+53
+00:02:36,660 --> 00:02:41,140
+we always had arrays full of strings full of text.
+
+54
+00:02:41,140 --> 00:02:45,150
+Here since we have free pieces of information that matter,
+
+55
+00:02:45,150 --> 00:02:48,620
+I will actually add an object to this array.
+
+56
+00:02:48,620 --> 00:02:51,220
+So a log message is an object,
+
+57
+00:02:51,220 --> 00:02:54,050
+and you will see how we can output does on the screen
+
+58
+00:02:54,050 --> 00:02:55,950
+in just a second.
+
+59
+00:02:55,950 --> 00:03:00,390
+So here I will now add different pieces of information
+
+60
+00:03:00,390 --> 00:03:03,850
+to this object to who, what and value to be precise
+
+61
+00:03:03,850 --> 00:03:07,350
+and I'll name the key actionBy: who
+
+62
+00:03:07,350 --> 00:03:10,690
+actionType: what
+
+63
+00:03:10,690 --> 00:03:14,590
+and actionValue the value we got.
+
+64
+00:03:14,590 --> 00:03:17,730
+So we add an object to our logMessages,
+
+65
+00:03:17,730 --> 00:03:21,940
+which has three keys action by action type and action value.
+
+66
+00:03:21,940 --> 00:03:24,240
+So that we know who did the action,
+
+67
+00:03:24,240 --> 00:03:25,900
+which kind of action it was
+
+68
+00:03:25,900 --> 00:03:27,963
+and what the value of the action was.
+
+69
+00:03:29,360 --> 00:03:31,930
+That's how we add logMessages.
+
+70
+00:03:31,930 --> 00:03:34,700
+And now a new log message should be added
+
+71
+00:03:34,700 --> 00:03:38,120
+when we for example, attack the monster.
+
+72
+00:03:38,120 --> 00:03:42,750
+So here in attackMonster, before the monster attacks us,
+
+73
+00:03:42,750 --> 00:03:47,750
+I want to call addLogMessage, so this newly added method
+
+74
+00:03:47,860 --> 00:03:50,370
+and set to who to player
+
+75
+00:03:50,370 --> 00:03:53,400
+because the player attacked the monster
+
+76
+00:03:53,400 --> 00:03:56,730
+wants to set the action to attack
+
+77
+00:03:56,730 --> 00:04:01,730
+and pass in the attackValue like this.
+
+78
+00:04:03,530 --> 00:04:07,050
+Now, when the monster attacks us here in attackPlayer,
+
+79
+00:04:07,050 --> 00:04:09,110
+I also want to add a log message,
+
+80
+00:04:09,110 --> 00:04:12,260
+but now it's the monster who attacked us
+
+81
+00:04:12,260 --> 00:04:16,223
+for this given attack value, which you derive here as well.
+
+82
+00:04:17,350 --> 00:04:20,649
+Of course, we do the same for the special attack.
+
+83
+00:04:20,649 --> 00:04:23,370
+Here the player attacks the monster.
+
+84
+00:04:23,370 --> 00:04:26,460
+We could also name this special-attack,
+
+85
+00:04:26,460 --> 00:04:28,030
+but that's really up to you
+
+86
+00:04:28,030 --> 00:04:31,250
+how you wanna handle those different types later.
+
+87
+00:04:31,250 --> 00:04:32,770
+I will not differentiate
+
+88
+00:04:32,770 --> 00:04:35,190
+between special attack and regular attack.
+
+89
+00:04:35,190 --> 00:04:37,620
+So I will just name it, attack here as well.
+
+90
+00:04:37,620 --> 00:04:40,770
+If you would want to add such a differentiation,
+
+91
+00:04:40,770 --> 00:04:43,640
+you could use a different identifier here,
+
+92
+00:04:43,640 --> 00:04:45,003
+but I'll stick to attack.
+
+93
+00:04:46,810 --> 00:04:48,890
+Last but not least for healing here,
+
+94
+00:04:48,890 --> 00:04:53,890
+the player heals himself for the heel value.
+
+95
+00:04:54,580 --> 00:04:57,603
+So that is the log message I wanna add here.
+
+96
+00:04:59,730 --> 00:05:03,320
+So now we've got these different logMessages being added
+
+97
+00:05:03,320 --> 00:05:06,400
+with that our logMessages array will grow.
+
+98
+00:05:06,400 --> 00:05:10,223
+And now the question is how we output those messages.
+
+99
+00:05:11,340 --> 00:05:15,060
+In index.html we got this unordered list here
+
+100
+00:05:15,060 --> 00:05:16,470
+in our battle log
+
+101
+00:05:16,470 --> 00:05:18,740
+and this unordered list should render
+
+102
+00:05:18,740 --> 00:05:21,040
+a bunch of lists items.
+
+103
+00:05:21,040 --> 00:05:22,430
+As I mentioned before,
+
+104
+00:05:22,430 --> 00:05:26,503
+you don't need to use a list item to use v-for.
+
+105
+00:05:26,503 --> 00:05:29,210
+V-for can be used on any element,
+
+106
+00:05:29,210 --> 00:05:31,410
+but since we're outputting lists of data
+
+107
+00:05:31,410 --> 00:05:34,450
+and we want to write semantically correct code
+
+108
+00:05:34,450 --> 00:05:37,720
+often you will use v-for on list items,
+
+109
+00:05:37,720 --> 00:05:41,630
+because that is the semantically correct HTML element
+
+110
+00:05:41,630 --> 00:05:43,410
+well for list items.
+
+111
+00:05:43,410 --> 00:05:45,170
+That's just a side note.
+
+112
+00:05:45,170 --> 00:05:47,250
+The more important thing of course here is
+
+113
+00:05:47,250 --> 00:05:49,100
+that we use v-for though
+
+114
+00:05:49,100 --> 00:05:51,680
+a nice Vue directive we learned about
+
+115
+00:05:51,680 --> 00:05:55,000
+which can help us with outputting a list content.
+
+116
+00:05:55,000 --> 00:05:58,190
+It allows us to repeat this list item element,
+
+117
+00:05:58,190 --> 00:06:00,750
+and create it as often as needed
+
+118
+00:06:00,750 --> 00:06:04,571
+to have one list item HTML element on the screen
+
+119
+00:06:04,571 --> 00:06:09,430
+per item in our logMessages array.
+
+120
+00:06:09,430 --> 00:06:12,430
+So therefore here we need to refer to logMessages
+
+121
+00:06:12,430 --> 00:06:15,320
+and go through it with the in key word
+
+122
+00:06:15,320 --> 00:06:18,970
+and then get access to every single log message
+
+123
+00:06:18,970 --> 00:06:21,890
+which we now can use on an inside
+
+124
+00:06:21,890 --> 00:06:24,363
+of this repeated list item.
+
+125
+00:06:27,080 --> 00:06:28,053
+And now here.
+
+126
+00:06:29,240 --> 00:06:30,880
+The content we want to output
+
+127
+00:06:30,880 --> 00:06:33,440
+of course is fully up to you.
+
+128
+00:06:33,440 --> 00:06:35,900
+We could use interpolation here
+
+129
+00:06:35,900 --> 00:06:39,690
+to output the action by field,
+
+130
+00:06:39,690 --> 00:06:43,160
+which is one of the free fields we add as a log message,
+
+131
+00:06:43,160 --> 00:06:45,747
+which basically indicates who did something.
+
+132
+00:06:45,747 --> 00:06:48,390
+Then we could add a dash
+
+133
+00:06:48,390 --> 00:06:50,960
+and a new piece of interpolation here
+
+134
+00:06:50,960 --> 00:06:53,513
+to output logMessage.actionType
+
+135
+00:06:57,223 --> 00:06:59,440
+so that we know what happened.
+
+136
+00:06:59,440 --> 00:07:01,550
+And then another dash
+
+137
+00:07:01,550 --> 00:07:04,770
+and another piece of interpolation here
+
+138
+00:07:04,770 --> 00:07:09,523
+to output our action value.
+
+139
+00:07:11,200 --> 00:07:12,440
+That's something we could do
+
+140
+00:07:12,440 --> 00:07:13,720
+with that we would output
+
+141
+00:07:13,720 --> 00:07:15,900
+who did something, what happened
+
+142
+00:07:15,900 --> 00:07:17,793
+and which value was associated.
+
+143
+00:07:18,740 --> 00:07:21,090
+And if we saved it and reload,
+
+144
+00:07:21,090 --> 00:07:23,680
+indeed you will see if I click attack here.
+
+145
+00:07:23,680 --> 00:07:26,550
+We have these two logMessages
+
+146
+00:07:26,550 --> 00:07:29,120
+where we see that the player attack for six
+
+147
+00:07:29,120 --> 00:07:31,720
+and there after the monster attack for eight.
+
+148
+00:07:31,720 --> 00:07:33,260
+And that's a nice start,
+
+149
+00:07:33,260 --> 00:07:35,820
+but actually I prepared some styles
+
+150
+00:07:35,820 --> 00:07:38,230
+to output this in a nicer way.
+
+151
+00:07:38,230 --> 00:07:40,173
+So let's actually use those.
+
+152
+00:07:41,250 --> 00:07:43,660
+And therefore I'm going to get rid of that.
+
+153
+00:07:43,660 --> 00:07:47,700
+And instead, add a span here, a span element,
+
+154
+00:07:47,700 --> 00:07:52,700
+which actually should hold the initiator of the action.
+
+155
+00:07:52,980 --> 00:07:55,490
+So this action by field.
+
+156
+00:07:55,490 --> 00:07:57,250
+So here I wanna access logMessage
+
+157
+00:07:58,880 --> 00:08:03,880
+and check if actionBy is equal to player.
+
+158
+00:08:05,310 --> 00:08:09,400
+In which case I want to print player here with a capital P
+
+159
+00:08:09,400 --> 00:08:13,410
+otherwise it'll be the monster, so I'll then output that.
+
+160
+00:08:13,410 --> 00:08:16,252
+So a little ternary expression here.
+
+161
+00:08:16,252 --> 00:08:19,900
+I also want to have a second span thereafter
+
+162
+00:08:19,900 --> 00:08:24,410
+which holds the type of action that happened,
+
+163
+00:08:24,410 --> 00:08:29,260
+and here we either dealt damage or we healed ourselves.
+
+164
+00:08:29,260 --> 00:08:34,260
+So with v-if, I'm going to check if logMessage.actionType
+
+165
+00:08:34,340 --> 00:08:36,240
+is equal to heal.
+
+166
+00:08:36,240 --> 00:08:37,360
+In which case here,
+
+167
+00:08:37,360 --> 00:08:41,159
+I wanna say heals himself
+
+168
+00:08:41,159 --> 00:08:45,110
+so that we say something like player heals himself,
+
+169
+00:08:45,110 --> 00:08:47,580
+for, and then of course,
+
+170
+00:08:47,580 --> 00:08:48,750
+the amount of healing done,
+
+171
+00:08:48,750 --> 00:08:50,670
+which I'll wrap in another span
+
+172
+00:08:50,670 --> 00:08:53,670
+simply so that I can later add some styling
+
+173
+00:08:53,670 --> 00:08:55,598
+to highlight the value
+
+174
+00:08:55,598 --> 00:08:58,286
+and into this second span here,
+
+175
+00:08:58,286 --> 00:09:03,286
+I'll add the log message action value,
+
+176
+00:09:03,430 --> 00:09:06,120
+which is the amount for which be healed here.
+
+177
+00:09:06,120 --> 00:09:08,460
+And I'll give this span here
+
+178
+00:09:08,460 --> 00:09:13,070
+a CSS class of log--heal,
+
+179
+00:09:13,070 --> 00:09:15,930
+which is one of the prepared CSS classes here
+
+180
+00:09:15,930 --> 00:09:19,670
+to simply color the amount by which we healed green.
+
+181
+00:09:19,670 --> 00:09:22,720
+That's the only reason why I have this extra span here
+
+182
+00:09:22,720 --> 00:09:25,250
+so that I can add an extra CSS class
+
+183
+00:09:25,250 --> 00:09:27,463
+just to this heel value text.
+
+184
+00:09:29,210 --> 00:09:30,650
+Now this is one option.
+
+185
+00:09:30,650 --> 00:09:32,020
+I need a number of span
+
+186
+00:09:32,020 --> 00:09:35,700
+next to this general healed himself span.
+
+187
+00:09:35,700 --> 00:09:37,298
+And that is for the scenario
+
+188
+00:09:37,298 --> 00:09:39,980
+that we actually dealt damaged
+
+189
+00:09:39,980 --> 00:09:42,230
+that we did not heal ourselves.
+
+190
+00:09:42,230 --> 00:09:43,640
+Here we can use v-else
+
+191
+00:09:43,640 --> 00:09:46,180
+because dealing damage is the only other option
+
+192
+00:09:46,180 --> 00:09:47,670
+we have in this game.
+
+193
+00:09:47,670 --> 00:09:50,850
+And therefore here I'll say attacks
+
+194
+00:09:50,850 --> 00:09:55,850
+so that we say something like player attacks and deals.
+
+195
+00:09:58,140 --> 00:10:00,690
+And now again, I would put the damage in a span
+
+196
+00:10:00,690 --> 00:10:03,570
+so that we can add an extra CSS class
+
+197
+00:10:03,570 --> 00:10:06,103
+in this case the log--damage class,
+
+198
+00:10:08,600 --> 00:10:12,563
+which is our prepared CSS class to give it a red color.
+
+199
+00:10:15,370 --> 00:10:19,260
+And output the damage value again, in that special span.
+
+200
+00:10:19,260 --> 00:10:22,250
+So that we take advantage of this highlighting,
+
+201
+00:10:22,250 --> 00:10:24,670
+of this special CSS style?
+
+202
+00:10:24,670 --> 00:10:28,233
+So here we have logMessage.actionValue again.
+
+203
+00:10:31,630 --> 00:10:33,780
+So this is now how we could structure this.
+
+204
+00:10:33,780 --> 00:10:37,660
+I also wanna add a CSS class here to this first class
+
+205
+00:10:37,660 --> 00:10:40,310
+to highlight who did something.
+
+206
+00:10:40,310 --> 00:10:43,840
+And for that I'll dynamically add a class here
+
+207
+00:10:43,840 --> 00:10:46,000
+because I want to add different classes
+
+208
+00:10:46,000 --> 00:10:48,480
+depending on whatever we have the player
+
+209
+00:10:48,480 --> 00:10:51,280
+or the monster doing something here.
+
+210
+00:10:51,280 --> 00:10:54,020
+So I'll add this object syntax here
+
+211
+00:10:54,020 --> 00:10:57,570
+and add a class of log--player,
+
+212
+00:10:57,570 --> 00:11:00,793
+which is another prepared class here this one,
+
+213
+00:11:01,800 --> 00:11:04,626
+if action by is the player
+
+214
+00:11:04,626 --> 00:11:08,860
+and add log--monster
+
+215
+00:11:08,860 --> 00:11:12,430
+if the action was started by the monster,
+
+216
+00:11:12,430 --> 00:11:16,310
+you need single quotes around those keys here by the way,
+
+217
+00:11:16,310 --> 00:11:18,640
+since we're in a JavaScript object here
+
+218
+00:11:18,640 --> 00:11:22,150
+and dashes in property names are not allowed
+
+219
+00:11:22,150 --> 00:11:25,810
+without wrapping the whole property name into quotes
+
+220
+00:11:25,810 --> 00:11:28,510
+with quotes though, they are allowed.
+
+221
+00:11:28,510 --> 00:11:30,390
+So that's why you need single quotes
+
+222
+00:11:30,390 --> 00:11:32,323
+around your property names here.
+
+223
+00:11:34,340 --> 00:11:37,600
+And the values off these properties here,
+
+224
+00:11:37,600 --> 00:11:40,960
+as you learned needs to be values that indicate
+
+225
+00:11:40,960 --> 00:11:45,550
+whether or not those classes should be added to that span.
+
+226
+00:11:45,550 --> 00:11:49,220
+So you'll need true or false here in the end.
+
+227
+00:11:49,220 --> 00:11:52,360
+And therefore we can simply check if logMessage.actionBy
+
+228
+00:11:53,880 --> 00:11:56,020
+is equal to player here.
+
+229
+00:11:56,020 --> 00:11:57,360
+If that is true,
+
+230
+00:11:57,360 --> 00:11:59,580
+I want to add the log--player class.
+
+231
+00:11:59,580 --> 00:12:01,603
+If that's false, I don't wanna add it.
+
+232
+00:12:03,650 --> 00:12:05,720
+And for adding log--monster,
+
+233
+00:12:05,720 --> 00:12:08,880
+I want to check if logMessage.actionBy
+
+234
+00:12:08,880 --> 00:12:11,360
+is equal to monster.
+
+235
+00:12:11,360 --> 00:12:12,950
+And of course only one of the two
+
+236
+00:12:12,950 --> 00:12:14,763
+will be true at a given time.
+
+237
+00:12:16,010 --> 00:12:17,940
+And that's my logic here.
+
+238
+00:12:17,940 --> 00:12:20,140
+Now, this is quite long,
+
+239
+00:12:20,140 --> 00:12:22,800
+but outsourcing this into a computed property
+
+240
+00:12:22,800 --> 00:12:25,220
+would actually not really be possible
+
+241
+00:12:25,220 --> 00:12:27,200
+because this does not depend
+
+242
+00:12:27,200 --> 00:12:29,400
+on some general data property,
+
+243
+00:12:29,400 --> 00:12:33,620
+but on a concrete value we get for this exact list item,
+
+244
+00:12:33,620 --> 00:12:34,900
+which is being rendered.
+
+245
+00:12:34,900 --> 00:12:38,500
+So if you would want to outsource this into JavaScript code,
+
+246
+00:12:38,500 --> 00:12:41,050
+you would indeed need to use a method
+
+247
+00:12:41,050 --> 00:12:44,790
+to which you pass logMessage.actionBy for example,
+
+248
+00:12:44,790 --> 00:12:49,320
+because that is not a single value managed application wide,
+
+249
+00:12:49,320 --> 00:12:52,710
+but that depends on which list item is being rendered.
+
+250
+00:12:52,710 --> 00:12:54,840
+That's just a side note.
+
+251
+00:12:54,840 --> 00:12:55,730
+With that however,
+
+252
+00:12:55,730 --> 00:12:58,610
+if we save that and reload, if we now attack,
+
+253
+00:12:58,610 --> 00:13:01,580
+we see something like monster attacks and deals 12,
+
+254
+00:13:01,580 --> 00:13:03,710
+player attacks and deal six.
+
+255
+00:13:03,710 --> 00:13:06,820
+If we heal, we see player heals himself for nine
+
+256
+00:13:06,820 --> 00:13:08,130
+and there after the monster,
+
+257
+00:13:08,130 --> 00:13:09,500
+attacked us for a 13,
+
+258
+00:13:09,500 --> 00:13:11,900
+so that didn't help too much.
+
+259
+00:13:11,900 --> 00:13:14,440
+This now looks better and so on.
+
+260
+00:13:14,440 --> 00:13:16,480
+So this all seems to work.
+
+261
+00:13:16,480 --> 00:13:17,984
+Now we got a log
+
+262
+00:13:17,984 --> 00:13:20,130
+and if the game is over,
+
+263
+00:13:20,130 --> 00:13:22,450
+we can inspect the whole log.
+
+264
+00:13:22,450 --> 00:13:23,800
+If we start a new game,
+
+265
+00:13:23,800 --> 00:13:26,320
+it's of course reset as it should be.
+
+266
+00:13:26,320 --> 00:13:27,940
+Because in start game,
+
+267
+00:13:27,940 --> 00:13:31,003
+we set the logMessages to an empty array again.
+
+268
+00:13:32,870 --> 00:13:35,830
+And that is the finished game here.
+
+269
+00:13:35,830 --> 00:13:38,897
+That actually is a nice first project,
+
+270
+00:13:38,897 --> 00:13:42,640
+which shows all the core features we learned about
+
+271
+00:13:42,640 --> 00:13:47,640
+like interpolation, v-bind, v-on different events,
+
+272
+00:13:47,810 --> 00:13:52,200
+methods, computed, watch, v-if, v-for
+
+273
+00:13:52,200 --> 00:13:53,670
+it's all in here.
+
+274
+00:13:53,670 --> 00:13:56,440
+And therefore I hope that this project
+
+275
+00:13:56,440 --> 00:13:59,460
+helps you get a better understanding of Vue,
+
+276
+00:13:59,460 --> 00:14:02,440
+the different pieces that make up Vue
+
+277
+00:14:02,440 --> 00:14:05,100
+and how they all work together.
+
+278
+00:14:05,100 --> 00:14:09,393
+Now we're really well prepared to dive deeper into Vue.
+

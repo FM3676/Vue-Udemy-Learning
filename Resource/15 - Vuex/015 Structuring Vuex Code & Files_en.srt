@@ -1,0 +1,616 @@
+1
+00:00:02,120 --> 00:00:03,700
+With that, we are almost done
+
+2
+00:00:03,700 --> 00:00:07,810
+with the basics, but there is one, maybe obvious problem,
+
+3
+00:00:07,810 --> 00:00:10,320
+the main JS file is huge.
+
+4
+00:00:10,320 --> 00:00:14,120
+It has the entire store and even an extra module in there,
+
+5
+00:00:14,120 --> 00:00:16,850
+and it might work for this app,
+
+6
+00:00:16,850 --> 00:00:18,660
+but even here, it's a lot of code.
+
+7
+00:00:18,660 --> 00:00:19,560
+In bigger apps,
+
+8
+00:00:19,560 --> 00:00:23,023
+I definitely don't want to have that all in main JS.
+
+9
+00:00:23,940 --> 00:00:26,270
+Instead, just as with rooting,
+
+10
+00:00:26,270 --> 00:00:29,030
+you typically create extra files for that.
+
+11
+00:00:29,030 --> 00:00:31,610
+You could start with a store JS file
+
+12
+00:00:31,610 --> 00:00:34,820
+and outsource your entire store into that.
+
+13
+00:00:34,820 --> 00:00:37,070
+That might be a good start.
+
+14
+00:00:37,070 --> 00:00:41,020
+So let's grab the module and this store,
+
+15
+00:00:41,020 --> 00:00:45,863
+cut it all from main JS and instead, add it in store JS.
+
+16
+00:00:46,820 --> 00:00:48,320
+And then also, of course,
+
+17
+00:00:48,320 --> 00:00:51,050
+cut the create store import,
+
+18
+00:00:51,050 --> 00:00:52,520
+go to store JS
+
+19
+00:00:53,430 --> 00:00:55,150
+and add the import here
+
+20
+00:00:55,150 --> 00:00:58,170
+because we use create store in his file,
+
+21
+00:00:58,170 --> 00:01:02,340
+and then in the end, export the store as a default
+
+22
+00:01:02,340 --> 00:01:05,530
+so that we can import it in main JS.
+
+23
+00:01:05,530 --> 00:01:08,940
+Import store from store JS
+
+24
+00:01:09,970 --> 00:01:12,470
+and with that, everything should be working again.
+
+25
+00:01:13,330 --> 00:01:16,570
+Yes. But this is just a start.
+
+26
+00:01:16,570 --> 00:01:21,200
+Store JS is still huge and in bigger apps with many modules,
+
+27
+00:01:21,200 --> 00:01:23,873
+this quickly becomes a super large file.
+
+28
+00:01:24,760 --> 00:01:28,110
+Therefore, typically, we go even further than that.
+
+29
+00:01:28,110 --> 00:01:31,690
+Often, you add a separate folder named store,
+
+30
+00:01:31,690 --> 00:01:35,610
+and in there, you then have your index JS file,
+
+31
+00:01:35,610 --> 00:01:39,023
+which holds your main store creation logic,
+
+32
+00:01:39,880 --> 00:01:44,880
+then you have separate files for actions and mutations,
+
+33
+00:01:48,430 --> 00:01:51,283
+possibly all the for getters, if you want to.
+
+34
+00:01:53,310 --> 00:01:55,710
+And then we create separate sub folders
+
+35
+00:01:55,710 --> 00:01:57,590
+for all the modules we might have,
+
+36
+00:01:57,590 --> 00:01:59,450
+like the counter module.
+
+37
+00:01:59,450 --> 00:02:02,090
+And then there again, you could have a index JS file,
+
+38
+00:02:02,090 --> 00:02:05,580
+actions JS ends on to merge things together.
+
+39
+00:02:05,580 --> 00:02:07,740
+Now I'm going to split it like this
+
+40
+00:02:07,740 --> 00:02:09,889
+to show you how this could work,
+
+41
+00:02:09,889 --> 00:02:12,330
+I will also be honest for this demo,
+
+42
+00:02:12,330 --> 00:02:14,583
+of course, that's all overkill.
+
+43
+00:02:15,890 --> 00:02:17,780
+But with Deb, we have a bunch of files
+
+44
+00:02:17,780 --> 00:02:21,310
+and now let's see how we split the code into those files.
+
+45
+00:02:21,310 --> 00:02:23,440
+In store JS here,
+
+46
+00:02:23,440 --> 00:02:27,023
+I will grab from my main store,
+
+47
+00:02:29,350 --> 00:02:33,623
+this whole logic to create a store, including the export.
+
+48
+00:02:35,860 --> 00:02:40,090
+And I will cut that and add it to index JS in store.
+
+49
+00:02:40,090 --> 00:02:43,653
+So not index inside of counter, but index inside of store.
+
+50
+00:02:44,643 --> 00:02:48,370
+I'll also grab the import here of create store
+
+51
+00:02:48,370 --> 00:02:51,853
+and add that to index JS in the store folder.
+
+52
+00:02:53,420 --> 00:02:56,660
+Now, I grab my mutations,
+
+53
+00:02:56,660 --> 00:03:00,093
+in this case, the one root mutation I have here,
+
+54
+00:03:02,060 --> 00:03:07,060
+grab this object here and in the mutations JS file,
+
+55
+00:03:07,100 --> 00:03:10,620
+I will simply export this object now.
+
+56
+00:03:10,620 --> 00:03:12,210
+Again, this is overkill.
+
+57
+00:03:12,210 --> 00:03:14,360
+Just having one object in a file,
+
+58
+00:03:14,360 --> 00:03:17,560
+there would be nothing wrong with having that in index JS.
+
+59
+00:03:17,560 --> 00:03:20,270
+I'll just show you the ultimate solution
+
+60
+00:03:20,270 --> 00:03:21,923
+for very big apps here.
+
+61
+00:03:23,140 --> 00:03:26,340
+So with that, I'm exporting my mutation object
+
+62
+00:03:26,340 --> 00:03:29,660
+and re-import that in index JS then.
+
+63
+00:03:29,660 --> 00:03:34,660
+Import mutations from mutations JS.
+
+64
+00:03:36,823 --> 00:03:39,870
+Maybe also named as root mutations
+
+65
+00:03:39,870 --> 00:03:42,530
+to make it clear that these are the mutations
+
+66
+00:03:42,530 --> 00:03:45,250
+that influence our root state here.
+
+67
+00:03:45,250 --> 00:03:48,813
+And I assign root mutations to mutations then.
+
+68
+00:03:50,410 --> 00:03:52,079
+Same for actions.
+
+69
+00:03:52,079 --> 00:03:55,450
+You can grab the actions, object actually,
+
+70
+00:03:55,450 --> 00:03:59,140
+go to the actions JS file in the store folder,
+
+71
+00:03:59,140 --> 00:04:03,480
+export it as a default, like this,
+
+72
+00:04:03,480 --> 00:04:05,240
+and back in index JS,
+
+73
+00:04:05,240 --> 00:04:10,240
+we then import the root actions from actions JS.
+
+74
+00:04:13,707 --> 00:04:17,700
+And then assign root actions here to actions.
+
+75
+00:04:20,300 --> 00:04:21,560
+At the same, if you want,
+
+76
+00:04:21,560 --> 00:04:23,823
+for getters, grab the getters,
+
+77
+00:04:24,680 --> 00:04:28,223
+export them into getters JS file, like that.
+
+78
+00:04:29,490 --> 00:04:31,170
+And back at index JS,
+
+79
+00:04:31,170 --> 00:04:36,170
+I import my root getters from ./gettersjs
+
+80
+00:04:39,610 --> 00:04:42,193
+and assigned root getters to getters.
+
+81
+00:04:44,530 --> 00:04:46,700
+And now, this is a very lean file.
+
+82
+00:04:46,700 --> 00:04:49,093
+The state stays in here by the way.
+
+83
+00:04:50,390 --> 00:04:52,310
+Now for the modules.
+
+84
+00:04:52,310 --> 00:04:55,023
+In store JS, I still have the counter module.
+
+85
+00:04:56,380 --> 00:04:58,670
+I now grab this code,
+
+86
+00:04:58,670 --> 00:05:00,410
+so that store JS is empty
+
+87
+00:05:00,410 --> 00:05:03,130
+and hence we can delete the file, of course,
+
+88
+00:05:03,130 --> 00:05:05,950
+and go to the counter folder in the store folder,
+
+89
+00:05:05,950 --> 00:05:08,513
+and there, in index JS, I paste it in.
+
+90
+00:05:09,390 --> 00:05:11,540
+And I export this entire object
+
+91
+00:05:11,540 --> 00:05:13,833
+as a default simply like this.
+
+92
+00:05:16,680 --> 00:05:19,230
+I leave namespaced here, I'll leave state here,
+
+93
+00:05:19,230 --> 00:05:21,650
+but I grabbed the mutations object
+
+94
+00:05:21,650 --> 00:05:24,620
+and move that to the mutations JS folder
+
+95
+00:05:24,620 --> 00:05:26,900
+in this counter sub folder
+
+96
+00:05:26,900 --> 00:05:29,660
+and exports that in here.
+
+97
+00:05:29,660 --> 00:05:31,510
+And then again, in index JS,
+
+98
+00:05:31,510 --> 00:05:34,890
+but now in index JS inside of the counter,
+
+99
+00:05:34,890 --> 00:05:39,890
+I import counter mutations from ./mutationsjs
+
+100
+00:05:42,600 --> 00:05:46,463
+and assign those here to mutations.
+
+101
+00:05:47,860 --> 00:05:49,710
+Same thing for actions.
+
+102
+00:05:49,710 --> 00:05:53,540
+Grab the object, go to actions JS,
+
+103
+00:05:53,540 --> 00:05:55,953
+export them here as a default,
+
+104
+00:05:57,550 --> 00:06:02,550
+like this, and in index JS, import them.
+
+105
+00:06:03,320 --> 00:06:08,320
+Import counter actions from actions JS
+
+106
+00:06:08,730 --> 00:06:11,063
+and assign them here to actions.
+
+107
+00:06:13,000 --> 00:06:13,910
+And last but not least,
+
+108
+00:06:13,910 --> 00:06:17,240
+we can do the same thing here for getters.
+
+109
+00:06:17,240 --> 00:06:19,200
+Grab the getters object,
+
+110
+00:06:19,200 --> 00:06:22,323
+add a getters JS file inside of the counter,
+
+111
+00:06:23,270 --> 00:06:25,983
+export our getters object like this,
+
+112
+00:06:27,370 --> 00:06:28,793
+and then import it.
+
+113
+00:06:30,140 --> 00:06:32,300
+Of course, you can tweak the file names, by the way,
+
+114
+00:06:32,300 --> 00:06:34,900
+you don't have to use these exact file names,
+
+115
+00:06:34,900 --> 00:06:37,070
+I'm just following some convention here,
+
+116
+00:06:37,070 --> 00:06:39,570
+but you could also use a different file name here.
+
+117
+00:06:41,200 --> 00:06:46,200
+So here I then have to counter getters from getters JS.
+
+118
+00:06:48,450 --> 00:06:49,963
+So I'll assign them here.
+
+119
+00:06:51,160 --> 00:06:53,370
+And now, this all split up,
+
+120
+00:06:53,370 --> 00:06:55,200
+I'm exporting my module here,
+
+121
+00:06:55,200 --> 00:06:58,730
+so now in index JS here, in the store folder,
+
+122
+00:06:58,730 --> 00:07:02,490
+I can import my counter module
+
+123
+00:07:02,490 --> 00:07:07,430
+from counter index JS.
+
+124
+00:07:07,430 --> 00:07:11,473
+And now assign my counter module to numbers.
+
+125
+00:07:13,650 --> 00:07:18,450
+And now in main JS, we no longer import store from store JS,
+
+126
+00:07:18,450 --> 00:07:22,003
+but from the store folder enter there the index JS file.
+
+127
+00:07:23,840 --> 00:07:28,430
+And with all that out of the way, it works as before,
+
+128
+00:07:28,430 --> 00:07:31,230
+but now with a different folder structure.
+
+129
+00:07:31,230 --> 00:07:33,680
+Now, if you want that structure, know that it's up to you,
+
+130
+00:07:33,680 --> 00:07:35,760
+but it is one option.
+
+131
+00:07:35,760 --> 00:07:37,340
+You can also change this a bit more.
+
+132
+00:07:37,340 --> 00:07:39,280
+If you had multiple modules,
+
+133
+00:07:39,280 --> 00:07:41,880
+you could also add a modules folder here
+
+134
+00:07:41,880 --> 00:07:44,940
+and move counter into modules
+
+135
+00:07:44,940 --> 00:07:49,390
+and then have other modules like a products module folder,
+
+136
+00:07:49,390 --> 00:07:52,270
+if you had some, in the modules folder as well.
+
+137
+00:07:52,270 --> 00:07:55,763
+To make it clearer that you manage your modules in here,
+
+138
+00:07:56,610 --> 00:07:58,860
+you then just need to adjust the import
+
+139
+00:07:58,860 --> 00:08:03,693
+and import counter module from modules counter index.
+
+140
+00:08:04,550 --> 00:08:05,720
+And as I mentioned before,
+
+141
+00:08:05,720 --> 00:08:07,460
+you can also tweak the file names
+
+142
+00:08:07,460 --> 00:08:09,570
+so that they make sense to you.
+
+143
+00:08:09,570 --> 00:08:11,880
+You could also split action, getters,
+
+144
+00:08:11,880 --> 00:08:14,480
+mutations and so on, for the root state,
+
+145
+00:08:14,480 --> 00:08:16,720
+but not for the modules.
+
+146
+00:08:16,720 --> 00:08:19,070
+It's up to you, which structure you want,
+
+147
+00:08:19,070 --> 00:08:21,930
+I'm just showing you one possible approach
+
+148
+00:08:21,930 --> 00:08:25,750
+to make sure that you have small maintainable files
+
+149
+00:08:25,750 --> 00:08:28,310
+instead of one super big file,
+
+150
+00:08:28,310 --> 00:08:31,580
+where you then have to search for things all the time.
+
+151
+00:08:31,580 --> 00:08:32,990
+And therefore, this here,
+
+152
+00:08:32,990 --> 00:08:36,350
+is one possible way of building this.
+
+153
+00:08:36,350 --> 00:08:38,530
+It is overkill for this demo,
+
+154
+00:08:38,530 --> 00:08:41,763
+but of course it shows you what you can do in bigger apps.
+

@@ -1,0 +1,248 @@
+1
+00:00:02,280 --> 00:00:04,630
+So here's a little starting project
+
+2
+00:00:04,630 --> 00:00:06,320
+with which I want to start.
+
+3
+00:00:06,320 --> 00:00:08,920
+And what exactly is the problem here?
+
+4
+00:00:08,920 --> 00:00:13,500
+What can we do with Vue to make this project better?
+
+5
+00:00:13,500 --> 00:00:17,860
+Well, for one, my goal, no pun intended is that
+
+6
+00:00:17,860 --> 00:00:22,150
+we can add goals here, like finish the course.
+
+7
+00:00:22,150 --> 00:00:26,770
+And when we then press add goal, currently nothing happens.
+
+8
+00:00:26,770 --> 00:00:31,770
+That goal should be added as a goal in a growing list.
+
+9
+00:00:33,080 --> 00:00:35,490
+If we have a look at the index HTML file
+
+10
+00:00:35,490 --> 00:00:37,550
+of the starting project,
+
+11
+00:00:37,550 --> 00:00:40,780
+which by the way is attached to this lecture, of course,
+
+12
+00:00:40,780 --> 00:00:43,680
+then you see in there, I got an unordered list
+
+13
+00:00:43,680 --> 00:00:47,290
+with one dummy list item at the moment.
+
+14
+00:00:47,290 --> 00:00:51,670
+And my goal is that the items we're entering here should be
+
+15
+00:00:51,670 --> 00:00:53,870
+added to this list.
+
+16
+00:00:53,870 --> 00:00:56,280
+And we also should be able to then click
+
+17
+00:00:56,280 --> 00:01:00,030
+on those list items to remove them from the list.
+
+18
+00:01:00,030 --> 00:01:03,050
+But that's just one thing which I want to implement
+
+19
+00:01:03,050 --> 00:01:04,459
+with you in this module.
+
+20
+00:01:04,459 --> 00:01:08,390
+And you will learn how that can be done with Vue.
+
+21
+00:01:08,390 --> 00:01:12,400
+But for a start, I actually want to focus on something else.
+
+22
+00:01:12,400 --> 00:01:14,050
+I have this message here.
+
+23
+00:01:14,050 --> 00:01:16,170
+No goals have been added yet -
+
+24
+00:01:16,170 --> 00:01:18,610
+please start adding some.
+
+25
+00:01:18,610 --> 00:01:20,400
+And at the same time,
+
+26
+00:01:20,400 --> 00:01:23,760
+I'm rendering this unordered list with dummy goal.
+
+27
+00:01:23,760 --> 00:01:25,610
+The dummy goal, because currently
+
+28
+00:01:25,610 --> 00:01:29,620
+we have no way of outputting actual goals.
+
+29
+00:01:29,620 --> 00:01:32,720
+If we have a look at the JavaScript file in the starting
+
+30
+00:01:32,720 --> 00:01:35,260
+code, you see, I already created
+
+31
+00:01:35,260 --> 00:01:37,830
+a very simple view app for you there,
+
+32
+00:01:37,830 --> 00:01:41,650
+which is connected to the DOM, and which has some data.
+
+33
+00:01:41,650 --> 00:01:46,200
+Though the data it does have is just a goals array
+
+34
+00:01:46,200 --> 00:01:48,663
+with an empty array initially.
+
+35
+00:01:49,500 --> 00:01:53,590
+And now here's my problem, which I want to solve with Vue.
+
+36
+00:01:53,590 --> 00:01:58,500
+If this array is empty, as it initially is,
+
+37
+00:01:58,500 --> 00:02:02,710
+then this unordered list should not be shown,
+
+38
+00:02:02,710 --> 00:02:05,620
+it should not be part of the DOM,
+
+39
+00:02:05,620 --> 00:02:09,090
+and instead this paragraph should be shown.
+
+40
+00:02:09,090 --> 00:02:12,130
+On the apprehend, if we do have goals,
+
+41
+00:02:12,130 --> 00:02:14,820
+because we added some here in JavaScript,
+
+42
+00:02:14,820 --> 00:02:19,090
+or because later we added code to grow this list here.
+
+43
+00:02:19,090 --> 00:02:20,920
+If we do have goals,
+
+44
+00:02:20,920 --> 00:02:24,150
+then I want to show this unordered list,
+
+45
+00:02:24,150 --> 00:02:26,170
+I want to render this in the DOM,
+
+46
+00:02:26,170 --> 00:02:28,290
+I want to include this in the page,
+
+47
+00:02:28,290 --> 00:02:31,243
+and I don't want to show this paragraph.
+
+48
+00:02:33,260 --> 00:02:36,150
+So we need conditional rendering.
+
+49
+00:02:36,150 --> 00:02:39,240
+And if you think about modern web applications,
+
+50
+00:02:39,240 --> 00:02:41,390
+that is something you need a lot.
+
+51
+00:02:41,390 --> 00:02:42,770
+If you, for example,
+
+52
+00:02:42,770 --> 00:02:46,940
+have a web application that fetches data from a server,
+
+53
+00:02:46,940 --> 00:02:49,870
+you might want to show a loading spinner whilst you're
+
+54
+00:02:49,870 --> 00:02:52,050
+waiting for the data to arrive.
+
+55
+00:02:52,050 --> 00:02:54,460
+This is actually something we'll build together
+
+56
+00:02:54,460 --> 00:02:56,600
+a little bit later in the course.
+
+57
+00:02:56,600 --> 00:03:00,370
+So showing different content, conditionally
+
+58
+00:03:00,370 --> 00:03:02,350
+when certain conditions are met
+
+59
+00:03:02,350 --> 00:03:06,740
+is a typical problem you have in front-end web development,
+
+60
+00:03:06,740 --> 00:03:09,380
+and Vue makes it easy for us to solve it.
+
+61
+00:03:09,380 --> 00:03:12,000
+Let's see how we can render a content
+
+62
+00:03:12,000 --> 00:03:13,793
+conditionally with Vue.
+

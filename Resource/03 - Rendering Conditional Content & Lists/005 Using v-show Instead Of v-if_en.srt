@@ -1,0 +1,200 @@
+1
+00:00:02,120 --> 00:00:04,760
+Now there is an alternative to v-if.
+
+2
+00:00:04,760 --> 00:00:07,020
+There is nothing wrong with v-if,
+
+3
+00:00:07,020 --> 00:00:09,443
+but there also is v-show,
+
+4
+00:00:10,320 --> 00:00:15,320
+v-show does not work together with v-else or v-else-if.
+
+5
+00:00:15,460 --> 00:00:17,960
+It only works stand-alone
+
+6
+00:00:17,960 --> 00:00:20,870
+and therefore if you have multiple alternatives,
+
+7
+00:00:20,870 --> 00:00:23,760
+you really need to use multiple v-shows.
+
+8
+00:00:23,760 --> 00:00:25,450
+That's one difference.
+
+9
+00:00:25,450 --> 00:00:27,600
+But what does v-show do then?
+
+10
+00:00:27,600 --> 00:00:29,810
+It seems to be more complicated.
+
+11
+00:00:29,810 --> 00:00:32,520
+It doesn't have to simplifications with v-else
+
+12
+00:00:32,520 --> 00:00:33,640
+and v-else-if.
+
+13
+00:00:33,640 --> 00:00:36,260
+So, why would we use v-show?
+
+14
+00:00:36,260 --> 00:00:39,810
+There's one important difference regarding its behavior.
+
+15
+00:00:39,810 --> 00:00:43,420
+If I reload, we don't see a huge difference.
+
+16
+00:00:43,420 --> 00:00:45,450
+It works in the same way,
+
+17
+00:00:45,450 --> 00:00:49,000
+but let me reload again and let's inspect this.
+
+18
+00:00:49,000 --> 00:00:50,950
+And then you'll notice a difference.
+
+19
+00:00:50,950 --> 00:00:52,790
+The paragraph is there,
+
+20
+00:00:52,790 --> 00:00:54,603
+but so is the unordered list.
+
+21
+00:00:55,480 --> 00:00:59,470
+And the only difference is that the unordered list is hidden
+
+22
+00:00:59,470 --> 00:01:03,090
+because its display style is set to none
+
+23
+00:01:03,090 --> 00:01:04,670
+and that's the difference.
+
+24
+00:01:04,670 --> 00:01:09,670
+V-if really removes and adds elements from and to the DOM.
+
+25
+00:01:10,430 --> 00:01:15,350
+So it really impacts which elements are part of the DOM.
+
+26
+00:01:15,350 --> 00:01:16,930
+v-show on the other hand,
+
+27
+00:01:16,930 --> 00:01:20,573
+just hides and show items with CSS.
+
+28
+00:01:21,420 --> 00:01:23,890
+Now, which approach is better?
+
+29
+00:01:23,890 --> 00:01:27,150
+Showing and hiding with CSS means
+
+30
+00:01:27,150 --> 00:01:30,090
+that you don't have to add and remove elements all the time,
+
+31
+00:01:30,090 --> 00:01:32,130
+which can cost performance,
+
+32
+00:01:32,130 --> 00:01:35,920
+adding and removing elements can cost performance.
+
+33
+00:01:35,920 --> 00:01:37,100
+On the other hand,
+
+34
+00:01:37,100 --> 00:01:39,830
+it also means that you have a bunch of elements in your DOM,
+
+35
+00:01:39,830 --> 00:01:41,640
+which you don't really need at the moment,
+
+36
+00:01:41,640 --> 00:01:43,790
+which also is not ideal.
+
+37
+00:01:43,790 --> 00:01:45,920
+Therefore, as a rule of thumb,
+
+38
+00:01:45,920 --> 00:01:50,920
+you should typically use v-if and only fall back to v-show
+
+39
+00:01:51,210 --> 00:01:52,620
+if you have an element,
+
+40
+00:01:52,620 --> 00:01:55,980
+which visibility status changes a lot.
+
+41
+00:01:55,980 --> 00:01:58,750
+So, if you have like a button that toggles an element
+
+42
+00:01:58,750 --> 00:02:00,830
+and it's switching between visibility
+
+43
+00:02:00,830 --> 00:02:02,530
+and being hidden all the time,
+
+44
+00:02:02,530 --> 00:02:05,300
+that is when you might want to consider v-show
+
+45
+00:02:05,300 --> 00:02:08,120
+in other cases use v-if.
+
+46
+00:02:08,120 --> 00:02:10,380
+And that's why I'm going to switch back to it.
+
+47
+00:02:10,380 --> 00:02:13,420
+But I wanna show you, v-show as an alternative
+
+48
+00:02:13,420 --> 00:02:16,870
+because of course it is important to know that as well
+
+49
+00:02:16,870 --> 00:02:19,890
+for situations where you have content
+
+50
+00:02:19,890 --> 00:02:23,283
+that switches a lot between being visible and being hidden.
+

@@ -1,0 +1,232 @@
+1
+00:00:02,190 --> 00:00:05,330
+At the moment we assume, that everything is going to work,
+
+2
+00:00:05,330 --> 00:00:07,970
+that we never getting any error here.
+
+3
+00:00:07,970 --> 00:00:11,640
+But of course in reality, we could be getting an error.
+
+4
+00:00:11,640 --> 00:00:14,450
+So therefore beside checking this loading state,
+
+5
+00:00:14,450 --> 00:00:17,440
+I also wanna check whether we get data,
+
+6
+00:00:17,440 --> 00:00:20,780
+and because we might not get an error and still
+
+7
+00:00:20,780 --> 00:00:24,350
+not get any data, for example if we got no data here on
+
+8
+00:00:24,350 --> 00:00:27,023
+Firebase, if I delete all of that,
+
+9
+00:00:28,190 --> 00:00:31,750
+then we can send a successful request.
+
+10
+00:00:31,750 --> 00:00:35,390
+But it will get an empty response, because there is no data
+
+11
+00:00:35,390 --> 00:00:37,490
+to be loaded so we wanna handle that.
+
+12
+00:00:37,490 --> 00:00:40,730
+And thereafter I also wanna handle real errors,
+
+13
+00:00:40,730 --> 00:00:43,687
+where the server times out, we have server site error
+
+14
+00:00:43,687 --> 00:00:45,400
+or anything like that.
+
+15
+00:00:45,400 --> 00:00:47,563
+But let's start with the no data case.
+
+16
+00:00:48,570 --> 00:00:52,600
+We are setting our data here, to the results
+
+17
+00:00:52,600 --> 00:00:55,850
+and in the end handling the no data case is easy.
+
+18
+00:00:55,850 --> 00:00:59,250
+Will simply not be able to loop through any data here,
+
+19
+00:00:59,250 --> 00:01:02,060
+and therefore results will stay an empty array.
+
+20
+00:01:02,060 --> 00:01:05,050
+So in this case, we should check not just if
+
+21
+00:01:05,050 --> 00:01:06,660
+we loading or not.
+
+22
+00:01:06,660 --> 00:01:08,310
+But here,
+
+23
+00:01:08,310 --> 00:01:11,809
+with "else-if" maybe I wanna check if we not
+
+24
+00:01:11,809 --> 00:01:13,060
+loading...
+
+25
+00:01:13,060 --> 00:01:14,825
+but that we do have data,
+
+26
+00:01:14,825 --> 00:01:18,003
+were the length is greater than zero.
+
+27
+00:01:19,160 --> 00:01:21,240
+If length is equal to zero its an
+
+28
+00:01:21,240 --> 00:01:23,843
+empty array and that simply means we have no data.
+
+29
+00:01:25,800 --> 00:01:27,913
+And of course its not data but results.
+
+30
+00:01:28,883 --> 00:01:31,320
+So if results length is greater than zero we could also
+
+31
+00:01:31,320 --> 00:01:34,490
+add an extra check, and check if we have a true feed
+
+32
+00:01:34,490 --> 00:01:37,823
+results value before we try diving into the length.
+
+33
+00:01:38,750 --> 00:01:41,850
+Here we always have results, but in other apps
+
+34
+00:01:41,850 --> 00:01:44,820
+that might not even be set if you fail to load data.
+
+35
+00:01:44,820 --> 00:01:47,103
+Hence checking this as well could make sense.
+
+36
+00:01:48,970 --> 00:01:51,383
+Then here we could add another paragraph,
+
+37
+00:01:52,930 --> 00:01:57,763
+where we say: "No stored experiences found.
+
+38
+00:01:59,010 --> 00:02:00,120
+Start adding
+
+39
+00:02:00,120 --> 00:02:02,253
+some survey results,
+
+40
+00:02:03,310 --> 00:02:04,560
+first."
+
+41
+00:02:04,560 --> 00:02:06,310
+And I wanna show this paragraph
+
+42
+00:02:07,998 --> 00:02:09,610
+"if" or "v-else-if"
+
+43
+00:02:09,610 --> 00:02:11,358
+where not loading,
+
+44
+00:02:11,358 --> 00:02:14,220
+but we don't have results,
+
+45
+00:02:14,220 --> 00:02:17,060
+or and therefore that should go
+
+46
+00:02:17,060 --> 00:02:19,680
+between brackets so that these two statements are
+
+47
+00:02:19,680 --> 00:02:23,310
+evaluated together, or we do have results but the length is
+
+48
+00:02:23,310 --> 00:02:24,353
+equal to zero.
+
+49
+00:02:26,040 --> 00:02:28,574
+So for not loading, but we don't have results
+
+50
+00:02:28,574 --> 00:02:31,720
+or our results length is equal to zero,
+
+51
+00:02:31,720 --> 00:02:36,070
+then I wanna show this "No stored experiences found" text.
+
+52
+00:02:36,070 --> 00:02:40,273
+Otherwise, I will check this and show my actual results.
+
+53
+00:02:41,150 --> 00:02:44,560
+If we save that and reload, we see loading and then
+
+54
+00:02:44,560 --> 00:02:47,030
+our no data message.
+
+55
+00:02:47,030 --> 00:02:49,253
+If I start submitting data though,
+
+56
+00:02:50,360 --> 00:02:53,970
+and then load the submitted experiences we see that works.
+
+57
+00:02:53,970 --> 00:02:56,660
+So now we handling the no data case.
+
+58
+00:02:56,660 --> 00:02:58,443
+But what about real errors?
+

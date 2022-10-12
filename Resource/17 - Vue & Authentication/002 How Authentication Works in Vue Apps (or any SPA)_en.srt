@@ -1,0 +1,476 @@
+1
+00:00:02,070 --> 00:00:03,750
+Before we write any code,
+
+2
+00:00:03,750 --> 00:00:08,530
+we have to understand how authentication works in Vue apps
+
+3
+00:00:08,530 --> 00:00:13,380
+or to be precise, in any single-page application.
+
+4
+00:00:13,380 --> 00:00:15,120
+Because it's a bit different
+
+5
+00:00:15,120 --> 00:00:18,990
+than the traditional authentication you might know
+
+6
+00:00:18,990 --> 00:00:21,870
+from websites and web applications
+
+7
+00:00:21,870 --> 00:00:24,570
+where you use some server-side language.
+
+8
+00:00:24,570 --> 00:00:25,710
+We're not doing this here.
+
+9
+00:00:25,710 --> 00:00:27,260
+Vue runs in a browser,
+
+10
+00:00:27,260 --> 00:00:30,020
+therefore this will work a bit differently.
+
+11
+00:00:30,020 --> 00:00:34,210
+So, we have our Vue app or any single-page application
+
+12
+00:00:34,210 --> 00:00:38,080
+using any library or framework, doesn't have to be Vue,
+
+13
+00:00:38,080 --> 00:00:40,210
+and we got our backend server.
+
+14
+00:00:40,210 --> 00:00:43,120
+In our case, that's Firebase but it could be
+
+15
+00:00:43,120 --> 00:00:46,730
+any HTTP server to which we send requests.
+
+16
+00:00:46,730 --> 00:00:51,040
+Any REST API or GraphQL API.
+
+17
+00:00:51,040 --> 00:00:54,290
+Now, the thing is that on this server,
+
+18
+00:00:54,290 --> 00:00:56,800
+we have certain public resources
+
+19
+00:00:56,800 --> 00:00:59,600
+but also some restricted resources.
+
+20
+00:00:59,600 --> 00:01:02,340
+For example, in our course project,
+
+21
+00:01:02,340 --> 00:01:04,900
+we might be able to get coaches
+
+22
+00:01:04,900 --> 00:01:08,950
+and send messages to coaches without being logged in,
+
+23
+00:01:08,950 --> 00:01:12,610
+so that would be public data and public resources,
+
+24
+00:01:12,610 --> 00:01:17,420
+which should be accessible by any visitor of this webpage,
+
+25
+00:01:17,420 --> 00:01:20,450
+no matter if you are logged in or not.
+
+26
+00:01:20,450 --> 00:01:23,670
+But then, we also got some resources, some data,
+
+27
+00:01:23,670 --> 00:01:26,870
+some kinds of requests that should be restricted.
+
+28
+00:01:26,870 --> 00:01:31,180
+For example, you should only be able to register as a coach
+
+29
+00:01:31,180 --> 00:01:34,910
+and therefore, create a new coach, if you are logged in.
+
+30
+00:01:34,910 --> 00:01:38,710
+The same for fetching requests, fetching messages
+
+31
+00:01:38,710 --> 00:01:40,570
+you as a coach received.
+
+32
+00:01:40,570 --> 00:01:43,233
+Of course, you need to be logged in to do that.
+
+33
+00:01:44,920 --> 00:01:47,250
+So we got mixed data on our server
+
+34
+00:01:47,250 --> 00:01:50,530
+and that's a typical scenario in most websites,
+
+35
+00:01:50,530 --> 00:01:53,830
+you will have some data that should be accessible by anyone
+
+36
+00:01:53,830 --> 00:01:56,400
+and some data that's restricted.
+
+37
+00:01:56,400 --> 00:01:59,190
+Now, the thing is with this setup
+
+38
+00:01:59,190 --> 00:02:02,850
+where our web application, our website
+
+39
+00:02:02,850 --> 00:02:05,110
+is kind of detached from the backend,
+
+40
+00:02:05,110 --> 00:02:08,820
+it's not served by the same server and well,
+
+41
+00:02:08,820 --> 00:02:11,860
+the backend doesn't really know the front end.
+
+42
+00:02:11,860 --> 00:02:15,460
+In such scenarios, the server really does not care
+
+43
+00:02:15,460 --> 00:02:18,350
+about the clients, so about the Vue application
+
+44
+00:02:18,350 --> 00:02:20,040
+in this case.
+
+45
+00:02:20,040 --> 00:02:23,460
+The server, in our case, Firebase but again,
+
+46
+00:02:23,460 --> 00:02:27,020
+you could be using any API, really does not care
+
+47
+00:02:27,020 --> 00:02:28,010
+about our Vue app.
+
+48
+00:02:28,010 --> 00:02:31,160
+It doesn't store any information about that app.
+
+49
+00:02:31,160 --> 00:02:35,670
+It doesn't store, whether the user of this app instance
+
+50
+00:02:35,670 --> 00:02:37,693
+is actually logged in or not.
+
+51
+00:02:38,760 --> 00:02:43,150
+Therefore, we'll have to find a way of still keeping track,
+
+52
+00:02:43,150 --> 00:02:45,100
+whether the visitor of the webpage
+
+53
+00:02:45,100 --> 00:02:48,940
+who's currently using the website is logged in or not.
+
+54
+00:02:48,940 --> 00:02:53,170
+Now of course, it always all starts by some login data
+
+55
+00:02:53,170 --> 00:02:55,810
+being sent from the Vue app to the server.
+
+56
+00:02:55,810 --> 00:02:58,180
+We have some login page in our Vue app
+
+57
+00:02:58,180 --> 00:03:01,610
+and once the user entered an email and a password,
+
+58
+00:03:01,610 --> 00:03:04,040
+that data is sent to the server
+
+59
+00:03:04,040 --> 00:03:07,970
+to create the user or to log the user in.
+
+60
+00:03:07,970 --> 00:03:10,980
+And now on traditional websites,
+
+61
+00:03:10,980 --> 00:03:14,680
+the server would basically store a session,
+
+62
+00:03:14,680 --> 00:03:17,720
+it would store information about that user
+
+63
+00:03:17,720 --> 00:03:21,470
+and just send a session ID to the front end,
+
+64
+00:03:21,470 --> 00:03:24,210
+to the browser, so that there is a connection
+
+65
+00:03:24,210 --> 00:03:26,760
+between the user using the site and the browser
+
+66
+00:03:26,760 --> 00:03:29,500
+and the server being aware of that user.
+
+67
+00:03:29,500 --> 00:03:31,820
+However, that's not how it'll work here
+
+68
+00:03:31,820 --> 00:03:35,750
+when you have a single-page application talking to an API.
+
+69
+00:03:35,750 --> 00:03:40,100
+Instead here, the server doesn't store any information
+
+70
+00:03:40,100 --> 00:03:42,070
+and it'll do something else.
+
+71
+00:03:42,070 --> 00:03:46,140
+It'll send back a token back to the front end,
+
+72
+00:03:46,140 --> 00:03:48,250
+back to the single-page application,
+
+73
+00:03:48,250 --> 00:03:50,440
+in our case, back to the Vue app,
+
+74
+00:03:50,440 --> 00:03:54,950
+once that login data is validated and verified.
+
+75
+00:03:54,950 --> 00:03:58,170
+So if it is a valid user who's trying to login,
+
+76
+00:03:58,170 --> 00:04:00,970
+if that data could be confirmed by the server,
+
+77
+00:04:00,970 --> 00:04:03,930
+the server generates a token which is in the end,
+
+78
+00:04:03,930 --> 00:04:07,940
+just a very long string which is sent back to the client.
+
+79
+00:04:07,940 --> 00:04:11,540
+Now, the thing about this token is that it's created such
+
+80
+00:04:11,540 --> 00:04:15,760
+that only the server is able to validate it.
+
+81
+00:04:15,760 --> 00:04:18,560
+Only the server will be able to tell
+
+82
+00:04:18,560 --> 00:04:22,260
+if a token is valid or not because it was generated
+
+83
+00:04:22,260 --> 00:04:26,390
+with a certain secret key which only the server knows.
+
+84
+00:04:26,390 --> 00:04:29,210
+So this token can't be faked.
+
+85
+00:04:29,210 --> 00:04:31,430
+The token is then sent back to the client
+
+86
+00:04:31,430 --> 00:04:33,260
+and there, we can store it.
+
+87
+00:04:33,260 --> 00:04:37,420
+We can store it in Vuex or also in more permanent places
+
+88
+00:04:37,420 --> 00:04:39,270
+like local storage.
+
+89
+00:04:39,270 --> 00:04:43,780
+And the thing with that token now is that it can be attached
+
+90
+00:04:43,780 --> 00:04:47,770
+to these outgoing requests to restrict the resources.
+
+91
+00:04:47,770 --> 00:04:49,840
+And if that token is attached,
+
+92
+00:04:49,840 --> 00:04:53,150
+since only a server is able to validate the token,
+
+93
+00:04:53,150 --> 00:04:55,760
+if the server receives a request
+
+94
+00:04:55,760 --> 00:04:59,120
+to a restricted resource with a valid token,
+
+95
+00:04:59,120 --> 00:05:01,170
+the server will grant access
+
+96
+00:05:01,170 --> 00:05:04,040
+and return the appropriate data.
+
+97
+00:05:04,040 --> 00:05:08,330
+If the token is invalid or missing, access is denied.
+
+98
+00:05:08,330 --> 00:05:10,770
+That's how authentication works
+
+99
+00:05:10,770 --> 00:05:14,250
+in single-page applications talking to an API
+
+100
+00:05:14,250 --> 00:05:16,620
+and that's exactly the setup we have here
+
+101
+00:05:16,620 --> 00:05:18,460
+and exactly the setup you will have
+
+102
+00:05:18,460 --> 00:05:21,650
+in most Vue applications you're going to build.
+
+103
+00:05:21,650 --> 00:05:23,220
+Therefore, this is the scenario
+
+104
+00:05:23,220 --> 00:05:26,290
+we'll have a look at in this module.
+
+105
+00:05:26,290 --> 00:05:27,660
+Now of course in our app,
+
+106
+00:05:27,660 --> 00:05:30,650
+we also want to have some implications of the user
+
+107
+00:05:30,650 --> 00:05:34,080
+being logged in or not on our webpage itself,
+
+108
+00:05:34,080 --> 00:05:37,290
+not just on the requests that are being sent.
+
+109
+00:05:37,290 --> 00:05:39,920
+For example, this requests menu item
+
+110
+00:05:39,920 --> 00:05:43,970
+should only be clickable if the user is logged in.
+
+111
+00:05:43,970 --> 00:05:46,660
+We should only be able to register as a coach
+
+112
+00:05:46,660 --> 00:05:49,490
+with the button that is sometimes visible here
+
+113
+00:05:49,490 --> 00:05:51,400
+if we are logged in.
+
+114
+00:05:51,400 --> 00:05:55,200
+Otherwise, we want to offer a login button to the user.
+
+115
+00:05:55,200 --> 00:05:58,260
+So, these are also implications of authentication
+
+116
+00:05:58,260 --> 00:06:00,050
+being added to the app.
+
+117
+00:06:00,050 --> 00:06:02,160
+And with that theory out of the way,
+
+118
+00:06:02,160 --> 00:06:05,440
+let's now step-by-step add authentication
+
+119
+00:06:05,440 --> 00:06:07,663
+and see all of that in action.
+

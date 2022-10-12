@@ -1,0 +1,660 @@
+1
+00:00:02,390 --> 00:00:04,990
+So here in projects list we can also
+
+2
+00:00:05,950 --> 00:00:07,939
+comment out all this code here
+
+3
+00:00:09,550 --> 00:00:14,460
+and also this watcher which is related to searching,
+
+4
+00:00:14,460 --> 00:00:17,423
+and also remove this function here.
+
+5
+00:00:19,561 --> 00:00:23,997
+And instead import, use search from hooks, search JS.
+
+6
+00:00:28,890 --> 00:00:33,633
+And now copying that code which we used in user list.
+
+7
+00:00:35,110 --> 00:00:37,350
+So where we call use search,
+
+8
+00:00:37,350 --> 00:00:41,230
+but now I want to parse in a different value.
+
+9
+00:00:41,230 --> 00:00:44,890
+Here it's not props.users on which we wanna filter,
+
+10
+00:00:44,890 --> 00:00:48,120
+but instead it's props.user.projects.
+
+11
+00:00:48,120 --> 00:00:49,773
+So let's parse this in,
+
+12
+00:00:52,070 --> 00:00:54,610
+and we don't wanna filter on the full name property
+
+13
+00:00:54,610 --> 00:00:59,610
+on every user project but instead on the title property.
+
+14
+00:01:00,250 --> 00:01:02,160
+We can see this here in the original code
+
+15
+00:01:02,160 --> 00:01:04,260
+so we should feed this in.
+
+16
+00:01:04,260 --> 00:01:06,330
+With that we get the entered search term though
+
+17
+00:01:06,330 --> 00:01:10,260
+the available items and the update search function.
+
+18
+00:01:10,260 --> 00:01:13,010
+And we can now use this in the rest of the component.
+
+19
+00:01:13,010 --> 00:01:16,110
+For example, here we're using available project
+
+20
+00:01:16,110 --> 00:01:18,283
+that should now be available items.
+
+21
+00:01:20,300 --> 00:01:22,510
+Here we're using entered search term
+
+22
+00:01:22,510 --> 00:01:24,290
+and set a new value.
+
+23
+00:01:24,290 --> 00:01:27,520
+Well, since we're getting the ref here,
+
+24
+00:01:27,520 --> 00:01:28,550
+that should work.
+
+25
+00:01:28,550 --> 00:01:30,870
+Assigning a new value here should work.
+
+26
+00:01:30,870 --> 00:01:33,163
+It's a ref. We can update it from anywhere.
+
+27
+00:01:35,410 --> 00:01:38,670
+Here however, I now also want to return available items
+
+28
+00:01:38,670 --> 00:01:41,240
+or still available projects
+
+29
+00:01:41,240 --> 00:01:44,250
+so that I can keep using that name in the template.
+
+30
+00:01:44,250 --> 00:01:48,060
+Here for example, but I wanna store available items
+
+31
+00:01:48,060 --> 00:01:50,293
+in that available projects key.
+
+32
+00:01:51,360 --> 00:01:53,300
+So I will not use the shorthand here,
+
+33
+00:01:53,300 --> 00:01:56,130
+but instead store available items
+
+34
+00:01:56,130 --> 00:01:59,720
+in this available project property in this object
+
+35
+00:01:59,720 --> 00:02:01,823
+we return to our template.
+
+36
+00:02:02,820 --> 00:02:06,580
+And I'm with that, yeah I'm still importing
+
+37
+00:02:06,580 --> 00:02:09,340
+a bunch of things which we're not using anymore.
+
+38
+00:02:09,340 --> 00:02:12,100
+Let's maybe remove all the comments here
+
+39
+00:02:12,100 --> 00:02:16,273
+so that this is a bit easier to see and to fix.
+
+40
+00:02:17,940 --> 00:02:18,873
+Like this.
+
+41
+00:02:19,930 --> 00:02:21,750
+And we're not using ref anymore.
+
+42
+00:02:21,750 --> 00:02:23,550
+We got no other refs in here.
+
+43
+00:02:23,550 --> 00:02:26,730
+We still got another computed property and a watcher.
+
+44
+00:02:26,730 --> 00:02:28,550
+So we wanna keep those imports.
+
+45
+00:02:28,550 --> 00:02:31,010
+We also still use two refs,
+
+46
+00:02:31,010 --> 00:02:33,530
+but we're not using the ref function anymore.
+
+47
+00:02:33,530 --> 00:02:35,223
+So we can save that and get rid.
+
+48
+00:02:36,090 --> 00:02:38,580
+And if I now reload, I get an error.
+
+49
+00:02:38,580 --> 00:02:41,483
+Cannot read property projects off null.
+
+50
+00:02:42,600 --> 00:02:45,053
+What could be causing this problem?
+
+51
+00:02:47,210 --> 00:02:49,200
+Well, it's this line here.
+
+52
+00:02:49,200 --> 00:02:54,200
+I'm parsing in props.user.project to use search.
+
+53
+00:02:54,250 --> 00:02:56,490
+The problem with that is that
+
+54
+00:02:56,490 --> 00:02:59,610
+we don't have a user selected initially.
+
+55
+00:02:59,610 --> 00:03:04,320
+So initially user is null and I try to access projects
+
+56
+00:03:04,320 --> 00:03:06,023
+on a null value.
+
+57
+00:03:06,970 --> 00:03:09,040
+What could be workarounds here?
+
+58
+00:03:09,040 --> 00:03:11,780
+Well, one work around could simply be
+
+59
+00:03:11,780 --> 00:03:14,853
+to create a new helper, variable or constant.
+
+60
+00:03:16,410 --> 00:03:18,290
+Projects for example,
+
+61
+00:03:18,290 --> 00:03:22,160
+where I check if prop.user is a thing.
+
+62
+00:03:22,160 --> 00:03:24,990
+So if this is truthy and if it is,
+
+63
+00:03:24,990 --> 00:03:29,990
+I access props.user.projects and store data in projects.
+
+64
+00:03:30,900 --> 00:03:34,730
+Otherwise I store an empty array in projects.
+
+65
+00:03:34,730 --> 00:03:37,070
+And then here I just parse in projects,
+
+66
+00:03:37,070 --> 00:03:40,310
+which now is either an empty array if we have no user
+
+67
+00:03:40,310 --> 00:03:43,063
+or which is this value.
+
+68
+00:03:44,730 --> 00:03:46,180
+Now does this looking better.
+
+69
+00:03:47,460 --> 00:03:50,170
+However, now if I select different users,
+
+70
+00:03:50,170 --> 00:03:53,570
+we always get no projects found.
+
+71
+00:03:53,570 --> 00:03:56,790
+So it looks like there's something wrong with our code.
+
+72
+00:03:56,790 --> 00:03:59,033
+And what could be the problem here now?
+
+73
+00:04:01,950 --> 00:04:05,880
+Well it's still related to those user projects.
+
+74
+00:04:05,880 --> 00:04:09,923
+What did I say about props in the composition API module?
+
+75
+00:04:11,430 --> 00:04:15,170
+I said that the props object is reactive,
+
+76
+00:04:15,170 --> 00:04:16,839
+but the properties in there,
+
+77
+00:04:16,839 --> 00:04:19,880
+the values nested in there are not.
+
+78
+00:04:19,880 --> 00:04:22,570
+Now what I'm doing here is when set up is executed
+
+79
+00:04:22,570 --> 00:04:25,620
+for the first time, I'm pulling either the project
+
+80
+00:04:25,620 --> 00:04:27,340
+or this empty array.
+
+81
+00:04:27,340 --> 00:04:28,230
+And that's it.
+
+82
+00:04:28,230 --> 00:04:30,210
+Set up is not going to run again.
+
+83
+00:04:30,210 --> 00:04:32,170
+If we select a user there after,
+
+84
+00:04:32,170 --> 00:04:34,400
+this code is not going to run again.
+
+85
+00:04:34,400 --> 00:04:37,933
+So projects will always stay this empty array.
+
+86
+00:04:39,090 --> 00:04:41,650
+We need to react to user changing
+
+87
+00:04:41,650 --> 00:04:45,660
+and update projects and an easy way of doing that
+
+88
+00:04:45,660 --> 00:04:48,743
+would be that we use a computed property here.
+
+89
+00:04:51,650 --> 00:04:53,340
+Take this code,
+
+90
+00:04:53,340 --> 00:04:56,440
+and in the function inside of that computed property,
+
+91
+00:04:56,440 --> 00:04:58,440
+we now returned this code.
+
+92
+00:04:58,440 --> 00:05:01,410
+By doing that we ensure that computed
+
+93
+00:05:01,410 --> 00:05:04,350
+and therefore view watches out for props
+
+94
+00:05:04,350 --> 00:05:07,090
+since it detects props as a dependency
+
+95
+00:05:07,090 --> 00:05:08,890
+in that of that computed property
+
+96
+00:05:08,890 --> 00:05:10,680
+and whenever props change,
+
+97
+00:05:10,680 --> 00:05:12,320
+and therefore the user here changes,
+
+98
+00:05:12,320 --> 00:05:16,730
+whenever that happens, it will give us new projects.
+
+99
+00:05:16,730 --> 00:05:19,190
+We can actually shorten this a bit.
+
+100
+00:05:19,190 --> 00:05:23,060
+I'm already getting my user as a ref from props
+
+101
+00:05:23,060 --> 00:05:24,900
+with this line down there.
+
+102
+00:05:24,900 --> 00:05:29,900
+If we kept the line down there and actually move it up here,
+
+103
+00:05:30,240 --> 00:05:32,910
+we can now just refer to user,
+
+104
+00:05:32,910 --> 00:05:35,310
+which also ensures that this computed property
+
+105
+00:05:35,310 --> 00:05:38,500
+is not reevaluated whenever props change,
+
+106
+00:05:38,500 --> 00:05:40,800
+but only when the user prop changes.
+
+107
+00:05:40,800 --> 00:05:42,380
+Which is a bit more efficient,
+
+108
+00:05:42,380 --> 00:05:44,180
+though here it does not matter
+
+109
+00:05:44,180 --> 00:05:46,203
+because we only have to use our prop.
+
+110
+00:05:47,740 --> 00:05:50,070
+Though that's also not entirely it,
+
+111
+00:05:50,070 --> 00:05:52,510
+keep in mind user is a ref now
+
+112
+00:05:52,510 --> 00:05:54,690
+so we have to check user.value
+
+113
+00:05:54,690 --> 00:05:56,803
+and here also user.value.
+
+114
+00:05:57,760 --> 00:06:00,970
+With that however, it looks like it should work,
+
+115
+00:06:00,970 --> 00:06:04,020
+but we'll introduce a subtle new issue.
+
+116
+00:06:04,020 --> 00:06:06,770
+Projects now is a ref, right?
+
+117
+00:06:06,770 --> 00:06:08,730
+Because it's a computed property
+
+118
+00:06:08,730 --> 00:06:11,830
+and computed properties are read only refs.
+
+119
+00:06:11,830 --> 00:06:15,493
+So I'm parsing a ref to use search.
+
+120
+00:06:16,540 --> 00:06:18,400
+In user list we're doing something else.
+
+121
+00:06:18,400 --> 00:06:20,790
+Here I'm parsing in props.users
+
+122
+00:06:20,790 --> 00:06:23,620
+and as you know the values inside of properties
+
+123
+00:06:23,620 --> 00:06:26,910
+off your props object are not refs.
+
+124
+00:06:26,910 --> 00:06:30,410
+So here props.users, the array I'm passing in,
+
+125
+00:06:30,410 --> 00:06:31,903
+is not a ref.
+
+126
+00:06:32,940 --> 00:06:37,253
+In projects list, what I parse in is our ref though.
+
+127
+00:06:38,830 --> 00:06:40,700
+Now in search JS,
+
+128
+00:06:40,700 --> 00:06:44,440
+I therefore sometimes get items which are a ref
+
+129
+00:06:44,440 --> 00:06:48,000
+and sometimes items which are just an array.
+
+130
+00:06:48,000 --> 00:06:52,350
+Now I absolutely want the ref functionality here
+
+131
+00:06:52,350 --> 00:06:54,480
+because this computed property here
+
+132
+00:06:54,480 --> 00:06:57,923
+should be reevaluated when our items change.
+
+133
+00:06:59,230 --> 00:07:01,770
+But of course, items.filter will not work
+
+134
+00:07:01,770 --> 00:07:03,280
+if items is a ref.
+
+135
+00:07:03,280 --> 00:07:06,600
+That should be items.value filter,
+
+136
+00:07:06,600 --> 00:07:08,820
+and here it should be items.value
+
+137
+00:07:08,820 --> 00:07:11,040
+and here it should be items.value
+
+138
+00:07:12,460 --> 00:07:14,520
+But now of course we'll face problems
+
+139
+00:07:14,520 --> 00:07:18,143
+when items is not a ref like here in user list.
+
+140
+00:07:18,990 --> 00:07:22,220
+There is a simple solution to this problem, though.
+
+141
+00:07:22,220 --> 00:07:27,140
+We can simply also use two refs here.
+
+142
+00:07:27,140 --> 00:07:28,063
+Like this.
+
+143
+00:07:30,090 --> 00:07:35,090
+And pull out our users from two refs props.
+
+144
+00:07:35,350 --> 00:07:38,200
+So the same approach I'm using in projects list
+
+145
+00:07:38,200 --> 00:07:41,530
+so that I can parse in users which now is a ref
+
+146
+00:07:41,530 --> 00:07:42,703
+to use search.
+
+147
+00:07:43,680 --> 00:07:47,210
+It's not required here technically but with that
+
+148
+00:07:47,210 --> 00:07:51,230
+we ensure that use search always receives a ref
+
+149
+00:07:51,230 --> 00:07:54,663
+as its items and therefore for will always work.
+
+150
+00:07:57,360 --> 00:07:59,930
+And now, you'll see we can switch
+
+151
+00:07:59,930 --> 00:08:02,910
+between different users and see their projects.
+
+152
+00:08:02,910 --> 00:08:06,353
+And searching here also seems to work.
+
+153
+00:08:07,652 --> 00:08:09,530
+And if I switched to user again,
+
+154
+00:08:09,530 --> 00:08:11,363
+that also looks good.
+
+155
+00:08:12,690 --> 00:08:14,120
+Like this.
+
+156
+00:08:14,120 --> 00:08:17,910
+So now we got this functionality working again.
+
+157
+00:08:17,910 --> 00:08:21,660
+Now however, with our own use search hook
+
+158
+00:08:21,660 --> 00:08:24,760
+and therefore with the reusable code.
+
+159
+00:08:24,760 --> 00:08:27,030
+Yes, there were certain things
+
+160
+00:08:27,030 --> 00:08:28,600
+we had to watch out for
+
+161
+00:08:28,600 --> 00:08:31,870
+related to this ref reactivity thing.
+
+162
+00:08:31,870 --> 00:08:34,480
+But after all, we were able to figure it out.
+
+163
+00:08:34,480 --> 00:08:36,613
+And now we got flexible reusability,
+
+164
+00:08:37,460 --> 00:08:39,080
+thanks to this custom hook,
+
+165
+00:08:39,080 --> 00:08:41,313
+which we're using in two components.
+

@@ -1,0 +1,820 @@
+1
+00:00:02,070 --> 00:00:05,230
+So let's continue with that filter component
+
+2
+00:00:05,230 --> 00:00:09,220
+on CoachesList at the moment, I'm just saying filter here,
+
+3
+00:00:09,220 --> 00:00:11,620
+and of course, we'll need a bit more than that.
+
+4
+00:00:11,620 --> 00:00:14,980
+Now all the markup at the logic related to the filtering
+
+5
+00:00:14,980 --> 00:00:17,390
+or to the filtering form, I would say,
+
+6
+00:00:17,390 --> 00:00:19,420
+should go into a separate component,
+
+7
+00:00:19,420 --> 00:00:22,903
+again to keep CoachesList relatively small.
+
+8
+00:00:23,910 --> 00:00:26,260
+And therefore in source, components, coaches,
+
+9
+00:00:26,260 --> 00:00:29,400
+I'll add a second component next to coach item.
+
+10
+00:00:29,400 --> 00:00:32,790
+And that's the CoachFilter.vue file.
+
+11
+00:00:32,790 --> 00:00:36,440
+In there, I wanna set up all the markup and base logic
+
+12
+00:00:36,440 --> 00:00:39,090
+that we need to let the user choose
+
+13
+00:00:39,090 --> 00:00:41,970
+between different filtering options.
+
+14
+00:00:41,970 --> 00:00:45,710
+Now, I will use the base-card component in here as well,
+
+15
+00:00:45,710 --> 00:00:49,400
+so that we have that base container style here.
+
+16
+00:00:49,400 --> 00:00:54,400
+And then in there, maybe say an H2 tag, Find Your Coach.
+
+17
+00:00:55,070 --> 00:00:59,620
+And then below that, render a couple of checkboxes.
+
+18
+00:00:59,620 --> 00:01:02,730
+Now, he I wanna present three filtering options.
+
+19
+00:01:02,730 --> 00:01:07,500
+Because in our store, we have free areas of expertise.
+
+20
+00:01:07,500 --> 00:01:08,530
+In this entire app,
+
+21
+00:01:08,530 --> 00:01:11,776
+I support these three areas of expertise,
+
+22
+00:01:11,776 --> 00:01:14,020
+frontend, backend, career.
+
+23
+00:01:14,020 --> 00:01:16,190
+So these are the free filtering options
+
+24
+00:01:16,190 --> 00:01:18,150
+that should be presented here.
+
+25
+00:01:18,150 --> 00:01:21,530
+Therefore, I will actually use, let's say,
+
+26
+00:01:21,530 --> 00:01:23,093
+a span as a wrapper,
+
+27
+00:01:24,120 --> 00:01:26,760
+add a class of filter-option to it,
+
+28
+00:01:26,760 --> 00:01:29,430
+this will become important for styling later.
+
+29
+00:01:29,430 --> 00:01:34,430
+And in that span, have an input of type checkbox
+
+30
+00:01:34,640 --> 00:01:37,150
+with an ID of frontend, let's say
+
+31
+00:01:37,150 --> 00:01:39,820
+and which is checked initially,
+
+32
+00:01:39,820 --> 00:01:43,580
+because here I'll make sure that all filter options
+
+33
+00:01:43,580 --> 00:01:45,680
+or all inputs are checked initially,
+
+34
+00:01:45,680 --> 00:01:49,083
+and then the user can uncheck them and check them as needed.
+
+35
+00:01:50,690 --> 00:01:52,023
+So that's the input here.
+
+36
+00:01:53,160 --> 00:01:55,970
+I also will add a label of course to make it clear
+
+37
+00:01:55,970 --> 00:01:58,170
+what this input refers to.
+
+38
+00:01:58,170 --> 00:02:02,320
+And here at the for attribute, to make sure that we point
+
+39
+00:02:02,320 --> 00:02:06,540
+at this input with this label so that clicking the label
+
+40
+00:02:06,540 --> 00:02:11,540
+also checks this input and then add a text of frontend.
+
+41
+00:02:12,080 --> 00:02:14,760
+And we can now repeat this twice,
+
+42
+00:02:14,760 --> 00:02:19,610
+because we also need our backend checkbox here,
+
+43
+00:02:19,610 --> 00:02:21,650
+so let's add this.
+
+44
+00:02:21,650 --> 00:02:25,780
+And we need the career checkbox,
+
+45
+00:02:25,780 --> 00:02:28,273
+so that's also something we should add.
+
+46
+00:02:31,390 --> 00:02:32,590
+Okay, so that's nice.
+
+47
+00:02:32,590 --> 00:02:34,580
+Now we got these three checkboxes.
+
+48
+00:02:34,580 --> 00:02:38,780
+Now we need some logic to react to the user clicking
+
+49
+00:02:38,780 --> 00:02:40,603
+on one of these checkboxes.
+
+50
+00:02:42,110 --> 00:02:45,950
+So therefore, I will add my script block down there
+
+51
+00:02:45,950 --> 00:02:48,070
+and add a data property
+
+52
+00:02:48,070 --> 00:02:50,340
+because in this CoachFilter component,
+
+53
+00:02:50,340 --> 00:02:53,310
+there is some internal data that we need to manage.
+
+54
+00:02:53,310 --> 00:02:56,680
+I want to manage which filters the user chose
+
+55
+00:02:56,680 --> 00:02:59,570
+or which options to user chose.
+
+56
+00:02:59,570 --> 00:03:01,610
+So here is this returned data object,
+
+57
+00:03:01,610 --> 00:03:05,520
+I'll add a filters key which holds another object
+
+58
+00:03:05,520 --> 00:03:07,490
+where I want to have a frontend filter
+
+59
+00:03:07,490 --> 00:03:09,220
+which initially is true,
+
+60
+00:03:09,220 --> 00:03:12,020
+a backend filter which initially is true,
+
+61
+00:03:12,020 --> 00:03:15,090
+and a career filter, which is true.
+
+62
+00:03:15,090 --> 00:03:18,480
+And that basically means as long as something is true
+
+63
+00:03:18,480 --> 00:03:21,963
+coaches that have that area of expertise should be shown.
+
+64
+00:03:23,530 --> 00:03:26,590
+And then I'll add a method to change that data.
+
+65
+00:03:26,590 --> 00:03:29,083
+The let's say setFilter method.
+
+66
+00:03:30,450 --> 00:03:33,530
+This method should be bound to these inputs,
+
+67
+00:03:33,530 --> 00:03:34,950
+that when they are clicked
+
+68
+00:03:34,950 --> 00:03:39,080
+or changed to be precise, setFilter runs.
+
+69
+00:03:39,080 --> 00:03:43,850
+For that we can listen to the change event here on input
+
+70
+00:03:43,850 --> 00:03:46,370
+which is triggered whenever the value changes
+
+71
+00:03:46,370 --> 00:03:49,610
+from checked to unchecked or the other way around,
+
+72
+00:03:49,610 --> 00:03:52,990
+and that's when setFilter should be triggered.
+
+73
+00:03:52,990 --> 00:03:56,143
+And therefore that of course gets added on all these inputs.
+
+74
+00:03:57,570 --> 00:04:01,890
+Now setFilter therefore received default event object,
+
+75
+00:04:01,890 --> 00:04:04,373
+since we bind it to a default dom event.
+
+76
+00:04:06,450 --> 00:04:08,740
+And we can now extract two important pieces
+
+77
+00:04:08,740 --> 00:04:10,483
+of information from that event.
+
+78
+00:04:11,810 --> 00:04:14,170
+The first one is the ID of the input
+
+79
+00:04:14,170 --> 00:04:16,730
+that was checked or that was changed.
+
+80
+00:04:16,730 --> 00:04:20,170
+We get this by accessing event.target.id.
+
+81
+00:04:20,170 --> 00:04:21,970
+So that gives us access to these IDs
+
+82
+00:04:21,970 --> 00:04:23,813
+which we added to these inputs.
+
+83
+00:04:25,110 --> 00:04:28,227
+And then the second piece of information is, isActive,
+
+84
+00:04:29,198 --> 00:04:30,590
+is that currently checked?
+
+85
+00:04:30,590 --> 00:04:33,250
+For data we can access.event.target.checked
+
+86
+00:04:33,250 --> 00:04:34,920
+to find out whether data input
+
+87
+00:04:34,920 --> 00:04:38,313
+for which this event was triggered, is now checked or not.
+
+88
+00:04:39,250 --> 00:04:44,250
+And then I can derive my updatedFilters object here,
+
+89
+00:04:45,200 --> 00:04:47,670
+where I copy the existing filters,
+
+90
+00:04:47,670 --> 00:04:50,823
+so does existing filters the option here?
+
+91
+00:04:52,090 --> 00:04:55,570
+With the spread operator, I copy it into this new object.
+
+92
+00:04:55,570 --> 00:04:59,120
+So I copy all these properties into this new object,
+
+93
+00:04:59,120 --> 00:05:02,860
+but then we override one of these three properties.
+
+94
+00:05:02,860 --> 00:05:05,850
+We do this by dynamically setting the property name,
+
+95
+00:05:05,850 --> 00:05:08,730
+which we wanna override and set it to our inputId,
+
+96
+00:05:08,730 --> 00:05:10,003
+so to this constant.
+
+97
+00:05:11,220 --> 00:05:14,760
+This whole frontend, backend or career,
+
+98
+00:05:14,760 --> 00:05:17,470
+and these are the input IDs we have here.
+
+99
+00:05:17,470 --> 00:05:21,240
+So with that, we accessed one of these keys,
+
+100
+00:05:21,240 --> 00:05:25,160
+and set a new value for this dynamically set property.
+
+101
+00:05:25,160 --> 00:05:28,453
+And the value is, isActive, which is true or false.
+
+102
+00:05:30,810 --> 00:05:33,240
+And then we can set this filters,
+
+103
+00:05:33,240 --> 00:05:36,513
+so our data option to the updatedFilters.
+
+104
+00:05:37,420 --> 00:05:39,090
+With that we should be able to manage
+
+105
+00:05:39,090 --> 00:05:41,200
+the filters internally here.
+
+106
+00:05:41,200 --> 00:05:42,590
+But of course, that's not all.
+
+107
+00:05:42,590 --> 00:05:45,160
+I also want to let the component that uses
+
+108
+00:05:45,160 --> 00:05:49,050
+the CoachFilter component, know about my filters.
+
+109
+00:05:49,050 --> 00:05:53,200
+That's why I wanna emit, $emit a custom event here
+
+110
+00:05:53,200 --> 00:05:56,160
+to communicate back to the parent component.
+
+111
+00:05:56,160 --> 00:05:57,870
+And that's the change-filter event,
+
+112
+00:05:57,870 --> 00:06:00,910
+let's say where I pass my updatedFilters,
+
+113
+00:06:00,910 --> 00:06:04,180
+so where I provide the information about the updatedFilters
+
+114
+00:06:04,180 --> 00:06:06,023
+to the component that's listening.
+
+115
+00:06:07,530 --> 00:06:08,363
+And now it's of course,
+
+116
+00:06:08,363 --> 00:06:12,320
+a good practice to also add the emits option here,
+
+117
+00:06:12,320 --> 00:06:15,080
+and therefore make it clear that this component
+
+118
+00:06:15,080 --> 00:06:17,103
+emits a change-filter event.
+
+119
+00:06:18,620 --> 00:06:20,290
+Now we can add some styling,
+
+120
+00:06:20,290 --> 00:06:22,580
+so that's add some scoped styling.
+
+121
+00:06:22,580 --> 00:06:27,460
+And as always attached you find the CoachFilter CSS file
+
+122
+00:06:27,460 --> 00:06:29,210
+with all those styles here,
+
+123
+00:06:29,210 --> 00:06:31,713
+which you can copy between your style tags.
+
+124
+00:06:34,240 --> 00:06:36,882
+With that we can now use CoachFilter
+
+125
+00:06:36,882 --> 00:06:38,923
+in the coachesList component.
+
+126
+00:06:40,080 --> 00:06:44,590
+So let's go to CoachesList and there first of all,
+
+127
+00:06:44,590 --> 00:06:49,590
+import CoachFilter from going up, going up, components,
+
+128
+00:06:50,140 --> 00:06:55,140
+coaches, CoachFilter.vue, and added here
+
+129
+00:06:55,180 --> 00:06:56,773
+to the components option,
+
+130
+00:06:58,610 --> 00:07:01,510
+and then added here instead of filter.
+
+131
+00:07:01,510 --> 00:07:05,370
+Here, I wanna add coach-filter
+
+132
+00:07:05,370 --> 00:07:08,853
+like that, no, not like this, but like that.
+
+133
+00:07:11,370 --> 00:07:13,400
+Of course here, I now want to listen
+
+134
+00:07:13,400 --> 00:07:17,700
+to that change-filter event which is emitted eventually
+
+135
+00:07:17,700 --> 00:07:20,710
+and call a setFilters method,
+
+136
+00:07:20,710 --> 00:07:22,533
+which we now have to add here.
+
+137
+00:07:23,550 --> 00:07:28,547
+So going down in this component, I'll add a methods key.
+
+138
+00:07:29,520 --> 00:07:32,430
+And in there add a setFilters method
+
+139
+00:07:32,430 --> 00:07:35,653
+where I get my updatedFilters as an argument,
+
+140
+00:07:36,500 --> 00:07:39,140
+because that is the kind of data we're emitting
+
+141
+00:07:39,140 --> 00:07:41,620
+in the CoachFilter component, right?
+
+142
+00:07:41,620 --> 00:07:45,020
+We pass the updatedFilters as an argument here
+
+143
+00:07:45,020 --> 00:07:46,570
+when we emit the event.
+
+144
+00:07:46,570 --> 00:07:49,380
+And therefore in the place where we listen to the event,
+
+145
+00:07:49,380 --> 00:07:51,563
+we received this as a parameter.
+
+146
+00:07:55,150 --> 00:07:59,170
+And here I now want to manage a new piece of data
+
+147
+00:07:59,170 --> 00:08:00,840
+or any data at all.
+
+148
+00:08:00,840 --> 00:08:03,043
+So let's add the data option in CoachesList.
+
+149
+00:08:04,250 --> 00:08:06,300
+And here in that object,
+
+150
+00:08:06,300 --> 00:08:11,300
+I want to have an activeFilters data property,
+
+151
+00:08:11,440 --> 00:08:16,440
+which also has frontend true, backend true, and career true.
+
+152
+00:08:18,140 --> 00:08:19,970
+But this should now be overwritten
+
+153
+00:08:19,970 --> 00:08:22,520
+whenever new filters are emitted.
+
+154
+00:08:22,520 --> 00:08:26,600
+So here in setFilters, I'll set this active filters equal
+
+155
+00:08:26,600 --> 00:08:28,253
+to the updatedFilters.
+
+156
+00:08:29,520 --> 00:08:32,320
+And now with all of dead we can go back
+
+157
+00:08:32,320 --> 00:08:35,679
+to the filteredCoaches computed property.
+
+158
+00:08:35,679 --> 00:08:38,690
+And now not always return all coaches,
+
+159
+00:08:38,690 --> 00:08:41,113
+but coaches that match our filters.
+
+160
+00:08:42,750 --> 00:08:47,750
+So here I get my coaches which is stored in a constant,
+
+161
+00:08:48,020 --> 00:08:51,120
+but I will return coaches.filter,
+
+162
+00:08:51,120 --> 00:08:52,880
+calling the built in filter method
+
+163
+00:08:52,880 --> 00:08:56,690
+which you can call on arrays in JavaScript,
+
+164
+00:08:56,690 --> 00:09:01,070
+where we now execute a function on every item in coaches
+
+165
+00:09:01,070 --> 00:09:04,030
+and receive to coach as an input automatically
+
+166
+00:09:04,030 --> 00:09:05,270
+as a parameter.
+
+167
+00:09:05,270 --> 00:09:08,100
+And now in here, I wanna have a couple of if checks,
+
+168
+00:09:08,100 --> 00:09:13,050
+and check if this.activeFilters.frontend is true,
+
+169
+00:09:13,050 --> 00:09:14,740
+which means I wanna show coaches
+
+170
+00:09:14,740 --> 00:09:19,170
+that have the frontend area of expertise.
+
+171
+00:09:19,170 --> 00:09:21,350
+So therefore I know that I want to show coaches
+
+172
+00:09:21,350 --> 00:09:23,130
+with the frontend area.
+
+173
+00:09:23,130 --> 00:09:27,810
+But now I can check if this coach in his or her areas
+
+174
+00:09:27,810 --> 00:09:30,660
+has this frontend key.
+
+175
+00:09:30,660 --> 00:09:33,540
+We can do this with coach.areas.includes
+
+176
+00:09:33,540 --> 00:09:36,880
+which is a number built in method in JavaScript.
+
+177
+00:09:36,880 --> 00:09:39,143
+And to that I pass frontend.
+
+178
+00:09:40,230 --> 00:09:43,000
+And here I then return true if that is matched,
+
+179
+00:09:43,000 --> 00:09:45,920
+because that means that we want to see coaches
+
+180
+00:09:45,920 --> 00:09:48,070
+that have the frontend area of expertise
+
+181
+00:09:48,070 --> 00:09:49,750
+and this coach has it.
+
+182
+00:09:49,750 --> 00:09:53,310
+So we return true to keep that coach
+
+183
+00:09:53,310 --> 00:09:55,623
+in our returned coaches array.
+
+184
+00:09:57,150 --> 00:09:59,630
+And now we can duplicate this twice to do
+
+185
+00:09:59,630 --> 00:10:01,693
+the same I'm here for backend.
+
+186
+00:10:03,410 --> 00:10:08,410
+And of course, here for career.
+
+187
+00:10:10,230 --> 00:10:13,800
+And ultimately, if none of these if checks match,
+
+188
+00:10:13,800 --> 00:10:17,180
+we return false here inside of that filter method
+
+189
+00:10:17,180 --> 00:10:18,990
+or inside of this filter function,
+
+190
+00:10:18,990 --> 00:10:21,540
+which means this coach, which doesn't have the fields
+
+191
+00:10:21,540 --> 00:10:23,963
+we're filtering for is excluded.
+
+192
+00:10:25,700 --> 00:10:27,520
+And that should be it.
+
+193
+00:10:27,520 --> 00:10:31,490
+With that saved, we now have this filter component here.
+
+194
+00:10:31,490 --> 00:10:35,170
+And now for example, Julie doesn't have backend.
+
+195
+00:10:35,170 --> 00:10:39,570
+So if I uncheck career and frontend, only Max's left,
+
+196
+00:10:39,570 --> 00:10:42,950
+if I'm checked backend, we got no coaches at all.
+
+197
+00:10:42,950 --> 00:10:45,450
+If I check front end, we see both coaches
+
+198
+00:10:45,450 --> 00:10:47,400
+because both coaches have that.
+
+199
+00:10:47,400 --> 00:10:49,150
+And that's the filter working.
+
+200
+00:10:49,150 --> 00:10:51,260
+So now with the filters added,
+
+201
+00:10:51,260 --> 00:10:56,260
+let's work on the contact and the register as coach forms.
+
+202
+00:10:56,320 --> 00:10:59,540
+And let may be start with registering as a coach.
+
+203
+00:10:59,540 --> 00:11:01,480
+This page just pretty white right now
+
+204
+00:11:01,480 --> 00:11:04,160
+and of course here, I wanna have a nice form
+
+205
+00:11:04,160 --> 00:11:08,163
+where we can fill in all the details to sign up as a coach.
+

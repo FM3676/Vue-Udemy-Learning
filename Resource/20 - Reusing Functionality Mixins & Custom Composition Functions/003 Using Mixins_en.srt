@@ -1,0 +1,352 @@
+1
+00:00:02,110 --> 00:00:04,360
+In this example, project, the logic,
+
+2
+00:00:04,360 --> 00:00:08,070
+which I would want to reuse can be found in the add and
+
+3
+00:00:08,070 --> 00:00:10,000
+delete user components.
+
+4
+00:00:10,000 --> 00:00:11,650
+There I basically have
+
+5
+00:00:11,650 --> 00:00:14,780
+the same data and methods and actually all
+
+6
+00:00:14,780 --> 00:00:18,130
+the components option, if you take a closer look.
+
+7
+00:00:18,130 --> 00:00:22,370
+Now you might be able to reuse these logic by creating some
+
+8
+00:00:22,370 --> 00:00:23,760
+wrapper component,
+
+9
+00:00:23,760 --> 00:00:27,070
+but another powerful tool for easily sharing this
+
+10
+00:00:27,070 --> 00:00:29,950
+configuration across both components are
+
+11
+00:00:29,950 --> 00:00:31,523
+the already mentioned mixins.
+
+12
+00:00:32,619 --> 00:00:35,190
+For that I'll create a new folder mixins,
+
+13
+00:00:35,190 --> 00:00:36,190
+the name is up to you,
+
+14
+00:00:36,190 --> 00:00:38,750
+but I guess this name makes sense since I'm going
+
+15
+00:00:38,750 --> 00:00:41,470
+to store one or more mixins in there,
+
+16
+00:00:41,470 --> 00:00:46,090
+and I will add the alert mixin file,
+
+17
+00:00:46,090 --> 00:00:48,490
+or just the alert js file.
+
+18
+00:00:48,490 --> 00:00:51,563
+The name is up to you though, how you wanna name this file.
+
+19
+00:00:52,970 --> 00:00:55,010
+And in this new js file,
+
+20
+00:00:55,010 --> 00:00:56,440
+so not a dot vue file,
+
+21
+00:00:56,440 --> 00:01:01,440
+but in this js file, I want to store my shared config logic.
+
+22
+00:01:03,960 --> 00:01:07,480
+And in this case here, it's actually an extreme case,
+
+23
+00:01:07,480 --> 00:01:08,357
+the entire config objects
+
+24
+00:01:08,357 --> 00:01:09,190
+for both components are exactly equal
+
+25
+00:01:09,190 --> 00:01:14,190
+they're exactly the same.
+
+26
+00:01:15,120 --> 00:01:17,700
+So therefore I will actually grab
+
+27
+00:01:17,700 --> 00:01:20,350
+this entire default export here,
+
+28
+00:01:20,350 --> 00:01:23,100
+copy it from one of the components and go to
+
+29
+00:01:23,100 --> 00:01:25,583
+the alert js file and paste it in there.
+
+30
+00:01:26,430 --> 00:01:30,450
+So now in alert js, I'm exporting this object
+
+31
+00:01:30,450 --> 00:01:33,370
+as a default object.
+
+32
+00:01:33,370 --> 00:01:35,680
+Now what's the advantage of this?
+
+33
+00:01:35,680 --> 00:01:40,220
+Well, now we can use this as a mixin, in those components.
+
+34
+00:01:40,220 --> 00:01:44,800
+So for example, an add user there, I can now import
+
+35
+00:01:44,800 --> 00:01:48,730
+the alert mixin this name is up to you
+
+36
+00:01:48,730 --> 00:01:51,950
+from, going up one level diving into
+
+37
+00:01:51,950 --> 00:01:55,033
+the mixins folder alert js,
+
+38
+00:01:55,900 --> 00:02:00,900
+and now we can remove all the code here so that we're left
+
+39
+00:02:00,980 --> 00:02:04,930
+with the empty config object and add a new option,
+
+40
+00:02:04,930 --> 00:02:09,530
+which we haven't used before, the mixins option.
+
+41
+00:02:09,530 --> 00:02:13,210
+And this takes an array where you add all the mixins,
+
+42
+00:02:13,210 --> 00:02:16,940
+so all the shared code you wanna apply to this component.
+
+43
+00:02:16,940 --> 00:02:19,313
+And here I add my alert mixin,
+
+44
+00:02:21,030 --> 00:02:25,410
+and I'm going to copy this now, go to delete user
+
+45
+00:02:25,410 --> 00:02:26,940
+and add the same code
+
+46
+00:02:26,940 --> 00:02:29,913
+there replacing the existing config object.
+
+47
+00:02:31,390 --> 00:02:34,680
+Now with that, there's just one more tweak we gotta do.
+
+48
+00:02:34,680 --> 00:02:37,990
+I get an error now regarding my user alert.
+
+49
+00:02:37,990 --> 00:02:42,300
+This import here is not required in delete user
+
+50
+00:02:42,300 --> 00:02:44,100
+and add user Vue anymore,
+
+51
+00:02:44,100 --> 00:02:45,390
+but we have to add it
+
+52
+00:02:45,390 --> 00:02:48,903
+in our mixin because here I'm referencing user alert.
+
+53
+00:02:49,930 --> 00:02:54,930
+So here I'm going to import user alert from going up one
+
+54
+00:02:55,100 --> 00:02:59,443
+level, going into components, user alert dot Vue.
+
+55
+00:03:00,910 --> 00:03:03,150
+With that, I can save this and reload.
+
+56
+00:03:03,150 --> 00:03:06,713
+And we get a warning failed to resolve component.
+
+57
+00:03:08,560 --> 00:03:11,140
+This mixin concept here will work,
+
+58
+00:03:11,140 --> 00:03:13,900
+but actually not for components.
+
+59
+00:03:13,900 --> 00:03:15,090
+If you've got components
+
+60
+00:03:15,090 --> 00:03:17,100
+that should be registered in a component,
+
+61
+00:03:17,100 --> 00:03:21,630
+this components option cannot be shared through a mixin.
+
+62
+00:03:21,630 --> 00:03:24,560
+So therefore we actually have to remove this and remove the
+
+63
+00:03:24,560 --> 00:03:26,080
+import we just added
+
+64
+00:03:26,080 --> 00:03:29,350
+and bring it back into our custom components
+
+65
+00:03:29,350 --> 00:03:31,780
+into our custom component options here.
+
+66
+00:03:31,780 --> 00:03:33,680
+So re-add components pointing
+
+67
+00:03:33,680 --> 00:03:36,840
+at user alert and re-add the import.
+
+68
+00:03:36,840 --> 00:03:38,820
+Yes, I know we just removed it,
+
+69
+00:03:38,820 --> 00:03:42,030
+but it is important to understand what you can and what you
+
+70
+00:03:42,030 --> 00:03:45,940
+cannot share through mixins and component configuration
+
+71
+00:03:45,940 --> 00:03:47,573
+can actually not be shared.
+
+72
+00:03:48,700 --> 00:03:52,420
+So let's quickly re-add it to both our add and delete user
+
+73
+00:03:52,420 --> 00:03:55,053
+components and save everything thereafter.
+
+74
+00:03:56,350 --> 00:03:58,300
+And with that though, if we reload,
+
+75
+00:03:58,300 --> 00:04:02,570
+this will just work and it works as before,
+
+76
+00:04:02,570 --> 00:04:04,310
+but there is one key difference.
+
+77
+00:04:04,310 --> 00:04:09,140
+Now we got way leaner add and delete user components where
+
+78
+00:04:09,140 --> 00:04:12,770
+the config objects simply contained the components option
+
+79
+00:04:12,770 --> 00:04:16,910
+and then the mixins option and all the logic we had in both
+
+80
+00:04:16,910 --> 00:04:20,070
+components before is now in our mixin,
+
+81
+00:04:20,070 --> 00:04:21,760
+and with these mixins,
+
+82
+00:04:21,760 --> 00:04:25,730
+you can share all the component options you typically have
+
+83
+00:04:25,730 --> 00:04:28,230
+with the exception of components as you saw here,
+
+84
+00:04:28,230 --> 00:04:33,080
+but you can share data, computed, methods, watchers,
+
+85
+00:04:33,080 --> 00:04:38,080
+whatever you need there, it can be shared through mixins.
+
+86
+00:04:38,130 --> 00:04:41,180
+And therefore mixins can be a powerful tool for
+
+87
+00:04:41,180 --> 00:04:43,900
+making your components leaner and sharing,
+
+88
+00:04:43,900 --> 00:04:46,483
+reused logic across components.
+

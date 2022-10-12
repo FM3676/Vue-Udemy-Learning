@@ -1,0 +1,376 @@
+1
+00:00:02,130 --> 00:00:03,300
+For this, I, again,
+
+2
+00:00:03,300 --> 00:00:06,030
+prepared a little starting project for you.
+
+3
+00:00:06,030 --> 00:00:07,580
+It is a simple project,
+
+4
+00:00:07,580 --> 00:00:10,450
+which you can start as always with NPM install
+
+5
+00:00:10,450 --> 00:00:11,680
+and NPM run surf.
+
+6
+00:00:11,680 --> 00:00:15,170
+And when you do so you will see this on the screen.
+
+7
+00:00:15,170 --> 00:00:18,040
+We've got two dummy components here for adding
+
+8
+00:00:18,040 --> 00:00:20,020
+and deleting a user, presumably.
+
+9
+00:00:20,020 --> 00:00:23,040
+And when we click add user, we open a,
+
+10
+00:00:23,040 --> 00:00:25,860
+an alert, a model with add a user
+
+11
+00:00:25,860 --> 00:00:29,257
+and the text asking us whether we want to add a user
+
+12
+00:00:29,257 --> 00:00:31,880
+and we can close this by clicking on the backdrop
+
+13
+00:00:31,880 --> 00:00:34,200
+or by clicking on the close button.
+
+14
+00:00:34,200 --> 00:00:36,050
+And when we click on delete user,
+
+15
+00:00:36,050 --> 00:00:40,010
+we see almost the same dialogue, the same alert,
+
+16
+00:00:40,010 --> 00:00:43,530
+but with a different content, a different text,
+
+17
+00:00:43,530 --> 00:00:47,160
+and therefore here in App Vue,
+
+18
+00:00:47,160 --> 00:00:49,880
+I'm adding add and delete user these two components.
+
+19
+00:00:49,880 --> 00:00:51,360
+And in these components,
+
+20
+00:00:51,360 --> 00:00:55,240
+I have my alert component added as a local component,
+
+21
+00:00:55,240 --> 00:00:57,690
+actually in both components,
+
+22
+00:00:57,690 --> 00:01:00,280
+we could add it as a global component as well,
+
+23
+00:01:00,280 --> 00:01:02,930
+but here I went for the same component,
+
+24
+00:01:02,930 --> 00:01:07,010
+added as a local component into different components.
+
+25
+00:01:07,010 --> 00:01:11,000
+And besides that add user and delete user are very similar.
+
+26
+00:01:11,000 --> 00:01:13,430
+They've got pretty much the same logic in them,
+
+27
+00:01:13,430 --> 00:01:15,880
+but they got a different template, of course,
+
+28
+00:01:15,880 --> 00:01:19,170
+because that is where these components differ.
+
+29
+00:01:19,170 --> 00:01:21,600
+And that already brings us to the core topic
+
+30
+00:01:21,600 --> 00:01:25,320
+of this module, reusing logic and code.
+
+31
+00:01:25,320 --> 00:01:27,330
+And for that, let's start simple.
+
+32
+00:01:27,330 --> 00:01:31,040
+What can we reuse in a Vue application
+
+33
+00:01:31,040 --> 00:01:34,713
+or in any web application, if we think about it?
+
+34
+00:01:35,960 --> 00:01:40,040
+Well, for one that's of course our HTML structure
+
+35
+00:01:40,040 --> 00:01:42,830
+and styling, this is something
+
+36
+00:01:42,830 --> 00:01:44,920
+which we often reuse on our page.
+
+37
+00:01:44,920 --> 00:01:48,090
+We often have different parts on our page,
+
+38
+00:01:48,090 --> 00:01:52,350
+which actually use the same HTML structure and styling.
+
+39
+00:01:52,350 --> 00:01:55,883
+Think about list items where every list item looks the same,
+
+40
+00:01:57,000 --> 00:02:00,580
+but we also often want to reuse logic and events,
+
+41
+00:02:00,580 --> 00:02:02,290
+which we might want to handle.
+
+42
+00:02:02,290 --> 00:02:06,380
+And that's exactly why we have this components concept with
+
+43
+00:02:06,380 --> 00:02:09,250
+this core concept built into Vue,
+
+44
+00:02:09,250 --> 00:02:13,280
+we have a powerful way of encapsulating structure,
+
+45
+00:02:13,280 --> 00:02:15,890
+styling and logic into a component,
+
+46
+00:02:15,890 --> 00:02:19,560
+and then using that component wherever we needed on
+
+47
+00:02:19,560 --> 00:02:23,480
+the page, and thanks to props and slots,
+
+48
+00:02:23,480 --> 00:02:27,363
+we can still customize this component to a certain extent.
+
+49
+00:02:28,650 --> 00:02:29,483
+And in the end,
+
+50
+00:02:29,483 --> 00:02:32,720
+that's what I'm doing in this mini app here as well.
+
+51
+00:02:32,720 --> 00:02:37,020
+The user alerts component is a reusable component,
+
+52
+00:02:37,020 --> 00:02:40,780
+which defines the structure and styling for a backdrop
+
+53
+00:02:40,780 --> 00:02:42,270
+and the overlay.
+
+54
+00:02:42,270 --> 00:02:46,300
+And then I'm using this component in both the delete user,
+
+55
+00:02:46,300 --> 00:02:48,683
+as well as the add user component.
+
+56
+00:02:49,660 --> 00:02:51,820
+And these components themselves, of course,
+
+57
+00:02:51,820 --> 00:02:56,070
+are also encapsulated pieces of HTML code
+
+58
+00:02:56,070 --> 00:02:58,203
+and logic attached to it.
+
+59
+00:02:59,120 --> 00:03:02,320
+And that is really the idea of components.
+
+60
+00:03:02,320 --> 00:03:06,500
+We have HTML structure, styling
+
+61
+00:03:06,500 --> 00:03:09,140
+and possibly also some logic like here
+
+62
+00:03:09,140 --> 00:03:13,060
+for emitting this close event in the user alert component,
+
+63
+00:03:13,060 --> 00:03:17,163
+which is all encapsulated into one reusable building block.
+
+64
+00:03:18,240 --> 00:03:19,870
+Now that's nothing new though.
+
+65
+00:03:19,870 --> 00:03:24,420
+We worked with components for hours and hours already at
+
+66
+00:03:24,420 --> 00:03:26,490
+this point in the course and they offered
+
+67
+00:03:26,490 --> 00:03:27,560
+that's nothing new,
+
+68
+00:03:27,560 --> 00:03:30,590
+but it is the core concept when it comes
+
+69
+00:03:30,590 --> 00:03:33,163
+to re usability in Vue.
+
+70
+00:03:34,470 --> 00:03:36,550
+But, it doesn't stop there.
+
+71
+00:03:36,550 --> 00:03:38,480
+That is something we learnt thus far.
+
+72
+00:03:38,480 --> 00:03:42,070
+Now here's the new part, even with components,
+
+73
+00:03:42,070 --> 00:03:44,870
+which are great for having an encapsulated template
+
+74
+00:03:44,870 --> 00:03:47,800
+and logic, customization options with props
+
+75
+00:03:47,800 --> 00:03:51,320
+and custom events and slots, even with those components.
+
+76
+00:03:51,320 --> 00:03:53,600
+And even with this powerful concept,
+
+77
+00:03:53,600 --> 00:03:56,610
+we sometimes are left with some code,
+
+78
+00:03:56,610 --> 00:03:58,600
+which we would want to reuse,
+
+79
+00:03:58,600 --> 00:04:01,580
+but which be conscientious as easily.
+
+80
+00:04:01,580 --> 00:04:04,750
+Because what if we have queue components
+
+81
+00:04:04,750 --> 00:04:09,340
+that have related or similar logic in them, for example,
+
+82
+00:04:09,340 --> 00:04:12,360
+the user list component with a search method,
+
+83
+00:04:12,360 --> 00:04:16,100
+data related to search and a Watcher related to search.
+
+84
+00:04:16,100 --> 00:04:19,110
+And then we have to same logic in another component
+
+85
+00:04:20,329 --> 00:04:23,830
+in such cases, creating a new component,
+
+86
+00:04:23,830 --> 00:04:28,440
+which has this combined logic might not always be possible
+
+87
+00:04:28,440 --> 00:04:31,400
+and therefore when using the options API,
+
+88
+00:04:31,400 --> 00:04:33,860
+you have a concept called mixins,
+
+89
+00:04:33,860 --> 00:04:37,630
+which basically allows you to share data, methods,
+
+90
+00:04:37,630 --> 00:04:41,270
+computed properties, Watchers, lifecycle hooks,
+
+91
+00:04:41,270 --> 00:04:45,940
+whichever configuration you might need across components.
+
+92
+00:04:45,940 --> 00:04:48,445
+So therefore let's explore mixins
+
+93
+00:04:48,445 --> 00:04:50,480
+and let's see how they can help us here
+
+94
+00:04:50,480 --> 00:04:52,523
+in this example project.
+

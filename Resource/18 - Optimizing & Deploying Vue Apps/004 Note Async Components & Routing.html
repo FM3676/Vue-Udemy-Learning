@@ -1,0 +1,3 @@
+<p>It turns out, that it's <strong>NOT recommended</strong> to use async components for routing (you may use them to conditionally load and fetch component code when working with v-if etc. though).</p><p>For routing, <strong>simply change the syntax</strong> from</p><pre class="prettyprint linenums">const CoachDetail = defineAsyncComponent(() =&gt;
+  import('./pages/coaches/CoachDetail.vue')
+);</pre><p>to</p><pre class="prettyprint linenums">const CoachDetail = () =&gt; import('./pages/coaches/CoachDetail.vue');</pre><p>(for all routes)</p>

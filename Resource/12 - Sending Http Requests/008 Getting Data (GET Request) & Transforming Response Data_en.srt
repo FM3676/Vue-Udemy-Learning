@@ -1,0 +1,892 @@
+1
+00:00:02,260 --> 00:00:04,210
+We now wanna get the data
+
+2
+00:00:04,210 --> 00:00:07,010
+that is stored on this server.
+
+3
+00:00:07,010 --> 00:00:09,150
+And for that I wanna connect this load
+
+4
+00:00:09,150 --> 00:00:11,470
+submitted experiences button.
+
+5
+00:00:11,470 --> 00:00:14,490
+So in the UserExperiences component,
+
+6
+00:00:14,490 --> 00:00:17,030
+we previously received results as a prop.
+
+7
+00:00:17,030 --> 00:00:19,130
+That will no longer be the case,
+
+8
+00:00:19,130 --> 00:00:20,870
+so we can remove that.
+
+9
+00:00:20,870 --> 00:00:21,920
+Instead now,
+
+10
+00:00:21,920 --> 00:00:23,990
+I wanna manage some data in here
+
+11
+00:00:24,870 --> 00:00:27,903
+and have my results as a data key.
+
+12
+00:00:28,870 --> 00:00:30,620
+And initially, it's an empty array.
+
+13
+00:00:32,040 --> 00:00:34,980
+Now, I also wanna add some methods here though,
+
+14
+00:00:34,980 --> 00:00:37,720
+or one method to be precise,
+
+15
+00:00:37,720 --> 00:00:39,510
+a method that should be triggered
+
+16
+00:00:39,510 --> 00:00:41,053
+when this button is clicked.
+
+17
+00:00:42,600 --> 00:00:44,540
+So here, I wanna add a click
+
+18
+00:00:44,540 --> 00:00:46,780
+listener to the space button
+
+19
+00:00:46,780 --> 00:00:50,033
+and trigger the LoadExperiences method.
+
+20
+00:00:52,000 --> 00:00:54,320
+Now that's a method we need to add now.
+
+21
+00:00:54,320 --> 00:00:56,940
+So make sure you add it under that same name
+
+22
+00:00:56,940 --> 00:00:57,863
+to methods,
+
+23
+00:00:58,760 --> 00:01:00,040
+and in here
+
+24
+00:01:00,040 --> 00:01:03,180
+we now wanna send another HTTP request
+
+25
+00:01:03,180 --> 00:01:06,390
+to the server we previously sent our data to.
+
+26
+00:01:06,390 --> 00:01:08,333
+But now to get data.
+
+27
+00:01:09,620 --> 00:01:12,530
+For that, we can of course copy this request
+
+28
+00:01:12,530 --> 00:01:14,560
+from Learning Survey.vue,
+
+29
+00:01:14,560 --> 00:01:17,623
+and bring it over to this new LoadExperiences method.
+
+30
+00:01:18,840 --> 00:01:22,300
+Now here, I wanna send a request to this same address,
+
+31
+00:01:22,300 --> 00:01:24,500
+which i used for storing the data.
+
+32
+00:01:24,500 --> 00:01:26,810
+But now it should be a GET request
+
+33
+00:01:26,810 --> 00:01:28,180
+instead of a POST request,
+
+34
+00:01:28,180 --> 00:01:29,703
+because you wanna get data.
+
+35
+00:01:31,030 --> 00:01:31,920
+The good thing is,
+
+36
+00:01:31,920 --> 00:01:33,160
+that would be the default,
+
+37
+00:01:33,160 --> 00:01:35,420
+so we don't even need to set this.
+
+38
+00:01:35,420 --> 00:01:36,900
+Now since we're getting data
+
+39
+00:01:36,900 --> 00:01:39,410
+we'll also not have any body.
+
+40
+00:01:39,410 --> 00:01:41,220
+So we can remove that as well,
+
+41
+00:01:41,220 --> 00:01:44,543
+because a GET request does not carry any data.
+
+42
+00:01:45,930 --> 00:01:47,630
+And now here for the headers,
+
+43
+00:01:47,630 --> 00:01:48,760
+since there is no body
+
+44
+00:01:48,760 --> 00:01:50,323
+we also don't need the headers.
+
+45
+00:01:51,380 --> 00:01:53,400
+So we have a empty conflict object
+
+46
+00:01:53,400 --> 00:01:56,870
+and therefore we are also allowed to delete it.
+
+47
+00:01:56,870 --> 00:01:59,663
+This will now send a request to get the data.
+
+48
+00:02:00,740 --> 00:02:02,790
+But we'll face a problem with that.
+
+49
+00:02:02,790 --> 00:02:04,665
+When we send this request,
+
+50
+00:02:04,665 --> 00:02:07,200
+how do we get access to the data
+
+51
+00:02:07,200 --> 00:02:08,963
+that will eventually be loaded?
+
+52
+00:02:10,440 --> 00:02:14,070
+Well, fetch returns a so called promise.
+
+53
+00:02:14,070 --> 00:02:15,130
+Now, what's a promise?
+
+54
+00:02:15,130 --> 00:02:17,770
+And why do we need that?
+
+55
+00:02:17,770 --> 00:02:19,200
+Well as I just said,
+
+56
+00:02:19,200 --> 00:02:21,760
+the data will be loaded eventually.
+
+57
+00:02:21,760 --> 00:02:22,890
+As you can imagine,
+
+58
+00:02:22,890 --> 00:02:25,270
+if you're sending an HTTP request,
+
+59
+00:02:25,270 --> 00:02:29,160
+that can take a couple of milliseconds or seconds.
+
+60
+00:02:29,160 --> 00:02:31,090
+Firebase is super fast
+
+61
+00:02:31,090 --> 00:02:33,400
+and my local internet is pretty fast
+
+62
+00:02:33,400 --> 00:02:35,100
+so it should be pretty quick.
+
+63
+00:02:35,100 --> 00:02:39,100
+But still, it might take 100 200 500 milliseconds
+
+64
+00:02:39,100 --> 00:02:41,320
+for the data to arrive.
+
+65
+00:02:41,320 --> 00:02:43,620
+And JavaScript is a language
+
+66
+00:02:43,620 --> 00:02:48,050
+that will not pause and wait with the other code execution
+
+67
+00:02:48,050 --> 00:02:50,370
+until that result is there.
+
+68
+00:02:50,370 --> 00:02:51,203
+That is good,
+
+69
+00:02:51,203 --> 00:02:53,258
+because it would mean if it would pause
+
+70
+00:02:53,258 --> 00:02:56,510
+that our web apps would freeze all the time
+
+71
+00:02:56,510 --> 00:02:59,720
+waiting for some behind the scenes HTTP requests
+
+72
+00:02:59,720 --> 00:03:00,583
+to finish.
+
+73
+00:03:01,500 --> 00:03:03,530
+So that's the idea behind promises.
+
+74
+00:03:03,530 --> 00:03:05,760
+Fetch returns an object
+
+75
+00:03:05,760 --> 00:03:08,160
+on which we can listen for the data
+
+76
+00:03:08,160 --> 00:03:09,470
+once it is there,
+
+77
+00:03:09,470 --> 00:03:10,890
+to then set up code
+
+78
+00:03:10,890 --> 00:03:14,240
+that will be executed when that data is there.
+
+79
+00:03:14,240 --> 00:03:17,910
+And we set up such a listener by adding a then method here
+
+80
+00:03:17,910 --> 00:03:20,183
+on the result of fetch.
+
+81
+00:03:21,490 --> 00:03:22,740
+The then method
+
+82
+00:03:22,740 --> 00:03:24,410
+takes a function
+
+83
+00:03:24,410 --> 00:03:27,360
+which will be executed once the result is there.
+
+84
+00:03:27,360 --> 00:03:29,080
+It will be executed automatically
+
+85
+00:03:29,080 --> 00:03:32,340
+by the browser once the data is there.
+
+86
+00:03:32,340 --> 00:03:33,173
+And in here,
+
+87
+00:03:33,173 --> 00:03:35,110
+we'll also get an argument automatically
+
+88
+00:03:35,110 --> 00:03:38,070
+and that will be the response of this request.
+
+89
+00:03:38,070 --> 00:03:41,913
+So the response sent back by the server to the browser.
+
+90
+00:03:43,170 --> 00:03:45,580
+Now here we can then work with that response
+
+91
+00:03:45,580 --> 00:03:48,063
+and try to parse it.
+
+92
+00:03:48,063 --> 00:03:51,810
+It can for example check if the response is okay.
+
+93
+00:03:51,810 --> 00:03:53,240
+This response object
+
+94
+00:03:53,240 --> 00:03:55,300
+which we get automatically by the browser
+
+95
+00:03:55,300 --> 00:03:56,977
+has an okay property
+
+96
+00:03:56,977 --> 00:04:00,960
+that indicates whether it was a successful request or not.
+
+97
+00:04:00,960 --> 00:04:01,800
+So for example,
+
+98
+00:04:01,800 --> 00:04:05,010
+if the server sends back a 404 code,
+
+99
+00:04:05,010 --> 00:04:06,433
+this would not be okay.
+
+100
+00:04:07,400 --> 00:04:08,760
+If it is okay however,
+
+101
+00:04:08,760 --> 00:04:10,870
+we can continue with the response
+
+102
+00:04:10,870 --> 00:04:13,780
+and try to read the data that's in there.
+
+103
+00:04:13,780 --> 00:04:17,560
+For that the response has various methods.
+
+104
+00:04:17,560 --> 00:04:20,790
+For example, it has a JSON method, which we can call,
+
+105
+00:04:20,790 --> 00:04:23,190
+which will parse the data
+
+106
+00:04:23,190 --> 00:04:26,413
+that's part of the response if it's in JSON format.
+
+107
+00:04:27,410 --> 00:04:31,510
+And JSON is the de facto standard for exchanging data.
+
+108
+00:04:31,510 --> 00:04:35,820
+And therefore, not only do we send data in JSON format,
+
+109
+00:04:35,820 --> 00:04:37,820
+when we send the request,
+
+110
+00:04:37,820 --> 00:04:41,360
+Firebase also replies with JSON data
+
+111
+00:04:41,360 --> 00:04:43,090
+when we get data from it.
+
+112
+00:04:43,090 --> 00:04:44,140
+So the JSON method
+
+113
+00:04:44,140 --> 00:04:45,710
+is the method we wanna use
+
+114
+00:04:45,710 --> 00:04:48,913
+for parsing the data that's part of the response.
+
+115
+00:04:50,240 --> 00:04:53,910
+Now, this also turns out to yield a promise.
+
+116
+00:04:53,910 --> 00:04:55,950
+And therefore what we can do here
+
+117
+00:04:55,950 --> 00:04:58,770
+inside of such a then block here,
+
+118
+00:04:58,770 --> 00:05:03,770
+is we can return this response JSON call here.
+
+119
+00:05:03,900 --> 00:05:07,330
+So we can return the promise yielded by that.
+
+120
+00:05:07,330 --> 00:05:09,760
+And we can add another then method
+
+121
+00:05:09,760 --> 00:05:11,950
+after the first then method.
+
+122
+00:05:11,950 --> 00:05:14,830
+And this then method will be triggered
+
+123
+00:05:14,830 --> 00:05:17,083
+when this return promise is done.
+
+124
+00:05:18,200 --> 00:05:20,180
+So here we have another function,
+
+125
+00:05:20,180 --> 00:05:22,720
+but here we'll get the actual data,
+
+126
+00:05:22,720 --> 00:05:24,993
+which response JSON yielded.
+
+127
+00:05:26,730 --> 00:05:30,170
+And that's now the place where we have access to the data.
+
+128
+00:05:30,170 --> 00:05:31,770
+And therefore here for the moment,
+
+129
+00:05:31,770 --> 00:05:33,063
+I will just log it.
+
+130
+00:05:35,660 --> 00:05:38,430
+We'll take care about error handling later,
+
+131
+00:05:38,430 --> 00:05:41,860
+for the moment let's just see if we can get that data.
+
+132
+00:05:41,860 --> 00:05:43,580
+So let's save everything.
+
+133
+00:05:43,580 --> 00:05:46,140
+Open up the developer tools,
+
+134
+00:05:46,140 --> 00:05:46,973
+reload,
+
+135
+00:05:47,870 --> 00:05:50,253
+and click Load submitted experiences.
+
+136
+00:05:51,100 --> 00:05:54,130
+And after half a second or a second,
+
+137
+00:05:54,130 --> 00:05:56,550
+you should see some data here.
+
+138
+00:05:56,550 --> 00:06:01,280
+And that indeed is the data that was stored on the server,
+
+139
+00:06:01,280 --> 00:06:03,370
+it has this Firebase id.
+
+140
+00:06:03,370 --> 00:06:05,370
+And then stored under that id,
+
+141
+00:06:05,370 --> 00:06:08,683
+we have a nested object with a name and a rating.
+
+142
+00:06:10,160 --> 00:06:12,700
+So fetching that data works.
+
+143
+00:06:12,700 --> 00:06:15,430
+Now, of course, we don't just wanna fetch it
+
+144
+00:06:15,430 --> 00:06:17,140
+and log it to the console,
+
+145
+00:06:17,140 --> 00:06:19,940
+but we wanna output it on the screen.
+
+146
+00:06:19,940 --> 00:06:21,240
+Now to do that,
+
+147
+00:06:21,240 --> 00:06:22,760
+all we gotta do here,
+
+148
+00:06:22,760 --> 00:06:26,060
+is we have to add it to the results we have here,
+
+149
+00:06:26,060 --> 00:06:28,700
+or set results to a new array,
+
+150
+00:06:28,700 --> 00:06:30,363
+which is full of that data.
+
+151
+00:06:31,610 --> 00:06:34,110
+Now setting this results equal to data
+
+152
+00:06:34,110 --> 00:06:35,600
+will not do the trick.
+
+153
+00:06:35,600 --> 00:06:38,020
+Because data is not an array.
+
+154
+00:06:38,020 --> 00:06:39,540
+It's a JavaScript object
+
+155
+00:06:39,540 --> 00:06:42,020
+with this id as a property name.
+
+156
+00:06:42,020 --> 00:06:42,870
+And then in there,
+
+157
+00:06:42,870 --> 00:06:44,730
+we have another nested object
+
+158
+00:06:44,730 --> 00:06:46,770
+with name and rating.
+
+159
+00:06:46,770 --> 00:06:49,480
+I actually wanna work with an array instead.
+
+160
+00:06:49,480 --> 00:06:52,070
+And therefore we need to transform the data.
+
+161
+00:06:52,070 --> 00:06:54,970
+I'll add a results array here,
+
+162
+00:06:54,970 --> 00:06:56,080
+an empty one,
+
+163
+00:06:56,080 --> 00:07:01,080
+and then I will go through all the id's in data.
+
+164
+00:07:02,460 --> 00:07:04,730
+Keep in mind that data is an object
+
+165
+00:07:04,730 --> 00:07:06,980
+full of such id properties.
+
+166
+00:07:06,980 --> 00:07:09,983
+So now I'm going through all those ids here.
+
+167
+00:07:11,590 --> 00:07:15,110
+And I will push a new object
+
+168
+00:07:16,320 --> 00:07:18,540
+to my results array here
+
+169
+00:07:18,540 --> 00:07:20,530
+to this temporary results array
+
+170
+00:07:20,530 --> 00:07:24,910
+for every id property I find in data.
+
+171
+00:07:24,910 --> 00:07:27,030
+And there I will set an id key
+
+172
+00:07:27,030 --> 00:07:28,720
+to this id,
+
+173
+00:07:28,720 --> 00:07:29,553
+which I'm getting here.
+
+174
+00:07:29,553 --> 00:07:32,420
+So to the property names used in data,
+
+175
+00:07:32,420 --> 00:07:34,850
+and set a name equal to data
+
+176
+00:07:34,850 --> 00:07:36,870
+for that id.
+
+177
+00:07:36,870 --> 00:07:38,080
+So this data object
+
+178
+00:07:38,080 --> 00:07:41,190
+and they're accessing this dynamic id property.
+
+179
+00:07:41,190 --> 00:07:42,600
+And then there
+
+180
+00:07:42,600 --> 00:07:45,380
+we have a name and a rating field.
+
+181
+00:07:45,380 --> 00:07:47,500
+So here, dot name
+
+182
+00:07:47,500 --> 00:07:52,463
+and set rating equal to data id rating.
+
+183
+00:07:53,820 --> 00:07:56,300
+That is how I'm generating a bunch of objects
+
+184
+00:07:56,300 --> 00:07:58,340
+with an id name and rating field
+
+185
+00:07:58,340 --> 00:08:01,500
+based on the data we're fetching from Firebase.
+
+186
+00:08:01,500 --> 00:08:04,793
+And I'm adding that all to my temporary results array.
+
+187
+00:08:05,930 --> 00:08:08,480
+And once we're done with this four loop here,
+
+188
+00:08:08,480 --> 00:08:10,630
+I will set these results.
+
+189
+00:08:10,630 --> 00:08:13,740
+So the results data property we're managing here,
+
+190
+00:08:13,740 --> 00:08:18,439
+I'll set these results equal to my temporary results.
+
+191
+00:08:18,439 --> 00:08:20,980
+And that should be all the code we need
+
+192
+00:08:20,980 --> 00:08:22,960
+to transform the incoming data
+
+193
+00:08:22,960 --> 00:08:25,400
+and load it onto our screen.
+
+194
+00:08:25,400 --> 00:08:28,823
+So if we now reload and load the Submitted Experiences,
+
+195
+00:08:29,970 --> 00:08:31,360
+I get an error.
+
+196
+00:08:31,360 --> 00:08:34,200
+Cannot set property results of undefined.
+
+197
+00:08:34,200 --> 00:08:37,830
+I'm getting this because this keyword in here
+
+198
+00:08:37,830 --> 00:08:40,289
+actually turns out to not refer
+
+199
+00:08:40,289 --> 00:08:42,462
+to my view instance object unfortunately.
+
+200
+00:08:44,230 --> 00:08:46,380
+The easiest way of working around that
+
+201
+00:08:46,380 --> 00:08:49,050
+is that we don't use this function syntax here,
+
+202
+00:08:49,050 --> 00:08:52,560
+but this arrow function syntax instead.
+
+203
+00:08:52,560 --> 00:08:55,620
+Arrow functions are another way of writing functions
+
+204
+00:08:55,620 --> 00:08:56,827
+in JavaScript.
+
+205
+00:08:56,827 --> 00:08:59,250
+They work like regular functions,
+
+206
+00:08:59,250 --> 00:09:00,763
+but they have one key difference,
+
+207
+00:09:00,763 --> 00:09:04,190
+that this keyword inside of them
+
+208
+00:09:04,190 --> 00:09:06,311
+does refer to the same context
+
+209
+00:09:06,311 --> 00:09:08,860
+as it does outside of them.
+
+210
+00:09:08,860 --> 00:09:11,690
+And therefore now this will refer
+
+211
+00:09:11,690 --> 00:09:14,010
+to the view instance object.
+
+212
+00:09:14,010 --> 00:09:16,173
+So if that, if I set this and reload,
+
+213
+00:09:17,130 --> 00:09:20,170
+and load the Submitted Experiences,
+
+214
+00:09:20,170 --> 00:09:22,853
+eventually we see the experience here.
+
+215
+00:09:24,170 --> 00:09:26,453
+And if I now would add more data,
+
+216
+00:09:27,910 --> 00:09:29,363
+more experiences,
+
+217
+00:09:32,150 --> 00:09:33,600
+and I load those,
+
+218
+00:09:33,600 --> 00:09:36,470
+we see all those experiences show up here.
+
+219
+00:09:36,470 --> 00:09:39,810
+And that of course is a great step forward.
+
+220
+00:09:39,810 --> 00:09:43,090
+Now we're able to save data on a server,
+
+221
+00:09:43,090 --> 00:09:45,640
+and we can also fetch it from there.
+
+222
+00:09:45,640 --> 00:09:48,710
+Now there are a couple of improvements and additions,
+
+223
+00:09:48,710 --> 00:09:49,543
+we can make
+

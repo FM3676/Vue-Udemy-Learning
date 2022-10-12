@@ -1,0 +1,572 @@
+1
+00:00:02,220 --> 00:00:05,490
+Now these are the guards related to
+
+2
+00:00:05,490 --> 00:00:06,810
+coming to a page,
+
+3
+00:00:06,810 --> 00:00:10,700
+which are called before and navigation action is confirmed.
+
+4
+00:00:10,700 --> 00:00:12,340
+There also is a useful guard,
+
+5
+00:00:12,340 --> 00:00:15,700
+which is triggered when the user wants to leave a page.
+
+6
+00:00:15,700 --> 00:00:18,630
+Of course, when you leave a page and go to a number of page,
+
+7
+00:00:18,630 --> 00:00:20,800
+all "the before guards" are triggered,
+
+8
+00:00:20,800 --> 00:00:25,800
+but maybe you also want to run some code on the component
+
+9
+00:00:26,340 --> 00:00:30,030
+that is being left right before it's being left.
+
+10
+00:00:30,030 --> 00:00:33,157
+And you possibly want to be able to deny
+
+11
+00:00:33,157 --> 00:00:36,197
+"the leave this page actioned here."
+
+12
+00:00:36,197 --> 00:00:37,593
+But what do I mean by that?
+
+13
+00:00:38,450 --> 00:00:40,650
+Let's say on the user's list component,
+
+14
+00:00:40,650 --> 00:00:43,860
+we wanna run code whenever this component is left.
+
+15
+00:00:43,860 --> 00:00:45,120
+We could do this
+
+16
+00:00:45,120 --> 00:00:48,830
+with the unmounted lifecycle hook vue knows.
+
+17
+00:00:48,830 --> 00:00:50,860
+If I locked this here,
+
+18
+00:00:50,860 --> 00:00:54,713
+this will be executed whenever we leave the user's page.
+
+19
+00:00:56,150 --> 00:00:59,690
+So if I go to users and I leave to teams,
+
+20
+00:00:59,690 --> 00:01:01,990
+you see unmounted here.
+
+21
+00:01:01,990 --> 00:01:05,950
+But the problem is that this runs after the hooks,
+
+22
+00:01:05,950 --> 00:01:08,470
+so after the navigation has been confirmed,
+
+23
+00:01:08,470 --> 00:01:12,220
+and this gives us no way of canceling the navigation.
+
+24
+00:01:12,220 --> 00:01:15,840
+Now why might we want to cancel the navigation
+
+25
+00:01:15,840 --> 00:01:19,400
+from inside the component which we're leaving?
+
+26
+00:01:19,400 --> 00:01:22,170
+Well, let's say you had a form in there,
+
+27
+00:01:22,170 --> 00:01:27,170
+and you wanna make sure that until that form has been saved,
+
+28
+00:01:28,580 --> 00:01:31,050
+you at least wanna warn the user,
+
+29
+00:01:31,050 --> 00:01:33,770
+that there are unsaved changes,
+
+30
+00:01:33,770 --> 00:01:37,220
+which would be lost if the page is left.
+
+31
+00:01:37,220 --> 00:01:40,070
+And we can simulate this with a number button here,
+
+32
+00:01:40,070 --> 00:01:44,780
+save changes and a new data property,
+
+33
+00:01:44,780 --> 00:01:48,273
+so for that I'm adding data to this user's list component,
+
+34
+00:01:49,180 --> 00:01:52,940
+and there I have to change as saved property
+
+35
+00:01:52,940 --> 00:01:55,200
+which initially is false.
+
+36
+00:01:55,200 --> 00:01:58,260
+And that's of course, just some dummy code here.
+
+37
+00:01:58,260 --> 00:02:01,880
+Then we could have a method saved changes,
+
+38
+00:02:01,880 --> 00:02:05,783
+and then here I set this changes saved to true,
+
+39
+00:02:06,950 --> 00:02:09,039
+and save changes should be triggered
+
+40
+00:02:09,039 --> 00:02:10,560
+when this button here is clicked.
+
+41
+00:02:10,560 --> 00:02:12,540
+So let's bind it to that.
+
+42
+00:02:12,540 --> 00:02:14,850
+Again, this is all just some dummy code,
+
+43
+00:02:14,850 --> 00:02:16,093
+just a small example.
+
+44
+00:02:17,430 --> 00:02:21,620
+Now we wanna make sure that as long as this is false,
+
+45
+00:02:21,620 --> 00:02:23,220
+we at least get a warning
+
+46
+00:02:23,220 --> 00:02:25,673
+that we don't accidentally leave the page,
+
+47
+00:02:27,110 --> 00:02:29,430
+because we all know that you are on that page,
+
+48
+00:02:29,430 --> 00:02:31,190
+you're entering something in a form
+
+49
+00:02:31,190 --> 00:02:34,110
+and accidentally we swipe to the right
+
+50
+00:02:34,110 --> 00:02:37,180
+and all the input is lost,
+
+51
+00:02:37,180 --> 00:02:40,190
+or we accidentally hit the back button on our mouse.
+
+52
+00:02:40,190 --> 00:02:42,400
+So accidentally leaving a page
+
+53
+00:02:42,400 --> 00:02:44,210
+where you entered something in a form
+
+54
+00:02:44,210 --> 00:02:46,473
+is definitely something we all know.
+
+55
+00:02:47,390 --> 00:02:50,780
+And that's exactly where another navigation guard
+
+56
+00:02:50,780 --> 00:02:52,220
+can help us.
+
+57
+00:02:52,220 --> 00:02:56,130
+Inside of a component in the component convict object,
+
+58
+00:02:56,130 --> 00:03:01,057
+you can add "the before route leave guard."
+
+59
+00:03:02,410 --> 00:03:05,130
+You can add this if you're using the vue router,
+
+60
+00:03:05,130 --> 00:03:07,930
+and then the router will call this first
+
+61
+00:03:07,930 --> 00:03:10,700
+before calling all "the before each
+
+62
+00:03:10,700 --> 00:03:12,507
+and before enter guards."
+
+63
+00:03:13,400 --> 00:03:16,590
+Now here, you also get to, from and next,
+
+64
+00:03:16,590 --> 00:03:20,200
+just as on the enter guards,
+
+65
+00:03:20,200 --> 00:03:22,450
+but this will now be called first.
+
+66
+00:03:22,450 --> 00:03:23,900
+And here we can of course,
+
+67
+00:03:23,900 --> 00:03:28,900
+console log, users list component before route leave.
+
+68
+00:03:34,110 --> 00:03:37,620
+And of course, we can also console log to and from
+
+69
+00:03:37,620 --> 00:03:41,200
+to see what's inside of these route objects.
+
+70
+00:03:41,200 --> 00:03:45,660
+But most importantly, we can now use next as you learned it,
+
+71
+00:03:45,660 --> 00:03:50,420
+to confirm the navigation or to only sometimes confirm it.
+
+72
+00:03:50,420 --> 00:03:54,880
+For example we can check if this changes saved is true.
+
+73
+00:03:56,320 --> 00:03:58,410
+If that's the case, I wanna call next,
+
+74
+00:03:58,410 --> 00:04:00,390
+because if the changes are saved,
+
+75
+00:04:00,390 --> 00:04:03,130
+the user may just leave the page.
+
+76
+00:04:03,130 --> 00:04:04,880
+But if that's not the case,
+
+77
+00:04:04,880 --> 00:04:06,680
+I want to ask the user,
+
+78
+00:04:06,680 --> 00:04:09,670
+wherever he or she really wants to leave.
+
+79
+00:04:09,670 --> 00:04:11,630
+For that here an else,
+
+80
+00:04:11,630 --> 00:04:14,320
+we can call the prompt function,
+
+81
+00:04:14,320 --> 00:04:15,780
+which is built into the browser,
+
+82
+00:04:15,780 --> 00:04:17,529
+which shows a built in alert,
+
+83
+00:04:17,529 --> 00:04:20,310
+where the user has to choose yes or no.
+
+84
+00:04:20,310 --> 00:04:21,572
+Are you sure?
+
+85
+00:04:22,870 --> 00:04:27,210
+You got unsaved changes?
+
+86
+00:04:27,210 --> 00:04:30,210
+Is something we could ask here.
+
+87
+00:04:30,210 --> 00:04:33,680
+The result of that is a bullion,
+
+88
+00:04:33,680 --> 00:04:38,110
+which we could store in a user wants to leave constant.
+
+89
+00:04:38,110 --> 00:04:42,310
+And then we call next and pass user wants to leave to that.
+
+90
+00:04:42,310 --> 00:04:44,410
+And that's either true or false
+
+91
+00:04:44,410 --> 00:04:45,960
+based on what the user chose
+
+92
+00:04:45,960 --> 00:04:48,800
+and this alert will present to him or her.
+
+93
+00:04:48,800 --> 00:04:50,990
+And if we pass true to next,
+
+94
+00:04:50,990 --> 00:04:54,080
+that's just like calling next like this,
+
+95
+00:04:54,080 --> 00:04:56,300
+it will confirm the navigation.
+
+96
+00:04:56,300 --> 00:04:58,570
+If we pass false to next,
+
+97
+00:04:58,570 --> 00:05:00,340
+this will cancel the navigation
+
+98
+00:05:00,340 --> 00:05:02,463
+and the user will stay on the page.
+
+99
+00:05:03,460 --> 00:05:05,500
+So let me show this to you.
+
+100
+00:05:05,500 --> 00:05:08,090
+If we saved it and I reload users,
+
+101
+00:05:08,090 --> 00:05:10,740
+by default changes are not saved,
+
+102
+00:05:10,740 --> 00:05:13,200
+this is false by default.
+
+103
+00:05:13,200 --> 00:05:18,200
+Hence, if I don't click save changes and I go to teams,
+
+104
+00:05:18,200 --> 00:05:21,390
+I'm now prompt that wherever I really wanna go,
+
+105
+00:05:21,390 --> 00:05:24,840
+and prompt was the wrong function here
+
+106
+00:05:24,840 --> 00:05:26,453
+I want to use,
+
+107
+00:05:27,310 --> 00:05:29,120
+confirm, sorry.
+
+108
+00:05:29,120 --> 00:05:32,880
+So let's use the confirm function and repeat this.
+
+109
+00:05:32,880 --> 00:05:35,410
+I am on users, I reload,
+
+110
+00:05:35,410 --> 00:05:38,500
+changes are not saved and I wanna go to teams.
+
+111
+00:05:38,500 --> 00:05:41,420
+And now I get this prompt, if I'm sure,
+
+112
+00:05:41,420 --> 00:05:44,500
+and if I click cancel, I stay on users.
+
+113
+00:05:44,500 --> 00:05:46,990
+The same if I accidentally click the back button,
+
+114
+00:05:46,990 --> 00:05:48,810
+I stay here.
+
+115
+00:05:48,810 --> 00:05:51,250
+If I of course, click okay,
+
+116
+00:05:51,250 --> 00:05:54,883
+the navigation is confirmed and I am allowed to leave,
+
+117
+00:05:56,400 --> 00:05:58,400
+but at least I get those warning,
+
+118
+00:05:58,400 --> 00:06:01,090
+and if I accidentally clicked the back button
+
+119
+00:06:01,090 --> 00:06:02,600
+or anything like that,
+
+120
+00:06:02,600 --> 00:06:05,440
+I don't throw away all my unsaved changes,
+
+121
+00:06:05,440 --> 00:06:08,963
+and that can dramatically enhance the user experience.
+
+122
+00:06:09,970 --> 00:06:12,220
+Of course, if I click save changes,
+
+123
+00:06:12,220 --> 00:06:14,500
+I can go without getting the warning,
+
+124
+00:06:14,500 --> 00:06:18,430
+because then changes saved is true.
+
+125
+00:06:18,430 --> 00:06:21,570
+And that is why "the before route leave guard,"
+
+126
+00:06:21,570 --> 00:06:25,680
+can be very useful for enhancing the user experience
+
+127
+00:06:25,680 --> 00:06:28,710
+you provide to your users by making sure,
+
+128
+00:06:28,710 --> 00:06:31,263
+that they don't accidentally lose their input.
+
+129
+00:06:32,150 --> 00:06:35,420
+Well, and these are the different navigation guards.
+
+130
+00:06:35,420 --> 00:06:37,610
+They run at different points of time
+
+131
+00:06:37,610 --> 00:06:40,380
+and in different places of your code,
+
+132
+00:06:40,380 --> 00:06:43,880
+you can use the place that best fits your requirements,
+
+133
+00:06:43,880 --> 00:06:46,590
+if you wanna run a guard for every navigation
+
+134
+00:06:46,590 --> 00:06:48,950
+or just for certain routes for example,
+
+135
+00:06:48,950 --> 00:06:50,500
+and with those guards,
+
+136
+00:06:50,500 --> 00:06:54,130
+you can actually provide quite nice user experiences.
+
+137
+00:06:54,130 --> 00:06:55,590
+Now as I mentioned before,
+
+138
+00:06:55,590 --> 00:06:58,120
+we'll see those guards in action
+
+139
+00:06:58,120 --> 00:07:00,600
+soon in the course project we're building,
+
+140
+00:07:00,600 --> 00:07:03,220
+and then this might make even more sense,
+
+141
+00:07:03,220 --> 00:07:04,520
+but hopefully by now,
+
+142
+00:07:04,520 --> 00:07:08,800
+you already understand why we might wanna use them,
+
+143
+00:07:08,800 --> 00:07:11,543
+and more importantly how they work.
+

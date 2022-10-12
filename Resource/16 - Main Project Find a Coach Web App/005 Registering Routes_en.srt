@@ -1,0 +1,480 @@
+1
+00:00:02,100 --> 00:00:03,410
+So now that we've got a plan
+
+2
+00:00:03,410 --> 00:00:05,560
+it's of course time to implement it
+
+3
+00:00:05,560 --> 00:00:07,230
+and to write the code we need.
+
+4
+00:00:07,230 --> 00:00:10,497
+And here I would like to get started by setting up
+
+5
+00:00:10,497 --> 00:00:14,400
+the routes sent to pages we need for this application.
+
+6
+00:00:14,400 --> 00:00:17,880
+I then wanna continue building all the core components
+
+7
+00:00:17,880 --> 00:00:22,240
+we need for now and then I wanna slowly step by step,
+
+8
+00:00:22,240 --> 00:00:26,180
+add in the data and to functionality we need.
+
+9
+00:00:26,180 --> 00:00:27,720
+So therefore, first of all,
+
+10
+00:00:27,720 --> 00:00:31,230
+I'll install two extra packages in a new project,
+
+11
+00:00:31,230 --> 00:00:33,410
+which you again, by the way, find attached,
+
+12
+00:00:33,410 --> 00:00:35,600
+you find this basic project set up,
+
+13
+00:00:35,600 --> 00:00:39,210
+which has just Vue and nothing else attached
+
+14
+00:00:39,210 --> 00:00:40,370
+to this lecture
+
+15
+00:00:40,370 --> 00:00:44,220
+but in this project set up all now npm install
+
+16
+00:00:44,220 --> 00:00:45,870
+with dash dash save,
+
+17
+00:00:45,870 --> 00:00:49,170
+I'll npm install, view dash router,
+
+18
+00:00:49,170 --> 00:00:51,240
+and view X, these two packages,
+
+19
+00:00:51,240 --> 00:00:54,313
+because we're going to use both through out this module.
+
+20
+00:00:55,470 --> 00:00:58,630
+Notice we'll download and install these two packages
+
+21
+00:00:58,630 --> 00:01:01,790
+into this project and once this is done,
+
+22
+00:01:01,790 --> 00:01:02,720
+we can use both
+
+23
+00:01:02,720 --> 00:01:05,660
+but as I said, I'll start with routing.
+
+24
+00:01:05,660 --> 00:01:08,500
+Now for this here, next to main js,
+
+25
+00:01:08,500 --> 00:01:11,483
+I'll add a router js file because I wanna store
+
+26
+00:01:11,483 --> 00:01:14,110
+all my routes and my routing logic in there
+
+27
+00:01:14,110 --> 00:01:16,180
+to keep main JS lean,
+
+28
+00:01:16,180 --> 00:01:19,030
+and therefore, as so often, or first of all,
+
+29
+00:01:19,030 --> 00:01:23,460
+import create a router from Vue-router here
+
+30
+00:01:23,460 --> 00:01:25,200
+in the router js file,
+
+31
+00:01:25,200 --> 00:01:29,110
+and then create a router by calling createRouter.
+
+32
+00:01:29,110 --> 00:01:31,480
+And then we will export this router
+
+33
+00:01:31,480 --> 00:01:33,790
+so that we can use it in our files,
+
+34
+00:01:33,790 --> 00:01:37,060
+namely in the main js file as well.
+
+35
+00:01:37,060 --> 00:01:39,350
+Now you'll learn how to configure the router,
+
+36
+00:01:39,350 --> 00:01:42,100
+you simply pass an object to create router
+
+37
+00:01:42,100 --> 00:01:45,250
+and here we then add our routes.
+
+38
+00:01:45,250 --> 00:01:47,960
+Now you might remember that besides the routes,
+
+39
+00:01:47,960 --> 00:01:51,930
+we also need to set his history property here
+
+40
+00:01:51,930 --> 00:01:55,330
+and there we import another function from view router
+
+41
+00:01:55,330 --> 00:01:58,220
+and that's to create web history function
+
+42
+00:01:58,220 --> 00:02:01,050
+and we call this function here
+
+43
+00:02:01,050 --> 00:02:04,630
+and the value provided by calling that function is then set
+
+44
+00:02:04,630 --> 00:02:08,083
+as a value for this history property here.
+
+45
+00:02:08,960 --> 00:02:12,410
+With that, we can add our routes array here
+
+46
+00:02:12,410 --> 00:02:13,840
+for the routes property
+
+47
+00:02:13,840 --> 00:02:16,720
+and in their setup all the routes we want.
+
+48
+00:02:16,720 --> 00:02:18,820
+And here we made a plan, right?
+
+49
+00:02:18,820 --> 00:02:21,050
+We thought about a couple of routes
+
+50
+00:02:21,050 --> 00:02:22,470
+which we will need.
+
+51
+00:02:22,470 --> 00:02:24,600
+So I'm going to add those routes here.
+
+52
+00:02:24,600 --> 00:02:27,340
+And this was a slash coaches route
+
+53
+00:02:27,340 --> 00:02:30,740
+which should load our coaches component later.
+
+54
+00:02:30,740 --> 00:02:32,340
+We don't have that component yet
+
+55
+00:02:32,340 --> 00:02:34,610
+so for the moment I'll set this to null,
+
+56
+00:02:34,610 --> 00:02:38,123
+but later we will point at the coach has component here,
+
+57
+00:02:39,160 --> 00:02:44,160
+besides that we also want that coaches slash ID route
+
+58
+00:02:44,830 --> 00:02:48,770
+where the dynamic coach ID part of the path,
+
+59
+00:02:48,770 --> 00:02:52,363
+and then we load the details page for different coaches.
+
+60
+00:02:53,600 --> 00:02:55,853
+So that was another route we wanted here.
+
+61
+00:02:57,000 --> 00:03:02,000
+We also wanted another path here to register as a coach.
+
+62
+00:03:05,880 --> 00:03:07,893
+So to sign up as a coach,
+
+63
+00:03:09,260 --> 00:03:10,710
+that is something we'll need.
+
+64
+00:03:11,580 --> 00:03:15,870
+And we'll need a route where we can also contact a coach.
+
+65
+00:03:15,870 --> 00:03:18,270
+And now that could be slash contact.
+
+66
+00:03:18,270 --> 00:03:20,370
+But, I would say actually,
+
+67
+00:03:20,370 --> 00:03:24,450
+we want to contact a specific coach identified by ID.
+
+68
+00:03:24,450 --> 00:03:25,850
+So maybe that's something
+
+69
+00:03:25,850 --> 00:03:28,200
+where we can use a nested route even
+
+70
+00:03:28,200 --> 00:03:33,040
+so we could add children here to coaches slash ID
+
+71
+00:03:33,040 --> 00:03:36,340
+and in there register a nested route
+
+72
+00:03:36,340 --> 00:03:40,580
+where we have contact after a coaches slash ID
+
+73
+00:03:40,580 --> 00:03:43,730
+so that would be loaded with slash coaches
+
+74
+00:03:43,730 --> 00:03:46,260
+then some coach ID slash contact.
+
+75
+00:03:46,260 --> 00:03:48,820
+That's how this route and this component
+
+76
+00:03:48,820 --> 00:03:50,070
+should be loaded later
+
+77
+00:03:50,070 --> 00:03:52,370
+so that we reached a contact page
+
+78
+00:03:52,370 --> 00:03:55,783
+with a form for a very specific coach.
+
+79
+00:03:57,400 --> 00:03:59,940
+So therefore we won't have contact down there,
+
+80
+00:03:59,940 --> 00:04:03,950
+but we will definitely need a requests route here
+
+81
+00:04:03,950 --> 00:04:07,380
+where we can view all the requests we might've received
+
+82
+00:04:07,380 --> 00:04:11,090
+so all the messages sent through that contact form.
+
+83
+00:04:11,090 --> 00:04:13,920
+And that's almost it there's just one more route
+
+84
+00:04:13,920 --> 00:04:17,160
+which I'll add here and that is a catch all route
+
+85
+00:04:17,160 --> 00:04:21,200
+and not found route for when the user adds
+
+86
+00:04:21,200 --> 00:04:24,530
+or enters something invalid as a path,
+
+87
+00:04:24,530 --> 00:04:26,720
+then I wanna show a not found page.
+
+88
+00:04:26,720 --> 00:04:29,530
+And you might remember from the routing section
+
+89
+00:04:29,530 --> 00:04:30,720
+how that worked.
+
+90
+00:04:30,720 --> 00:04:32,930
+You need a dynamic segment here in the end
+
+91
+00:04:32,930 --> 00:04:34,870
+with any text of your choice,
+
+92
+00:04:34,870 --> 00:04:39,260
+but then important this bracket syntax at the end,
+
+93
+00:04:39,260 --> 00:04:41,590
+where you in the end have a regular expression
+
+94
+00:04:41,590 --> 00:04:44,850
+just saying that no matter what was entered here,
+
+95
+00:04:44,850 --> 00:04:47,103
+you wanna handle it with this route.
+
+96
+00:04:48,070 --> 00:04:49,840
+And actually now that I think about it
+
+97
+00:04:49,840 --> 00:04:51,930
+there's one more route which we'll need
+
+98
+00:04:51,930 --> 00:04:54,670
+since we have no slash route here,
+
+99
+00:04:54,670 --> 00:04:57,620
+we just have slash coaches slash register
+
+100
+00:04:57,620 --> 00:04:58,820
+we're not doing anything
+
+101
+00:04:58,820 --> 00:05:01,540
+if the user reaches just slash nothing,
+
+102
+00:05:01,540 --> 00:05:03,070
+which will be the case though,
+
+103
+00:05:03,070 --> 00:05:06,150
+if just our domain is entered and therefore
+
+104
+00:05:06,150 --> 00:05:10,200
+if just our domain slash nothing is entered
+
+105
+00:05:10,200 --> 00:05:13,823
+I want to redirect to slash coaches here.
+
+106
+00:05:15,210 --> 00:05:16,490
+So that's the route set up
+
+107
+00:05:16,490 --> 00:05:20,770
+I wanna work with for this module for this project,
+
+108
+00:05:20,770 --> 00:05:23,613
+now we need to build those pages, those components
+
+109
+00:05:23,613 --> 00:05:27,100
+that should be loaded for the different routes.
+
+110
+00:05:27,100 --> 00:05:30,480
+Now, as for everything else in this module,
+
+111
+00:05:30,480 --> 00:05:33,610
+definitely also try such things on your own,
+
+112
+00:05:33,610 --> 00:05:36,480
+maybe don't continue with the next video right away
+
+113
+00:05:36,480 --> 00:05:39,560
+instead try building these page components
+
+114
+00:05:39,560 --> 00:05:43,060
+for these different pages and wire them up to the routes.
+
+115
+00:05:43,060 --> 00:05:45,470
+You can try building the entire project
+
+116
+00:05:45,470 --> 00:05:48,010
+as a challenge as well, it's up to you,
+
+117
+00:05:48,010 --> 00:05:50,670
+how much you wanna progress together with me,
+
+118
+00:05:50,670 --> 00:05:52,660
+and how much you wanna try on your own.
+
+119
+00:05:52,660 --> 00:05:54,310
+Starting in the next lecture,
+
+120
+00:05:54,310 --> 00:05:56,763
+I will add those page components though.
+

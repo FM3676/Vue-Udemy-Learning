@@ -1,0 +1,780 @@
+1
+00:00:02,120 --> 00:00:05,760
+So now let's explore reusing things,
+
+2
+00:00:05,760 --> 00:00:08,690
+reusing logic across components
+
+3
+00:00:08,690 --> 00:00:10,640
+with the composition API.
+
+4
+00:00:10,640 --> 00:00:14,640
+And for that you find the same starting project from before,
+
+5
+00:00:14,640 --> 00:00:17,350
+but now it's using the composition API.
+
+6
+00:00:17,350 --> 00:00:21,240
+So data and methods was replaced by my setup method
+
+7
+00:00:21,240 --> 00:00:24,110
+where I then use refs and so on.
+
+8
+00:00:24,110 --> 00:00:25,760
+Of course make sure you go through
+
+9
+00:00:25,760 --> 00:00:28,440
+the composition API module first,
+
+10
+00:00:28,440 --> 00:00:30,523
+before diving into these lectures.
+
+11
+00:00:31,580 --> 00:00:33,200
+So it's the same project as before
+
+12
+00:00:33,200 --> 00:00:35,270
+just using the composition API.
+
+13
+00:00:35,270 --> 00:00:38,610
+And therefore, of course, it also works as before.
+
+14
+00:00:38,610 --> 00:00:43,040
+And previously we used a mix in to share functionality.
+
+15
+00:00:43,040 --> 00:00:45,240
+Now, we can use a different approach.
+
+16
+00:00:45,240 --> 00:00:46,890
+But which approach?
+
+17
+00:00:46,890 --> 00:00:48,740
+Well in the end all this here
+
+18
+00:00:48,740 --> 00:00:52,240
+is just code in a setup method.
+
+19
+00:00:52,240 --> 00:00:55,950
+And if you leave Vue aside for a second,
+
+20
+00:00:55,950 --> 00:01:00,633
+how do you typically reuse code in Java script?
+
+21
+00:01:01,620 --> 00:01:03,590
+You might create a function.
+
+22
+00:01:03,590 --> 00:01:06,620
+A function that maybe receives some arguments
+
+23
+00:01:06,620 --> 00:01:09,020
+and then maybe returns a value.
+
+24
+00:01:09,020 --> 00:01:11,130
+That is how you typically outsource
+
+25
+00:01:11,130 --> 00:01:14,320
+and share functionality in JavaScript.
+
+26
+00:01:14,320 --> 00:01:17,500
+Well, this is just JavaScript
+
+27
+00:01:17,500 --> 00:01:20,060
+and the setup method is just one method
+
+28
+00:01:20,060 --> 00:01:22,000
+with a bunch of different steps.
+
+29
+00:01:22,000 --> 00:01:25,410
+So if you wanna outsource some of these steps,
+
+30
+00:01:25,410 --> 00:01:27,803
+we could create a separate function.
+
+31
+00:01:28,790 --> 00:01:30,890
+And that's just what we're going to do
+
+32
+00:01:30,890 --> 00:01:33,020
+with the composition API.
+
+33
+00:01:33,020 --> 00:01:36,040
+This wasn't a great alternative before,
+
+34
+00:01:36,040 --> 00:01:37,960
+because with the options API,
+
+35
+00:01:37,960 --> 00:01:41,260
+it was not just one method with a bunch of steps,
+
+36
+00:01:41,260 --> 00:01:44,970
+but it was an object with different properties.
+
+37
+00:01:44,970 --> 00:01:47,100
+And therefore the array using a function,
+
+38
+00:01:47,100 --> 00:01:49,823
+wasn't really an alternative, but here it is.
+
+39
+00:01:50,840 --> 00:01:54,180
+So I will create a new folder next to components.
+
+40
+00:01:54,180 --> 00:01:56,790
+And now it's up to you how you wanna call this.
+
+41
+00:01:56,790 --> 00:01:59,820
+I will name it hooks because sometimes
+
+42
+00:01:59,820 --> 00:02:04,820
+these composition API functions are called hooks.
+
+43
+00:02:05,300 --> 00:02:08,289
+And that's why I will follow this naming pattern.
+
+44
+00:02:08,289 --> 00:02:10,430
+Other names, which you might encounter
+
+45
+00:02:10,430 --> 00:02:12,330
+for these special functions,
+
+46
+00:02:12,330 --> 00:02:15,850
+which you use in conjunction with the composition API,
+
+47
+00:02:15,850 --> 00:02:20,290
+would be composables or custom composition functions.
+
+48
+00:02:20,290 --> 00:02:24,100
+So hooks, composables, custom composition functions.
+
+49
+00:02:24,100 --> 00:02:25,770
+That's the same thing.
+
+50
+00:02:25,770 --> 00:02:29,540
+It's a JavaScript function that very likely
+
+51
+00:02:29,540 --> 00:02:32,950
+uses some composition, API features
+
+52
+00:02:32,950 --> 00:02:36,420
+like refs or computed properties and so on,
+
+53
+00:02:36,420 --> 00:02:38,710
+which then is meant to be called
+
+54
+00:02:38,710 --> 00:02:41,270
+instead of the setup method.
+
+55
+00:02:41,270 --> 00:02:42,610
+And as a side note,
+
+56
+00:02:42,610 --> 00:02:44,840
+we already used such functions,
+
+57
+00:02:44,840 --> 00:02:46,220
+not built by us,
+
+58
+00:02:46,220 --> 00:02:49,260
+but by the Vue Router or the Vuex team
+
+59
+00:02:49,260 --> 00:02:52,310
+to use the route or router object
+
+60
+00:02:52,310 --> 00:02:54,300
+in the setup method, for example.
+
+61
+00:02:54,300 --> 00:02:58,513
+You saw that in the main composition API module already.
+
+62
+00:02:59,960 --> 00:03:01,410
+So in this hooks folder,
+
+63
+00:03:01,410 --> 00:03:02,243
+I'll add a new file again and alert.js file,
+
+64
+00:03:02,243 --> 00:03:05,377
+though of course the file name as before is up to you.
+
+65
+00:03:05,377 --> 00:03:09,620
+though of course the file name as before is up to you.
+
+66
+00:03:09,620 --> 00:03:13,250
+And in here I'm going to create a function.
+
+67
+00:03:13,250 --> 00:03:15,220
+And now here's a special naming,
+
+68
+00:03:15,220 --> 00:03:16,510
+which I wanna use.
+
+69
+00:03:16,510 --> 00:03:17,900
+Which you typically use
+
+70
+00:03:17,900 --> 00:03:22,900
+for these composition API reusable functions.
+
+71
+00:03:23,070 --> 00:03:26,190
+The function name should start with use
+
+72
+00:03:26,190 --> 00:03:29,820
+and then something that describes the function.
+
+73
+00:03:29,820 --> 00:03:32,103
+So here I'll name it useAlert.
+
+74
+00:03:33,000 --> 00:03:34,740
+Because this function will allow me
+
+75
+00:03:34,740 --> 00:03:39,470
+to use alert functionality instead of the setup method.
+
+76
+00:03:39,470 --> 00:03:42,950
+So your custom hooks, which you plan on using here
+
+77
+00:03:42,950 --> 00:03:45,450
+to share code across setup functions,
+
+78
+00:03:45,450 --> 00:03:47,730
+should start with use.
+
+79
+00:03:47,730 --> 00:03:50,150
+It's still a regular function though.
+
+80
+00:03:50,150 --> 00:03:52,093
+Now what should go into this function?
+
+81
+00:03:54,210 --> 00:03:55,043
+Well, in the end,
+
+82
+00:03:55,043 --> 00:03:57,180
+I wanna put all the code, DeleteUser
+
+83
+00:03:57,180 --> 00:03:59,940
+and AddUser have in common instead of
+
+84
+00:03:59,940 --> 00:04:02,400
+the set up method into this function.
+
+85
+00:04:02,400 --> 00:04:06,350
+So we could just grab this entire code
+
+86
+00:04:06,350 --> 00:04:08,163
+and move it in here.
+
+87
+00:04:09,290 --> 00:04:10,860
+Now, since I'm using a ref here,
+
+88
+00:04:10,860 --> 00:04:12,950
+I also have to add that import.
+
+89
+00:04:12,950 --> 00:04:15,600
+You always have to import the things you're using
+
+90
+00:04:15,600 --> 00:04:17,670
+in a file into that file.
+
+91
+00:04:17,670 --> 00:04:20,100
+So here, since I'm using ref in this file,
+
+92
+00:04:20,100 --> 00:04:23,900
+I also need to import ref in this file here.
+
+93
+00:04:23,900 --> 00:04:26,150
+It's not enough that we're already importing it
+
+94
+00:04:26,150 --> 00:04:27,390
+in another file.
+
+95
+00:04:27,390 --> 00:04:29,260
+This is not how this will work.
+
+96
+00:04:29,260 --> 00:04:30,460
+And with that, however,
+
+97
+00:04:30,460 --> 00:04:31,940
+we're creating a ref here,
+
+98
+00:04:31,940 --> 00:04:34,300
+thanks to the import that ref function.
+
+99
+00:04:34,300 --> 00:04:36,220
+And we've got all that logic in here
+
+100
+00:04:36,220 --> 00:04:37,700
+in this alert JS file
+
+101
+00:04:37,700 --> 00:04:39,423
+in this use alert function.
+
+102
+00:04:40,290 --> 00:04:41,420
+Now that's good,
+
+103
+00:04:41,420 --> 00:04:44,100
+but what's the advantage of this?
+
+104
+00:04:44,100 --> 00:04:48,320
+Well, now we can export this as a default, for example
+
+105
+00:04:48,320 --> 00:04:49,940
+this use alert function,
+
+106
+00:04:49,940 --> 00:04:52,220
+just as it is with all that code in it.
+
+107
+00:04:52,220 --> 00:04:54,163
+And with this return statement.
+
+108
+00:04:55,640 --> 00:04:59,070
+And we can now go back to AddUser let's say,
+
+109
+00:04:59,070 --> 00:05:02,310
+and instead of importing ref from view here,
+
+110
+00:05:02,310 --> 00:05:06,720
+I'll import use alert from going up
+
+111
+00:05:06,720 --> 00:05:10,323
+one level, hooks, alert JS.
+
+112
+00:05:11,860 --> 00:05:15,383
+And we can now call, useAlert here.
+
+113
+00:05:19,080 --> 00:05:19,913
+And what this will do
+
+114
+00:05:19,913 --> 00:05:22,400
+is it will execute the use alert function,
+
+115
+00:05:22,400 --> 00:05:25,090
+which has to code for creating a ref
+
+116
+00:05:25,090 --> 00:05:28,780
+and for creating these two functions that changed the ref.
+
+117
+00:05:28,780 --> 00:05:32,120
+We also return an object here in useAlert.
+
+118
+00:05:32,120 --> 00:05:34,680
+And that allows us to use these things
+
+119
+00:05:34,680 --> 00:05:36,550
+which are created in the function
+
+120
+00:05:36,550 --> 00:05:38,480
+outside of the function as well.
+
+121
+00:05:38,480 --> 00:05:40,350
+Because in AddUser, just calling,
+
+122
+00:05:40,350 --> 00:05:42,080
+this is not enough.
+
+123
+00:05:42,080 --> 00:05:47,080
+We still need to return an object in this setup method.
+
+124
+00:05:47,190 --> 00:05:50,460
+This is not replaced by our own function here.
+
+125
+00:05:50,460 --> 00:05:51,950
+And of course here, therefore,
+
+126
+00:05:51,950 --> 00:05:53,930
+I still wanna return what we're using
+
+127
+00:05:53,930 --> 00:05:54,830
+in the template.
+
+128
+00:05:54,830 --> 00:05:58,990
+So alertIsVisible, hideAlert, and showAlert.
+
+129
+00:05:58,990 --> 00:06:02,200
+And useAlert gives us all these things.
+
+130
+00:06:02,200 --> 00:06:03,320
+Inside of useAlert,
+
+131
+00:06:03,320 --> 00:06:05,600
+we by the way don't have to return an object.
+
+132
+00:06:05,600 --> 00:06:06,870
+It's our function,
+
+133
+00:06:06,870 --> 00:06:08,840
+so we can return whatever we want.
+
+134
+00:06:08,840 --> 00:06:12,610
+We could always return these three things in an array,
+
+135
+00:06:12,610 --> 00:06:13,790
+if we wanted to.
+
+136
+00:06:13,790 --> 00:06:16,120
+We could have an array with free elements
+
+137
+00:06:16,120 --> 00:06:19,690
+where the first element in this case is our data.
+
+138
+00:06:19,690 --> 00:06:23,510
+And the second and third elements are our functions.
+
+139
+00:06:23,510 --> 00:06:24,470
+This is up to you.
+
+140
+00:06:24,470 --> 00:06:26,350
+It's your function.
+
+141
+00:06:26,350 --> 00:06:27,310
+So to make this clear,
+
+142
+00:06:27,310 --> 00:06:29,520
+I will actually use an array here.
+
+143
+00:06:29,520 --> 00:06:33,155
+And now, since useAlert returns this array,
+
+144
+00:06:33,155 --> 00:06:34,830
+in AddUser,
+
+145
+00:06:34,830 --> 00:06:39,283
+we can store this alert array, in a constant.
+
+146
+00:06:40,230 --> 00:06:42,580
+And we know the first element will be,
+
+147
+00:06:42,580 --> 00:06:45,970
+our data and the other two elements will be the functions.
+
+148
+00:06:45,970 --> 00:06:48,890
+We can also use array destructuring here,
+
+149
+00:06:48,890 --> 00:06:51,490
+which is a modern JavaScript feature
+
+150
+00:06:51,490 --> 00:06:54,210
+to pull these free elements out of the array
+
+151
+00:06:54,210 --> 00:06:57,130
+and store them in new constants.
+
+152
+00:06:57,130 --> 00:06:59,970
+So here I will reuse the same names we have here,
+
+153
+00:06:59,970 --> 00:07:01,800
+though you could use different names
+
+154
+00:07:01,800 --> 00:07:04,340
+because it's the order that matters here.
+
+155
+00:07:04,340 --> 00:07:05,840
+But with that, we're saying,
+
+156
+00:07:05,840 --> 00:07:08,480
+pull out the first element of useAlert
+
+157
+00:07:08,480 --> 00:07:11,630
+and store it in a new alertIsVisible constant,
+
+158
+00:07:11,630 --> 00:07:13,053
+which is available in setup.
+
+159
+00:07:13,920 --> 00:07:15,360
+Pull the second element
+
+160
+00:07:15,360 --> 00:07:17,880
+and store it in a showAlert constant
+
+161
+00:07:17,880 --> 00:07:19,610
+and pull the third element
+
+162
+00:07:19,610 --> 00:07:22,050
+out of the array returned by useAlert
+
+163
+00:07:22,050 --> 00:07:25,330
+and store it in a hideAlert constant.
+
+164
+00:07:25,330 --> 00:07:27,570
+So now these free constants here
+
+165
+00:07:27,570 --> 00:07:29,480
+exist in this setup method
+
+166
+00:07:29,480 --> 00:07:30,500
+and therefore here.
+
+167
+00:07:30,500 --> 00:07:32,620
+We can, of course return them.
+
+168
+00:07:32,620 --> 00:07:37,620
+And the first element, alertIsVisible is our ref here.
+
+169
+00:07:37,780 --> 00:07:38,613
+This one.
+
+170
+00:07:38,613 --> 00:07:39,930
+And since it is a ref,
+
+171
+00:07:39,930 --> 00:07:41,530
+whenever does changes here.
+
+172
+00:07:41,530 --> 00:07:43,440
+Instead of the useAlert function,
+
+173
+00:07:43,440 --> 00:07:46,400
+the component where we use, useAlert
+
+174
+00:07:46,400 --> 00:07:48,580
+will always be notified by this.
+
+175
+00:07:48,580 --> 00:07:50,210
+Because it is a ref
+
+176
+00:07:50,210 --> 00:07:52,910
+and we're exposing this ref to the template.
+
+177
+00:07:52,910 --> 00:07:55,460
+And whenever you do that Vue is aware of it.
+
+178
+00:07:55,460 --> 00:07:57,360
+And whenever data ref changes,
+
+179
+00:07:57,360 --> 00:08:00,213
+these changes are reflected in the template.
+
+180
+00:08:01,210 --> 00:08:02,940
+So it's a different mental model,
+
+181
+00:08:02,940 --> 00:08:03,773
+but in the end,
+
+182
+00:08:03,773 --> 00:08:06,670
+it's just a function which we defined on our own,
+
+183
+00:08:06,670 --> 00:08:07,920
+which we're calling here.
+
+184
+00:08:08,794 --> 00:08:10,390
+And we can now copy that code
+
+185
+00:08:10,390 --> 00:08:13,210
+and do the same here in deleteUser.
+
+186
+00:08:13,210 --> 00:08:16,110
+Replace all of that with the copied code
+
+187
+00:08:16,110 --> 00:08:18,300
+and get rid of the ref import.
+
+188
+00:08:18,300 --> 00:08:21,840
+But instead import useAlert
+
+189
+00:08:21,840 --> 00:08:24,380
+from going up one level,
+
+190
+00:08:24,380 --> 00:08:26,477
+hooks/alert.js'.
+
+191
+00:08:28,190 --> 00:08:29,820
+And if you saved this,
+
+192
+00:08:29,820 --> 00:08:33,370
+this should all work as before.
+
+193
+00:08:33,370 --> 00:08:34,230
+But now,
+
+194
+00:08:34,230 --> 00:08:36,520
+with our own custom functioner.
+
+195
+00:08:36,520 --> 00:08:38,363
+Our own custom hook.
+

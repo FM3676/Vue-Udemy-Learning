@@ -1,0 +1,832 @@
+1
+00:00:02,040 --> 00:00:04,710
+So let's output the resources here,
+
+2
+00:00:04,710 --> 00:00:06,770
+and for that we could use a list item
+
+3
+00:00:06,770 --> 00:00:09,360
+with v-for on it of course,
+
+4
+00:00:09,360 --> 00:00:12,620
+to loop through all the stored Resources.
+
+5
+00:00:12,620 --> 00:00:15,750
+But as I mentioned at the end of the last lecture,
+
+6
+00:00:15,750 --> 00:00:18,630
+I rather create a separate component
+
+7
+00:00:18,630 --> 00:00:20,820
+which contains the list item,
+
+8
+00:00:20,820 --> 00:00:23,580
+and then I'll put all the data in there.
+
+9
+00:00:23,580 --> 00:00:25,670
+Now you might wonder why,
+
+10
+00:00:25,670 --> 00:00:28,110
+why would we create a separate component
+
+11
+00:00:28,110 --> 00:00:31,410
+instead of just writing all the markup here.
+
+12
+00:00:31,410 --> 00:00:34,090
+Well first of all, let me be very clear
+
+13
+00:00:34,090 --> 00:00:36,680
+you don't need to create a separate component,
+
+14
+00:00:36,680 --> 00:00:39,540
+it's optional, it's just the idea
+
+15
+00:00:39,540 --> 00:00:42,150
+behind using Frameworks like Vue.
+
+16
+00:00:42,150 --> 00:00:44,910
+If you build bigger and bigger applications,`
+
+17
+00:00:44,910 --> 00:00:48,200
+you could theoretically put all the markup
+
+18
+00:00:48,200 --> 00:00:50,520
+into just one Vue component.
+
+19
+00:00:50,520 --> 00:00:53,943
+All the markup could go into the template of App.vue,
+
+20
+00:00:54,920 --> 00:00:58,840
+but this would become a super huge file
+
+21
+00:00:58,840 --> 00:01:01,820
+and maintaining it, editing it,
+
+22
+00:01:01,820 --> 00:01:04,560
+finding the code you wanna edit right now,
+
+23
+00:01:04,560 --> 00:01:06,810
+that would all become a nightmare,
+
+24
+00:01:06,810 --> 00:01:11,163
+if you have all the markup, all the logic, in one file.
+
+25
+00:01:12,010 --> 00:01:14,090
+That's why we wanna split our code
+
+26
+00:01:14,090 --> 00:01:16,830
+into small reusable pieces.
+
+27
+00:01:16,830 --> 00:01:19,180
+Now, there is no hard rule
+
+28
+00:01:19,180 --> 00:01:21,680
+when you should go for a new component,
+
+29
+00:01:21,680 --> 00:01:24,020
+versus putting the markup and logic
+
+30
+00:01:24,020 --> 00:01:25,760
+into an existing component,
+
+31
+00:01:25,760 --> 00:01:28,350
+it's something you will develop over time.
+
+32
+00:01:28,350 --> 00:01:29,740
+It's a feeling you will get
+
+33
+00:01:29,740 --> 00:01:33,170
+and it also comes down to personal preference of course.
+
+34
+00:01:33,170 --> 00:01:36,060
+But things like list items for which you loop
+
+35
+00:01:36,060 --> 00:01:39,290
+are typically candidates for a separate components,
+
+36
+00:01:39,290 --> 00:01:41,520
+and therefore, I'll create a brand new component
+
+37
+00:01:41,520 --> 00:01:42,423
+here as well.
+
+38
+00:01:43,430 --> 00:01:46,480
+And that component which I wanna generate here
+
+39
+00:01:46,480 --> 00:01:50,780
+is the Resource Item component.
+
+40
+00:01:50,780 --> 00:01:52,100
+Now the name is up to you,
+
+41
+00:01:52,100 --> 00:01:53,840
+but of course you wanna describe
+
+42
+00:01:53,840 --> 00:01:56,240
+what you will use this component for.
+
+43
+00:01:56,240 --> 00:01:58,440
+And I will use this component
+
+44
+00:01:58,440 --> 00:02:01,310
+to show a learning resource item,
+
+45
+00:02:01,310 --> 00:02:03,660
+of course we could therefore also name it,
+
+46
+00:02:03,660 --> 00:02:06,280
+Learning Resource, if you prefer that,
+
+47
+00:02:06,280 --> 00:02:08,120
+and actually I do prefer that.
+
+48
+00:02:08,120 --> 00:02:11,283
+So let's maybe go with that, LearningResource.vue.
+
+49
+00:02:13,270 --> 00:02:15,750
+Now, just because I named the file like this,
+
+50
+00:02:15,750 --> 00:02:17,650
+it's not automatically the name
+
+51
+00:02:17,650 --> 00:02:19,600
+by which I will use the component,
+
+52
+00:02:19,600 --> 00:02:22,990
+but it is considered a good practice to keep that aligned.
+
+53
+00:02:22,990 --> 00:02:25,440
+So if you named a file Learning Resource,
+
+54
+00:02:25,440 --> 00:02:28,573
+you should also name to component Learning Resource later.
+
+55
+00:02:30,060 --> 00:02:32,470
+Now, I don't wanna store this component
+
+56
+00:02:32,470 --> 00:02:34,600
+in a components folder like this though.
+
+57
+00:02:34,600 --> 00:02:36,830
+we're going to add more components later
+
+58
+00:02:36,830 --> 00:02:40,970
+and to keep my code organized and keep the files organized,
+
+59
+00:02:40,970 --> 00:02:42,860
+I'll create a subfolder here,
+
+60
+00:02:42,860 --> 00:02:47,660
+and I'll name it, resources or learning-resources,
+
+61
+00:02:47,660 --> 00:02:50,160
+because I wanna store all the learning resource
+
+62
+00:02:50,160 --> 00:02:52,830
+related components in that subfolder.
+
+63
+00:02:52,830 --> 00:02:54,190
+So instead of components
+
+64
+00:02:54,190 --> 00:02:56,703
+and they're in the Learning Resources folder.
+
+65
+00:02:58,150 --> 00:03:00,220
+And then in App.vue,
+
+66
+00:03:00,220 --> 00:03:03,050
+I wanna import this newly created component.
+
+67
+00:03:03,050 --> 00:03:06,120
+It's still empty, but we're going to change this soon.
+
+68
+00:03:06,120 --> 00:03:08,360
+So let's import the LearningResource
+
+69
+00:03:08,360 --> 00:03:13,360
+from './components/learning-resources/LearningResource.vue'
+
+70
+00:03:16,590 --> 00:03:18,503
+that's the file we just created.
+
+71
+00:03:19,770 --> 00:03:23,150
+And with that import added here in App.vue,
+
+72
+00:03:23,150 --> 00:03:27,100
+we can add the components option to our object
+
+73
+00:03:27,100 --> 00:03:29,850
+and register Learning Resource like this,
+
+74
+00:03:29,850 --> 00:03:31,420
+this is how you learned it.
+
+75
+00:03:31,420 --> 00:03:35,050
+You could also give it another key separately
+
+76
+00:03:35,050 --> 00:03:38,060
+or the same key which will be assumed anyways,
+
+77
+00:03:38,060 --> 00:03:39,670
+but there is no need to do so
+
+78
+00:03:39,670 --> 00:03:41,650
+you can just register it like this,
+
+79
+00:03:41,650 --> 00:03:44,440
+and thanks to this modern JavaScript Syntax.
+
+80
+00:03:44,440 --> 00:03:47,130
+This is automatically expanded to this code
+
+81
+00:03:47,130 --> 00:03:49,570
+and that in turn will then tell Vue
+
+82
+00:03:49,570 --> 00:03:51,300
+that you want to be able to use
+
+83
+00:03:51,300 --> 00:03:54,970
+the Learning Resource component by using this tag
+
+84
+00:03:54,970 --> 00:03:57,940
+or the kebab-case version of it.
+
+85
+00:03:57,940 --> 00:04:00,913
+But that's all something I covered in the last modules.
+
+86
+00:04:01,900 --> 00:04:04,460
+So now we've got the learning resource imported,
+
+87
+00:04:04,460 --> 00:04:08,110
+and now here I will output learning resource
+
+88
+00:04:08,110 --> 00:04:11,440
+and I'm a fan of this Kebab-case for my elements,
+
+89
+00:04:11,440 --> 00:04:14,340
+so I will use it and I would put it here,
+
+90
+00:04:14,340 --> 00:04:16,160
+but of course not just once,
+
+91
+00:04:16,160 --> 00:04:17,970
+but instead with v-for,
+
+92
+00:04:17,970 --> 00:04:21,000
+I will loop through my stored Resources
+
+93
+00:04:21,000 --> 00:04:24,290
+and create one learning resource component instance
+
+94
+00:04:24,290 --> 00:04:27,230
+per item in my stored Resources.
+
+95
+00:04:27,230 --> 00:04:29,850
+So in this case, we have two stored Resources,
+
+96
+00:04:29,850 --> 00:04:32,350
+and that simply means that we're going to create
+
+97
+00:04:32,350 --> 00:04:35,573
+two learning resource instances with v-for.
+
+98
+00:04:37,820 --> 00:04:41,180
+For that we can loop through the stored Resources like this
+
+99
+00:04:41,180 --> 00:04:43,527
+with res in storedResources,
+
+100
+00:04:44,380 --> 00:04:47,400
+and we should bind the key prop here,
+
+101
+00:04:47,400 --> 00:04:51,170
+which Vue wants, in this case to res.id,
+
+102
+00:04:51,170 --> 00:04:54,000
+because every resource which I extract
+
+103
+00:04:54,000 --> 00:04:58,260
+into the res variable here has an id field
+
+104
+00:04:58,260 --> 00:05:00,880
+and that id is guaranteed to be unique,
+
+105
+00:05:00,880 --> 00:05:02,363
+so it's a perfect key.
+
+106
+00:05:04,230 --> 00:05:07,230
+With that we're going to create multiple learning resources,
+
+107
+00:05:07,230 --> 00:05:09,270
+and that means that we can now go back
+
+108
+00:05:09,270 --> 00:05:13,200
+to the LearningResource.vue file and add a template there,
+
+109
+00:05:13,200 --> 00:05:15,230
+because ultimately we want to be able to
+
+110
+00:05:15,230 --> 00:05:17,290
+output something there.
+
+111
+00:05:17,290 --> 00:05:21,660
+So in this template, I will now output a list item,
+
+112
+00:05:21,660 --> 00:05:25,740
+opening and closing text and inside of the list item,
+
+113
+00:05:25,740 --> 00:05:27,383
+I want to have my content.
+
+114
+00:05:28,290 --> 00:05:32,073
+And here indeed I want to have a div inside of that,
+
+115
+00:05:32,940 --> 00:05:35,093
+which that in turn holds a header.
+
+116
+00:05:35,940 --> 00:05:39,070
+And in that header, I want to have an h3 tag
+
+117
+00:05:39,070 --> 00:05:43,270
+which outputs the title later, and next to that,
+
+118
+00:05:43,270 --> 00:05:45,860
+so in the same row you could say,
+
+119
+00:05:45,860 --> 00:05:49,800
+I want to have a button which allows us to delete this.
+
+120
+00:05:49,800 --> 00:05:53,310
+Now as a side note, I'm aware that I challenged you
+
+121
+00:05:53,310 --> 00:05:56,840
+to go ahead and create your own component with a list item
+
+122
+00:05:56,840 --> 00:06:00,070
+and I'm fully aware that you probably did not create
+
+123
+00:06:00,070 --> 00:06:02,320
+this markup, and that's fine,
+
+124
+00:06:02,320 --> 00:06:04,810
+you can now create it together with me.
+
+125
+00:06:04,810 --> 00:06:08,350
+I just wanted you to also practice creating and registering
+
+126
+00:06:08,350 --> 00:06:10,190
+and using components on your own,
+
+127
+00:06:10,190 --> 00:06:11,660
+and you hopefully did that,
+
+128
+00:06:11,660 --> 00:06:13,500
+and you hopefully succeeded there,
+
+129
+00:06:13,500 --> 00:06:16,130
+if not, we're doing it together now.
+
+130
+00:06:16,130 --> 00:06:17,930
+So we get the header, we get the h3 tag,
+
+131
+00:06:17,930 --> 00:06:20,680
+we got the button, and it's all in that div,
+
+132
+00:06:20,680 --> 00:06:23,270
+below that div I wanna have a paragraph
+
+133
+00:06:23,270 --> 00:06:26,830
+that's where the description should be output later
+
+134
+00:06:26,830 --> 00:06:30,330
+and below that I'll add a nav element,
+
+135
+00:06:30,330 --> 00:06:33,460
+which is a default HTML element
+
+136
+00:06:33,460 --> 00:06:37,790
+in which I then want to have an anchor tag,
+
+137
+00:06:37,790 --> 00:06:41,053
+which should lead to the link the user provided.
+
+138
+00:06:41,920 --> 00:06:45,500
+So here we could have a text of View Resource
+
+139
+00:06:45,500 --> 00:06:48,670
+and the link value, Well that's something I wanna set
+
+140
+00:06:48,670 --> 00:06:52,343
+to the link value stored in the respective resources.
+
+141
+00:06:53,930 --> 00:06:57,380
+So you can already tell that the learning resource component
+
+142
+00:06:57,380 --> 00:07:01,290
+needs external data in order to work correctly,
+
+143
+00:07:01,290 --> 00:07:03,100
+because we've got all the markup here,
+
+144
+00:07:03,100 --> 00:07:05,900
+but the title is missing, the description is missing,
+
+145
+00:07:05,900 --> 00:07:07,183
+and the link is missing.
+
+146
+00:07:08,420 --> 00:07:11,580
+And how do we get this external data?
+
+147
+00:07:11,580 --> 00:07:15,750
+How do we make this component reusable and configurable?
+
+148
+00:07:15,750 --> 00:07:17,670
+With props of course.
+
+149
+00:07:17,670 --> 00:07:21,590
+So here we can now add our script tag like this,
+
+150
+00:07:21,590 --> 00:07:23,860
+and then add the props option
+
+151
+00:07:23,860 --> 00:07:26,090
+to let Vue know about the props
+
+152
+00:07:26,090 --> 00:07:27,973
+we want to get in this component.
+
+153
+00:07:29,330 --> 00:07:32,690
+And the simplest form here is to provide an array
+
+154
+00:07:32,690 --> 00:07:36,140
+where every prop is registered as a string.
+
+155
+00:07:36,140 --> 00:07:39,670
+So we could for example, expect to get a title prop.
+
+156
+00:07:39,670 --> 00:07:43,590
+You can also use the longer form and be more specific
+
+157
+00:07:43,590 --> 00:07:45,360
+about the prop you wanna get
+
+158
+00:07:45,360 --> 00:07:48,700
+and describe the type of data you wanna get there,
+
+159
+00:07:48,700 --> 00:07:51,430
+describe whether it's required or not,
+
+160
+00:07:51,430 --> 00:07:55,150
+but I will keep things simple here and just use this array.
+
+161
+00:07:55,150 --> 00:07:59,800
+So we'll get a title, I will also need a description
+
+162
+00:07:59,800 --> 00:08:02,270
+and I also want a link.
+
+163
+00:08:02,270 --> 00:08:06,580
+Now all these names here, are 100% up to you.
+
+164
+00:08:06,580 --> 00:08:09,730
+It's probably best if you use the same names as I do
+
+165
+00:08:09,730 --> 00:08:11,930
+in order to follow along with ease,
+
+166
+00:08:11,930 --> 00:08:14,260
+but you can use any names you want here.
+
+167
+00:08:14,260 --> 00:08:16,350
+It's your components, so you can name the props
+
+168
+00:08:16,350 --> 00:08:17,250
+whatever you want.
+
+169
+00:08:19,010 --> 00:08:23,820
+Now, with that, we can now output the prop data here.
+
+170
+00:08:23,820 --> 00:08:26,360
+For example, here in the h3 tag,
+
+171
+00:08:26,360 --> 00:08:29,673
+we can output the title, so this prop.
+
+172
+00:08:30,660 --> 00:08:33,289
+In the paragraph, I wanna output the description.
+
+173
+00:08:33,289 --> 00:08:36,710
+So here we can interpolate description
+
+174
+00:08:36,710 --> 00:08:39,419
+and you'll learn that all the props here,
+
+175
+00:08:39,419 --> 00:08:43,630
+so these props are available just like this in a template,
+
+176
+00:08:43,630 --> 00:08:47,360
+they are available as if they would be data registered
+
+177
+00:08:47,360 --> 00:08:49,523
+into data option of this component.
+
+178
+00:08:50,730 --> 00:08:55,120
+We can then all bind ref here with v-bind or to short-term,
+
+179
+00:08:55,120 --> 00:08:59,290
+which I'm using here and bind this to link,
+
+180
+00:08:59,290 --> 00:09:01,523
+so to the value in the link prop.
+
+181
+00:09:03,230 --> 00:09:05,090
+And now the missing piece of course,
+
+182
+00:09:05,090 --> 00:09:08,500
+is that we actually do provide the props here
+
+183
+00:09:08,500 --> 00:09:11,590
+so that we ensure that values are passed in
+
+184
+00:09:11,590 --> 00:09:13,620
+for all those props.
+
+185
+00:09:13,620 --> 00:09:15,760
+So let's go back to App.Vue
+
+186
+00:09:15,760 --> 00:09:19,090
+and here where we are using learning resource
+
+187
+00:09:19,090 --> 00:09:21,530
+and where we are using v-for,
+
+188
+00:09:21,530 --> 00:09:23,870
+we now wanna bind all those props
+
+189
+00:09:23,870 --> 00:09:27,740
+and provide values for all the props of learning resource.
+
+190
+00:09:27,740 --> 00:09:30,763
+So we wanna set a value for the title prop, for example.
+
+191
+00:09:31,640 --> 00:09:34,210
+And of course that value should not be hard coded,
+
+192
+00:09:34,210 --> 00:09:36,873
+but dynamic because it depends on res.
+
+193
+00:09:38,090 --> 00:09:43,090
+So here I'm binding title to res.title
+
+194
+00:09:43,700 --> 00:09:45,600
+and the same for the description,
+
+195
+00:09:45,600 --> 00:09:50,523
+which should be bound to rest.description.
+
+196
+00:09:51,700 --> 00:09:54,410
+And I'm reformatting this to make it easier to read
+
+197
+00:09:54,410 --> 00:09:58,173
+and bind the link to res.link.
+
+198
+00:09:59,890 --> 00:10:04,890
+And with that, we're feeding in values for these free props,
+
+199
+00:10:04,940 --> 00:10:06,720
+title, description, and link,
+
+200
+00:10:06,720 --> 00:10:09,790
+which we are expecting on the learning resource.
+
+201
+00:10:09,790 --> 00:10:12,790
+And now we can also try and see that on the screen,
+
+202
+00:10:12,790 --> 00:10:17,790
+for that in main.js, I will now import App from '/App.vue'
+
+203
+00:10:24,310 --> 00:10:26,580
+and pass that here to create App
+
+204
+00:10:28,290 --> 00:10:32,050
+and in App.vue, I'm already registering Learning Resource.
+
+205
+00:10:32,050 --> 00:10:35,430
+So if we save it all, we should see this on the screen.
+
+206
+00:10:35,430 --> 00:10:39,280
+Definitely not beautiful, but it shows that this works
+
+207
+00:10:39,280 --> 00:10:42,100
+and that our own component is working.
+
+208
+00:10:42,100 --> 00:10:44,483
+Now let's work on some styling next.
+

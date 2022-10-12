@@ -1,0 +1,504 @@
+1
+00:00:02,050 --> 00:00:03,778
+At the moment when we visit All Coaches,
+
+2
+00:00:03,778 --> 00:00:07,750
+we get no feedback that we're fetching new coaches,
+
+3
+00:00:07,750 --> 00:00:10,270
+that we're loading coaches in the background.
+
+4
+00:00:10,270 --> 00:00:13,230
+In addition, we don't have any error handling in place
+
+5
+00:00:13,230 --> 00:00:14,913
+and that's also not optimal.
+
+6
+00:00:15,790 --> 00:00:17,960
+So it would be great if we could do both,
+
+7
+00:00:17,960 --> 00:00:19,590
+check the current loading status
+
+8
+00:00:19,590 --> 00:00:21,623
+and also add error handling.
+
+9
+00:00:22,540 --> 00:00:24,550
+And of course, I wanna do that into components
+
+10
+00:00:24,550 --> 00:00:28,190
+because that is where I wanna update DUI, eventually,
+
+11
+00:00:28,190 --> 00:00:31,750
+but we're sending the HTTP request in the Vue X store.
+
+12
+00:00:31,750 --> 00:00:34,220
+So that kind of clashes.
+
+13
+00:00:34,220 --> 00:00:37,300
+Well, not necessarily, thankfully.
+
+14
+00:00:37,300 --> 00:00:40,300
+Let's start with fetching coaches,
+
+15
+00:00:40,300 --> 00:00:43,643
+because that is easiest to test for us here at the moment.
+
+16
+00:00:44,550 --> 00:00:46,230
+We wanna show a loading spinner
+
+17
+00:00:46,230 --> 00:00:48,560
+whilst we're fetching coach data,
+
+18
+00:00:48,560 --> 00:00:50,490
+so that we don't have this flickering
+
+19
+00:00:50,490 --> 00:00:52,183
+whenever we reload the page,
+
+20
+00:00:53,050 --> 00:00:56,530
+hence we, first of all, need a loading spinner.
+
+21
+00:00:56,530 --> 00:00:59,070
+Now, I prepared a complete component for you
+
+22
+00:00:59,070 --> 00:01:00,480
+Which you'll find attached.
+
+23
+00:01:00,480 --> 00:01:05,480
+The base spinner zip file holds this Base Spinner Vue file,
+
+24
+00:01:05,770 --> 00:01:08,893
+which you can copy into your UI components folder.
+
+25
+00:01:10,420 --> 00:01:12,250
+The base spinner component,
+
+26
+00:01:12,250 --> 00:01:15,820
+in the end just renders a loading spinner on the screen.
+
+27
+00:01:15,820 --> 00:01:18,920
+It's a bunch of markup and a bunch of CSS.
+
+28
+00:01:18,920 --> 00:01:22,080
+And we can use this base spinner here
+
+29
+00:01:22,080 --> 00:01:26,570
+to render it on the coaches list page whilst we're loading.
+
+30
+00:01:26,570 --> 00:01:27,940
+Now, thankfully, as I said,
+
+31
+00:01:27,940 --> 00:01:30,740
+we can find out if we're loading or not
+
+32
+00:01:30,740 --> 00:01:34,910
+even though the request is being sent with help of Vue X,
+
+33
+00:01:34,910 --> 00:01:36,730
+because when you dispatch an action,
+
+34
+00:01:36,730 --> 00:01:39,610
+there is a nice feature, which I haven't shown you before
+
+35
+00:01:39,610 --> 00:01:42,800
+because we didn't really need it before.
+
+36
+00:01:42,800 --> 00:01:45,700
+This patch can also return something
+
+37
+00:01:45,700 --> 00:01:48,080
+to the component where you call it.
+
+38
+00:01:48,080 --> 00:01:49,790
+And for example, here,
+
+39
+00:01:49,790 --> 00:01:52,990
+when we dispatch the Load Coaches action,
+
+40
+00:01:52,990 --> 00:01:55,430
+since we use async keyword here,
+
+41
+00:01:55,430 --> 00:01:58,560
+it automatically returns a promise
+
+42
+00:01:58,560 --> 00:02:03,060
+which we'll resolve once we're done with all these steps.
+
+43
+00:02:03,060 --> 00:02:04,890
+And that's great because that means
+
+44
+00:02:04,890 --> 00:02:08,590
+since this promise is returned that in coach's list,
+
+45
+00:02:08,590 --> 00:02:13,040
+we can basically listen for this promise completion,
+
+46
+00:02:13,040 --> 00:02:15,550
+and we know that when it is completed,
+
+47
+00:02:15,550 --> 00:02:16,980
+we're not loading anymore
+
+48
+00:02:18,490 --> 00:02:21,630
+because then we clearly got a response.
+
+49
+00:02:21,630 --> 00:02:24,550
+Hence, we can add a new data property
+
+50
+00:02:24,550 --> 00:02:28,680
+in the Coaches List component next to active filters,
+
+51
+00:02:28,680 --> 00:02:31,460
+and that's the IsLoading property,
+
+52
+00:02:31,460 --> 00:02:33,260
+which initially is false, let's say.
+
+53
+00:02:34,606 --> 00:02:39,060
+And IsLoading, this data property, should be set to true
+
+54
+00:02:40,330 --> 00:02:44,690
+in the load coach method when this method is executed.
+
+55
+00:02:44,690 --> 00:02:47,320
+So here it then set this to true.
+
+56
+00:02:47,320 --> 00:02:52,290
+Then we dispatch the action where the request is sent.
+
+57
+00:02:52,290 --> 00:02:53,800
+And once this is done,
+
+58
+00:02:53,800 --> 00:02:57,520
+once this promise returned by dispatch resolves,
+
+59
+00:02:57,520 --> 00:02:59,483
+we know we no longer are loading.
+
+60
+00:03:00,360 --> 00:03:03,480
+So since dispatch here returns a promise,
+
+61
+00:03:03,480 --> 00:03:05,590
+we can also use Async Await here
+
+62
+00:03:05,590 --> 00:03:08,090
+to wait for this promise to complete,
+
+63
+00:03:08,090 --> 00:03:10,963
+and then set IsLoading to false thereafter.
+
+64
+00:03:12,680 --> 00:03:15,663
+So this will then be set to false once the request is done,
+
+65
+00:03:17,000 --> 00:03:19,763
+and that will allow us to show a loading spinner.
+
+66
+00:03:21,700 --> 00:03:25,630
+Maybe here above the unordered list, we can add a div
+
+67
+00:03:26,780 --> 00:03:30,040
+where we check with v-if if we are loading,
+
+68
+00:03:30,040 --> 00:03:32,750
+so that this is only added if we are loading.
+
+69
+00:03:32,750 --> 00:03:35,460
+And then I render my base spinner here,
+
+70
+00:03:35,460 --> 00:03:37,873
+this loading spinner component I just gave you.
+
+71
+00:03:38,930 --> 00:03:42,530
+We now just have to register this in main JS.
+
+72
+00:03:42,530 --> 00:03:47,530
+So here in Maine JS, we import the Base Spinner
+
+73
+00:03:47,630 --> 00:03:50,937
+from ./components/UI/BaseSpinner.vue,
+
+74
+00:03:54,160 --> 00:03:57,420
+and register it as a global component
+
+75
+00:03:57,420 --> 00:04:02,083
+with app component pointing at base spinner.
+
+76
+00:04:03,420 --> 00:04:05,830
+So now the base spinner is available
+
+77
+00:04:05,830 --> 00:04:07,060
+and in Coaches List,
+
+78
+00:04:07,060 --> 00:04:09,913
+we are rendering it here if we are loading.
+
+79
+00:04:11,880 --> 00:04:13,130
+Now, that also means
+
+80
+00:04:13,130 --> 00:04:18,130
+I wanna adjust my hasCoaches computed property here a bit
+
+81
+00:04:18,850 --> 00:04:22,350
+because this list should, of course, only be rendered
+
+82
+00:04:22,350 --> 00:04:25,720
+if we have coaches and we're not loading at the moment
+
+83
+00:04:25,720 --> 00:04:28,550
+so that it disappears if we are loading.
+
+84
+00:04:28,550 --> 00:04:32,390
+So in the hasCoaches computed property,
+
+85
+00:04:32,390 --> 00:04:34,950
+we should adjust this a little bit
+
+86
+00:04:34,950 --> 00:04:38,430
+and I'm not just check this here,
+
+87
+00:04:38,430 --> 00:04:42,270
+but also check that we're not loading at the moment.
+
+88
+00:04:42,270 --> 00:04:44,750
+So add this to the computed property
+
+89
+00:04:44,750 --> 00:04:47,653
+so that if we are loading, we never show the list.
+
+90
+00:04:50,541 --> 00:04:55,541
+So that if I save this, now we see that loading spinner.
+
+91
+00:04:55,580 --> 00:04:58,450
+Now it's only there briefly because this is all super quick,
+
+92
+00:04:58,450 --> 00:05:01,440
+but hey, at least we see it briefly.
+
+93
+00:05:01,440 --> 00:05:05,640
+We also briefly see No Coaches Found
+
+94
+00:05:05,640 --> 00:05:08,820
+because we show this whenever the list is not rendered.
+
+95
+00:05:08,820 --> 00:05:11,630
+And at the moment, this of course means that
+
+96
+00:05:11,630 --> 00:05:14,720
+it's always rendered whilst we're loading.
+
+97
+00:05:14,720 --> 00:05:16,280
+So the list is not rendered then,
+
+98
+00:05:16,280 --> 00:05:17,970
+but this isn't always rendered.
+
+99
+00:05:17,970 --> 00:05:22,170
+But we can fix this by turning this from v-if to v-else-if
+
+100
+00:05:22,170 --> 00:05:24,070
+so that we either are loading
+
+101
+00:05:24,070 --> 00:05:25,670
+and showing the loading spinner,
+
+102
+00:05:25,670 --> 00:05:28,390
+or we have coaches and show those,
+
+103
+00:05:28,390 --> 00:05:31,103
+or we have none and show this text.
+
+104
+00:05:32,140 --> 00:05:34,683
+And then we only have this spinner here.
+
+105
+00:05:36,170 --> 00:05:39,580
+Now we also see the Register as Coach button flickering,
+
+106
+00:05:39,580 --> 00:05:41,780
+Of course, that button also shouldn't show up
+
+107
+00:05:41,780 --> 00:05:43,080
+if we're loading.
+
+108
+00:05:43,080 --> 00:05:47,770
+So here, I wanna check, not just if we're not a coach,
+
+109
+00:05:47,770 --> 00:05:50,230
+but also we're not loading.
+
+110
+00:05:50,230 --> 00:05:51,670
+Only then this should show up.
+
+111
+00:05:51,670 --> 00:05:54,040
+If we are loading, it should not show up.
+
+112
+00:05:54,040 --> 00:05:56,933
+So then if I reload, this button is not flickering.
+
+113
+00:05:57,990 --> 00:05:59,270
+Okay, perfect.
+
+114
+00:05:59,270 --> 00:06:01,660
+So now we've got this loading spinner here.
+
+115
+00:06:01,660 --> 00:06:04,160
+When I refresh, we also see it.
+
+116
+00:06:04,160 --> 00:06:06,230
+Now, what about error handling?
+
+117
+00:06:06,230 --> 00:06:09,060
+At the moment if things go wrong,
+
+118
+00:06:09,060 --> 00:06:12,880
+for example, if I introduce a deliberate error here
+
+119
+00:06:12,880 --> 00:06:14,930
+by going to the Load Coaches action
+
+120
+00:06:14,930 --> 00:06:17,000
+and removing the N at the end,
+
+121
+00:06:17,000 --> 00:06:21,670
+if we get an error, we just see an infinite loading spinner
+
+122
+00:06:21,670 --> 00:06:24,060
+and we see the error here, but of course,
+
+123
+00:06:24,060 --> 00:06:27,740
+our users don't have the developer tools open typically.
+
+124
+00:06:27,740 --> 00:06:30,120
+So we wanna show an error message here
+
+125
+00:06:30,120 --> 00:06:32,700
+to the user as well in that case.
+
+126
+00:06:32,700 --> 00:06:35,993
+So therefore, error handling is what I wanna implement next.
+

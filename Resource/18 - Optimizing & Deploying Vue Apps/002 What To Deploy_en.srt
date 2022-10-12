@@ -1,0 +1,228 @@
+1
+00:00:02,450 --> 00:00:04,340
+Now, what does deploying
+
+2
+00:00:04,340 --> 00:00:07,170
+a view app actually mean?
+
+3
+00:00:07,170 --> 00:00:09,190
+For this, it's important to keep in mind
+
+4
+00:00:09,190 --> 00:00:11,570
+that Vue apps run in the browser.
+
+5
+00:00:11,570 --> 00:00:15,130
+I mean, any website is loaded with a browser,
+
+6
+00:00:15,130 --> 00:00:19,453
+but Vue apps are driven by browser-side JavaScript code.
+
+7
+00:00:20,550 --> 00:00:22,660
+All the code we're writing here,
+
+8
+00:00:22,660 --> 00:00:26,120
+in the end, is transformed by this project setup,
+
+9
+00:00:26,120 --> 00:00:29,240
+and then converted into JavaScript code
+
+10
+00:00:30,080 --> 00:00:32,259
+which our browser understands.
+
+11
+00:00:32,259 --> 00:00:34,310
+So what we see on the screen here
+
+12
+00:00:34,310 --> 00:00:36,530
+was loaded from a server,
+
+13
+00:00:36,530 --> 00:00:40,280
+but it was rendered on the screen by Vue,
+
+14
+00:00:40,280 --> 00:00:42,570
+by this JavaScript code we wrote
+
+15
+00:00:42,570 --> 00:00:46,500
+and that happened entirely in the browser,
+
+16
+00:00:46,500 --> 00:00:48,820
+not on some server.
+
+17
+00:00:48,820 --> 00:00:52,650
+A server was just serving this HTML file,
+
+18
+00:00:52,650 --> 00:00:54,380
+this HTML skeleton,
+
+19
+00:00:54,380 --> 00:00:57,410
+and then the JavaScript code, which again,
+
+20
+00:00:57,410 --> 00:00:59,430
+lost and executed in the browser,
+
+21
+00:00:59,430 --> 00:01:00,900
+not on the server.
+
+22
+00:01:00,900 --> 00:01:04,190
+And I'm emphasizing this because this influences
+
+23
+00:01:04,190 --> 00:01:07,930
+how we deploy a web application, a website.
+
+24
+00:01:07,930 --> 00:01:10,870
+Here, we really just have a couple of files
+
+25
+00:01:10,870 --> 00:01:13,810
+which are all interpreted by the browser.
+
+26
+00:01:13,810 --> 00:01:18,650
+We got our HTML files, in this case just one HTML file
+
+27
+00:01:18,650 --> 00:01:21,470
+since we're building a single page application.
+
+28
+00:01:21,470 --> 00:01:24,270
+We got CSS files possibly,
+
+29
+00:01:24,270 --> 00:01:26,350
+here in the projects we worked on,
+
+30
+00:01:26,350 --> 00:01:29,280
+we didn't have separate CSS files.
+
+31
+00:01:29,280 --> 00:01:32,690
+We merged that with the components and therefore
+
+32
+00:01:32,690 --> 00:01:36,320
+the project setup will take care about extracting this
+
+33
+00:01:36,320 --> 00:01:37,720
+and adding it to the page.
+
+34
+00:01:37,720 --> 00:01:40,740
+We have no separate CSS files.
+
+35
+00:01:40,740 --> 00:01:42,620
+And most importantly,
+
+36
+00:01:42,620 --> 00:01:45,080
+we have a bunch of JavaScript code.
+
+37
+00:01:45,080 --> 00:01:47,970
+Here for example, we have our project setup
+
+38
+00:01:47,970 --> 00:01:51,960
+and that project setup will have certain scripts
+
+39
+00:01:51,960 --> 00:01:54,360
+for transforming the code we wrote,
+
+40
+00:01:54,360 --> 00:01:56,820
+to code the browser understands.
+
+41
+00:01:56,820 --> 00:02:00,650
+And I'll show you these scripts throughout this module.
+
+42
+00:02:00,650 --> 00:02:04,390
+But therefore, we just have HTML, CSS, and JavaScript.
+
+43
+00:02:04,390 --> 00:02:08,460
+We have no code that would run on a server.
+
+44
+00:02:08,460 --> 00:02:12,690
+And therefore, we have a static web app, a static website.
+
+45
+00:02:12,690 --> 00:02:15,070
+Which means, it's just a website with code that
+
+46
+00:02:15,070 --> 00:02:16,890
+is evaluated by the browser
+
+47
+00:02:16,890 --> 00:02:19,060
+and has no server-side code.
+
+48
+00:02:19,060 --> 00:02:24,060
+And hence, a static website hosting provider is all we need.
+
+49
+00:02:24,140 --> 00:02:28,330
+And options here would be AWS Free,
+
+50
+00:02:28,330 --> 00:02:31,220
+Firebase Hosting, Netlify.
+
+51
+00:02:31,220 --> 00:02:34,130
+There are tons of static hosting providers.
+
+52
+00:02:34,130 --> 00:02:36,940
+You can just Google for a static hosting provider
+
+53
+00:02:36,940 --> 00:02:38,993
+and you'll find a couple of examples.
+
+54
+00:02:40,120 --> 00:02:41,140
+So that's what we need.
+
+55
+00:02:41,140 --> 00:02:43,410
+And I will show you an example
+
+56
+00:02:43,410 --> 00:02:45,310
+and the full deployment process,
+
+57
+00:02:45,310 --> 00:02:47,863
+step-by-step throughout this module.
+

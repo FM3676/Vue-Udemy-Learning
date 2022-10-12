@@ -1,0 +1,652 @@
+1
+00:00:02,070 --> 00:00:04,000
+Now, let's start with the actions.
+
+2
+00:00:04,000 --> 00:00:06,603
+Here I'll add a login action,
+
+3
+00:00:07,550 --> 00:00:09,790
+and also already a signup action.
+
+4
+00:00:10,735 --> 00:00:12,870
+And we have to start with signup actually, of course,
+
+5
+00:00:12,870 --> 00:00:17,130
+because we first need to create a user before we can log in.
+
+6
+00:00:17,130 --> 00:00:19,933
+Here, we get this context, object and a payload.
+
+7
+00:00:21,860 --> 00:00:24,640
+And now here, I wanna send a HTTP request
+
+8
+00:00:24,640 --> 00:00:27,600
+queued as Firebase off REST API,
+
+9
+00:00:27,600 --> 00:00:29,560
+to sign up with email and password.
+
+10
+00:00:29,560 --> 00:00:31,553
+So to this URL.
+
+11
+00:00:32,910 --> 00:00:37,910
+So let's grab this URL here and use the fetch function
+
+12
+00:00:38,140 --> 00:00:40,163
+to send a request to that URL.
+
+13
+00:00:43,770 --> 00:00:47,780
+And actually, this URL wants an API key,
+
+14
+00:00:47,780 --> 00:00:51,050
+which is unique per Firebase application.
+
+15
+00:00:51,050 --> 00:00:53,210
+So in your Firebase project, you can click on
+
+16
+00:00:53,210 --> 00:00:56,140
+this gear icon, project settings
+
+17
+00:00:56,140 --> 00:00:58,513
+and then grab this web API key.
+
+18
+00:00:59,630 --> 00:01:01,760
+Now you can't use mine because this project
+
+19
+00:01:01,760 --> 00:01:05,040
+will already be disabled when you're viewing this,
+
+20
+00:01:05,040 --> 00:01:07,433
+but grab your key in your project.
+
+21
+00:01:09,230 --> 00:01:11,710
+And once you got that, enter this here instead
+
+22
+00:01:11,710 --> 00:01:14,763
+of this square bracket, API key square bracket thing.
+
+23
+00:01:16,110 --> 00:01:19,230
+This is required for the request to succeed later.
+
+24
+00:01:19,230 --> 00:01:22,470
+Now this sends a request to sign a new user up.
+
+25
+00:01:22,470 --> 00:01:25,820
+However, just like this, it would send a get request.
+
+26
+00:01:25,820 --> 00:01:27,980
+And if we have a look at the docs we see instead
+
+27
+00:01:27,980 --> 00:01:29,910
+it should be a post request.
+
+28
+00:01:29,910 --> 00:01:32,180
+We also see which data needs to be added
+
+29
+00:01:32,180 --> 00:01:34,510
+to the request email and password
+
+30
+00:01:34,510 --> 00:01:37,460
+and then this returnSecureToken key,
+
+31
+00:01:37,460 --> 00:01:39,900
+which should always be true.
+
+32
+00:01:39,900 --> 00:01:42,920
+Okay so let's add this second argument,
+
+33
+00:01:42,920 --> 00:01:45,300
+this configuration object for the request.
+
+34
+00:01:45,300 --> 00:01:49,468
+Set the method to POST and also set the body
+
+35
+00:01:49,468 --> 00:01:54,468
+to adjacent stringified object, which has an email field,
+
+36
+00:01:58,380 --> 00:02:02,830
+which we should get from our payload, a password field,
+
+37
+00:02:02,830 --> 00:02:06,870
+which I also expect to get on the payload
+
+38
+00:02:06,870 --> 00:02:10,490
+and this returnSecureToken field,
+
+39
+00:02:10,490 --> 00:02:11,890
+which should always be true.
+
+40
+00:02:12,920 --> 00:02:16,630
+And this should send a request that creates a new user.
+
+41
+00:02:16,630 --> 00:02:19,040
+Now as always fetch returns, a promise,
+
+42
+00:02:19,040 --> 00:02:23,210
+and therefore, we can either use then and define the code
+
+43
+00:02:23,210 --> 00:02:25,950
+we wanna execute once this is done in the function
+
+44
+00:02:25,950 --> 00:02:29,080
+we pass to then, or we use this alternative way
+
+45
+00:02:29,080 --> 00:02:33,070
+of using async await, which I'm doing here
+
+46
+00:02:33,070 --> 00:02:36,420
+so that we can await the response.
+
+47
+00:02:36,420 --> 00:02:38,310
+And then the next line only executes
+
+48
+00:02:38,310 --> 00:02:40,063
+once that response is there,
+
+49
+00:02:40,970 --> 00:02:43,570
+And here I get that responseData
+
+50
+00:02:43,570 --> 00:02:46,900
+by awaiting response.json.
+
+51
+00:02:46,900 --> 00:02:49,080
+And then we can also check if the response
+
+52
+00:02:49,080 --> 00:02:54,080
+is maybe not okay, in which case I wanna construct an error,
+
+53
+00:02:54,160 --> 00:02:58,260
+a new error, where I look into my response data
+
+54
+00:02:58,260 --> 00:03:00,003
+and see if I got a message there.
+
+55
+00:03:01,120 --> 00:03:05,343
+And otherwise I will set this to failed to authenticate.
+
+56
+00:03:06,920 --> 00:03:08,533
+And then I throw this error.
+
+57
+00:03:09,400 --> 00:03:11,250
+And if we make it past this if check,
+
+58
+00:03:11,250 --> 00:03:13,980
+we should have a valid response and authentication
+
+59
+00:03:13,980 --> 00:03:15,083
+should have succeeded.
+
+60
+00:03:16,010 --> 00:03:20,040
+Actually I will also console.log response data here
+
+61
+00:03:20,040 --> 00:03:23,330
+so that we see what's in a response, if it's not okay,
+
+62
+00:03:23,330 --> 00:03:26,063
+so which kind of data we get back from Firebase then.
+
+63
+00:03:27,280 --> 00:03:29,260
+So if we make it past this if check,
+
+64
+00:03:29,260 --> 00:03:32,090
+we succeeded and now we wanna see
+
+65
+00:03:32,090 --> 00:03:36,350
+what's in the response data in the success case.
+
+66
+00:03:36,350 --> 00:03:39,300
+Actually, we don't even need to guess because we see it here
+
+67
+00:03:39,300 --> 00:03:42,110
+in the response payload documentation.
+
+68
+00:03:42,110 --> 00:03:45,070
+We will get back an ID token, which is this token
+
+69
+00:03:45,070 --> 00:03:46,700
+I mentioned on the slide.
+
+70
+00:03:46,700 --> 00:03:49,020
+We get back an email, a refreshToken,
+
+71
+00:03:49,020 --> 00:03:50,210
+which we don't need here,
+
+72
+00:03:50,210 --> 00:03:52,960
+information on when that token expires.
+
+73
+00:03:52,960 --> 00:03:56,300
+For security reasons, it doesn't live forever.
+
+74
+00:03:56,300 --> 00:03:58,570
+You could refresh it with the refreshToken,
+
+75
+00:03:58,570 --> 00:04:01,600
+but that's advanced and we're not going to cover it here.
+
+76
+00:04:01,600 --> 00:04:04,900
+And you get back local ID, which is the user ID
+
+77
+00:04:04,900 --> 00:04:06,313
+of the newly traded user.
+
+78
+00:04:07,310 --> 00:04:10,020
+And there are at least three interesting pieces
+
+79
+00:04:10,020 --> 00:04:13,740
+of information here, the token, which we will need later
+
+80
+00:04:13,740 --> 00:04:17,100
+to send requests, to restrict the resources,
+
+81
+00:04:17,100 --> 00:04:19,040
+the expiresin information
+
+82
+00:04:19,040 --> 00:04:21,990
+so that we know how long that token is valid
+
+83
+00:04:21,990 --> 00:04:23,403
+and the user ID.
+
+84
+00:04:24,360 --> 00:04:27,333
+So in the mutation, which we should create here,
+
+85
+00:04:28,480 --> 00:04:32,720
+I wanna store all that data in the UX.
+
+86
+00:04:32,720 --> 00:04:34,763
+I'll name the mutation setUser,
+
+87
+00:04:34,763 --> 00:04:37,940
+because it's not tied to signing up or logging in.
+
+88
+00:04:37,940 --> 00:04:40,940
+Here, we get that data back for signing up.
+
+89
+00:04:40,940 --> 00:04:43,890
+But if we check for signing in, so if we're logging in,
+
+90
+00:04:43,890 --> 00:04:46,253
+we see it's pretty much the same information.
+
+91
+00:04:47,410 --> 00:04:50,780
+So therefore, I'll have the same mutation.
+
+92
+00:04:50,780 --> 00:04:55,080
+And here I get my state and also payload.
+
+93
+00:04:55,080 --> 00:05:00,023
+And I wanna set state.token equal to payload.token.
+
+94
+00:05:01,000 --> 00:05:05,543
+Set state.userId equal to payload.userId
+
+95
+00:05:07,290 --> 00:05:11,580
+and set state.tokenExpiration
+
+96
+00:05:11,580 --> 00:05:14,453
+equal to payload.tokenExpiration.
+
+97
+00:05:16,360 --> 00:05:18,170
+So this assumes that we get a payload
+
+98
+00:05:18,170 --> 00:05:22,883
+that has these three fields when this mutation is committed.
+
+99
+00:05:24,400 --> 00:05:28,970
+Now we wanna commit setUser here in our action.
+
+100
+00:05:28,970 --> 00:05:30,790
+There, with context commit,
+
+101
+00:05:30,790 --> 00:05:32,620
+we want to commit setUser,
+
+102
+00:05:32,620 --> 00:05:35,993
+and now we need to pass an appropriate payload object,
+
+103
+00:05:37,090 --> 00:05:42,090
+which has token.UserId and tokenExpiration fields.
+
+104
+00:05:42,660 --> 00:05:45,750
+So back in our action here in this object,
+
+105
+00:05:45,750 --> 00:05:49,510
+I'll set the token equal to responseData.IdToken
+
+106
+00:05:52,513 --> 00:05:55,910
+because it's the IdToken field on the response
+
+107
+00:05:55,910 --> 00:05:58,330
+that holds that token.
+
+108
+00:05:58,330 --> 00:06:00,750
+And it's a local ID for the user ID.
+
+109
+00:06:00,750 --> 00:06:03,860
+So therefore, I'll set the userId field on the payload
+
+110
+00:06:03,860 --> 00:06:07,293
+be passed to the mutation to responseData.localId.
+
+111
+00:06:08,880 --> 00:06:11,127
+Now regarding the tokenExpiration,
+
+112
+00:06:12,520 --> 00:06:14,360
+for the moment, I'll just set this
+
+113
+00:06:14,360 --> 00:06:19,077
+to responseData.expiresIn, but we'll change this later.
+
+114
+00:06:20,980 --> 00:06:22,800
+We will only need this later.
+
+115
+00:06:22,800 --> 00:06:25,113
+So for the moment, it doesn't matter too much.
+
+116
+00:06:26,810 --> 00:06:31,220
+Now, we set these three fields in this mutation
+
+117
+00:06:31,220 --> 00:06:32,810
+and therefore, in the initial state,
+
+118
+00:06:32,810 --> 00:06:34,420
+I also wanna set them.
+
+119
+00:06:34,420 --> 00:06:37,200
+Initially, let's say userId is null.
+
+120
+00:06:37,200 --> 00:06:42,200
+Token is null and tokenExpiration also is null.
+
+121
+00:06:43,650 --> 00:06:47,140
+Now with that, we prepared the action and mutation.
+
+122
+00:06:47,140 --> 00:06:49,520
+Now we can go back to the UserAuth page
+
+123
+00:06:49,520 --> 00:06:53,330
+and dispatch this action when this form is submitted
+
+124
+00:06:53,330 --> 00:06:56,950
+and we have valid input here.
+
+125
+00:06:56,950 --> 00:07:01,950
+So then I wanna check if this mode is equal to login,
+
+126
+00:07:03,300 --> 00:07:06,130
+in which case the login action should be dispatched,
+
+127
+00:07:06,130 --> 00:07:07,740
+which we don't support yet,
+
+128
+00:07:07,740 --> 00:07:10,000
+but else, we have the signup mode.
+
+129
+00:07:10,000 --> 00:07:15,000
+I want to dispatch this.$store with dispatch sign up.
+
+130
+00:07:15,890 --> 00:07:18,260
+Since the module isn't namespaced,
+
+131
+00:07:18,260 --> 00:07:21,010
+we don't need to add any namespace here.
+
+132
+00:07:21,010 --> 00:07:22,910
+This will dispatch to signup action.
+
+133
+00:07:22,910 --> 00:07:26,520
+And, of course, we need to pass some payload to this action
+
+134
+00:07:26,520 --> 00:07:29,470
+because on this action, we expect to get the email
+
+135
+00:07:29,470 --> 00:07:31,523
+and password on the payload.
+
+136
+00:07:32,570 --> 00:07:36,590
+So therefore, here we should set email equal to this.email,
+
+137
+00:07:36,590 --> 00:07:40,274
+to the entered email in this component and password
+
+138
+00:07:40,274 --> 00:07:42,113
+to this.password.
+
+139
+00:07:43,870 --> 00:07:46,893
+Okay, if we now save that and we go back.
+
+140
+00:07:48,380 --> 00:07:52,470
+If we go to sign up instead and we try to submit this
+
+141
+00:07:52,470 --> 00:07:54,840
+in an empty way, we get our error.
+
+142
+00:07:54,840 --> 00:07:57,900
+Also, if we are just missing the password,
+
+143
+00:07:57,900 --> 00:07:59,610
+but if the data here is valid
+
+144
+00:08:00,850 --> 00:08:03,630
+and we try this, we don't get any visual feedback
+
+145
+00:08:03,630 --> 00:08:05,800
+at the moment, but we get this response,
+
+146
+00:08:05,800 --> 00:08:07,940
+which looks pretty good.
+
+147
+00:08:07,940 --> 00:08:11,170
+It's an object with all that data I described,
+
+148
+00:08:11,170 --> 00:08:13,420
+with the localId and so on.
+
+149
+00:08:13,420 --> 00:08:17,900
+And on Firebase, if we refresh this user's page
+
+150
+00:08:17,900 --> 00:08:21,203
+under authentication, we should also see that user here,
+
+151
+00:08:23,430 --> 00:08:25,770
+Now if I try creating the same user again,
+
+152
+00:08:25,770 --> 00:08:28,260
+we will see that we get an error
+
+153
+00:08:28,260 --> 00:08:31,330
+and that's the response data we got back from Firebase
+
+154
+00:08:31,330 --> 00:08:35,770
+in an error case where we have a nested error object
+
+155
+00:08:35,770 --> 00:08:38,453
+with a message of EMAIL_EXISTS.
+
+156
+00:08:40,440 --> 00:08:43,480
+We can utilize this in our action for better error handling
+
+157
+00:08:43,480 --> 00:08:46,270
+thereafter but that's actually the next step
+
+158
+00:08:46,270 --> 00:08:48,450
+because I also want to show a loading spinner
+
+159
+00:08:48,450 --> 00:08:51,190
+whilst we are submitting, for example,
+
+160
+00:08:51,190 --> 00:08:54,860
+but the main takeaway is that it generally works.
+
+161
+00:08:54,860 --> 00:08:57,800
+So now let's work on the feedback we give the user
+
+162
+00:08:57,800 --> 00:09:00,090
+before we then take the next steps
+
+163
+00:09:00,090 --> 00:09:03,763
+and also make login work and then use that token.
+

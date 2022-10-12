@@ -1,0 +1,548 @@
+1
+00:00:02,160 --> 00:00:05,550
+So now I opened this generated folder,
+
+2
+00:00:05,550 --> 00:00:08,220
+which we generated with the vue create command,
+
+3
+00:00:08,220 --> 00:00:11,550
+the vue-first app folder, in my case.
+
+4
+00:00:11,550 --> 00:00:13,990
+I opened it with Visual Studio Code
+
+5
+00:00:13,990 --> 00:00:16,329
+with the editor we've been using thus far,
+
+6
+00:00:16,329 --> 00:00:18,240
+simply with file open,
+
+7
+00:00:18,240 --> 00:00:21,293
+and then by picking that whole folder which was created.
+
+8
+00:00:22,810 --> 00:00:26,410
+Now in that folder, you see a bunch of files,
+
+9
+00:00:26,410 --> 00:00:28,633
+and also sub folders.
+
+10
+00:00:30,120 --> 00:00:32,860
+In my case, I got a node modules sub folder,
+
+11
+00:00:32,860 --> 00:00:34,240
+a public sub folder,
+
+12
+00:00:34,240 --> 00:00:35,940
+and a source sub folder.
+
+13
+00:00:35,940 --> 00:00:38,420
+And then well, a bunch of files.
+
+14
+00:00:38,420 --> 00:00:40,300
+And that's the project set up
+
+15
+00:00:40,300 --> 00:00:43,053
+the vue CLI generated for us here.
+
+16
+00:00:44,080 --> 00:00:45,530
+Now, let me quickly walk you
+
+17
+00:00:45,530 --> 00:00:47,940
+through the structure we have here.
+
+18
+00:00:47,940 --> 00:00:51,030
+On the root level of this project folder.
+
+19
+00:00:51,030 --> 00:00:53,780
+We have a bunch of configuration files.
+
+20
+00:00:53,780 --> 00:00:56,050
+You don't need to care too much about them.
+
+21
+00:00:56,050 --> 00:00:57,920
+Unless you know what you're doing,
+
+22
+00:00:57,920 --> 00:01:00,650
+you can leave all the defaults there.
+
+23
+00:01:00,650 --> 00:01:03,210
+The package.json file is interesting.
+
+24
+00:01:03,210 --> 00:01:05,260
+This in the end defines the
+
+25
+00:01:05,260 --> 00:01:08,580
+scripts we can execute like NPM run serve,
+
+26
+00:01:08,580 --> 00:01:12,303
+which we started to start the development server.
+
+27
+00:01:13,260 --> 00:01:15,350
+And under the hood, you can see those scripts
+
+28
+00:01:15,350 --> 00:01:18,870
+all seem to use something from the vue CLI,
+
+29
+00:01:18,870 --> 00:01:22,053
+so they're doing stuff that has been pre configured for us.
+
+30
+00:01:23,090 --> 00:01:25,110
+We also have dependencies here.
+
+31
+00:01:25,110 --> 00:01:27,270
+And there for example, you see vue,
+
+32
+00:01:27,270 --> 00:01:29,880
+the framework as a dependency.
+
+33
+00:01:29,880 --> 00:01:33,720
+These are packages which are now available in our code.
+
+34
+00:01:33,720 --> 00:01:37,790
+And package simply means that this will be imported
+
+35
+00:01:37,790 --> 00:01:40,290
+and added to our code automatically.
+
+36
+00:01:40,290 --> 00:01:45,000
+We don't need to add any script tags in any HTML file
+
+37
+00:01:45,000 --> 00:01:47,760
+to have those packages available.
+
+38
+00:01:47,760 --> 00:01:50,460
+Throughout this course, we're going to add more packages.
+
+39
+00:01:50,460 --> 00:01:52,710
+But for now, we can start with these
+
+40
+00:01:52,710 --> 00:01:54,880
+packages which we have here.
+
+41
+00:01:54,880 --> 00:01:57,770
+We also got certain development dependencies.
+
+42
+00:01:57,770 --> 00:01:59,700
+These are also packages,
+
+43
+00:01:59,700 --> 00:02:02,410
+but only packages which our project set up here
+
+44
+00:02:02,410 --> 00:02:03,770
+uses under the hood,
+
+45
+00:02:03,770 --> 00:02:06,270
+for example, the development server
+
+46
+00:02:06,270 --> 00:02:08,763
+is in one of those packages.
+
+47
+00:02:09,770 --> 00:02:11,520
+So these are all packages,
+
+48
+00:02:11,520 --> 00:02:13,220
+which we don't have to care about.
+
+49
+00:02:13,220 --> 00:02:15,460
+These are packages, which we're going to use
+
+50
+00:02:15,460 --> 00:02:18,823
+actively or implicitly when we write code.
+
+51
+00:02:19,680 --> 00:02:21,550
+Now that's it for this file.
+
+52
+00:02:21,550 --> 00:02:23,810
+We can ignore all the other files for now,
+
+53
+00:02:23,810 --> 00:02:26,520
+and instead have a look at the other folders.
+
+54
+00:02:26,520 --> 00:02:29,100
+Node modules in the end houses
+
+55
+00:02:29,100 --> 00:02:31,850
+the packages mentioned in package.json.
+
+56
+00:02:31,850 --> 00:02:35,500
+Here we specify that we need them, NPM,
+
+57
+00:02:35,500 --> 00:02:37,410
+the node package manager tool
+
+58
+00:02:37,410 --> 00:02:39,590
+which we installed together with node,
+
+59
+00:02:39,590 --> 00:02:40,560
+then in the end
+
+60
+00:02:40,560 --> 00:02:44,140
+goes ahead and downloads those packages into our project
+
+61
+00:02:44,140 --> 00:02:46,953
+and stores them in the node modules folder.
+
+62
+00:02:48,410 --> 00:02:52,010
+It does that with a specific command you can run
+
+63
+00:02:52,010 --> 00:02:53,100
+in the terminal,
+
+64
+00:02:53,100 --> 00:02:55,260
+if we quit that running development server,
+
+65
+00:02:55,260 --> 00:02:57,350
+which you can do with Ctrl+C,
+
+66
+00:02:57,350 --> 00:02:59,130
+you can run NPM install
+
+67
+00:02:59,130 --> 00:03:02,220
+to tell NPM to have a look at package.json,
+
+68
+00:03:02,220 --> 00:03:06,200
+download all those dependencies into a node modules folder.
+
+69
+00:03:06,200 --> 00:03:08,300
+And well, then they're available.
+
+70
+00:03:08,300 --> 00:03:10,990
+And once that NPM install process finished,
+
+71
+00:03:10,990 --> 00:03:12,550
+which you don't need to do right now,
+
+72
+00:03:12,550 --> 00:03:14,690
+because the vue CLI did it for us
+
+73
+00:03:14,690 --> 00:03:16,360
+when it created the project.
+
+74
+00:03:16,360 --> 00:03:17,530
+Once that finished,
+
+75
+00:03:17,530 --> 00:03:19,300
+you can again run NPM run serve
+
+76
+00:03:19,300 --> 00:03:21,400
+to bring up that development server again.
+
+77
+00:03:22,300 --> 00:03:23,133
+And by the way,
+
+78
+00:03:23,133 --> 00:03:25,260
+you should keep that server up and running,
+
+79
+00:03:25,260 --> 00:03:27,700
+you should keep that process up and running.
+
+80
+00:03:27,700 --> 00:03:29,420
+Because you can only test your app
+
+81
+00:03:29,420 --> 00:03:31,480
+as long as that is running.
+
+82
+00:03:31,480 --> 00:03:32,710
+If you're done for the day,
+
+83
+00:03:32,710 --> 00:03:34,980
+you can quit with Ctrl+C.
+
+84
+00:03:34,980 --> 00:03:37,830
+But if you're starting to write code again in that project,
+
+85
+00:03:37,830 --> 00:03:39,610
+you need to run that server again.
+
+86
+00:03:39,610 --> 00:03:42,160
+That's an important note here about that server
+
+87
+00:03:42,160 --> 00:03:45,380
+that it should be up and running whilst you're writing code.
+
+88
+00:03:45,380 --> 00:03:47,170
+NPM install is required
+
+89
+00:03:47,170 --> 00:03:49,470
+whenever you share a project
+
+90
+00:03:49,470 --> 00:03:52,090
+without node modules for example,
+
+91
+00:03:52,090 --> 00:03:53,830
+like the future code attachments
+
+92
+00:03:53,830 --> 00:03:55,470
+you will find in this course,
+
+93
+00:03:55,470 --> 00:03:57,120
+then you need to run NPM install
+
+94
+00:03:57,120 --> 00:04:00,650
+once to make sure that all the packages are available
+
+95
+00:04:00,650 --> 00:04:03,840
+in a brand new project created with vue create,
+
+96
+00:04:03,840 --> 00:04:05,830
+you don't need to run NPM install
+
+97
+00:04:05,830 --> 00:04:08,830
+because vue create, the command we executed
+
+98
+00:04:08,830 --> 00:04:11,720
+to create a project already did that for us.
+
+99
+00:04:11,720 --> 00:04:13,853
+And that's the node modules folder.
+
+100
+00:04:14,930 --> 00:04:16,410
+Lot of talking about that,
+
+101
+00:04:16,410 --> 00:04:18,769
+but it is important to understand what it does.
+
+102
+00:04:18,769 --> 00:04:20,670
+It contains our dependencies,
+
+103
+00:04:20,670 --> 00:04:22,470
+for example, the vue framework,
+
+104
+00:04:22,470 --> 00:04:25,180
+and also dependencies of dependencies.
+
+105
+00:04:25,180 --> 00:04:26,883
+That's why it's so big.
+
+106
+00:04:28,410 --> 00:04:31,300
+You should leave the node modules folder alone,
+
+107
+00:04:31,300 --> 00:04:33,060
+don't change code in there,
+
+108
+00:04:33,060 --> 00:04:34,340
+don't delete it,
+
+109
+00:04:34,340 --> 00:04:37,850
+that will all impact your application in a negative way.
+
+110
+00:04:37,850 --> 00:04:39,463
+You should just leave it here.
+
+111
+00:04:40,330 --> 00:04:42,870
+The public folder is a very simple folder.
+
+112
+00:04:42,870 --> 00:04:45,810
+Here in the end, we got a HTML file.
+
+113
+00:04:45,810 --> 00:04:48,590
+And this is a very simple looking file
+
+114
+00:04:48,590 --> 00:04:50,630
+that's in the end the file,
+
+115
+00:04:50,630 --> 00:04:53,980
+that will contain our vue application in the end.
+
+116
+00:04:53,980 --> 00:04:56,550
+You see it has a div with ID app
+
+117
+00:04:56,550 --> 00:04:59,360
+and in the end you will soon see that is
+
+118
+00:04:59,360 --> 00:05:02,323
+where our vue app will be mounted to.
+
+119
+00:05:03,170 --> 00:05:07,020
+And we will only have one HTML file here,
+
+120
+00:05:07,020 --> 00:05:10,570
+since we're building a vue single-page application,
+
+121
+00:05:10,570 --> 00:05:13,030
+which means everything we see on the screen
+
+122
+00:05:13,030 --> 00:05:16,070
+will be controlled with vue and JavaScript.
+
+123
+00:05:16,070 --> 00:05:18,680
+And we'll just have one HTML file
+
+124
+00:05:18,680 --> 00:05:22,363
+and use vue to bring different things onto the screen.
+
+125
+00:05:23,210 --> 00:05:25,640
+Now all the imports that might be needed here,
+
+126
+00:05:25,640 --> 00:05:28,810
+and all of that will be managed automatically,
+
+127
+00:05:28,810 --> 00:05:32,120
+by the vue CLI and by that development server,
+
+128
+00:05:32,120 --> 00:05:36,000
+so we don't need to edit this HTML file right now.
+
+129
+00:05:36,000 --> 00:05:38,890
+Instead, we have that source folder here.
+
+130
+00:05:38,890 --> 00:05:42,640
+And that source folder contains the JavaScript code
+
+131
+00:05:42,640 --> 00:05:44,470
+we are going to write
+
+132
+00:05:44,470 --> 00:05:47,600
+so it contains our vue code in the end,
+
+133
+00:05:47,600 --> 00:05:49,340
+and it is worth a closer look.
+
+134
+00:05:49,340 --> 00:05:50,720
+Because you can already tell
+
+135
+00:05:50,720 --> 00:05:53,050
+there are some strange files in here,
+
+136
+00:05:53,050 --> 00:05:55,650
+for example, a .vue file.
+
+137
+00:05:55,650 --> 00:05:57,033
+Now what's that about?
+

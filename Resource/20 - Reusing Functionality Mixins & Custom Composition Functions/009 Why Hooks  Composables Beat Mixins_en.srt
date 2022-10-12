@@ -1,0 +1,108 @@
+1
+00:00:02,300 --> 00:00:04,610
+So now that we saw hooks in action,
+
+2
+00:00:04,610 --> 00:00:08,983
+why could they be better or nicer than mixins?
+
+3
+00:00:09,830 --> 00:00:12,280
+Well, I see two main advantages.
+
+4
+00:00:12,280 --> 00:00:15,390
+For one, it's easy to make them configurable.
+
+5
+00:00:15,390 --> 00:00:17,120
+As you saw in the last lecture,
+
+6
+00:00:17,120 --> 00:00:19,550
+adding extra parameters is easy
+
+7
+00:00:19,550 --> 00:00:22,830
+and all of a sudden, your hook is very versatile
+
+8
+00:00:22,830 --> 00:00:25,460
+and can be used in different components
+
+9
+00:00:25,460 --> 00:00:28,433
+with different configurations, which is great.
+
+10
+00:00:29,520 --> 00:00:33,810
+In addition, they fixed one major flaw mixins have.
+
+11
+00:00:33,810 --> 00:00:37,380
+With mixins, I mentioned that in bigger apps with more
+
+12
+00:00:37,380 --> 00:00:40,980
+and more mixins, it's hard to see which data property
+
+13
+00:00:40,980 --> 00:00:43,950
+and which method is added by which mixin.
+
+14
+00:00:43,950 --> 00:00:46,150
+With custom hooks, that's easy.
+
+15
+00:00:46,150 --> 00:00:48,490
+I mean, the custom hook returns
+
+16
+00:00:48,490 --> 00:00:51,130
+the things it wants to expose to a component
+
+17
+00:00:51,130 --> 00:00:54,010
+and therefore, we have to accept these things
+
+18
+00:00:54,010 --> 00:00:56,400
+like here, where we get an array
+
+19
+00:00:56,400 --> 00:00:59,080
+and pull the things we need out of the array
+
+20
+00:00:59,080 --> 00:01:01,410
+and store them in constants.
+
+21
+00:01:01,410 --> 00:01:05,400
+It's super easy to see that alertIsVisible, showAlert,
+
+22
+00:01:05,400 --> 00:01:08,493
+and hideAlert are coming from the useAlert hook.
+
+23
+00:01:09,380 --> 00:01:12,860
+So even if we would be using 10 or 20 custom hooks,
+
+24
+00:01:12,860 --> 00:01:16,950
+it would always be easy to immediately see which feature
+
+25
+00:01:16,950 --> 00:01:20,020
+and which data piece is coming from which hook.
+
+26
+00:01:20,020 --> 00:01:22,540
+And that can be a major advantage
+
+27
+00:01:22,540 --> 00:01:24,933
+in bigger apps and bigger components.
+

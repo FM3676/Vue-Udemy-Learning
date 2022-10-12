@@ -1,0 +1,56 @@
+1
+00:00:02,190 --> 00:00:03,460
+In this module,
+
+2
+00:00:03,460 --> 00:00:05,810
+we're going to explore routing
+
+3
+00:00:05,810 --> 00:00:09,570
+and I will explain what exactly routing is
+
+4
+00:00:09,570 --> 00:00:11,410
+and why we need it.
+
+5
+00:00:11,410 --> 00:00:14,010
+We'll have a look at how routing
+
+6
+00:00:14,010 --> 00:00:16,670
+can make our Vue app better
+
+7
+00:00:16,670 --> 00:00:19,240
+and actually helps us build a totally different
+
+8
+00:00:19,240 --> 00:00:21,850
+kind of Vue app, you could say.
+
+9
+00:00:21,850 --> 00:00:23,230
+You will therefore learn what
+
+10
+00:00:23,230 --> 00:00:25,800
+and why routing is, but you will then of course
+
+11
+00:00:25,800 --> 00:00:30,800
+all learn how to set up the Vue router and routes with it.
+
+12
+00:00:31,370 --> 00:00:34,380
+And we'll then explore how to navigate around
+
+13
+00:00:34,380 --> 00:00:37,110
+with routing, how to configure routing,
+
+14
+00:00:37,110 --> 00:00:39,713
+and which different options you have there.
+

@@ -1,0 +1,276 @@
+1
+00:00:02,240 --> 00:00:05,240
+Now that we explored reactivity.
+
+2
+00:00:05,240 --> 00:00:06,890
+I already want to leave it.
+
+3
+00:00:06,890 --> 00:00:08,590
+I already want to leave this example
+
+4
+00:00:08,590 --> 00:00:12,880
+because that really is all I think we should know for now
+
+5
+00:00:12,880 --> 00:00:16,129
+of how View's reactivity works under the hood.
+
+6
+00:00:16,129 --> 00:00:20,170
+It's not all we should know about View in general, though;
+
+7
+00:00:20,170 --> 00:00:22,930
+for example, you might have wondered
+
+8
+00:00:22,930 --> 00:00:26,880
+if you can only have one view app per page,
+
+9
+00:00:26,880 --> 00:00:30,500
+and maybe you already tried out working with multiple apps
+
+10
+00:00:30,500 --> 00:00:35,040
+because yes, you can have multiple apps. Here,
+
+11
+00:00:35,040 --> 00:00:37,980
+and thus far in all the lectures and modules,
+
+12
+00:00:37,980 --> 00:00:40,680
+we just haven't had one app
+
+13
+00:00:40,680 --> 00:00:45,070
+and we mounted that to one part of our HTML code,
+
+14
+00:00:45,070 --> 00:00:48,140
+which would then be controlled by that app.
+
+15
+00:00:48,140 --> 00:00:52,670
+But you can absolutely have more than one app
+
+16
+00:00:52,670 --> 00:00:53,520
+if you wanted to.
+
+17
+00:00:54,530 --> 00:00:57,640
+So if we add a second section here with an idea
+
+18
+00:00:57,640 --> 00:01:02,640
+of app two, we can absolutely create a second app,
+
+19
+00:01:02,770 --> 00:01:07,633
+maybe name it app two here with View Create App,
+
+20
+00:01:08,530 --> 00:01:13,530
+which we mount to this app two ID section.
+
+21
+00:01:14,930 --> 00:01:17,750
+And in here, we can do the exact same thing
+
+22
+00:01:17,750 --> 00:01:19,503
+as we did in our first app.
+
+23
+00:01:20,930 --> 00:01:23,700
+We can also return the data object here.
+
+24
+00:01:23,700 --> 00:01:27,360
+We can have a data property here, like a favorite meal,
+
+25
+00:01:27,360 --> 00:01:32,070
+pizza and, we can then of course, output this here,
+
+26
+00:01:32,070 --> 00:01:36,480
+in our second app, the favorite meal.
+
+27
+00:01:36,480 --> 00:01:39,400
+If we do all of that and saved it and reload,
+
+28
+00:01:39,400 --> 00:01:42,210
+here is our second app.
+
+29
+00:01:42,210 --> 00:01:43,540
+Now it's missing the styling
+
+30
+00:01:43,540 --> 00:01:48,540
+because I actually set the styling up to target the app ID.
+
+31
+00:01:49,190 --> 00:01:52,770
+But if we would target the app two ID as well,
+
+32
+00:01:52,770 --> 00:01:56,730
+we would get the exact same styling as before.
+
+33
+00:01:56,730 --> 00:02:00,680
+So, if you quickly find all the places into styled CSS file,
+
+34
+00:02:00,680 --> 00:02:03,290
+where we target the app ID selector,
+
+35
+00:02:03,290 --> 00:02:07,853
+simply add the two ID selector with a comma as well.
+
+36
+00:02:10,250 --> 00:02:15,250
+Also, here and here. And of course all the 40 input.
+
+37
+00:02:18,720 --> 00:02:21,720
+If you plan on using one in your second app
+
+38
+00:02:21,720 --> 00:02:23,230
+and all the other styles.
+
+39
+00:02:23,230 --> 00:02:25,620
+Now, since I don't use a buttons on in my second app,
+
+40
+00:02:25,620 --> 00:02:28,120
+I'll omit this. And with that,
+
+41
+00:02:28,120 --> 00:02:31,500
+if I reload, we see this in a nicer style.
+
+42
+00:02:31,500 --> 00:02:35,610
+Now, of course, you can't use data from another app.
+
+43
+00:02:35,610 --> 00:02:38,510
+So, here in my app, two, in this section,
+
+44
+00:02:38,510 --> 00:02:40,460
+which is controlled by the second app,
+
+45
+00:02:40,460 --> 00:02:42,760
+I can't output the message,
+
+46
+00:02:42,760 --> 00:02:45,520
+which is part of the data of the first app.
+
+47
+00:02:45,520 --> 00:02:49,140
+This does not work. If I do that, you see nothing here,
+
+48
+00:02:49,140 --> 00:02:52,410
+because the message is not a data property
+
+49
+00:02:52,410 --> 00:02:53,640
+of the second app.
+
+50
+00:02:53,640 --> 00:02:55,250
+It's one of the first app.
+
+51
+00:02:55,250 --> 00:02:58,020
+And these two apps have no connection,
+
+52
+00:02:58,020 --> 00:02:59,830
+which is important, by the way.
+
+53
+00:02:59,830 --> 00:03:02,880
+Each view app works stand alone.
+
+54
+00:03:02,880 --> 00:03:05,560
+There is no connection between them.
+
+55
+00:03:05,560 --> 00:03:07,550
+These are really two different parts
+
+56
+00:03:07,550 --> 00:03:09,900
+of your HTML code, controlled
+
+57
+00:03:09,900 --> 00:03:13,780
+by two different apps with no connection between the apps.
+
+58
+00:03:13,780 --> 00:03:17,900
+So this here does not work,
+
+59
+00:03:19,440 --> 00:03:22,633
+because this is the data from another app.
+
+60
+00:03:25,100 --> 00:03:27,130
+And therefore, multiple View apps
+
+61
+00:03:27,130 --> 00:03:29,720
+are definitely something you might want to use.
+
+62
+00:03:29,720 --> 00:03:34,140
+If you have different independent parts on your screen,
+
+63
+00:03:34,140 --> 00:03:36,110
+that should be controlled by View.
+
+64
+00:03:36,110 --> 00:03:38,800
+If you have a part that needs to work together,
+
+65
+00:03:38,800 --> 00:03:41,060
+though, for example, an input,
+
+66
+00:03:41,060 --> 00:03:42,500
+which is connected to the button,
+
+67
+00:03:42,500 --> 00:03:45,590
+which ultimately influences what's in the paragraph.
+
+68
+00:03:45,590 --> 00:03:49,120
+If you that, then this all should be controlled
+
+69
+00:03:49,120 --> 00:03:51,223
+by the same app. Of course.
+

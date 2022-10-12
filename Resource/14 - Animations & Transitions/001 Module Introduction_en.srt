@@ -1,0 +1,88 @@
+1
+00:00:02,160 --> 00:00:04,200
+We now gained a lot of knowledge
+
+2
+00:00:04,200 --> 00:00:06,180
+about important concepts
+
+3
+00:00:06,180 --> 00:00:09,580
+and features which you need in Vue applications.
+
+4
+00:00:09,580 --> 00:00:11,210
+There is one thing which is missing,
+
+5
+00:00:11,210 --> 00:00:14,630
+which you don't need in any application,
+
+6
+00:00:14,630 --> 00:00:17,360
+but which helps in a lot of applications.
+
+7
+00:00:17,360 --> 00:00:21,040
+And that would be transitions and animations,
+
+8
+00:00:21,040 --> 00:00:25,440
+moving things around and doing so in an animated way
+
+9
+00:00:25,440 --> 00:00:28,970
+to help users understand your user interface,
+
+10
+00:00:28,970 --> 00:00:31,630
+to provide a better user experience.
+
+11
+00:00:31,630 --> 00:00:33,130
+Technically, transitions
+
+12
+00:00:33,130 --> 00:00:35,780
+and animations are totally optional,
+
+13
+00:00:35,780 --> 00:00:40,780
+but they often make your UI and UX much, much better.
+
+14
+00:00:41,690 --> 00:00:43,030
+And therefore in this module,
+
+15
+00:00:43,030 --> 00:00:47,020
+we'll start by understanding transitions and animations,
+
+16
+00:00:47,020 --> 00:00:51,120
+how they work and how you can make them work with CSS.
+
+17
+00:00:51,120 --> 00:00:54,900
+We'll then learn how Vue.js can help us with animations
+
+18
+00:00:54,900 --> 00:00:57,750
+and where exactly we need its help.
+
+19
+00:00:57,750 --> 00:01:01,660
+And then we'll also see that animating lists is
+
+20
+00:01:01,660 --> 00:01:04,750
+a bit different than animating other things,
+
+21
+00:01:04,750 --> 00:01:07,090
+which we'll dive into first in this module,
+
+22
+00:01:07,090 --> 00:01:09,273
+and therefore we'll cover this as well.
+

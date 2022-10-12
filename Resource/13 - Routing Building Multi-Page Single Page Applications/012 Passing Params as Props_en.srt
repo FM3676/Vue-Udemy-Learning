@@ -1,0 +1,292 @@
+1
+00:00:02,210 --> 00:00:06,680
+Our TeamMembers component has one potential disadvantage.
+
+2
+00:00:06,680 --> 00:00:10,593
+It's not only loadable through routing, why?
+
+3
+00:00:11,570 --> 00:00:12,960
+Because in the code,
+
+4
+00:00:12,960 --> 00:00:16,680
+we rely on $route in the end,
+
+5
+00:00:16,680 --> 00:00:20,020
+we use it here in created and we watch it here.
+
+6
+00:00:20,020 --> 00:00:24,040
+So if you would use this component by simply embedding it
+
+7
+00:00:24,040 --> 00:00:26,320
+in the template of another component,
+
+8
+00:00:26,320 --> 00:00:28,220
+let's say you change your application,
+
+9
+00:00:28,220 --> 00:00:30,590
+and you now suddenly want to use this differently,
+
+10
+00:00:30,590 --> 00:00:32,580
+or you use it in different places,
+
+11
+00:00:32,580 --> 00:00:34,444
+one time loaded through routing
+
+12
+00:00:34,444 --> 00:00:37,890
+another time used through its tag in the template,
+
+13
+00:00:37,890 --> 00:00:40,440
+then this would be problematic.
+
+14
+00:00:40,440 --> 00:00:44,580
+It might be better if TeamMembers would be loaded such
+
+15
+00:00:44,580 --> 00:00:47,210
+that you get props
+
+16
+00:00:47,210 --> 00:00:50,420
+that you simply get your
+
+17
+00:00:50,420 --> 00:00:52,373
+teamId as a prop.
+
+18
+00:00:53,420 --> 00:00:55,530
+That's how you would build this component,
+
+19
+00:00:55,530 --> 00:00:57,820
+if it would not be loaded through routing.
+
+20
+00:00:57,820 --> 00:01:00,400
+You would get the teamId through props
+
+21
+00:01:01,240 --> 00:01:03,310
+and in all the places where you need the Id,
+
+22
+00:01:03,310 --> 00:01:05,370
+instead of using this $route,
+
+23
+00:01:05,370 --> 00:01:10,050
+you use this teamId, referring to that prop
+
+24
+00:01:10,050 --> 00:01:11,850
+and here, you could then watch this
+
+25
+00:01:11,850 --> 00:01:13,853
+prop for a changes, for example.
+
+26
+00:01:14,750 --> 00:01:17,040
+And then we would get our newId here
+
+27
+00:01:17,040 --> 00:01:20,247
+would maybe forward that to LoadMembers.
+
+28
+00:01:20,247 --> 00:01:23,210
+And we will change the LoadMembers code here,
+
+29
+00:01:23,210 --> 00:01:27,120
+to not expect the route as argument but the teamId,
+
+30
+00:01:27,120 --> 00:01:31,200
+and therefore, we now just got teamId as an argument here,
+
+31
+00:01:31,200 --> 00:01:33,363
+and we can delete that old first line.
+
+32
+00:01:34,550 --> 00:01:36,100
+But if we save that it won't work,
+
+33
+00:01:36,100 --> 00:01:39,490
+we see nothing on the screen /t2
+
+34
+00:01:39,490 --> 00:01:41,260
+and if we open the developer tools,
+
+35
+00:01:41,260 --> 00:01:42,730
+we see that the problem is
+
+36
+00:01:42,730 --> 00:01:46,710
+that we cannot read the property 'members' of undefined.
+
+37
+00:01:46,710 --> 00:01:48,190
+And the reason should be obvious,
+
+38
+00:01:48,190 --> 00:01:50,450
+teamId is expected as a prop
+
+39
+00:01:50,450 --> 00:01:52,450
+but we're loading this through routing
+
+40
+00:01:52,450 --> 00:01:55,080
+and the router by default doesn't add
+
+41
+00:01:55,080 --> 00:01:57,933
+any props to this loaded component,
+
+42
+00:01:59,150 --> 00:02:01,360
+but that's something you can change.
+
+43
+00:02:01,360 --> 00:02:04,500
+In your route config, here on this route,
+
+44
+00:02:04,500 --> 00:02:06,320
+which is the route responsible
+
+45
+00:02:06,320 --> 00:02:08,570
+for loading the TeamMembers component,
+
+46
+00:02:08,570 --> 00:02:11,070
+you can add another option,
+
+47
+00:02:11,070 --> 00:02:15,310
+you can add the props option and set this to true.
+
+48
+00:02:15,310 --> 00:02:17,430
+And this does one important thing,
+
+49
+00:02:17,430 --> 00:02:22,430
+it tells the view router that the dynamic parameters
+
+50
+00:02:22,610 --> 00:02:25,650
+should be passed into this component as props
+
+51
+00:02:25,650 --> 00:02:29,523
+rather than just on the $route property.
+
+52
+00:02:30,630 --> 00:02:33,380
+So now, you will have a prop off the name
+
+53
+00:02:33,380 --> 00:02:35,380
+you defined here after the colon,
+
+54
+00:02:35,380 --> 00:02:39,990
+in my case, teamId, the value which is now part of the URL
+
+55
+00:02:39,990 --> 00:02:43,700
+will now be passed in as a prop into this component
+
+56
+00:02:43,700 --> 00:02:44,550
+when it's loaded.
+
+57
+00:02:45,680 --> 00:02:50,680
+So with props true if you save that and reload now,
+
+58
+00:02:51,040 --> 00:02:53,010
+this works again.
+
+59
+00:02:53,010 --> 00:02:55,210
+And now we have one advantage,
+
+60
+00:02:55,210 --> 00:03:00,210
+now, this component TeamMembers is more reusable,
+
+61
+00:03:00,320 --> 00:03:02,230
+because now we can use it anywhere,
+
+62
+00:03:02,230 --> 00:03:04,460
+as long as we provide this prop,
+
+63
+00:03:04,460 --> 00:03:07,723
+it's not strictly tied to routing anymore.
+
+64
+00:03:08,570 --> 00:03:11,310
+So this is simply an alternative,
+
+65
+00:03:11,310 --> 00:03:14,750
+which you could consider when it comes to
+
+66
+00:03:14,750 --> 00:03:18,160
+routing and loading components through routing.
+
+67
+00:03:18,160 --> 00:03:21,050
+You can make your components more reusable
+
+68
+00:03:21,050 --> 00:03:24,020
+by using props instead of $route
+
+69
+00:03:24,020 --> 00:03:25,750
+and even if you don't plan
+
+70
+00:03:25,750 --> 00:03:27,760
+on using the component anywhere else?
+
+71
+00:03:27,760 --> 00:03:30,970
+You might prefer getting your data through props
+
+72
+00:03:30,970 --> 00:03:33,010
+than having to search for it
+
+73
+00:03:33,010 --> 00:03:35,513
+in the $route parents property.
+

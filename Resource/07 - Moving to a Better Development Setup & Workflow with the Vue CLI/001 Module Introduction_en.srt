@@ -1,0 +1,116 @@
+1
+00:00:02,230 --> 00:00:04,870
+Now, before we dig deeper into components
+
+2
+00:00:04,870 --> 00:00:06,810
+and we learn more about this amazing
+
+3
+00:00:06,810 --> 00:00:08,850
+and very important feature,
+
+4
+00:00:08,850 --> 00:00:12,160
+we need to change how we write our code.
+
+5
+00:00:12,160 --> 00:00:14,890
+I mean, not the language or anything like that,
+
+6
+00:00:14,890 --> 00:00:18,960
+but our setup, because it turns out that this setup,
+
+7
+00:00:18,960 --> 00:00:22,860
+which we're currently using of having one JavaScript file,
+
+8
+00:00:22,860 --> 00:00:26,210
+which we import here into one HTML file,
+
+9
+00:00:26,210 --> 00:00:28,980
+which we simply opened by double-clicking on it,
+
+10
+00:00:28,980 --> 00:00:31,240
+and where we have to reload the page
+
+11
+00:00:31,240 --> 00:00:33,770
+whenever we wanna see a change,
+
+12
+00:00:33,770 --> 00:00:37,780
+that setup will not really scale well.
+
+13
+00:00:37,780 --> 00:00:39,910
+We'll have problems with that setup
+
+14
+00:00:39,910 --> 00:00:44,200
+if we start building bigger, more realistic applications,
+
+15
+00:00:44,200 --> 00:00:46,130
+and therefore, in this module,
+
+16
+00:00:46,130 --> 00:00:50,060
+we're going to dive into a better development setup
+
+17
+00:00:50,060 --> 00:00:55,060
+with the Vue CLI, so with an extra tool we can use
+
+18
+00:00:55,200 --> 00:00:58,650
+to basically give us a better project setup,
+
+19
+00:00:58,650 --> 00:01:01,880
+which in the end will help us write Vue apps,
+
+20
+00:01:01,880 --> 00:01:06,210
+build Vue apps at scale, so build bigger Vue apps
+
+21
+00:01:06,210 --> 00:01:09,900
+and simply have a better time building Vue apps.
+
+22
+00:01:09,900 --> 00:01:11,480
+Now, for that in this module,
+
+23
+00:01:11,480 --> 00:01:16,010
+you will of course learn what exactly the Vue CLI is,
+
+24
+00:01:16,010 --> 00:01:18,230
+and even more important than that,
+
+25
+00:01:18,230 --> 00:01:20,690
+why we need that extra tool,
+
+26
+00:01:20,690 --> 00:01:24,270
+why specifically we need that better setup,
+
+27
+00:01:24,270 --> 00:01:28,740
+and of course, I'll show you how to use that Vue CLI tool
+
+28
+00:01:28,740 --> 00:01:31,540
+and how to create better project setups,
+
+29
+00:01:31,540 --> 00:01:33,133
+and then, work with them.
+

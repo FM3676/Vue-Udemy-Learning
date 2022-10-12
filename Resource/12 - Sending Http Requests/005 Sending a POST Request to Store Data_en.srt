@@ -1,0 +1,460 @@
+1
+00:00:02,040 --> 00:00:04,310
+So how does fetch work then?
+
+2
+00:00:04,310 --> 00:00:08,170
+As I mentioned, we wanna provide a fast argument,
+
+3
+00:00:08,170 --> 00:00:12,050
+which is the URL to which this request should be sent.
+
+4
+00:00:12,050 --> 00:00:15,210
+Now that's the URL I got from Firebase, but actually,
+
+5
+00:00:15,210 --> 00:00:17,180
+we need to tweak it a little bit.
+
+6
+00:00:17,180 --> 00:00:19,730
+You can add, after the slash here,
+
+7
+00:00:19,730 --> 00:00:22,570
+any identifier of your choice.
+
+8
+00:00:22,570 --> 00:00:25,130
+I'll name it surveys.
+
+9
+00:00:25,130 --> 00:00:28,873
+And then, important add .JSON after that.
+
+10
+00:00:30,050 --> 00:00:32,290
+This is not something Vue needs
+
+11
+00:00:32,290 --> 00:00:34,220
+or Backends in general need.
+
+12
+00:00:34,220 --> 00:00:36,500
+This .JSON at the end is just
+
+13
+00:00:36,500 --> 00:00:38,923
+a Firebase specific requirement.
+
+14
+00:00:39,810 --> 00:00:42,010
+When you're working with a different Backend,
+
+15
+00:00:42,010 --> 00:00:44,110
+there is a high chance that you don't need it.
+
+16
+00:00:44,110 --> 00:00:45,973
+But for Firebase we need to add it.
+
+17
+00:00:47,120 --> 00:00:50,380
+And this key here, surveys, that's up to you.
+
+18
+00:00:50,380 --> 00:00:53,350
+Firebase will then automatically create a note
+
+19
+00:00:53,350 --> 00:00:57,113
+in this database and store our data under that note.
+
+20
+00:00:58,540 --> 00:01:01,010
+So that is the first part.
+
+21
+00:01:01,010 --> 00:01:04,180
+Here we got this Fetch function.
+
+22
+00:01:04,180 --> 00:01:08,030
+Now, by default, this will try to get data from here.
+
+23
+00:01:08,030 --> 00:01:12,010
+Now here I don't wanna get data, instead, I wanna send data.
+
+24
+00:01:12,010 --> 00:01:15,000
+So, we can we can pass a second argument to Fetch.
+
+25
+00:01:15,000 --> 00:01:17,030
+And that is a (indistinct) object
+
+26
+00:01:17,030 --> 00:01:19,033
+where we can configure this request.
+
+27
+00:01:20,450 --> 00:01:23,410
+And here we have a method property which we can set.
+
+28
+00:01:23,410 --> 00:01:26,620
+By default, the value is a string get,
+
+29
+00:01:26,620 --> 00:01:28,520
+but we can set it to post.
+
+30
+00:01:28,520 --> 00:01:32,363
+And this influences which kind of http request we send.
+
+31
+00:01:33,470 --> 00:01:36,410
+There are get and post requests.
+
+32
+00:01:36,410 --> 00:01:40,950
+Get for getting data, post for posting so for sending data.
+
+33
+00:01:40,950 --> 00:01:44,200
+And there also are other words like delete
+
+34
+00:01:44,200 --> 00:01:47,623
+or patch for deleting and updating.
+
+35
+00:01:48,810 --> 00:01:52,073
+But here we need post to send a new piece of data,
+
+36
+00:01:53,520 --> 00:01:56,460
+and we also need to add some headers,
+
+37
+00:01:56,460 --> 00:01:59,140
+some metadata to this outgoing request.
+
+38
+00:01:59,140 --> 00:02:03,230
+To be precise, we should set the content type header
+
+39
+00:02:03,230 --> 00:02:07,370
+to application/JSON, telling the server
+
+40
+00:02:07,370 --> 00:02:09,910
+that we'll add some data to this request
+
+41
+00:02:09,910 --> 00:02:12,730
+which will be in the JSON format.
+
+42
+00:02:12,730 --> 00:02:15,160
+Which is basically just text,
+
+43
+00:02:15,160 --> 00:02:17,900
+but text for method in a specific way,
+
+44
+00:02:17,900 --> 00:02:21,203
+which is very easy for machines to pass and read.
+
+45
+00:02:22,150 --> 00:02:24,050
+And that's the next thing we gonna add.
+
+46
+00:02:24,050 --> 00:02:26,770
+We gotta add a body to this request.
+
+47
+00:02:26,770 --> 00:02:28,423
+Which is the data we wanna add.
+
+48
+00:02:29,280 --> 00:02:33,250
+And here of course, that should be my survey results here.
+
+49
+00:02:33,250 --> 00:02:35,003
+The name and the rating.
+
+50
+00:02:36,820 --> 00:02:40,790
+So here I'll add a new JavaScript object as a body,
+
+51
+00:02:40,790 --> 00:02:44,090
+where I set the name to this username,
+
+52
+00:02:44,090 --> 00:02:47,130
+and the rating to this rating,
+
+53
+00:02:47,130 --> 00:02:48,910
+sorry, chosen rating.
+
+54
+00:02:48,910 --> 00:02:51,820
+So the values which I emitted in the past,
+
+55
+00:02:51,820 --> 00:02:54,450
+are now added to this object.
+
+56
+00:02:54,450 --> 00:02:57,330
+And therefore of course here it should be entered name.
+
+57
+00:02:57,330 --> 00:02:59,780
+So, the values which are submitted before,
+
+58
+00:02:59,780 --> 00:03:01,240
+entered name and chosen rating,
+
+59
+00:03:01,240 --> 00:03:04,533
+these are the values which are now encoded in this object.
+
+60
+00:03:06,070 --> 00:03:08,870
+But that's a JavaScript object as I just said,
+
+61
+00:03:08,870 --> 00:03:10,640
+we wanna send JSON data,
+
+62
+00:03:10,640 --> 00:03:14,700
+and JavaScript has a convenient method we can use for that.
+
+63
+00:03:14,700 --> 00:03:16,460
+There is a JSON object
+
+64
+00:03:16,460 --> 00:03:18,800
+on which you can call the stringify method,
+
+65
+00:03:18,800 --> 00:03:20,500
+to which you can pass your object.
+
+66
+00:03:21,520 --> 00:03:25,690
+And this turns this JavaScript object into this JSON format
+
+67
+00:03:25,690 --> 00:03:28,283
+into a string that has this format we wanna send.
+
+68
+00:03:30,400 --> 00:03:35,210
+And now, that will send a http request to Firebase.
+
+69
+00:03:35,210 --> 00:03:36,580
+This also means that
+
+70
+00:03:36,580 --> 00:03:40,030
+we no longer need to emit our custom event here,
+
+71
+00:03:40,030 --> 00:03:41,880
+and hence it will comment out everything
+
+72
+00:03:41,880 --> 00:03:43,770
+that is related to that.
+
+73
+00:03:43,770 --> 00:03:45,800
+And of course it will also mean
+
+74
+00:03:45,800 --> 00:03:49,363
+that we no longer manage our data here in App.vue.
+
+75
+00:03:50,320 --> 00:03:51,510
+Now, we could do that,
+
+76
+00:03:51,510 --> 00:03:53,580
+you could have an application where
+
+77
+00:03:53,580 --> 00:03:55,130
+you wanna send a request,
+
+78
+00:03:55,130 --> 00:03:58,460
+and still also manage your data locally.
+
+79
+00:03:58,460 --> 00:04:00,550
+That could be a scenario you have.
+
+80
+00:04:00,550 --> 00:04:03,660
+Here, it's just not the scenario I have.
+
+81
+00:04:03,660 --> 00:04:06,240
+So I will comment out the data in Appvue,
+
+82
+00:04:06,240 --> 00:04:09,640
+and I will comment out these methods block here,
+
+83
+00:04:09,640 --> 00:04:11,390
+with the store survey method.
+
+84
+00:04:11,390 --> 00:04:14,020
+Because we'll no longer be doing this locally
+
+85
+00:04:14,020 --> 00:04:16,660
+in our Vue app, at least for this app.
+
+86
+00:04:16,660 --> 00:04:18,550
+We are not going to do it locally anymore,
+
+87
+00:04:18,550 --> 00:04:20,029
+and hence we don't need that data
+
+88
+00:04:20,029 --> 00:04:21,480
+and the methods here anymore.
+
+89
+00:04:22,570 --> 00:04:24,770
+And that also means that we no longer
+
+90
+00:04:24,770 --> 00:04:28,310
+will bind survey submit here, on the learning survey,
+
+91
+00:04:28,310 --> 00:04:32,203
+and we will no longer provide results for user experiences.
+
+92
+00:04:33,560 --> 00:04:36,910
+And that of course means that instead of user experiences,
+
+93
+00:04:36,910 --> 00:04:37,880
+for the moment,
+
+94
+00:04:37,880 --> 00:04:40,720
+we'll no longer get a value for results.
+
+95
+00:04:40,720 --> 00:04:42,370
+We'll take care about that later.
+
+96
+00:04:44,040 --> 00:04:45,900
+Back to our learning survey,
+
+97
+00:04:45,900 --> 00:04:49,510
+there we are now sending this http request.
+
+98
+00:04:49,510 --> 00:04:51,610
+Let's see (indistinct) that works.
+
+99
+00:04:51,610 --> 00:04:55,280
+Let's save everything, reload this application
+
+100
+00:04:55,280 --> 00:04:58,963
+and let's submit our survey result here.
+
+101
+00:04:59,930 --> 00:05:01,400
+Now, did it work?
+
+102
+00:05:01,400 --> 00:05:03,720
+Let's have a look at Firebase.
+
+103
+00:05:03,720 --> 00:05:04,920
+It should have worked,
+
+104
+00:05:04,920 --> 00:05:07,890
+and here you should see a surveys note,
+
+105
+00:05:07,890 --> 00:05:10,700
+where you see this random text
+
+106
+00:05:10,700 --> 00:05:13,300
+which is definitely different for you,
+
+107
+00:05:13,300 --> 00:05:15,250
+and in there, you should see your data.
+
+108
+00:05:16,620 --> 00:05:19,910
+Now this random text is just a unique ID
+
+109
+00:05:19,910 --> 00:05:22,800
+that was automatically generated by Firebase.
+
+110
+00:05:22,800 --> 00:05:26,483
+And that's great, we can later use that ID on the Frontend.
+
+111
+00:05:27,530 --> 00:05:31,933
+But now here, we got our data stored on Firebase.
+
+112
+00:05:32,870 --> 00:05:34,090
+So that's great.
+
+113
+00:05:34,090 --> 00:05:37,740
+How can we now get that data back to the Frontend
+
+114
+00:05:37,740 --> 00:05:41,160
+when we click this load submitted experience button,
+
+115
+00:05:41,160 --> 00:05:43,260
+which at the moment is not doing anything?
+

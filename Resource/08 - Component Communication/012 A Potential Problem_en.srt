@@ -1,0 +1,508 @@
+1
+00:00:02,270 --> 00:00:04,970
+I prepared another project for you,
+
+2
+00:00:04,970 --> 00:00:06,230
+which you'll find attached.
+
+3
+00:00:06,230 --> 00:00:09,923
+NPM install and NPM run serve brings it to your screen.
+
+4
+00:00:11,420 --> 00:00:14,260
+And I did create this project for you
+
+5
+00:00:14,260 --> 00:00:18,060
+so that we, A, can again get a feeling
+
+6
+00:00:18,060 --> 00:00:20,510
+for how components work together
+
+7
+00:00:20,510 --> 00:00:25,510
+and B, also see a little problem you will often face
+
+8
+00:00:25,570 --> 00:00:28,040
+when you build bigger applications
+
+9
+00:00:28,040 --> 00:00:30,200
+and you need to pass data around.
+
+10
+00:00:30,200 --> 00:00:32,900
+But first of all, let's understand the project
+
+11
+00:00:32,900 --> 00:00:34,360
+I'm providing to you here.
+
+12
+00:00:34,360 --> 00:00:36,450
+So make sure you download and install it
+
+13
+00:00:36,450 --> 00:00:38,593
+and start up that development server.
+
+14
+00:00:39,740 --> 00:00:43,340
+And you should then see this on the screen.
+
+15
+00:00:43,340 --> 00:00:46,410
+Now here, I got a very basic dummy application.
+
+16
+00:00:46,410 --> 00:00:48,720
+We can select a topic if you wanna learn more
+
+17
+00:00:48,720 --> 00:00:50,430
+about the basics or components.
+
+18
+00:00:50,430 --> 00:00:52,700
+And we can switch between those topics.
+
+19
+00:00:52,700 --> 00:00:54,740
+And depending on what we choose,
+
+20
+00:00:54,740 --> 00:00:57,620
+the content up there updates.
+
+21
+00:00:57,620 --> 00:01:00,090
+Now that's definitely not too fancy,
+
+22
+00:01:00,090 --> 00:01:01,590
+but it is about the code,
+
+23
+00:01:01,590 --> 00:01:03,950
+not about what we see on the screen here.
+
+24
+00:01:03,950 --> 00:01:06,110
+And the code is quite interesting.
+
+25
+00:01:06,110 --> 00:01:09,830
+Here in App.vue, in my main app,
+
+26
+00:01:09,830 --> 00:01:13,550
+I'm rendering the active element component
+
+27
+00:01:13,550 --> 00:01:16,810
+and I'm rendering the knowledge base component.
+
+28
+00:01:16,810 --> 00:01:18,750
+So this component.
+
+29
+00:01:18,750 --> 00:01:21,270
+These two components here are getting used
+
+30
+00:01:21,270 --> 00:01:23,660
+in the App.vue file.
+
+31
+00:01:23,660 --> 00:01:28,120
+Of course, all components are registered in main JS.
+
+32
+00:01:28,120 --> 00:01:31,173
+So they are available to this entire Vue app.
+
+33
+00:01:32,880 --> 00:01:34,770
+Now here's how this app works.
+
+34
+00:01:34,770 --> 00:01:37,460
+Active element is quite straightforward.
+
+35
+00:01:37,460 --> 00:01:39,703
+I get a topic title and a text.
+
+36
+00:01:41,100 --> 00:01:44,050
+That data is then received as props.
+
+37
+00:01:44,050 --> 00:01:47,670
+And in App.vue, I'm providing these two props
+
+38
+00:01:47,670 --> 00:01:51,103
+to active element based on the activeTopic.
+
+39
+00:01:52,650 --> 00:01:54,480
+Now, what is activeTopic?
+
+40
+00:01:54,480 --> 00:01:57,400
+That is some component internal data.
+
+41
+00:01:57,400 --> 00:02:00,800
+So that's some data I'm managing in this app here
+
+42
+00:02:00,800 --> 00:02:05,670
+in this App.vue file, here in my data property.
+
+43
+00:02:05,670 --> 00:02:08,030
+There, I got an entire array of topics.
+
+44
+00:02:08,030 --> 00:02:10,770
+But below that, I got the activeTopic.
+
+45
+00:02:10,770 --> 00:02:12,420
+Initially, that's null.
+
+46
+00:02:12,420 --> 00:02:14,820
+But when this method is triggered
+
+47
+00:02:14,820 --> 00:02:18,210
+and we'll see when this method is triggered in a second,
+
+48
+00:02:18,210 --> 00:02:22,590
+then I set the activeTopic to one of these two topics
+
+49
+00:02:22,590 --> 00:02:23,863
+I got in this array.
+
+50
+00:02:25,210 --> 00:02:27,160
+Now, if activeTopic is null,
+
+51
+00:02:27,160 --> 00:02:29,250
+thanks to this check I have here,
+
+52
+00:02:29,250 --> 00:02:33,430
+we'll basically not pass anything relevant to topic title.
+
+53
+00:02:33,430 --> 00:02:36,460
+But if it's not null, if we do have an active topic,
+
+54
+00:02:36,460 --> 00:02:40,270
+then I provide the title and full text values
+
+55
+00:02:40,270 --> 00:02:41,453
+to active element.
+
+56
+00:02:43,300 --> 00:02:47,380
+Now, how is a topic set as an activeTopic?
+
+57
+00:02:47,380 --> 00:02:51,460
+As I said, that happens with the activate topic method here.
+
+58
+00:02:51,460 --> 00:02:54,200
+And in there, we receive a topicID
+
+59
+00:02:54,200 --> 00:02:58,680
+and use that ID to identify one of these two topics
+
+60
+00:02:58,680 --> 00:03:00,310
+in this topics array.
+
+61
+00:03:00,310 --> 00:03:02,260
+So when is the method getting triggered?
+
+62
+00:03:02,260 --> 00:03:05,940
+Well, that happens on the knowledge base component.
+
+63
+00:03:05,940 --> 00:03:09,010
+There, I have to select topic custom event
+
+64
+00:03:09,010 --> 00:03:10,230
+to which I'm listening.
+
+65
+00:03:10,230 --> 00:03:15,150
+And when that event fires, activateTopic is triggered.
+
+66
+00:03:15,150 --> 00:03:19,070
+Please also note that I'm feeding the entire topics array
+
+67
+00:03:19,070 --> 00:03:21,840
+as a value to the topics prop
+
+68
+00:03:21,840 --> 00:03:24,263
+on the knowledge base component as well.
+
+69
+00:03:25,700 --> 00:03:29,090
+So let's have a look at the knowledge base component then.
+
+70
+00:03:29,090 --> 00:03:32,250
+In there, I'm getting this one topics prop
+
+71
+00:03:32,250 --> 00:03:35,390
+and I'm declaring that I'm eventually going to emit
+
+72
+00:03:35,390 --> 00:03:36,683
+select-topic.
+
+73
+00:03:38,400 --> 00:03:41,230
+And here is where things get interesting
+
+74
+00:03:41,230 --> 00:03:44,510
+and where we can see a little problem.
+
+75
+00:03:44,510 --> 00:03:47,710
+I'm forwarding the topics to the knowledge grid,
+
+76
+00:03:47,710 --> 00:03:49,290
+which I'm using here.
+
+77
+00:03:49,290 --> 00:03:53,380
+And I'm basically also just forwarding select-topic.
+
+78
+00:03:53,380 --> 00:03:56,760
+I'm emitting it here in knowledge base, yes.
+
+79
+00:03:56,760 --> 00:03:58,710
+But when do I emit it?
+
+80
+00:03:58,710 --> 00:04:03,710
+Well, I emit it when knowledge-grid emits select-topic.
+
+81
+00:04:04,220 --> 00:04:06,960
+So basically knowledge base
+
+82
+00:04:06,960 --> 00:04:11,580
+just acts as a pass through component, you could say.
+
+83
+00:04:11,580 --> 00:04:14,680
+I pass my topics through to knowledge-grid
+
+84
+00:04:14,680 --> 00:04:17,720
+and I pass select-topic, this event
+
+85
+00:04:17,720 --> 00:04:21,743
+through to App.vue when it is emitted by knowledge grid.
+
+86
+00:04:22,720 --> 00:04:27,500
+So knowledge base doesn't really have its own logic.
+
+87
+00:04:27,500 --> 00:04:29,560
+Now still, it's not unrealistic
+
+88
+00:04:29,560 --> 00:04:31,300
+to have components like this,
+
+89
+00:04:31,300 --> 00:04:34,180
+maybe because we have certain markup in there
+
+90
+00:04:34,180 --> 00:04:36,250
+which you wanna contain in this component,
+
+91
+00:04:36,250 --> 00:04:38,720
+maybe because you have certain styling.
+
+92
+00:04:38,720 --> 00:04:41,750
+So having such pass through components
+
+93
+00:04:41,750 --> 00:04:44,460
+is absolutely not unrealistic
+
+94
+00:04:44,460 --> 00:04:47,763
+and definitely something you will encounter in Vue apps.
+
+95
+00:04:49,010 --> 00:04:51,010
+Now let's have a look at knowledge grid.
+
+96
+00:04:51,010 --> 00:04:53,860
+In knowledge grid, I'm using topics.
+
+97
+00:04:53,860 --> 00:04:56,470
+I'm also getting this as props and I'm using it there.
+
+98
+00:04:56,470 --> 00:04:59,450
+So this is no longer a pass through component.
+
+99
+00:04:59,450 --> 00:05:01,870
+There's needs and users topics.
+
+100
+00:05:01,870 --> 00:05:04,920
+But I also emit select-topic here,
+
+101
+00:05:04,920 --> 00:05:08,370
+and that is still being passed through basically.
+
+102
+00:05:08,370 --> 00:05:11,540
+Because ultimately it's the knowledge element.
+
+103
+00:05:11,540 --> 00:05:13,590
+It's this component here,
+
+104
+00:05:13,590 --> 00:05:17,690
+which emits select-topic when we click this button.
+
+105
+00:05:17,690 --> 00:05:20,450
+So that's where this custom event is generated,
+
+106
+00:05:20,450 --> 00:05:22,460
+the select-topic event.
+
+107
+00:05:22,460 --> 00:05:27,100
+And then both knowledge grid as well as knowledge base,
+
+108
+00:05:27,100 --> 00:05:31,753
+just forward that custom event to App.vue in the end.
+
+109
+00:05:32,860 --> 00:05:36,490
+So the event gets funneled through to components
+
+110
+00:05:36,490 --> 00:05:40,680
+and topics also gets funneled through at least one component
+
+111
+00:05:40,680 --> 00:05:43,870
+through the knowledge base onto knowledge grid.
+
+112
+00:05:43,870 --> 00:05:45,460
+So everything here works
+
+113
+00:05:45,460 --> 00:05:48,070
+and that's also not a bad way of writing code.
+
+114
+00:05:48,070 --> 00:05:49,870
+And it does hopefully again,
+
+115
+00:05:49,870 --> 00:05:52,430
+show you how props and events work
+
+116
+00:05:52,430 --> 00:05:54,700
+and how you can connect everything.
+
+117
+00:05:54,700 --> 00:05:57,550
+But we still are facing a problem here.
+
+118
+00:05:57,550 --> 00:05:58,780
+We have the problem
+
+119
+00:05:58,780 --> 00:06:03,600
+that we're having these unnecessary pass through steps.
+
+120
+00:06:03,600 --> 00:06:06,450
+I mean, it would be nice if knowledge base
+
+121
+00:06:06,450 --> 00:06:08,480
+wouldn't have to deal with props
+
+122
+00:06:08,480 --> 00:06:10,180
+and with emitting this event,
+
+123
+00:06:10,180 --> 00:06:13,420
+because neither of the two is used or generated
+
+124
+00:06:13,420 --> 00:06:15,420
+inside of this component.
+
+125
+00:06:15,420 --> 00:06:19,380
+We're just using both to connect it to knowledge grid.
+
+126
+00:06:19,380 --> 00:06:22,580
+And it turns out that Vue has a solution
+
+127
+00:06:22,580 --> 00:06:24,013
+for problems like this.
+

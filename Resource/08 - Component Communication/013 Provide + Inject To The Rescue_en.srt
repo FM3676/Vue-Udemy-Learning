@@ -1,0 +1,612 @@
+1
+00:00:02,120 --> 00:00:04,540
+So how does Vue help us solve
+
+2
+00:00:04,540 --> 00:00:06,790
+such pass-through problems?
+
+3
+00:00:06,790 --> 00:00:09,430
+First of all, it's really important to understand
+
+4
+00:00:09,430 --> 00:00:12,710
+that this is not necessarily a problem, and not bad.
+
+5
+00:00:12,710 --> 00:00:15,640
+You can do it the way we're doing it here,
+
+6
+00:00:15,640 --> 00:00:19,040
+but to save writing that extra code,
+
+7
+00:00:19,040 --> 00:00:22,890
+you can also get rid of, let's say the props here,
+
+8
+00:00:22,890 --> 00:00:24,170
+let's start with topics.
+
+9
+00:00:24,170 --> 00:00:25,830
+You can't get rid of that here,
+
+10
+00:00:25,830 --> 00:00:28,610
+get rid of it here, on KnowledgeGrid.
+
+11
+00:00:28,610 --> 00:00:32,259
+And for the moment, just keep that emitted event,
+
+12
+00:00:32,259 --> 00:00:35,270
+and then pass the topics to KnowledgeGrid
+
+13
+00:00:35,270 --> 00:00:36,410
+in a different way.
+
+14
+00:00:36,410 --> 00:00:38,590
+Because we need to topic steer.
+
+15
+00:00:38,590 --> 00:00:42,740
+and we definitely, also need to manage them in App.vue.
+
+16
+00:00:42,740 --> 00:00:46,500
+Since App.vue, is the place where active element,
+
+17
+00:00:46,500 --> 00:00:49,400
+which needs to know about the topics, and KnowledgeBase,
+
+18
+00:00:49,400 --> 00:00:53,510
+and therefor, ultimately KnowledgeGrid are connected.
+
+19
+00:00:53,510 --> 00:00:56,600
+So how can we pass the topics to KnowledgeGrid,
+
+20
+00:00:56,600 --> 00:00:58,120
+which needs to topics,
+
+21
+00:00:58,120 --> 00:01:00,763
+if we don't want to pass them through KnowledgeBase?
+
+22
+00:01:01,950 --> 00:01:03,930
+Well, first of all, let's remove them here,
+
+23
+00:01:03,930 --> 00:01:07,650
+and let's explore another feature Vue offers us,
+
+24
+00:01:07,650 --> 00:01:11,560
+and that is, provide and inject,
+
+25
+00:01:11,560 --> 00:01:14,900
+a pattern you can use to provide data
+
+26
+00:01:14,900 --> 00:01:17,500
+in one place and inject it,
+
+27
+00:01:17,500 --> 00:01:21,000
+which means use it, in another place.
+
+28
+00:01:21,000 --> 00:01:23,410
+Now here in App.vue, we could, for example,
+
+29
+00:01:23,410 --> 00:01:26,060
+provide our topics here.
+
+30
+00:01:26,060 --> 00:01:28,680
+We do this by adding a provide option
+
+31
+00:01:28,680 --> 00:01:32,700
+to our conflict object, anywhere in the conflict object.
+
+32
+00:01:32,700 --> 00:01:36,200
+Here I'm adding it between data and methods.
+
+33
+00:01:36,200 --> 00:01:39,450
+And provide can hold an object then,
+
+34
+00:01:39,450 --> 00:01:43,600
+in which you, for example, provide your topics.
+
+35
+00:01:43,600 --> 00:01:48,300
+So here, I could then grab this topics array,
+
+36
+00:01:48,300 --> 00:01:50,590
+and provide it down there.
+
+37
+00:01:50,590 --> 00:01:53,083
+So now I'm providing this topics array.
+
+38
+00:01:54,610 --> 00:01:55,850
+Now this is step one.
+
+39
+00:01:55,850 --> 00:01:58,200
+Now we're providing this data,
+
+40
+00:01:58,200 --> 00:02:01,980
+and that uses an internal mechanism built into Vue,
+
+41
+00:02:01,980 --> 00:02:05,200
+but providing is only half of the story.
+
+42
+00:02:05,200 --> 00:02:08,840
+We also need to listen to that provided data.
+
+43
+00:02:08,840 --> 00:02:11,940
+We need to use that provided data somewhere,
+
+44
+00:02:11,940 --> 00:02:14,000
+and that in our case,
+
+45
+00:02:14,000 --> 00:02:15,970
+which take place in the KnowledgeGrid
+
+46
+00:02:15,970 --> 00:02:19,010
+because that is where we need the topics.
+
+47
+00:02:19,010 --> 00:02:20,640
+For that here,
+
+48
+00:02:20,640 --> 00:02:24,350
+rather than expecting to get topics as props,
+
+49
+00:02:24,350 --> 00:02:28,250
+we add another option, the inject option.
+
+50
+00:02:28,250 --> 00:02:30,840
+Which works together with provide.
+
+51
+00:02:30,840 --> 00:02:35,390
+Inject, basically works like props, you provide an array,
+
+52
+00:02:35,390 --> 00:02:39,480
+and now you reference all the provided data
+
+53
+00:02:39,480 --> 00:02:42,130
+you wanna use in this component.
+
+54
+00:02:42,130 --> 00:02:44,430
+So at the moment, there's just one piece of data
+
+55
+00:02:44,430 --> 00:02:47,830
+we are providing, and that would be topics.
+
+56
+00:02:47,830 --> 00:02:52,060
+We're providing that in App.vue, under the key topics here.
+
+57
+00:02:52,060 --> 00:02:57,060
+So we can use that key, and inject here in KnowledgeGrid.
+
+58
+00:03:00,980 --> 00:03:02,640
+And here's one important note,
+
+59
+00:03:02,640 --> 00:03:05,960
+you can only inject what has been provided
+
+60
+00:03:05,960 --> 00:03:08,330
+on a higher-up level.
+
+61
+00:03:08,330 --> 00:03:10,970
+Which basically means, in a parent component,
+
+62
+00:03:10,970 --> 00:03:13,843
+or an ancestor component of KnowledgeGrid.
+
+63
+00:03:14,810 --> 00:03:17,290
+So we can inject topics here,
+
+64
+00:03:17,290 --> 00:03:19,800
+because it is provided in App vue,
+
+65
+00:03:19,800 --> 00:03:24,120
+and App vue, ultimately is above KnowledgeGrid, right?
+
+66
+00:03:24,120 --> 00:03:26,520
+App vue is a parent to KnowledgeBase,
+
+67
+00:03:26,520 --> 00:03:29,140
+and KnowledgeBase is a parent KnowledgeGrid,
+
+68
+00:03:29,140 --> 00:03:33,110
+and therefore KnowledgeGrid also is below App.vue.
+
+69
+00:03:33,110 --> 00:03:36,623
+If we, for example, provided something in ActiveElement,
+
+70
+00:03:37,610 --> 00:03:40,980
+we could not inject it in KnowledgeGrid.
+
+71
+00:03:40,980 --> 00:03:41,813
+Why?
+
+72
+00:03:41,813 --> 00:03:45,210
+Because ActiveElement is a neighbor of Knowledgebase,
+
+73
+00:03:45,210 --> 00:03:48,623
+and KnowledgeBase den contains KnowledgeGrid,
+
+74
+00:03:49,474 --> 00:03:52,290
+and therefore, ultimately, ActiveElement is a neighbor
+
+75
+00:03:52,290 --> 00:03:53,323
+to KnowledgeGrid.
+
+76
+00:03:54,380 --> 00:03:55,231
+And this will not work, provide, and inject
+
+77
+00:03:55,231 --> 00:04:00,030
+needs this, parent-child relation.
+
+78
+00:04:00,030 --> 00:04:03,620
+So you can't provide and inject between neighbors,
+
+79
+00:04:03,620 --> 00:04:07,180
+but here it will work because we are providing an App.vue,
+
+80
+00:04:07,180 --> 00:04:10,580
+and that is an ancestor of KnowledgeGrid,
+
+81
+00:04:10,580 --> 00:04:12,350
+So it is above KnowledgeGrid.
+
+82
+00:04:12,350 --> 00:04:14,950
+And there for, now if you save this,
+
+83
+00:04:14,950 --> 00:04:18,470
+you will see that everything still works as before,
+
+84
+00:04:18,470 --> 00:04:22,730
+but now data is ending up differently in KnowledgeGrid.
+
+85
+00:04:22,730 --> 00:04:26,960
+And we're avoiding this passing-through of topics
+
+86
+00:04:26,960 --> 00:04:31,320
+in KnowledgeBase, which is definitely an improvement here.
+
+87
+00:04:31,320 --> 00:04:33,380
+However, there is a problem,
+
+88
+00:04:33,380 --> 00:04:37,750
+we're now basically, creating this array twice.
+
+89
+00:04:37,750 --> 00:04:41,150
+We have it here, in App.vue in our data,
+
+90
+00:04:41,150 --> 00:04:44,600
+and we then have it again, in the provide object.
+
+91
+00:04:44,600 --> 00:04:48,520
+This works in this case, but it is code duplication.
+
+92
+00:04:48,520 --> 00:04:52,170
+And if we had any logic in this app to change
+
+93
+00:04:52,170 --> 00:04:54,570
+this data stored array,
+
+94
+00:04:54,570 --> 00:04:58,300
+this change would not be reflected in the provided data,
+
+95
+00:04:58,300 --> 00:05:00,210
+because that's a brand new array.
+
+96
+00:05:00,210 --> 00:05:03,900
+It's a brand new object in memory there for.
+
+97
+00:05:03,900 --> 00:05:07,800
+So if we ever changed his original array here in data,
+
+98
+00:05:07,800 --> 00:05:11,560
+such changes would not be passed on to components
+
+99
+00:05:11,560 --> 00:05:13,913
+that rely on the provided topics.
+
+100
+00:05:15,180 --> 00:05:17,640
+Therefore, it would be nicer if we could provide
+
+101
+00:05:17,640 --> 00:05:22,640
+our data here, so that eventually changes are picked up.
+
+102
+00:05:22,750 --> 00:05:25,200
+And it turns out, we can do that for that,
+
+103
+00:05:25,200 --> 00:05:29,850
+for that we need to change the way we use provide though.
+
+104
+00:05:29,850 --> 00:05:32,380
+Instead of setting it equal to an object
+
+105
+00:05:32,380 --> 00:05:34,320
+with the provided data,
+
+106
+00:05:34,320 --> 00:05:37,120
+we now convert provide to a method,
+
+107
+00:05:37,120 --> 00:05:40,770
+so now to provide option holds a function in the end.
+
+108
+00:05:40,770 --> 00:05:43,990
+And in there we return our provided object,
+
+109
+00:05:43,990 --> 00:05:47,410
+so it now basically, works a little bit like data.
+
+110
+00:05:47,410 --> 00:05:51,130
+And then here, we can still set up any keys of our choice
+
+111
+00:05:51,130 --> 00:05:53,110
+so I will stick to topics here,
+
+112
+00:05:53,110 --> 00:05:56,124
+but now we can use the this keyword to reach out
+
+113
+00:05:56,124 --> 00:05:59,260
+to our instant specific data.
+
+114
+00:05:59,260 --> 00:06:01,010
+So with these topics,
+
+115
+00:06:01,010 --> 00:06:05,330
+I now reach out to topics which we manage in our data.
+
+116
+00:06:05,330 --> 00:06:09,150
+And I'm using this, to provide it under a topics key
+
+117
+00:06:09,150 --> 00:06:11,713
+to any potential child components.
+
+118
+00:06:12,610 --> 00:06:14,790
+Of course, this key you're using here,
+
+119
+00:06:14,790 --> 00:06:17,710
+doesn't have to be the same one you're using in data.
+
+120
+00:06:17,710 --> 00:06:20,253
+It is in this case, but it doesn't have to be.
+
+121
+00:06:21,440 --> 00:06:23,740
+If I now save is, it still works,
+
+122
+00:06:23,740 --> 00:06:28,160
+but now we are working on one and the same object in memory.
+
+123
+00:06:28,160 --> 00:06:32,740
+Now let's simulate that topics changes here in our data
+
+124
+00:06:32,740 --> 00:06:35,490
+to verify whether this is really works.
+
+125
+00:06:35,490 --> 00:06:40,490
+For this, I'm going to add the mounted lifecycle hook here,
+
+126
+00:06:43,520 --> 00:06:47,420
+and in there, I'll set a timer to let's say three seconds.
+
+127
+00:06:47,420 --> 00:06:51,210
+And after those three seconds, in this array function,
+
+128
+00:06:51,210 --> 00:06:52,460
+which is just a different way
+
+129
+00:06:52,460 --> 00:06:55,040
+of defining a function JavaScript.
+
+130
+00:06:55,040 --> 00:06:59,210
+I will reach out to this topics and push a new topic
+
+131
+00:06:59,210 --> 00:07:00,850
+to the array.
+
+132
+00:07:00,850 --> 00:07:04,900
+That topic will have an id of events let's say,
+
+133
+00:07:04,900 --> 00:07:09,900
+and then a title of events as well.
+
+134
+00:07:10,230 --> 00:07:14,990
+Description text of events are important in Vue,
+
+135
+00:07:14,990 --> 00:07:19,990
+and then a full text of events
+
+136
+00:07:20,400 --> 00:07:24,603
+allow you to trigger code on demand, something like that.
+
+137
+00:07:26,210 --> 00:07:28,270
+So I'm having the same structure here
+
+138
+00:07:28,270 --> 00:07:30,720
+as in all the topics we have initially,
+
+139
+00:07:30,720 --> 00:07:32,660
+but now that topic down there,
+
+140
+00:07:32,660 --> 00:07:35,870
+is only getting added three seconds after the Vue app
+
+141
+00:07:35,870 --> 00:07:37,663
+has been rendered to the screen.
+
+142
+00:07:38,820 --> 00:07:42,300
+Now let's save that, and let's see if our list here updates
+
+143
+00:07:42,300 --> 00:07:43,760
+after three seconds.
+
+144
+00:07:43,760 --> 00:07:46,130
+And it does, and we can use events
+
+145
+00:07:46,130 --> 00:07:49,190
+just like the other pieces of data we've got here.
+
+146
+00:07:49,190 --> 00:07:52,940
+So this proofs that provide inject works.
+
+147
+00:07:52,940 --> 00:07:56,830
+Now that is provide and inject a very helpful pattern
+
+148
+00:07:56,830 --> 00:08:00,060
+if you want to avoid pass-through components
+
+149
+00:08:00,060 --> 00:08:03,270
+and passing-through props unnecessarily.
+
+150
+00:08:03,270 --> 00:08:04,841
+The question now of courses,
+
+151
+00:08:04,841 --> 00:08:08,700
+whether it can also help us with custom events,
+
+152
+00:08:08,700 --> 00:08:12,060
+because we're also funneling our custom events
+
+153
+00:08:12,060 --> 00:08:13,713
+through a couple of components.
+

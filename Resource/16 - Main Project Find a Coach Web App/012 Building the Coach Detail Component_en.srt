@@ -1,0 +1,536 @@
+1
+00:00:02,180 --> 00:00:04,930
+So onwards to the coach detail page,
+
+2
+00:00:04,930 --> 00:00:07,810
+it's time to replace the dummy content we got here
+
+3
+00:00:07,810 --> 00:00:09,403
+with some real content.
+
+4
+00:00:10,240 --> 00:00:12,850
+For that I'm going to get rid of all the continent here
+
+5
+00:00:12,850 --> 00:00:15,020
+and write this from scratch again.
+
+6
+00:00:15,020 --> 00:00:17,823
+In this component, I want to have a section,
+
+7
+00:00:19,430 --> 00:00:23,270
+where I first of all, let's say using that base card,
+
+8
+00:00:23,270 --> 00:00:26,140
+I would put the name and the rate of the coach.
+
+9
+00:00:26,140 --> 00:00:31,110
+So here we could have the h2 tag,
+
+10
+00:00:31,110 --> 00:00:34,383
+where we output the full name.
+
+11
+00:00:35,430 --> 00:00:39,260
+And below that age h3 tag, where we output it to rate.
+
+12
+00:00:39,260 --> 00:00:44,260
+So dollar sign then interpolate to rate
+
+13
+00:00:44,620 --> 00:00:47,350
+and then make it clear that it's an hourly rate
+
+14
+00:00:47,350 --> 00:00:48,883
+by adding /hour.
+
+15
+00:00:50,380 --> 00:00:53,370
+The next section of data which I wanna have
+
+16
+00:00:53,370 --> 00:00:58,370
+on this page here is let's say the contact button.
+
+17
+00:00:58,730 --> 00:01:02,193
+So here again using the base card,
+
+18
+00:01:03,640 --> 00:01:08,367
+I will add a number h2 tag actually, like this
+
+19
+00:01:10,070 --> 00:01:15,070
+where I wanna say interested, reach out now.
+
+20
+00:01:15,130 --> 00:01:18,610
+And below that render a base button, which of course
+
+21
+00:01:18,610 --> 00:01:22,040
+will technically be a link, so we should add the link prop
+
+22
+00:01:22,040 --> 00:01:26,850
+going to the contact page for this specific coach.
+
+23
+00:01:26,850 --> 00:01:29,610
+Now of course this coach will have a dynamic ID,
+
+24
+00:01:29,610 --> 00:01:32,140
+We can view this page for different coaches.
+
+25
+00:01:32,140 --> 00:01:35,500
+So I will bind to two contact link,
+
+26
+00:01:35,500 --> 00:01:38,600
+which is a computed property just like full name
+
+27
+00:01:38,600 --> 00:01:40,620
+which we will add soon.
+
+28
+00:01:40,620 --> 00:01:42,823
+And on this button, I'll just say contact.
+
+29
+00:01:44,510 --> 00:01:49,510
+Actually, I'll put this into a header tag here,
+
+30
+00:01:50,370 --> 00:01:52,133
+the h2 tag and the button.
+
+31
+00:01:54,020 --> 00:01:56,700
+And below that now at the router view,
+
+32
+00:01:56,700 --> 00:02:00,170
+where later does nested child route
+
+33
+00:02:00,170 --> 00:02:02,403
+to contact forum will be rendered.
+
+34
+00:02:03,750 --> 00:02:07,340
+And now below that section with the contact forum
+
+35
+00:02:07,340 --> 00:02:10,740
+at the contact button below that section.
+
+36
+00:02:10,740 --> 00:02:13,370
+I'll add a number of section where I use a base card
+
+37
+00:02:15,000 --> 00:02:18,620
+in which I want to show the badges.
+
+38
+00:02:18,620 --> 00:02:22,920
+So the areas of expertise using the base badge component
+
+39
+00:02:22,920 --> 00:02:26,330
+and below that the description for that coach.
+
+40
+00:02:26,330 --> 00:02:30,050
+So here a paragraph where output description.
+
+41
+00:02:30,050 --> 00:02:32,860
+Tt's not something we rendered before in any component
+
+42
+00:02:32,860 --> 00:02:35,363
+it should of course be included in the details.
+
+43
+00:02:36,910 --> 00:02:41,010
+And on the badge we use v-for to go through the area
+
+44
+00:02:41,010 --> 00:02:46,010
+in areas, bind to key to area, bind the type two area
+
+45
+00:02:48,340 --> 00:02:50,440
+and bind the title two area.
+
+46
+00:02:50,440 --> 00:02:52,423
+So basically as we did it before.
+
+47
+00:02:54,870 --> 00:02:58,180
+Now for the script section here,
+
+48
+00:02:58,180 --> 00:03:02,040
+of course we get props here and actually I don't get
+
+49
+00:03:02,040 --> 00:03:05,450
+all these values here as props,
+
+50
+00:03:05,450 --> 00:03:08,530
+but I just get an ID as a prop.
+
+51
+00:03:08,530 --> 00:03:11,133
+Now, why do I get an ID as a prop here?
+
+52
+00:03:12,130 --> 00:03:14,860
+keep in mind, how does component will be loaded.
+
+53
+00:03:14,860 --> 00:03:16,773
+It will be loaded through routing.
+
+54
+00:03:17,780 --> 00:03:20,410
+The coach detailed component is loaded here
+
+55
+00:03:20,410 --> 00:03:21,463
+on this path.
+
+56
+00:03:22,410 --> 00:03:26,970
+Therefore, theoretically, it wouldn't get any props at all.
+
+57
+00:03:26,970 --> 00:03:29,450
+The router loads it and the router by default
+
+58
+00:03:29,450 --> 00:03:31,520
+passes no props.
+
+59
+00:03:31,520 --> 00:03:33,870
+But you learned in the routing module
+
+60
+00:03:33,870 --> 00:03:38,060
+that by adding props true to the route config,
+
+61
+00:03:38,060 --> 00:03:41,490
+you can ensure that this dynamic value.
+
+62
+00:03:41,490 --> 00:03:45,170
+So the concrete value for the URL, which is then visited,
+
+63
+00:03:45,170 --> 00:03:50,170
+is passed in as a prop of that name into that component.
+
+64
+00:03:51,100 --> 00:03:53,950
+So here I named this ID and therefore,
+
+65
+00:03:53,950 --> 00:03:57,760
+when adding props true here, the view router will pass
+
+66
+00:03:57,760 --> 00:04:02,760
+the value ID holds in the end as a prop to coach detail.
+
+67
+00:04:03,370 --> 00:04:08,163
+And that's why I wanted, or I expected as a prop here.
+
+68
+00:04:09,440 --> 00:04:13,780
+And we can then later use that data, that ID to fetch
+
+69
+00:04:13,780 --> 00:04:16,933
+the relevant coach data from our Vuex store.
+
+70
+00:04:18,190 --> 00:04:22,170
+For that, I'll add a data option here where I add
+
+71
+00:04:22,170 --> 00:04:26,890
+a selected coach field, which initially is null.
+
+72
+00:04:26,890 --> 00:04:29,140
+But which soon will not be null
+
+73
+00:04:29,140 --> 00:04:32,080
+because when this component is created
+
+74
+00:04:32,080 --> 00:04:34,970
+using the created lifecycle hook,
+
+75
+00:04:34,970 --> 00:04:37,090
+I want to reach out to Vuex
+
+76
+00:04:37,090 --> 00:04:40,440
+and fetched a concrete coach data for this ID,
+
+77
+00:04:40,440 --> 00:04:42,963
+and then set selected coach equal to that.
+
+78
+00:04:43,800 --> 00:04:47,030
+So in created, I'll set this selected coach equal
+
+79
+00:04:47,030 --> 00:04:50,773
+to this dollar sign store getters,
+
+80
+00:04:51,740 --> 00:04:56,100
+and then go to coaches, so to the coaches namespace
+
+81
+00:04:56,100 --> 00:04:59,280
+/coaches getting all coaches.
+
+82
+00:04:59,280 --> 00:05:01,810
+But of course here I don't need all coaches
+
+83
+00:05:01,810 --> 00:05:06,810
+instead I'll call find and find once a function
+
+84
+00:05:06,950 --> 00:05:09,300
+where I go through all the coaches
+
+85
+00:05:09,300 --> 00:05:13,500
+and compare the ID of every coach to this ID.
+
+86
+00:05:13,500 --> 00:05:16,030
+So to the ID where you received as a prop
+
+87
+00:05:16,030 --> 00:05:17,230
+which is part of our URL
+
+88
+00:05:18,080 --> 00:05:21,030
+and if that returns true, that's the coach
+
+89
+00:05:21,030 --> 00:05:22,740
+which we ultimately return
+
+90
+00:05:22,740 --> 00:05:24,923
+and which we store in selected coach.
+
+91
+00:05:26,300 --> 00:05:30,073
+And that's how we find a coach in our coaches list.
+
+92
+00:05:31,220 --> 00:05:33,470
+Now, theoretically, this could of course fail
+
+93
+00:05:33,470 --> 00:05:36,260
+If the user enters this with a URL
+
+94
+00:05:36,260 --> 00:05:39,050
+that contains the ID of a coach we don't know.
+
+95
+00:05:39,050 --> 00:05:42,680
+But this is only possible if a user directly enters
+
+96
+00:05:42,680 --> 00:05:45,800
+this URL not through the links on our page.
+
+97
+00:05:45,800 --> 00:05:47,800
+And therefore if the user does that,
+
+98
+00:05:47,800 --> 00:05:50,510
+I'm fine with a broken experience
+
+99
+00:05:50,510 --> 00:05:53,310
+because that is actually not even a way
+
+100
+00:05:53,310 --> 00:05:56,400
+of using that app which I want to support.
+
+101
+00:05:56,400 --> 00:05:58,520
+So therefore fine for me to fetch
+
+102
+00:05:58,520 --> 00:06:02,120
+the selected coach like this, store it in data here
+
+103
+00:06:02,120 --> 00:06:07,060
+and then add some computer properties to make sure we have
+
+104
+00:06:07,060 --> 00:06:11,070
+things like the full name or the contact link here.
+
+105
+00:06:11,070 --> 00:06:15,670
+So here let's add full name where I return
+
+106
+00:06:15,670 --> 00:06:19,003
+this selected coach, first name,
+
+107
+00:06:20,050 --> 00:06:25,050
+plus a blank , plus this selected coach, last name
+
+108
+00:06:26,180 --> 00:06:29,830
+and add a contact link, computed property
+
+109
+00:06:29,830 --> 00:06:34,830
+where I return this dollar sign route path
+
+110
+00:06:36,810 --> 00:06:41,810
+plus slash plus this ID plus a slash contact.
+
+111
+00:06:45,510 --> 00:06:48,070
+Now, keep in mind we're all to referring to rate
+
+112
+00:06:48,070 --> 00:06:53,070
+and to areas here in our template and to description.
+
+113
+00:06:53,290 --> 00:06:56,550
+And currently these data properties don't exist,
+
+114
+00:06:56,550 --> 00:06:58,870
+we just got the selected coach.
+
+115
+00:06:58,870 --> 00:07:02,230
+So this should actually be SelectedCoach.areas,
+
+116
+00:07:05,620 --> 00:07:10,380
+or actually better use computed properties.
+
+117
+00:07:10,380 --> 00:07:14,940
+So here then add the areas, computed property,
+
+118
+00:07:14,940 --> 00:07:19,280
+for example, where I return this selectedcoach.areas
+
+119
+00:07:20,130 --> 00:07:24,640
+and add the rate computed property,
+
+120
+00:07:24,640 --> 00:07:29,080
+where I return this selectedcoach.hourlyrate.
+
+121
+00:07:33,200 --> 00:07:38,200
+And return the description computed property,
+
+122
+00:07:39,030 --> 00:07:43,257
+where I return this selectedcoach.description .
+
+123
+00:07:45,290 --> 00:07:49,330
+with that, if we now go to the details here,
+
+124
+00:07:49,330 --> 00:07:52,360
+we see the details for this coach.
+
+125
+00:07:52,360 --> 00:07:56,640
+So that is working and we see our different data
+
+126
+00:07:56,640 --> 00:07:58,530
+on the screen now.
+
+127
+00:07:58,530 --> 00:08:01,270
+So that's that details page ,
+
+128
+00:08:01,270 --> 00:08:04,080
+of course you can tweak the styling to whatever you want
+
+129
+00:08:04,080 --> 00:08:05,780
+but I'm happy with this.
+
+130
+00:08:05,780 --> 00:08:09,670
+Now it's up to us with what we want to continue
+
+131
+00:08:09,670 --> 00:08:13,410
+the register page, the contact page,
+
+132
+00:08:13,410 --> 00:08:17,550
+maybe the filter components to make sure we can filter.
+
+133
+00:08:17,550 --> 00:08:19,430
+I would say that's a good next step.
+
+134
+00:08:19,430 --> 00:08:22,963
+So I will continue with adding that filtering logic next.
+

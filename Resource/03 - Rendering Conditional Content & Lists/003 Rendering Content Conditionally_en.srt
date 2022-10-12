@@ -1,0 +1,400 @@
+1
+00:00:02,070 --> 00:00:05,350
+So as outlined, I wanna show this paragraph
+
+2
+00:00:05,350 --> 00:00:07,270
+if we have no goals,
+
+3
+00:00:07,270 --> 00:00:10,763
+so if this goals array here is empty.
+
+4
+00:00:11,720 --> 00:00:15,580
+And I wanna show this unordered list if we do have goals.
+
+5
+00:00:15,580 --> 00:00:19,530
+So if we have at least one item in this goals array.
+
+6
+00:00:19,530 --> 00:00:21,860
+That's my idea here.
+
+7
+00:00:21,860 --> 00:00:24,270
+Now how can we implement this?
+
+8
+00:00:24,270 --> 00:00:26,460
+First of all, you already noticed
+
+9
+00:00:26,460 --> 00:00:29,170
+I'm no longer using this split screen.
+
+10
+00:00:29,170 --> 00:00:33,340
+I no longer have JavaScript and HTML on top of each other,
+
+11
+00:00:33,340 --> 00:00:38,140
+because I think we got used to how Vue worked with HTML,
+
+12
+00:00:38,140 --> 00:00:41,000
+and I now wanna have more space available
+
+13
+00:00:41,000 --> 00:00:43,520
+for HTML and JavaScript.
+
+14
+00:00:43,520 --> 00:00:46,060
+Hence, I'll just switch between those files.
+
+15
+00:00:46,060 --> 00:00:47,840
+But that's just a side note.
+
+16
+00:00:47,840 --> 00:00:50,450
+How can we now make sure that this paragraph
+
+17
+00:00:50,450 --> 00:00:53,200
+only shows up if we do have no goals?
+
+18
+00:00:53,200 --> 00:00:55,550
+So if goals is an empty array.
+
+19
+00:00:55,550 --> 00:00:59,080
+Well, Vue has a directive for us,
+
+20
+00:00:59,080 --> 00:01:02,080
+a directive we can add on the element
+
+21
+00:01:02,080 --> 00:01:04,250
+that should be rendered conditionally.
+
+22
+00:01:04,250 --> 00:01:07,250
+And that's the v-if directive.
+
+23
+00:01:07,250 --> 00:01:12,250
+So it's basically like a if statement in JavaScript code.
+
+24
+00:01:12,800 --> 00:01:16,860
+You check a certain condition, and then you have code
+
+25
+00:01:16,860 --> 00:01:19,253
+that is executed if that condition is met.
+
+26
+00:01:21,330 --> 00:01:25,280
+And we can do the same in HTML with v-if.
+
+27
+00:01:25,280 --> 00:01:29,580
+We pass a certain condition between the double quotes here,
+
+28
+00:01:29,580 --> 00:01:32,170
+and as always when using Vue directives
+
+29
+00:01:32,170 --> 00:01:33,900
+here between the double quotes
+
+30
+00:01:33,900 --> 00:01:37,010
+we can add in a JavaScript expression,
+
+31
+00:01:37,010 --> 00:01:39,300
+and we can also refer to our data,
+
+32
+00:01:39,300 --> 00:01:42,540
+our methods, our computed properties and so on.
+
+33
+00:01:42,540 --> 00:01:47,530
+And here we can check if goals.length = 0
+
+34
+00:01:49,420 --> 00:01:54,420
+Goals is simply this data property I defined before.
+
+35
+00:01:55,010 --> 00:01:58,400
+It's an array and therefore it has a length property,
+
+36
+00:01:58,400 --> 00:02:02,760
+and if length is zero, that means we have no goals,
+
+37
+00:02:02,760 --> 00:02:06,370
+and then this condition is met, and this tells Vue that.
+
+38
+00:02:06,370 --> 00:02:10,009
+Then this paragraph and all its content,
+
+39
+00:02:10,009 --> 00:02:13,590
+including any possible child elements we might have,
+
+40
+00:02:13,590 --> 00:02:14,563
+should be rendered.
+
+41
+00:02:15,800 --> 00:02:17,860
+So when I'll save it and reload,
+
+42
+00:02:17,860 --> 00:02:21,100
+nothing changes because initially goals is empty.
+
+43
+00:02:21,100 --> 00:02:24,220
+But if I go to AppJS and I do add a goal here,
+
+44
+00:02:24,220 --> 00:02:28,030
+like finish the course, a simple string, let's say.
+
+45
+00:02:28,030 --> 00:02:29,890
+If I do that and reload,
+
+46
+00:02:29,890 --> 00:02:32,670
+now you'll see the paragraph is gone.
+
+47
+00:02:32,670 --> 00:02:35,740
+And it's not just gone visually on the screen,
+
+48
+00:02:35,740 --> 00:02:39,210
+if we inspect this, we see in the developer tools,
+
+49
+00:02:39,210 --> 00:02:40,880
+it's really not there.
+
+50
+00:02:40,880 --> 00:02:44,570
+We have the another list, but we have no paragraph.
+
+51
+00:02:44,570 --> 00:02:46,910
+Instead we have this place holder,
+
+52
+00:02:46,910 --> 00:02:50,060
+which Vue uses internally to find out
+
+53
+00:02:50,060 --> 00:02:52,130
+where to add the paragraph
+
+54
+00:02:52,130 --> 00:02:54,163
+if our goals should be empty again.
+
+55
+00:02:55,140 --> 00:02:58,380
+But that's what we get thanks to v-if.
+
+56
+00:02:58,380 --> 00:03:02,580
+Now in a static application, which isn't truly dynamic
+
+57
+00:03:02,580 --> 00:03:05,260
+because we have no way of changing goals right now,
+
+58
+00:03:05,260 --> 00:03:08,083
+this is not too exciting, but it is a start.
+
+59
+00:03:09,200 --> 00:03:11,710
+Now let's make it a bit more exciting though.
+
+60
+00:03:11,710 --> 00:03:13,970
+Let's say when this button is pressed,
+
+61
+00:03:13,970 --> 00:03:16,810
+we wanna get the value entered in this input
+
+62
+00:03:16,810 --> 00:03:18,510
+and use that as a goal
+
+63
+00:03:18,510 --> 00:03:21,300
+which then is added to this goals array.
+
+64
+00:03:21,300 --> 00:03:23,490
+To implement that, we can add a method
+
+65
+00:03:23,490 --> 00:03:25,908
+in the methods option here,
+
+66
+00:03:25,908 --> 00:03:28,770
+addGoal sounds like a fitting name.
+
+67
+00:03:28,770 --> 00:03:33,770
+And in my data object here, besides storing the goals,
+
+68
+00:03:33,770 --> 00:03:37,050
+I also wanna store whatever the user currently entered
+
+69
+00:03:37,050 --> 00:03:38,620
+in his input.
+
+70
+00:03:38,620 --> 00:03:41,050
+So here I have my enteredGoalValue,
+
+71
+00:03:41,050 --> 00:03:42,670
+which is an empty string.
+
+72
+00:03:42,670 --> 00:03:45,640
+Of course you can name the property however you want.
+
+73
+00:03:45,640 --> 00:03:49,950
+And here in the addGoal method, I can now reach out to goals
+
+74
+00:03:49,950 --> 00:03:52,660
+and use the push method, which is available
+
+75
+00:03:52,660 --> 00:03:55,900
+on every JavaScript array, and therefore of course,
+
+76
+00:03:55,900 --> 00:03:57,610
+also on that array,
+
+77
+00:03:57,610 --> 00:04:00,200
+to push this enteredGoalValue,
+
+78
+00:04:00,200 --> 00:04:02,120
+so whatever the user entered here,
+
+79
+00:04:02,120 --> 00:04:04,163
+to my goals, as a new goal.
+
+80
+00:04:05,860 --> 00:04:10,310
+And now in index HTML, we can bind both things.
+
+81
+00:04:10,310 --> 00:04:13,437
+We can bind the input with v-model
+
+82
+00:04:13,437 --> 00:04:17,800
+to this enteredGoalValue data property,
+
+83
+00:04:17,800 --> 00:04:19,350
+like this,
+
+84
+00:04:19,350 --> 00:04:22,170
+and on the button with @click,
+
+85
+00:04:22,170 --> 00:04:25,540
+we can point at this method which we added,
+
+86
+00:04:25,540 --> 00:04:27,960
+so at the addGoal method,
+
+87
+00:04:27,960 --> 00:04:30,650
+and point at it so that this method is executed
+
+88
+00:04:30,650 --> 00:04:32,700
+when the button is clicked.
+
+89
+00:04:32,700 --> 00:04:35,983
+And now we do have a way of changing our goals.
+
+90
+00:04:36,870 --> 00:04:38,730
+That means that we now can also get rid
+
+91
+00:04:38,730 --> 00:04:40,590
+of this hard-coded goal here
+
+92
+00:04:40,590 --> 00:04:43,150
+so that we start with an empty array again.
+
+93
+00:04:43,150 --> 00:04:45,660
+And if we now save everything and reload,
+
+94
+00:04:45,660 --> 00:04:48,730
+we see that we start with this paragraph,
+
+95
+00:04:48,730 --> 00:04:53,080
+but now if I add a goal like finish the course
+
+96
+00:04:53,080 --> 00:04:56,910
+and click the button, you see the paragraph disappears.
+
+97
+00:04:56,910 --> 00:04:58,140
+We don't see the goal yet
+
+98
+00:04:58,140 --> 00:05:00,920
+because we haven't learned how to output that,
+
+99
+00:05:00,920 --> 00:05:04,950
+but we see that the conditional rendering with v-if works.
+
+100
+00:05:04,950 --> 00:05:07,593
+Now let's dig a bit deeper into v-if.
+

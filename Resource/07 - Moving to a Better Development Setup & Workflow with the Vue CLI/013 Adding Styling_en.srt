@@ -1,0 +1,176 @@
+1
+00:00:02,200 --> 00:00:05,230
+So, let's now work on the styling.
+
+2
+00:00:05,230 --> 00:00:08,140
+Because, at the moment, this is quite ugly.
+
+3
+00:00:08,140 --> 00:00:10,280
+There are different ways of adding styling.
+
+4
+00:00:10,280 --> 00:00:13,020
+But, I will show you the way you will most commonly use,
+
+5
+00:00:13,020 --> 00:00:15,150
+and which is the recommended way.
+
+6
+00:00:15,150 --> 00:00:18,470
+You might remember, that in our ".Vue" files,
+
+7
+00:00:18,470 --> 00:00:21,620
+we not only had a template and a script section,
+
+8
+00:00:21,620 --> 00:00:24,310
+but we could also add a style section.
+
+9
+00:00:24,310 --> 00:00:26,610
+Now, adding it is optional.
+
+10
+00:00:26,610 --> 00:00:29,830
+As you can clearly tell. It worked without it too.
+
+11
+00:00:29,830 --> 00:00:32,800
+But, here you can define the style of your app,
+
+12
+00:00:32,800 --> 00:00:34,300
+or component.
+
+13
+00:00:34,300 --> 00:00:37,340
+So, here I added the style section "App Vue"
+
+14
+00:00:37,340 --> 00:00:41,580
+And attached, you will find the styles CSS file.
+
+15
+00:00:41,580 --> 00:00:45,890
+Which we used before, in the component introduction module.
+
+16
+00:00:45,890 --> 00:00:47,510
+You can simply download it
+
+17
+00:00:47,510 --> 00:00:50,860
+and then copy all the styles you find in there,
+
+18
+00:00:50,860 --> 00:00:52,730
+and add them here,
+
+19
+00:00:52,730 --> 00:00:55,213
+between these style tags.
+
+20
+00:00:56,810 --> 00:00:59,080
+Save your code, thereafter.
+
+21
+00:00:59,080 --> 00:01:03,020
+And if you now reload, you should have some styling back.
+
+22
+00:01:03,020 --> 00:01:07,160
+Still not the final styling. But better than nothing.
+
+23
+00:01:07,160 --> 00:01:10,133
+Especially our components, don't look too bad.
+
+24
+00:01:11,780 --> 00:01:14,060
+Now, to also improve your overall styling,
+
+25
+00:01:14,060 --> 00:01:16,390
+here in the App Vue template,
+
+26
+00:01:16,390 --> 00:01:20,203
+I'll wrap this h2 tag here, into a header.
+
+27
+00:01:23,200 --> 00:01:26,663
+Like this. And actually, also convert it to h1 tag.
+
+28
+00:01:28,190 --> 00:01:31,060
+And if we save that, this now looks better.
+
+29
+00:01:31,060 --> 00:01:33,563
+And now, we've got our styling back.
+
+30
+00:01:34,480 --> 00:01:36,900
+Now, there is actually more you can do
+
+31
+00:01:36,900 --> 00:01:38,620
+with that styling here.
+
+32
+00:01:38,620 --> 00:01:40,070
+You can for example, later,
+
+33
+00:01:40,070 --> 00:01:43,380
+also lock it to a specific component,
+
+34
+00:01:43,380 --> 00:01:47,050
+to make sure that only that component receives the styling.
+
+35
+00:01:47,050 --> 00:01:49,290
+But, that's something we'll explore later.
+
+36
+00:01:49,290 --> 00:01:53,073
+For the moment, the styling added here will do the trick.
+
+37
+00:01:54,440 --> 00:01:58,330
+And with that, we now have a nicer project setup.
+
+38
+00:01:58,330 --> 00:02:01,010
+Where we've got this realistic development server,
+
+39
+00:02:01,010 --> 00:02:02,990
+where the app automatically reloads,
+
+40
+00:02:02,990 --> 00:02:04,660
+whenever we save a change.
+
+41
+00:02:04,660 --> 00:02:07,770
+And where we also get better IDE support.
+
+42
+00:02:07,770 --> 00:02:10,009
+And in general, have a setup,
+
+43
+00:02:10,009 --> 00:02:12,470
+which will not only work for small apps,
+
+44
+00:02:12,470 --> 00:02:14,323
+but also for bigger apps.
+

@@ -1,0 +1,17 @@
+<p>When animating route changes as shown in the previous lecture, there's <strong>one important thing</strong> you have to keep in mind:</p><p>Your route components <strong>must NOT&nbsp;have multiple root elements!</strong></p><p>For example, if your route component looked like this:</p><pre class="prettyprint linenums">&lt;template&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Section 1&lt;/h2&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Section 2&lt;/h2&gt;
+  &lt;/section&gt;
+&lt;/template&gt;</pre><p>The <code>&lt;transition&gt;</code> component would <strong>not be able to animate route changes</strong> and you would get a <strong>warning</strong> in the JS&nbsp;console in your browser dev tools.</p><p><strong>Why?</strong></p><p>Because you must not forget that <code>&lt;transition&gt;</code> <strong>needs exactly one child element</strong> (<em>with the special exceptions you learned about in this module</em>).</p><p>If your route component has <strong>multiple root elements</strong>, <code>&lt;transition&gt;</code> in the end <strong>has multiple children </strong>and that is the <strong>problem</strong>.</p><p>Hence, if you want to transition between routes, you need to ensure that your route components <strong>have exactly one root element</strong> - for example:</p><pre class="prettyprint linenums">&lt;template&gt;
+  &lt;div&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Section 1&lt;/h2&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Section 2&lt;/h2&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</pre>

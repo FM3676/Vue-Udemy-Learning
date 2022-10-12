@@ -1,0 +1,512 @@
+1
+00:00:02,240 --> 00:00:04,540
+Now up to this point, we always added
+
+2
+00:00:04,540 --> 00:00:08,020
+the addition or removal off just one element.
+
+3
+00:00:08,020 --> 00:00:10,560
+I mean, even with the two buttons here,
+
+4
+00:00:10,560 --> 00:00:13,580
+it was about having just one button active
+
+5
+00:00:13,580 --> 00:00:15,990
+on the page at the same time.
+
+6
+00:00:15,990 --> 00:00:18,540
+But sometimes you also have the lists of data,
+
+7
+00:00:18,540 --> 00:00:19,620
+which you want to animate.
+
+8
+00:00:19,620 --> 00:00:21,840
+So you have multiple list items
+
+9
+00:00:21,840 --> 00:00:23,820
+and you might wanna animate this
+
+10
+00:00:23,820 --> 00:00:27,663
+and thankfully Vue got you covered for that as well.
+
+11
+00:00:28,670 --> 00:00:32,200
+I'll add a new component ListData.vue
+
+12
+00:00:32,200 --> 00:00:34,050
+the name of course is up to you
+
+13
+00:00:34,050 --> 00:00:36,060
+and I'm just using the new component
+
+14
+00:00:36,060 --> 00:00:39,330
+to keep the code split up and keep it manageable,
+
+15
+00:00:39,330 --> 00:00:42,030
+since App.vue is already a large component
+
+16
+00:00:42,030 --> 00:00:44,320
+with a lot of code in there.
+
+17
+00:00:44,320 --> 00:00:47,230
+So ListData.vue is a simple component.
+
+18
+00:00:47,230 --> 00:00:49,410
+We'll have an unordered list in there
+
+19
+00:00:49,410 --> 00:00:52,570
+and we'll have a little bit of dummy list data
+
+20
+00:00:52,570 --> 00:00:55,770
+in our component object here.
+
+21
+00:00:55,770 --> 00:00:58,310
+Now it's up to you, which data you want here.
+
+22
+00:00:58,310 --> 00:01:00,290
+I will have a users key
+
+23
+00:01:00,290 --> 00:01:03,213
+and have 'Max', 'Manu', 'Julie'
+
+24
+00:01:07,071 --> 00:01:10,700
+'Angela' and 'Michael' here as names,
+
+25
+00:01:10,700 --> 00:01:13,343
+but you can of course add as many names as you want.
+
+26
+00:01:15,440 --> 00:01:16,880
+Now, my goal is of course,
+
+27
+00:01:16,880 --> 00:01:20,280
+to output those items here in a list
+
+28
+00:01:20,280 --> 00:01:23,640
+so we can use v-for to loop through to users
+
+29
+00:01:23,640 --> 00:01:25,760
+so "user in users"
+
+30
+00:01:25,760 --> 00:01:28,250
+also add a key and point at user,
+
+31
+00:01:28,250 --> 00:01:30,480
+since we have unique values in there
+
+32
+00:01:30,480 --> 00:01:33,480
+and output the user name here then.
+
+33
+00:01:33,480 --> 00:01:35,060
+So it's a very simple list.
+
+34
+00:01:35,060 --> 00:01:38,043
+It also doesn't have any fancy styling at the moment.
+
+35
+00:01:39,580 --> 00:01:42,150
+Now we can go to App.vue
+
+36
+00:01:42,150 --> 00:01:46,760
+and import it here as a local component, for example,
+
+37
+00:01:46,760 --> 00:01:48,683
+so let's quickly import.
+
+38
+00:01:51,158 --> 00:01:55,603
+ListData or actually let's name it UsersList
+
+39
+00:01:56,640 --> 00:01:58,470
+makes a bit more sense, I guess.
+
+40
+00:01:58,470 --> 00:02:01,160
+So let's import UsersList
+
+41
+00:02:01,160 --> 00:02:05,853
+from './components/UsersList.vue'
+
+42
+00:02:06,960 --> 00:02:08,100
+and then as you learned it
+
+43
+00:02:08,100 --> 00:02:10,280
+and did it multiple times in the course,
+
+44
+00:02:10,280 --> 00:02:14,290
+we can register it as a local component here, UsersList.
+
+45
+00:02:16,040 --> 00:02:19,490
+And now that it is imported and registered,
+
+46
+00:02:19,490 --> 00:02:21,410
+maybe here at the very top,
+
+47
+00:02:21,410 --> 00:02:25,180
+we can add a new div with class container
+
+48
+00:02:25,180 --> 00:02:28,530
+and then render our UsersList component here,
+
+49
+00:02:28,530 --> 00:02:30,373
+the newly added component.
+
+50
+00:02:32,710 --> 00:02:35,300
+With that we got our user's list up here.
+
+51
+00:02:35,300 --> 00:02:37,260
+Now let's add a little bit of styling
+
+52
+00:02:37,260 --> 00:02:39,690
+to make it look a little bit nicer
+
+53
+00:02:39,690 --> 00:02:42,710
+in the UsersList.vue file.
+
+54
+00:02:42,710 --> 00:02:47,550
+We can add a scoped style tag here
+
+55
+00:02:47,550 --> 00:02:51,060
+and on the unordered list I'll set list-style to none
+
+56
+00:02:51,060 --> 00:02:53,400
+to remove the bullet point,
+
+57
+00:02:53,400 --> 00:02:56,490
+set the margin: 0 and to padding: 0
+
+58
+00:02:58,260 --> 00:03:01,250
+And every individual list item
+
+59
+00:03:01,250 --> 00:03:05,290
+is then style by giving it a border of 1px solid
+
+60
+00:03:05,290 --> 00:03:07,300
+and a light gray color
+
+61
+00:03:07,300 --> 00:03:09,460
+and a padding off 1rem
+
+62
+00:03:11,590 --> 00:03:13,600
+and I'll set the text-align here
+
+63
+00:03:13,600 --> 00:03:15,763
+to center to center, to text.
+
+64
+00:03:18,400 --> 00:03:20,633
+And now that is the list we have here.
+
+65
+00:03:21,530 --> 00:03:23,600
+Now, this is a very simple list and at the moment
+
+66
+00:03:23,600 --> 00:03:25,460
+it's not animated at all.
+
+67
+00:03:25,460 --> 00:03:29,110
+Let's make sure we can now add and remove items to it,
+
+68
+00:03:29,110 --> 00:03:31,970
+and then let's make sure that we can animate this
+
+69
+00:03:31,970 --> 00:03:33,860
+because that's something that's missing
+
+70
+00:03:33,860 --> 00:03:36,803
+in all the examples we solve throughout this course.
+
+71
+00:03:37,930 --> 00:03:40,360
+So to make sure new items can be added
+
+72
+00:03:40,360 --> 00:03:42,880
+in UsersList.vue in the template
+
+73
+00:03:42,880 --> 00:03:45,230
+below my unordered list.
+
+74
+00:03:45,230 --> 00:03:49,300
+I'll add another div here simply as a rapper
+
+75
+00:03:49,300 --> 00:03:53,313
+and then have an input element here of type text.
+
+76
+00:03:55,200 --> 00:03:58,640
+And a button where it say Add User.
+
+77
+00:03:58,640 --> 00:04:00,620
+And the ideal of course is that we take
+
+78
+00:04:00,620 --> 00:04:04,840
+whatever was entered here and added as a user to users.
+
+79
+00:04:04,840 --> 00:04:06,870
+And on the other end of a list item is click
+
+80
+00:04:06,870 --> 00:04:08,660
+that users should be removed.
+
+81
+00:04:08,660 --> 00:04:11,280
+So add a click listener to a list item
+
+82
+00:04:11,280 --> 00:04:14,900
+and say, removeUser here and pass the user
+
+83
+00:04:14,900 --> 00:04:17,459
+as argument to removeUser.
+
+84
+00:04:18,870 --> 00:04:20,829
+And on this button on the other end,
+
+85
+00:04:20,829 --> 00:04:23,470
+I'll add a click listener and say, addUser.
+
+86
+00:04:23,470 --> 00:04:26,290
+We could also use a form here if we wanted to,
+
+87
+00:04:26,290 --> 00:04:29,240
+but I'll just add a good old click listener on this button.
+
+88
+00:04:31,100 --> 00:04:34,660
+So now we can add methods
+
+89
+00:04:34,660 --> 00:04:39,660
+and addUser method and removeUser method
+
+90
+00:04:40,560 --> 00:04:44,300
+and on removeUser we'll get the user name,
+
+91
+00:04:44,300 --> 00:04:46,710
+we're passing it here as an argument.
+
+92
+00:04:46,710 --> 00:04:49,490
+So we get it here as a parameter
+
+93
+00:04:49,490 --> 00:04:54,490
+and we can then set this.users = this.users.filter,
+
+94
+00:04:56,170 --> 00:04:58,870
+searching for the user that is equal
+
+95
+00:04:58,870 --> 00:05:01,270
+to the user we're getting here.
+
+96
+00:05:01,270 --> 00:05:03,500
+So if we got a user that's equal to the user,
+
+97
+00:05:03,500 --> 00:05:04,890
+we're currently looking at,
+
+98
+00:05:04,890 --> 00:05:07,400
+we want to filter it out,
+
+99
+00:05:07,400 --> 00:05:11,540
+actually by inverting this so that we keep all users
+
+100
+00:05:11,540 --> 00:05:14,180
+where the names are not equal
+
+101
+00:05:14,180 --> 00:05:15,490
+to the user we're getting here.
+
+102
+00:05:15,490 --> 00:05:18,360
+And if the name is equal, we return false.
+
+103
+00:05:18,360 --> 00:05:19,640
+Hence we filter it out
+
+104
+00:05:19,640 --> 00:05:23,340
+and therefore our new users is the old array minus
+
+105
+00:05:23,340 --> 00:05:25,873
+the user with the username we got here.
+
+106
+00:05:27,658 --> 00:05:30,990
+In addUser, we wanna get what the user entered here
+
+107
+00:05:30,990 --> 00:05:33,927
+and I'll use that ref for that userNameInput
+
+108
+00:05:35,200 --> 00:05:37,443
+is my ref, which I'll use here.
+
+109
+00:05:39,770 --> 00:05:41,620
+And then addUser.
+
+110
+00:05:41,620 --> 00:05:44,860
+We got the enteredUserName by reaching out
+
+111
+00:05:44,860 --> 00:05:49,350
+to this.$refs.userNameInput.value;
+
+112
+00:05:49,350 --> 00:05:52,260
+we could add validation but I wanna keep it simple.
+
+113
+00:05:52,260 --> 00:05:57,140
+And therefore a simply push my enteredUserName to users.
+
+114
+00:05:57,140 --> 00:05:58,680
+And actually I'll not push it.
+
+115
+00:05:58,680 --> 00:06:01,223
+I'll unshift it to add it at the top.
+
+116
+00:06:03,410 --> 00:06:05,840
+Now with that, if we reload,
+
+117
+00:06:05,840 --> 00:06:08,000
+if I click Julie, she's removed.
+
+118
+00:06:08,000 --> 00:06:11,483
+If I add Julie again, she's back at the beginning.
+
+119
+00:06:13,330 --> 00:06:15,430
+And we can always add some spacing here
+
+120
+00:06:15,430 --> 00:06:17,060
+by going back to the unordered list
+
+121
+00:06:17,060 --> 00:06:19,450
+and actually adding a margin of 1rem top
+
+122
+00:06:19,450 --> 00:06:23,713
+and bottom zero left and right by adding this rule here.
+
+123
+00:06:25,440 --> 00:06:27,880
+So now we got this in place.
+
+124
+00:06:27,880 --> 00:06:30,150
+You can of course optimize the styling,
+
+125
+00:06:30,150 --> 00:06:33,420
+but I rather wanna focus on animating now.
+
+126
+00:06:33,420 --> 00:06:36,180
+I wanna ensure that we animate
+
+127
+00:06:36,180 --> 00:06:39,610
+when an item is removed or added.
+
+128
+00:06:39,610 --> 00:06:42,423
+And that is something we can do with the Vue.
+

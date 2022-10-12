@@ -1,0 +1,92 @@
+1
+00:00:02,150 --> 00:00:03,330
+In this module,
+
+2
+00:00:03,330 --> 00:00:06,450
+let's dive into another advanced concept,
+
+3
+00:00:06,450 --> 00:00:08,360
+and that would be mixins
+
+4
+00:00:08,360 --> 00:00:11,350
+and custom composition functions,
+
+5
+00:00:11,350 --> 00:00:14,520
+or to be precise, the general topic
+
+6
+00:00:14,520 --> 00:00:18,610
+and idea of reusing code, both with the options
+
+7
+00:00:18,610 --> 00:00:21,240
+as well as the composition API,
+
+8
+00:00:21,240 --> 00:00:23,660
+because the bigger your projects get,
+
+9
+00:00:23,660 --> 00:00:26,540
+the more components you have in your projects,
+
+10
+00:00:26,540 --> 00:00:29,610
+the more often you'll face scenarios
+
+11
+00:00:29,610 --> 00:00:33,600
+where there is some code duplication across components
+
+12
+00:00:33,600 --> 00:00:38,090
+and you would wish for a solution to reuse code,
+
+13
+00:00:38,090 --> 00:00:40,640
+to share code across components.
+
+14
+00:00:40,640 --> 00:00:43,150
+That will be the focus of this module.
+
+15
+00:00:43,150 --> 00:00:46,970
+To be precise, we'll dive into a general overview
+
+16
+00:00:46,970 --> 00:00:49,380
+of reusing things in Vue apps
+
+17
+00:00:49,380 --> 00:00:53,160
+and which different concepts we have when it comes to that.
+
+18
+00:00:53,160 --> 00:00:56,530
+And we'll then explore two main strategies
+
+19
+00:00:56,530 --> 00:00:59,440
+for reusing code across components,
+
+20
+00:00:59,440 --> 00:01:03,590
+and that will be mixins for the options API
+
+21
+00:01:03,590 --> 00:01:08,020
+and custom functions or custom composition functions
+
+22
+00:01:08,020 --> 00:01:10,820
+when using the composition API.
+
+23
+00:01:10,820 --> 00:01:14,463
+So let's dive in and let's explore our options here.
+

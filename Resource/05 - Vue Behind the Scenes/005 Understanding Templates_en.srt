@@ -1,0 +1,308 @@
+1
+00:00:02,250 --> 00:00:04,470
+So we can have multiple apps,
+
+2
+00:00:04,470 --> 00:00:07,600
+and I already mentioned that we control different parts
+
+3
+00:00:07,600 --> 00:00:09,560
+of the HTML code.
+
+4
+00:00:09,560 --> 00:00:11,630
+Now, of course, it should be needless to say
+
+5
+00:00:11,630 --> 00:00:15,140
+that you shouldn't control the same HTML part
+
+6
+00:00:15,140 --> 00:00:17,180
+with different apps.
+
+7
+00:00:17,180 --> 00:00:19,120
+And you also can't use one app
+
+8
+00:00:19,120 --> 00:00:21,760
+to control multiple HTML parts.
+
+9
+00:00:21,760 --> 00:00:24,880
+It's one HTML part per app.
+
+10
+00:00:24,880 --> 00:00:27,770
+And also, the term HTML part
+
+11
+00:00:27,770 --> 00:00:32,770
+or controlled HTML is not entirely correct though I used it,
+
+12
+00:00:33,710 --> 00:00:36,618
+because I think it's easy to understand.
+
+13
+00:00:36,618 --> 00:00:41,618
+The official term is template by mounting your app,
+
+14
+00:00:42,440 --> 00:00:47,440
+your Vue app to a certain place in the DOM in the HTML code,
+
+15
+00:00:47,440 --> 00:00:50,700
+you make that part of the HTML code
+
+16
+00:00:50,700 --> 00:00:53,550
+the template of that Vue app.
+
+17
+00:00:53,550 --> 00:00:58,550
+So this section is the template of our first Vue app
+
+18
+00:00:58,560 --> 00:01:03,420
+which is mounted with this selector to this section,
+
+19
+00:01:03,420 --> 00:01:05,980
+and that other section is the template
+
+20
+00:01:05,980 --> 00:01:08,600
+of our second Vue app.
+
+21
+00:01:08,600 --> 00:01:11,690
+And I'm emphasizing this because we're also going to hear
+
+22
+00:01:11,690 --> 00:01:14,870
+about the term template later again.
+
+23
+00:01:14,870 --> 00:01:18,630
+There also are different ways of defining your template
+
+24
+00:01:18,630 --> 00:01:19,680
+of an app.
+
+25
+00:01:19,680 --> 00:01:22,550
+This here is definitely the most common,
+
+26
+00:01:22,550 --> 00:01:26,030
+and most convenient one, writing HTML code,
+
+27
+00:01:26,030 --> 00:01:28,770
+and then mounting your application to it,
+
+28
+00:01:28,770 --> 00:01:30,360
+this makes a lot of sense,
+
+29
+00:01:30,360 --> 00:01:34,130
+but actually, it's not the only way of adding a template,
+
+30
+00:01:34,130 --> 00:01:38,500
+and I wanna show this here as the example of app two.
+
+31
+00:01:38,500 --> 00:01:41,640
+You can also add a template to a Vue app
+
+32
+00:01:41,640 --> 00:01:44,830
+by adding the template option
+
+33
+00:01:44,830 --> 00:01:48,623
+to your app configuration object.
+
+34
+00:01:49,520 --> 00:01:52,890
+This template option wants a string,
+
+35
+00:01:52,890 --> 00:01:55,070
+and to write multi-line strings
+
+36
+00:01:55,070 --> 00:01:57,980
+with these I will use backticks here.
+
+37
+00:01:57,980 --> 00:02:00,600
+Really just so that I can write multi-line code.
+
+38
+00:02:00,600 --> 00:02:02,510
+So these are not single quotes,
+
+39
+00:02:02,510 --> 00:02:05,250
+that's a backtick which is a different character
+
+40
+00:02:05,250 --> 00:02:07,080
+on your keyboard.
+
+41
+00:02:07,080 --> 00:02:11,240
+And now we could, for example, grab this paragraph here,
+
+42
+00:02:11,240 --> 00:02:13,770
+and cut it from the HTML file,
+
+43
+00:02:13,770 --> 00:02:16,853
+and instead add it in this string here.
+
+44
+00:02:18,610 --> 00:02:21,820
+This now is the template of the second app,
+
+45
+00:02:21,820 --> 00:02:25,350
+and actually, this was the template before as well.
+
+46
+00:02:25,350 --> 00:02:28,970
+We controlled this section so anything inside
+
+47
+00:02:28,970 --> 00:02:31,370
+of the section was our template.
+
+48
+00:02:31,370 --> 00:02:34,030
+Now I'm just defining this differently.
+
+49
+00:02:34,030 --> 00:02:36,430
+Now we still need to mount this app
+
+50
+00:02:36,430 --> 00:02:39,050
+because Vue still needs to know
+
+51
+00:02:39,050 --> 00:02:43,410
+where to display this template with the actual value
+
+52
+00:02:43,410 --> 00:02:46,830
+for a favorite meal when it is rendered on the screen.
+
+53
+00:02:46,830 --> 00:02:50,560
+So we still need to mount it otherwise Vue wouldn't know
+
+54
+00:02:50,560 --> 00:02:54,100
+where to add this paragraph on the page.
+
+55
+00:02:54,100 --> 00:02:56,280
+But with that if I save it and reload,
+
+56
+00:02:56,280 --> 00:02:58,430
+you'll see the same output as before.
+
+57
+00:02:58,430 --> 00:03:01,410
+The template is just defined differently.
+
+58
+00:03:01,410 --> 00:03:03,930
+Now in reality you will most
+
+59
+00:03:03,930 --> 00:03:07,230
+often use the approach we used this far.
+
+60
+00:03:07,230 --> 00:03:09,540
+We get nicer syntax highlighting there,
+
+61
+00:03:09,540 --> 00:03:11,200
+it's easier to understand,
+
+62
+00:03:11,200 --> 00:03:12,990
+and there is no great reason
+
+63
+00:03:12,990 --> 00:03:15,453
+for using this string based template.
+
+64
+00:03:16,300 --> 00:03:18,760
+We will however, learn about a different way
+
+65
+00:03:18,760 --> 00:03:23,680
+of defining a template and of writing Vue code in general,
+
+66
+00:03:23,680 --> 00:03:25,540
+in a couple of modules,
+
+67
+00:03:25,540 --> 00:03:27,100
+not a drastic change,
+
+68
+00:03:27,100 --> 00:03:29,000
+but a nicer way of doing that.
+
+69
+00:03:29,000 --> 00:03:31,310
+So that's also why I'm emphasizing
+
+70
+00:03:31,310 --> 00:03:33,653
+this template part right now already.
+
+71
+00:03:34,970 --> 00:03:38,800
+For the moment, just be aware of this template concept,
+
+72
+00:03:38,800 --> 00:03:41,110
+and that of course, there's nothing wrong
+
+73
+00:03:41,110 --> 00:03:43,200
+with the approach we used before,
+
+74
+00:03:43,200 --> 00:03:45,370
+but that with that approach we
+
+75
+00:03:45,370 --> 00:03:48,040
+in the end made all the content
+
+76
+00:03:48,040 --> 00:03:52,620
+of the Vue controlled HTML part the template of that app
+
+77
+00:03:52,620 --> 00:03:53,963
+that controlled that part.
+

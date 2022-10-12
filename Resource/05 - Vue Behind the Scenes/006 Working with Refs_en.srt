@@ -1,0 +1,412 @@
+1
+00:00:02,110 --> 00:00:03,420
+Now here's a lecture
+
+2
+00:00:03,420 --> 00:00:06,680
+which I recommend that you do not skip in this module
+
+3
+00:00:06,680 --> 00:00:08,950
+because I'm going to show you a different way
+
+4
+00:00:08,950 --> 00:00:12,493
+of getting a value out of such a input element.
+
+5
+00:00:13,340 --> 00:00:16,000
+Thus far, we're listening to the input event,
+
+6
+00:00:16,000 --> 00:00:19,938
+and therefore, with every keystroke, saveInput is fired,
+
+7
+00:00:19,938 --> 00:00:22,229
+and in the saveInput method,
+
+8
+00:00:22,229 --> 00:00:26,260
+INDN just saved the current value of the input
+
+9
+00:00:26,260 --> 00:00:29,090
+to the current user input data property,
+
+10
+00:00:29,090 --> 00:00:32,670
+so that we can eventually use that property later
+
+11
+00:00:32,670 --> 00:00:36,750
+to assign the entered value to our message.
+
+12
+00:00:36,750 --> 00:00:39,070
+Alternatively, as you learned before,
+
+13
+00:00:39,070 --> 00:00:44,070
+we could also use v-model and bind that
+
+14
+00:00:44,150 --> 00:00:48,880
+to our current user input property like this.
+
+15
+00:00:48,880 --> 00:00:50,650
+That is also something you learned about
+
+16
+00:00:50,650 --> 00:00:51,820
+in the course before,
+
+17
+00:00:51,820 --> 00:00:55,163
+then we can omit this input binding here.
+
+18
+00:00:56,730 --> 00:00:58,620
+But whatever approach we use,
+
+19
+00:00:58,620 --> 00:01:03,600
+we basically log what the user enters with every keystroke.
+
+20
+00:01:03,600 --> 00:01:06,160
+Sometimes that is what you need, for example,
+
+21
+00:01:06,160 --> 00:01:08,860
+because you want to validate the user input
+
+22
+00:01:08,860 --> 00:01:10,550
+with every keystroke,
+
+23
+00:01:10,550 --> 00:01:13,260
+but sometimes that's all just overkill,
+
+24
+00:01:13,260 --> 00:01:16,140
+and in such cases, Vue has a feature
+
+25
+00:01:16,140 --> 00:01:20,010
+that allows you to retrieve values from DOM elements
+
+26
+00:01:20,010 --> 00:01:23,420
+when you need them, instead of all the time.
+
+27
+00:01:23,420 --> 00:01:25,920
+And that feature is called, refs.
+
+28
+00:01:25,920 --> 00:01:27,610
+Here's how you add it.
+
+29
+00:01:27,610 --> 00:01:30,020
+Instead of adding this event listener,
+
+30
+00:01:30,020 --> 00:01:32,120
+which you still could add in addition,
+
+31
+00:01:32,120 --> 00:01:34,980
+but which we simply won't need any more now,
+
+32
+00:01:34,980 --> 00:01:36,230
+instead of having that,
+
+33
+00:01:36,230 --> 00:01:39,680
+you add a special attribute to this element,
+
+34
+00:01:39,680 --> 00:01:40,993
+the ref attribute.
+
+35
+00:01:42,510 --> 00:01:44,550
+Just like the key attribute,
+
+36
+00:01:44,550 --> 00:01:47,310
+which we used with V4 before,
+
+37
+00:01:47,310 --> 00:01:51,900
+the ref attribute is a non-default HTML attribute.
+
+38
+00:01:51,900 --> 00:01:53,760
+So the browser doesn't know it,
+
+39
+00:01:53,760 --> 00:01:56,070
+but Vue understands it.
+
+40
+00:01:56,070 --> 00:01:57,840
+You assign a value here,
+
+41
+00:01:57,840 --> 00:02:00,790
+which is any string identifier of your choice,
+
+42
+00:02:00,790 --> 00:02:03,063
+for example, userText.
+
+43
+00:02:04,340 --> 00:02:06,430
+But again, this is totally up to you.
+
+44
+00:02:06,430 --> 00:02:09,979
+And you can also not just add refs to input elements,
+
+45
+00:02:09,979 --> 00:02:13,130
+you can add them to any HTML element,
+
+46
+00:02:13,130 --> 00:02:15,670
+to paragraphs, headers, sections,
+
+47
+00:02:15,670 --> 00:02:19,060
+inputs, text areas, whatever you need.
+
+48
+00:02:19,060 --> 00:02:21,020
+Now, why am I doing that?
+
+49
+00:02:21,020 --> 00:02:26,020
+Because Vue detects such refs and stores them internally.
+
+50
+00:02:26,390 --> 00:02:28,810
+It basically memorizes
+
+51
+00:02:28,810 --> 00:02:32,210
+that you want access to the input element.
+
+52
+00:02:32,210 --> 00:02:35,580
+And in the JavaScript code, you can then get this access.
+
+53
+00:02:35,580 --> 00:02:37,150
+Here, in this case,
+
+54
+00:02:37,150 --> 00:02:39,330
+inside of the set text method,
+
+55
+00:02:39,330 --> 00:02:42,710
+because that's where I need the entered value.
+
+56
+00:02:42,710 --> 00:02:45,800
+Instead of using this approach,
+
+57
+00:02:45,800 --> 00:02:50,450
+I can now set this message equal to this,
+
+58
+00:02:50,450 --> 00:02:54,460
+and now a special property, which is provided by Vue,
+
+59
+00:02:54,460 --> 00:02:57,313
+the dollar sign refs property.
+
+60
+00:02:58,180 --> 00:03:01,850
+Dollar sign refs is a property provided by Vue.
+
+61
+00:03:01,850 --> 00:03:06,380
+All Vue provided properties start with dollar signs
+
+62
+00:03:06,380 --> 00:03:09,850
+to make it clear that this is a built-in property.
+
+63
+00:03:09,850 --> 00:03:14,200
+This is an object full of key value pairs
+
+64
+00:03:14,200 --> 00:03:17,370
+where the keys are the ref identifiers
+
+65
+00:03:17,370 --> 00:03:19,330
+you set up in your template,
+
+66
+00:03:19,330 --> 00:03:20,613
+for example, userText.
+
+67
+00:03:21,630 --> 00:03:25,663
+So here we can access dot userText.
+
+68
+00:03:27,150 --> 00:03:31,600
+And this now simply points at the DOM object
+
+69
+00:03:31,600 --> 00:03:33,830
+for this input element.
+
+70
+00:03:33,830 --> 00:03:35,410
+So the JavaScript object,
+
+71
+00:03:35,410 --> 00:03:38,430
+we can use in vanilla JavaScript as well,
+
+72
+00:03:38,430 --> 00:03:41,083
+when we got access to a DOM element.
+
+73
+00:03:42,970 --> 00:03:46,680
+So now here, we can get access to the full input element,
+
+74
+00:03:46,680 --> 00:03:48,740
+and to show you what this means,
+
+75
+00:03:48,740 --> 00:03:52,263
+I'll comment this out and log it to the console for now.
+
+76
+00:03:53,300 --> 00:03:58,300
+If we now open this console and reload,
+
+77
+00:03:58,740 --> 00:04:01,250
+and then click, set text,
+
+78
+00:04:01,250 --> 00:04:04,530
+you see the whole input element is locked here.
+
+79
+00:04:04,530 --> 00:04:08,790
+And if we use console.dir, instead of console.log,
+
+80
+00:04:08,790 --> 00:04:11,710
+and click, set text, again, after reloading,
+
+81
+00:04:11,710 --> 00:04:14,520
+here is the inspectable object,
+
+82
+00:04:14,520 --> 00:04:18,100
+and this is really the JavaScript object representation
+
+83
+00:04:18,100 --> 00:04:21,990
+of this input element, with all the properties that has.
+
+84
+00:04:21,990 --> 00:04:23,900
+So this is not Vue specific,
+
+85
+00:04:23,900 --> 00:04:26,130
+that is the vanilla JavaScript object
+
+86
+00:04:26,130 --> 00:04:29,263
+we could use and work with in any JavaScript code.
+
+87
+00:04:30,660 --> 00:04:34,290
+And for example, here, we've got this value property.
+
+88
+00:04:34,290 --> 00:04:37,060
+Essentially, the object we're logging here
+
+89
+00:04:37,060 --> 00:04:40,800
+is the same one we get access to with event target,
+
+90
+00:04:40,800 --> 00:04:43,760
+which is why we can access value there as well.
+
+91
+00:04:43,760 --> 00:04:46,570
+But now we're not doing this with every keystroke,
+
+92
+00:04:46,570 --> 00:04:49,860
+but instead only when setText is emitted,
+
+93
+00:04:49,860 --> 00:04:51,470
+which happens when this button,
+
+94
+00:04:51,470 --> 00:04:53,830
+the set text button, is clicked.
+
+95
+00:04:53,830 --> 00:04:56,410
+So now we can access value here.
+
+96
+00:04:56,410 --> 00:04:58,343
+And with that, if we reload,
+
+97
+00:04:59,810 --> 00:05:02,010
+and I set detects to, Vue is awesome,
+
+98
+00:05:02,010 --> 00:05:05,300
+and click, set text, this works as before,
+
+99
+00:05:05,300 --> 00:05:08,580
+but now we're not logging the input with every keystroke,
+
+100
+00:05:08,580 --> 00:05:12,700
+but we only extract it with help of that refs feature
+
+101
+00:05:12,700 --> 00:05:14,240
+when we need it.
+
+102
+00:05:14,240 --> 00:05:17,370
+And that's why refs is a feature worth knowing,
+
+103
+00:05:17,370 --> 00:05:19,743
+and why you shouldn't skip this lecture.
+

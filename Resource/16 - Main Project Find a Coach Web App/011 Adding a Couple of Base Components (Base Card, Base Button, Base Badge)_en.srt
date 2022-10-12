@@ -1,0 +1,1028 @@
+1
+00:00:02,150 --> 00:00:04,340
+So it's base component time.
+
+2
+00:00:04,340 --> 00:00:08,290
+In the components folder, I'll add a new ui folder.
+
+3
+00:00:08,290 --> 00:00:10,370
+You could also name it base,
+
+4
+00:00:10,370 --> 00:00:11,490
+but I'll go with ui
+
+5
+00:00:11,490 --> 00:00:14,610
+because I have some core UI elements in there.
+
+6
+00:00:14,610 --> 00:00:17,800
+And I'll add a BaseCard.vue file in there,
+
+7
+00:00:17,800 --> 00:00:19,333
+and also already a BaseButton.
+
+8
+00:00:20,190 --> 00:00:22,490
+And also, didn't mention before,
+
+9
+00:00:22,490 --> 00:00:26,007
+but we'll need it as well, also a BaseBadge,
+
+10
+00:00:26,880 --> 00:00:29,230
+which will basically render a badge.
+
+11
+00:00:29,230 --> 00:00:32,520
+For example, the areas of expertise here,
+
+12
+00:00:32,520 --> 00:00:34,600
+there I wanna use that.
+
+13
+00:00:34,600 --> 00:00:36,323
+But let's start with the BaseCard.
+
+14
+00:00:37,780 --> 00:00:40,410
+That will be a very simple component, in the end.
+
+15
+00:00:40,410 --> 00:00:42,423
+The template is just a div,
+
+16
+00:00:43,330 --> 00:00:46,990
+and then a slot inside of the div,
+
+17
+00:00:46,990 --> 00:00:49,980
+because I want to use this card as a wrapper
+
+18
+00:00:49,980 --> 00:00:52,393
+around any content you want.
+
+19
+00:00:53,900 --> 00:00:56,153
+Now, I'll give this a class of card,
+
+20
+00:00:57,980 --> 00:01:00,513
+and then add some scoped CSS code.
+
+21
+00:01:01,800 --> 00:01:04,319
+And attached, you find a base card CSS file
+
+22
+00:01:04,319 --> 00:01:07,850
+which holds the styles you should paste in here.
+
+23
+00:01:07,850 --> 00:01:10,400
+This will give us this classic card look
+
+24
+00:01:10,400 --> 00:01:12,953
+and also restrict the width we're taking.
+
+25
+00:01:14,780 --> 00:01:16,563
+And that's already it for the card.
+
+26
+00:01:17,620 --> 00:01:21,350
+Now we can use that card by registering it
+
+27
+00:01:21,350 --> 00:01:23,950
+in main.js as a global component,
+
+28
+00:01:23,950 --> 00:01:26,770
+because I'm using it in many different areas of the app,
+
+29
+00:01:26,770 --> 00:01:29,220
+hence, I wanna use it as a global component.
+
+30
+00:01:29,220 --> 00:01:32,075
+So in main.js I'll import BaseCard
+
+31
+00:01:32,075 --> 00:01:37,023
+from ./components/uiBaseCard.vue,
+
+32
+00:01:38,140 --> 00:01:42,120
+and then here use my app to call the component method
+
+33
+00:01:42,120 --> 00:01:45,820
+and register a base-card component,
+
+34
+00:01:45,820 --> 00:01:49,193
+which points at this BaseCard component we're importing.
+
+35
+00:01:51,130 --> 00:01:54,563
+And now we can use it in CoachesList, for example,
+
+36
+00:01:55,530 --> 00:02:00,070
+to wrap everything in this section,
+
+37
+00:02:00,070 --> 00:02:03,560
+so this controls div and the unordered list.
+
+38
+00:02:03,560 --> 00:02:07,950
+So here I'll use base-card, my opening tag,
+
+39
+00:02:07,950 --> 00:02:11,683
+and then close it after this h3 tag here.
+
+40
+00:02:13,460 --> 00:02:15,160
+And with that, if we save this,
+
+41
+00:02:15,160 --> 00:02:18,163
+this looks much nicer already.
+
+42
+00:02:19,580 --> 00:02:21,250
+But now we got all these buttons.
+
+43
+00:02:21,250 --> 00:02:22,659
+And, actually, these here, of course,
+
+44
+00:02:22,659 --> 00:02:25,410
+are links and not buttons,
+
+45
+00:02:25,410 --> 00:02:28,060
+but I would argue they should look like buttons
+
+46
+00:02:28,060 --> 00:02:31,100
+because, whilst they technically are links,
+
+47
+00:02:31,100 --> 00:02:32,280
+well, in this UI,
+
+48
+00:02:32,280 --> 00:02:35,130
+having them look like a button makes more sense.
+
+49
+00:02:35,130 --> 00:02:37,390
+And, of course, we also got a button here, for example,
+
+50
+00:02:37,390 --> 00:02:39,520
+which should look like a button.
+
+51
+00:02:39,520 --> 00:02:42,250
+So I wanna build a BaseButton component
+
+52
+00:02:42,250 --> 00:02:46,403
+which supports both real buttons and links.
+
+53
+00:02:47,350 --> 00:02:49,030
+And we can build something like this
+
+54
+00:02:49,030 --> 00:02:50,570
+and apply the same styling
+
+55
+00:02:50,570 --> 00:02:52,867
+no matter whether it's a link or a button.
+
+56
+00:02:52,867 --> 00:02:55,867
+And we're going to do this in the BaseButton component here.
+
+57
+00:02:56,940 --> 00:02:58,530
+Here, we need a template.
+
+58
+00:02:58,530 --> 00:03:01,770
+And in that template, of course, we also have a button,
+
+59
+00:03:01,770 --> 00:03:05,313
+the regular HTML button, which takes a slot.
+
+60
+00:03:06,300 --> 00:03:08,550
+But it will not just have the button,
+
+61
+00:03:08,550 --> 00:03:10,460
+we also wanna support links.
+
+62
+00:03:10,460 --> 00:03:14,430
+So I will actually also add router-link here as a component,
+
+63
+00:03:14,430 --> 00:03:16,313
+which takes a slot.
+
+64
+00:03:17,240 --> 00:03:19,920
+But, of course, only one of the two should be rendered
+
+65
+00:03:19,920 --> 00:03:21,003
+at the same time.
+
+66
+00:03:22,850 --> 00:03:25,290
+So, therefore, I will add a script
+
+67
+00:03:25,290 --> 00:03:27,240
+and accept some props.
+
+68
+00:03:27,240 --> 00:03:29,480
+And here I'll actually use the object form
+
+69
+00:03:29,480 --> 00:03:30,700
+of the finding the props,
+
+70
+00:03:30,700 --> 00:03:33,110
+simply to also practice this again.
+
+71
+00:03:33,110 --> 00:03:35,850
+Most of the time, I used just the array form
+
+72
+00:03:35,850 --> 00:03:37,220
+because it's shorter,
+
+73
+00:03:37,220 --> 00:03:39,100
+but using that object form, of course,
+
+74
+00:03:39,100 --> 00:03:42,490
+allows you to be more explicit about your props.
+
+75
+00:03:42,490 --> 00:03:44,143
+So which props do I need here?
+
+76
+00:03:45,060 --> 00:03:48,080
+I want to have a link prop.
+
+77
+00:03:48,080 --> 00:03:50,440
+The link prop should signal to us
+
+78
+00:03:50,440 --> 00:03:52,630
+whether we wanna render a button,
+
+79
+00:03:52,630 --> 00:03:54,610
+or if link is true,
+
+80
+00:03:54,610 --> 00:03:56,363
+if we want to render a link.
+
+81
+00:03:57,550 --> 00:04:02,100
+So, therefore, here I will set the type here to Boolean
+
+82
+00:04:02,100 --> 00:04:05,340
+because I expect to get a Boolean here.
+
+83
+00:04:05,340 --> 00:04:08,600
+Set it to not required. It's optional.
+
+84
+00:04:08,600 --> 00:04:10,290
+You don't have to specify it.
+
+85
+00:04:10,290 --> 00:04:13,270
+And set the default value to false.
+
+86
+00:04:13,270 --> 00:04:16,760
+So, by default, we don't render a link but a button.
+
+87
+00:04:16,760 --> 00:04:19,480
+And we can use the link prop now here
+
+88
+00:04:19,480 --> 00:04:24,050
+to use or to render the button if not link,
+
+89
+00:04:24,050 --> 00:04:25,930
+hence the exclamation mark,
+
+90
+00:04:25,930 --> 00:04:29,770
+and render the link, the router link, in the else case
+
+91
+00:04:29,770 --> 00:04:31,323
+if link should be true.
+
+92
+00:04:32,240 --> 00:04:35,810
+This allows us to switch from outside the component
+
+93
+00:04:35,810 --> 00:04:38,073
+between a button and a router link.
+
+94
+00:04:39,160 --> 00:04:41,740
+I also want a to prop here,
+
+95
+00:04:41,740 --> 00:04:43,960
+which I need if a link is set.
+
+96
+00:04:43,960 --> 00:04:46,160
+This will get a string value.
+
+97
+00:04:46,160 --> 00:04:49,233
+And here I want to set this to not required,
+
+98
+00:04:51,330 --> 00:04:54,970
+but set the default value to /, nothing.
+
+99
+00:04:54,970 --> 00:04:59,970
+The to prop is a useful prop if we do render a router link
+
+100
+00:05:00,120 --> 00:05:01,600
+because in that case, of course,
+
+101
+00:05:01,600 --> 00:05:05,370
+I wanna bind to on the router link to my own to prop
+
+102
+00:05:05,370 --> 00:05:06,570
+which I just defined
+
+103
+00:05:06,570 --> 00:05:09,133
+so that we know where this link should go to.
+
+104
+00:05:10,240 --> 00:05:13,230
+And then there's one last prop which I wanna support,
+
+105
+00:05:13,230 --> 00:05:15,570
+and that's the mode prop.
+
+106
+00:05:15,570 --> 00:05:18,980
+This is a prop that allows us to control the styling,
+
+107
+00:05:18,980 --> 00:05:21,870
+the look of this button from outside.
+
+108
+00:05:21,870 --> 00:05:24,920
+Here, I simply want to get a string,
+
+109
+00:05:24,920 --> 00:05:27,940
+and this is also not required.
+
+110
+00:05:27,940 --> 00:05:30,410
+The default, then, is just an empty string
+
+111
+00:05:30,410 --> 00:05:32,580
+or null, let's say,
+
+112
+00:05:32,580 --> 00:05:36,873
+and I will use mode as a class on the button.
+
+113
+00:05:38,470 --> 00:05:40,460
+That, of course, would theoretically allow us
+
+114
+00:05:40,460 --> 00:05:43,510
+to pass anything as a class that will be added,
+
+115
+00:05:43,510 --> 00:05:46,670
+but I will only support a couple of specific classes
+
+116
+00:05:46,670 --> 00:05:49,233
+in the CSS code which we're soon going to add.
+
+117
+00:05:50,500 --> 00:05:53,610
+So now we add class mode on both the button
+
+118
+00:05:53,610 --> 00:05:55,260
+and the router link.
+
+119
+00:05:55,260 --> 00:05:58,170
+And now it's time for styling.
+
+120
+00:05:58,170 --> 00:06:02,010
+So let's add some scoped CSS styling down there,
+
+121
+00:06:02,010 --> 00:06:04,850
+and attached you find a button CSS file
+
+122
+00:06:04,850 --> 00:06:07,203
+with all the button styles in there.
+
+123
+00:06:08,330 --> 00:06:11,040
+And here I set up a base styling,
+
+124
+00:06:11,040 --> 00:06:14,430
+and I'm always targeting button and anchor tag
+
+125
+00:06:14,430 --> 00:06:17,340
+because the router link will render an anchor tag
+
+126
+00:06:17,340 --> 00:06:18,940
+in the end.
+
+127
+00:06:18,940 --> 00:06:22,230
+And then here the hover and active styles
+
+128
+00:06:22,230 --> 00:06:25,910
+and also the flat and outline styles.
+
+129
+00:06:25,910 --> 00:06:28,560
+And these are the two modes which I support
+
+130
+00:06:28,560 --> 00:06:30,780
+because here I'm selecting the flat class
+
+131
+00:06:30,780 --> 00:06:32,370
+and the outline class,
+
+132
+00:06:32,370 --> 00:06:34,290
+so these styles will kick in
+
+133
+00:06:34,290 --> 00:06:38,000
+if a flat or outline class is added to the button or link.
+
+134
+00:06:38,000 --> 00:06:41,140
+And that's exactly what we do with mode.
+
+135
+00:06:41,140 --> 00:06:43,210
+If mode is set to flat,
+
+136
+00:06:43,210 --> 00:06:45,090
+the flat class will be added,
+
+137
+00:06:45,090 --> 00:06:48,860
+and therefore these flat styles will kick in.
+
+138
+00:06:48,860 --> 00:06:50,950
+And that's my base button.
+
+139
+00:06:50,950 --> 00:06:55,050
+This base button can now also be defined in main.js.
+
+140
+00:06:55,050 --> 00:06:57,147
+So we import BaseButton
+
+141
+00:06:59,217 --> 00:07:03,293
+from ./components/ui/BaseButton.vue,
+
+142
+00:07:04,360 --> 00:07:09,360
+and then also call app.component BaseButton here like that.
+
+143
+00:07:12,700 --> 00:07:14,360
+And now we can use the BaseButton
+
+144
+00:07:14,360 --> 00:07:16,640
+in various places of this app.
+
+145
+00:07:16,640 --> 00:07:21,210
+In CoachesList, for example, I have these two links here,
+
+146
+00:07:21,210 --> 00:07:23,170
+or one button and one link,
+
+147
+00:07:23,170 --> 00:07:25,260
+both should be a base button.
+
+148
+00:07:25,260 --> 00:07:29,330
+So here I'll use base-button for my Refresh button.
+
+149
+00:07:29,330 --> 00:07:30,720
+Currently, it's not doing anything,
+
+150
+00:07:30,720 --> 00:07:32,183
+but that will change soon.
+
+151
+00:07:33,030 --> 00:07:36,860
+And here we can replace router-link with base-button.
+
+152
+00:07:36,860 --> 00:07:38,660
+The to prop still exists
+
+153
+00:07:38,660 --> 00:07:43,413
+because we added that to our router link in the base-button.
+
+154
+00:07:44,340 --> 00:07:46,520
+But, here, since this should be a link,
+
+155
+00:07:46,520 --> 00:07:49,670
+I now also set the link prop.
+
+156
+00:07:49,670 --> 00:07:51,080
+And just adding it like this
+
+157
+00:07:51,080 --> 00:07:53,840
+automatically sets it to true already.
+
+158
+00:07:53,840 --> 00:07:56,480
+And therefore this should now look like a link
+
+159
+00:07:56,480 --> 00:07:58,053
+or should render a link.
+
+160
+00:07:59,080 --> 00:08:01,330
+On the other hand, for this refresh button,
+
+161
+00:08:01,330 --> 00:08:04,720
+I wanna use mode and set this to outline
+
+162
+00:08:04,720 --> 00:08:07,220
+to make sure that here I'm using a different look.
+
+163
+00:08:08,820 --> 00:08:12,040
+And in CoachItem, we also got buttons,
+
+164
+00:08:12,040 --> 00:08:14,200
+or links, in this case.
+
+165
+00:08:14,200 --> 00:08:16,300
+And these should look like buttons, though.
+
+166
+00:08:16,300 --> 00:08:18,110
+So, these two router links,
+
+167
+00:08:18,110 --> 00:08:21,080
+here I'll also use base-button
+
+168
+00:08:21,080 --> 00:08:24,813
+and replace router-link with base-button,
+
+169
+00:08:26,070 --> 00:08:29,403
+and then add the link prop on both.
+
+170
+00:08:31,600 --> 00:08:33,270
+And on the first base button,
+
+171
+00:08:33,270 --> 00:08:36,573
+I'll set the mode to outline as well to use that look here.
+
+172
+00:08:39,039 --> 00:08:42,659
+If we save this, this looks a lot nicer, I would say.
+
+173
+00:08:42,659 --> 00:08:44,070
+Now we get these buttons,
+
+174
+00:08:44,070 --> 00:08:46,260
+which still act as links,
+
+175
+00:08:46,260 --> 00:08:48,750
+but which look like buttons.
+
+176
+00:08:48,750 --> 00:08:51,570
+And with that made a huge step forward.
+
+177
+00:08:51,570 --> 00:08:54,540
+Now I want to render these areas of expertise
+
+178
+00:08:54,540 --> 00:08:55,610
+in a nicer way.
+
+179
+00:08:55,610 --> 00:08:59,443
+And for that, I prepared this BaseBadge component.
+
+180
+00:09:00,290 --> 00:09:03,570
+Here, we're going to add a template
+
+181
+00:09:03,570 --> 00:09:05,760
+and render a span, let's say
+
+182
+00:09:05,760 --> 00:09:10,690
+where in the span we simply output a title
+
+183
+00:09:10,690 --> 00:09:13,883
+or a text property, whatever you want.
+
+184
+00:09:14,890 --> 00:09:17,570
+On the span, I'll add a class of badge,
+
+185
+00:09:17,570 --> 00:09:21,193
+but then, in addition, bind class dynamically to type.
+
+186
+00:09:22,960 --> 00:09:24,290
+Now that of course means that here
+
+187
+00:09:24,290 --> 00:09:26,160
+we should also accept some props.
+
+188
+00:09:26,160 --> 00:09:27,820
+And I'll be lazy again here,
+
+189
+00:09:27,820 --> 00:09:29,970
+I expect to get a type prop here
+
+190
+00:09:29,970 --> 00:09:31,893
+and, let's say, a title prop.
+
+191
+00:09:32,830 --> 00:09:33,780
+We have text here,
+
+192
+00:09:33,780 --> 00:09:36,400
+but that will be a computed property soon.
+
+193
+00:09:36,400 --> 00:09:39,530
+And now we can add computed here
+
+194
+00:09:39,530 --> 00:09:44,350
+because actually my text computed property here,
+
+195
+00:09:44,350 --> 00:09:49,350
+that should actually be the title prop toUpperCase.
+
+196
+00:09:51,910 --> 00:09:54,130
+It's just a transformation I want here.
+
+197
+00:09:54,130 --> 00:09:56,350
+Of course, it's nothing you have to add,
+
+198
+00:09:56,350 --> 00:09:59,480
+but I wanna make sure that the title we receive as a prop
+
+199
+00:09:59,480 --> 00:10:01,380
+is turned to all uppercase
+
+200
+00:10:01,380 --> 00:10:02,963
+and then output like this here.
+
+201
+00:10:04,870 --> 00:10:06,530
+And now we can add some styling here,
+
+202
+00:10:06,530 --> 00:10:08,760
+some scoped CSS styling,
+
+203
+00:10:08,760 --> 00:10:11,910
+and as so often you find those styles attached
+
+204
+00:10:11,910 --> 00:10:14,710
+in the badge CSS file.
+
+205
+00:10:14,710 --> 00:10:17,150
+And I got a basic badge style here
+
+206
+00:10:17,150 --> 00:10:19,257
+where I just give some base colors,
+
+207
+00:10:19,257 --> 00:10:22,150
+some padding, display inline-block.
+
+208
+00:10:22,150 --> 00:10:25,330
+And then I got three specific class styles here
+
+209
+00:10:25,330 --> 00:10:28,110
+for frontend, backend, and career
+
+210
+00:10:29,020 --> 00:10:32,530
+where, essentially, the background color is changing.
+
+211
+00:10:32,530 --> 00:10:34,140
+And these classes will be added
+
+212
+00:10:34,140 --> 00:10:35,740
+by adding the type prop
+
+213
+00:10:35,740 --> 00:10:38,240
+because here we bind the class to type.
+
+214
+00:10:38,240 --> 00:10:40,470
+So if we set the type to frontend
+
+215
+00:10:40,470 --> 00:10:42,860
+on the badge when we later use it,
+
+216
+00:10:42,860 --> 00:10:45,550
+the frontend CSS class will be added,
+
+217
+00:10:45,550 --> 00:10:48,023
+and therefore these styles will be rendered.
+
+218
+00:10:49,430 --> 00:10:51,180
+And now we just need to register this
+
+219
+00:10:51,180 --> 00:10:53,660
+as a global component again.
+
+220
+00:10:53,660 --> 00:10:56,873
+So here in main.js, I'll import BaseBadge
+
+221
+00:10:58,820 --> 00:11:03,820
+from ./components/ui/BaseBadge.vue,
+
+222
+00:11:09,153 --> 00:11:13,227
+and then add component base-badge, BaseBadge, like this.
+
+223
+00:11:17,150 --> 00:11:19,200
+And with that added in CoachItem,
+
+224
+00:11:19,200 --> 00:11:21,820
+we can use this BaseBadge component now.
+
+225
+00:11:21,820 --> 00:11:26,170
+So, there, instead of rendering a span like this,
+
+226
+00:11:26,170 --> 00:11:29,530
+I want to loop through my base-badge,
+
+227
+00:11:29,530 --> 00:11:31,760
+so replace span with that.
+
+228
+00:11:31,760 --> 00:11:35,210
+And we no longer pass something between the tags,
+
+229
+00:11:35,210 --> 00:11:38,300
+because this component has no slot.
+
+230
+00:11:38,300 --> 00:11:40,660
+Instead, we should set a type here
+
+231
+00:11:40,660 --> 00:11:43,690
+and bind this dynamically to area
+
+232
+00:11:43,690 --> 00:11:46,430
+because the areas I have in my data
+
+233
+00:11:46,430 --> 00:11:49,610
+are frontend, backend, and career,
+
+234
+00:11:49,610 --> 00:11:53,623
+and these are exactly the CSS classes supported here.
+
+235
+00:11:55,030 --> 00:11:57,170
+Therefore, by the way, we could argue
+
+236
+00:11:57,170 --> 00:11:59,350
+whether that really is a base component.
+
+237
+00:11:59,350 --> 00:12:03,730
+It's very specific to the coaches areas, of course.
+
+238
+00:12:03,730 --> 00:12:05,880
+But we do have some base styling as well.
+
+239
+00:12:05,880 --> 00:12:08,270
+That's why I keep it as a base component,
+
+240
+00:12:08,270 --> 00:12:10,100
+But that's just a side note.
+
+241
+00:12:10,100 --> 00:12:11,750
+But, now back to CoachItem,
+
+242
+00:12:11,750 --> 00:12:13,050
+besides setting the type,
+
+243
+00:12:13,050 --> 00:12:14,940
+we should also bind the title.
+
+244
+00:12:14,940 --> 00:12:17,730
+And that's also bound to area.
+
+245
+00:12:17,730 --> 00:12:20,960
+So it's the same value bound to different props here.
+
+246
+00:12:20,960 --> 00:12:23,460
+We could theoretically use one prop,
+
+247
+00:12:23,460 --> 00:12:25,780
+but since these props are used differently
+
+248
+00:12:25,780 --> 00:12:27,310
+inside of the component,
+
+249
+00:12:27,310 --> 00:12:30,770
+I want to make it clear where we use these props
+
+250
+00:12:30,770 --> 00:12:32,793
+by picking different prop names.
+
+251
+00:12:34,750 --> 00:12:36,510
+So with that, if we now save this,
+
+252
+00:12:36,510 --> 00:12:38,090
+we got these nice badges
+
+253
+00:12:38,090 --> 00:12:40,020
+and therefore this already looks
+
+254
+00:12:40,020 --> 00:12:43,340
+much, much nicer, I would say.
+
+255
+00:12:43,340 --> 00:12:46,070
+Why don't we make sure that as a next step,
+
+256
+00:12:46,070 --> 00:12:48,400
+we can also go to the Details page
+
+257
+00:12:48,400 --> 00:12:52,023
+and view the concrete details for a selected coach.
+

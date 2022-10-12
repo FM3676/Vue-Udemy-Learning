@@ -1,0 +1,404 @@
+1
+00:00:01,498 --> 00:00:03,870
+I mentioned that modules
+
+2
+00:00:03,870 --> 00:00:06,640
+are merged into your main store
+
+3
+00:00:06,640 --> 00:00:10,083
+on the same level as all the other things in the store.
+
+4
+00:00:10,950 --> 00:00:12,570
+You can change this behavior
+
+5
+00:00:12,570 --> 00:00:13,980
+and there is one place where
+
+6
+00:00:13,980 --> 00:00:15,993
+it actually already did change.
+
+7
+00:00:16,890 --> 00:00:18,457
+Let's say inside of a mutation,
+
+8
+00:00:18,457 --> 00:00:22,890
+inside of the increased mutation let's say ,
+
+9
+00:00:22,890 --> 00:00:25,830
+we console.log, our state.
+
+10
+00:00:25,830 --> 00:00:27,777
+So that's inside of the counter module now. .
+
+11
+00:00:27,777 --> 00:00:29,863
+Inside of the increased mutation.
+
+12
+00:00:31,270 --> 00:00:33,430
+Well, let's have a look what happens
+
+13
+00:00:33,430 --> 00:00:34,993
+if we click add 10.
+
+14
+00:00:36,200 --> 00:00:39,560
+This is the log here for our state.
+
+15
+00:00:39,560 --> 00:00:42,260
+And if we have a look at this,
+
+16
+00:00:42,260 --> 00:00:44,320
+we see something interesting.
+
+17
+00:00:44,320 --> 00:00:45,273
+Do you notice it?
+
+18
+00:00:46,410 --> 00:00:48,250
+We see the counter in there.
+
+19
+00:00:48,250 --> 00:00:51,160
+But there's one thing we don't see in here.
+
+20
+00:00:51,160 --> 00:00:53,420
+Our authentication state,
+
+21
+00:00:53,420 --> 00:00:57,970
+we don't see is locked in there,
+
+22
+00:00:57,970 --> 00:00:59,053
+this state.
+
+23
+00:00:59,910 --> 00:01:03,490
+Now I just said it would all be merged into one store.
+
+24
+00:01:03,490 --> 00:01:04,800
+So why don't we see,
+
+25
+00:01:04,800 --> 00:01:07,383
+is locked in here, in the state,
+
+26
+00:01:08,720 --> 00:01:10,913
+of our counter module then.
+
+27
+00:01:11,970 --> 00:01:14,740
+Because the state inside of a module,
+
+28
+00:01:14,740 --> 00:01:17,750
+is actually treated as a local state,
+
+29
+00:01:17,750 --> 00:01:19,800
+inside of the module.
+
+30
+00:01:19,800 --> 00:01:22,900
+Mutations actions and getters are global,
+
+31
+00:01:22,900 --> 00:01:26,260
+you can access them as before on the main store.
+
+32
+00:01:26,260 --> 00:01:29,560
+But the state is local to this module.
+
+33
+00:01:29,560 --> 00:01:32,480
+So anything you do on this state inside
+
+34
+00:01:32,480 --> 00:01:34,830
+of this module refers just
+
+35
+00:01:34,830 --> 00:01:36,453
+to this state module.
+
+36
+00:01:37,440 --> 00:01:39,500
+So for example, in a getter,
+
+37
+00:01:39,500 --> 00:01:42,380
+I would not be able to get the off status.
+
+38
+00:01:42,380 --> 00:01:44,950
+If I add new getter,
+
+39
+00:01:44,950 --> 00:01:46,510
+in the counter module,
+
+40
+00:01:46,510 --> 00:01:48,520
+getters object, TestAuth
+
+41
+00:01:52,800 --> 00:01:57,050
+and I try to return state is locked in,
+
+42
+00:01:57,050 --> 00:01:58,550
+this will not work.
+
+43
+00:01:58,550 --> 00:02:01,070
+If I now try to access TestAuth,
+
+44
+00:02:01,070 --> 00:02:03,263
+let's say in the UserAuth component,
+
+45
+00:02:04,380 --> 00:02:07,353
+we had a number of computed property is TestAuth,
+
+46
+00:02:08,210 --> 00:02:09,970
+where I returned is newly
+
+47
+00:02:09,970 --> 00:02:11,573
+added getter, TestAuth,
+
+48
+00:02:13,170 --> 00:02:16,250
+which I just added to the counter module.
+
+49
+00:02:16,250 --> 00:02:18,200
+If I access this here,
+
+50
+00:02:18,200 --> 00:02:20,790
+and I then simply output the value,
+
+51
+00:02:20,790 --> 00:02:23,623
+let's say in a paragraph, like this.
+
+52
+00:02:24,930 --> 00:02:27,620
+So if I output this newly added computed property,
+
+53
+00:02:27,620 --> 00:02:30,400
+which uses the new getter here,
+
+54
+00:02:30,400 --> 00:02:32,130
+this will not work.
+
+55
+00:02:32,130 --> 00:02:32,963
+First of all, though,
+
+56
+00:02:32,963 --> 00:02:34,373
+I have to fix an error,
+
+57
+00:02:35,410 --> 00:02:38,650
+in main.js in the new TestAuth getter.
+
+58
+00:02:38,650 --> 00:02:40,320
+Of course, I should accept state
+
+59
+00:02:40,320 --> 00:02:42,443
+as a argument in order to use it.
+
+60
+00:02:43,810 --> 00:02:45,090
+But even with that,
+
+61
+00:02:45,090 --> 00:02:48,045
+you notice there's nothing below the button.
+
+62
+00:02:48,045 --> 00:02:50,750
+And if we change it, there's still nothing
+
+63
+00:02:50,750 --> 00:02:53,370
+because it doesn't find is locked
+
+64
+00:02:53,370 --> 00:02:55,156
+in the getter here.
+
+65
+00:02:55,156 --> 00:02:56,680
+In the state of this getter.
+
+66
+00:02:56,680 --> 00:02:59,760
+Because this getter is in the counter module.
+
+67
+00:02:59,760 --> 00:03:02,470
+And as As I mentioned, the state is local.
+
+68
+00:03:02,470 --> 00:03:04,050
+So here we only have access
+
+69
+00:03:04,050 --> 00:03:06,933
+to the state that belongs to this module.
+
+70
+00:03:07,860 --> 00:03:10,010
+So that's important to keep in mind.
+
+71
+00:03:10,010 --> 00:03:11,910
+And it's similar for actions
+
+72
+00:03:11,910 --> 00:03:14,750
+and mutations there in context,
+
+73
+00:03:14,750 --> 00:03:17,132
+for example, where you learned earlier,
+
+74
+00:03:17,132 --> 00:03:19,950
+that you all have access to the state,
+
+75
+00:03:19,950 --> 00:03:21,230
+in case you needed it,
+
+76
+00:03:21,230 --> 00:03:22,680
+you also only have access
+
+77
+00:03:22,680 --> 00:03:25,083
+to the state of this module.
+
+78
+00:03:26,810 --> 00:03:28,850
+Now in case you need to work around that,
+
+79
+00:03:28,850 --> 00:03:30,750
+there are ways though.
+
+80
+00:03:30,750 --> 00:03:34,310
+For example, in getters inside of a module,
+
+81
+00:03:34,310 --> 00:03:36,140
+you now don't just get state
+
+82
+00:03:36,140 --> 00:03:38,090
+and getters as before,
+
+83
+00:03:38,090 --> 00:03:39,530
+but you can now also get access
+
+84
+00:03:39,530 --> 00:03:41,793
+to a root state and root getters.
+
+85
+00:03:43,090 --> 00:03:44,370
+And you might remember,
+
+86
+00:03:44,370 --> 00:03:47,000
+that we saw similar properties
+
+87
+00:03:47,000 --> 00:03:50,283
+on this context object earlier in the module.
+
+88
+00:03:51,750 --> 00:03:53,690
+This is your way of getting access
+
+89
+00:03:53,690 --> 00:03:55,540
+to the main state,
+
+90
+00:03:55,540 --> 00:03:58,950
+the main getters of the entire store instead
+
+91
+00:03:58,950 --> 00:04:02,493
+of just the state of this specific module.
+
+92
+00:04:03,670 --> 00:04:05,720
+So this is your fallback way
+
+93
+00:04:05,720 --> 00:04:08,620
+of getting access to state that's not part
+
+94
+00:04:08,620 --> 00:04:11,073
+of this module, in case you needed.
+
+95
+00:04:12,200 --> 00:04:13,870
+Typically, though, of course,
+
+96
+00:04:13,870 --> 00:04:15,200
+inside of a module,
+
+97
+00:04:15,200 --> 00:04:17,820
+you tend to just work with the state
+
+98
+00:04:17,820 --> 00:04:19,390
+that belongs to the module.
+
+99
+00:04:19,390 --> 00:04:21,800
+So you probably don't need this too often,
+
+100
+00:04:21,800 --> 00:04:24,280
+but there can definitely be situations
+
+101
+00:04:24,280 --> 00:04:25,563
+where you do need it.
+

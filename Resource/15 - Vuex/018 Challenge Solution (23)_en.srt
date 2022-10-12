@@ -1,0 +1,904 @@
+1
+00:00:02,130 --> 00:00:03,710
+So let's continue now.
+
+2
+00:00:03,710 --> 00:00:04,970
+For one, I get an error
+
+3
+00:00:04,970 --> 00:00:08,060
+that store.js wasn't found in main.js.
+
+4
+00:00:08,060 --> 00:00:11,460
+Yes, because I'm importing from store/index.js.
+
+5
+00:00:11,460 --> 00:00:12,890
+That would be correct.
+
+6
+00:00:12,890 --> 00:00:15,683
+So make sure you have this import set up correctly.
+
+7
+00:00:17,010 --> 00:00:18,740
+But besides that, we now also need
+
+8
+00:00:18,740 --> 00:00:21,620
+to wire up our store with the different components
+
+9
+00:00:21,620 --> 00:00:24,830
+and clean up the App.vue component.
+
+10
+00:00:24,830 --> 00:00:28,850
+In there, I don't want to provide anything anymore
+
+11
+00:00:28,850 --> 00:00:32,220
+because I don't want to manage any data in there anymore.
+
+12
+00:00:32,220 --> 00:00:34,550
+We still have isLoggedIn in there
+
+13
+00:00:34,550 --> 00:00:36,820
+but we're going to remove this soon as well,
+
+14
+00:00:36,820 --> 00:00:38,120
+just as these methods.
+
+15
+00:00:38,120 --> 00:00:40,260
+For the moment, let's ignore them though.
+
+16
+00:00:40,260 --> 00:00:42,930
+But let's now start using our modules.
+
+17
+00:00:42,930 --> 00:00:44,086
+Now, one thing I forgot
+
+18
+00:00:44,086 --> 00:00:48,190
+is in cart.js in this cart module,
+
+19
+00:00:48,190 --> 00:00:50,320
+I also want to namespace this.
+
+20
+00:00:50,320 --> 00:00:52,713
+So set namespaced to true in here.
+
+21
+00:00:53,690 --> 00:00:56,303
+And now let's use it in different parts of this app.
+
+22
+00:00:57,280 --> 00:00:59,740
+For that, we can start in ProductsList.
+
+23
+00:00:59,740 --> 00:01:02,720
+Here, I previously injected products.
+
+24
+00:01:02,720 --> 00:01:04,750
+We're no longer going to do that.
+
+25
+00:01:04,750 --> 00:01:07,740
+Instead, I now want to get access to Vuex.
+
+26
+00:01:07,740 --> 00:01:10,050
+So we can add a computed property.
+
+27
+00:01:10,050 --> 00:01:12,530
+And either use the map gathers helper
+
+28
+00:01:12,530 --> 00:01:14,930
+or add our own computed property,
+
+29
+00:01:14,930 --> 00:01:16,530
+which is what I will do.
+
+30
+00:01:16,530 --> 00:01:18,280
+Maybe name it products
+
+31
+00:01:19,250 --> 00:01:22,700
+and return this.$store
+
+32
+00:01:22,700 --> 00:01:24,290
+and now let's see.
+
+33
+00:01:24,290 --> 00:01:27,520
+In the products module, I have the products getter
+
+34
+00:01:27,520 --> 00:01:29,180
+but keep in mind that this module
+
+35
+00:01:29,180 --> 00:01:32,883
+is namespaced and the namespace is prods.
+
+36
+00:01:33,830 --> 00:01:36,970
+So what we should access here in ProductsList.vue
+
+37
+00:01:36,970 --> 00:01:38,790
+in the pages folder
+
+38
+00:01:38,790 --> 00:01:43,790
+is .getters and then it's prods/products.
+
+39
+00:01:46,550 --> 00:01:49,450
+And this gives us a products computed property now,
+
+40
+00:01:49,450 --> 00:01:51,783
+which we can use to look for all the products.
+
+41
+00:01:52,840 --> 00:01:54,400
+Now, we currently can't preview this
+
+42
+00:01:54,400 --> 00:01:56,270
+because we've still got errors on the page
+
+43
+00:01:56,270 --> 00:01:57,493
+but this should work.
+
+44
+00:01:58,730 --> 00:02:00,590
+Now, let's fix the other errors.
+
+45
+00:02:00,590 --> 00:02:03,257
+Let's make sure we also get the cart data
+
+46
+00:02:03,257 --> 00:02:05,192
+and the header correctly.
+
+47
+00:02:05,192 --> 00:02:07,530
+It's no longer cart.qty
+
+48
+00:02:07,530 --> 00:02:11,180
+but let's say cartQuantity as this like this
+
+49
+00:02:11,180 --> 00:02:15,210
+as a computed property in the future with this name.
+
+50
+00:02:15,210 --> 00:02:17,620
+And we no longer inject anything here
+
+51
+00:02:17,620 --> 00:02:19,890
+but instead, we add computed,
+
+52
+00:02:19,890 --> 00:02:23,530
+add this cartQuantity computed property,
+
+53
+00:02:23,530 --> 00:02:25,933
+which I just referred to in the template.
+
+54
+00:02:27,240 --> 00:02:30,210
+And in there, return this.$store
+
+55
+00:02:32,340 --> 00:02:35,570
+and now here, we also namespaced cart.
+
+56
+00:02:35,570 --> 00:02:38,830
+So we access this store.getters
+
+57
+00:02:38,830 --> 00:02:42,730
+and then use the cart namespace, which is cart
+
+58
+00:02:42,730 --> 00:02:46,070
+in the index.js file in the store folder.
+
+59
+00:02:46,070 --> 00:02:48,930
+So access cart/
+
+60
+00:02:48,930 --> 00:02:51,140
+and then the getter I'm interested in
+
+61
+00:02:51,140 --> 00:02:54,253
+in my case is the quantity here.
+
+62
+00:02:55,990 --> 00:02:58,743
+So that's /quantity.
+
+63
+00:03:01,080 --> 00:03:01,913
+Let's save that.
+
+64
+00:03:03,430 --> 00:03:04,890
+And if you now reload,
+
+65
+00:03:04,890 --> 00:03:06,590
+you should see products again
+
+66
+00:03:06,590 --> 00:03:08,020
+and at least see cart.
+
+67
+00:03:08,020 --> 00:03:11,270
+You can't go to cart or you'll not see anything there
+
+68
+00:03:11,270 --> 00:03:12,780
+and the app breaks
+
+69
+00:03:12,780 --> 00:03:16,203
+but at least the first pieces are working now.
+
+70
+00:03:17,590 --> 00:03:21,000
+So let's now work on the other parts.
+
+71
+00:03:21,000 --> 00:03:24,870
+In UserCart, I'm interested in the cart.items.
+
+72
+00:03:24,870 --> 00:03:28,160
+So here I'll change this and expect cartItems,
+
+73
+00:03:28,160 --> 00:03:31,170
+which I soon will add as a computed property.
+
+74
+00:03:31,170 --> 00:03:33,363
+And I also use the cartTotal here.
+
+75
+00:03:34,550 --> 00:03:36,750
+We no longer inject the cart here.
+
+76
+00:03:36,750 --> 00:03:39,700
+Instead, the computed property for cartTotal
+
+77
+00:03:40,920 --> 00:03:44,080
+will now refer to this.$store.getters
+
+78
+00:03:44,920 --> 00:03:47,470
+and then cart/,
+
+79
+00:03:47,470 --> 00:03:48,620
+what was it?
+
+80
+00:03:48,620 --> 00:03:49,473
+It was totalSum,
+
+81
+00:03:51,400 --> 00:03:55,260
+so refer to totalSum here.
+
+82
+00:03:55,260 --> 00:03:59,367
+And add another computed property called cartItems,
+
+83
+00:04:00,520 --> 00:04:03,773
+or whatever you are using here in the v-for loop.
+
+84
+00:04:05,448 --> 00:04:10,448
+And here, return this.$store.getters cart/
+
+85
+00:04:12,790 --> 00:04:15,373
+and then it was products I think.
+
+86
+00:04:16,420 --> 00:04:18,403
+Yes, products was the getter name.
+
+87
+00:04:20,970 --> 00:04:22,540
+With that, if we go to cart,
+
+88
+00:04:22,540 --> 00:04:24,790
+this also works again.
+
+89
+00:04:24,790 --> 00:04:26,840
+Now let's make sure we can also add things
+
+90
+00:04:26,840 --> 00:04:28,310
+to the cart and remove them.
+
+91
+00:04:28,310 --> 00:04:30,733
+So for that, we need to dispatch actions.
+
+92
+00:04:31,860 --> 00:04:33,600
+So for the actions,
+
+93
+00:04:33,600 --> 00:04:38,260
+in the components folder, products, ProductItem,
+
+94
+00:04:38,260 --> 00:04:40,713
+I got the button to add something to the cart.
+
+95
+00:04:41,660 --> 00:04:45,110
+Previously, I injected addProductToCart for that.
+
+96
+00:04:45,110 --> 00:04:47,060
+Now we can delete this
+
+97
+00:04:47,060 --> 00:04:52,003
+and instead, call this.$store.dispatch
+
+98
+00:04:54,650 --> 00:04:58,160
+and then dispatch a function,
+
+99
+00:04:58,160 --> 00:05:02,080
+which is named addProductToCart.
+
+100
+00:05:04,050 --> 00:05:05,610
+No, sorry, that's the mutation,
+
+101
+00:05:05,610 --> 00:05:08,283
+which is named addToCart, that's the action.
+
+102
+00:05:09,210 --> 00:05:11,560
+So dispatch this
+
+103
+00:05:11,560 --> 00:05:15,023
+but it's namespaced, so it's cart/addToCart.
+
+104
+00:05:18,130 --> 00:05:23,130
+And now, of course, this object here is the payload,
+
+105
+00:05:25,970 --> 00:05:28,130
+which I want to transmit.
+
+106
+00:05:28,130 --> 00:05:30,970
+And actually here, we have to be careful.
+
+107
+00:05:30,970 --> 00:05:34,220
+In the module, the Vuex module,
+
+108
+00:05:34,220 --> 00:05:37,340
+we forward that payload to the mutation
+
+109
+00:05:37,340 --> 00:05:40,130
+and in the addProductToCart mutation,
+
+110
+00:05:40,130 --> 00:05:44,380
+I expect to get a product key on my payload,
+
+111
+00:05:44,380 --> 00:05:47,363
+which then has all the fields I tried to extract.
+
+112
+00:05:48,670 --> 00:05:51,280
+Now, if I just pass the entire object like this
+
+113
+00:05:51,280 --> 00:05:54,159
+as a payload, there is no product in there.
+
+114
+00:05:54,159 --> 00:05:57,470
+So we either nest this data here
+
+115
+00:05:57,470 --> 00:06:00,210
+into another object under the key product
+
+116
+00:06:00,210 --> 00:06:02,300
+in this payload object
+
+117
+00:06:02,300 --> 00:06:05,040
+or we pass the payload like this
+
+118
+00:06:05,040 --> 00:06:07,810
+and adjust our logic in the mutation
+
+119
+00:06:07,810 --> 00:06:10,610
+to simply set payload as we get it equal
+
+120
+00:06:10,610 --> 00:06:13,900
+to productData from which we then extract id and so on.
+
+121
+00:06:13,900 --> 00:06:15,210
+And that's what I'm going to do
+
+122
+00:06:15,210 --> 00:06:17,723
+because it means less code changes.
+
+123
+00:06:20,220 --> 00:06:25,030
+Now, in a CartItem, components, cart, CartItem,
+
+124
+00:06:25,030 --> 00:06:27,640
+we got the logic for removing an item.
+
+125
+00:06:27,640 --> 00:06:29,910
+Previously, I injected this.
+
+126
+00:06:29,910 --> 00:06:31,410
+No longer needed.
+
+127
+00:06:31,410 --> 00:06:32,974
+So let's get rid of it.
+
+128
+00:06:32,974 --> 00:06:37,974
+And instead here, I want to simply call this.$store.dispatch
+
+129
+00:06:42,420 --> 00:06:47,420
+cart/ and then the action name is removeFromCart
+
+130
+00:06:49,320 --> 00:06:50,460
+and on the payload,
+
+131
+00:06:50,460 --> 00:06:53,180
+which we want in the mutation,
+
+132
+00:06:53,180 --> 00:06:56,630
+I expect to get a productId field in the object
+
+133
+00:06:56,630 --> 00:06:58,190
+which I get.
+
+134
+00:06:58,190 --> 00:07:01,150
+So in CartItem, I dispatch cart/removeFromCart
+
+135
+00:07:02,300 --> 00:07:04,323
+and pass an object as a payload,
+
+136
+00:07:04,323 --> 00:07:06,330
+which has a productId field,
+
+137
+00:07:06,330 --> 00:07:08,250
+which points at this prodId,
+
+138
+00:07:08,250 --> 00:07:10,787
+which is this prop which holds the productId.
+
+139
+00:07:13,690 --> 00:07:16,170
+With that, theoretically, hopefully,
+
+140
+00:07:16,170 --> 00:07:18,710
+we should be able to add and remove items.
+
+141
+00:07:18,710 --> 00:07:20,920
+And you'll see, the badge here updates
+
+142
+00:07:20,920 --> 00:07:23,150
+as I add items to the cart.
+
+143
+00:07:23,150 --> 00:07:24,440
+If I go to the cart,
+
+144
+00:07:24,440 --> 00:07:25,780
+the total looks good.
+
+145
+00:07:25,780 --> 00:07:27,700
+We see the cart items
+
+146
+00:07:27,700 --> 00:07:28,870
+and if I remove them,
+
+147
+00:07:28,870 --> 00:07:31,310
+the total and dispatch updates.
+
+148
+00:07:31,310 --> 00:07:32,753
+So that seems to work.
+
+149
+00:07:34,100 --> 00:07:36,140
+Now, I get a warning regarding isLoggedIn
+
+150
+00:07:36,140 --> 00:07:37,340
+but we'll fix this soon.
+
+151
+00:07:38,820 --> 00:07:42,380
+The main thing here is that we now migrated the products
+
+152
+00:07:42,380 --> 00:07:44,683
+and the cart functionality.
+
+153
+00:07:45,830 --> 00:07:48,570
+Now, to score some bonus points here,
+
+154
+00:07:48,570 --> 00:07:52,870
+we could actually also change our addToCart logic.
+
+155
+00:07:52,870 --> 00:07:56,653
+In ProductItem, I'm current passing the entire product data.
+
+156
+00:07:57,790 --> 00:08:00,370
+We could argue that all the product data
+
+157
+00:08:00,370 --> 00:08:04,110
+is already in our store right here in products.js.
+
+158
+00:08:04,110 --> 00:08:06,210
+Here we've got all the products.
+
+159
+00:08:06,210 --> 00:08:09,250
+So the only thing which we really have to pass here
+
+160
+00:08:09,250 --> 00:08:13,320
+to addToCart should be the ID of the product.
+
+161
+00:08:13,320 --> 00:08:14,430
+So let's do that.
+
+162
+00:08:14,430 --> 00:08:17,733
+Let's get rid of the image and title and price here.
+
+163
+00:08:19,010 --> 00:08:19,940
+Let's delete it
+
+164
+00:08:19,940 --> 00:08:23,303
+and just forward the ID on the id field.
+
+165
+00:08:24,560 --> 00:08:29,560
+And now in the cart, in addProductToCart,
+
+166
+00:08:29,730 --> 00:08:30,810
+I get my payload,
+
+167
+00:08:30,810 --> 00:08:33,913
+which no longer holds all the product data.
+
+168
+00:08:35,010 --> 00:08:38,722
+Instead, now here I just get my prodId
+
+169
+00:08:40,030 --> 00:08:42,100
+by accessing the id field
+
+170
+00:08:42,100 --> 00:08:42,933
+on the payload.
+
+171
+00:08:42,933 --> 00:08:44,203
+That's all I get here.
+
+172
+00:08:45,830 --> 00:08:47,580
+And this is, of course, not enough.
+
+173
+00:08:48,640 --> 00:08:51,400
+Now, the problem is because everything is namespaced
+
+174
+00:08:51,400 --> 00:08:55,170
+and the state inside of a module is local anyways,
+
+175
+00:08:55,170 --> 00:08:58,380
+the state we're getting here is just this state.
+
+176
+00:08:58,380 --> 00:09:01,610
+It has no information about the products.
+
+177
+00:09:01,610 --> 00:09:04,310
+Therefore, we should actually get this product ID
+
+178
+00:09:04,310 --> 00:09:06,090
+in the action,
+
+179
+00:09:06,090 --> 00:09:08,160
+in the addToCart action
+
+180
+00:09:08,160 --> 00:09:10,390
+because in here in this context,
+
+181
+00:09:10,390 --> 00:09:12,800
+we actually also do get access
+
+182
+00:09:12,800 --> 00:09:15,470
+to other parts of the Vuex store,
+
+183
+00:09:15,470 --> 00:09:17,453
+not just to this module.
+
+184
+00:09:18,610 --> 00:09:23,400
+Here, on context, we will have our rootState object,
+
+185
+00:09:23,400 --> 00:09:25,750
+which has access to the root state
+
+186
+00:09:25,750 --> 00:09:27,170
+but even more important than that,
+
+187
+00:09:27,170 --> 00:09:29,583
+we've got access to rootGetters.
+
+188
+00:09:30,800 --> 00:09:33,210
+And on the rootGetters, we can get access
+
+189
+00:09:33,210 --> 00:09:35,980
+to other namespaced getters as well.
+
+190
+00:09:35,980 --> 00:09:39,980
+Namely here to my products getter
+
+191
+00:09:39,980 --> 00:09:41,683
+in the products module.
+
+192
+00:09:42,630 --> 00:09:43,810
+How?
+
+193
+00:09:43,810 --> 00:09:47,040
+Simply by accessing square brackets,
+
+194
+00:09:47,040 --> 00:09:50,890
+then the namespace name, which in this case is prods.
+
+195
+00:09:50,890 --> 00:09:51,950
+For the products
+
+196
+00:09:53,530 --> 00:09:57,760
+and then the getter name, which is products here
+
+197
+00:09:57,760 --> 00:09:59,113
+in the products module.
+
+198
+00:10:00,370 --> 00:10:05,180
+With that, we actually get our products
+
+199
+00:10:05,180 --> 00:10:08,610
+and now we can filter out the product with this ID.
+
+200
+00:10:08,610 --> 00:10:11,720
+So now we can get our product
+
+201
+00:10:11,720 --> 00:10:15,210
+by searching products with the find method
+
+202
+00:10:15,210 --> 00:10:17,330
+for the product where the prod.id
+
+203
+00:10:17,330 --> 00:10:19,793
+is equal to the prodId we got here.
+
+204
+00:10:21,160 --> 00:10:22,300
+This is a built-in method
+
+205
+00:10:22,300 --> 00:10:24,330
+for searching all items in an array
+
+206
+00:10:24,330 --> 00:10:26,500
+and when this function returns true,
+
+207
+00:10:26,500 --> 00:10:28,270
+we got the item we wanna have
+
+208
+00:10:28,270 --> 00:10:31,040
+and it then returns this item.
+
+209
+00:10:31,040 --> 00:10:33,570
+And then it's this product,
+
+210
+00:10:33,570 --> 00:10:36,060
+which we can pass as a second argument
+
+211
+00:10:36,060 --> 00:10:39,763
+as a payload to our commit method here.
+
+212
+00:10:41,000 --> 00:10:44,650
+So now we receive the entire product in this mutation
+
+213
+00:10:44,650 --> 00:10:46,620
+and payload therefore again
+
+214
+00:10:46,620 --> 00:10:48,683
+is the entire product data.
+
+215
+00:10:50,810 --> 00:10:52,640
+If we now save this,
+
+216
+00:10:52,640 --> 00:10:56,420
+hopefully adding to cart still works.
+
+217
+00:10:56,420 --> 00:10:58,440
+And this does look good
+
+218
+00:10:58,440 --> 00:11:00,680
+and we still see our data here
+
+219
+00:11:00,680 --> 00:11:03,550
+but now we are getting it differently,
+
+220
+00:11:03,550 --> 00:11:06,630
+a bit leaner, leveraging actions
+
+221
+00:11:06,630 --> 00:11:09,610
+and not passing all the data around as a payload,
+
+222
+00:11:09,610 --> 00:11:13,810
+at least not when we dispatch it inside of our component.
+
+223
+00:11:13,810 --> 00:11:16,090
+It's up to you which approach you prefer
+
+224
+00:11:16,090 --> 00:11:17,740
+but this is a common scenario.
+
+225
+00:11:17,740 --> 00:11:20,240
+Therefore, I also wanted to show this to you here.
+
+226
+00:11:22,410 --> 00:11:25,653
+With that, the only thing that's left is the login state.
+

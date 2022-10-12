@@ -1,0 +1,592 @@
+1
+00:00:02,150 --> 00:00:05,070
+So creating messages means storing data
+
+2
+00:00:05,070 --> 00:00:06,990
+in our Vuex store.
+
+3
+00:00:06,990 --> 00:00:10,090
+Thus far, we only got our coaches module.
+
+4
+00:00:10,090 --> 00:00:13,430
+Now, of course, we also need a module for requests
+
+5
+00:00:13,430 --> 00:00:16,600
+because we also wanna manage requests.
+
+6
+00:00:16,600 --> 00:00:20,110
+So in the store, modules folder, under requests,
+
+7
+00:00:20,110 --> 00:00:24,280
+I'll create an index.JS fault just as I did it in coaches.
+
+8
+00:00:24,280 --> 00:00:26,520
+And I'll also create all the other files,
+
+9
+00:00:26,520 --> 00:00:31,520
+mutations.JS, getters.JS, and actions.JS.
+
+10
+00:00:33,000 --> 00:00:36,500
+Again, it's up to you whether you want this layout or not,
+
+11
+00:00:36,500 --> 00:00:37,920
+but I'll go for that,
+
+12
+00:00:37,920 --> 00:00:40,753
+also to be in line with my coaches setup.
+
+13
+00:00:41,860 --> 00:00:45,350
+Now in index.JS here in the requests folder,
+
+14
+00:00:45,350 --> 00:00:50,320
+we then export an object and we import that object
+
+15
+00:00:50,320 --> 00:00:53,930
+from index.JS in requests into our main store
+
+16
+00:00:53,930 --> 00:00:57,340
+in this index.JS file in the store folder.
+
+17
+00:00:57,340 --> 00:01:00,490
+So here just as we imported the coaches module,
+
+18
+00:01:00,490 --> 00:01:02,590
+we can import the requests module
+
+19
+00:01:02,590 --> 00:01:06,853
+from modules, requests, index.JS,
+
+20
+00:01:08,650 --> 00:01:12,960
+and then simply add the requests key here
+
+21
+00:01:12,960 --> 00:01:15,450
+in the modules object in our store
+
+22
+00:01:15,450 --> 00:01:17,663
+and point at requests module.
+
+23
+00:01:19,170 --> 00:01:22,210
+Now, instead of this exported object,
+
+24
+00:01:22,210 --> 00:01:24,640
+I will now also set namespace to true,
+
+25
+00:01:24,640 --> 00:01:27,830
+so that we use namespacing for this module as well
+
+26
+00:01:27,830 --> 00:01:31,220
+and we don't just merge it into the global state,
+
+27
+00:01:31,220 --> 00:01:33,230
+into the global store, which we could do,
+
+28
+00:01:33,230 --> 00:01:34,940
+but which I don't wanna do here.
+
+29
+00:01:34,940 --> 00:01:39,030
+And then we need to bring in our mutations hands on.
+
+30
+00:01:39,030 --> 00:01:41,510
+But first of all, we need a state.
+
+31
+00:01:41,510 --> 00:01:44,910
+We need a state in this module, and that state should manage
+
+32
+00:01:44,910 --> 00:01:49,290
+one simple thing, our requests.
+
+33
+00:01:49,290 --> 00:01:53,570
+So all the requests we know, and then every request
+
+34
+00:01:53,570 --> 00:01:57,480
+will have a certain coach ID attached to it,
+
+35
+00:01:57,480 --> 00:02:01,630
+and then later, if that coach ID matches our ID,
+
+36
+00:02:01,630 --> 00:02:03,600
+that's a request we'll see,
+
+37
+00:02:03,600 --> 00:02:06,363
+all the other requests will be invisible to us.
+
+38
+00:02:08,310 --> 00:02:12,180
+So now that's our state and array of requests.
+
+39
+00:02:12,180 --> 00:02:15,380
+Now, of course, since we already are fetching data
+
+40
+00:02:15,380 --> 00:02:18,400
+for our request in the contactCoach component,
+
+41
+00:02:18,400 --> 00:02:21,340
+we now need a mutation and an action
+
+42
+00:02:21,340 --> 00:02:23,450
+for creating a new request.
+
+43
+00:02:23,450 --> 00:02:26,560
+So let's start with the mutation here.
+
+44
+00:02:26,560 --> 00:02:30,320
+Here in mutations.JS, we also export an object.
+
+45
+00:02:30,320 --> 00:02:34,010
+And in here we can add addRequest mutation,
+
+46
+00:02:34,010 --> 00:02:35,710
+sounds like a fitting name,
+
+47
+00:02:35,710 --> 00:02:39,593
+where we get our state, like in all mutations and a payload,
+
+48
+00:02:40,440 --> 00:02:43,280
+which in the end will hold the request data.
+
+49
+00:02:43,280 --> 00:02:46,460
+And then we can simply reach out to state.requests
+
+50
+00:02:46,460 --> 00:02:49,870
+and push the payload onto this array
+
+51
+00:02:49,870 --> 00:02:53,340
+assuming that the payload already is the finished request
+
+52
+00:02:53,340 --> 00:02:54,543
+as we wanna add it.
+
+53
+00:02:55,920 --> 00:02:58,940
+And that's done already here for the mutation.
+
+54
+00:02:58,940 --> 00:03:00,770
+Now, let's add an action.
+
+55
+00:03:00,770 --> 00:03:05,770
+So here we export an object as well in the actions file,
+
+56
+00:03:05,870 --> 00:03:08,650
+and we could name this action, contactCoach.
+
+57
+00:03:09,900 --> 00:03:14,420
+Now we will get our context here and also probably a payload
+
+58
+00:03:14,420 --> 00:03:17,900
+because we need that data that was fetched from the form
+
+59
+00:03:17,900 --> 00:03:19,743
+in the contactCoach component.
+
+60
+00:03:20,960 --> 00:03:25,960
+Then we can create a new request here,
+
+61
+00:03:26,440 --> 00:03:31,440
+which can be an object where we can add a user email field
+
+62
+00:03:31,660 --> 00:03:34,610
+where we point at payload email, for example,
+
+63
+00:03:34,610 --> 00:03:37,330
+assuming that the payload we get is an object
+
+64
+00:03:37,330 --> 00:03:40,810
+with an email field and add a message
+
+65
+00:03:40,810 --> 00:03:43,233
+where we point at payload.message.
+
+66
+00:03:44,230 --> 00:03:46,790
+But there's one more thing we need to add here.
+
+67
+00:03:46,790 --> 00:03:50,090
+And that's the coach ID because every request
+
+68
+00:03:50,090 --> 00:03:53,470
+needs to be attached to a coach ID.
+
+69
+00:03:53,470 --> 00:03:55,630
+So for that, I wanna get to the idea of the coach,
+
+70
+00:03:55,630 --> 00:03:58,210
+to whom this request was sent.
+
+71
+00:03:58,210 --> 00:04:01,430
+And therefore here, I assume that this is all the part
+
+72
+00:04:01,430 --> 00:04:05,160
+of the incoming payload, the coach ID.
+
+73
+00:04:05,160 --> 00:04:08,130
+And then we just wanna add an ID to the request itself
+
+74
+00:04:08,130 --> 00:04:11,300
+so that every request object has a new ID.
+
+75
+00:04:11,300 --> 00:04:14,200
+And we can simply create a dummy ID for the moment
+
+76
+00:04:14,200 --> 00:04:18,079
+by taking the current date and getting a string snapshot
+
+77
+00:04:18,079 --> 00:04:19,183
+of it, so to say.
+
+78
+00:04:20,709 --> 00:04:23,010
+And with that, we already got all we need.
+
+79
+00:04:23,010 --> 00:04:28,010
+Now we can call it context.commit, commit the add, whoops,
+
+80
+00:04:28,070 --> 00:04:31,220
+the addRequest mutation.
+
+81
+00:04:31,220 --> 00:04:35,090
+That's the name I chose here in the mutations.JS file.
+
+82
+00:04:35,090 --> 00:04:37,800
+And then also pass on our payload,
+
+83
+00:04:37,800 --> 00:04:40,860
+which for me here will just be this new request
+
+84
+00:04:40,860 --> 00:04:41,963
+we're building here.
+
+85
+00:04:43,810 --> 00:04:48,810
+And that should now add a new request to our requests state
+
+86
+00:04:49,500 --> 00:04:53,513
+if this action is dispatched with the appropriate payload.
+
+87
+00:04:54,910 --> 00:04:57,610
+So now it's up to us to dispatch this.
+
+88
+00:04:57,610 --> 00:05:02,610
+So back in the contactCoach component here in submit form,
+
+89
+00:05:03,440 --> 00:05:08,440
+we now wanna reach out to this store and call dispatch.
+
+90
+00:05:10,590 --> 00:05:13,673
+And then since our module is namedspaced,
+
+91
+00:05:14,580 --> 00:05:18,390
+it's the requests namespace we have to access,
+
+92
+00:05:18,390 --> 00:05:21,600
+and therefore it's the requests/contactCoach here.
+
+93
+00:05:22,903 --> 00:05:24,830
+ContactCoach is our actual name,
+
+94
+00:05:24,830 --> 00:05:26,893
+requests is our namespace name.
+
+95
+00:05:28,690 --> 00:05:30,730
+Now, of course, we need to add some data here
+
+96
+00:05:30,730 --> 00:05:33,200
+and that data should be this object,
+
+97
+00:05:33,200 --> 00:05:35,440
+which we're extracting here in our action.
+
+98
+00:05:35,440 --> 00:05:39,150
+So we need a coach ID, an email, and a message field
+
+99
+00:05:39,150 --> 00:05:41,290
+in our payload object.
+
+100
+00:05:41,290 --> 00:05:44,970
+So therefore here, I wanna create a new object,
+
+101
+00:05:44,970 --> 00:05:48,280
+which has an email field pointing at this email,
+
+102
+00:05:48,280 --> 00:05:51,670
+a message field pointing at this message,
+
+103
+00:05:51,670 --> 00:05:53,920
+and then one other important thing,
+
+104
+00:05:53,920 --> 00:05:58,590
+the ID of the coach to whom this message is sent.
+
+105
+00:05:58,590 --> 00:06:02,480
+And we can get does ID here because you have to keep in mind
+
+106
+00:06:02,480 --> 00:06:04,500
+that when we contact a coach,
+
+107
+00:06:04,500 --> 00:06:08,283
+this URL contains the coach ID.
+
+108
+00:06:09,260 --> 00:06:12,503
+So therefore, since this is a child route,
+
+109
+00:06:13,986 --> 00:06:16,900
+the contactCoach component is a child route of coach detail,
+
+110
+00:06:16,900 --> 00:06:18,770
+which has this ID parameter,
+
+111
+00:06:18,770 --> 00:06:21,640
+we can extract that here as well.
+
+112
+00:06:21,640 --> 00:06:23,920
+We could do it with Props to Route,
+
+113
+00:06:23,920 --> 00:06:26,460
+but to also see that other approach you learned,
+
+114
+00:06:26,460 --> 00:06:30,160
+here in contactCoach, I'll get the ID differently.
+
+115
+00:06:30,160 --> 00:06:34,770
+I'll set my coach ID field here to this dollars and route
+
+116
+00:06:34,770 --> 00:06:39,370
+and then ID because that parameter holds the ID of the coach
+
+117
+00:06:39,370 --> 00:06:40,973
+to whom this message is sent.
+
+118
+00:06:43,430 --> 00:06:47,130
+And that should then dispatch this successfully.
+
+119
+00:06:47,130 --> 00:06:48,420
+Now, last but not least,
+
+120
+00:06:48,420 --> 00:06:51,430
+I then also wanna navigate away from this page.
+
+121
+00:06:51,430 --> 00:06:55,410
+So we can do this with this router and then replace maybe
+
+122
+00:06:55,410 --> 00:06:58,320
+instead of push so that we can't go back to this page
+
+123
+00:06:58,320 --> 00:07:01,400
+thereafter and go to /coaches.
+
+124
+00:07:01,400 --> 00:07:04,563
+But it's up to you where and how you wanna navigate.
+
+125
+00:07:05,890 --> 00:07:09,240
+With that saved, we should now actually be able
+
+126
+00:07:09,240 --> 00:07:11,370
+to send requests.
+
+127
+00:07:11,370 --> 00:07:16,210
+So if we contact a coach here and we fill out this form,
+
+128
+00:07:16,210 --> 00:07:19,410
+first of all, if it's invalid, we get an error message.
+
+129
+00:07:19,410 --> 00:07:21,493
+But if I fill it out there after,
+
+130
+00:07:23,550 --> 00:07:25,170
+we at least leave the page,
+
+131
+00:07:25,170 --> 00:07:28,473
+but I get an unknown action requests/contactCoach.
+
+132
+00:07:30,170 --> 00:07:33,820
+Yes, because in the requests module,
+
+133
+00:07:33,820 --> 00:07:36,930
+remember that's a nice object I'm exporting here,
+
+134
+00:07:36,930 --> 00:07:39,350
+which I'm in the end importing into my store,
+
+135
+00:07:39,350 --> 00:07:41,250
+but what's missing here?
+
+136
+00:07:41,250 --> 00:07:43,420
+Well, the mutations and actions I defined
+
+137
+00:07:43,420 --> 00:07:45,110
+in those separate files,
+
+138
+00:07:45,110 --> 00:07:48,380
+I don't import and add them to my module here.
+
+139
+00:07:48,380 --> 00:07:50,300
+That's of course something we have to do.
+
+140
+00:07:50,300 --> 00:07:54,630
+We have to import mutations from ./mutations.JS
+
+141
+00:07:54,630 --> 00:07:58,633
+and import actions from ./actions.JS.
+
+142
+00:07:59,870 --> 00:08:03,190
+And once that's done, we can add mutations
+
+143
+00:08:03,190 --> 00:08:05,610
+using the JavaScript shorthand here
+
+144
+00:08:05,610 --> 00:08:10,610
+and actions as key value pairs to this module object.
+
+145
+00:08:12,760 --> 00:08:17,760
+And with that done, if I try to contact a coach,
+
+146
+00:08:19,270 --> 00:08:23,550
+this is a test, now we no longer get this.
+
+147
+00:08:23,550 --> 00:08:26,250
+We also don't see the requests anywhere though.
+
+148
+00:08:26,250 --> 00:08:29,323
+So as a next step, let's work on the requests page.
+

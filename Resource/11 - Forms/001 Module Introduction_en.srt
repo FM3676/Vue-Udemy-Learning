@@ -1,0 +1,32 @@
+1
+00:00:02,390 --> 00:00:05,080
+We already did it throughout this course,
+
+2
+00:00:05,080 --> 00:00:06,480
+but now in this module,
+
+3
+00:00:06,480 --> 00:00:11,260
+we are going to take a closer look at handling user input
+
+4
+00:00:11,260 --> 00:00:15,680
+and working with forms in Vue.js because it turns out
+
+5
+00:00:15,680 --> 00:00:20,190
+we cannot just work with regular inputs with text inputs,
+
+6
+00:00:20,190 --> 00:00:23,520
+but we can also work with drop-downs, with radio buttons,
+
+7
+00:00:23,520 --> 00:00:28,280
+with checkboxes, and we can build our own form controls,
+
+8
+00:00:28,280 --> 00:00:31,483
+so let's see how all of that works in this module.
+

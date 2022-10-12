@@ -1,0 +1,200 @@
+1
+00:00:02,070 --> 00:00:04,340
+Slots are a powerful feature,
+
+2
+00:00:04,340 --> 00:00:06,800
+but now we broke the styling.
+
+3
+00:00:06,800 --> 00:00:10,640
+We broke the styling of our user info component here
+
+4
+00:00:10,640 --> 00:00:13,283
+where the batch should be next to the title,
+
+5
+00:00:14,220 --> 00:00:17,350
+because we previously targeted this header here
+
+6
+00:00:17,350 --> 00:00:19,510
+to apply our styling.
+
+7
+00:00:19,510 --> 00:00:23,130
+Now we're sending this content into a header,
+
+8
+00:00:23,130 --> 00:00:25,940
+but into a header of a different component
+
+9
+00:00:25,940 --> 00:00:27,533
+of the BaseCard component.
+
+10
+00:00:28,880 --> 00:00:32,409
+Now you could think that the content that sent
+
+11
+00:00:32,409 --> 00:00:35,560
+into a header is to find in the component
+
+12
+00:00:35,560 --> 00:00:38,440
+where this styling is scoped to
+
+13
+00:00:38,440 --> 00:00:40,650
+and (murmurs) the component it's being sent
+
+14
+00:00:40,650 --> 00:00:42,920
+to the BaseCard component
+
+15
+00:00:42,920 --> 00:00:45,890
+should be affected by this styling as well.
+
+16
+00:00:45,890 --> 00:00:47,840
+But that's not how Vue works.
+
+17
+00:00:47,840 --> 00:00:49,530
+There is a very simple rule
+
+18
+00:00:49,530 --> 00:00:51,170
+when working with slots
+
+19
+00:00:51,170 --> 00:00:55,510
+and when sending content into other components slots,
+
+20
+00:00:55,510 --> 00:00:57,720
+nothing changes about what
+
+21
+00:00:57,720 --> 00:01:00,510
+you learned regarding scoped styles,
+
+22
+00:01:00,510 --> 00:01:04,160
+availability of data and props and so on.
+
+23
+00:01:04,160 --> 00:01:07,800
+For example, fullName, this prop here,
+
+24
+00:01:07,800 --> 00:01:09,980
+which we have available and UserInfo,
+
+25
+00:01:09,980 --> 00:01:14,360
+is also still only available here in UserInfo.
+
+26
+00:01:14,360 --> 00:01:16,800
+It's not a available in BaseCard,
+
+27
+00:01:16,800 --> 00:01:20,783
+even though we are sending this markup to BaseCard.
+
+28
+00:01:21,680 --> 00:01:25,130
+But Vue.js will analyze, compile
+
+29
+00:01:25,130 --> 00:01:29,690
+and evaluate this template before it sends to content
+
+30
+00:01:29,690 --> 00:01:32,380
+to the other component so to say.
+
+31
+00:01:32,380 --> 00:01:34,990
+So therefore, here we have access
+
+32
+00:01:34,990 --> 00:01:37,870
+to whatever is defined inside of UserInfo,
+
+33
+00:01:37,870 --> 00:01:39,660
+and to styling defined here
+
+34
+00:01:39,660 --> 00:01:42,240
+also affects this markup,
+
+35
+00:01:42,240 --> 00:01:45,080
+but not the markup of any component
+
+36
+00:01:45,080 --> 00:01:47,543
+we might be sending our content to.
+
+37
+00:01:48,600 --> 00:01:49,920
+That's how this works.
+
+38
+00:01:49,920 --> 00:01:52,520
+And that's why this header style here,
+
+39
+00:01:52,520 --> 00:01:56,160
+does not affect the header in base card.
+
+40
+00:01:56,160 --> 00:01:59,000
+So if you want to affect this header, of course
+
+41
+00:01:59,000 --> 00:02:02,720
+what we should do is grab this selector,
+
+42
+00:02:02,720 --> 00:02:05,150
+remove it in UserInfo and therefore,
+
+43
+00:02:05,150 --> 00:02:07,000
+since we have no styles left,
+
+44
+00:02:07,000 --> 00:02:09,070
+removed the entire style tag
+
+45
+00:02:09,070 --> 00:02:11,400
+and go to BaseCard instead,
+
+46
+00:02:11,400 --> 00:02:14,610
+and then in the scoped styling there,
+
+47
+00:02:14,610 --> 00:02:16,653
+we can add the header styling.
+
+48
+00:02:18,350 --> 00:02:21,210
+And with that, we got the look from before,
+
+49
+00:02:21,210 --> 00:02:23,170
+because now we moved the styling
+
+50
+00:02:23,170 --> 00:02:24,463
+to the appropriate place.
+

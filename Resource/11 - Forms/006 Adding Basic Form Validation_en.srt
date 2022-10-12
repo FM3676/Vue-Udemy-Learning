@@ -1,0 +1,372 @@
+1
+00:00:02,060 --> 00:00:04,763
+So, now we know how to get values with v-model.
+
+2
+00:00:05,710 --> 00:00:09,100
+We also already saw that an alternative to that
+
+3
+00:00:09,100 --> 00:00:10,470
+could be refs.
+
+4
+00:00:10,470 --> 00:00:11,820
+Refs behave differently,
+
+5
+00:00:11,820 --> 00:00:14,560
+but if you only want to read data once,
+
+6
+00:00:14,560 --> 00:00:16,423
+they can be a great alternative.
+
+7
+00:00:17,710 --> 00:00:19,870
+Now I will stick to v-model here,
+
+8
+00:00:19,870 --> 00:00:24,670
+and I want to dive at least briefly into input validation.
+
+9
+00:00:24,670 --> 00:00:28,680
+We already did some validation in the last course project
+
+10
+00:00:28,680 --> 00:00:33,070
+where we showed this error alert if one input was empty.
+
+11
+00:00:33,070 --> 00:00:35,570
+And of course that is something you can do.
+
+12
+00:00:35,570 --> 00:00:38,070
+In your submit method you can check all the values
+
+13
+00:00:38,070 --> 00:00:42,350
+and if some value doesn't satisfy some condition,
+
+14
+00:00:42,350 --> 00:00:44,460
+you want it to have satisfied,
+
+15
+00:00:44,460 --> 00:00:47,643
+you can show an error alert, nothing wrong with that.
+
+16
+00:00:49,340 --> 00:00:53,499
+We could also validate certain inputs on every keystroke
+
+17
+00:00:53,499 --> 00:00:56,300
+or whenever the input blurs.
+
+18
+00:00:56,300 --> 00:00:58,927
+For example, here on the name,
+
+19
+00:00:58,927 --> 00:01:02,200
+we could watch for the blur event.
+
+20
+00:01:02,200 --> 00:01:05,700
+So, when the input loses focus, and then we could check
+
+21
+00:01:05,700 --> 00:01:08,500
+if the value stored in there is valid.
+
+22
+00:01:08,500 --> 00:01:11,853
+And if it is not, we could show the user an error message.
+
+23
+00:01:13,510 --> 00:01:15,490
+Here's how we could implement this.
+
+24
+00:01:15,490 --> 00:01:18,450
+We can add a blur listener to the input.
+
+25
+00:01:18,450 --> 00:01:20,313
+Blur is a built in event,
+
+26
+00:01:21,660 --> 00:01:23,770
+and we could then trigger a method,
+
+27
+00:01:23,770 --> 00:01:26,383
+validateInput for example,
+
+28
+00:01:28,250 --> 00:01:31,153
+which we add to our methods down there.
+
+29
+00:01:33,230 --> 00:01:37,630
+Here, I'll add a new method, validateInput.
+
+30
+00:01:37,630 --> 00:01:40,763
+And now we could add a new data property here,
+
+31
+00:01:41,717 --> 00:01:45,910
+userNameValidity, which initially let's say
+
+32
+00:01:45,910 --> 00:01:48,820
+is pending because we don't know it yet.
+
+33
+00:01:48,820 --> 00:01:51,770
+The user didn't have a chance of entering anything.
+
+34
+00:01:51,770 --> 00:01:53,733
+And here in validateInput,
+
+35
+00:01:54,860 --> 00:01:59,010
+we could then check if this.username,
+
+36
+00:01:59,010 --> 00:02:02,970
+so the data property which we're updating with the model,
+
+37
+00:02:02,970 --> 00:02:06,990
+if this.username, once we trim it,
+
+38
+00:02:06,990 --> 00:02:11,610
+or we already trim up there with v-model as you learned.
+
+39
+00:02:11,610 --> 00:02:13,693
+So, let's maybe do that so,
+
+40
+00:02:13,693 --> 00:02:17,130
+that we don't need to do it again in the code down there.
+
+41
+00:02:17,130 --> 00:02:20,020
+So, we check if this username is equal to an empty string,
+
+42
+00:02:20,020 --> 00:02:21,633
+which means it would be invalid.
+
+43
+00:02:22,710 --> 00:02:27,483
+Then we can set this.usernameValidity to invalid.
+
+44
+00:02:28,990 --> 00:02:33,120
+Else, we set this.usernameValidity to valid.
+
+45
+00:02:33,120 --> 00:02:36,663
+It's no longer pending because now we know that it is valid.
+
+46
+00:02:38,680 --> 00:02:41,110
+And with that, we could then for example,
+
+47
+00:02:41,110 --> 00:02:42,360
+go up to the input again,
+
+48
+00:02:44,690 --> 00:02:48,600
+and add a paragraph below the labeled input
+
+49
+00:02:48,600 --> 00:02:52,233
+where we say, please enter a valid name.
+
+50
+00:02:53,550 --> 00:02:56,460
+And we only show this with the if,
+
+51
+00:02:56,460 --> 00:03:01,460
+if userNameValidity is equal to invalid.
+
+52
+00:03:01,850 --> 00:03:04,553
+So, not if it's pending and not, if it's valid.
+
+53
+00:03:07,970 --> 00:03:11,560
+We could also add a conditional clause here
+
+54
+00:03:11,560 --> 00:03:13,700
+to this form control.
+
+55
+00:03:13,700 --> 00:03:17,070
+Let's say we add an invalid class
+
+56
+00:03:17,070 --> 00:03:21,010
+if userNameValidity is equal to invalid.
+
+57
+00:03:21,010 --> 00:03:22,690
+So if that yields true,
+
+58
+00:03:22,690 --> 00:03:25,880
+this invalid class is added to this div
+
+59
+00:03:27,560 --> 00:03:30,240
+and we could utilize this in our CSS code
+
+60
+00:03:30,240 --> 00:03:32,270
+here at the bottom.
+
+61
+00:03:32,270 --> 00:03:36,400
+For example here, to check if we have a form-control div,
+
+62
+00:03:36,400 --> 00:03:38,940
+which also has the invalid clause on it
+
+63
+00:03:40,300 --> 00:03:43,808
+and then target the input element in there
+
+64
+00:03:43,808 --> 00:03:47,273
+to give it a border color of red.
+
+65
+00:03:48,310 --> 00:03:52,980
+And maybe repeat that rule here to all the target label
+
+66
+00:03:52,980 --> 00:03:56,010
+and give that a text color of red,
+
+67
+00:03:56,010 --> 00:03:58,133
+to highlight the invalid input.
+
+68
+00:04:00,780 --> 00:04:02,970
+And if we do all of that and reload,
+
+69
+00:04:02,970 --> 00:04:04,710
+it initially looks fine.
+
+70
+00:04:04,710 --> 00:04:06,430
+But if you click in there
+
+71
+00:04:06,430 --> 00:04:08,430
+and then don't enter anything valid
+
+72
+00:04:08,430 --> 00:04:11,970
+and click out of there, it gets this blur event.
+
+73
+00:04:11,970 --> 00:04:16,570
+And hence we get our error message and our error styling.
+
+74
+00:04:16,570 --> 00:04:18,500
+And if we enter something valid here
+
+75
+00:04:18,500 --> 00:04:21,980
+and then blur it again, we remove that.
+
+76
+00:04:21,980 --> 00:04:23,650
+And if we enter a bunch of white space
+
+77
+00:04:23,650 --> 00:04:25,510
+that also gets this styling
+
+78
+00:04:25,510 --> 00:04:27,523
+because we have the trim modifier.
+
+79
+00:04:28,970 --> 00:04:32,300
+And that's just one idea I want to give you.
+
+80
+00:04:32,300 --> 00:04:34,290
+There are thousands of different ways
+
+81
+00:04:34,290 --> 00:04:36,090
+of implementing validation,
+
+82
+00:04:36,090 --> 00:04:38,210
+and you can also definitely implement it
+
+83
+00:04:38,210 --> 00:04:42,140
+in a more flexible and dynamic way than I did it here.
+
+84
+00:04:42,140 --> 00:04:45,040
+But it is important to be aware of patterns like this,
+
+85
+00:04:45,040 --> 00:04:47,276
+since this allows you to build
+
+86
+00:04:47,276 --> 00:04:51,090
+the user interfaces and user experiences,
+
+87
+00:04:51,090 --> 00:04:54,590
+you probably want to offer to your users.
+
+88
+00:04:54,590 --> 00:04:56,900
+So, that's it for now about validation.
+
+89
+00:04:56,900 --> 00:05:00,990
+One possible way of adding live validation
+
+90
+00:05:00,990 --> 00:05:02,900
+before something is submitted,
+
+91
+00:05:02,900 --> 00:05:05,130
+not that the other approach would be wrong,
+
+92
+00:05:05,130 --> 00:05:07,260
+but just to also show this,
+
+93
+00:05:07,260 --> 00:05:10,883
+now, let's see how we can build our own form controls.
+

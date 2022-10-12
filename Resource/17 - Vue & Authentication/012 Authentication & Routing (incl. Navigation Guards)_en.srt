@@ -1,0 +1,856 @@
+1
+00:00:02,240 --> 00:00:03,860
+So, lets tackle routing.
+
+2
+00:00:03,860 --> 00:00:06,140
+As mentioned, it would be nice to be redirected
+
+3
+00:00:06,140 --> 00:00:09,470
+after logging in or after logging out.
+
+4
+00:00:09,470 --> 00:00:13,000
+So, the trivial way of doing that is the folly:
+
+5
+00:00:13,000 --> 00:00:18,000
+Here on the Auth page once we're done with logging in,
+
+6
+00:00:18,090 --> 00:00:21,590
+so here inside of the try plug though, not if we failed,
+
+7
+00:00:21,590 --> 00:00:23,190
+but instead of try.
+
+8
+00:00:23,190 --> 00:00:26,680
+So, if we didn't get an error and these actions were done,
+
+9
+00:00:26,680 --> 00:00:31,630
+then we can reach out to this router and use replaced
+
+10
+00:00:31,630 --> 00:00:34,960
+to navigate away, replace instead of push
+
+11
+00:00:34,960 --> 00:00:38,210
+so that we can't go back because if we just log in
+
+12
+00:00:38,210 --> 00:00:41,760
+going back to the login page doesn't make a lot of sense.
+
+13
+00:00:41,760 --> 00:00:45,160
+And here we can then go to /coaches for example.
+
+14
+00:00:45,160 --> 00:00:47,220
+Now, something similar can be done
+
+15
+00:00:47,220 --> 00:00:48,480
+when we log out.
+
+16
+00:00:48,480 --> 00:00:52,260
+In the header here when we click log out
+
+17
+00:00:52,260 --> 00:00:57,110
+besides dispatching we can redirect to /coaches
+
+18
+00:00:58,640 --> 00:01:01,290
+or to /auth wherever you wanna go.
+
+19
+00:01:01,290 --> 00:01:03,420
+I'll go to coaches.
+
+20
+00:01:03,420 --> 00:01:05,379
+Now, that's a simple way of redirecting.
+
+21
+00:01:05,379 --> 00:01:07,353
+Now, if I do log in here,
+
+22
+00:01:10,162 --> 00:01:11,570
+and I will log in,
+
+23
+00:01:11,570 --> 00:01:13,990
+I am on the all coaches page, if a log out
+
+24
+00:01:13,990 --> 00:01:18,530
+and let's say I go to requests first; I also go to coaches.
+
+25
+00:01:18,530 --> 00:01:21,370
+Okay, so that works, but that's only the simple way
+
+26
+00:01:21,370 --> 00:01:25,260
+of doing it because of what if I visit all coaches,
+
+27
+00:01:25,260 --> 00:01:28,880
+I'm not logged in and I click this login button here?
+
+28
+00:01:28,880 --> 00:01:31,140
+Now, actually, what I wanted to do here
+
+29
+00:01:31,140 --> 00:01:34,490
+is probably register as a coach.
+
+30
+00:01:34,490 --> 00:01:38,860
+We can make this clear up by going to the coaches list
+
+31
+00:01:38,860 --> 00:01:43,753
+and say, log in to register as coach,
+
+32
+00:01:45,080 --> 00:01:46,953
+with that text on the button,
+
+33
+00:01:48,770 --> 00:01:52,380
+if I reload it should be clear what we wanna do here.
+
+34
+00:01:52,380 --> 00:01:56,060
+So, here after being logged in I probably want to redirect
+
+35
+00:01:56,060 --> 00:02:00,530
+not to the all coaches page, but to the registration page,
+
+36
+00:02:00,530 --> 00:02:04,570
+and that's also something we can easily implement with view.
+
+37
+00:02:04,570 --> 00:02:08,840
+For this on coaches list here
+
+38
+00:02:08,840 --> 00:02:11,570
+when we link to the off-page on the log
+
+39
+00:02:11,570 --> 00:02:15,610
+into register button we can add a query parameter.
+
+40
+00:02:15,610 --> 00:02:18,535
+We can do this on local URLs,
+
+41
+00:02:18,535 --> 00:02:21,340
+which are resolved by the view router as well.
+
+42
+00:02:21,340 --> 00:02:24,330
+And for example, add a redirect key
+
+43
+00:02:24,330 --> 00:02:26,000
+though that key is totally up to you.
+
+44
+00:02:26,000 --> 00:02:27,740
+It can also just be red
+
+45
+00:02:27,740 --> 00:02:29,890
+we are going to parse it in a minute,
+
+46
+00:02:29,890 --> 00:02:31,310
+so, it's up to you.
+
+47
+00:02:31,310 --> 00:02:35,513
+So, I will name it redirect and say, register here.
+
+48
+00:02:36,610 --> 00:02:40,560
+Now, with that set if I click on this button,
+
+49
+00:02:40,560 --> 00:02:44,093
+you can see, now we have this query parameter in the URL,
+
+50
+00:02:45,040 --> 00:02:46,490
+and now on the Auth page,
+
+51
+00:02:46,490 --> 00:02:48,870
+we can check for this query parameter.
+
+52
+00:02:48,870 --> 00:02:50,410
+And if we do have it,
+
+53
+00:02:50,410 --> 00:02:52,300
+we can redirect the user somewhere else
+
+54
+00:02:52,300 --> 00:02:54,523
+then our default, which is coaches.
+
+55
+00:02:56,170 --> 00:02:59,960
+So, for that here, once we did log in or signup,
+
+56
+00:02:59,960 --> 00:03:04,880
+we can get our redirect URL by accessing this route
+
+57
+00:03:04,880 --> 00:03:09,540
+query that's a field we can access to there redirect.
+
+58
+00:03:09,540 --> 00:03:14,130
+And now this here, this property you access on query
+
+59
+00:03:14,130 --> 00:03:18,080
+has to be the query parameter you are using here.
+
+60
+00:03:18,080 --> 00:03:19,690
+I'm using redirect here,
+
+61
+00:03:19,690 --> 00:03:21,370
+so, I wanna access redirect here
+
+62
+00:03:22,340 --> 00:03:24,253
+that's my redirect URL then.
+
+63
+00:03:25,370 --> 00:03:30,370
+And actually, I'll add a leading slash in front of that,
+
+64
+00:03:30,617 --> 00:03:32,830
+so that I go to the slash,
+
+65
+00:03:32,830 --> 00:03:34,750
+and then whatever is stored in redirect,
+
+66
+00:03:34,750 --> 00:03:37,003
+which in my case is register,
+
+67
+00:03:39,470 --> 00:03:40,860
+and that should then lead
+
+68
+00:03:42,930 --> 00:03:45,333
+to this register route, that's my idea.
+
+69
+00:03:47,040 --> 00:03:47,950
+Now, actually, of course,
+
+70
+00:03:47,950 --> 00:03:51,420
+we might not always have a redirect URL
+
+71
+00:03:51,420 --> 00:03:54,380
+and therefore here I will simply wrap this in brackets
+
+72
+00:03:54,380 --> 00:03:56,480
+and either you that
+
+73
+00:03:57,610 --> 00:04:00,960
+or use coaches.
+
+74
+00:04:00,960 --> 00:04:04,270
+So, this line of code will construct a string
+
+75
+00:04:04,270 --> 00:04:07,470
+which is either slash and whatever is stored
+
+76
+00:04:07,470 --> 00:04:11,990
+in the redirect query parameter or /coaches.
+
+77
+00:04:11,990 --> 00:04:15,070
+And then here we can redirect to our redirect URL,
+
+78
+00:04:15,070 --> 00:04:17,213
+which we construct like that.
+
+79
+00:04:18,279 --> 00:04:20,300
+With that, if we now save this,
+
+80
+00:04:20,300 --> 00:04:23,623
+if I do log in with that query parameters set,
+
+81
+00:04:24,720 --> 00:04:27,765
+you see I go to the registration page thereafter.
+
+82
+00:04:27,765 --> 00:04:30,320
+If on the other hand, I clicked just on log in
+
+83
+00:04:30,320 --> 00:04:32,863
+and therefore I have no query parameter.
+
+84
+00:04:35,630 --> 00:04:37,197
+I go to the coaches page
+
+85
+00:04:37,197 --> 00:04:39,630
+and that I would argue is at least a little bit
+
+86
+00:04:39,630 --> 00:04:41,463
+of a better user experience.
+
+87
+00:04:42,600 --> 00:04:44,600
+Now, it's not the only thing I wanna do
+
+88
+00:04:44,600 --> 00:04:46,740
+when it comes to routing though,
+
+89
+00:04:46,740 --> 00:04:50,030
+because redirecting is nice, but we have a problem.
+
+90
+00:04:50,030 --> 00:04:54,390
+If I'm not logged in, I can't go to the registration page
+
+91
+00:04:54,390 --> 00:04:57,180
+there is no button that takes me there, but of course
+
+92
+00:04:57,180 --> 00:05:01,360
+we can manually enter slash register and end up there.
+
+93
+00:05:01,360 --> 00:05:04,790
+Sure, we will not be able to submit the data here,
+
+94
+00:05:04,790 --> 00:05:07,860
+but it would be better to not even let the user go
+
+95
+00:05:07,860 --> 00:05:10,970
+to this page if you are, she's not authenticated
+
+96
+00:05:12,070 --> 00:05:16,110
+and we can use navigation guards to prevent this.
+
+97
+00:05:16,110 --> 00:05:19,470
+You might remember I talked about navigation guards
+
+98
+00:05:19,470 --> 00:05:21,360
+in the routing module.
+
+99
+00:05:21,360 --> 00:05:24,170
+Now, we actually need them in this concrete project
+
+100
+00:05:24,170 --> 00:05:26,173
+to enhance the user experience.
+
+101
+00:05:27,060 --> 00:05:32,060
+In router js, we can register a global navigation guard
+
+102
+00:05:32,600 --> 00:05:36,110
+that is triggered before any navigation.
+
+103
+00:05:36,110 --> 00:05:39,640
+We can attach navigation guards to individual routes.
+
+104
+00:05:39,640 --> 00:05:42,450
+We can also attach them to components.
+
+105
+00:05:42,450 --> 00:05:45,560
+I talk about that in the routing module of this course,
+
+106
+00:05:45,560 --> 00:05:47,773
+so, check that out for more details.
+
+107
+00:05:48,880 --> 00:05:53,050
+Here, I'm going to use I think pretty elegant approach
+
+108
+00:05:53,050 --> 00:05:55,290
+of using a global navigation guard
+
+109
+00:05:55,290 --> 00:05:59,573
+which still only affects certain routes and components.
+
+110
+00:05:59,573 --> 00:06:03,440
+Now, to create such a global navigation guard,
+
+111
+00:06:03,440 --> 00:06:08,440
+we use our router and then here we can call before each
+
+112
+00:06:08,710 --> 00:06:11,400
+and define a function that is executed
+
+113
+00:06:11,400 --> 00:06:13,460
+before every navigation.
+
+114
+00:06:13,460 --> 00:06:16,890
+And here we got this tool from next thing,
+
+115
+00:06:16,890 --> 00:06:18,593
+we got these free parameters.
+
+116
+00:06:20,460 --> 00:06:22,920
+Now, I will use route metadata,
+
+117
+00:06:22,920 --> 00:06:25,480
+which are also covered in the routing module
+
+118
+00:06:25,480 --> 00:06:28,210
+to add special metadata cuter routes
+
+119
+00:06:28,210 --> 00:06:30,210
+that should be protected,
+
+120
+00:06:30,210 --> 00:06:34,603
+that would be the registration and the requests routes here.
+
+121
+00:06:35,510 --> 00:06:38,300
+And actually, also the auth route because here,
+
+122
+00:06:38,300 --> 00:06:41,000
+I wanna make sure that we can't visit it
+
+123
+00:06:41,000 --> 00:06:43,310
+if we are logged in,
+
+124
+00:06:43,310 --> 00:06:46,010
+because if we are logged in going to the Auth page
+
+125
+00:06:46,010 --> 00:06:47,223
+makes no sense.
+
+126
+00:06:48,350 --> 00:06:52,620
+So, we can add this meta key to these route conflicts
+
+127
+00:06:52,620 --> 00:06:55,450
+and then add any data of our choice.
+
+128
+00:06:55,450 --> 00:06:57,190
+Here in this object
+
+129
+00:06:57,190 --> 00:07:00,703
+I will set requiresAuth to true,
+
+130
+00:07:01,880 --> 00:07:06,400
+and I will do the same here for the requests route.
+
+131
+00:07:06,400 --> 00:07:09,160
+And for the throughout I will add
+
+132
+00:07:09,160 --> 00:07:13,313
+a requiresUnauth key
+
+133
+00:07:14,830 --> 00:07:16,350
+and set this to true.
+
+134
+00:07:16,350 --> 00:07:18,490
+Now, these key names are totally up to you,
+
+135
+00:07:18,490 --> 00:07:20,600
+these are just the names I will go with.
+
+136
+00:07:20,600 --> 00:07:23,480
+And the other routes have no metadata attached to them.
+
+137
+00:07:23,480 --> 00:07:26,163
+They don't have requireAuth or requiresUnauth.
+
+138
+00:07:27,930 --> 00:07:29,410
+Now, we can use that metadata
+
+139
+00:07:29,410 --> 00:07:31,750
+in this global navigation guard,
+
+140
+00:07:31,750 --> 00:07:35,770
+because now we can simply analyze the route we're going to
+
+141
+00:07:35,770 --> 00:07:39,260
+and check whether it has special metadata,
+
+142
+00:07:39,260 --> 00:07:42,480
+where we then when I run extra checks.
+
+143
+00:07:42,480 --> 00:07:46,630
+So, we can check if the route we're going to
+
+144
+00:07:46,630 --> 00:07:49,473
+on its meta field has requiresAuth.
+
+145
+00:07:51,280 --> 00:07:54,330
+If that's the case I also wanna check a second condition
+
+146
+00:07:54,330 --> 00:07:56,290
+in conjunction with the first one.
+
+147
+00:07:56,290 --> 00:07:59,140
+I wanna check if the user is logged in.
+
+148
+00:07:59,140 --> 00:08:01,560
+Now, for that we need to access our store though
+
+149
+00:08:01,560 --> 00:08:05,030
+our view X store, because we have that
+
+150
+00:08:05,030 --> 00:08:07,993
+is authenticated information in the store.
+
+151
+00:08:09,090 --> 00:08:11,470
+Well, the good thing is we can not just access
+
+152
+00:08:11,470 --> 00:08:13,170
+the store in components,
+
+153
+00:08:13,170 --> 00:08:16,970
+we can also use it in any other JavaScript file.
+
+154
+00:08:16,970 --> 00:08:20,520
+All we gotta do for that is we have to import it.
+
+155
+00:08:20,520 --> 00:08:25,520
+We can import our store from the store folder
+
+156
+00:08:25,550 --> 00:08:27,363
+and there in the index.js file.
+
+157
+00:08:29,760 --> 00:08:31,853
+And then on this store,
+
+158
+00:08:34,179 --> 00:08:36,429
+we can access the getters
+
+159
+00:08:36,429 --> 00:08:39,793
+and check the isAuthenticated getter, just like this.
+
+160
+00:08:41,159 --> 00:08:44,120
+And this will yield true if the user is authenticated.
+
+161
+00:08:44,120 --> 00:08:46,150
+So, if we requireAuth
+
+162
+00:08:46,150 --> 00:08:49,940
+and we are authenticated we'll execute this code.
+
+163
+00:08:49,940 --> 00:08:51,430
+Now, that of course means that here
+
+164
+00:08:51,430 --> 00:08:54,660
+I wanna call next because if we requireAuth
+
+165
+00:08:54,660 --> 00:08:58,490
+and we are authenticated, everything is fine.
+
+166
+00:08:58,490 --> 00:09:00,330
+More interesting is to scenario
+
+167
+00:09:00,330 --> 00:09:04,930
+that we requireAuth and we're not authenticated,
+
+168
+00:09:04,930 --> 00:09:08,540
+hence the exclamation mark in front of the scatter.
+
+169
+00:09:08,540 --> 00:09:10,770
+Now, I don't want to call next like this,
+
+170
+00:09:10,770 --> 00:09:13,350
+but instead, I want to redirect the user.
+
+171
+00:09:13,350 --> 00:09:15,020
+I wanna deny this navigation
+
+172
+00:09:15,020 --> 00:09:17,830
+for that we can pass false to next,
+
+173
+00:09:17,830 --> 00:09:22,830
+then the navigation is canceled or we pass a new URL,
+
+174
+00:09:23,050 --> 00:09:26,050
+a new location object to next.
+
+175
+00:09:26,050 --> 00:09:30,350
+For example, /auth to redirect the user to the auth page
+
+176
+00:09:30,350 --> 00:09:33,750
+in case he or she is not authenticated
+
+177
+00:09:33,750 --> 00:09:37,613
+and wanted to access a page that requires authentication.
+
+178
+00:09:39,730 --> 00:09:42,070
+Now, that's just one condition I want to check.
+
+179
+00:09:42,070 --> 00:09:47,010
+Another condition with else if that the page we wanna go to
+
+180
+00:09:47,010 --> 00:09:50,790
+has the requiresUnauth field,
+
+181
+00:09:50,790 --> 00:09:53,470
+which would be the case for the auth route.
+
+182
+00:09:53,470 --> 00:09:58,470
+Then we have a problem if we are authenticated.
+
+183
+00:09:58,820 --> 00:10:00,380
+So, if this is true now,
+
+184
+00:10:00,380 --> 00:10:02,620
+if we should not be authenticated,
+
+185
+00:10:02,620 --> 00:10:07,350
+but we are then I wanna go to,
+
+186
+00:10:07,350 --> 00:10:10,433
+let's say, /coaches instead of /auth.
+
+187
+00:10:12,000 --> 00:10:13,770
+And only in the else case,
+
+188
+00:10:13,770 --> 00:10:17,523
+we allowed a navigation and continue as planned.
+
+189
+00:10:18,460 --> 00:10:21,020
+And now, we have a global navigation guard,
+
+190
+00:10:21,020 --> 00:10:24,363
+which still takes route-specific settings into account.
+
+191
+00:10:25,440 --> 00:10:27,450
+Now, I'm not using the from argument here,
+
+192
+00:10:27,450 --> 00:10:30,080
+so, I'll replace that with an underscore.
+
+193
+00:10:30,080 --> 00:10:32,620
+And if we now saved it, we can give this a try.
+
+194
+00:10:32,620 --> 00:10:35,080
+If I reload on the auth page that works.
+
+195
+00:10:35,080 --> 00:10:37,820
+If I try to visit the Vue register page,
+
+196
+00:10:37,820 --> 00:10:40,088
+I'm redirected to Auth instead.
+
+197
+00:10:40,088 --> 00:10:43,790
+If I try to visit /coaches that works.
+
+198
+00:10:43,790 --> 00:10:46,060
+If I try to visit /requests
+
+199
+00:10:46,060 --> 00:10:48,500
+that does not work and I'm back on auth.
+
+200
+00:10:49,520 --> 00:10:51,433
+Now, if I do auth here,
+
+201
+00:10:54,050 --> 00:10:56,910
+now, we can move around,
+
+202
+00:10:56,910 --> 00:11:00,260
+but I can't really test the auth case,
+
+203
+00:11:00,260 --> 00:11:03,350
+so, that am authenticated and I want to visit /auth
+
+204
+00:11:03,350 --> 00:11:07,140
+because if we enter this manually in the URL at the moment,
+
+205
+00:11:07,140 --> 00:11:10,320
+we lose all stored authentication status anyways,
+
+206
+00:11:10,320 --> 00:11:12,934
+and therefore we are considered as locked out
+
+207
+00:11:12,934 --> 00:11:16,320
+because at the moment I'm only storing auth information
+
+208
+00:11:16,320 --> 00:11:20,210
+in UX and whenever we enter something into URL,
+
+209
+00:11:20,210 --> 00:11:23,190
+and hit Enter we restart Vue app in the end,
+
+210
+00:11:23,190 --> 00:11:25,380
+and that clears all the UX data.
+
+211
+00:11:25,380 --> 00:11:29,692
+So, we can't this scenario, but we see that for register
+
+212
+00:11:29,692 --> 00:11:33,030
+and for request we are redirected.
+
+213
+00:11:33,030 --> 00:11:36,930
+So, our logic here seems to work as intended
+
+214
+00:11:36,930 --> 00:11:38,983
+and that's a navigation guard in action.
+

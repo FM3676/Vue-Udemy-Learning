@@ -1,0 +1,372 @@
+1
+00:00:02,120 --> 00:00:03,760
+Now for this module.
+
+2
+00:00:03,760 --> 00:00:07,520
+As many times before you find a starting project attached,
+
+3
+00:00:07,520 --> 00:00:09,280
+which you can download, extract,
+
+4
+00:00:09,280 --> 00:00:10,800
+run npm install,
+
+5
+00:00:10,800 --> 00:00:14,430
+and they're all after you can run npm run serve though,
+
+6
+00:00:14,430 --> 00:00:17,310
+before you run npm run serve,
+
+7
+00:00:17,310 --> 00:00:20,590
+let's already installed the vuex
+
+8
+00:00:20,590 --> 00:00:24,973
+and you can do it as with npm install dash dash save vuex.
+
+9
+00:00:26,130 --> 00:00:29,990
+This now installs the vuex package into the project.
+
+10
+00:00:29,990 --> 00:00:34,280
+Just like we installed the router earlier in this course.
+
+11
+00:00:34,280 --> 00:00:36,910
+And now we can get started using vuex.
+
+12
+00:00:36,910 --> 00:00:39,500
+And for that I got a very simple application here.
+
+13
+00:00:39,500 --> 00:00:44,180
+Definitely not an application where we would need vuex,
+
+14
+00:00:44,180 --> 00:00:47,890
+but a great application to understand the core concepts
+
+15
+00:00:47,890 --> 00:00:49,483
+of vuex introduces.
+
+16
+00:00:50,810 --> 00:00:54,670
+So let's start the development server with npm run serve,
+
+17
+00:00:54,670 --> 00:00:56,670
+and let's see what we got on the screen.
+
+18
+00:00:58,030 --> 00:01:00,800
+We got this simple container here.
+
+19
+00:01:00,800 --> 00:01:03,340
+We're at just say Vuex,
+
+20
+00:01:03,340 --> 00:01:06,000
+now to get started with vuex,
+
+21
+00:01:06,000 --> 00:01:09,310
+let's say here inside of this base container
+
+22
+00:01:09,310 --> 00:01:11,810
+in the app view template here,
+
+23
+00:01:11,810 --> 00:01:13,550
+I want to have a button
+
+24
+00:01:15,890 --> 00:01:19,270
+where I say Add one
+
+25
+00:01:19,270 --> 00:01:21,110
+and above the button.
+
+26
+00:01:21,110 --> 00:01:24,280
+I actually want to have a counter.
+
+27
+00:01:24,280 --> 00:01:28,400
+Let's say <h3> tag where I output to current value
+
+28
+00:01:28,400 --> 00:01:31,090
+is starting at zero and then incremented by one,
+
+29
+00:01:31,090 --> 00:01:32,740
+every time the button is pressed.
+
+30
+00:01:33,660 --> 00:01:36,970
+Now we could of course implement this behavior
+
+31
+00:01:36,970 --> 00:01:40,540
+just with data and methods and what you learned.
+
+32
+00:01:40,540 --> 00:01:42,320
+And for a simple app like this,
+
+33
+00:01:42,320 --> 00:01:44,900
+we normally would do that,
+
+34
+00:01:44,900 --> 00:01:46,509
+but this module is about vuex
+
+35
+00:01:46,509 --> 00:01:48,670
+and understanding vuex.
+
+36
+00:01:48,670 --> 00:01:51,700
+So let's not do it with these tools.
+
+37
+00:01:51,700 --> 00:01:56,170
+Instead, let's manage this counter state with vuex
+
+38
+00:01:56,170 --> 00:01:59,150
+as if it would be some global state,
+
+39
+00:01:59,150 --> 00:02:02,610
+which we need in other parts of the app as well.
+
+40
+00:02:02,610 --> 00:02:03,540
+And for that,
+
+41
+00:02:03,540 --> 00:02:08,539
+we started main.js And we start by creating a vuex store,
+
+42
+00:02:08,889 --> 00:02:11,750
+which stores our application state.
+
+43
+00:02:11,750 --> 00:02:14,460
+And there is one store per app.
+
+44
+00:02:14,460 --> 00:02:18,490
+So we create the store by importing, from vuex.
+
+45
+00:02:18,490 --> 00:02:23,050
+And what we import is to createStore function.
+
+46
+00:02:23,050 --> 00:02:25,069
+And you might see a pattern here,
+
+47
+00:02:25,069 --> 00:02:26,938
+createApp for domain vue app,
+
+48
+00:02:26,938 --> 00:02:28,749
+createRouter for the router,
+
+49
+00:02:28,749 --> 00:02:30,453
+createStore for the store.
+
+50
+00:02:32,090 --> 00:02:35,387
+Then we can store the store in a constant named store.
+
+51
+00:02:35,387 --> 00:02:36,220
+(chuckles)
+
+52
+00:02:36,220 --> 00:02:38,000
+And these are a lot of stores,
+
+53
+00:02:38,000 --> 00:02:40,380
+I guess, or storage's
+
+54
+00:02:40,380 --> 00:02:43,737
+and we can do so by calling createStore().
+
+55
+00:02:45,010 --> 00:02:47,460
+Now it createStore() takes an object
+
+56
+00:02:47,460 --> 00:02:49,830
+where we configured a store
+
+57
+00:02:49,830 --> 00:02:51,470
+and the most important thing
+
+58
+00:02:52,599 --> 00:02:56,553
+with which we start in our store is the state,
+
+59
+00:02:57,880 --> 00:02:59,950
+state() is a method
+
+60
+00:03:01,440 --> 00:03:05,100
+and it then should return your state object.
+
+61
+00:03:05,100 --> 00:03:07,393
+So it's a bit like data in a component.
+
+62
+00:03:08,350 --> 00:03:11,730
+Now this is the state of your application.
+
+63
+00:03:11,730 --> 00:03:15,100
+So this object will hold the application-wide data
+
+64
+00:03:15,100 --> 00:03:18,390
+and you only have one store for the entire application.
+
+65
+00:03:18,390 --> 00:03:21,070
+You might have multiple states though,
+
+66
+00:03:21,070 --> 00:03:22,670
+but I'll come back to that later
+
+67
+00:03:24,140 --> 00:03:26,950
+now to get started with our counter here,
+
+68
+00:03:26,950 --> 00:03:31,230
+we could have a counter here in our state object
+
+69
+00:03:31,230 --> 00:03:34,023
+and initialize it to a value of zero.
+
+70
+00:03:35,370 --> 00:03:39,410
+Now we need to connect our app to the store,
+
+71
+00:03:39,410 --> 00:03:44,050
+which we do by calling app.use and passing the store to it
+
+72
+00:03:44,050 --> 00:03:47,283
+just as we used the router in the routing module.
+
+73
+00:03:48,630 --> 00:03:52,600
+And now we can use that state in our component,
+
+74
+00:03:52,600 --> 00:03:56,290
+in any component of this entire app,
+
+75
+00:03:56,290 --> 00:03:59,970
+we don't need to add inject here or anything like that.
+
+76
+00:03:59,970 --> 00:04:02,730
+We can just use this state
+
+77
+00:04:02,730 --> 00:04:04,820
+and how do we do that?
+
+78
+00:04:04,820 --> 00:04:07,030
+Well, there now is a new property,
+
+79
+00:04:07,030 --> 00:04:09,220
+which we can access in every component.
+
+80
+00:04:09,220 --> 00:04:12,210
+And that's the dollar sign store property,
+
+81
+00:04:12,210 --> 00:04:15,260
+which points at the vuex store.
+
+82
+00:04:15,260 --> 00:04:17,920
+This then has a state property,
+
+83
+00:04:17,920 --> 00:04:21,000
+which points at the state managed by the store.
+
+84
+00:04:21,000 --> 00:04:22,640
+And that state of course,
+
+85
+00:04:22,640 --> 00:04:24,770
+is this state object.
+
+86
+00:04:24,770 --> 00:04:27,620
+Therefore, we now have a counter property in there
+
+87
+00:04:27,620 --> 00:04:29,313
+to access our counter.
+
+88
+00:04:30,730 --> 00:04:32,740
+And if I do that and save this,
+
+89
+00:04:32,740 --> 00:04:34,593
+we see zero here.
+
+90
+00:04:35,580 --> 00:04:36,470
+Now clicking the button.
+
+91
+00:04:36,470 --> 00:04:38,160
+Of course doesn't do anything yet
+
+92
+00:04:38,160 --> 00:04:40,180
+because we haven't wired this up.
+
+93
+00:04:40,180 --> 00:04:41,423
+Let's do this next.
+

@@ -1,0 +1,296 @@
+1
+00:00:02,170 --> 00:00:05,660
+A pretty nice feature provided by Vuex
+
+2
+00:00:05,660 --> 00:00:08,980
+as your store and your state and zone grows
+
+3
+00:00:08,980 --> 00:00:13,660
+is the possibility to set up modules.
+
+4
+00:00:13,660 --> 00:00:17,023
+To split your store into multiple modules.
+
+5
+00:00:17,880 --> 00:00:21,550
+You may only have one store per application,
+
+6
+00:00:21,550 --> 00:00:26,520
+but this store can be made up of multiple modules
+
+7
+00:00:26,520 --> 00:00:29,300
+To keep your code more manageable.
+
+8
+00:00:29,300 --> 00:00:32,240
+You automatically, if you don't set up any modules,
+
+9
+00:00:32,240 --> 00:00:34,690
+have one module, you could say,
+
+10
+00:00:34,690 --> 00:00:37,210
+the root module, the root state,
+
+11
+00:00:37,210 --> 00:00:41,330
+but you can then add as many other modules as you want.
+
+12
+00:00:41,330 --> 00:00:44,100
+For example one module for the counter
+
+13
+00:00:44,100 --> 00:00:47,900
+and another module for authentication.
+
+14
+00:00:47,900 --> 00:00:51,430
+Or you leave authentication in the root state,
+
+15
+00:00:51,430 --> 00:00:54,520
+in the root module and outsource the counter
+
+16
+00:00:54,520 --> 00:00:56,410
+into an extra module.
+
+17
+00:00:56,410 --> 00:00:58,080
+That would also be possible.
+
+18
+00:00:58,080 --> 00:01:00,030
+And that's what we're going to do here.
+
+19
+00:01:00,880 --> 00:01:02,650
+So here in main.js still,
+
+20
+00:01:02,650 --> 00:01:05,069
+I'm going to create a new counterModule,
+
+21
+00:01:07,410 --> 00:01:10,950
+which is an object, not a store,
+
+22
+00:01:10,950 --> 00:01:14,430
+just a regular JavaScript object.
+
+23
+00:01:14,430 --> 00:01:17,840
+But now it's an object with exactly the same features
+
+24
+00:01:17,840 --> 00:01:20,980
+as the object you pass to create store.
+
+25
+00:01:20,980 --> 00:01:23,730
+So it may have a state method.
+
+26
+00:01:23,730 --> 00:01:26,720
+It may have mutations, which is an object.
+
+27
+00:01:26,720 --> 00:01:30,610
+It may have actions, which is an object and getters.
+
+28
+00:01:30,610 --> 00:01:32,593
+So exactly the same features.
+
+29
+00:01:34,600 --> 00:01:37,343
+And in state, we of course also return an object.
+
+30
+00:01:38,620 --> 00:01:42,080
+But now we can move our counter state here
+
+31
+00:01:42,080 --> 00:01:46,060
+out of this global store, into this counterModule.
+
+32
+00:01:47,380 --> 00:01:50,710
+The same for the mutations related to our counter,
+
+33
+00:01:50,710 --> 00:01:54,653
+grab them and moved them here into mutations.
+
+34
+00:01:56,500 --> 00:01:58,350
+The same for the actions of course,
+
+35
+00:01:58,350 --> 00:02:01,220
+grab the counter related actions,
+
+36
+00:02:01,220 --> 00:02:03,430
+remove them from our global store,
+
+37
+00:02:03,430 --> 00:02:05,063
+and add them to actions here.
+
+38
+00:02:06,090 --> 00:02:10,190
+And you guessed it the same for our getters,
+
+39
+00:02:10,190 --> 00:02:11,930
+grab the counter getters,
+
+40
+00:02:11,930 --> 00:02:13,853
+remove them from the global store,
+
+41
+00:02:14,970 --> 00:02:16,663
+and add them to getters here.
+
+42
+00:02:18,330 --> 00:02:23,330
+With that, our global store, our main store, is way leaner.
+
+43
+00:02:24,640 --> 00:02:27,600
+It now has only the Authlogic left.
+
+44
+00:02:27,600 --> 00:02:31,360
+And we could put this logic into a separate module as well,
+
+45
+00:02:31,360 --> 00:02:32,363
+if we wanted to.
+
+46
+00:02:34,050 --> 00:02:37,853
+But how do we now get the module back into the store?
+
+47
+00:02:38,870 --> 00:02:41,860
+Well, createStore, this object here
+
+48
+00:02:41,860 --> 00:02:46,000
+also takes a modules option.
+
+49
+00:02:46,000 --> 00:02:48,970
+And modules is an object.
+
+50
+00:02:48,970 --> 00:02:52,050
+And here you now add all the modules
+
+51
+00:02:52,050 --> 00:02:54,603
+you wanna merge together into one store.
+
+52
+00:02:55,710 --> 00:02:59,800
+You give every module an identifier of your choice,
+
+53
+00:02:59,800 --> 00:03:04,760
+for example, counter or numbers
+
+54
+00:03:04,760 --> 00:03:07,440
+or whatever the name should be, this is up to you.
+
+55
+00:03:07,440 --> 00:03:09,190
+Here I'll go with numbers
+
+56
+00:03:10,240 --> 00:03:14,000
+and then point at the module object that should be merged.
+
+57
+00:03:14,000 --> 00:03:16,163
+In this case, the counter module.
+
+58
+00:03:19,210 --> 00:03:20,043
+Like this.
+
+59
+00:03:21,050 --> 00:03:24,053
+And now this will be merged into this store.
+
+60
+00:03:25,120 --> 00:03:30,120
+If you save this now, everything will work as before,
+
+61
+00:03:30,720 --> 00:03:35,230
+because by default, modules merged into a store
+
+62
+00:03:35,230 --> 00:03:38,580
+are all merged on the same level, so to say.
+
+63
+00:03:38,580 --> 00:03:41,610
+So if you merge a module into this store,
+
+64
+00:03:41,610 --> 00:03:43,830
+it is as if you would have to find
+
+65
+00:03:43,830 --> 00:03:45,410
+all the getters and so on
+
+66
+00:03:45,410 --> 00:03:46,960
+directly in the store,
+
+67
+00:03:46,960 --> 00:03:49,303
+as we had it before a couple of minutes ago.
+
+68
+00:03:50,240 --> 00:03:52,610
+That's why we can still dispatch all the actions
+
+69
+00:03:52,610 --> 00:03:55,210
+and use all the getters as before
+
+70
+00:03:55,210 --> 00:03:58,300
+even though we're now using a module.
+
+71
+00:03:58,300 --> 00:03:59,133
+And as mentioned
+
+72
+00:03:59,133 --> 00:04:02,830
+you can of course have as many modules as you want to.
+
+73
+00:04:02,830 --> 00:04:06,180
+But the idea of modules doesn't end here,
+
+74
+00:04:06,180 --> 00:04:08,063
+there's more we can do with that.
+

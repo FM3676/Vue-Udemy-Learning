@@ -1,0 +1,452 @@
+1
+00:00:02,160 --> 00:00:04,180
+So two add authentication
+
+2
+00:00:04,180 --> 00:00:06,030
+I will first of all ensure
+
+3
+00:00:06,030 --> 00:00:10,070
+that Firebase doesn't grant access to all resources
+
+4
+00:00:10,070 --> 00:00:11,880
+at the moment it does that
+
+5
+00:00:11,880 --> 00:00:15,290
+because in their real time database which we're using
+
+6
+00:00:15,290 --> 00:00:18,457
+under rules we started in this test mode
+
+7
+00:00:18,457 --> 00:00:21,600
+where we in the end allow reading and writing
+
+8
+00:00:21,600 --> 00:00:24,937
+to all resources that are exposed by Firebase.
+
+9
+00:00:24,937 --> 00:00:28,850
+And that's definitely not the idea here
+
+10
+00:00:28,850 --> 00:00:31,430
+we definitely don't wanna do that anymore
+
+11
+00:00:31,430 --> 00:00:36,230
+instead only some resources should be accessible by anyone
+
+12
+00:00:36,230 --> 00:00:39,420
+and other resources should be protected.
+
+13
+00:00:39,420 --> 00:00:41,760
+For example in our app here,
+
+14
+00:00:41,760 --> 00:00:44,020
+the list of coaches here
+
+15
+00:00:44,020 --> 00:00:46,180
+and sending a message to a coach
+
+16
+00:00:46,180 --> 00:00:49,940
+that should be available to everyone
+
+17
+00:00:49,940 --> 00:00:53,900
+on the apprehend viewing the requests here
+
+18
+00:00:53,900 --> 00:00:57,837
+and then also signing up as a coach
+
+19
+00:00:57,837 --> 00:01:01,770
+that should only be available to log in users
+
+20
+00:01:01,770 --> 00:01:05,024
+and we can tweak the Firebase rules to make sure that
+
+21
+00:01:05,024 --> 00:01:07,950
+this is all the reflected on the backend.
+
+22
+00:01:07,950 --> 00:01:09,960
+Now, if you're not using Firebase,
+
+23
+00:01:09,960 --> 00:01:13,890
+if you wrote your own API for example with note JS,
+
+24
+00:01:13,890 --> 00:01:15,100
+you'll of course have to write
+
+25
+00:01:15,100 --> 00:01:17,600
+a code to check this on your own on the backend
+
+26
+00:01:17,600 --> 00:01:20,970
+here with Firebase and the real time database,
+
+27
+00:01:20,970 --> 00:01:22,902
+we can tweak those rules a little bit
+
+28
+00:01:22,902 --> 00:01:27,090
+to control how read and write access is granted.
+
+29
+00:01:27,090 --> 00:01:29,580
+So how does this work here with Firebase?
+
+30
+00:01:29,580 --> 00:01:32,020
+In this rules object here
+
+31
+00:01:32,020 --> 00:01:34,220
+you'll see those read and write keys
+
+32
+00:01:34,220 --> 00:01:36,290
+and then that in the end is a value
+
+33
+00:01:36,290 --> 00:01:39,300
+that resolves to true or false.
+
+34
+00:01:39,300 --> 00:01:42,930
+Now we can rewrite these rules a bit.
+
+35
+00:01:42,930 --> 00:01:46,850
+And for that I'll quickly have a look at my data first,
+
+36
+00:01:46,850 --> 00:01:47,990
+we have to keep in mind that
+
+37
+00:01:47,990 --> 00:01:51,691
+we've got coaches and requests now in the end
+
+38
+00:01:51,691 --> 00:01:56,480
+we wanna allow reading of coaches to everyone,
+
+39
+00:01:56,480 --> 00:01:58,100
+but saving a new coach
+
+40
+00:01:58,100 --> 00:02:02,110
+that should not be possible for everyone
+
+41
+00:02:02,110 --> 00:02:05,330
+and for the requests sending
+
+42
+00:02:05,330 --> 00:02:08,650
+so saving a new request should be available to everyone,
+
+43
+00:02:08,650 --> 00:02:10,900
+but reading should be restricted.
+
+44
+00:02:10,900 --> 00:02:12,750
+So the effort in the rules here,
+
+45
+00:02:12,750 --> 00:02:16,110
+we can dive into the rules object,
+
+46
+00:02:16,110 --> 00:02:19,100
+and here we can actually add coaches
+
+47
+00:02:20,410 --> 00:02:23,950
+because we have a data node called coaches in our database
+
+48
+00:02:23,950 --> 00:02:25,960
+and now we can set up read and write rules
+
+49
+00:02:25,960 --> 00:02:27,600
+for that part of the database.
+
+50
+00:02:27,600 --> 00:02:31,490
+We can do the same here for requests
+
+51
+00:02:31,490 --> 00:02:34,800
+to set up read and write rules for requests
+
+52
+00:02:34,800 --> 00:02:37,100
+and then we can have general reader write rules
+
+53
+00:02:37,100 --> 00:02:40,233
+that apply to the rest of our database.
+
+54
+00:02:41,860 --> 00:02:45,510
+So, which share rules do I wanna have here?
+
+55
+00:02:45,510 --> 00:02:48,300
+For the coaches I wanna make sure that
+
+56
+00:02:48,300 --> 00:02:50,117
+any data in that data note
+
+57
+00:02:50,117 --> 00:02:53,040
+can be read by anyone
+
+58
+00:02:53,040 --> 00:02:57,140
+and for that we set the dot read rule here to true.
+
+59
+00:02:57,140 --> 00:03:00,990
+This makes sure that everyone has full read access,
+
+60
+00:03:00,990 --> 00:03:04,920
+but write, dot write should be restricted
+
+61
+00:03:04,920 --> 00:03:06,250
+we can set this to false
+
+62
+00:03:06,250 --> 00:03:09,260
+and then no one would be able to write,
+
+63
+00:03:09,260 --> 00:03:12,210
+but I will actually set it to a string
+
+64
+00:03:12,210 --> 00:03:16,793
+where I check if off is not equal to null.
+
+65
+00:03:18,410 --> 00:03:20,940
+Now off is a special variable
+
+66
+00:03:20,940 --> 00:03:25,040
+available in the Firebase rules which will be not null
+
+67
+00:03:25,040 --> 00:03:28,060
+if we added a valid token to the request,
+
+68
+00:03:28,060 --> 00:03:31,900
+as long as we don't send along any token it will be null.
+
+69
+00:03:31,900 --> 00:03:34,703
+So then this is null and then writing will be denied.
+
+70
+00:03:36,560 --> 00:03:38,320
+Now, I'm just showing you these rules here
+
+71
+00:03:38,320 --> 00:03:39,995
+because it's not a Firebase course
+
+72
+00:03:39,995 --> 00:03:43,410
+if you plan on using Firebase for your own project,
+
+73
+00:03:43,410 --> 00:03:45,740
+you can dive into the official Firebase talks
+
+74
+00:03:45,740 --> 00:03:47,463
+to learn all about these rules.
+
+75
+00:03:49,130 --> 00:03:51,870
+Now for requests we have exactly the opposite
+
+76
+00:03:51,870 --> 00:03:55,565
+read is denied if we're not authenticated,
+
+77
+00:03:55,565 --> 00:04:00,565
+but writing is actually possible for everyone.
+
+78
+00:04:04,040 --> 00:04:06,280
+And these are very simple trivial rules
+
+79
+00:04:06,280 --> 00:04:08,743
+which you could definitely refine a bit more.
+
+80
+00:04:09,680 --> 00:04:12,700
+Now we can get rid of these general read and write rules
+
+81
+00:04:12,700 --> 00:04:15,923
+here and then publish our new rules.
+
+82
+00:04:17,329 --> 00:04:20,160
+If we do that and go back to our application,
+
+83
+00:04:20,160 --> 00:04:23,120
+we can reload the coaches page and that works,
+
+84
+00:04:23,120 --> 00:04:25,660
+but on requests we now get an error
+
+85
+00:04:25,660 --> 00:04:28,200
+because we fail to fetch our requests
+
+86
+00:04:28,200 --> 00:04:31,357
+and we get back a four 0 one error
+
+87
+00:04:31,357 --> 00:04:36,357
+unauthorized because now Firebase is blocking access here.
+
+88
+00:04:36,810 --> 00:04:39,490
+It's not allowing us to fetch requests
+
+89
+00:04:39,490 --> 00:04:41,700
+because of our new rules.
+
+90
+00:04:41,700 --> 00:04:45,590
+The same would happen if we tried to register as a coach,
+
+91
+00:04:45,590 --> 00:04:48,863
+if I send some data here,
+
+92
+00:04:52,504 --> 00:04:55,750
+you see, we also get back the four 0 one response here
+
+93
+00:04:55,750 --> 00:04:57,650
+We don't have error handling in the app
+
+94
+00:04:57,650 --> 00:04:59,750
+which is why we don't see a modal here,
+
+95
+00:04:59,750 --> 00:05:02,093
+but that request clearly failed.
+
+96
+00:05:03,900 --> 00:05:06,360
+Now we update it to date on the front end here,
+
+97
+00:05:06,360 --> 00:05:08,190
+because that's how our app currently works
+
+98
+00:05:08,190 --> 00:05:11,090
+But if I reload you see that data isn't really there.
+
+99
+00:05:11,090 --> 00:05:12,860
+Now of course these are all things
+
+100
+00:05:12,860 --> 00:05:15,080
+we're going to fix throughout this module.
+
+101
+00:05:15,080 --> 00:05:17,800
+Now last but not least if I try to send a message
+
+102
+00:05:18,670 --> 00:05:20,743
+that should succeed,
+
+103
+00:05:21,980 --> 00:05:26,980
+we can view it in Firebase in data if we go to requests
+
+104
+00:05:27,200 --> 00:05:29,370
+we see there we have a new message,
+
+105
+00:05:29,370 --> 00:05:30,630
+the message I just sent
+
+106
+00:05:30,630 --> 00:05:33,910
+because writing two messages is something we allow.
+
+107
+00:05:33,910 --> 00:05:36,500
+So with that we tweaked Firebase
+
+108
+00:05:36,500 --> 00:05:38,580
+and now we need such a token.
+
+109
+00:05:38,580 --> 00:05:40,280
+And for that we first of all
+
+110
+00:05:40,280 --> 00:05:43,710
+need a way of letting the user log in and sign up.
+
+111
+00:05:43,710 --> 00:05:46,860
+So let's add a sign up and log in page
+
+112
+00:05:46,860 --> 00:05:51,130
+then sent that day to Firebase in exchange for a token.
+
+113
+00:05:51,130 --> 00:05:53,563
+And then thereafter work with that token.
+

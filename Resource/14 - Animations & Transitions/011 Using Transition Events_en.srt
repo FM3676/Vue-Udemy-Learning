@@ -1,0 +1,616 @@
+1
+00:00:01,567 --> 00:00:04,090
+So by now, we already learned a lot
+
+2
+00:00:04,090 --> 00:00:07,580
+about transitions, to transition component, what it does
+
+3
+00:00:07,580 --> 00:00:09,340
+and how you may use it.
+
+4
+00:00:09,340 --> 00:00:14,210
+Sometimes you'll also want to run some JavaScript code,
+
+5
+00:00:14,210 --> 00:00:16,760
+either as part of the transition,
+
+6
+00:00:16,760 --> 00:00:20,300
+maybe to even control the entire transition
+
+7
+00:00:20,300 --> 00:00:23,180
+and the style changes Fruit JavaScript,
+
+8
+00:00:23,180 --> 00:00:26,060
+or maybe because you want to do something
+
+9
+00:00:26,060 --> 00:00:30,010
+when an animation starts or when it ends.
+
+10
+00:00:30,010 --> 00:00:34,000
+And vue gives you an opportunity to do that as well.
+
+11
+00:00:34,000 --> 00:00:36,250
+It gives you various events,
+
+12
+00:00:36,250 --> 00:00:39,940
+which are emitted by this transition component
+
+13
+00:00:39,940 --> 00:00:41,710
+during a transition.
+
+14
+00:00:41,710 --> 00:00:43,350
+So when the transition starts,
+
+15
+00:00:43,350 --> 00:00:46,510
+when an element is added or when an element is removed
+
+16
+00:00:46,510 --> 00:00:48,130
+from the Dom
+
+17
+00:00:48,130 --> 00:00:51,910
+and I will show it here on this transition wrapping,
+
+18
+00:00:51,910 --> 00:00:53,410
+this paragraph.
+
+19
+00:00:53,410 --> 00:00:55,460
+We can listen to various events here
+
+20
+00:00:55,460 --> 00:00:59,770
+with v-on or the short and, the @ symbol
+
+21
+00:00:59,770 --> 00:01:02,290
+and the first event to which we can list here
+
+22
+00:01:02,290 --> 00:01:04,670
+is before-enter.
+
+23
+00:01:04,670 --> 00:01:08,200
+Here, we can run a code which will be executed
+
+24
+00:01:08,200 --> 00:01:11,630
+when the element which is wrapped, this paragraph,
+
+25
+00:01:11,630 --> 00:01:14,430
+in this case is about to enter.
+
+26
+00:01:14,430 --> 00:01:17,770
+So when the enter animation starts,
+
+27
+00:01:17,770 --> 00:01:19,910
+so in the end, you could say,
+
+28
+00:01:19,910 --> 00:01:24,910
+this runs whenever this enter from CSS class is being added.
+
+29
+00:01:25,700 --> 00:01:29,650
+So right at the beginning, when the element is added
+
+30
+00:01:29,650 --> 00:01:31,473
+and the animation starts.
+
+31
+00:01:32,760 --> 00:01:34,950
+Now, I'll add a couple of methods here,
+
+32
+00:01:34,950 --> 00:01:37,970
+which allow us to print something to the console,
+
+33
+00:01:37,970 --> 00:01:41,510
+so that we can see this all in action in the console.
+
+34
+00:01:41,510 --> 00:01:44,163
+And here I have beforeEnter,
+
+35
+00:01:47,000 --> 00:01:48,780
+now this method name is up to you.
+
+36
+00:01:48,780 --> 00:01:51,670
+It doesn't have to be beforeEnter.
+
+37
+00:01:51,670 --> 00:01:55,750
+Here, adjust once to console.log beforeEnter.
+
+38
+00:01:55,750 --> 00:01:59,533
+So that we see that we uh, reached this event.
+
+39
+00:02:00,840 --> 00:02:04,640
+Now we can point at beforeEnter here
+
+40
+00:02:04,640 --> 00:02:08,120
+at this newly added method on the beforeEnter event.
+
+41
+00:02:08,120 --> 00:02:09,900
+Again, the method name is up to you.
+
+42
+00:02:09,900 --> 00:02:12,240
+The event name isn't beforeEnter,
+
+43
+00:02:12,240 --> 00:02:14,940
+it's one of the built in events transition emits
+
+44
+00:02:14,940 --> 00:02:19,810
+and if we saved that and we opened the developer tools
+
+45
+00:02:19,810 --> 00:02:22,870
+with the JavaScript console here in the browser,
+
+46
+00:02:22,870 --> 00:02:24,980
+if I click toggle paragraph,
+
+47
+00:02:24,980 --> 00:02:28,390
+we see beforeEnter being printed.
+
+48
+00:02:28,390 --> 00:02:29,760
+So that works.
+
+49
+00:02:29,760 --> 00:02:32,030
+Now, if I remove the paragraph,
+
+50
+00:02:32,030 --> 00:02:34,650
+we don't see beforeEnter again,
+
+51
+00:02:34,650 --> 00:02:37,820
+because it's only firing when the element enters.
+
+52
+00:02:37,820 --> 00:02:40,263
+So when the enter animation is played.
+
+53
+00:02:41,130 --> 00:02:45,820
+Of course, we can also listen to the leaving though
+
+54
+00:02:45,820 --> 00:02:50,350
+with @before-leave just as we have beforeEnter,
+
+55
+00:02:50,350 --> 00:02:55,340
+we can also listen to that event or the point of time
+
+56
+00:02:55,340 --> 00:02:59,163
+when that element that is wrapped is leaving the Dom.
+
+57
+00:03:00,450 --> 00:03:05,450
+So here we can also add a before-Leave method
+
+58
+00:03:05,872 --> 00:03:10,123
+where we then console.log beforeLeave.
+
+59
+00:03:11,770 --> 00:03:14,930
+Well, and of course we can now point at this method here
+
+60
+00:03:14,930 --> 00:03:17,923
+on our @before-leave event handler.
+
+61
+00:03:19,090 --> 00:03:22,140
+If we saved this, reload,
+
+62
+00:03:22,140 --> 00:03:25,180
+if I click toggle paragraph, we've got beforeEnter,
+
+63
+00:03:25,180 --> 00:03:27,693
+if I click it again, we got beforeLeave.
+
+64
+00:03:30,780 --> 00:03:35,500
+Now you actually also get an argument in those methods
+
+65
+00:03:35,500 --> 00:03:37,090
+automatically by vue.
+
+66
+00:03:37,090 --> 00:03:41,450
+And that is the element hence we'll name it {el} here,
+
+67
+00:03:41,450 --> 00:03:43,850
+on which this animation runs.
+
+68
+00:03:43,850 --> 00:03:48,850
+If I console.log{el} here and also here in beforeLeave
+
+69
+00:03:51,600 --> 00:03:55,230
+and save that and reload,
+
+70
+00:03:55,230 --> 00:03:57,690
+you will notice the difficulty toggle paragraph.
+
+71
+00:03:57,690 --> 00:03:59,210
+It's printing the paragraph,
+
+72
+00:03:59,210 --> 00:04:02,350
+which was added at the same for removing it.
+
+73
+00:04:02,350 --> 00:04:05,160
+So if you need to do something with that element,
+
+74
+00:04:05,160 --> 00:04:08,780
+for example, change its styling In case you want to control
+
+75
+00:04:08,780 --> 00:04:10,900
+the Animation Fruit JavaScript,
+
+76
+00:04:10,900 --> 00:04:12,680
+something we're going to do in the next lecture,
+
+77
+00:04:12,680 --> 00:04:15,680
+by the way, then you can do this with help of the element,
+
+78
+00:04:15,680 --> 00:04:18,410
+which you get automatically as argument
+
+79
+00:04:18,410 --> 00:04:22,187
+when listening to beforeEnter and beforeLeave.
+
+80
+00:04:23,090 --> 00:04:27,370
+But beforeEnter and beforeLeave is not everything we have.
+
+81
+00:04:27,370 --> 00:04:31,490
+We also have an @enter event to which we can listen.
+
+82
+00:04:31,490 --> 00:04:36,490
+This is basically the equivalent to the Active CSS Class.
+
+83
+00:04:37,170 --> 00:04:40,880
+The enter event is triggered as a next step
+
+84
+00:04:41,927 --> 00:04:45,150
+then beforeEnter is done, you could say.
+
+85
+00:04:45,150 --> 00:04:47,860
+Now here, I want to trigger an enter method,
+
+86
+00:04:47,860 --> 00:04:51,570
+which doesn't exist yet, but which I'll of course add now.
+
+87
+00:04:51,570 --> 00:04:54,340
+Here, let's say I add, enter()
+
+88
+00:04:54,340 --> 00:04:58,650
+and I console.log(enter) here.
+
+89
+00:04:58,650 --> 00:05:00,610
+We also get the element here,
+
+90
+00:05:00,610 --> 00:05:02,690
+So it would be also we could interact with it here
+
+91
+00:05:02,690 --> 00:05:05,137
+If we wanted to enable console.log(el).
+
+92
+00:05:06,040 --> 00:05:08,070
+If we now saved it and reload,
+
+93
+00:05:08,070 --> 00:05:12,260
+if I toggle the paragraph we see beforeEnter first
+
+94
+00:05:12,260 --> 00:05:15,993
+and the paragraph, and then we see enter and the paragraph.
+
+95
+00:05:16,940 --> 00:05:18,980
+And of course we can also listen
+
+96
+00:05:18,980 --> 00:05:23,980
+to when the animation finishes with @after-enter.
+
+97
+00:05:24,910 --> 00:05:28,173
+And here, I want to trigger an afterEnter method,
+
+98
+00:05:29,185 --> 00:05:30,230
+which we have yet to add.
+
+99
+00:05:30,230 --> 00:05:32,770
+This will fire whenever the animation is done,
+
+100
+00:05:32,770 --> 00:05:35,150
+the entering animation.
+
+101
+00:05:35,150 --> 00:05:40,150
+So here, I will add an afterEnter method,
+
+102
+00:05:41,780 --> 00:05:45,020
+console.log (afterEnter)
+
+103
+00:05:46,090 --> 00:05:48,450
+and here we also get the element.
+
+104
+00:05:48,450 --> 00:05:53,450
+So if I print that here, saved it and reload,
+
+105
+00:05:54,520 --> 00:05:56,350
+click toggle paragraph,
+
+106
+00:05:56,350 --> 00:05:59,010
+you see, we got beforeEnter first, then enter
+
+107
+00:05:59,010 --> 00:06:01,100
+and then afterEnter.
+
+108
+00:06:01,100 --> 00:06:02,790
+Now we have a quick animation here,
+
+109
+00:06:02,790 --> 00:06:06,650
+So it looked like afterEnter was basically called directly
+
+110
+00:06:06,650 --> 00:06:08,040
+after enter
+
+111
+00:06:08,040 --> 00:06:10,650
+but actually it waits for the animation to finish
+
+112
+00:06:10,650 --> 00:06:12,620
+until afterEnter gets called.
+
+113
+00:06:12,620 --> 00:06:15,700
+And I can show this by going to .para-enter-active
+
+114
+00:06:15,700 --> 00:06:18,563
+and ramping this up to two seconds, let's say.
+
+115
+00:06:19,530 --> 00:06:22,680
+Keep in mind that vue will read this duration.
+
+116
+00:06:22,680 --> 00:06:24,770
+Vue analyzes this duration
+
+117
+00:06:24,770 --> 00:06:27,480
+and it knows how long the animation will take.
+
+118
+00:06:27,480 --> 00:06:30,153
+It will add the CSS classes appropriately,
+
+119
+00:06:30,153 --> 00:06:34,490
+and it will also trigger those events appropriately.
+
+120
+00:06:34,490 --> 00:06:39,090
+And now afterEnter will only be called after two seconds
+
+121
+00:06:39,090 --> 00:06:41,013
+when the animation completed.
+
+122
+00:06:43,160 --> 00:06:45,680
+So now if I reload here and click toggle paragraph,
+
+123
+00:06:45,680 --> 00:06:47,150
+we only see enter here
+
+124
+00:06:47,150 --> 00:06:48,475
+and only after two seconds,
+
+125
+00:06:48,475 --> 00:06:51,570
+we see after enter being printed
+
+126
+00:06:51,570 --> 00:06:55,253
+because that only is called when the animation finishes.
+
+127
+00:06:57,200 --> 00:06:59,980
+And of course we have the equivalence for removing.
+
+128
+00:06:59,980 --> 00:07:02,800
+I'll restructure this to make it a bit easier to read.
+
+129
+00:07:02,800 --> 00:07:05,020
+We already added beforeLeave
+
+130
+00:07:05,020 --> 00:07:07,150
+but of course we now also have "leave"
+
+131
+00:07:07,150 --> 00:07:11,240
+where I want to call @leave method and @after-leave
+
+132
+00:07:11,240 --> 00:07:14,300
+which is called when the "leave" transition finished,
+
+133
+00:07:14,300 --> 00:07:17,840
+here, I want to call an afterLeave method.
+
+134
+00:07:17,840 --> 00:07:20,363
+So now we can add those methods as well.
+
+135
+00:07:21,740 --> 00:07:26,740
+Here, I'll add a leave method where we also get the element
+
+136
+00:07:27,600 --> 00:07:31,620
+where we can console.log{leave}
+
+137
+00:07:31,620 --> 00:07:34,423
+and then console.log[el]
+
+138
+00:07:35,280 --> 00:07:39,250
+and we've got the afterLeave method
+
+139
+00:07:39,250 --> 00:07:41,280
+where we also get the element
+
+140
+00:07:41,280 --> 00:07:45,200
+and then we can console.log[afterLeave] here
+
+141
+00:07:45,200 --> 00:07:48,167
+and also if you want to console.log[el].
+
+142
+00:07:50,099 --> 00:07:52,909
+With all of that, if we saved this and reload,
+
+143
+00:07:52,909 --> 00:07:56,550
+if I toggle the paragraph we got beforeEnter and enter
+
+144
+00:07:56,550 --> 00:07:57,920
+and after Enter.
+
+145
+00:07:57,920 --> 00:08:01,070
+And if I clear to console now and toggle it again,
+
+146
+00:08:01,070 --> 00:08:03,733
+we got beforeLeave, leave and afterLeave.
+
+147
+00:08:05,380 --> 00:08:07,950
+So this is how we can listen to that
+
+148
+00:08:07,950 --> 00:08:11,130
+and that allows you to run any code you want
+
+149
+00:08:11,130 --> 00:08:13,930
+in reaction to your animation.
+
+150
+00:08:13,930 --> 00:08:16,640
+This can be useful for a lot of things
+
+151
+00:08:16,640 --> 00:08:19,028
+but you can specifically also use it
+
+152
+00:08:19,028 --> 00:08:22,900
+to control the entire animation with JavaScript
+
+153
+00:08:22,900 --> 00:08:26,650
+instead of CSS if you want to do that.
+
+154
+00:08:26,650 --> 00:08:29,400
+And that's something we'll explore in the next lecture.
+

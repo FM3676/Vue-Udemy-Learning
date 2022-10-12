@@ -1,0 +1,248 @@
+1
+00:00:02,100 --> 00:00:05,850
+Now, we saw JavaScript based animations in action
+
+2
+00:00:05,850 --> 00:00:07,800
+with help of these special events,
+
+3
+00:00:07,800 --> 00:00:09,680
+and I just want to emphasize again
+
+4
+00:00:09,680 --> 00:00:12,430
+that these events are always emitted,
+
+5
+00:00:12,430 --> 00:00:14,880
+no matter if you control your animation
+
+6
+00:00:14,880 --> 00:00:16,630
+with JavaScript or not.
+
+7
+00:00:16,630 --> 00:00:19,750
+If you control it with CSS, as we did before,
+
+8
+00:00:19,750 --> 00:00:21,670
+those events are also emitted,
+
+9
+00:00:21,670 --> 00:00:23,883
+so that you can run any code you want.
+
+10
+00:00:24,960 --> 00:00:27,520
+But you can also leverage those events,
+
+11
+00:00:27,520 --> 00:00:29,190
+as you saw in the last lecture,
+
+12
+00:00:29,190 --> 00:00:32,530
+to control the entire animation through JavaScript,
+
+13
+00:00:32,530 --> 00:00:35,580
+either through your own JavaScript code, as we did it,
+
+14
+00:00:35,580 --> 00:00:37,790
+or by using another third party,
+
+15
+00:00:37,790 --> 00:00:40,373
+JavaScript animation library, for example.
+
+16
+00:00:41,410 --> 00:00:44,610
+Now, if you control your entire animation
+
+17
+00:00:44,610 --> 00:00:45,990
+through JavaScript,
+
+18
+00:00:45,990 --> 00:00:48,700
+as we're doing it here on this paragraph now,
+
+19
+00:00:48,700 --> 00:00:52,570
+you can add another property on this transition.
+
+20
+00:00:52,570 --> 00:00:55,060
+Instead of setting a name, which we don't need now,
+
+21
+00:00:55,060 --> 00:00:58,420
+you can add the CSS prop
+
+22
+00:00:58,420 --> 00:01:01,493
+and bind it to false.
+
+23
+00:01:02,890 --> 00:01:04,510
+Now, what does this do?
+
+24
+00:01:04,510 --> 00:01:07,830
+This tells vue that this transition
+
+25
+00:01:07,830 --> 00:01:09,630
+controlled by this transition component
+
+26
+00:01:09,630 --> 00:01:14,630
+on this paragraph will not use CSS.
+
+27
+00:01:14,780 --> 00:01:17,030
+It will not use a CSS transition
+
+28
+00:01:17,030 --> 00:01:20,660
+or a CSS animation defined in CSS code.
+
+29
+00:01:20,660 --> 00:01:23,330
+Instead, the entire transition will be controlled
+
+30
+00:01:23,330 --> 00:01:24,683
+through JavaScript.
+
+31
+00:01:26,070 --> 00:01:29,110
+And why is this a helpful piece of information
+
+32
+00:01:29,110 --> 00:01:30,780
+we can pass to you?
+
+33
+00:01:30,780 --> 00:01:34,610
+It's technically not required, as you saw it worked.
+
+34
+00:01:34,610 --> 00:01:36,680
+But now by passing this prop,
+
+35
+00:01:36,680 --> 00:01:41,110
+we tell vue that it doesn't even need to search
+
+36
+00:01:41,110 --> 00:01:44,020
+for the respective CSS classes
+
+37
+00:01:44,020 --> 00:01:46,790
+in our CSS code for this transition.
+
+38
+00:01:46,790 --> 00:01:50,640
+It doesn't even need to try to read the duration
+
+39
+00:01:50,640 --> 00:01:53,840
+from our CSS code, because it won't find it,
+
+40
+00:01:53,840 --> 00:01:55,973
+because we're not using CSS code.
+
+41
+00:01:57,290 --> 00:02:01,460
+Therefore, it skips this CSS analysis step,
+
+42
+00:02:01,460 --> 00:02:05,250
+it skips searching for the respect of CSS classes
+
+43
+00:02:05,250 --> 00:02:08,130
+and the duration of this animation in CSS.
+
+44
+00:02:08,130 --> 00:02:11,100
+And that simply improves performance a little bit,
+
+45
+00:02:11,100 --> 00:02:14,640
+because it doesn't need to do this unnecessary step.
+
+46
+00:02:14,640 --> 00:02:17,680
+Hence, you should of course only add CSS false,
+
+47
+00:02:17,680 --> 00:02:21,493
+if you really don't use CSS code for this transition.
+
+48
+00:02:22,470 --> 00:02:23,303
+And for example,
+
+49
+00:02:23,303 --> 00:02:25,983
+on the other transition user that we have here,
+
+50
+00:02:26,890 --> 00:02:29,050
+like on these two alternative buttons,
+
+51
+00:02:29,050 --> 00:02:32,510
+we absolutely must not set CSS to false,
+
+52
+00:02:32,510 --> 00:02:34,810
+because there we are relying on
+
+53
+00:02:34,810 --> 00:02:37,183
+CSS transitions and animations.
+
+54
+00:02:38,270 --> 00:02:39,460
+But if you don't do that,
+
+55
+00:02:39,460 --> 00:02:43,210
+if you just control your animation through JavaScript only,
+
+56
+00:02:43,210 --> 00:02:47,753
+then you can set CSS to false, to optimize performance.
+
+57
+00:02:49,330 --> 00:02:51,620
+With that, we reload.
+
+58
+00:02:51,620 --> 00:02:53,740
+This still works as before,
+
+59
+00:02:53,740 --> 00:02:56,780
+but now even a bit more performant.
+
+60
+00:02:56,780 --> 00:02:58,770
+Will not notice the difference here,
+
+61
+00:02:58,770 --> 00:03:01,160
+but it is there, and tiny things like that
+
+62
+00:03:01,160 --> 00:03:03,153
+can make your app faster in the end.
+

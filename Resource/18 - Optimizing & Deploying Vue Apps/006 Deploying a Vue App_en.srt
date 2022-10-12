@@ -1,0 +1,660 @@
+1
+00:00:02,130 --> 00:00:05,380
+So let's deploy our dist folder content,
+
+2
+00:00:05,380 --> 00:00:07,540
+and they mentioned that there are many options
+
+3
+00:00:07,540 --> 00:00:09,962
+for hosting static web apps.
+
+4
+00:00:09,962 --> 00:00:14,220
+AWS is free, Netlify, Firebase hosting.
+
+5
+00:00:14,220 --> 00:00:17,980
+I will go with Firebase since we've been using that
+
+6
+00:00:17,980 --> 00:00:20,180
+in earlier parts of the course already.
+
+7
+00:00:20,180 --> 00:00:23,430
+So you probably have a Firebase project by now,
+
+8
+00:00:23,430 --> 00:00:25,893
+and hence hosting will be easy to set up.
+
+9
+00:00:26,810 --> 00:00:29,350
+You can simply click on hosting and your project,
+
+10
+00:00:29,350 --> 00:00:32,430
+and you could also create a new project for hosting.
+
+11
+00:00:32,430 --> 00:00:34,480
+It's doesn't have to be the same one
+
+12
+00:00:34,480 --> 00:00:38,590
+as you have for your Firebase database, just as a side note.
+
+13
+00:00:38,590 --> 00:00:40,470
+But here, I will use the same one
+
+14
+00:00:40,470 --> 00:00:42,050
+and I will click on hosting,
+
+15
+00:00:42,050 --> 00:00:44,700
+and you'll find instructions here, but in the end,
+
+16
+00:00:44,700 --> 00:00:47,300
+hosting is really simple.
+
+17
+00:00:47,300 --> 00:00:50,170
+If you click on, get started, we see that we first of all,
+
+18
+00:00:50,170 --> 00:00:53,210
+need to install an extra tool, okay?
+
+19
+00:00:53,210 --> 00:00:54,570
+So let's do that.
+
+20
+00:00:54,570 --> 00:00:58,240
+Let's run this command on Linux and Mac iOS,
+
+21
+00:00:58,240 --> 00:01:00,950
+you might need to add pseudo in front of it,
+
+22
+00:01:00,950 --> 00:01:03,780
+on Windows You don't need to do that.
+
+23
+00:01:03,780 --> 00:01:08,120
+To run this command, and this will then install
+
+24
+00:01:08,120 --> 00:01:12,920
+extra tool provided by Firebase globally on your machine,
+
+25
+00:01:12,920 --> 00:01:17,360
+and we'll need that tool to then upload our project later.
+
+26
+00:01:17,360 --> 00:01:19,723
+So let's wait for this installation to finish.
+
+27
+00:01:21,580 --> 00:01:25,840
+And once it is finished, we can go to that next step.
+
+28
+00:01:25,840 --> 00:01:29,813
+Now we need to log in by running Firebase login.
+
+29
+00:01:30,890 --> 00:01:34,760
+So let's run this and this should open up a tab
+
+30
+00:01:34,760 --> 00:01:37,300
+in the browser and allow you to log in,
+
+31
+00:01:37,300 --> 00:01:39,070
+if you're not logged in already,
+
+32
+00:01:39,070 --> 00:01:42,520
+or it prompts you for password and your username,
+
+33
+00:01:42,520 --> 00:01:43,510
+your email address,
+
+34
+00:01:43,510 --> 00:01:46,110
+and you have to log in with those credentials,
+
+35
+00:01:46,110 --> 00:01:49,310
+which you used for logging in into your Firebase account
+
+36
+00:01:49,310 --> 00:01:50,683
+before as well.
+
+37
+00:01:51,810 --> 00:01:55,140
+Once that is done, you need to run Firebase in it.
+
+38
+00:01:55,140 --> 00:01:58,750
+So copy that command, and now in your project folder,
+
+39
+00:01:58,750 --> 00:02:01,140
+in your entire project folder, here,
+
+40
+00:02:01,140 --> 00:02:03,303
+you can run Firebase in it.
+
+41
+00:02:04,390 --> 00:02:06,590
+And this will ask you a couple of questions.
+
+42
+00:02:07,640 --> 00:02:11,770
+It asks you which part of Firebase you wanna manage
+
+43
+00:02:11,770 --> 00:02:16,320
+with this command line interface, where using at the moment.
+
+44
+00:02:16,320 --> 00:02:19,000
+And we really only want to use hosting here.
+
+45
+00:02:19,000 --> 00:02:21,640
+So select hosting with the arrow keys,
+
+46
+00:02:21,640 --> 00:02:26,223
+and press space to market, and then enter.
+
+47
+00:02:27,520 --> 00:02:30,030
+Now, then you're prompted wherever you wanna host this
+
+48
+00:02:30,030 --> 00:02:33,600
+into an existing Firebase project or create a new one.
+
+49
+00:02:33,600 --> 00:02:35,650
+As I said, you could create a new one,
+
+50
+00:02:35,650 --> 00:02:37,433
+but I will use an existing one.
+
+51
+00:02:38,420 --> 00:02:41,400
+And then it should list all the projects you have.
+
+52
+00:02:41,400 --> 00:02:43,960
+And I'm simply picking that project
+
+53
+00:02:43,960 --> 00:02:46,163
+with which I worked early already.
+
+54
+00:02:47,570 --> 00:02:49,540
+Now we have the interesting part.
+
+55
+00:02:49,540 --> 00:02:53,690
+It asks us what our public directory should be.
+
+56
+00:02:53,690 --> 00:02:56,980
+And that's important because that's the directory
+
+57
+00:02:56,980 --> 00:02:59,993
+which holds the files that will actually be uploaded.
+
+58
+00:03:01,210 --> 00:03:04,313
+So here that would be the dist folder.
+
+59
+00:03:05,480 --> 00:03:07,223
+So we should enter dist here.
+
+60
+00:03:08,630 --> 00:03:12,160
+Once you entered dist, hit enter,
+
+61
+00:03:12,160 --> 00:03:14,310
+and you're asked whether this should be configured
+
+62
+00:03:14,310 --> 00:03:19,310
+as a single page app and rewrite all URLs to /index.html.
+
+63
+00:03:20,390 --> 00:03:23,430
+Now that can be confusing, why does this matter?
+
+64
+00:03:23,430 --> 00:03:24,393
+What's this about?
+
+65
+00:03:25,400 --> 00:03:27,340
+For a single page applications,
+
+66
+00:03:27,340 --> 00:03:30,290
+you have to be careful when it comes to routing
+
+67
+00:03:30,290 --> 00:03:32,343
+and hosting your app on a server.
+
+68
+00:03:33,290 --> 00:03:35,590
+When a user visits your webpage,
+
+69
+00:03:35,590 --> 00:03:40,000
+let's say it's hosted on a domain like "mypage.com,"
+
+70
+00:03:40,000 --> 00:03:44,680
+a so-called request is sent to the server.
+
+71
+00:03:44,680 --> 00:03:48,100
+Now let's say that request is not to your main domain,
+
+72
+00:03:48,100 --> 00:03:53,100
+but it's "mypage.com/products" or anything like that.
+
+73
+00:03:54,390 --> 00:03:57,950
+Now, as I just said, that request hits the server.
+
+74
+00:03:57,950 --> 00:04:01,300
+The server where your static web application,
+
+75
+00:04:01,300 --> 00:04:04,533
+your Vue single page application is hosted at.
+
+76
+00:04:05,410 --> 00:04:10,220
+Now, this server should actually ignore the path
+
+77
+00:04:10,220 --> 00:04:11,810
+that's part of the request,
+
+78
+00:04:11,810 --> 00:04:14,390
+because if it does not ignore it,
+
+79
+00:04:14,390 --> 00:04:19,180
+then the server will try to find something on the server
+
+80
+00:04:19,180 --> 00:04:20,700
+that matches this request.
+
+81
+00:04:20,700 --> 00:04:23,700
+For example, it looks for a product folder
+
+82
+00:04:23,700 --> 00:04:27,500
+in your hosted files and tries to find an HTML file
+
+83
+00:04:27,500 --> 00:04:29,900
+in such a products folder.
+
+84
+00:04:29,900 --> 00:04:32,150
+And for our app that would fail
+
+85
+00:04:32,150 --> 00:04:35,850
+because for our app, the folder structure we deploy is this.
+
+86
+00:04:35,850 --> 00:04:38,260
+We have just one HTML file.
+
+87
+00:04:38,260 --> 00:04:41,283
+In our app, for example, we have a /coach's route,
+
+88
+00:04:42,280 --> 00:04:45,560
+but we have no coaches folder here inside of this,
+
+89
+00:04:45,560 --> 00:04:49,090
+which is the content that will end up on a server though.
+
+90
+00:04:49,090 --> 00:04:52,490
+That's why we need to tell the server to ignore the path
+
+91
+00:04:52,490 --> 00:04:56,700
+and instead, always return the index.html file,
+
+92
+00:04:56,700 --> 00:04:59,750
+which then in turn contains the JavaScript code
+
+93
+00:04:59,750 --> 00:05:04,750
+off our application where then the Vue router can take over
+
+94
+00:05:05,010 --> 00:05:10,010
+and handle this path on the client side, so in the browser.
+
+95
+00:05:10,060 --> 00:05:12,560
+And that's really important, the Vue router
+
+96
+00:05:12,560 --> 00:05:14,200
+does not run on the server.
+
+97
+00:05:14,200 --> 00:05:17,240
+And therefore, it can only handle the path
+
+98
+00:05:17,240 --> 00:05:21,180
+which is in a URL, if the server ignores it.
+
+99
+00:05:21,180 --> 00:05:23,980
+That development server was already configured
+
+100
+00:05:23,980 --> 00:05:25,300
+to work like this,
+
+101
+00:05:25,300 --> 00:05:28,240
+which is why we didn't have to worry about that before.
+
+102
+00:05:28,240 --> 00:05:31,410
+But the web servers, real web servers,
+
+103
+00:05:31,410 --> 00:05:34,023
+typically do not ignore it by default.
+
+104
+00:05:35,030 --> 00:05:37,700
+And that's my Firebase is asking us here,
+
+105
+00:05:37,700 --> 00:05:40,960
+if we wanna configure this as a single page app.
+
+106
+00:05:40,960 --> 00:05:43,940
+If we choose yes here, which we should,
+
+107
+00:05:43,940 --> 00:05:47,960
+then Firebase will ignore all requests on the server
+
+108
+00:05:47,960 --> 00:05:52,960
+and as mentioned here, rewrite all URLs to index.html.
+
+109
+00:05:53,320 --> 00:05:56,773
+So that always index.html is served.
+
+110
+00:05:58,550 --> 00:06:00,430
+So let's choose yes here.
+
+111
+00:06:00,430 --> 00:06:03,300
+And now it's tells us that we already have a index.html file
+
+112
+00:06:03,300 --> 00:06:05,560
+in this, if it should override this
+
+113
+00:06:05,560 --> 00:06:09,673
+and here we wanna enter, no, because we wanna keep our file.
+
+114
+00:06:10,990 --> 00:06:14,140
+And now with that we initialized everything.
+
+115
+00:06:14,140 --> 00:06:15,730
+Now to really get deployed this,
+
+116
+00:06:15,730 --> 00:06:17,710
+there's just one change I wanna make.
+
+117
+00:06:17,710 --> 00:06:20,750
+In the public folder in index.html,
+
+118
+00:06:20,750 --> 00:06:25,750
+we can edit the index.html file before the project is built.
+
+119
+00:06:26,320 --> 00:06:29,080
+So any changes you want to make to your project,
+
+120
+00:06:29,080 --> 00:06:31,640
+to your HTML code, and here, for example,
+
+121
+00:06:31,640 --> 00:06:34,480
+should be made here, not in this.
+
+122
+00:06:34,480 --> 00:06:36,420
+You should never touch the code,
+
+123
+00:06:36,420 --> 00:06:38,650
+which is generated in a dist folder.
+
+124
+00:06:38,650 --> 00:06:43,550
+Instead, edit your input files and rebuilt the project,
+
+125
+00:06:43,550 --> 00:06:47,180
+if you wanna have a different output here.
+
+126
+00:06:47,180 --> 00:06:50,160
+And here, for example, I wanna edit the title.
+
+127
+00:06:50,160 --> 00:06:55,110
+It's actually using a placeholder here, in the end,
+
+128
+00:06:55,110 --> 00:06:57,940
+pulling in the title from somewhere else,
+
+129
+00:06:57,940 --> 00:07:01,470
+but we can delete this and overwrite this with Find a Coach,
+
+130
+00:07:01,470 --> 00:07:04,250
+for example, which is my title.
+
+131
+00:07:04,250 --> 00:07:06,160
+And now we could also add a meta tag
+
+132
+00:07:06,160 --> 00:07:08,880
+with a name of description
+
+133
+00:07:08,880 --> 00:07:13,020
+to then also add a description for search engines.
+
+134
+00:07:13,020 --> 00:07:16,763
+Like find a coach and grow as a developer.
+
+135
+00:07:17,820 --> 00:07:20,280
+And now with these final tweaks made,
+
+136
+00:07:20,280 --> 00:07:23,660
+I will run npn run build again so that these changes
+
+137
+00:07:23,660 --> 00:07:26,740
+are picked up and reflected in the dist folder,
+
+138
+00:07:26,740 --> 00:07:28,273
+which is now recreated.
+
+139
+00:07:29,170 --> 00:07:31,700
+And now we configured Firebase,
+
+140
+00:07:31,700 --> 00:07:33,670
+we have to final dist folder,
+
+141
+00:07:33,670 --> 00:07:37,223
+now we want to push the code onto Firebase.
+
+142
+00:07:38,130 --> 00:07:42,170
+And that's done if we follow the Firebase instructions
+
+143
+00:07:42,170 --> 00:07:44,773
+by now running Firebase deploy.
+
+144
+00:07:45,700 --> 00:07:49,820
+So now we do that, run Firebase deploy,
+
+145
+00:07:49,820 --> 00:07:54,123
+and this will now take our code and uploaded onto Firebase.
+
+146
+00:07:54,960 --> 00:07:57,120
+Now it shows us a progress here,
+
+147
+00:07:57,120 --> 00:07:58,653
+let's wait for this to finish.
+
+148
+00:08:00,260 --> 00:08:03,530
+And once it's, it also gives us the URL
+
+149
+00:08:03,530 --> 00:08:05,430
+where we can visit this app.
+
+150
+00:08:05,430 --> 00:08:09,350
+So I'm going to copy that open it here,
+
+151
+00:08:09,350 --> 00:08:13,200
+well, and here is the application which we built before
+
+152
+00:08:13,200 --> 00:08:16,523
+now running on their real web server.
+
+153
+00:08:17,630 --> 00:08:20,130
+Now I'd will be offline when you're viewing this,
+
+154
+00:08:20,130 --> 00:08:23,880
+but you can try it on your own with your own project.
+
+155
+00:08:23,880 --> 00:08:25,920
+And for anything else you wanna configure
+
+156
+00:08:25,920 --> 00:08:28,363
+like a custom domain or anything like that,
+
+157
+00:08:29,420 --> 00:08:32,010
+check out the Firebase console there
+
+158
+00:08:32,010 --> 00:08:34,390
+once you deploy your app under hosting,
+
+159
+00:08:34,390 --> 00:08:37,370
+you can see your app, you can add a custom domain
+
+160
+00:08:37,370 --> 00:08:39,679
+and you can do a bunch of different things here
+
+161
+00:08:39,679 --> 00:08:42,283
+to fine tune this to your requirements.
+
+162
+00:08:43,340 --> 00:08:45,240
+And that's it for deployment.
+
+163
+00:08:45,240 --> 00:08:47,720
+These are the steps and core concepts
+
+164
+00:08:47,720 --> 00:08:50,640
+you should keep in mind when you wanna deploy
+
+165
+00:08:50,640 --> 00:08:52,683
+Vue apps to a real server.
+

@@ -1,0 +1,488 @@
+1
+00:00:01,500 --> 00:00:03,140
+Now we don't just have
+
+2
+00:00:03,140 --> 00:00:05,650
+this Global guard though.
+
+3
+00:00:05,650 --> 00:00:08,773
+This beforeEach function here will run
+
+4
+00:00:08,773 --> 00:00:11,840
+on every navigation action,
+
+5
+00:00:11,840 --> 00:00:14,507
+no matter which route is being used,
+
+6
+00:00:14,507 --> 00:00:18,170
+no matter from which route we go to which other route,
+
+7
+00:00:18,170 --> 00:00:20,127
+this will always run.
+
+8
+00:00:20,127 --> 00:00:22,812
+Sometimes this is what you need, sometimes it's not,
+
+9
+00:00:22,812 --> 00:00:26,645
+sometimes you just wanna protect individual routes.
+
+10
+00:00:26,645 --> 00:00:28,070
+You could do this, of course,
+
+11
+00:00:28,070 --> 00:00:30,490
+with a if check here, where you check your to
+
+12
+00:00:30,490 --> 00:00:31,711
+and from route objects,
+
+13
+00:00:31,711 --> 00:00:35,229
+to also run different logic based on different routes.
+
+14
+00:00:35,229 --> 00:00:39,610
+But you can also set up the beforeEach navigation guard
+
+15
+00:00:39,610 --> 00:00:41,420
+on single routes.
+
+16
+00:00:41,420 --> 00:00:43,970
+For example, on users, let's say.
+
+17
+00:00:43,970 --> 00:00:47,630
+For that you simply go to your users route conflict,
+
+18
+00:00:47,630 --> 00:00:51,161
+and here you can add beforeEnter, not beforeEach,
+
+19
+00:00:51,161 --> 00:00:54,833
+because now it technically is just one route.
+
+20
+00:00:54,833 --> 00:00:57,496
+BeforeEnter is a method here as well.
+
+21
+00:00:57,496 --> 00:01:02,233
+And just as beforeEach, it gets to, from and next.
+
+22
+00:01:03,067 --> 00:01:08,040
+So here I console.log('users beforeEnter')
+
+23
+00:01:09,270 --> 00:01:12,792
+and maybe also console.log(to, from) is you want to
+
+24
+00:01:12,792 --> 00:01:15,157
+and then call next to confirm it
+
+25
+00:01:15,157 --> 00:01:18,090
+or do whatever you wanna do with next.
+
+26
+00:01:18,090 --> 00:01:20,239
+Next works just as I explained it
+
+27
+00:01:20,239 --> 00:01:23,443
+on the Global beforeEach navigation guard.
+
+28
+00:01:24,416 --> 00:01:28,310
+Here I'm just confirming every navigation to users.
+
+29
+00:01:28,310 --> 00:01:32,938
+And now this will be called whenever we go to users.
+
+30
+00:01:32,938 --> 00:01:35,803
+So if I saved that and reload.
+
+31
+00:01:37,660 --> 00:01:40,979
+If I go to users, we see Global beforeEach,
+
+32
+00:01:40,979 --> 00:01:42,933
+because that still executes.
+
+33
+00:01:42,933 --> 00:01:45,763
+After all it executes for every navigation action.
+
+34
+00:01:45,763 --> 00:01:48,066
+But we also see users beforeEnter
+
+35
+00:01:48,066 --> 00:01:51,510
+and then the output of to and from for this page.
+
+36
+00:01:51,510 --> 00:01:53,663
+To of course, is pointing at the users page,
+
+37
+00:01:53,663 --> 00:01:56,613
+because that beforeEnter hook was registered
+
+38
+00:01:56,613 --> 00:01:58,293
+for the users page.
+
+39
+00:01:59,820 --> 00:02:01,414
+Now, in case you don't wanna register
+
+40
+00:02:01,414 --> 00:02:05,730
+this on the route level or in your route conflict,
+
+41
+00:02:05,730 --> 00:02:07,191
+you can also add a new hook,
+
+42
+00:02:07,191 --> 00:02:09,910
+a new method inside of your component.
+
+43
+00:02:09,910 --> 00:02:12,840
+Let's say in the users list component.
+
+44
+00:02:12,840 --> 00:02:15,380
+Here in your component conflict object,
+
+45
+00:02:15,380 --> 00:02:18,497
+you can add all those view lifecycle methods,
+
+46
+00:02:18,497 --> 00:02:22,553
+like created or mounted and you can also add
+
+47
+00:02:22,553 --> 00:02:26,246
+the beforeRouteEnter method.
+
+48
+00:02:26,246 --> 00:02:28,697
+If you use the view router, which we do,
+
+49
+00:02:28,697 --> 00:02:31,915
+this will be called before navigation
+
+50
+00:02:31,915 --> 00:02:35,108
+to this component is confirmed.
+
+51
+00:02:35,108 --> 00:02:40,108
+And here again, you get to, from and next,
+
+52
+00:02:40,270 --> 00:02:42,400
+and therefore we can do what he did before.
+
+53
+00:02:42,400 --> 00:02:45,207
+We can console.log('usersList Cmp beforeRouteEnter').
+
+54
+00:02:50,857 --> 00:02:54,759
+We can then console.log(to, from) of course
+
+55
+00:02:54,759 --> 00:02:58,463
+and we can call next or run any logic we wanna run
+
+56
+00:02:58,463 --> 00:03:03,463
+to confirm or deny navigation to next or redirect the user.
+
+57
+00:03:05,685 --> 00:03:08,860
+And with that, if I go to Teams,
+
+58
+00:03:08,860 --> 00:03:11,534
+reload, clear the console and go to users,
+
+59
+00:03:11,534 --> 00:03:14,705
+we see Global beforeEach and then to and from,
+
+60
+00:03:14,705 --> 00:03:17,473
+users beforeEnter and then to and from,
+
+61
+00:03:17,473 --> 00:03:21,020
+and then UsersList Cmp beforeRouteEnter.
+
+62
+00:03:21,020 --> 00:03:21,853
+And that's the order
+
+63
+00:03:21,853 --> 00:03:24,603
+in which these navigation guards execute.
+
+64
+00:03:24,603 --> 00:03:29,056
+Global is always first, then the route conflict level
+
+65
+00:03:29,056 --> 00:03:31,223
+and then the component level.
+
+66
+00:03:33,100 --> 00:03:37,036
+All of these hooks run before the route is confirmed though,
+
+67
+00:03:37,036 --> 00:03:40,220
+which is why you can and have to call next
+
+68
+00:03:40,220 --> 00:03:42,950
+to confirm it manually or deny it
+
+69
+00:03:42,950 --> 00:03:45,373
+or redirect the user somewhere else.
+
+70
+00:03:46,570 --> 00:03:50,501
+We've got two other guards related to loading a component.
+
+71
+00:03:50,501 --> 00:03:53,277
+One is the before route update guard,
+
+72
+00:03:53,277 --> 00:03:56,482
+which you call directly inside of a component.
+
+73
+00:03:56,482 --> 00:03:59,957
+To be precise, inside of components which are reused,
+
+74
+00:03:59,957 --> 00:04:03,120
+which in our case would be the team members component.
+
+75
+00:04:03,120 --> 00:04:06,293
+Here we got the parameter, the team ID parameter,
+
+76
+00:04:06,293 --> 00:04:10,068
+and it's absolutely possible that we are on the page
+
+77
+00:04:10,068 --> 00:04:14,059
+of one team and we load another team members page.
+
+78
+00:04:14,059 --> 00:04:17,779
+And then this team members page never leaves the screen
+
+79
+00:04:17,779 --> 00:04:20,430
+and hence is reused, as you learned.
+
+80
+00:04:20,430 --> 00:04:24,629
+In such cases, view router will call another nice method
+
+81
+00:04:24,629 --> 00:04:26,880
+in the component conflict object.
+
+82
+00:04:26,880 --> 00:04:29,178
+Maybe here next to created,
+
+83
+00:04:29,178 --> 00:04:33,889
+there you can add the beforeRouteUpdate method
+
+84
+00:04:33,889 --> 00:04:38,683
+and view will call this method whenever this component
+
+85
+00:04:38,683 --> 00:04:43,116
+is about to be reused with new data,
+
+86
+00:04:43,116 --> 00:04:44,802
+because the route changed.
+
+87
+00:04:44,802 --> 00:04:48,317
+So here we also get to, from and next,
+
+88
+00:04:48,317 --> 00:04:53,223
+and then you can also deny or confirm the navigation
+
+89
+00:04:53,223 --> 00:04:55,994
+just as you know it, just as I explained it before
+
+90
+00:04:55,994 --> 00:05:00,330
+on the Global beforeEach hook, it's the same here.
+
+91
+00:05:00,330 --> 00:05:01,927
+And besides that of course,
+
+92
+00:05:01,927 --> 00:05:06,927
+you can utilize to and from, for example,
+
+93
+00:05:08,281 --> 00:05:13,281
+to call loadTeamMembers based on the new team ID param,
+
+94
+00:05:15,648 --> 00:05:20,648
+which you get on the, to be navigated to route object.
+
+95
+00:05:21,176 --> 00:05:24,360
+Now of course, we already have logic in place here
+
+96
+00:05:24,360 --> 00:05:27,105
+to handle the changing team ID route parameter
+
+97
+00:05:27,105 --> 00:05:30,732
+in this component, so we don't need beforeRouteUpdate
+
+98
+00:05:30,732 --> 00:05:33,558
+for that, but using beforeRouteUpdate
+
+99
+00:05:33,558 --> 00:05:36,243
+would be an alternative to watching
+
+100
+00:05:36,243 --> 00:05:38,441
+the team ID prop, for example.
+
+101
+00:05:38,441 --> 00:05:40,850
+Though of course, with that hook,
+
+102
+00:05:40,850 --> 00:05:45,720
+we again bind this component to be used with routing.
+
+103
+00:05:45,720 --> 00:05:48,057
+We use props instead of route params
+
+104
+00:05:48,057 --> 00:05:50,650
+to make this component more flexible.
+
+105
+00:05:50,650 --> 00:05:52,018
+When we use this alternative,
+
+106
+00:05:52,018 --> 00:05:54,220
+we would make it less flexible,
+
+107
+00:05:54,220 --> 00:05:57,168
+because this is only called if this component is loaded
+
+108
+00:05:57,168 --> 00:06:00,871
+and reloaded through routing of course.
+
+109
+00:06:00,871 --> 00:06:03,941
+But now this would be an alternative and with that
+
+110
+00:06:03,941 --> 00:06:06,867
+we can console.log('TeamMembers Cmp beforeRouteUpdate') here
+
+111
+00:06:13,294 --> 00:06:17,530
+and console.log(to, from) if you want to,
+
+112
+00:06:17,530 --> 00:06:19,697
+and then save everything.
+
+113
+00:06:19,697 --> 00:06:21,980
+And now if I go to a different team,
+
+114
+00:06:21,980 --> 00:06:25,639
+we see beforeRouteUpdate runs and well,
+
+115
+00:06:25,639 --> 00:06:28,671
+then our logic in there runs, which we don't need here,
+
+116
+00:06:28,671 --> 00:06:32,554
+but I want to show you this hook of course.
+
+117
+00:06:32,554 --> 00:06:34,360
+I'm going to comment this out though,
+
+118
+00:06:34,360 --> 00:06:36,617
+because we are already loading team members
+
+119
+00:06:36,617 --> 00:06:40,510
+when the team ID changes, we don't need to do this twice.
+
+120
+00:06:40,510 --> 00:06:42,996
+But that is another navigation guard
+
+121
+00:06:42,996 --> 00:06:45,796
+or another navigation hook you could also call it,
+
+122
+00:06:45,796 --> 00:06:47,453
+that is worth knowing.
+

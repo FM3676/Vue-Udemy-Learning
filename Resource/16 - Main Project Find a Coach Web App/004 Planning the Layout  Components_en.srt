@@ -1,0 +1,384 @@
+1
+00:00:02,100 --> 00:00:05,140
+So let's now talk about the Layout.
+
+2
+00:00:05,140 --> 00:00:07,510
+And with the layout, I really mean everything.
+
+3
+00:00:07,510 --> 00:00:10,740
+I mean components, I mean routes, everything.
+
+4
+00:00:10,740 --> 00:00:12,580
+And let's maybe start with routes,
+
+5
+00:00:12,580 --> 00:00:16,210
+with the main page as we wanna have in this application.
+
+6
+00:00:16,210 --> 00:00:17,960
+Now I want to have a...
+
+7
+00:00:17,960 --> 00:00:22,300
+Let's say slash coaches route,
+
+8
+00:00:22,300 --> 00:00:25,750
+which loads a list of coaches.
+
+9
+00:00:25,750 --> 00:00:30,750
+So let's say coaches list components, something like this.
+
+10
+00:00:33,110 --> 00:00:38,110
+I also want to have coaches and then some ID.
+
+11
+00:00:39,210 --> 00:00:44,210
+So a dynamic parameter route where I load the coach details.
+
+12
+00:00:46,760 --> 00:00:49,480
+So where we can view the details about a coach.
+
+13
+00:00:49,480 --> 00:00:53,023
+And also some register route,
+
+14
+00:00:55,240 --> 00:00:57,920
+where we can register as a coach.
+
+15
+00:00:57,920 --> 00:01:02,597
+So where we load some coach registration component.
+
+16
+00:01:05,660 --> 00:01:08,500
+And yes, I have a beautiful handwriting.
+
+17
+00:01:08,500 --> 00:01:12,070
+So these are the coach related routes, which I wanna have.
+
+18
+00:01:12,070 --> 00:01:16,370
+Now four requests, I want to have a contact route
+
+19
+00:01:16,370 --> 00:01:20,143
+where I open the forum where we can send a coach a message,
+
+20
+00:01:21,710 --> 00:01:26,710
+that could be the contact coach component.
+
+21
+00:01:26,810 --> 00:01:30,400
+And I want to have a requests route
+
+22
+00:01:30,400 --> 00:01:33,290
+where we view all incoming requests.
+
+23
+00:01:33,290 --> 00:01:38,113
+So that could be the requests received route.
+
+24
+00:01:41,240 --> 00:01:43,780
+So we've got five main pages in this application.
+
+25
+00:01:43,780 --> 00:01:47,080
+Coaches list, coach details, coach registration,
+
+26
+00:01:47,080 --> 00:01:49,720
+contact coach, and requests received.
+
+27
+00:01:49,720 --> 00:01:54,470
+And of course, every page here will be a component, right?
+
+28
+00:01:54,470 --> 00:01:57,670
+Because you load components with the view router.
+
+29
+00:01:57,670 --> 00:01:59,500
+Now that's it for the routes.
+
+30
+00:01:59,500 --> 00:02:02,060
+Now what about the rest of the page?
+
+31
+00:02:02,060 --> 00:02:05,280
+Well, obviously if we would draw the page,
+
+32
+00:02:05,280 --> 00:02:08,020
+I want to have some header at the top
+
+33
+00:02:08,020 --> 00:02:12,010
+where we have links to the coaches list
+
+34
+00:02:12,010 --> 00:02:15,230
+and links to the requests
+
+35
+00:02:15,230 --> 00:02:19,090
+so that we can go to these areas of our app
+
+36
+00:02:19,090 --> 00:02:21,120
+through links in the header.
+
+37
+00:02:21,120 --> 00:02:24,013
+Now, if we click coaches, if we select this,
+
+38
+00:02:25,690 --> 00:02:30,610
+then on this coaches list page,
+
+39
+00:02:30,610 --> 00:02:34,470
+I in the end simply want to have a little list here
+
+40
+00:02:34,470 --> 00:02:36,100
+with the header of course.
+
+41
+00:02:36,100 --> 00:02:39,450
+Here, let's say with a filter
+
+42
+00:02:39,450 --> 00:02:41,660
+where we can actually filter by,
+
+43
+00:02:41,660 --> 00:02:43,940
+let's say area of expertise.
+
+44
+00:02:43,940 --> 00:02:45,880
+I forgot this when I defined the data,
+
+45
+00:02:45,880 --> 00:02:47,260
+I just came up with it.
+
+46
+00:02:47,260 --> 00:02:50,800
+But why don't we also add an area of expertise
+
+47
+00:02:50,800 --> 00:02:51,840
+to our coaches?
+
+48
+00:02:51,840 --> 00:02:53,150
+See, that's how I plan.
+
+49
+00:02:53,150 --> 00:02:55,720
+I start planning and then plans can change.
+
+50
+00:02:55,720 --> 00:02:58,320
+But let's say we also want to be able to filter
+
+51
+00:02:58,320 --> 00:03:00,080
+by area of expertise
+
+52
+00:03:00,080 --> 00:03:02,780
+and coaches should have areas of expertise.
+
+53
+00:03:02,780 --> 00:03:05,010
+Well, therefore here we have a filter.
+
+54
+00:03:05,010 --> 00:03:07,270
+And below that we then have our list
+
+55
+00:03:07,270 --> 00:03:10,323
+where we see the different coach items.
+
+56
+00:03:11,270 --> 00:03:13,070
+Now we can click a coach item
+
+57
+00:03:13,070 --> 00:03:15,370
+and we're taken to the coach detail page
+
+58
+00:03:15,370 --> 00:03:19,200
+where we see the name, the rate, the description
+
+59
+00:03:19,200 --> 00:03:22,823
+and where we got a contact button.
+
+60
+00:03:24,120 --> 00:03:26,460
+And if we click the contact button,
+
+61
+00:03:26,460 --> 00:03:29,450
+we're taken to a number page with a header
+
+62
+00:03:29,450 --> 00:03:33,720
+and with a forum where we can set our email
+
+63
+00:03:33,720 --> 00:03:36,400
+and send a message to the coach.
+
+64
+00:03:36,400 --> 00:03:39,180
+And this then leads to the requests of course,
+
+65
+00:03:39,180 --> 00:03:41,210
+once we sent this.
+
+66
+00:03:41,210 --> 00:03:44,480
+So the request is sent to the coach and can be viewed
+
+67
+00:03:44,480 --> 00:03:46,430
+on the requests area of this app.
+
+68
+00:03:46,430 --> 00:03:49,993
+So to say, and therefore, if requests is clicked,
+
+69
+00:03:52,070 --> 00:03:54,810
+I want to load a different page
+
+70
+00:03:54,810 --> 00:03:57,160
+where we also have that header, of course.
+
+71
+00:03:57,160 --> 00:04:01,030
+But here, I simply want to render a list of requests
+
+72
+00:04:01,030 --> 00:04:06,030
+where we see the email and then the message sent.
+
+73
+00:04:06,190 --> 00:04:07,740
+So email and message.
+
+74
+00:04:07,740 --> 00:04:09,813
+And then we can use that email to reply.
+
+75
+00:04:10,930 --> 00:04:14,880
+This is roughly how those pages should look like.
+
+76
+00:04:14,880 --> 00:04:16,860
+And I hope it's clear what I mean here.
+
+77
+00:04:16,860 --> 00:04:18,500
+Obviously we're going to build this
+
+78
+00:04:18,500 --> 00:04:20,000
+from the ground up together.
+
+79
+00:04:20,000 --> 00:04:22,220
+So at least then it will be clear.
+
+80
+00:04:22,220 --> 00:04:23,280
+And in these pages,
+
+81
+00:04:23,280 --> 00:04:25,550
+we're going to use a bunch of components.
+
+82
+00:04:25,550 --> 00:04:27,900
+We could plan all those components right now,
+
+83
+00:04:27,900 --> 00:04:31,190
+but I rather get started and then we build those components
+
+84
+00:04:31,190 --> 00:04:33,850
+whilst we start building pages.
+
+85
+00:04:33,850 --> 00:04:38,250
+For example, we will most likely use some separate component
+
+86
+00:04:38,250 --> 00:04:40,110
+for the coach items here.
+
+87
+00:04:40,110 --> 00:04:43,030
+We will most likely define,
+
+88
+00:04:43,030 --> 00:04:46,640
+a separate component the forums we have here.
+
+89
+00:04:46,640 --> 00:04:49,070
+So there will be a bunch of components included.
+
+90
+00:04:49,070 --> 00:04:50,640
+The header will, for example,
+
+91
+00:04:50,640 --> 00:04:53,130
+probably also be a separate component.
+
+92
+00:04:53,130 --> 00:04:54,690
+There'll be a lot in there.
+
+93
+00:04:54,690 --> 00:04:57,140
+This is the general plan I have.
+
+94
+00:04:57,140 --> 00:05:00,700
+I hope the general idea of the application is clear now.
+
+95
+00:05:00,700 --> 00:05:01,533
+And with that,
+
+96
+00:05:01,533 --> 00:05:04,313
+let's create the project and start writing some code.
+

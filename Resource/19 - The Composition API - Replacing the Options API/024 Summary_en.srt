@@ -1,0 +1,288 @@
+1
+00:00:02,240 --> 00:00:03,640
+Now that's it for
+
+2
+00:00:03,640 --> 00:00:05,320
+this very thorough introduction
+
+3
+00:00:05,320 --> 00:00:07,020
+to the Composition API.
+
+4
+00:00:07,020 --> 00:00:08,180
+We're going to see more of it
+
+5
+00:00:08,180 --> 00:00:09,680
+throughout the rest of the course
+
+6
+00:00:09,680 --> 00:00:11,430
+but with this module you should have
+
+7
+00:00:11,430 --> 00:00:16,309
+a first thorough idea of what the Composition API is about.
+
+8
+00:00:16,309 --> 00:00:19,280
+Well, and what is it about, and why do we have it?
+
+9
+00:00:19,280 --> 00:00:21,410
+First of all, as I emphasized many times,
+
+10
+00:00:21,410 --> 00:00:22,350
+throughout the module,
+
+11
+00:00:22,350 --> 00:00:24,680
+it's an alternative to the Options API.
+
+12
+00:00:24,680 --> 00:00:26,920
+You don't have to use it if you don't like it
+
+13
+00:00:26,920 --> 00:00:29,870
+or if it just doesn't make sense for your project
+
+14
+00:00:29,870 --> 00:00:31,260
+but you can use it,
+
+15
+00:00:31,260 --> 00:00:34,310
+and then you will use the setup method, which you saw,
+
+16
+00:00:34,310 --> 00:00:37,720
+to expose logic and data to the template
+
+17
+00:00:37,720 --> 00:00:40,250
+and the idea behind the Composition API
+
+18
+00:00:40,250 --> 00:00:42,270
+is that it's function based.
+
+19
+00:00:42,270 --> 00:00:45,140
+You have all those functions you import from Vue,
+
+20
+00:00:45,140 --> 00:00:48,040
+like ref, react, compute, and so on.
+
+21
+00:00:48,040 --> 00:00:50,160
+All used in that setup method,
+
+22
+00:00:50,160 --> 00:00:52,440
+and that this allows you to keep code
+
+23
+00:00:52,440 --> 00:00:55,790
+that is related logically to gather in one place
+
+24
+00:00:55,790 --> 00:00:58,793
+instead of splitting it across multiple options.
+
+25
+00:00:59,750 --> 00:01:01,610
+Data and reactivity of course,
+
+26
+00:01:01,610 --> 00:01:04,660
+is an important concept in Vue in general
+
+27
+00:01:04,660 --> 00:01:08,400
+and of course, they are found also in the Composition API
+
+28
+00:01:08,400 --> 00:01:11,250
+and here we can manage data as refs.
+
+29
+00:01:11,250 --> 00:01:14,970
+So as individual values or in object which is in ref,
+
+30
+00:01:14,970 --> 00:01:17,160
+or we use the reactive function
+
+31
+00:01:17,160 --> 00:01:19,340
+to create reactive objects.
+
+32
+00:01:19,340 --> 00:01:20,990
+I talked about the differences
+
+33
+00:01:20,990 --> 00:01:22,580
+and how to work with these values
+
+34
+00:01:22,580 --> 00:01:25,113
+in great depth throughout this module.
+
+35
+00:01:26,140 --> 00:01:28,410
+Reactivity is a key concept
+
+36
+00:01:28,410 --> 00:01:30,570
+and one of the most important takeaways
+
+37
+00:01:30,570 --> 00:01:34,465
+really is that you can create reactive refs or objects
+
+38
+00:01:34,465 --> 00:01:37,370
+but that their nested properties
+
+39
+00:01:37,370 --> 00:01:39,870
+are not necessarily reactive.
+
+40
+00:01:39,870 --> 00:01:42,743
+As I also emphasized throughout this module.
+
+41
+00:01:44,830 --> 00:01:46,930
+Now data and reactivity is a key concept
+
+42
+00:01:46,930 --> 00:01:48,350
+but of course, not everything.
+
+43
+00:01:48,350 --> 00:01:51,060
+We also have methods, computed and watchers,
+
+44
+00:01:51,060 --> 00:01:53,000
+when using the Options API,
+
+45
+00:01:53,000 --> 00:01:54,610
+and in the Composition API,
+
+46
+00:01:54,610 --> 00:01:56,700
+methods become regular functions
+
+47
+00:01:56,700 --> 00:01:58,550
+which you define in the setup method
+
+48
+00:01:58,550 --> 00:02:00,770
+and which you then may expose to the template
+
+49
+00:02:00,770 --> 00:02:03,466
+by returning it in that object which you return
+
+50
+00:02:03,466 --> 00:02:05,640
+in the setup method,
+
+51
+00:02:05,640 --> 00:02:08,770
+and then you also have computed properties and watchers
+
+52
+00:02:08,770 --> 00:02:12,020
+which are defined with these imported functions
+
+53
+00:02:12,020 --> 00:02:14,123
+which you import from the Vue framework.
+
+54
+00:02:15,430 --> 00:02:18,780
+Now if we have a closer look at this setup function
+
+55
+00:02:18,780 --> 00:02:21,340
+or setup method which we define in
+
+56
+00:02:21,340 --> 00:02:23,652
+our component conflict object,
+
+57
+00:02:23,652 --> 00:02:26,850
+this setup function, or this setup method,
+
+58
+00:02:26,850 --> 00:02:30,400
+is called by Vue, when the component is created,
+
+59
+00:02:30,400 --> 00:02:34,000
+and in there you define all the data and logic
+
+60
+00:02:34,000 --> 00:02:35,230
+for this component,
+
+61
+00:02:35,230 --> 00:02:37,910
+and most importantly for the template.
+
+62
+00:02:37,910 --> 00:02:39,660
+So what you return in setup
+
+63
+00:02:39,660 --> 00:02:42,830
+is available in the template as you learned.
+
+64
+00:02:42,830 --> 00:02:45,830
+In setup itself all the receives two arguments
+
+65
+00:02:45,830 --> 00:02:48,460
+which are passed and automatically by Vue
+
+66
+00:02:48,460 --> 00:02:50,630
+when it calls setup for you,
+
+67
+00:02:50,630 --> 00:02:53,720
+and that is the reactive props object
+
+68
+00:02:53,720 --> 00:02:56,640
+with all the props you're getting for this component
+
+69
+00:02:56,640 --> 00:03:00,450
+and this context object with the fall through props,
+
+70
+00:03:00,450 --> 00:03:03,550
+those attributes, with slot data,
+
+71
+00:03:03,550 --> 00:03:05,320
+and with this emit function
+
+72
+00:03:05,320 --> 00:03:07,933
+which you can use for emitting a custom event.
+

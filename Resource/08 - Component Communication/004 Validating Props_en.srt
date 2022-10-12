@@ -1,0 +1,608 @@
+1
+00:00:02,320 --> 00:00:05,063
+So props are important as you can tell,
+
+2
+00:00:06,230 --> 00:00:09,320
+and thus far we're specifying props like this,
+
+3
+00:00:09,320 --> 00:00:12,770
+as an array of the props we expect to get
+
+4
+00:00:12,770 --> 00:00:15,960
+where every prop is just added as a string.
+
+5
+00:00:15,960 --> 00:00:17,210
+I mentioned that this would be
+
+6
+00:00:17,210 --> 00:00:19,690
+the bare minimum configuration.
+
+7
+00:00:19,690 --> 00:00:21,820
+With that view will let you know about the props
+
+8
+00:00:21,820 --> 00:00:22,980
+you expect to get,
+
+9
+00:00:22,980 --> 00:00:25,743
+but you don't provide any other information to view.
+
+10
+00:00:26,840 --> 00:00:29,400
+This is okay, especially for simple apps
+
+11
+00:00:29,400 --> 00:00:31,160
+or simple components,
+
+12
+00:00:31,160 --> 00:00:33,360
+but for more complex components,
+
+13
+00:00:33,360 --> 00:00:36,490
+and especially when working in a team for example,
+
+14
+00:00:36,490 --> 00:00:38,650
+you might want to share more information
+
+15
+00:00:38,650 --> 00:00:40,160
+about your props.
+
+16
+00:00:40,160 --> 00:00:42,940
+Simply, so that view can let you know
+
+17
+00:00:42,940 --> 00:00:45,800
+if you pass incorrect data to a component
+
+18
+00:00:45,800 --> 00:00:48,453
+or if you forgot some required prop.
+
+19
+00:00:49,390 --> 00:00:53,720
+And for that, you can replace this array of props,
+
+20
+00:00:53,720 --> 00:00:56,410
+actually I'll copy it and comment it out
+
+21
+00:00:56,410 --> 00:00:59,020
+so that you'll still have it for reference,
+
+22
+00:00:59,020 --> 00:01:01,410
+you can replace it with an object.
+
+23
+00:01:01,410 --> 00:01:03,890
+And in that object, you now have your props
+
+24
+00:01:03,890 --> 00:01:06,860
+as JavaScript property names,
+
+25
+00:01:06,860 --> 00:01:09,480
+and then certain values for them.
+
+26
+00:01:09,480 --> 00:01:13,210
+And here the most basic extra information
+
+27
+00:01:13,210 --> 00:01:16,870
+you could provide is the type of data you expect to get.
+
+28
+00:01:16,870 --> 00:01:18,930
+For example, string.
+
+29
+00:01:18,930 --> 00:01:22,320
+To make it clear that the value of the main prop
+
+30
+00:01:22,320 --> 00:01:23,780
+should be a string.
+
+31
+00:01:23,780 --> 00:01:26,730
+And if instead a number would be provided,
+
+32
+00:01:26,730 --> 00:01:28,543
+we would get an error.
+
+33
+00:01:29,850 --> 00:01:33,990
+Side note, I'm speaking of a number type being provided.
+
+34
+00:01:33,990 --> 00:01:36,100
+Not text that contains a number.
+
+35
+00:01:36,100 --> 00:01:37,260
+That would of course be okay,
+
+36
+00:01:37,260 --> 00:01:39,090
+since it would be a string.
+
+37
+00:01:39,090 --> 00:01:41,270
+So we can do that instead,
+
+38
+00:01:41,270 --> 00:01:43,470
+and now make it clear that all our data,
+
+39
+00:01:43,470 --> 00:01:44,940
+at the moment, at least,
+
+40
+00:01:44,940 --> 00:01:48,170
+is getting a string like this.
+
+41
+00:01:48,170 --> 00:01:50,440
+So now we're saying that this component
+
+42
+00:01:50,440 --> 00:01:53,860
+will get a name, a phone number, an email address,
+
+43
+00:01:53,860 --> 00:01:55,820
+and the isFavorite prop,
+
+44
+00:01:55,820 --> 00:01:59,190
+and every prop should get a value of type string.
+
+45
+00:01:59,190 --> 00:02:01,230
+Enhance does of course works
+
+46
+00:02:01,230 --> 00:02:03,403
+but now we provide more information.
+
+47
+00:02:04,620 --> 00:02:07,470
+But you can be even more detailed than that.
+
+48
+00:02:07,470 --> 00:02:10,520
+Instead of just providing that type here,
+
+49
+00:02:10,520 --> 00:02:13,540
+you can provide an object as a value
+
+50
+00:02:13,540 --> 00:02:16,260
+for the prop you're expecting to get.
+
+51
+00:02:16,260 --> 00:02:18,420
+And in this object,
+
+52
+00:02:18,420 --> 00:02:23,420
+you now can add a type, property, which holds the type
+
+53
+00:02:23,610 --> 00:02:25,320
+of the prop you wanna get,
+
+54
+00:02:25,320 --> 00:02:27,610
+but you can also add more properties.
+
+55
+00:02:27,610 --> 00:02:29,940
+Now not any properties of your choice,
+
+56
+00:02:29,940 --> 00:02:33,170
+instead specific properties view will look for,
+
+57
+00:02:33,170 --> 00:02:36,970
+for example type, but also required.
+
+58
+00:02:36,970 --> 00:02:40,490
+To indicate whether this prop, the name prop here
+
+59
+00:02:40,490 --> 00:02:42,550
+should be required or not.
+
+60
+00:02:42,550 --> 00:02:45,220
+And this should be true or false.
+
+61
+00:02:45,220 --> 00:02:46,860
+So here we could make it clear
+
+62
+00:02:46,860 --> 00:02:50,230
+that this component, the friend contact component,
+
+63
+00:02:50,230 --> 00:02:53,433
+needs a name prop, this is required.
+
+64
+00:02:55,190 --> 00:02:57,710
+And we can do the same, of course, for the other props.
+
+65
+00:02:57,710 --> 00:03:01,403
+Type string, and the phone number is also required.
+
+66
+00:03:02,630 --> 00:03:04,410
+And also for the email address.
+
+67
+00:03:04,410 --> 00:03:06,993
+We want to get a string and this required.
+
+68
+00:03:08,060 --> 00:03:11,520
+Now let's say the isFavorite prop is also a type string
+
+69
+00:03:11,520 --> 00:03:12,993
+but it's not required.
+
+70
+00:03:15,280 --> 00:03:18,880
+In that case, if you have a non-required prop,
+
+71
+00:03:18,880 --> 00:03:20,960
+you can add a default key,
+
+72
+00:03:20,960 --> 00:03:23,370
+where you provide a default value,
+
+73
+00:03:23,370 --> 00:03:26,600
+which will be used if the prop should be missing.
+
+74
+00:03:26,600 --> 00:03:29,770
+So here for example, zero, so that by default,
+
+75
+00:03:29,770 --> 00:03:32,393
+this component is not a favorite.
+
+76
+00:03:33,640 --> 00:03:36,500
+Default can also be a function by the way,
+
+77
+00:03:36,500 --> 00:03:39,910
+where you could have a more complex code snippet
+
+78
+00:03:39,910 --> 00:03:42,350
+that executes to derive the default.
+
+79
+00:03:42,350 --> 00:03:46,223
+But here I'll just set this to zero as a string.
+
+80
+00:03:48,150 --> 00:03:50,650
+You can also add a validator
+
+81
+00:03:50,650 --> 00:03:52,390
+which holds a function,
+
+82
+00:03:52,390 --> 00:03:55,070
+which should return true or false.
+
+83
+00:03:55,070 --> 00:03:57,530
+This validator function will get
+
+84
+00:03:57,530 --> 00:04:00,160
+the value provided for the prop
+
+85
+00:04:00,160 --> 00:04:03,850
+and then you can have any validation object of your choice
+
+86
+00:04:03,850 --> 00:04:06,770
+to find out whether that's a valid value or not.
+
+87
+00:04:06,770 --> 00:04:09,240
+So here for isFavorite for example
+
+88
+00:04:09,240 --> 00:04:12,600
+we could check if value is equal to one,
+
+89
+00:04:12,600 --> 00:04:16,329
+or if value is equal to zero,
+
+90
+00:04:16,329 --> 00:04:18,529
+and that will be able for a yield true
+
+91
+00:04:18,529 --> 00:04:20,610
+if either of the two is correct,
+
+92
+00:04:20,610 --> 00:04:23,720
+or false, if we get a totally different value.
+
+93
+00:04:23,720 --> 00:04:26,270
+So with that we could make sure that really only
+
+94
+00:04:26,270 --> 00:04:29,143
+the values one and zero are allowed here.
+
+95
+00:04:30,620 --> 00:04:32,970
+And what's the whole idea behind that?
+
+96
+00:04:32,970 --> 00:04:36,640
+Well, with that more detailed configuration here,
+
+97
+00:04:36,640 --> 00:04:39,750
+we can go to the place where we use our component,
+
+98
+00:04:39,750 --> 00:04:43,100
+and for example omit isFavorite, let's say,
+
+99
+00:04:43,100 --> 00:04:45,713
+on the second component here, on Julie.
+
+100
+00:04:47,730 --> 00:04:50,070
+With that, the app still works,
+
+101
+00:04:50,070 --> 00:04:55,070
+because we made this prop isFavorite non-required,
+
+102
+00:04:55,480 --> 00:04:59,023
+it's optional, we have a default fallback value.
+
+103
+00:04:59,990 --> 00:05:04,270
+On the other hand, if I remove the name here and save that,
+
+104
+00:05:04,270 --> 00:05:06,300
+we don't get an error here,
+
+105
+00:05:06,300 --> 00:05:08,140
+but if we open up the developer tools
+
+106
+00:05:08,140 --> 00:05:10,120
+and the JavaScript consol here,
+
+107
+00:05:10,120 --> 00:05:12,000
+we get a warning by view,
+
+108
+00:05:12,000 --> 00:05:15,040
+that we got a missing required prop name.
+
+109
+00:05:15,040 --> 00:05:17,490
+And that helps us as a developer
+
+110
+00:05:17,490 --> 00:05:21,450
+to spot such mistake quicker during development.
+
+111
+00:05:21,450 --> 00:05:24,040
+And we don't have to guess why the component
+
+112
+00:05:24,040 --> 00:05:25,770
+now is not working anymore.
+
+113
+00:05:25,770 --> 00:05:27,740
+Instead, we get a clear warning.
+
+114
+00:05:27,740 --> 00:05:29,970
+So that's very useful.
+
+115
+00:05:29,970 --> 00:05:32,520
+And let's bring back that name.
+
+116
+00:05:32,520 --> 00:05:36,280
+If I provide an invalid value for isFavorite, for example,
+
+117
+00:05:36,280 --> 00:05:38,570
+we got the invalid prop warning,
+
+118
+00:05:38,570 --> 00:05:41,430
+because our custom validator check failed.
+
+119
+00:05:41,430 --> 00:05:43,930
+We didn't provide one or zero,
+
+120
+00:05:43,930 --> 00:05:47,490
+but instead 100, which is simply not valid,
+
+121
+00:05:47,490 --> 00:05:49,530
+as specified here.
+
+122
+00:05:49,530 --> 00:05:52,950
+So you can have more complex prop definitions
+
+123
+00:05:52,950 --> 00:05:56,473
+to make sure that your component really gets used correctly.
+
+124
+00:05:58,160 --> 00:06:00,840
+Now ultimately, of course, it's your component,
+
+125
+00:06:00,840 --> 00:06:03,530
+so it's up to you how detailed you wanna be.
+
+126
+00:06:03,530 --> 00:06:06,950
+If you have an entire project on which you work on your own,
+
+127
+00:06:06,950 --> 00:06:10,060
+you might not need those more detailed configurations,
+
+128
+00:06:10,060 --> 00:06:12,090
+because you know all your components
+
+129
+00:06:12,090 --> 00:06:13,943
+and all your props anyways.
+
+130
+00:06:14,870 --> 00:06:17,840
+But if you're sharing your component with other people,
+
+131
+00:06:17,840 --> 00:06:19,630
+as a third-party package
+
+132
+00:06:19,630 --> 00:06:21,810
+or because you're working in a team,
+
+133
+00:06:21,810 --> 00:06:23,250
+you might want to provide
+
+134
+00:06:23,250 --> 00:06:25,720
+such more detailed prop definitions
+
+135
+00:06:25,720 --> 00:06:28,380
+so that everyone who's using your component
+
+136
+00:06:28,380 --> 00:06:31,780
+is quickly able to see how that component works,
+
+137
+00:06:31,780 --> 00:06:33,200
+which state it needs,
+
+138
+00:06:33,200 --> 00:06:37,120
+and when a prop is valid or not valid.
+
+139
+00:06:37,120 --> 00:06:38,970
+Getting such extra warnings here
+
+140
+00:06:38,970 --> 00:06:40,550
+can then really be helpful
+
+141
+00:06:40,550 --> 00:06:42,590
+and make your life as a developer
+
+142
+00:06:42,590 --> 00:06:44,473
+much-much easier.
+
+143
+00:06:45,860 --> 00:06:48,810
+And that's the idea behind more complex
+
+144
+00:06:48,810 --> 00:06:51,610
+prop definitions and prop validations,
+
+145
+00:06:51,610 --> 00:06:53,260
+which I've showed you here.
+
+146
+00:06:53,260 --> 00:06:55,410
+Now for the majority of the course,
+
+147
+00:06:55,410 --> 00:06:58,500
+I will use the simpler types of definitions,
+
+148
+00:06:58,500 --> 00:07:02,540
+either this array or just defining the value type
+
+149
+00:07:02,540 --> 00:07:04,360
+but I want you to be aware of that
+
+150
+00:07:04,360 --> 00:07:06,970
+so that if you are working on a bigger project,
+
+151
+00:07:06,970 --> 00:07:10,920
+you do know how to be more explicit regarding your props
+
+152
+00:07:10,920 --> 00:07:12,420
+and how they should look like.
+

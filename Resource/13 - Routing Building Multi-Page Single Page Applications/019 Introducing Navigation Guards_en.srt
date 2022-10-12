@@ -1,0 +1,576 @@
+1
+00:00:02,140 --> 00:00:03,480
+The last feature,
+
+2
+00:00:03,480 --> 00:00:05,730
+I wanna explore in this module with you
+
+3
+00:00:05,730 --> 00:00:08,410
+is the feature of navigation guards.
+
+4
+00:00:08,410 --> 00:00:12,030
+Navigation guards can be useful if you add features like
+
+5
+00:00:12,030 --> 00:00:14,890
+authentication where you, for example,
+
+6
+00:00:14,890 --> 00:00:18,450
+want to avoid that a user is able to access a certain route
+
+7
+00:00:18,450 --> 00:00:20,690
+if he or she is not authenticated,
+
+8
+00:00:20,690 --> 00:00:22,080
+but they can also be useful
+
+9
+00:00:22,080 --> 00:00:25,340
+to simply be aware of changing pages
+
+10
+00:00:25,340 --> 00:00:27,250
+in case you wanna run some code there
+
+11
+00:00:27,250 --> 00:00:30,310
+or they can be useful to ensure that a user
+
+12
+00:00:30,310 --> 00:00:33,240
+doesn't accidentally navigate away from a page
+
+13
+00:00:33,240 --> 00:00:38,240
+where he or she has unsaved edits in a forum, for example.
+
+14
+00:00:38,640 --> 00:00:41,200
+We'll see practical examples for guards
+
+15
+00:00:41,200 --> 00:00:43,040
+in the course project, but of course,
+
+16
+00:00:43,040 --> 00:00:45,940
+since this is the introductory module to routing,
+
+17
+00:00:45,940 --> 00:00:48,260
+I'll start showing you all those guards
+
+18
+00:00:48,260 --> 00:00:50,063
+in this module already.
+
+19
+00:00:51,180 --> 00:00:53,940
+Now, what exactly do I mean, when I say guards?
+
+20
+00:00:53,940 --> 00:00:57,150
+I'm talking about functions, methods,
+
+21
+00:00:57,150 --> 00:01:00,420
+which are called automatically by view router
+
+22
+00:01:00,420 --> 00:01:03,980
+when a page changes or to be precise,
+
+23
+00:01:03,980 --> 00:01:06,653
+when a navigation action started.
+
+24
+00:01:07,870 --> 00:01:12,120
+For example, on the router we're creating in main JS
+
+25
+00:01:12,120 --> 00:01:16,860
+on this main router before we pass it to our view app,
+
+26
+00:01:16,860 --> 00:01:21,410
+we can call before each, like this.
+
+27
+00:01:21,410 --> 00:01:23,510
+Before each is a build in method
+
+28
+00:01:23,510 --> 00:01:28,110
+and it wants a function as an argument.
+
+29
+00:01:28,110 --> 00:01:31,350
+Before each once a function as an argument.
+
+30
+00:01:31,350 --> 00:01:34,760
+And this function will be called by the view router
+
+31
+00:01:34,760 --> 00:01:38,520
+whenever we navigate from one page to another.
+
+32
+00:01:38,520 --> 00:01:43,173
+Before each navigation action, this function will be called.
+
+33
+00:01:44,470 --> 00:01:46,300
+And this function will then receive
+
+34
+00:01:46,300 --> 00:01:48,920
+free arguments from your router
+
+35
+00:01:48,920 --> 00:01:52,830
+to, which is the route object off the page we're going to,
+
+36
+00:01:52,830 --> 00:01:55,310
+from, which is the route object of
+
+37
+00:01:55,310 --> 00:01:57,030
+the page where coming from
+
+38
+00:01:57,030 --> 00:02:01,270
+and next, which is a function which we have to call
+
+39
+00:02:01,270 --> 00:02:06,270
+to either confirm or cancel this navigation action.
+
+40
+00:02:06,300 --> 00:02:10,330
+Because that's something we can do in navigation guards
+
+41
+00:02:10,330 --> 00:02:12,510
+which is why they are called guards.
+
+42
+00:02:12,510 --> 00:02:16,590
+We can cancel a navigation if we're not happy with it.
+
+43
+00:02:16,590 --> 00:02:20,320
+If we, for example, want to deny the navigation
+
+44
+00:02:20,320 --> 00:02:22,743
+because the user is not authenticated.
+
+45
+00:02:24,100 --> 00:02:26,620
+Now, how could this look like?
+
+46
+00:02:26,620 --> 00:02:30,770
+First of all, I'm going to console log, to and from
+
+47
+00:02:30,770 --> 00:02:32,490
+so that we see what we're getting there.
+
+48
+00:02:32,490 --> 00:02:37,270
+And then I'll call next like this, with no special setting.
+
+49
+00:02:37,270 --> 00:02:41,030
+I will also console log global
+
+50
+00:02:41,030 --> 00:02:43,850
+beforeEach to make it clear that we're in this
+
+51
+00:02:43,850 --> 00:02:48,463
+globally on the entire router registered before each hook.
+
+52
+00:02:49,930 --> 00:02:54,040
+If I saved that, reload and cleared a console
+
+53
+00:02:54,040 --> 00:02:59,040
+and I go to users, we see global before each in the console
+
+54
+00:02:59,050 --> 00:03:01,243
+and then we see two logs.
+
+55
+00:03:02,090 --> 00:03:05,170
+Now, one of these logs is coming from the scroll behavior.
+
+56
+00:03:05,170 --> 00:03:08,260
+So to avoid confusion, I'll comment this out
+
+57
+00:03:08,260 --> 00:03:10,540
+and to avoid that my IDE complaints
+
+58
+00:03:10,540 --> 00:03:13,500
+about the unused to and from,
+
+59
+00:03:13,500 --> 00:03:17,790
+I'll replace it with an underscore and underscore two,
+
+60
+00:03:17,790 --> 00:03:19,520
+which is basically an indicator
+
+61
+00:03:19,520 --> 00:03:21,830
+that I have to take these arguments
+
+62
+00:03:21,830 --> 00:03:23,690
+in order to reach the third one,
+
+63
+00:03:23,690 --> 00:03:25,633
+but then I don't plan on using them.
+
+64
+00:03:26,560 --> 00:03:30,280
+That's something my IDE and my local setup will accept.
+
+65
+00:03:30,280 --> 00:03:33,810
+So these are just argument names, following a convention
+
+66
+00:03:33,810 --> 00:03:35,920
+that signals to the set up that I
+
+67
+00:03:35,920 --> 00:03:39,023
+need to use these arguments, but I don't plan on using them.
+
+68
+00:03:40,130 --> 00:03:41,830
+So with that, if I reload
+
+69
+00:03:41,830 --> 00:03:43,920
+and we switched from users to teams now,
+
+70
+00:03:43,920 --> 00:03:46,690
+we see global beforeEach and then one log
+
+71
+00:03:46,690 --> 00:03:50,280
+with the to and the from route object.
+
+72
+00:03:50,280 --> 00:03:52,830
+To, of course is having the team's path
+
+73
+00:03:52,830 --> 00:03:54,990
+because we're going to teams
+
+74
+00:03:54,990 --> 00:03:57,420
+and from has users.
+
+75
+00:03:57,420 --> 00:04:00,160
+And other than that we see nothing special
+
+76
+00:04:00,160 --> 00:04:02,730
+because I just called next like this.
+
+77
+00:04:02,730 --> 00:04:04,660
+And if you call next like this,
+
+78
+00:04:04,660 --> 00:04:08,003
+you allow the navigation, you confirm it.
+
+79
+00:04:09,290 --> 00:04:12,350
+You can also pass false to next though.
+
+80
+00:04:12,350 --> 00:04:15,660
+And that will cancel the navigation.
+
+81
+00:04:15,660 --> 00:04:16,920
+Let's try that.
+
+82
+00:04:16,920 --> 00:04:20,390
+If I saved that, we already see when I reload,
+
+83
+00:04:20,390 --> 00:04:22,190
+there's nothing on the screen
+
+84
+00:04:22,190 --> 00:04:23,870
+because loading the page failed
+
+85
+00:04:23,870 --> 00:04:27,280
+because I canceled this initial navigation.
+
+86
+00:04:27,280 --> 00:04:30,950
+If I try to go to users, we get no error.
+
+87
+00:04:30,950 --> 00:04:34,970
+We see our global before each method runs,
+
+88
+00:04:34,970 --> 00:04:37,780
+but again, we see nothing on the screen
+
+89
+00:04:37,780 --> 00:04:40,773
+because with false, we cancel this.
+
+90
+00:04:42,200 --> 00:04:44,050
+Now here, of course that's not
+
+91
+00:04:44,050 --> 00:04:47,690
+too useful because we're canceling all navigation here,
+
+92
+00:04:47,690 --> 00:04:49,700
+but later in the course project,
+
+93
+00:04:49,700 --> 00:04:54,190
+we'll also see how we could use that feature in combination
+
+94
+00:04:54,190 --> 00:04:58,330
+with checking whether the user is authenticated or not,
+
+95
+00:04:58,330 --> 00:05:01,140
+to cancel or allow this.
+
+96
+00:05:01,140 --> 00:05:05,530
+We also have a third option for next here.
+
+97
+00:05:05,530 --> 00:05:09,770
+Besides passing nothing or false, we can also pass
+
+98
+00:05:09,770 --> 00:05:13,430
+either a string or a location object in here.
+
+99
+00:05:13,430 --> 00:05:17,460
+A string with a route you wanna navigate to,
+
+100
+00:05:17,460 --> 00:05:18,800
+which of course should then be
+
+101
+00:05:18,800 --> 00:05:21,810
+one of the routes we registered up there
+
+102
+00:05:21,810 --> 00:05:25,490
+or such a navigation object which describes that.
+
+103
+00:05:25,490 --> 00:05:27,400
+For example, by using the name
+
+104
+00:05:27,400 --> 00:05:30,290
+and then maybe setting up any parameters.
+
+105
+00:05:30,290 --> 00:05:34,460
+Like here, I could make sure that every navigation action
+
+106
+00:05:34,460 --> 00:05:37,900
+leads to a route with the name team-members
+
+107
+00:05:37,900 --> 00:05:41,490
+and teamId set to t2,
+
+108
+00:05:41,490 --> 00:05:43,650
+which of course makes absolutely no sense,
+
+109
+00:05:43,650 --> 00:05:46,550
+but I just want to show you how that works.
+
+110
+00:05:46,550 --> 00:05:50,420
+However, make sure you don't save and reload here
+
+111
+00:05:50,420 --> 00:05:52,440
+because you would create an infinite loop.
+
+112
+00:05:52,440 --> 00:05:55,290
+Because even when we go to this route,
+
+113
+00:05:55,290 --> 00:05:59,940
+because we redirect here, we would then again redirect us.
+
+114
+00:05:59,940 --> 00:06:04,940
+So here we should then actually check if to.path
+
+115
+00:06:05,060 --> 00:06:09,200
+or to.name is equal to team members.
+
+116
+00:06:09,200 --> 00:06:12,250
+So if we are already going to the team-members page,
+
+117
+00:06:12,250 --> 00:06:14,330
+in which case I wanna call next
+
+118
+00:06:14,330 --> 00:06:17,240
+and only else, if we're going to a different page,
+
+119
+00:06:17,240 --> 00:06:20,403
+I wanna forward, I wanna redirect to team-members.
+
+120
+00:06:21,910 --> 00:06:25,510
+And now we can save this and reload
+
+121
+00:06:25,510 --> 00:06:29,200
+and we now always end up on this team's t2 page,
+
+122
+00:06:29,200 --> 00:06:31,470
+if we tried to go anywhere else,
+
+123
+00:06:31,470 --> 00:06:34,200
+but to another team-member that would also work.
+
+124
+00:06:34,200 --> 00:06:37,620
+But if I tried to go to users, I still end up on teams t2
+
+125
+00:06:37,620 --> 00:06:40,053
+because of this global before each hook.
+
+126
+00:06:41,090 --> 00:06:42,400
+Now, I will say it again.
+
+127
+00:06:42,400 --> 00:06:43,850
+This of course is no logic
+
+128
+00:06:43,850 --> 00:06:46,520
+that really makes sense in this demo project,
+
+129
+00:06:46,520 --> 00:06:49,030
+but it is important that you understand
+
+130
+00:06:49,030 --> 00:06:51,900
+how this navigation guard works,
+
+131
+00:06:51,900 --> 00:06:55,163
+what the next method does in there and how you can use it.
+
+132
+00:06:56,170 --> 00:06:58,410
+With that however, I'm going to comment this out
+
+133
+00:06:58,410 --> 00:07:01,870
+and just call next like this to confirm the navigation
+
+134
+00:07:01,870 --> 00:07:06,120
+so that we don't redirect us to just one kind of page.
+
+135
+00:07:06,120 --> 00:07:09,250
+Instead, now we can navigate around as we're used to,
+
+136
+00:07:09,250 --> 00:07:11,310
+but you now have a first idea of
+
+137
+00:07:11,310 --> 00:07:14,240
+what a navigation guard is able to do.
+
+138
+00:07:14,240 --> 00:07:15,510
+And as you might imagine,
+
+139
+00:07:15,510 --> 00:07:17,340
+that can be useful if you want
+
+140
+00:07:17,340 --> 00:07:20,110
+to check whether the user is authenticated
+
+141
+00:07:20,110 --> 00:07:22,490
+and prevent access to a certain page,
+
+142
+00:07:22,490 --> 00:07:25,070
+if you are, she is not authenticated.
+
+143
+00:07:25,070 --> 00:07:27,060
+That would be a typical scenario
+
+144
+00:07:27,060 --> 00:07:29,193
+which we are going to see later.
+

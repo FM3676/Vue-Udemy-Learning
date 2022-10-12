@@ -1,0 +1,556 @@
+1
+00:00:02,120 --> 00:00:05,720
+The basics of decomposition API should be clear now,
+
+2
+00:00:05,720 --> 00:00:07,430
+but throughout this course,
+
+3
+00:00:07,430 --> 00:00:11,440
+we haven't just learned about data and computed properties.
+
+4
+00:00:11,440 --> 00:00:12,400
+We've for example,
+
+5
+00:00:12,400 --> 00:00:14,480
+also learned about a routing
+
+6
+00:00:14,480 --> 00:00:17,130
+and attached you find a number starting project,
+
+7
+00:00:17,130 --> 00:00:19,590
+where they got a very simple application
+
+8
+00:00:19,590 --> 00:00:22,157
+that uses routing set up for you.
+
+9
+00:00:22,157 --> 00:00:24,470
+Now if you load this application,
+
+10
+00:00:24,470 --> 00:00:25,540
+this is what you got.
+
+11
+00:00:25,540 --> 00:00:28,000
+You essentially got two main routes,
+
+12
+00:00:28,000 --> 00:00:30,200
+all products and add product,
+
+13
+00:00:30,200 --> 00:00:35,050
+here you can well add a new product,
+
+14
+00:00:35,050 --> 00:00:36,900
+and then you see it here.
+
+15
+00:00:36,900 --> 00:00:39,440
+And we face a couple of problems
+
+16
+00:00:39,440 --> 00:00:44,330
+or uncertainties here when using the composition API.
+
+17
+00:00:44,330 --> 00:00:47,600
+For example, when I add a new product
+
+18
+00:00:47,600 --> 00:00:49,140
+and I click add product,
+
+19
+00:00:49,140 --> 00:00:52,500
+it would be great if I would automatically be redirected
+
+20
+00:00:52,500 --> 00:00:54,210
+to all products.
+
+21
+00:00:54,210 --> 00:00:56,850
+In addition, when I click view details here,
+
+22
+00:00:56,850 --> 00:01:00,000
+I wanna see the details for that product.
+
+23
+00:01:00,000 --> 00:01:03,670
+And why is that complicated with decomposition API,
+
+24
+00:01:03,670 --> 00:01:05,860
+at least at the moment,
+
+25
+00:01:05,860 --> 00:01:08,620
+because we don't know how to get that data
+
+26
+00:01:08,620 --> 00:01:10,340
+on this route, for example,
+
+27
+00:01:10,340 --> 00:01:13,593
+because we don't know how to navigate programmatically.
+
+28
+00:01:14,600 --> 00:01:16,860
+Without decomposition API
+
+29
+00:01:16,860 --> 00:01:20,620
+we knew that there was this dollar sign router
+
+30
+00:01:20,620 --> 00:01:23,110
+and this dollar sign route.
+
+31
+00:01:23,110 --> 00:01:24,520
+So for example,
+
+32
+00:01:24,520 --> 00:01:27,080
+the product details page it's loaded
+
+33
+00:01:27,080 --> 00:01:28,750
+for slash products,
+
+34
+00:01:28,750 --> 00:01:30,893
+and then this dynamic segment.
+
+35
+00:01:31,750 --> 00:01:35,710
+Now we learned in the routing module of this course
+
+36
+00:01:35,710 --> 00:01:40,230
+that we can get the concrete value for this dynamic segment
+
+37
+00:01:40,230 --> 00:01:42,660
+inside of the product details here
+
+38
+00:01:42,660 --> 00:01:47,370
+with this dollar sign route object.
+
+39
+00:01:47,370 --> 00:01:50,100
+The problem with decomposition API
+
+40
+00:01:50,100 --> 00:01:54,210
+is that there is no this keyword in the setup method.
+
+41
+00:01:54,210 --> 00:01:57,493
+So how do we get our route parameters here then?
+
+42
+00:01:58,440 --> 00:02:02,220
+Well, there are two ways of fixing this.
+
+43
+00:02:02,220 --> 00:02:05,140
+For one you can, of course use an approach,
+
+44
+00:02:05,140 --> 00:02:07,610
+which has showed you into routing module.
+
+45
+00:02:07,610 --> 00:02:10,430
+You can configure this route,
+
+46
+00:02:10,430 --> 00:02:14,690
+such that the dynamic segment is passed as a prop
+
+47
+00:02:14,690 --> 00:02:17,120
+into the to be loaded component,
+
+48
+00:02:17,120 --> 00:02:20,170
+simply by adding this props option
+
+49
+00:02:20,170 --> 00:02:23,233
+on the route config and setting it to true.
+
+50
+00:02:24,550 --> 00:02:29,550
+Now the value for PID product ID will be provided
+
+51
+00:02:29,580 --> 00:02:33,270
+as a prop in the product details component.
+
+52
+00:02:33,270 --> 00:02:34,103
+And you know,
+
+53
+00:02:34,103 --> 00:02:36,610
+that we get props as a first argument here
+
+54
+00:02:36,610 --> 00:02:38,290
+in the setup method.
+
+55
+00:02:38,290 --> 00:02:39,460
+So now with that,
+
+56
+00:02:39,460 --> 00:02:44,460
+we could then use inject to inject the products
+
+57
+00:02:45,360 --> 00:02:48,820
+which I'm managing and providing here
+
+58
+00:02:48,820 --> 00:02:52,423
+in app view into product details.
+
+59
+00:02:53,390 --> 00:02:58,340
+So here we can get our products by calling inject products,
+
+60
+00:02:58,340 --> 00:03:01,150
+injecting the provided products
+
+61
+00:03:01,150 --> 00:03:05,670
+and on our props, we'll get this PID prop,
+
+62
+00:03:05,670 --> 00:03:10,670
+which holds the value off the dynamic segment in the URL.
+
+63
+00:03:11,210 --> 00:03:14,520
+So here in product details,
+
+64
+00:03:14,520 --> 00:03:19,397
+we can then get our selected product
+
+65
+00:03:20,590 --> 00:03:22,860
+by reaching out to products.
+
+66
+00:03:22,860 --> 00:03:27,270
+So to inject the products and finding the product
+
+67
+00:03:27,270 --> 00:03:30,703
+where product.id is equal to props.PID.
+
+68
+00:03:32,950 --> 00:03:35,340
+PID, because that's the name I chose here
+
+69
+00:03:35,340 --> 00:03:36,647
+in my route config,
+
+70
+00:03:37,830 --> 00:03:41,510
+and then we can get the title, price and description
+
+71
+00:03:41,510 --> 00:03:43,210
+from that selected product.
+
+72
+00:03:43,210 --> 00:03:45,400
+So we don't even need our refs here
+
+73
+00:03:45,400 --> 00:03:48,530
+because I don't want to set up or change the data in here.
+
+74
+00:03:48,530 --> 00:03:51,630
+I just want to extract it from the selected product.
+
+75
+00:03:51,630 --> 00:03:55,443
+So we get title by selecting select product.title,
+
+76
+00:03:56,300 --> 00:03:58,483
+and the same for the price.
+
+77
+00:04:00,020 --> 00:04:00,990
+And of course,
+
+78
+00:04:00,990 --> 00:04:03,930
+then also for the description
+
+79
+00:04:03,930 --> 00:04:06,553
+selected product.description.
+
+80
+00:04:08,100 --> 00:04:11,800
+And now the only thing we got to do is we have to ensure
+
+81
+00:04:11,800 --> 00:04:16,230
+that the different product IDs are provided in the URL
+
+82
+00:04:16,230 --> 00:04:18,510
+when we click view details
+
+83
+00:04:18,510 --> 00:04:23,020
+for that in all products where it is router link is set up,
+
+84
+00:04:23,020 --> 00:04:26,290
+this should, of course not be ID as a text
+
+85
+00:04:26,290 --> 00:04:31,053
+instead two, should be dynamically bound to a string,
+
+86
+00:04:31,053 --> 00:04:34,860
+for example, which starts with slash products,
+
+87
+00:04:34,860 --> 00:04:37,600
+but which then includes the ID off the product
+
+88
+00:04:37,600 --> 00:04:39,040
+we're rendering here
+
+89
+00:04:39,040 --> 00:04:42,020
+and we get that from product.id here,
+
+90
+00:04:42,020 --> 00:04:44,823
+just as I'm assigning the key here on the list item.
+
+91
+00:04:46,780 --> 00:04:48,400
+And with that,
+
+92
+00:04:48,400 --> 00:04:50,280
+I can click on view details
+
+93
+00:04:50,280 --> 00:04:53,770
+and I see nothing reason for that is that,
+
+94
+00:04:53,770 --> 00:04:57,320
+I got an error product find is not a function.
+
+95
+00:04:57,320 --> 00:05:00,320
+We of course must not forget that products,
+
+96
+00:05:00,320 --> 00:05:05,320
+which we inject here is a ref here in app view
+
+97
+00:05:05,760 --> 00:05:07,050
+and therefore of course,
+
+98
+00:05:07,050 --> 00:05:11,270
+when we wanna access the concrete value in their DRA,
+
+99
+00:05:11,270 --> 00:05:14,763
+we have to do this with the value property on products.
+
+100
+00:05:16,150 --> 00:05:17,320
+And of course,
+
+101
+00:05:17,320 --> 00:05:18,700
+we should also let you know
+
+102
+00:05:18,700 --> 00:05:20,940
+about the props we're getting here.
+
+103
+00:05:20,940 --> 00:05:23,923
+So add pid as a prop here.
+
+104
+00:05:27,110 --> 00:05:31,803
+And with that, we can view the details and this works.
+
+105
+00:05:34,290 --> 00:05:37,350
+Now, what if we, for whatever reason,
+
+106
+00:05:37,350 --> 00:05:40,760
+had a router link here in the details,
+
+107
+00:05:40,760 --> 00:05:44,560
+which always leads to product two.
+
+108
+00:05:44,560 --> 00:05:48,830
+So where the link goes to products/P2,
+
+109
+00:05:48,830 --> 00:05:50,763
+which is the idea of product two,
+
+110
+00:05:51,650 --> 00:05:53,670
+if I'm on the page of product one
+
+111
+00:05:53,670 --> 00:05:57,310
+and I click this, this doesn't update.
+
+112
+00:05:57,310 --> 00:06:01,240
+And we noticed problem from earlier in the course
+
+113
+00:06:01,240 --> 00:06:03,000
+now with the options API,
+
+114
+00:06:03,000 --> 00:06:06,430
+when we used props to get our product data,
+
+115
+00:06:06,430 --> 00:06:08,680
+we'd watched our props data,
+
+116
+00:06:08,680 --> 00:06:11,710
+our dynamic parameter value for changes,
+
+117
+00:06:11,710 --> 00:06:15,040
+and we need to do something similar here.
+
+118
+00:06:15,040 --> 00:06:18,173
+We could use a computed property, for example,
+
+119
+00:06:19,580 --> 00:06:24,440
+to make selected product, a computed property,
+
+120
+00:06:24,440 --> 00:06:26,003
+a computed value.
+
+121
+00:06:28,360 --> 00:06:32,370
+Like this, now of course,
+
+122
+00:06:32,370 --> 00:06:36,160
+we then should also make sure that those other values,
+
+123
+00:06:36,160 --> 00:06:38,100
+title, price, and description update
+
+124
+00:06:38,100 --> 00:06:39,960
+when we got a new selected product
+
+125
+00:06:39,960 --> 00:06:43,729
+and there are various ways of doing that one way,
+
+126
+00:06:43,729 --> 00:06:45,520
+definitely not the shortest one,
+
+127
+00:06:45,520 --> 00:06:48,710
+but one way would be to now turn those
+
+128
+00:06:48,710 --> 00:06:51,593
+into computed properties as well.
+
+129
+00:06:54,920 --> 00:06:55,753
+Like that.
+
+130
+00:06:57,420 --> 00:06:58,640
+And if we do this,
+
+131
+00:06:58,640 --> 00:07:01,510
+we of course have to use .value here
+
+132
+00:07:01,510 --> 00:07:04,070
+since selected product is now a ref.
+
+133
+00:07:04,070 --> 00:07:06,030
+It's a computed property after all
+
+134
+00:07:08,200 --> 00:07:10,500
+with that if we save this,
+
+135
+00:07:10,500 --> 00:07:11,760
+go to the first product
+
+136
+00:07:11,760 --> 00:07:14,780
+and click product two now this updates,
+
+137
+00:07:14,780 --> 00:07:17,413
+this is how we could do this with decomposition API,
+
+138
+00:07:18,690 --> 00:07:20,610
+but that was all just one way
+
+139
+00:07:20,610 --> 00:07:25,083
+of getting our dynamic route parameter by utilizing props.
+

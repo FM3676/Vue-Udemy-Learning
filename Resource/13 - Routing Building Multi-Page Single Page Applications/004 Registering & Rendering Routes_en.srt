@@ -1,0 +1,536 @@
+1
+00:00:02,090 --> 00:00:04,900
+So how can we register routes now?
+
+2
+00:00:04,900 --> 00:00:07,070
+while we get this routes array,
+
+3
+00:00:07,070 --> 00:00:12,070
+and here we now pass JavaScript objects tutors array,
+
+4
+00:00:12,320 --> 00:00:15,840
+and every object represents one route,
+
+5
+00:00:15,840 --> 00:00:18,100
+and to configuration for that route.
+
+6
+00:00:18,100 --> 00:00:20,515
+And here, one very important option,
+
+7
+00:00:20,515 --> 00:00:22,770
+which we need to set on every route,
+
+8
+00:00:22,770 --> 00:00:25,120
+is the path option.
+
+9
+00:00:25,120 --> 00:00:28,880
+This tells the router for which path that's the part
+
+10
+00:00:28,880 --> 00:00:31,350
+of the URL after the domain,
+
+11
+00:00:31,350 --> 00:00:33,580
+a certain component should be loaded.
+
+12
+00:00:33,580 --> 00:00:34,413
+For example,
+
+13
+00:00:34,413 --> 00:00:36,210
+that we want to load a certain component
+
+14
+00:00:36,210 --> 00:00:38,540
+for slash teams,
+
+15
+00:00:38,540 --> 00:00:43,280
+so that if our domain.com/teams is loaded,
+
+16
+00:00:43,280 --> 00:00:45,790
+a certain component is loaded.
+
+17
+00:00:45,790 --> 00:00:48,000
+And that's the second option we wanna set here.
+
+18
+00:00:48,000 --> 00:00:49,530
+The component option,
+
+19
+00:00:49,530 --> 00:00:52,790
+here, we then define which components should be loaded,
+
+20
+00:00:52,790 --> 00:00:56,990
+by the view router when the user visits slash teams.
+
+21
+00:00:56,990 --> 00:01:01,270
+And in my case that would be the team's list component here.
+
+22
+00:01:01,270 --> 00:01:04,540
+Currently, I'm loading the team's list component here,
+
+23
+00:01:04,540 --> 00:01:08,530
+in app view with the dynamic component.
+
+24
+00:01:08,530 --> 00:01:10,370
+I got my navigation,
+
+25
+00:01:10,370 --> 00:01:12,610
+which emits a set page event,
+
+26
+00:01:12,610 --> 00:01:14,740
+that happens when either of the two buttons
+
+27
+00:01:14,740 --> 00:01:16,080
+is clicked in there.
+
+28
+00:01:16,080 --> 00:01:19,600
+And then upon setting a page the active page,
+
+29
+00:01:19,600 --> 00:01:22,830
+data property changes either to team's list
+
+30
+00:01:22,830 --> 00:01:25,650
+or to users list.
+
+31
+00:01:25,650 --> 00:01:27,960
+And that are my two components here,
+
+32
+00:01:27,960 --> 00:01:28,827
+team's list and users list,
+
+33
+00:01:28,827 --> 00:01:29,660
+the two components which are all the registered here,
+
+34
+00:01:29,660 --> 00:01:34,170
+in my app component.
+
+35
+00:01:34,170 --> 00:01:37,940
+And that's simply den switches between these two components.
+
+36
+00:01:37,940 --> 00:01:38,812
+This is a way of doing it but it does not update
+
+37
+00:01:38,812 --> 00:01:43,812
+the URL and it's not shareable,
+
+38
+00:01:44,320 --> 00:01:46,150
+but it is the team's list component,
+
+39
+00:01:46,150 --> 00:01:49,030
+which I wanna load here for this route.
+
+40
+00:01:49,030 --> 00:01:52,290
+So, in this main JS file,
+
+41
+00:01:52,290 --> 00:01:54,480
+we now wanna import team's list,
+
+42
+00:01:54,480 --> 00:01:59,230
+from dot slash components, teams list dot view,
+
+43
+00:02:01,170 --> 00:02:05,820
+and then set component here equal to team's list telling
+
+44
+00:02:05,820 --> 00:02:08,669
+the view router that it's the team's list component.
+
+45
+00:02:08,669 --> 00:02:11,763
+That should be loaded if we visit slash teams.
+
+46
+00:02:13,230 --> 00:02:16,490
+And that's not the only route we wanna load.
+
+47
+00:02:16,490 --> 00:02:21,490
+Instead, I will duplicate this configuration here,
+
+48
+00:02:23,000 --> 00:02:26,670
+to also register a slash users route.
+
+49
+00:02:26,670 --> 00:02:30,160
+And here we wanna load the users list component.
+
+50
+00:02:30,160 --> 00:02:34,170
+So therefore we now also import users list,
+
+51
+00:02:34,170 --> 00:02:39,170
+from components, users list dot view,
+
+52
+00:02:40,620 --> 00:02:44,423
+and load this for this slash users route.
+
+53
+00:02:45,560 --> 00:02:48,250
+And now we registered these two routes.
+
+54
+00:02:48,250 --> 00:02:50,030
+Now the routes are configured,
+
+55
+00:02:50,030 --> 00:02:52,870
+but a couple of things are missing to make this work.
+
+56
+00:02:52,870 --> 00:02:54,430
+For one at the moment,
+
+57
+00:02:54,430 --> 00:02:57,540
+does router is only stored in this router constant,
+
+58
+00:02:57,540 --> 00:03:00,270
+but we're not doing anything with constant.
+
+59
+00:03:00,270 --> 00:03:03,700
+We need to make our view app aware of this router,
+
+60
+00:03:03,700 --> 00:03:05,350
+which holds these routes.
+
+61
+00:03:05,350 --> 00:03:07,600
+We do this by going to our app,
+
+62
+00:03:07,600 --> 00:03:11,200
+and on this app, we have to use method.
+
+63
+00:03:11,200 --> 00:03:12,640
+This is a built in method,
+
+64
+00:03:12,640 --> 00:03:15,510
+which in the end allows us to connect our view app,
+
+65
+00:03:15,510 --> 00:03:17,570
+with a third party package,
+
+66
+00:03:17,570 --> 00:03:19,700
+with some other functionality.
+
+67
+00:03:19,700 --> 00:03:23,570
+And here we simply pass the router to use.
+
+68
+00:03:23,570 --> 00:03:26,810
+And this makes the view app aware of this router.
+
+69
+00:03:26,810 --> 00:03:28,480
+Now that's a first step,
+
+70
+00:03:28,480 --> 00:03:31,200
+but one important piece is still missing.
+
+71
+00:03:31,200 --> 00:03:34,930
+The view app is now aware of these routes,
+
+72
+00:03:34,930 --> 00:03:37,890
+thanks to view router and theoretically,
+
+73
+00:03:37,890 --> 00:03:39,730
+the view router sees,
+
+74
+00:03:39,730 --> 00:03:42,810
+that if we visit our domain slash teams,
+
+75
+00:03:42,810 --> 00:03:45,333
+we want to load this component,
+
+76
+00:03:46,240 --> 00:03:49,470
+but it's missing one important piece of information.
+
+77
+00:03:49,470 --> 00:03:50,334
+It doesn't know where to load
+
+78
+00:03:50,334 --> 00:03:53,400
+this component to.
+
+79
+00:03:53,400 --> 00:03:56,280
+At the moment we're giving no hint at all to the router,
+
+80
+00:03:56,280 --> 00:03:58,340
+where does components should be rendered,
+
+81
+00:03:58,340 --> 00:04:01,670
+and thankfully it's not just taking the component,
+
+82
+00:04:01,670 --> 00:04:04,580
+and replacing everything on the screen with it.
+
+83
+00:04:04,580 --> 00:04:07,070
+Instead, we need to use a special component,
+
+84
+00:04:07,070 --> 00:04:10,350
+to let the view router know where to render it.
+
+85
+00:04:10,350 --> 00:04:13,010
+And we can replace this dynamic component
+
+86
+00:04:13,010 --> 00:04:15,340
+with that new special component,
+
+87
+00:04:15,340 --> 00:04:19,290
+since we're not going to use this dynamic approach anyways.
+
+88
+00:04:19,290 --> 00:04:21,730
+So instead here in app view,
+
+89
+00:04:21,730 --> 00:04:24,050
+let's say instead of this main element,
+
+90
+00:04:24,050 --> 00:04:27,320
+I want to render the selected route component.
+
+91
+00:04:27,320 --> 00:04:29,730
+And to let view router know about this,
+
+92
+00:04:29,730 --> 00:04:31,440
+we can use a number of component,
+
+93
+00:04:31,440 --> 00:04:34,470
+which is now built in, I'm saying now,
+
+94
+00:04:34,470 --> 00:04:36,470
+because it's built into view router,
+
+95
+00:04:36,470 --> 00:04:38,790
+and there for only a wadeble because we're using
+
+96
+00:04:38,790 --> 00:04:40,710
+the router in this view app.
+
+97
+00:04:40,710 --> 00:04:41,640
+But since we do that,
+
+98
+00:04:41,640 --> 00:04:43,670
+we now got a new built in component,
+
+99
+00:04:43,670 --> 00:04:46,193
+and that's the router view component.
+
+100
+00:04:47,040 --> 00:04:50,570
+And that's in the end of placeholder telling view router
+
+101
+00:04:50,570 --> 00:04:54,430
+that this is the place where to select it.
+
+102
+00:04:54,430 --> 00:04:58,133
+Routed to component, should be loaded.
+
+103
+00:04:59,210 --> 00:05:01,100
+And we can by the way now all to get rid
+
+104
+00:05:01,100 --> 00:05:03,420
+of these two imports here, team's list,
+
+105
+00:05:03,420 --> 00:05:07,240
+and user's list in app view and not registered
+
+106
+00:05:07,240 --> 00:05:08,900
+them as components anymore,
+
+107
+00:05:08,900 --> 00:05:10,410
+because we don't need to do that.
+
+108
+00:05:10,410 --> 00:05:13,130
+We're not using these components in our template,
+
+109
+00:05:13,130 --> 00:05:14,960
+by using dare selector.
+
+110
+00:05:14,960 --> 00:05:18,690
+Instead we select them here through the router.
+
+111
+00:05:18,690 --> 00:05:21,790
+And if you do that, if you load a component through routing,
+
+112
+00:05:21,790 --> 00:05:24,350
+you don't need to register this component.
+
+113
+00:05:24,350 --> 00:05:27,050
+Additionally, as a global or local component,
+
+114
+00:05:27,050 --> 00:05:28,423
+you don't need to do that.
+
+115
+00:05:29,440 --> 00:05:31,880
+So with that, we now let the router know,
+
+116
+00:05:31,880 --> 00:05:33,250
+where to load that.
+
+117
+00:05:33,250 --> 00:05:37,490
+And hence we can save everything and reload,
+
+118
+00:05:37,490 --> 00:05:39,910
+and we won't see anything on the screen,
+
+119
+00:05:39,910 --> 00:05:41,490
+because at the moment we're just
+
+120
+00:05:41,490 --> 00:05:44,490
+on our domain slash nothing.
+
+121
+00:05:44,490 --> 00:05:48,460
+Now the routes we registered were slashed teams,
+
+122
+00:05:48,460 --> 00:05:50,070
+and slash users.
+
+123
+00:05:50,070 --> 00:05:52,920
+So let's try those, let's enter ,
+
+124
+00:05:52,920 --> 00:05:55,230
+local host, 80, 80 slash teams,
+
+125
+00:05:55,230 --> 00:05:57,270
+and we see the team's page.
+
+126
+00:05:57,270 --> 00:06:01,140
+Let's try users, and we see the users page,
+
+127
+00:06:01,140 --> 00:06:03,970
+and now we got shareable links,
+
+128
+00:06:03,970 --> 00:06:07,270
+but of course our navigation isn't working anymore.
+
+129
+00:06:07,270 --> 00:06:09,490
+And the debt's definitely not what we want.
+
+130
+00:06:09,490 --> 00:06:11,870
+We want to make sure that we can still navigate
+
+131
+00:06:11,870 --> 00:06:13,170
+from inside the page,
+
+132
+00:06:13,170 --> 00:06:15,500
+and that we don't have to enter the difference
+
+133
+00:06:15,500 --> 00:06:19,870
+you ELLs manually, nobody uses webpages like that.
+
+134
+00:06:19,870 --> 00:06:23,150
+So let's see how we can navigate around with routes then.
+

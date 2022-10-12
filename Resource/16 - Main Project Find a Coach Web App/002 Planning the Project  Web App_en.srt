@@ -1,0 +1,344 @@
+1
+00:00:02,120 --> 00:00:04,230
+As mentioned in this module,
+
+2
+00:00:04,230 --> 00:00:07,180
+we are going to build the Coach Finder app.
+
+3
+00:00:07,180 --> 00:00:11,610
+So a web application, a website built with Vue.js,
+
+4
+00:00:11,610 --> 00:00:15,630
+which should help us find a coach that, for example,
+
+5
+00:00:15,630 --> 00:00:19,000
+helps us become better in web development, whatever.
+
+6
+00:00:19,000 --> 00:00:21,830
+And for this website, this web app,
+
+7
+00:00:21,830 --> 00:00:25,870
+which we're going to build will have two main features.
+
+8
+00:00:25,870 --> 00:00:28,670
+It has the find a coach feature,
+
+9
+00:00:28,670 --> 00:00:32,490
+and it has a feature to send requests messages,
+
+10
+00:00:32,490 --> 00:00:36,290
+to potential coaches which we want to contact.
+
+11
+00:00:36,290 --> 00:00:38,550
+Now for the find a coach part,
+
+12
+00:00:38,550 --> 00:00:42,750
+we want to be able to list all available coaches.
+
+13
+00:00:42,750 --> 00:00:46,980
+So all the coaches that signed up with our application,
+
+14
+00:00:46,980 --> 00:00:50,490
+we want to be able to view the coach details.
+
+15
+00:00:50,490 --> 00:00:53,510
+We will be able to register as a coach
+
+16
+00:00:53,510 --> 00:00:56,120
+and we'll be able to contact a coach.
+
+17
+00:00:56,120 --> 00:01:00,130
+Now, the contact a coach feature also establishes
+
+18
+00:01:00,130 --> 00:01:02,410
+the connection to the other part of this web app,
+
+19
+00:01:02,410 --> 00:01:04,200
+the requests part,
+
+20
+00:01:04,200 --> 00:01:07,620
+we will be able to send such requests to coaches.
+
+21
+00:01:07,620 --> 00:01:08,580
+And as a coach,
+
+22
+00:01:08,580 --> 00:01:12,260
+we can view incoming requests so that we then potentially
+
+23
+00:01:12,260 --> 00:01:13,890
+can reply to them.
+
+24
+00:01:13,890 --> 00:01:17,260
+This is the app, the web app we're going to build.
+
+25
+00:01:17,260 --> 00:01:20,570
+And the focus of this module will, of course,
+
+26
+00:01:20,570 --> 00:01:25,460
+be on adding as many key view features as possible
+
+27
+00:01:25,460 --> 00:01:27,140
+so that you get a very good idea
+
+28
+00:01:27,140 --> 00:01:30,343
+of how building real view apps works.
+
+29
+00:01:31,350 --> 00:01:34,380
+Now for that, before we write any code,
+
+30
+00:01:34,380 --> 00:01:36,800
+we of course wanna plan the app.
+
+31
+00:01:36,800 --> 00:01:41,070
+We want to have a clear plan on which code we need to write,
+
+32
+00:01:41,070 --> 00:01:44,130
+because even though we haven't done this thus far
+
+33
+00:01:44,130 --> 00:01:47,120
+in the course, since it's a Vue course,
+
+34
+00:01:47,120 --> 00:01:49,470
+this actually will be a major part
+
+35
+00:01:49,470 --> 00:01:51,020
+of any app you're building.
+
+36
+00:01:51,020 --> 00:01:54,150
+You need a plan, which then of course is allowed
+
+37
+00:01:54,150 --> 00:01:57,390
+to change over time, but you need an initial plan
+
+38
+00:01:57,390 --> 00:01:59,280
+before you start working.
+
+39
+00:01:59,280 --> 00:02:01,770
+Otherwise you don't know which code to write.
+
+40
+00:02:01,770 --> 00:02:05,010
+Now there is no single right blueprint to follow.
+
+41
+00:02:05,010 --> 00:02:08,120
+There are tons of different ways of planning an application.
+
+42
+00:02:08,120 --> 00:02:11,550
+And here's just one possible way of doing that.
+
+43
+00:02:11,550 --> 00:02:15,790
+I like to start by defining the key features of the app
+
+44
+00:02:15,790 --> 00:02:17,400
+I wanna build.
+
+45
+00:02:17,400 --> 00:02:20,650
+So in this case, find a coach and requests.
+
+46
+00:02:20,650 --> 00:02:24,720
+And then the sup features that belong to these areas
+
+47
+00:02:24,720 --> 00:02:28,240
+like listing all coaches, registering as a coach,
+
+48
+00:02:28,240 --> 00:02:31,030
+sending messages and so on.
+
+49
+00:02:31,030 --> 00:02:33,210
+Now, once the features are defined,
+
+50
+00:02:33,210 --> 00:02:36,740
+we can do two very important things.
+
+51
+00:02:36,740 --> 00:02:40,520
+The first important thing which we can do is that we can
+
+52
+00:02:40,520 --> 00:02:43,760
+derive the data we need, the data models we need
+
+53
+00:02:43,760 --> 00:02:48,720
+and in the Vue world data for the Vuex store layout we want.
+
+54
+00:02:48,720 --> 00:02:52,980
+We can plan our application wide state and our getters,
+
+55
+00:02:52,980 --> 00:02:56,880
+and also the actions and mutations we will most likely need.
+
+56
+00:02:56,880 --> 00:02:59,770
+Now from experience, I can tell you typically
+
+57
+00:02:59,770 --> 00:03:01,410
+you will plan something
+
+58
+00:03:01,410 --> 00:03:03,480
+and then once you start building the app,
+
+59
+00:03:03,480 --> 00:03:06,750
+your plans change and you add more actions
+
+60
+00:03:06,750 --> 00:03:09,450
+or different actions and different mutations
+
+61
+00:03:09,450 --> 00:03:13,840
+than initially planned because it turns out to work better.
+
+62
+00:03:13,840 --> 00:03:15,510
+And that is okay.
+
+63
+00:03:15,510 --> 00:03:19,460
+I'm not a fan of planning for days before you get started.
+
+64
+00:03:19,460 --> 00:03:21,320
+I rather get started quickly,
+
+65
+00:03:21,320 --> 00:03:24,203
+but a rough plan definitely won't hurt.
+
+66
+00:03:25,280 --> 00:03:27,220
+Now, the other important part,
+
+67
+00:03:27,220 --> 00:03:29,450
+which is not necessarily the second step,
+
+68
+00:03:29,450 --> 00:03:32,070
+you can also start with that other part
+
+69
+00:03:32,070 --> 00:03:35,950
+is that you derive to design, the layout of this application
+
+70
+00:03:35,950 --> 00:03:38,280
+and you plan which components you need
+
+71
+00:03:38,280 --> 00:03:41,720
+and how these components are related.
+
+72
+00:03:41,720 --> 00:03:45,700
+This also includes the part where you plan your routes,
+
+73
+00:03:45,700 --> 00:03:47,970
+which you wanna set up with the router.
+
+74
+00:03:47,970 --> 00:03:50,313
+So which different pages do you want to have?
+
+75
+00:03:51,180 --> 00:03:52,990
+Now, when I say design here,
+
+76
+00:03:52,990 --> 00:03:56,620
+I don't necessarily mean the colors and the font
+
+77
+00:03:56,620 --> 00:03:59,270
+or something like that, because whilst this,
+
+78
+00:03:59,270 --> 00:04:02,370
+of course, is a part often that will be done
+
+79
+00:04:02,370 --> 00:04:04,780
+by some designer for you.
+
+80
+00:04:04,780 --> 00:04:07,250
+I personally am not a designer,
+
+81
+00:04:07,250 --> 00:04:11,980
+so my designs look okayish, but not great.
+
+82
+00:04:11,980 --> 00:04:14,190
+I'm really talking about the Vue part,
+
+83
+00:04:14,190 --> 00:04:17,452
+so the components and how these components are related.
+
+84
+00:04:18,370 --> 00:04:20,899
+These are the major two things we wanna do
+
+85
+00:04:20,899 --> 00:04:22,640
+and therefore these are the steps
+
+86
+00:04:22,640 --> 00:04:24,823
+I'll start with in the next lecture.
+

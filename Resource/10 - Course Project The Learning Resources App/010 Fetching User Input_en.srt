@@ -1,0 +1,716 @@
+1
+00:00:02,380 --> 00:00:04,700
+So, where are you successful?
+
+2
+00:00:04,700 --> 00:00:06,153
+Let's implement it together.
+
+3
+00:00:07,020 --> 00:00:11,640
+And for that I'll first of all add my script section here,
+
+4
+00:00:11,640 --> 00:00:14,100
+and we definitely need a method here,
+
+5
+00:00:14,100 --> 00:00:15,800
+a method which should be triggered
+
+6
+00:00:15,800 --> 00:00:17,600
+when the form is submitted.
+
+7
+00:00:17,600 --> 00:00:19,280
+I'll name it submitData,
+
+8
+00:00:19,280 --> 00:00:22,500
+but you can of course use any method name you want.
+
+9
+00:00:22,500 --> 00:00:26,270
+Here, I now want to get the values entered into this input,
+
+10
+00:00:26,270 --> 00:00:28,710
+this text area, and this input.
+
+11
+00:00:28,710 --> 00:00:32,060
+And we've got two main ways of collecting this.
+
+12
+00:00:32,060 --> 00:00:36,380
+Option one is that we use some data properties
+
+13
+00:00:36,380 --> 00:00:40,260
+and then we use V-Model or an input listener
+
+14
+00:00:40,260 --> 00:00:42,200
+to update it with every keystroke.
+
+15
+00:00:42,200 --> 00:00:45,970
+So to collect the free values in free data properties
+
+16
+00:00:45,970 --> 00:00:49,883
+and update each data properties value with every keystroke.
+
+17
+00:00:51,060 --> 00:00:53,650
+That would work and there is nothing wrong with it,
+
+18
+00:00:53,650 --> 00:00:56,380
+but I will use the good old refs again.
+
+19
+00:00:56,380 --> 00:00:59,750
+And for that here, I'll add a ref key,
+
+20
+00:00:59,750 --> 00:01:04,000
+a ref property or attribute on this first input
+
+21
+00:01:04,000 --> 00:01:06,080
+and named as titleInput.
+
+22
+00:01:06,080 --> 00:01:09,410
+You know that these ref identifiers are up to you,
+
+23
+00:01:09,410 --> 00:01:12,160
+but of course you want to pick a name that describes
+
+24
+00:01:12,160 --> 00:01:14,580
+which elements you are pointing at.
+
+25
+00:01:14,580 --> 00:01:17,673
+Here I'll add a ref which will be to descInput
+
+26
+00:01:19,400 --> 00:01:21,530
+for description input.
+
+27
+00:01:21,530 --> 00:01:22,810
+And on the last input,
+
+28
+00:01:22,810 --> 00:01:25,997
+I'll add a ref with an identifier off linkInput.
+
+29
+00:01:28,050 --> 00:01:30,660
+So now we've got these free refs registered
+
+30
+00:01:30,660 --> 00:01:32,200
+and we can now use them.
+
+31
+00:01:32,200 --> 00:01:34,920
+We can now use them here in submit data
+
+32
+00:01:34,920 --> 00:01:37,660
+to get the enter title by referring
+
+33
+00:01:37,660 --> 00:01:40,600
+to this dollar sign refs titleInput,
+
+34
+00:01:42,040 --> 00:01:44,960
+which is the ref I did use here, right?
+
+35
+00:01:44,960 --> 00:01:48,300
+TitleInput, that's the ref I used on this input.
+
+36
+00:01:48,300 --> 00:01:52,240
+And then this points at the input HTML element object,
+
+37
+00:01:52,240 --> 00:01:53,720
+which has a value prop,
+
+38
+00:01:53,720 --> 00:01:56,190
+which holds what the user entered.
+
+39
+00:01:56,190 --> 00:01:59,870
+And I'm going to repeat that for the entered description
+
+40
+00:01:59,870 --> 00:02:03,990
+referring to the descInput value.
+
+41
+00:02:03,990 --> 00:02:07,230
+And for the entered url referring
+
+42
+00:02:07,230 --> 00:02:11,383
+to this dollar sign refs urlInput.value.
+
+43
+00:02:14,830 --> 00:02:16,840
+Sorry, that was linkInput,
+
+44
+00:02:16,840 --> 00:02:19,823
+so it should be linkInput.value.
+
+45
+00:02:21,300 --> 00:02:24,230
+So now these are the free values the user entered,
+
+46
+00:02:24,230 --> 00:02:26,310
+and of course they may be empty.
+
+47
+00:02:26,310 --> 00:02:29,810
+We'll take care about that in a next step,
+
+48
+00:02:29,810 --> 00:02:32,360
+for the moment I'll assume they're not empty,
+
+49
+00:02:32,360 --> 00:02:34,640
+and if they are not empty,
+
+50
+00:02:34,640 --> 00:02:36,960
+then I want to ensure that they get added
+
+51
+00:02:36,960 --> 00:02:38,710
+to all our resources.
+
+52
+00:02:38,710 --> 00:02:40,003
+So how could we do that?
+
+53
+00:02:40,950 --> 00:02:44,470
+We could of course emit a custom event,
+
+54
+00:02:44,470 --> 00:02:46,790
+and then listen to it in the parent component
+
+55
+00:02:46,790 --> 00:02:49,110
+of this addResource component.
+
+56
+00:02:49,110 --> 00:02:53,480
+But since we add this addResource component dynamically,
+
+57
+00:02:53,480 --> 00:02:58,280
+like this, that will not be super easy to do.
+
+58
+00:02:58,280 --> 00:03:00,070
+Of course, we don't have to use
+
+59
+00:03:00,070 --> 00:03:01,960
+this dynamic components here.
+
+60
+00:03:01,960 --> 00:03:05,200
+We could use VF to switch between two components
+
+61
+00:03:05,200 --> 00:03:07,350
+and then we could use custom events.
+
+62
+00:03:07,350 --> 00:03:10,670
+But again, I want to practice provide and inject here.
+
+63
+00:03:10,670 --> 00:03:12,340
+So therefore I'll stick to provide
+
+64
+00:03:12,340 --> 00:03:15,373
+and inject and I'll implement it differently.
+
+65
+00:03:17,510 --> 00:03:22,510
+I'll start in TheResources.vue by adding a new method,
+
+66
+00:03:22,770 --> 00:03:24,923
+the addResource method.
+
+67
+00:03:25,850 --> 00:03:27,680
+Here, I want to get the title,
+
+68
+00:03:27,680 --> 00:03:30,580
+the description, and the url,
+
+69
+00:03:30,580 --> 00:03:32,970
+and I wanna generate a new resource
+
+70
+00:03:32,970 --> 00:03:36,410
+and add it to this storedResources array,
+
+71
+00:03:36,410 --> 00:03:38,343
+whenever this method is triggered.
+
+72
+00:03:39,320 --> 00:03:44,180
+So in here, I'll create a newResource JavaScript object,
+
+73
+00:03:44,180 --> 00:03:46,970
+and that object needs a unique ID.
+
+74
+00:03:46,970 --> 00:03:49,620
+For that I'll just create a timestamp here
+
+75
+00:03:49,620 --> 00:03:51,780
+by instantiating the date object,
+
+76
+00:03:51,780 --> 00:03:54,020
+and I'll then get a string timestamp
+
+77
+00:03:54,020 --> 00:03:55,743
+by calling toISOString.
+
+78
+00:03:56,620 --> 00:03:59,023
+That is unique enough for this purpose.
+
+79
+00:03:59,960 --> 00:04:03,170
+Then we need to set a title property in this object
+
+80
+00:04:03,170 --> 00:04:07,270
+because all our storage resources have a title property,
+
+81
+00:04:07,270 --> 00:04:10,290
+and they also have description and link properties.
+
+82
+00:04:10,290 --> 00:04:12,260
+So we'll need to set those two,
+
+83
+00:04:12,260 --> 00:04:14,950
+and of course, stored values we're receiving
+
+84
+00:04:14,950 --> 00:04:17,660
+as arguments in those properties.
+
+85
+00:04:17,660 --> 00:04:20,640
+So add description and set this equal to description
+
+86
+00:04:20,640 --> 00:04:23,123
+and add link and set this equal to url.
+
+87
+00:04:25,630 --> 00:04:27,400
+So this now is a new resource,
+
+88
+00:04:27,400 --> 00:04:30,730
+which now can be added to the storedResources
+
+89
+00:04:30,730 --> 00:04:32,640
+by simply pushing it there,
+
+90
+00:04:32,640 --> 00:04:36,023
+or if we want to add it at the top by unshifting,
+
+91
+00:04:37,140 --> 00:04:39,000
+which is basically like push,
+
+92
+00:04:39,000 --> 00:04:40,970
+but at the beginning of the array.
+
+93
+00:04:40,970 --> 00:04:43,947
+So here I'll unshift the newResource.
+
+94
+00:04:45,870 --> 00:04:48,450
+And I will then also set this selectedTab
+
+95
+00:04:48,450 --> 00:04:52,000
+to storedResources so that we switched to tab
+
+96
+00:04:52,000 --> 00:04:54,023
+when we added a new resource.
+
+97
+00:04:56,190 --> 00:04:58,750
+Now with that back in addResource,
+
+98
+00:04:58,750 --> 00:05:02,430
+I want to make sure that from inside submitData,
+
+99
+00:05:02,430 --> 00:05:04,730
+I can call the addResource method
+
+100
+00:05:04,730 --> 00:05:08,190
+we just add it to TheResources.vue.
+
+101
+00:05:08,190 --> 00:05:10,090
+How can we make this work?
+
+102
+00:05:10,090 --> 00:05:12,920
+Well, we can provide this method as well.
+
+103
+00:05:12,920 --> 00:05:14,670
+So here in provide,
+
+104
+00:05:14,670 --> 00:05:17,320
+I can add a addResource key.
+
+105
+00:05:17,320 --> 00:05:19,370
+This key name is up to you though,
+
+106
+00:05:19,370 --> 00:05:21,770
+but I want to point at this ad resource,
+
+107
+00:05:21,770 --> 00:05:23,513
+hence I'm pointing at my method.
+
+108
+00:05:24,760 --> 00:05:26,250
+I'm not executing it here,
+
+109
+00:05:26,250 --> 00:05:28,090
+I'm just pointing at it.
+
+110
+00:05:28,090 --> 00:05:31,140
+And now we can inject this addResource key,
+
+111
+00:05:31,140 --> 00:05:33,830
+entity addResources component.
+
+112
+00:05:33,830 --> 00:05:35,970
+Here we can add the inject key
+
+113
+00:05:36,910 --> 00:05:39,940
+and inject addResource like that,
+
+114
+00:05:39,940 --> 00:05:41,720
+and this allows us to call it here
+
+115
+00:05:41,720 --> 00:05:43,390
+instead of submitData.
+
+116
+00:05:43,390 --> 00:05:45,940
+Here, we can now call addResource
+
+117
+00:05:45,940 --> 00:05:48,510
+and forward the enteredTitle,
+
+118
+00:05:48,510 --> 00:05:51,593
+the enteredDescription, and the enteredUrl.
+
+119
+00:05:53,930 --> 00:05:55,290
+We can save that all.
+
+120
+00:05:55,290 --> 00:05:57,550
+And now if we go back
+
+121
+00:05:57,550 --> 00:06:00,243
+and I enter some test data here,
+
+122
+00:06:01,540 --> 00:06:03,610
+something like that,
+
+123
+00:06:03,610 --> 00:06:05,313
+if I click Add rRsource,
+
+124
+00:06:07,120 --> 00:06:09,100
+well, I forgot one thing.
+
+125
+00:06:09,100 --> 00:06:12,280
+Obviously it's nice to have to submitData method,
+
+126
+00:06:12,280 --> 00:06:15,280
+but I also need to trigger it when the form gets submitted
+
+127
+00:06:15,280 --> 00:06:17,450
+and currently that's not happening.
+
+128
+00:06:17,450 --> 00:06:19,010
+So on the form here,
+
+129
+00:06:19,010 --> 00:06:21,240
+I want to add a submit listener
+
+130
+00:06:21,240 --> 00:06:23,460
+and all to prevent the browser default
+
+131
+00:06:23,460 --> 00:06:25,600
+with the prevent modifier.
+
+132
+00:06:25,600 --> 00:06:28,020
+And then point at submitData
+
+133
+00:06:28,020 --> 00:06:30,860
+so add this method we've been working on.
+
+134
+00:06:30,860 --> 00:06:32,080
+And now with data added,
+
+135
+00:06:32,080 --> 00:06:34,403
+which of course is a quite important step,
+
+136
+00:06:35,490 --> 00:06:37,740
+with dad added if we go back,
+
+137
+00:06:37,740 --> 00:06:41,300
+I can add my test data again here
+
+138
+00:06:41,300 --> 00:06:43,840
+and now if I click Add Resource,
+
+139
+00:06:43,840 --> 00:06:46,500
+this works and here's our test resource.
+
+140
+00:06:46,500 --> 00:06:49,303
+And if I click the link, I'm indeed taken to Google.
+
+141
+00:06:50,370 --> 00:06:51,380
+So that's working,
+
+142
+00:06:51,380 --> 00:06:53,670
+if I go back by the way the data is lost
+
+143
+00:06:53,670 --> 00:06:55,660
+because it only exists in memory
+
+144
+00:06:55,660 --> 00:06:57,650
+as long as our app is running,
+
+145
+00:06:57,650 --> 00:07:00,920
+we will later learn how we can persist data
+
+146
+00:07:00,920 --> 00:07:03,850
+and store it on a server just as a side note.
+
+147
+00:07:03,850 --> 00:07:05,860
+But with that, we added this.
+
+148
+00:07:05,860 --> 00:07:08,170
+There is one thing I want to fine tune though,
+
+149
+00:07:08,170 --> 00:07:11,070
+at the moment if I start entering data here
+
+150
+00:07:11,070 --> 00:07:12,960
+on the Add Resource tab,
+
+151
+00:07:12,960 --> 00:07:14,750
+and then I leave to tab,
+
+152
+00:07:14,750 --> 00:07:17,710
+and I come back my entered data is lost,
+
+153
+00:07:17,710 --> 00:07:19,750
+and that's a scenario we also covered
+
+154
+00:07:19,750 --> 00:07:21,970
+in the last course module.
+
+155
+00:07:21,970 --> 00:07:26,220
+We can simply fix this by going to TheResources.vue
+
+156
+00:07:26,220 --> 00:07:28,470
+and wrapping our dynamic component
+
+157
+00:07:28,470 --> 00:07:32,023
+with the keep-alive component like this.
+
+158
+00:07:33,030 --> 00:07:33,940
+If we do that,
+
+159
+00:07:33,940 --> 00:07:35,580
+the component will be cached
+
+160
+00:07:35,580 --> 00:07:37,960
+and the data will not be lost.
+
+161
+00:07:37,960 --> 00:07:41,410
+So if we do that and I now enter data here,
+
+162
+00:07:41,410 --> 00:07:43,430
+if it switched to tab and come back,
+
+163
+00:07:43,430 --> 00:07:45,250
+my input is still there.
+
+164
+00:07:45,250 --> 00:07:49,290
+And with that, the addResource form is almost finished,
+
+165
+00:07:49,290 --> 00:07:51,610
+but one important piece is missing.
+
+166
+00:07:51,610 --> 00:07:53,830
+I also want to let the user know
+
+167
+00:07:53,830 --> 00:07:56,900
+when he or she tries to submit invalid data.
+
+168
+00:07:56,900 --> 00:08:00,150
+For example, when the title field here is empty.
+
+169
+00:08:00,150 --> 00:08:02,900
+And at the moment, this is possible.
+
+170
+00:08:02,900 --> 00:08:05,430
+I of course want to prevent that this happens
+
+171
+00:08:05,430 --> 00:08:08,460
+and I want to show the user an error message.
+
+172
+00:08:08,460 --> 00:08:11,130
+And I want to do it as with a nice overlay
+
+173
+00:08:11,130 --> 00:08:13,300
+with a custom dialogue.
+
+174
+00:08:13,300 --> 00:08:14,700
+So just as before,
+
+175
+00:08:14,700 --> 00:08:16,770
+feel free to try this on your own.
+
+176
+00:08:16,770 --> 00:08:18,730
+Build such an error dialogue
+
+177
+00:08:18,730 --> 00:08:22,000
+and show it when the user submits invalid data,
+
+178
+00:08:22,000 --> 00:08:23,320
+we'll build it together,
+
+179
+00:08:23,320 --> 00:08:25,023
+starting in the next lecture.
+

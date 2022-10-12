@@ -1,0 +1,728 @@
+1
+00:00:02,140 --> 00:00:05,100
+So, slots clearly are an important feature.
+
+2
+00:00:05,100 --> 00:00:07,660
+They give us way more flexibility
+
+3
+00:00:07,660 --> 00:00:09,410
+and allow us to do things,
+
+4
+00:00:09,410 --> 00:00:10,740
+which we can't really do
+
+5
+00:00:10,740 --> 00:00:13,570
+or which we can't really built without slots.
+
+6
+00:00:13,570 --> 00:00:15,780
+Now, I'm not done with slots still,
+
+7
+00:00:15,780 --> 00:00:18,220
+there's more we can cover about them.
+
+8
+00:00:18,220 --> 00:00:22,150
+For example, you can't provide default slot content.
+
+9
+00:00:22,150 --> 00:00:23,360
+So, with that I don't mean
+
+10
+00:00:23,360 --> 00:00:26,840
+that you have a default and unnamed slot
+
+11
+00:00:26,840 --> 00:00:28,710
+where content will go
+
+12
+00:00:28,710 --> 00:00:30,820
+that doesn't target a different name,
+
+13
+00:00:30,820 --> 00:00:33,210
+but I mean that if you have a slot,
+
+14
+00:00:33,210 --> 00:00:35,580
+which receives no content,
+
+15
+00:00:35,580 --> 00:00:39,530
+that this slot can then render some default content,
+
+16
+00:00:39,530 --> 00:00:42,320
+for example, here in the header,
+
+17
+00:00:42,320 --> 00:00:44,010
+we can add default content
+
+18
+00:00:44,010 --> 00:00:45,280
+by adding content
+
+19
+00:00:45,280 --> 00:00:47,980
+between our slots tags here.
+
+20
+00:00:47,980 --> 00:00:51,050
+Let's say h2 tag here
+
+21
+00:00:51,050 --> 00:00:53,130
+where I say The Default,
+
+22
+00:00:53,130 --> 00:00:54,903
+just to show how this works.
+
+23
+00:00:56,180 --> 00:00:57,540
+It does make a lot of sense
+
+24
+00:00:57,540 --> 00:00:59,280
+for this specific component,
+
+25
+00:00:59,280 --> 00:01:01,390
+but you definitely can have components
+
+26
+00:01:01,390 --> 00:01:04,860
+where some default content might make sense.
+
+27
+00:01:04,860 --> 00:01:06,650
+Now, if you add such an element,
+
+28
+00:01:06,650 --> 00:01:07,890
+if you add content
+
+29
+00:01:07,890 --> 00:01:09,850
+between your slots tags,
+
+30
+00:01:09,850 --> 00:01:13,780
+by default this will not be visible right now
+
+31
+00:01:13,780 --> 00:01:15,670
+because all the places
+
+32
+00:01:15,670 --> 00:01:17,630
+where I use the base card
+
+33
+00:01:17,630 --> 00:01:20,610
+do provide content for the header slot.
+
+34
+00:01:20,610 --> 00:01:22,180
+Both the badge list,
+
+35
+00:01:22,180 --> 00:01:24,380
+as well as the user info component,
+
+36
+00:01:24,380 --> 00:01:27,303
+both provide content for the header.
+
+37
+00:01:28,680 --> 00:01:30,120
+But let's say the badge list
+
+38
+00:01:30,120 --> 00:01:33,870
+wouldn't have it's v-slot header template here.
+
+39
+00:01:33,870 --> 00:01:35,930
+So, it doesn't provide any content
+
+40
+00:01:35,930 --> 00:01:37,123
+for the header slot.
+
+41
+00:01:38,360 --> 00:01:39,950
+If you remove that,
+
+42
+00:01:39,950 --> 00:01:43,710
+you see now The Default in that component,
+
+43
+00:01:43,710 --> 00:01:47,030
+because now the slot fallback content,
+
+44
+00:01:47,030 --> 00:01:50,230
+the default content of that slot is being shown.
+
+45
+00:01:50,230 --> 00:01:53,763
+And that of course can be useful for certain components.
+
+46
+00:01:55,130 --> 00:01:56,050
+Now we can argue
+
+47
+00:01:56,050 --> 00:01:59,240
+if it's useful for this specific component though.
+
+48
+00:01:59,240 --> 00:02:00,820
+Why should a card
+
+49
+00:02:00,820 --> 00:02:03,510
+which should just act as a wrapper
+
+50
+00:02:03,510 --> 00:02:05,840
+that gives us some visual styling,
+
+51
+00:02:05,840 --> 00:02:08,759
+why should that have a default title?
+
+52
+00:02:08,759 --> 00:02:11,290
+After all, you don't know what the content
+
+53
+00:02:11,290 --> 00:02:14,290
+that will be passed into the card will be about.
+
+54
+00:02:14,290 --> 00:02:17,010
+So, rendering some default title
+
+55
+00:02:17,010 --> 00:02:19,083
+probably does make a lot of sense.
+
+56
+00:02:20,030 --> 00:02:22,020
+I'll still leave it here for reference,
+
+57
+00:02:22,020 --> 00:02:24,600
+but of course it is just an example.
+
+58
+00:02:24,600 --> 00:02:26,730
+But you can in such cases
+
+59
+00:02:26,730 --> 00:02:29,110
+where you don't know if you really need
+
+60
+00:02:29,110 --> 00:02:31,180
+that slot element here,
+
+61
+00:02:31,180 --> 00:02:33,953
+you can also use another nice feature.
+
+62
+00:02:35,410 --> 00:02:39,120
+If we wouldn't render this default fallback content,
+
+63
+00:02:39,120 --> 00:02:42,720
+our badge list card doesn't have any title.
+
+64
+00:02:42,720 --> 00:02:45,100
+But if we inspect the HTML markup,
+
+65
+00:02:45,100 --> 00:02:49,250
+we of course see it has an empty header element.
+
+66
+00:02:49,250 --> 00:02:51,810
+And whilst we don't see it on the screen,
+
+67
+00:02:51,810 --> 00:02:54,270
+this is not ideal semantically
+
+68
+00:02:54,270 --> 00:02:56,500
+having an empty HTML element
+
+69
+00:02:56,500 --> 00:02:58,210
+lying around in the Dom.
+
+70
+00:02:58,210 --> 00:03:01,010
+I don't know, I don't want to have that.
+
+71
+00:03:01,010 --> 00:03:03,610
+You can utilize another cool feature here.
+
+72
+00:03:03,610 --> 00:03:07,160
+In the component where you define slots,
+
+73
+00:03:07,160 --> 00:03:11,700
+you get a special property provided by vue.
+
+74
+00:03:11,700 --> 00:03:15,410
+We can see it if I add the mounted lifecycle here.
+
+75
+00:03:15,410 --> 00:03:17,240
+Let's then console log,
+
+76
+00:03:17,240 --> 00:03:20,290
+this dollar sign slots.
+
+77
+00:03:20,290 --> 00:03:21,540
+Dollar sign slots
+
+78
+00:03:21,540 --> 00:03:24,950
+is a number built in property provided by vue.
+
+79
+00:03:24,950 --> 00:03:26,830
+And it holds information
+
+80
+00:03:26,830 --> 00:03:28,810
+about the slot data
+
+81
+00:03:28,810 --> 00:03:32,573
+this component receives for its different slots.
+
+82
+00:03:33,800 --> 00:03:35,460
+So, if I save that,
+
+83
+00:03:35,460 --> 00:03:36,710
+open the developer tool
+
+84
+00:03:36,710 --> 00:03:39,450
+and DARE to JavaScript console and reload,
+
+85
+00:03:39,450 --> 00:03:42,630
+we see queue console logs here.
+
+86
+00:03:42,630 --> 00:03:44,030
+Why do we see two?
+
+87
+00:03:44,030 --> 00:03:48,050
+Because we're using our component that has slots twice.
+
+88
+00:03:48,050 --> 00:03:49,950
+We're using it in user info
+
+89
+00:03:49,950 --> 00:03:52,430
+and we're using it in badge list.
+
+90
+00:03:52,430 --> 00:03:53,830
+So, every time this component
+
+91
+00:03:53,830 --> 00:03:54,710
+is getting used
+
+92
+00:03:54,710 --> 00:03:56,320
+mounted is getting called
+
+93
+00:03:56,320 --> 00:03:57,970
+because this base card component
+
+94
+00:03:57,970 --> 00:04:00,910
+gets created and mounted twice.
+
+95
+00:04:00,910 --> 00:04:02,910
+Obviously, since we use it twice
+
+96
+00:04:02,910 --> 00:04:06,270
+and therefore we get this console log twice.
+
+97
+00:04:06,270 --> 00:04:08,170
+Now, the interesting thing is,
+
+98
+00:04:08,170 --> 00:04:10,290
+in those objects,
+
+99
+00:04:10,290 --> 00:04:13,920
+we have access to the different slots we're providing.
+
+100
+00:04:13,920 --> 00:04:16,890
+So, we can actually access dot header here
+
+101
+00:04:16,890 --> 00:04:19,420
+because we have a slot named header here.
+
+102
+00:04:19,420 --> 00:04:21,680
+We could also access dot default
+
+103
+00:04:21,680 --> 00:04:23,313
+because we have a default slot.
+
+104
+00:04:24,540 --> 00:04:26,230
+Now, if I access dot header
+
+105
+00:04:26,230 --> 00:04:28,440
+we'll see something interesting.
+
+106
+00:04:28,440 --> 00:04:29,650
+If I reload again,
+
+107
+00:04:29,650 --> 00:04:31,820
+we also see two outputs in the end,
+
+108
+00:04:31,820 --> 00:04:33,810
+this one and this one
+
+109
+00:04:33,810 --> 00:04:35,360
+and we see two outputs
+
+110
+00:04:35,360 --> 00:04:37,550
+for the same reason as explained before.
+
+111
+00:04:37,550 --> 00:04:39,050
+But the interesting thing is that,
+
+112
+00:04:39,050 --> 00:04:42,120
+we see this strange output here once,
+
+113
+00:04:42,120 --> 00:04:45,390
+but that we see undefined the other time.
+
+114
+00:04:45,390 --> 00:04:47,260
+Now, undefined here
+
+115
+00:04:47,260 --> 00:04:49,040
+is coming from the usage
+
+116
+00:04:49,040 --> 00:04:50,730
+of the base card component
+
+117
+00:04:50,730 --> 00:04:52,760
+in the badge list component.
+
+118
+00:04:52,760 --> 00:04:54,880
+There we're not providing content
+
+119
+00:04:54,880 --> 00:04:56,230
+for the header slot.
+
+120
+00:04:56,230 --> 00:04:58,390
+And therefore in base card component
+
+121
+00:04:58,390 --> 00:05:02,560
+when I try to access this provided content, so to say,
+
+122
+00:05:02,560 --> 00:05:05,600
+I get undefined when this base card component
+
+123
+00:05:05,600 --> 00:05:08,210
+gets created for the badge list.
+
+124
+00:05:08,210 --> 00:05:11,070
+And now that's something we can utilize here.
+
+125
+00:05:11,070 --> 00:05:12,720
+On this header element,
+
+126
+00:05:12,720 --> 00:05:14,590
+we could add v-if
+
+127
+00:05:14,590 --> 00:05:18,990
+and check if slots header is truthy.
+
+128
+00:05:18,990 --> 00:05:20,250
+So, if it's undefined,
+
+129
+00:05:20,250 --> 00:05:21,520
+it will be falsy
+
+130
+00:05:21,520 --> 00:05:23,320
+and therefore this header element
+
+131
+00:05:23,320 --> 00:05:24,533
+will not be rendered.
+
+132
+00:05:26,341 --> 00:05:28,360
+So if I now save that and reload,
+
+133
+00:05:28,360 --> 00:05:29,800
+we get the same log.
+
+134
+00:05:29,800 --> 00:05:32,440
+But if I inspect this badge list component,
+
+135
+00:05:32,440 --> 00:05:34,800
+you now see the header is gone
+
+136
+00:05:35,760 --> 00:05:38,900
+and that's just of course, a minor improvement.
+
+137
+00:05:38,900 --> 00:05:41,410
+It's also definitely a bit more advanced,
+
+138
+00:05:41,410 --> 00:05:42,810
+but I hope you understand
+
+139
+00:05:42,810 --> 00:05:44,270
+what we're doing here.
+
+140
+00:05:44,270 --> 00:05:45,800
+With dollar signs slots,
+
+141
+00:05:45,800 --> 00:05:48,550
+we can check whether we do receive data
+
+142
+00:05:48,550 --> 00:05:50,110
+for a specific slot.
+
+143
+00:05:50,110 --> 00:05:51,450
+And if we don't,
+
+144
+00:05:51,450 --> 00:05:52,900
+we could use that information
+
+145
+00:05:52,900 --> 00:05:55,183
+to not render a certain element.
+
+146
+00:05:56,510 --> 00:05:58,160
+The headers still works fine
+
+147
+00:05:58,160 --> 00:05:59,760
+into the user info component.
+
+148
+00:05:59,760 --> 00:06:02,120
+DARE base card outputs to header
+
+149
+00:06:02,120 --> 00:06:05,870
+because DARE for the usage of base card and user info,
+
+150
+00:06:05,870 --> 00:06:08,350
+we do provide content for the header.
+
+151
+00:06:08,350 --> 00:06:10,910
+It's just the usage and badge list
+
+152
+00:06:10,910 --> 00:06:12,630
+where we also use base card,
+
+153
+00:06:12,630 --> 00:06:14,890
+where we don't provide header content
+
+154
+00:06:15,800 --> 00:06:18,570
+where therefore we remove the header.
+
+155
+00:06:18,570 --> 00:06:19,640
+That's how we could use
+
+156
+00:06:19,640 --> 00:06:22,063
+this dollar sign slots information.
+
+157
+00:06:23,630 --> 00:06:26,200
+And now there's one additional thing about slots,
+
+158
+00:06:26,200 --> 00:06:27,880
+which I also wanna mention.
+
+159
+00:06:27,880 --> 00:06:31,270
+In the places where you use the component
+
+160
+00:06:31,270 --> 00:06:32,930
+that offers slots.
+
+161
+00:06:32,930 --> 00:06:33,770
+So, in our case,
+
+162
+00:06:33,770 --> 00:06:36,020
+in badge list and user info,
+
+163
+00:06:36,020 --> 00:06:37,780
+we do provide slot content
+
+164
+00:06:37,780 --> 00:06:38,820
+with this template
+
+165
+00:06:38,820 --> 00:06:41,150
+and the v-slots directive,
+
+166
+00:06:41,150 --> 00:06:44,190
+just as for v-bind and v-on,
+
+167
+00:06:44,190 --> 00:06:46,740
+there's a shorthand for v-slot.
+
+168
+00:06:46,740 --> 00:06:49,090
+You can absolutely write it like this,
+
+169
+00:06:49,090 --> 00:06:52,360
+but you can also replace it with a hash symbol.
+
+170
+00:06:52,360 --> 00:06:55,140
+So, hash header also means the same
+
+171
+00:06:55,140 --> 00:06:57,450
+as v-slot colon header.
+
+172
+00:06:57,450 --> 00:06:59,400
+And that's simply a bit shorter.
+
+173
+00:06:59,400 --> 00:07:00,280
+We can do the same here
+
+174
+00:07:00,280 --> 00:07:01,570
+for the default slot.
+
+175
+00:07:01,570 --> 00:07:03,220
+And of course, we can also do the same
+
+176
+00:07:03,220 --> 00:07:04,630
+in the badge list
+
+177
+00:07:04,630 --> 00:07:08,100
+and target the default like that.
+
+178
+00:07:08,100 --> 00:07:08,933
+So, we can write this
+
+179
+00:07:08,933 --> 00:07:10,300
+in a bit of a shorter way.
+
+180
+00:07:10,300 --> 00:07:12,770
+And with that we get the same output as before
+
+181
+00:07:12,770 --> 00:07:15,250
+we got no error, everything works,
+
+182
+00:07:15,250 --> 00:07:17,250
+but now we're using this shorthand here.
+

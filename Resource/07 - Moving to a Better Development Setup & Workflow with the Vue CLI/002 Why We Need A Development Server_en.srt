@@ -1,0 +1,272 @@
+1
+00:00:02,120 --> 00:00:04,380
+Before we start using the Vue CLI
+
+2
+00:00:04,380 --> 00:00:08,109
+before we start creating those better project setups,
+
+3
+00:00:08,109 --> 00:00:09,600
+which I talked about.
+
+4
+00:00:09,600 --> 00:00:12,170
+Let's understand why exactly
+
+5
+00:00:12,170 --> 00:00:15,050
+we might need such better setups.
+
+6
+00:00:15,050 --> 00:00:18,110
+Now here's one thing which we will, for example need,
+
+7
+00:00:18,110 --> 00:00:21,170
+a proper development web server.
+
+8
+00:00:21,170 --> 00:00:22,810
+Now, what do I mean by that?
+
+9
+00:00:22,810 --> 00:00:26,040
+Currently we're testing our Vue application
+
+10
+00:00:26,040 --> 00:00:28,930
+by double clicking the index HTML file,
+
+11
+00:00:28,930 --> 00:00:31,200
+and then seeing it in the browser.
+
+12
+00:00:31,200 --> 00:00:34,930
+This works, but it's actually unrealistic.
+
+13
+00:00:34,930 --> 00:00:38,930
+It's actually not how we wanna test this, why?
+
+14
+00:00:38,930 --> 00:00:40,530
+Because with that,
+
+15
+00:00:40,530 --> 00:00:43,200
+we actually use the file protocol
+
+16
+00:00:43,200 --> 00:00:48,200
+instead of the HTTPS protocol, you can see this here.
+
+17
+00:00:48,550 --> 00:00:52,590
+This is loaded as a file in the browser.
+
+18
+00:00:52,590 --> 00:00:55,103
+Now, if a load, a page like google.com,
+
+19
+00:00:55,103 --> 00:00:58,470
+this is not loaded as a file, instead here,
+
+20
+00:00:58,470 --> 00:01:02,180
+this is loaded as a website using the HTTP
+
+21
+00:01:02,180 --> 00:01:05,830
+or actually the HTTPS protocol.
+
+22
+00:01:05,830 --> 00:01:09,510
+And that is a totally different thing that influences how
+
+23
+00:01:09,510 --> 00:01:12,610
+the pages served and also which features
+
+24
+00:01:12,610 --> 00:01:14,800
+are available in our code.
+
+25
+00:01:14,800 --> 00:01:18,400
+So which features we can use in our Java script code
+
+26
+00:01:18,400 --> 00:01:22,830
+and with that file protocol thus far, everything worked,
+
+27
+00:01:22,830 --> 00:01:24,710
+but that wouldn't stay that way
+
+28
+00:01:25,800 --> 00:01:29,300
+because indeed certain modern JavaScript features
+
+29
+00:01:29,300 --> 00:01:33,570
+would not really work in that file protocol set up.
+
+30
+00:01:33,570 --> 00:01:36,100
+And in addition, there's one important thing you have
+
+31
+00:01:36,100 --> 00:01:39,650
+to keep in mind the users of your website,
+
+32
+00:01:39,650 --> 00:01:41,290
+of your Vue web app.
+
+33
+00:01:41,290 --> 00:01:44,380
+So the users you wanna target with your app,
+
+34
+00:01:44,380 --> 00:01:47,670
+they will in the end wizard a website, right?
+
+35
+00:01:47,670 --> 00:01:49,870
+You're building a website which eventually
+
+36
+00:01:49,870 --> 00:01:52,270
+will be hosted on some server.
+
+37
+00:01:52,270 --> 00:01:54,380
+So therefore the final app,
+
+38
+00:01:54,380 --> 00:01:58,600
+which your users see will be hosted by a server
+
+39
+00:01:58,600 --> 00:02:02,090
+and therefore will be served via HTTPS,
+
+40
+00:02:02,090 --> 00:02:04,700
+not wired a file protocol
+
+41
+00:02:04,700 --> 00:02:08,240
+that filed protocol is only available locally
+
+42
+00:02:08,240 --> 00:02:12,250
+on your computer if you double click the HTML file,
+
+43
+00:02:12,250 --> 00:02:16,400
+that's not what will be used once the webpage is served
+
+44
+00:02:16,400 --> 00:02:19,000
+to your users by a server in the end,
+
+45
+00:02:19,000 --> 00:02:21,960
+and therefore you are doing something which is not really
+
+46
+00:02:21,960 --> 00:02:26,350
+good, you are testing your web application under different
+
+47
+00:02:26,350 --> 00:02:30,200
+circumstances then your users will see them in the end.
+
+48
+00:02:30,200 --> 00:02:34,160
+Now I can tell you thus far that wouldn't make a difference.
+
+49
+00:02:34,160 --> 00:02:36,560
+What you learned over the last modules
+
+50
+00:02:36,560 --> 00:02:39,500
+applies in exactly the same way
+
+51
+00:02:39,500 --> 00:02:43,620
+no matter how the HTML file is served,
+
+52
+00:02:43,620 --> 00:02:45,150
+but going forward,
+
+53
+00:02:45,150 --> 00:02:46,640
+we definitely wanna switch
+
+54
+00:02:46,640 --> 00:02:49,270
+to a more realistic development set up.
+
+55
+00:02:49,270 --> 00:02:50,750
+And we, for example,
+
+56
+00:02:50,750 --> 00:02:54,300
+definitely wanna have a development web server,
+
+57
+00:02:54,300 --> 00:02:58,640
+which is a web server running locally on your machine so
+
+58
+00:02:58,640 --> 00:03:01,740
+that you don't need to pay for any server right now,
+
+59
+00:03:01,740 --> 00:03:05,050
+you can still test everything locally on your machine,
+
+60
+00:03:05,050 --> 00:03:07,680
+but with an important difference,
+
+61
+00:03:07,680 --> 00:03:09,640
+this development web server,
+
+62
+00:03:09,640 --> 00:03:11,630
+which I will show you how to set up,
+
+63
+00:03:11,630 --> 00:03:13,380
+it will be very easy, no worries.
+
+64
+00:03:13,380 --> 00:03:16,580
+This development web server will serve your web app,
+
+65
+00:03:16,580 --> 00:03:19,280
+your HTML file, why are the HTTPS
+
+66
+00:03:20,150 --> 00:03:22,630
+or the HTTP protocol on your machine?
+
+67
+00:03:22,630 --> 00:03:24,660
+Not why are the file protocol.
+
+68
+00:03:24,660 --> 00:03:27,143
+And that will be one important difference.
+

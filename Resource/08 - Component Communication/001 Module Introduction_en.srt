@@ -1,0 +1,132 @@
+1
+00:00:02,180 --> 00:00:04,250
+In this module here,
+
+2
+00:00:04,250 --> 00:00:07,412
+we're going to pick up on this component concept
+
+3
+00:00:07,412 --> 00:00:10,160
+and we're going to take it to the next level.
+
+4
+00:00:10,160 --> 00:00:15,160
+You will learn how to build really reusable components
+
+5
+00:00:15,440 --> 00:00:18,180
+and how to communicate between components.
+
+6
+00:00:18,180 --> 00:00:19,860
+This will be super-important
+
+7
+00:00:19,860 --> 00:00:23,372
+because only with the knowledge you gain in this module,
+
+8
+00:00:23,372 --> 00:00:26,020
+only with that, you'll be able to build
+
+9
+00:00:26,020 --> 00:00:31,020
+a rich user interfaces in Vue applications with components,
+
+10
+00:00:31,400 --> 00:00:36,400
+and you will see why components are such a powerful thing,
+
+11
+00:00:36,600 --> 00:00:38,410
+such a powerful concept,
+
+12
+00:00:38,410 --> 00:00:41,560
+and why modern Vue applications in the end
+
+13
+00:00:41,560 --> 00:00:43,940
+are all about components.
+
+14
+00:00:43,940 --> 00:00:46,175
+Now for that, we'll get there step-by-step.
+
+15
+00:00:46,175 --> 00:00:50,380
+We'll start building a user interface with components
+
+16
+00:00:50,380 --> 00:00:53,080
+to get an understanding for how we combine
+
+17
+00:00:53,080 --> 00:00:54,670
+these different building blocks.
+
+18
+00:00:54,670 --> 00:00:58,040
+And we'll then also explore how those components
+
+19
+00:00:58,040 --> 00:01:00,460
+can communicate with each other,
+
+20
+00:01:00,460 --> 00:01:01,860
+which basically means
+
+21
+00:01:01,860 --> 00:01:05,480
+how you can pass data between components.
+
+22
+00:01:05,480 --> 00:01:06,980
+Because as you'll see,
+
+23
+00:01:06,980 --> 00:01:10,280
+and as you actually already saw a bit
+
+24
+00:01:10,280 --> 00:01:13,040
+in the component introduction module,
+
+25
+00:01:13,040 --> 00:01:17,130
+passing data to components, and between components
+
+26
+00:01:17,130 --> 00:01:20,000
+will be an important concept.
+
+27
+00:01:20,000 --> 00:01:21,530
+Now, last but not least,
+
+28
+00:01:21,530 --> 00:01:24,070
+you will also see that there are different ways
+
+29
+00:01:24,070 --> 00:01:28,970
+of communication and you will learn which approaches exist
+
+30
+00:01:28,970 --> 00:01:31,410
+and when you use which approach.
+
+31
+00:01:31,410 --> 00:01:34,240
+So therefore, let's not waste any time.
+
+32
+00:01:34,240 --> 00:01:37,460
+And let's get started with working with components
+
+33
+00:01:37,460 --> 00:01:39,853
+and with letting them talk to each other.
+

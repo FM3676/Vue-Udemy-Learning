@@ -1,0 +1,860 @@
+1
+00:00:02,120 --> 00:00:04,270
+Now slots are an important feature
+
+2
+00:00:04,270 --> 00:00:05,500
+and as you can tell by now,
+
+3
+00:00:05,500 --> 00:00:07,580
+all are quite powerful feature
+
+4
+00:00:07,580 --> 00:00:09,420
+and you can do a lot of things with them,
+
+5
+00:00:09,420 --> 00:00:10,950
+in Vue as you can tell.
+
+6
+00:00:10,950 --> 00:00:13,100
+Now there's one last thing about slots
+
+7
+00:00:13,100 --> 00:00:14,720
+which I also want to mention here.
+
+8
+00:00:14,720 --> 00:00:16,340
+It's definitely advanced
+
+9
+00:00:16,340 --> 00:00:18,300
+but it is worth knowing about it.
+
+10
+00:00:18,300 --> 00:00:21,223
+For that I'm going to create a new component
+
+11
+00:00:21,223 --> 00:00:25,860
+CourseGoals.vue and I'm going to add a template here
+
+12
+00:00:25,860 --> 00:00:28,750
+and in that template I wanna output a list.
+
+13
+00:00:28,750 --> 00:00:29,850
+And for the moment
+
+14
+00:00:29,850 --> 00:00:32,770
+I'll not care too much about the styling and so on.
+
+15
+00:00:32,770 --> 00:00:35,410
+I just wanna focus on this slots feature
+
+16
+00:00:35,410 --> 00:00:37,030
+which I wanna show to you.
+
+17
+00:00:37,030 --> 00:00:38,780
+So I have unordered list
+
+18
+00:00:38,780 --> 00:00:40,850
+and I have a script here
+
+19
+00:00:40,850 --> 00:00:44,170
+defining my config object for this component,
+
+20
+00:00:44,170 --> 00:00:46,490
+and in there let's say we have some data
+
+21
+00:00:46,490 --> 00:00:48,070
+and we have some goals in here
+
+22
+00:00:48,070 --> 00:00:49,560
+which of course could be dynamic,
+
+23
+00:00:49,560 --> 00:00:50,570
+but for the moment
+
+24
+00:00:50,570 --> 00:00:52,290
+I'll justify them like this,
+
+25
+00:00:52,290 --> 00:00:56,883
+Simple strings like finish the course and learn Vue.
+
+26
+00:00:59,390 --> 00:01:02,170
+So definitely nothing too fancy here.
+
+27
+00:01:02,170 --> 00:01:03,030
+Now of course,
+
+28
+00:01:03,030 --> 00:01:07,560
+we can render list items here with v-for
+
+29
+00:01:07,560 --> 00:01:10,950
+by looping through our goals as you learned it.
+
+30
+00:01:10,950 --> 00:01:12,960
+We can also add that key
+
+31
+00:01:12,960 --> 00:01:15,190
+and set that to our goal for example.
+
+32
+00:01:15,190 --> 00:01:16,250
+So to that string,
+
+33
+00:01:16,250 --> 00:01:19,033
+assuming that every string is unique in this array.
+
+34
+00:01:20,370 --> 00:01:23,240
+And then of course we can output our goal here
+
+35
+00:01:23,240 --> 00:01:26,940
+and now we could go to App.vue for example
+
+36
+00:01:26,940 --> 00:01:30,380
+there, import this newly created component.
+
+37
+00:01:30,380 --> 00:01:35,380
+So import CourseGoals from './components/CourseGoals.vue'
+
+38
+00:01:38,020 --> 00:01:42,360
+and there after, register it as a local component,
+
+39
+00:01:42,360 --> 00:01:44,793
+so that we can then use it in the template here.
+
+40
+00:01:46,290 --> 00:01:47,450
+So let's do that.
+
+41
+00:01:47,450 --> 00:01:52,450
+And that will simply add it here course-goals, like this.
+
+42
+00:01:53,320 --> 00:01:55,750
+So now I added my component here
+
+43
+00:01:55,750 --> 00:01:57,410
+and hence we see the goals here.
+
+44
+00:01:57,410 --> 00:01:59,860
+And as I mentioned, the styling is off
+
+45
+00:01:59,860 --> 00:02:01,870
+but that's not the focus here.
+
+46
+00:02:01,870 --> 00:02:05,010
+Now, what that does this have to do with slots?
+
+47
+00:02:05,010 --> 00:02:07,810
+Sometimes if you're building a component
+
+48
+00:02:07,810 --> 00:02:10,380
+which you might wanna share with our people
+
+49
+00:02:10,380 --> 00:02:11,620
+with our colleagues
+
+50
+00:02:11,620 --> 00:02:13,770
+or which gets used in different ways
+
+51
+00:02:13,770 --> 00:02:15,430
+in a bigger project,
+
+52
+00:02:15,430 --> 00:02:16,263
+you want to make
+
+53
+00:02:16,263 --> 00:02:20,110
+certain aspects of that component customizable.
+
+54
+00:02:20,110 --> 00:02:22,930
+For example here we could have this component
+
+55
+00:02:22,930 --> 00:02:25,030
+which has the CourseGoals data
+
+56
+00:02:25,030 --> 00:02:28,690
+which maybe also has more logic related to that
+
+57
+00:02:28,690 --> 00:02:30,620
+and which then takes care about
+
+58
+00:02:30,620 --> 00:02:33,003
+rendering those Course Goals to the screen.
+
+59
+00:02:33,970 --> 00:02:36,060
+But there's one thing which you might wanna make
+
+60
+00:02:36,060 --> 00:02:37,380
+customizable.
+
+61
+00:02:37,380 --> 00:02:40,913
+And that is the content of every list item.
+
+62
+00:02:41,750 --> 00:02:43,120
+With that I mean,
+
+63
+00:02:43,120 --> 00:02:45,820
+if you just have the text in the list item,
+
+64
+00:02:45,820 --> 00:02:48,580
+if you maybe have an h2 tag in there,
+
+65
+00:02:48,580 --> 00:02:50,570
+maybe multiple elements.
+
+66
+00:02:50,570 --> 00:02:54,090
+So maybe you want to make that customizable.
+
+67
+00:02:54,090 --> 00:02:56,110
+So that this core skills component
+
+68
+00:02:56,110 --> 00:02:58,930
+could be used in different parts of the app,
+
+69
+00:02:58,930 --> 00:03:00,800
+but the content of the list item
+
+70
+00:03:00,800 --> 00:03:03,333
+could be different every time it is getting used.
+
+71
+00:03:04,190 --> 00:03:05,640
+Now for that we could of course
+
+72
+00:03:05,640 --> 00:03:08,040
+think about using a slot here.
+
+73
+00:03:08,040 --> 00:03:09,950
+We could enter a slot here
+
+74
+00:03:09,950 --> 00:03:11,890
+and if we have a slot here,
+
+75
+00:03:11,890 --> 00:03:14,480
+the content the HTML markup
+
+76
+00:03:14,480 --> 00:03:16,530
+which is passed to a list item
+
+77
+00:03:16,530 --> 00:03:19,170
+can be defined from inside the place
+
+78
+00:03:19,170 --> 00:03:21,033
+where Course Goals gets used.
+
+79
+00:03:22,070 --> 00:03:25,700
+And that sounds exactly like what I'm trying to do here.
+
+80
+00:03:25,700 --> 00:03:28,700
+So in App.vue where I'm using Course Goal,
+
+81
+00:03:28,700 --> 00:03:32,310
+I could now pass in my content for a Course Goals.
+
+82
+00:03:32,310 --> 00:03:35,040
+And I could say that I want to have my goal text
+
+83
+00:03:35,040 --> 00:03:36,733
+instead of a h2 tech here.
+
+84
+00:03:37,610 --> 00:03:39,930
+But that's now where the problem start.
+
+85
+00:03:39,930 --> 00:03:42,330
+Yes I can pass in my markup,
+
+86
+00:03:42,330 --> 00:03:43,960
+but I have a big problem.
+
+87
+00:03:43,960 --> 00:03:47,520
+I don't have access to the individual goal
+
+88
+00:03:47,520 --> 00:03:49,980
+for which this list item is getting rendered.
+
+89
+00:03:49,980 --> 00:03:53,430
+This goal variable is only available here
+
+90
+00:03:53,430 --> 00:03:55,230
+inside of Course Goals,
+
+91
+00:03:55,230 --> 00:03:58,240
+but the markup which should be output in here
+
+92
+00:03:58,240 --> 00:04:01,360
+is getting passed in from App.vue here.
+
+93
+00:04:01,360 --> 00:04:03,950
+And here I don't have access to these goals
+
+94
+00:04:03,950 --> 00:04:07,490
+or goal variables, which I'm using in Course Goals.
+
+95
+00:04:07,490 --> 00:04:10,010
+And for this specific scenario
+
+96
+00:04:10,010 --> 00:04:12,390
+where you wanna to build something like that,
+
+97
+00:04:12,390 --> 00:04:14,200
+Vue has another feature.
+
+98
+00:04:14,200 --> 00:04:17,260
+It has scoped slots.
+
+99
+00:04:17,260 --> 00:04:19,382
+Now what are scoped slots about?
+
+100
+00:04:20,500 --> 00:04:24,790
+The concept of scoped slots is about
+
+101
+00:04:24,790 --> 00:04:27,290
+letting you pass data
+
+102
+00:04:27,290 --> 00:04:31,130
+from inside the component where you defined a slot
+
+103
+00:04:31,130 --> 00:04:32,650
+to the component
+
+104
+00:04:32,650 --> 00:04:36,510
+where you pass the markup for the slot.
+
+105
+00:04:36,510 --> 00:04:38,560
+And you do that by going to the component
+
+106
+00:04:38,560 --> 00:04:40,140
+where you have the data
+
+107
+00:04:40,140 --> 00:04:41,980
+and where you define the slot,
+
+108
+00:04:41,980 --> 00:04:44,380
+and then on the slot
+
+109
+00:04:44,380 --> 00:04:47,950
+you can add a prop. For example, goal.
+
+110
+00:04:47,950 --> 00:04:49,470
+This name is up to you.
+
+111
+00:04:49,470 --> 00:04:52,400
+And you can also bind it with v-bind
+
+112
+00:04:52,400 --> 00:04:55,660
+or with the shortened to a dynamic value,
+
+113
+00:04:55,660 --> 00:04:58,190
+In my case here, to goal.
+
+114
+00:04:58,190 --> 00:05:00,950
+And to avoid naming confusion here,
+
+115
+00:05:00,950 --> 00:05:02,390
+I'll name this item
+
+116
+00:05:02,390 --> 00:05:04,803
+though you could absolutely also use goal.
+
+117
+00:05:05,840 --> 00:05:06,940
+That would be okay
+
+118
+00:05:06,940 --> 00:05:08,160
+but to make it clearer,
+
+119
+00:05:08,160 --> 00:05:10,390
+I'll name my prop item here
+
+120
+00:05:10,390 --> 00:05:11,900
+and past this goal
+
+121
+00:05:11,900 --> 00:05:15,203
+which is created for every iteration, queue item.
+
+122
+00:05:16,880 --> 00:05:18,430
+Now these names are up to you,
+
+123
+00:05:18,430 --> 00:05:22,260
+but whatever you set as props on slot,
+
+124
+00:05:22,260 --> 00:05:24,520
+so on this slot element
+
+125
+00:05:24,520 --> 00:05:27,530
+will now be accessible in the place
+
+126
+00:05:27,530 --> 00:05:30,260
+where you pass data for that slot.
+
+127
+00:05:30,260 --> 00:05:32,300
+In this case here in App.vue,
+
+128
+00:05:32,300 --> 00:05:35,453
+where I'm passing this markup for my slot.
+
+129
+00:05:36,370 --> 00:05:38,850
+And here we can now get access to the data
+
+130
+00:05:38,850 --> 00:05:40,810
+by adding a template
+
+131
+00:05:40,810 --> 00:05:43,230
+around our slot markup.
+
+132
+00:05:43,230 --> 00:05:46,820
+So around the markup which we wanna to pass into that slot
+
+133
+00:05:46,820 --> 00:05:49,780
+and on that template, we use v-slot
+
+134
+00:05:49,780 --> 00:05:50,890
+or the shortened
+
+135
+00:05:51,850 --> 00:05:54,840
+for the default slot in this case,
+
+136
+00:05:54,840 --> 00:05:58,500
+but the same concept would apply to named slots of course.
+
+137
+00:05:58,500 --> 00:06:00,040
+And now here,
+
+138
+00:06:00,040 --> 00:06:03,890
+we can define any name of our choice like slotProps
+
+139
+00:06:03,890 --> 00:06:06,010
+but this name is also up to you.
+
+140
+00:06:06,010 --> 00:06:07,950
+This simply is the name of a variable,
+
+141
+00:06:07,950 --> 00:06:10,970
+which you can define which Vue will give you
+
+142
+00:06:10,970 --> 00:06:12,260
+and this variable
+
+143
+00:06:12,260 --> 00:06:14,680
+the value you get for this variable.
+
+144
+00:06:14,680 --> 00:06:17,840
+So the value you get for slotProps in this case
+
+145
+00:06:17,840 --> 00:06:20,030
+will always be an object
+
+146
+00:06:20,030 --> 00:06:23,220
+where all the props you define here on slot
+
+147
+00:06:23,220 --> 00:06:24,463
+are merged in.
+
+148
+00:06:25,300 --> 00:06:30,300
+So if you had another prop here with some data,
+
+149
+00:06:30,460 --> 00:06:33,050
+that would also be part of slot props
+
+150
+00:06:33,050 --> 00:06:34,060
+of this object
+
+151
+00:06:35,140 --> 00:06:37,040
+accessible under the another prop key.
+
+152
+00:06:40,030 --> 00:06:41,280
+And I'll actually leave that here
+
+153
+00:06:41,280 --> 00:06:42,450
+for demo purposes.
+
+154
+00:06:42,450 --> 00:06:45,640
+Here It's not bound, it's just set to a string.
+
+155
+00:06:45,640 --> 00:06:48,920
+So now here, we got this slotProps thing
+
+156
+00:06:48,920 --> 00:06:50,620
+and what can we do with it?
+
+157
+00:06:50,620 --> 00:06:52,190
+Well, you can now use that
+
+158
+00:06:52,190 --> 00:06:55,210
+inside of this template for example here,
+
+159
+00:06:55,210 --> 00:06:59,790
+to interpolate between the h2 tags
+
+160
+00:06:59,790 --> 00:07:04,171
+and now access slotProps.item.
+
+161
+00:07:04,171 --> 00:07:09,171
+.item, because I added a item prop here on my slot.
+
+162
+00:07:10,200 --> 00:07:12,260
+If you chose a different name here,
+
+163
+00:07:12,260 --> 00:07:15,783
+instead of item, it's a different name here as well.
+
+164
+00:07:17,350 --> 00:07:19,750
+And below that I'll also add a paragraph
+
+165
+00:07:19,750 --> 00:07:21,837
+where I output slotProps,
+
+166
+00:07:24,090 --> 00:07:27,510
+and now here using this square bracket notation
+
+167
+00:07:27,510 --> 00:07:30,820
+so that can access a property with a dash inside of it,
+
+168
+00:07:30,820 --> 00:07:32,740
+and then referring to another prop,
+
+169
+00:07:32,740 --> 00:07:35,020
+which I defined here.
+
+170
+00:07:35,020 --> 00:07:38,100
+Important here, Vue will not convert
+
+171
+00:07:38,100 --> 00:07:41,250
+this automatically to a CamelCase notation.
+
+172
+00:07:41,250 --> 00:07:46,250
+So if you have another prop with a dash here in CourseGoals,
+
+173
+00:07:46,970 --> 00:07:50,010
+you need to access it with exactly the same name here
+
+174
+00:07:50,010 --> 00:07:51,950
+in the place where you define the markup,
+
+175
+00:07:51,950 --> 00:07:55,080
+and that's why I need that square bracket notation here,
+
+176
+00:07:55,080 --> 00:07:56,880
+because with the dot notation
+
+177
+00:07:56,880 --> 00:07:59,130
+this would be invalid JavaScript code
+
+178
+00:07:59,130 --> 00:08:01,493
+with a square bracket notation this works.
+
+179
+00:08:03,670 --> 00:08:05,550
+So now with that if we saved that
+
+180
+00:08:05,550 --> 00:08:07,550
+we see our output here,
+
+181
+00:08:07,550 --> 00:08:10,740
+including the dots from the another prop
+
+182
+00:08:10,740 --> 00:08:13,160
+which I defined for demo purposes.
+
+183
+00:08:13,160 --> 00:08:14,940
+And this hopefully makes it clear
+
+184
+00:08:14,940 --> 00:08:17,040
+how scoped slots work.
+
+185
+00:08:17,040 --> 00:08:20,140
+It's definitely a niche and advanced feature
+
+186
+00:08:20,140 --> 00:08:22,540
+you will not need it all the time,
+
+187
+00:08:22,540 --> 00:08:25,050
+but there are specific scenarios
+
+188
+00:08:25,050 --> 00:08:28,180
+where it is impossible to build what you wanna build,
+
+189
+00:08:28,180 --> 00:08:30,190
+if this feature wouldn't exist.
+
+190
+00:08:30,190 --> 00:08:33,010
+And that's of course why I'm covering it here as well,
+
+191
+00:08:33,010 --> 00:08:36,113
+but be aware that it's definitely a niche feature.
+
+192
+00:08:37,710 --> 00:08:39,919
+Now there's one simplification, which we can make here
+
+193
+00:08:39,919 --> 00:08:42,840
+by the way, if you're only targeting one slot,
+
+194
+00:08:42,840 --> 00:08:44,780
+only the default slot here,
+
+195
+00:08:44,780 --> 00:08:48,130
+you can remove that template here
+
+196
+00:08:48,130 --> 00:08:50,170
+and let me first of all cut this,
+
+197
+00:08:50,170 --> 00:08:52,810
+remove this unnecessary template wrapper,
+
+198
+00:08:52,810 --> 00:08:56,960
+and instead add this hash default slotProps thing
+
+199
+00:08:56,960 --> 00:08:59,960
+directly on your component tag.
+
+200
+00:08:59,960 --> 00:09:01,340
+This is only allowed
+
+201
+00:09:01,340 --> 00:09:05,020
+if the markup between your opening and closing tags here
+
+202
+00:09:05,020 --> 00:09:07,980
+should entirely go into just one slot,
+
+203
+00:09:07,980 --> 00:09:09,630
+into the default slot here.
+
+204
+00:09:09,630 --> 00:09:12,400
+Then you can use this simplified code here,
+
+205
+00:09:12,400 --> 00:09:13,610
+as you can see it works.
+
+206
+00:09:13,610 --> 00:09:15,690
+And then this is the shortest way
+
+207
+00:09:15,690 --> 00:09:17,093
+of writing this in the end.
+
+208
+00:09:18,200 --> 00:09:19,770
+And that's now really it for
+
+209
+00:09:19,770 --> 00:09:22,330
+slots and all the first scoped slots.
+
+210
+00:09:22,330 --> 00:09:23,520
+I know it's a lot,
+
+211
+00:09:23,520 --> 00:09:24,670
+we'll see it in action
+
+212
+00:09:24,670 --> 00:09:26,810
+throughout this course in various projects,
+
+213
+00:09:26,810 --> 00:09:28,690
+and to scope slots feature
+
+214
+00:09:28,690 --> 00:09:31,140
+as mentioned is also a very advanced
+
+215
+00:09:31,140 --> 00:09:32,293
+and niche feature.
+

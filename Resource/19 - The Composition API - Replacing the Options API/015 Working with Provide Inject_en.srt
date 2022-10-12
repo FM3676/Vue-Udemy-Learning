@@ -1,0 +1,264 @@
+1
+00:00:02,220 --> 00:00:04,300
+Now I got two more features I wanna cover
+
+2
+00:00:04,300 --> 00:00:05,950
+with the Composition API.
+
+3
+00:00:05,950 --> 00:00:08,710
+The first one is provide inject.
+
+4
+00:00:08,710 --> 00:00:11,190
+We're not using it here, but let's say,
+
+5
+00:00:11,190 --> 00:00:15,290
+instead of forwarding the age to user data
+
+6
+00:00:15,290 --> 00:00:18,790
+through the age prop, which of course would be fine here,
+
+7
+00:00:18,790 --> 00:00:20,930
+and actually would be the recommended way,
+
+8
+00:00:20,930 --> 00:00:22,010
+but instead of doing that,
+
+9
+00:00:22,010 --> 00:00:25,170
+let's say we wanna provide inject it.
+
+10
+00:00:25,170 --> 00:00:28,550
+So I remove the age prop from user data.
+
+11
+00:00:28,550 --> 00:00:31,483
+I also remove it there from the props array,
+
+12
+00:00:32,540 --> 00:00:35,570
+and now instead, I wanna provide and inject it.
+
+13
+00:00:35,570 --> 00:00:40,570
+With the Options API, we simply added this provide option,
+
+14
+00:00:41,260 --> 00:00:43,260
+which could be a function in which
+
+15
+00:00:43,260 --> 00:00:46,150
+we return our provided object, if you remember.
+
+16
+00:00:46,150 --> 00:00:49,523
+And there, we could have provided our age like this.
+
+17
+00:00:52,100 --> 00:00:56,560
+Well, with the Composition API, we have an equivalent.
+
+18
+00:00:56,560 --> 00:01:00,883
+We can import provide from Vue.
+
+19
+00:01:02,330 --> 00:01:05,930
+So that's another feature exposed by the Vue framework
+
+20
+00:01:05,930 --> 00:01:07,740
+which we can import.
+
+21
+00:01:07,740 --> 00:01:11,340
+And provide also, like all these things here
+
+22
+00:01:11,340 --> 00:01:13,493
+which we import, is a function.
+
+23
+00:01:14,970 --> 00:01:17,430
+And we can for example, call it here,
+
+24
+00:01:17,430 --> 00:01:20,570
+after I initialize my uAge ref,
+
+25
+00:01:20,570 --> 00:01:25,570
+and provide a value by passing two arguments to provide.
+
+26
+00:01:26,880 --> 00:01:29,570
+The first one is a key of your choice.
+
+27
+00:01:29,570 --> 00:01:31,660
+UserAge, for example.
+
+28
+00:01:31,660 --> 00:01:34,870
+The second parameter then is the actual value
+
+29
+00:01:34,870 --> 00:01:36,060
+you wanna provide.
+
+30
+00:01:36,060 --> 00:01:38,913
+So here, uAge, this uAge ref.
+
+31
+00:01:40,040 --> 00:01:42,060
+And since I'm providing a ref here,
+
+32
+00:01:42,060 --> 00:01:44,700
+the places where I will inject it later
+
+33
+00:01:44,700 --> 00:01:46,990
+will automatically be updated
+
+34
+00:01:46,990 --> 00:01:49,510
+and be notified about changes to age,
+
+35
+00:01:49,510 --> 00:01:51,223
+so that's a nice thing here.
+
+36
+00:01:52,430 --> 00:01:55,220
+So now we provide userAge like this,
+
+37
+00:01:55,220 --> 00:01:57,570
+and now the only other thing we gotta do
+
+38
+00:01:57,570 --> 00:02:01,110
+is we gotta go to the place where we wanna inject it,
+
+39
+00:02:01,110 --> 00:02:03,100
+in this case, user data,
+
+40
+00:02:03,100 --> 00:02:07,620
+and now we don't use the inject option here.
+
+41
+00:02:07,620 --> 00:02:12,620
+Instead, we import the inject function from Vue,
+
+42
+00:02:14,930 --> 00:02:17,530
+and then here, in the set up method,
+
+43
+00:02:17,530 --> 00:02:22,530
+I can call inject and use the same key I used for provide,
+
+44
+00:02:23,890 --> 00:02:28,223
+so in my case, userAge here,
+
+45
+00:02:29,150 --> 00:02:32,120
+and this will give me this provided value.
+
+46
+00:02:32,120 --> 00:02:36,450
+And I can then just store it in a constant of my choice.
+
+47
+00:02:36,450 --> 00:02:40,010
+And what I get here will be the value I provide here,
+
+48
+00:02:40,010 --> 00:02:42,120
+so in this case, this ref.
+
+49
+00:02:42,120 --> 00:02:45,220
+So here, age will also be a ref.
+
+50
+00:02:45,220 --> 00:02:49,820
+Now you should not change the age from down there.
+
+51
+00:02:49,820 --> 00:02:53,080
+This would work, but it would be very unpredictable.
+
+52
+00:02:53,080 --> 00:02:55,340
+As a strong recommendation,
+
+53
+00:02:55,340 --> 00:02:58,810
+you should only change injected values
+
+54
+00:02:58,810 --> 00:03:01,460
+in the place where you provide them.
+
+55
+00:03:01,460 --> 00:03:04,550
+So in this case, in the App.vue file.
+
+56
+00:03:04,550 --> 00:03:07,960
+You can absolutely read the injected value,
+
+57
+00:03:07,960 --> 00:03:11,830
+or in this case, expose it to the template.
+
+58
+00:03:11,830 --> 00:03:16,140
+Expose age under the age key,
+
+59
+00:03:16,140 --> 00:03:18,160
+and therefore we can use this shorthand,
+
+60
+00:03:18,160 --> 00:03:21,180
+and now age is available in the template again,
+
+61
+00:03:21,180 --> 00:03:23,540
+even though it's not a prop anymore.
+
+62
+00:03:23,540 --> 00:03:26,627
+But if we save it, you see the age here,
+
+63
+00:03:26,627 --> 00:03:29,883
+and if I click Change Age, it also updates correctly.
+
+64
+00:03:30,770 --> 00:03:34,350
+So that's provide inject with the Composition API.
+
+65
+00:03:34,350 --> 00:03:38,650
+I would argue that it's even a bit easier and less code
+
+66
+00:03:38,650 --> 00:03:40,403
+than with the Options API.
+

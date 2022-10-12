@@ -1,0 +1,672 @@
+1
+00:00:02,200 --> 00:00:05,570
+So let's now apply what we learned about transition,
+
+2
+00:00:05,570 --> 00:00:08,700
+about this transition component, to our modal.
+
+3
+00:00:08,700 --> 00:00:12,105
+Because that was the thing where I explained
+
+4
+00:00:12,105 --> 00:00:15,440
+that we might need more help from vue's side.
+
+5
+00:00:15,440 --> 00:00:18,770
+Especially for having a transition and animation,
+
+6
+00:00:18,770 --> 00:00:20,420
+when we close it.
+
+7
+00:00:20,420 --> 00:00:25,020
+Now we can wrap transition around our own custom components,
+
+8
+00:00:25,020 --> 00:00:28,410
+just as we can wrap it around built-in elements.
+
+9
+00:00:28,410 --> 00:00:30,940
+So we can use transition here,
+
+10
+00:00:30,940 --> 00:00:33,683
+around our base-model, just like that.
+
+11
+00:00:34,580 --> 00:00:37,210
+Now we can, of course also set the name prop
+
+12
+00:00:37,210 --> 00:00:40,090
+to define our own prefix for all
+
+13
+00:00:40,090 --> 00:00:42,530
+those special classes you will add.
+
+14
+00:00:42,530 --> 00:00:44,730
+And I will add modal here.
+
+15
+00:00:44,730 --> 00:00:47,193
+But again, you can pick any name you want.
+
+16
+00:00:48,260 --> 00:00:51,360
+And then we can dig into our CSS code
+
+17
+00:00:51,360 --> 00:00:54,840
+and start to finding those CSS classes.
+
+18
+00:00:54,840 --> 00:00:59,380
+And here I'll add a modal-enter-from class,
+
+19
+00:00:59,380 --> 00:01:04,379
+a modal-enter-active class and a modal-enter-to class.
+
+20
+00:01:07,870 --> 00:01:10,990
+And I will actually go to BaseModal.vue
+
+21
+00:01:10,990 --> 00:01:13,120
+and make sure that I removed the animation
+
+22
+00:01:13,120 --> 00:01:14,250
+from the modal there.
+
+23
+00:01:14,250 --> 00:01:16,720
+So that we don't see this animation anymore.
+
+24
+00:01:16,720 --> 00:01:20,093
+So make sure you comment as out or remove this line.
+
+25
+00:01:21,220 --> 00:01:23,090
+And then let's go back to App.vue,
+
+26
+00:01:23,090 --> 00:01:25,300
+which is where we're using the base-model
+
+27
+00:01:25,300 --> 00:01:27,890
+and where we are wrapping it with transition.
+
+28
+00:01:27,890 --> 00:01:31,180
+And now we can define our different styles here.
+
+29
+00:01:31,180 --> 00:01:33,070
+And it's now of course, totally up to you,
+
+30
+00:01:33,070 --> 00:01:35,800
+how you want to animate this modal.
+
+31
+00:01:35,800 --> 00:01:39,363
+I will actually bring over my modal keyframes here.
+
+32
+00:01:42,120 --> 00:01:45,023
+So the keyframes from the BaseModal.vue file,
+
+33
+00:01:45,950 --> 00:01:49,430
+add them here, to App.vue.
+
+34
+00:01:49,430 --> 00:01:51,670
+You can have multiple sets of keyframes
+
+35
+00:01:51,670 --> 00:01:54,080
+in the same style tax,
+
+36
+00:01:54,080 --> 00:01:56,670
+as long as you're using different names.
+
+37
+00:01:56,670 --> 00:01:58,660
+And I actually don't even need to enter
+
+38
+00:01:58,660 --> 00:02:00,210
+from an enter-to now.
+
+39
+00:02:00,210 --> 00:02:03,820
+We just need enter-active to play at animation
+
+40
+00:02:03,820 --> 00:02:06,000
+and this will be the modal animation,
+
+41
+00:02:06,000 --> 00:02:07,603
+which i just copied over,
+
+42
+00:02:08,560 --> 00:02:11,723
+give it a duration and a ease-in function.
+
+43
+00:02:12,800 --> 00:02:15,500
+And if we do that, we'll notice a problem.
+
+44
+00:02:15,500 --> 00:02:19,223
+If we reload, this modal has no animation.
+
+45
+00:02:22,490 --> 00:02:25,320
+Now, this transition component
+
+46
+00:02:25,320 --> 00:02:27,980
+does work on custom components.
+
+47
+00:02:27,980 --> 00:02:29,810
+But we have a problem here.
+
+48
+00:02:29,810 --> 00:02:33,570
+The classes vue wants to add are added
+
+49
+00:02:33,570 --> 00:02:36,710
+to the root element of your custom component.
+
+50
+00:02:36,710 --> 00:02:39,550
+This is ,this attribute fall through behavior
+
+51
+00:02:39,550 --> 00:02:41,023
+I talked about earlier.
+
+52
+00:02:42,700 --> 00:02:45,280
+So these classes transition wants to add
+
+53
+00:02:45,280 --> 00:02:47,980
+fall through to the root element
+
+54
+00:02:47,980 --> 00:02:50,150
+in the template of base-model.
+
+55
+00:02:50,150 --> 00:02:54,013
+But base-model happens to have two root elements.
+
+56
+00:02:54,013 --> 00:02:57,230
+There's div and there's dialogue.
+
+57
+00:02:57,230 --> 00:03:00,040
+If we comment out the div for a second,
+
+58
+00:03:00,040 --> 00:03:03,240
+if we remove that div, the backdrop for a second,
+
+59
+00:03:03,240 --> 00:03:06,230
+and then reload, you see, it works.
+
+60
+00:03:06,230 --> 00:03:10,790
+Now we have this animation for showing the modal.
+
+61
+00:03:10,790 --> 00:03:13,710
+But if we have both root elements here,
+
+62
+00:03:13,710 --> 00:03:16,820
+which you of course want, then this does not work.
+
+63
+00:03:16,820 --> 00:03:19,886
+And it doesn't work because as I mentioned before,
+
+64
+00:03:19,886 --> 00:03:24,886
+this transition component wants one direct child element.
+
+65
+00:03:26,580 --> 00:03:29,400
+Yes, it has just one child element here,
+
+66
+00:03:29,400 --> 00:03:31,410
+just one base-model.
+
+67
+00:03:31,410 --> 00:03:33,400
+But of course the base-model here,
+
+68
+00:03:33,400 --> 00:03:36,520
+is really just a wrapper around its template,
+
+69
+00:03:36,520 --> 00:03:39,060
+where we have two root elements.
+
+70
+00:03:39,060 --> 00:03:43,790
+So these two root elements, this div and this dialogue,
+
+71
+00:03:43,790 --> 00:03:47,110
+these are the actual direct child elements
+
+72
+00:03:47,110 --> 00:03:49,620
+inside of this transition component.
+
+73
+00:03:49,620 --> 00:03:52,300
+Well, and two elements are more than one.
+
+74
+00:03:52,300 --> 00:03:56,343
+That's why this set-up here does not work.
+
+75
+00:03:57,620 --> 00:03:59,100
+What can we do about that?
+
+76
+00:03:59,100 --> 00:04:01,260
+How can we work around that?
+
+77
+00:04:01,260 --> 00:04:03,910
+Well, there are various ways of solving this.
+
+78
+00:04:03,910 --> 00:04:07,330
+We can, for example, split this into two components
+
+79
+00:04:07,330 --> 00:04:10,060
+and manage the backdrop separately.
+
+80
+00:04:10,060 --> 00:04:12,870
+But we could also bring this transition component
+
+81
+00:04:12,870 --> 00:04:16,350
+over to base-model and try using it in there
+
+82
+00:04:16,350 --> 00:04:18,610
+to transition to style log.
+
+83
+00:04:18,610 --> 00:04:20,630
+And that's the route I will take here.
+
+84
+00:04:20,630 --> 00:04:22,356
+I'll remove the transition wrapper
+
+85
+00:04:22,356 --> 00:04:24,423
+around my custom component.
+
+86
+00:04:25,500 --> 00:04:27,660
+Though it theoretically would work,
+
+87
+00:04:27,660 --> 00:04:30,890
+if our custom component had just one root element,
+
+88
+00:04:30,890 --> 00:04:33,240
+but here it doesn't, so it doesn't work.
+
+89
+00:04:33,240 --> 00:04:36,060
+And I will bring it over to base-model
+
+90
+00:04:36,060 --> 00:04:40,950
+and wrap this dialogue with transition, like this.
+
+91
+00:04:42,570 --> 00:04:44,972
+Now I can give this a name of, modal
+
+92
+00:04:44,972 --> 00:04:46,800
+and go back to App.vue,
+
+93
+00:04:46,800 --> 00:04:50,220
+and grab my modal specific CSS classes,
+
+94
+00:04:50,220 --> 00:04:53,670
+to be precise to modal-enter-active class here,
+
+95
+00:04:53,670 --> 00:04:56,170
+we can remove them from App.vue,
+
+96
+00:04:56,170 --> 00:04:59,330
+remove the modal keyframes from App.vue
+
+97
+00:04:59,330 --> 00:05:02,260
+and bring all of that over to BaseModal.vue.
+
+98
+00:05:02,260 --> 00:05:04,650
+There, we already got the modal keyframes,
+
+99
+00:05:04,650 --> 00:05:07,630
+and now I'm also adding the modal-enter-active class,
+
+100
+00:05:07,630 --> 00:05:09,670
+which points at the modal keyframes
+
+101
+00:05:09,670 --> 00:05:11,423
+to play it as an animation.
+
+102
+00:05:13,180 --> 00:05:15,450
+Now, however, we need to change the logic,
+
+103
+00:05:15,450 --> 00:05:18,020
+how this base-model opens.
+
+104
+00:05:18,020 --> 00:05:20,910
+At the moment, I'm adding the base-model component
+
+105
+00:05:20,910 --> 00:05:24,090
+in App.vue with v-if.
+
+106
+00:05:24,090 --> 00:05:27,540
+And this won't work, if I want to use transition
+
+107
+00:05:27,540 --> 00:05:29,590
+inside of the base-model template
+
+108
+00:05:29,590 --> 00:05:32,950
+to animate the addition and remove of dialogue.
+
+109
+00:05:32,950 --> 00:05:35,750
+If transition is part of that template,
+
+110
+00:05:35,750 --> 00:05:37,880
+which has added and removed with v-if,
+
+111
+00:05:37,880 --> 00:05:39,563
+it won't have any effect.
+
+112
+00:05:40,410 --> 00:05:43,920
+Therefore I'll now open and close the modal differently.
+
+113
+00:05:43,920 --> 00:05:48,920
+I'll add a new open prop, to my base-model component
+
+114
+00:05:49,110 --> 00:05:51,850
+and point at dialogue is visible there.
+
+115
+00:05:51,850 --> 00:05:55,550
+So forward, the dialogue is visible property
+
+116
+00:05:55,550 --> 00:05:59,453
+through the open prop to the base-model component.
+
+117
+00:06:01,140 --> 00:06:03,760
+And now in the base-model component,
+
+118
+00:06:03,760 --> 00:06:07,090
+we can accept this prop here.
+
+119
+00:06:07,090 --> 00:06:09,753
+So expect the open prop here.
+
+120
+00:06:09,753 --> 00:06:12,370
+And now that we're getting it,
+
+121
+00:06:12,370 --> 00:06:16,510
+we can simply add it here with v-if.
+
+122
+00:06:16,510 --> 00:06:19,150
+We can check open, so does open prop,
+
+123
+00:06:19,150 --> 00:06:22,030
+which is true or false, to control whether or not
+
+124
+00:06:22,030 --> 00:06:23,783
+the dialogue is visible or not.
+
+125
+00:06:24,860 --> 00:06:28,700
+So now the base-model component is always added
+
+126
+00:06:28,700 --> 00:06:30,600
+to the App.vue template,
+
+127
+00:06:30,600 --> 00:06:33,110
+but inside of that base-model template,
+
+128
+00:06:33,110 --> 00:06:36,240
+the dialogue is still controlled with v-if.
+
+129
+00:06:36,240 --> 00:06:38,230
+But now it's wrapped in a transition,
+
+130
+00:06:38,230 --> 00:06:41,763
+and now this transition has only one direct child.
+
+131
+00:06:43,030 --> 00:06:46,300
+And of course, we also want to add v-if here to the div,
+
+132
+00:06:46,300 --> 00:06:49,680
+and pass the open prop to v-if as well,
+
+133
+00:06:49,680 --> 00:06:52,113
+to control the visibility of the backdrop.
+
+134
+00:06:53,760 --> 00:06:57,750
+And now finally, if we reload, we got this animation
+
+135
+00:06:57,750 --> 00:06:59,623
+and everything works properly.
+
+136
+00:07:01,380 --> 00:07:05,650
+And we can, of course now also work on a closing animation.
+
+137
+00:07:05,650 --> 00:07:09,170
+We can add modal-leave-active here,
+
+138
+00:07:09,170 --> 00:07:11,640
+and play the same animation.
+
+139
+00:07:11,640 --> 00:07:14,740
+Let's say with an ease-in function,
+
+140
+00:07:14,740 --> 00:07:16,640
+just to keep things simple.
+
+141
+00:07:16,640 --> 00:07:18,090
+Of course, we could also play
+
+142
+00:07:18,090 --> 00:07:19,970
+a totally different animation here,
+
+143
+00:07:19,970 --> 00:07:21,560
+or a set-up a transition
+
+144
+00:07:21,560 --> 00:07:25,010
+by also using the from and to classes.
+
+145
+00:07:25,010 --> 00:07:28,210
+But if I do it like that, if I now reload,
+
+146
+00:07:28,210 --> 00:07:32,780
+we got a animation for opening, and also for closing.
+
+147
+00:07:32,780 --> 00:07:34,950
+Now the closing animation, certainly is a bit off
+
+148
+00:07:34,950 --> 00:07:37,763
+because I'm just re-using the opening animation,
+
+149
+00:07:38,630 --> 00:07:42,550
+but we can add the reverse value here to this animation
+
+150
+00:07:42,550 --> 00:07:45,490
+on modal-leave-active, to tell CSS,
+
+151
+00:07:45,490 --> 00:07:48,250
+to actually play this animation in reverse,
+
+152
+00:07:48,250 --> 00:07:52,230
+for this case here, for this CSS class selector.
+
+153
+00:07:52,230 --> 00:07:55,620
+So that it will start at, to and go to, from,
+
+154
+00:07:55,620 --> 00:07:57,113
+if you add reverse.
+
+155
+00:07:58,510 --> 00:08:01,500
+And with that, if I save that and reload,
+
+156
+00:08:01,500 --> 00:08:05,540
+we've got a nice animation for opening and also for closing.
+
+157
+00:08:05,540 --> 00:08:08,430
+And now, that is enabled with help of transition.
+
+158
+00:08:08,430 --> 00:08:10,400
+Keeping in mind, that transition
+
+159
+00:08:10,400 --> 00:08:13,300
+must only have one direct child element.
+
+160
+00:08:13,300 --> 00:08:15,950
+And therefore, we had to restructure this a bit,
+
+161
+00:08:15,950 --> 00:08:18,510
+and I hope it's clear why we had to do it.
+
+162
+00:08:18,510 --> 00:08:20,840
+But with that, we now got a nice transition
+
+163
+00:08:20,840 --> 00:08:23,360
+for opening and for closing.
+
+164
+00:08:23,360 --> 00:08:25,610
+So for adding and for removing,
+
+165
+00:08:25,610 --> 00:08:27,163
+this element to the done.
+
+166
+00:08:29,220 --> 00:08:31,192
+Now I'll dive into some cases,
+
+167
+00:08:31,192 --> 00:08:33,760
+where we actually are allowed to have
+
+168
+00:08:33,760 --> 00:08:36,523
+more than one element inside of transition.
+

@@ -1,0 +1,76 @@
+1
+00:00:02,150 --> 00:00:04,150
+As you build bigger and bigger
+
+2
+00:00:04,150 --> 00:00:05,770
+Vue applications,
+
+3
+00:00:05,770 --> 00:00:08,620
+managing your application state,
+
+4
+00:00:08,620 --> 00:00:11,250
+your application data
+
+5
+00:00:11,250 --> 00:00:13,900
+can become more and more challenging.
+
+6
+00:00:13,900 --> 00:00:18,020
+This module is about a better state management solution
+
+7
+00:00:18,020 --> 00:00:19,500
+called Vuex.
+
+8
+00:00:19,500 --> 00:00:23,950
+Which can be used to replace, provide and inject
+
+9
+00:00:23,950 --> 00:00:28,740
+for data which you wanna share across multiple components
+
+10
+00:00:28,740 --> 00:00:31,660
+possibly across your entire app.
+
+11
+00:00:31,660 --> 00:00:34,600
+Now to understand Vuex in detail,
+
+12
+00:00:34,600 --> 00:00:35,660
+in this module,
+
+13
+00:00:35,660 --> 00:00:39,600
+we'll first of all dive into what exactly Vuex is
+
+14
+00:00:39,600 --> 00:00:42,690
+and why exactly we need or use it.
+
+15
+00:00:42,690 --> 00:00:46,220
+And then of course we'll explore it from the ground up
+
+16
+00:00:46,220 --> 00:00:49,220
+so that you understand how Vuex works
+
+17
+00:00:49,220 --> 00:00:52,620
+and how you can use it in your Vue applications
+
+18
+00:00:52,620 --> 00:00:55,450
+to manage your application data
+
+19
+00:00:55,450 --> 00:00:57,393
+in a better way.
+

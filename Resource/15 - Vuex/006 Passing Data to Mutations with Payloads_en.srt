@@ -1,0 +1,288 @@
+1
+00:00:02,240 --> 00:00:06,610
+Now some mutations might require arguments.
+
+2
+00:00:06,610 --> 00:00:08,690
+Here, we got the increment mutation
+
+3
+00:00:08,690 --> 00:00:11,410
+and the value by which we increment this
+
+4
+00:00:11,410 --> 00:00:13,853
+is hard coded into this code.
+
+5
+00:00:15,000 --> 00:00:17,990
+We could add and increase mutation,
+
+6
+00:00:17,990 --> 00:00:20,900
+which also gets to state and say that in here,
+
+7
+00:00:20,900 --> 00:00:23,360
+we also want to change the counter,
+
+8
+00:00:23,360 --> 00:00:27,330
+but we actually want to increase it by a value
+
+9
+00:00:27,330 --> 00:00:31,313
+which can be defined when this mutation is committed.
+
+10
+00:00:32,520 --> 00:00:35,940
+And you also allow for this scenario,
+
+11
+00:00:35,940 --> 00:00:39,980
+your mutations actually also take a second argument,
+
+12
+00:00:39,980 --> 00:00:43,603
+a payload, so a data package that can be a pendant.
+
+13
+00:00:44,620 --> 00:00:47,270
+And I'm going to name the argument payload here,
+
+14
+00:00:47,270 --> 00:00:50,650
+though of course, these names are up to you ultimately.
+
+15
+00:00:50,650 --> 00:00:52,700
+Now payload can be anything.
+
+16
+00:00:52,700 --> 00:00:56,420
+It can be a number, it can be a string, it can be an object.
+
+17
+00:00:56,420 --> 00:00:59,780
+And let's say here, we assume it will be an object
+
+18
+00:00:59,780 --> 00:01:01,723
+where we have a value property.
+
+19
+00:01:02,560 --> 00:01:04,450
+But this is entirely up to you
+
+20
+00:01:04,450 --> 00:01:06,730
+it's your store, your application,
+
+21
+00:01:06,730 --> 00:01:10,943
+you can expect any kind of data on committed mutations.
+
+22
+00:01:11,890 --> 00:01:13,743
+But how could we now call this?
+
+23
+00:01:14,820 --> 00:01:19,370
+Well let's and ChangeCounter, we say add two,
+
+24
+00:01:19,370 --> 00:01:22,530
+because that's more appropriate to what happens here,
+
+25
+00:01:22,530 --> 00:01:25,870
+but in App.vue, I don't want to commit increment,
+
+26
+00:01:25,870 --> 00:01:28,050
+but the new increase mutation
+
+27
+00:01:29,180 --> 00:01:31,563
+and I want to increase TheCounter by 10.
+
+28
+00:01:32,510 --> 00:01:36,240
+Now, I still don't want to manipulate the state
+
+29
+00:01:36,240 --> 00:01:38,320
+from insight this component.
+
+30
+00:01:38,320 --> 00:01:40,780
+I still want to use a mutation,
+
+31
+00:01:40,780 --> 00:01:43,860
+but I want to pass this data package
+
+32
+00:01:43,860 --> 00:01:48,640
+to this mutation so that we have some flexibility.
+
+33
+00:01:48,640 --> 00:01:51,720
+For that commit, takes a second argument,
+
+34
+00:01:51,720 --> 00:01:53,460
+which will be the payload,
+
+35
+00:01:53,460 --> 00:01:56,920
+which then later is received in your mutation.
+
+36
+00:01:56,920 --> 00:01:58,390
+So the second argument here,
+
+37
+00:01:58,390 --> 00:02:02,360
+indeed is also the second argument you can pass to commit.
+
+38
+00:02:02,360 --> 00:02:04,430
+And this can be anything as I mentioned,
+
+39
+00:02:04,430 --> 00:02:08,180
+a number, a string, but here it should be an object
+
+40
+00:02:08,180 --> 00:02:10,699
+with a value property because
+
+41
+00:02:10,699 --> 00:02:12,310
+that is what I'm expecting here.
+
+42
+00:02:12,310 --> 00:02:16,803
+I'm accessing dot value on the payload in my mutation here.
+
+43
+00:02:17,840 --> 00:02:20,390
+So here I provide a value and in this case,
+
+44
+00:02:20,390 --> 00:02:23,523
+let's say the value is a number and it's the number 10.
+
+45
+00:02:24,800 --> 00:02:29,800
+If we now save this and reload, add two adds two,
+
+46
+00:02:30,070 --> 00:02:33,730
+because it commits the increment mutation.
+
+47
+00:02:33,730 --> 00:02:38,290
+But add 10 adds 10 because it calls to increase mutation
+
+48
+00:02:38,290 --> 00:02:41,543
+with a payload that contains this value of 10.
+
+49
+00:02:43,110 --> 00:02:48,110
+So payloads extra data can be passed to your mutations.
+
+50
+00:02:49,320 --> 00:02:52,670
+You also got an alternative way of committing by the way,
+
+51
+00:02:52,670 --> 00:02:54,710
+there is nothing wrong with this approach,
+
+52
+00:02:54,710 --> 00:02:59,710
+but you can also call commit and pass an object to commit.
+
+53
+00:03:00,680 --> 00:03:04,080
+Now this object now needs to have a type property
+
+54
+00:03:04,080 --> 00:03:06,200
+which holds the name of the mutation
+
+55
+00:03:06,200 --> 00:03:08,220
+that should be committed.
+
+56
+00:03:08,220 --> 00:03:12,380
+But in addition, it can hold as many properties as you want.
+
+57
+00:03:12,380 --> 00:03:15,350
+For example here, this value property,
+
+58
+00:03:15,350 --> 00:03:19,530
+and then it's this object without the type so to say,
+
+59
+00:03:19,530 --> 00:03:23,513
+which will be provided as a payload to this mutation.
+
+60
+00:03:24,480 --> 00:03:27,020
+So that's simply an alternative way of committing
+
+61
+00:03:27,020 --> 00:03:29,713
+and it's up to you, which approach you prefer.
+
+62
+00:03:30,660 --> 00:03:33,363
+This will also work as you see here.
+
+63
+00:03:34,700 --> 00:03:38,470
+Now these are mutations, and the clear advantages
+
+64
+00:03:38,470 --> 00:03:40,510
+that you move the concrete logic
+
+65
+00:03:40,510 --> 00:03:44,130
+that changes your state into your store.
+
+66
+00:03:44,130 --> 00:03:46,380
+And here of course, it's very simple logic,
+
+67
+00:03:46,380 --> 00:03:49,330
+but this could be way more complex in the end.
+
+68
+00:03:49,330 --> 00:03:53,280
+And you just commit mutations from inside your components,
+
+69
+00:03:53,280 --> 00:03:55,700
+so you never, and that's really important.
+
+70
+00:03:55,700 --> 00:03:59,930
+You never directly add the state from inside components.
+
+71
+00:03:59,930 --> 00:04:02,550
+This is not considered a good practice.
+
+72
+00:04:02,550 --> 00:04:05,313
+You should instead use mutations.
+

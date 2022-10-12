@@ -1,0 +1,604 @@
+1
+00:00:02,100 --> 00:00:03,430
+Now, you know the game.
+
+2
+00:00:03,430 --> 00:00:05,700
+Attached you find a starting project,
+
+3
+00:00:05,700 --> 00:00:09,660
+run npm install to install all dependencies we got in there.
+
+4
+00:00:09,660 --> 00:00:12,340
+And once that is done and out of the way,
+
+5
+00:00:12,340 --> 00:00:14,020
+you can run npn run serve
+
+6
+00:00:14,020 --> 00:00:15,910
+to bring up that development server
+
+7
+00:00:15,910 --> 00:00:18,550
+which hosts this demo app.
+
+8
+00:00:18,550 --> 00:00:20,870
+Now here's the app we'll be starting with.
+
+9
+00:00:20,870 --> 00:00:25,870
+And to be honest, it's more of a playground than a real app.
+
+10
+00:00:25,980 --> 00:00:28,360
+We've got a modal here which can open and close.
+
+11
+00:00:28,360 --> 00:00:29,740
+But it's really just there
+
+12
+00:00:29,740 --> 00:00:32,040
+so that we can practice animations,
+
+13
+00:00:32,040 --> 00:00:33,890
+but will not start with the modal.
+
+14
+00:00:33,890 --> 00:00:36,030
+We'll start with this square.
+
+15
+00:00:36,030 --> 00:00:38,480
+With this dark purple square here.
+
+16
+00:00:38,480 --> 00:00:41,617
+And we'll see how we can animate that with CSS
+
+17
+00:00:41,617 --> 00:00:43,530
+and also Vue.
+
+18
+00:00:43,530 --> 00:00:47,000
+And then we'll also see where we need more support
+
+19
+00:00:47,000 --> 00:00:50,163
+from Vue side and how we get that support.
+
+20
+00:00:51,080 --> 00:00:54,970
+So how can we animate things? Let's start simple.
+
+21
+00:00:54,970 --> 00:00:59,080
+Let's say we want to click this animate button.
+
+22
+00:00:59,080 --> 00:01:01,160
+And well, then this square here,
+
+23
+00:01:01,160 --> 00:01:04,050
+this block should be animated.
+
+24
+00:01:04,050 --> 00:01:06,420
+And for that, we can go back to our code.
+
+25
+00:01:06,420 --> 00:01:09,420
+To App.vue which is where I have this block.
+
+26
+00:01:09,420 --> 00:01:11,310
+This div with the class block.
+
+27
+00:01:11,310 --> 00:01:14,760
+And we'll start by adding a click listener to animate.
+
+28
+00:01:14,760 --> 00:01:16,880
+Sort of we can write some Vue code
+
+29
+00:01:16,880 --> 00:01:19,420
+that should do something with that div.
+
+30
+00:01:19,420 --> 00:01:21,780
+And I wanna start very, very simple.
+
+31
+00:01:21,780 --> 00:01:25,350
+I wanna start by simply moving that block
+
+32
+00:01:25,350 --> 00:01:28,390
+a little bit to the left, let's say.
+
+33
+00:01:28,390 --> 00:01:32,273
+To achieve this we can add a new method.
+
+34
+00:01:34,010 --> 00:01:37,760
+Animate block, sounds like a fitting name for that.
+
+35
+00:01:37,760 --> 00:01:39,870
+And that's the method which should be triggered
+
+36
+00:01:39,870 --> 00:01:42,123
+upon a click. So let's wire this up.
+
+37
+00:01:43,320 --> 00:01:45,600
+And I wanna manage some data here,
+
+38
+00:01:45,600 --> 00:01:47,390
+which basically controls
+
+39
+00:01:47,390 --> 00:01:49,970
+wherever we wanna animate the block or not.
+
+40
+00:01:49,970 --> 00:01:52,660
+So whether we clicked the button or not.
+
+41
+00:01:52,660 --> 00:01:57,660
+Animated block is the data property I will add for that.
+
+42
+00:01:57,800 --> 00:02:01,113
+And it's a simple Boolean and starts with a false value.
+
+43
+00:02:02,060 --> 00:02:04,430
+Now that's just one way of implementing this,
+
+44
+00:02:04,430 --> 00:02:06,450
+but this is a very simple demo
+
+45
+00:02:06,450 --> 00:02:08,220
+which we can build like this.
+
+46
+00:02:08,220 --> 00:02:11,400
+So we get the animated block data property here
+
+47
+00:02:11,400 --> 00:02:12,970
+in the App.vue file.
+
+48
+00:02:12,970 --> 00:02:16,680
+And we can now utilize this data property
+
+49
+00:02:16,680 --> 00:02:20,560
+to add a CSS class to this div conditionally.
+
+50
+00:02:20,560 --> 00:02:24,420
+Because we can animate things in web development
+
+51
+00:02:24,420 --> 00:02:29,420
+with just CSS. We don't technically need JavaScript for it.
+
+52
+00:02:29,610 --> 00:02:33,750
+We might just need JavaScript to start the animation,
+
+53
+00:02:33,750 --> 00:02:36,130
+to add certain CSS code.
+
+54
+00:02:36,130 --> 00:02:39,840
+But thereafter, CSS can do that on its own.
+
+55
+00:02:39,840 --> 00:02:43,960
+So here we could add a dynamic class binding
+
+56
+00:02:43,960 --> 00:02:47,110
+to bind the animate class let's say.
+
+57
+00:02:47,110 --> 00:02:48,760
+This class name is up to you.
+
+58
+00:02:48,760 --> 00:02:51,200
+Whenever animated block.
+
+59
+00:02:51,200 --> 00:02:54,290
+So this newly added data property is true.
+
+60
+00:02:54,290 --> 00:02:57,323
+When that's true, the animate class will be added.
+
+61
+00:02:59,000 --> 00:03:03,030
+And we can now define this animate class here in our styles.
+
+62
+00:03:03,030 --> 00:03:06,010
+I'll add a brand new class animate.
+
+63
+00:03:06,010 --> 00:03:08,090
+And to move the block around,
+
+64
+00:03:08,090 --> 00:03:11,730
+we can for example use the transform CSS property
+
+65
+00:03:11,730 --> 00:03:13,820
+which is a built in CSS property.
+
+66
+00:03:13,820 --> 00:03:16,280
+Has nothing to do with Vue.js
+
+67
+00:03:16,280 --> 00:03:19,480
+and there we can add translate X
+
+68
+00:03:19,480 --> 00:03:22,690
+to move an element around on the X axis.
+
+69
+00:03:22,690 --> 00:03:25,600
+And the transform property is perfect for that
+
+70
+00:03:25,600 --> 00:03:29,350
+because it moves elements in an optimized way.
+
+71
+00:03:29,350 --> 00:03:31,890
+It gives us great performance essentially.
+
+72
+00:03:31,890 --> 00:03:35,573
+So here we could move it by, let's say, 50 pixels.
+
+73
+00:03:36,920 --> 00:03:38,380
+So now to finish this up,
+
+74
+00:03:38,380 --> 00:03:41,350
+we just need to go to this method we added before
+
+75
+00:03:41,350 --> 00:03:44,630
+and set this animated block equal to true here.
+
+76
+00:03:44,630 --> 00:03:47,280
+And with all of that, with that property,
+
+77
+00:03:47,280 --> 00:03:50,460
+which be used to add the animate class dynamically
+
+78
+00:03:50,460 --> 00:03:53,330
+and that animate class to find down there.
+
+79
+00:03:53,330 --> 00:03:54,700
+With all of that set up.
+
+80
+00:03:54,700 --> 00:03:57,670
+If we save that we can click animate
+
+81
+00:03:57,670 --> 00:04:00,370
+and we see that block move a little bit.
+
+82
+00:04:00,370 --> 00:04:04,540
+We can actually also move it a bit further by for example,
+
+83
+00:04:04,540 --> 00:04:07,853
+deducting 150 instead of 50 pixels.
+
+84
+00:04:09,420 --> 00:04:11,510
+But what you'll see of course is that
+
+85
+00:04:11,510 --> 00:04:15,430
+this is an instant jump. It's not an animation at all.
+
+86
+00:04:15,430 --> 00:04:19,890
+It's just a instant jump to its new position.
+
+87
+00:04:19,890 --> 00:04:21,490
+Now this is not what I want here.
+
+88
+00:04:21,490 --> 00:04:23,500
+I want a smooth animation.
+
+89
+00:04:23,500 --> 00:04:26,940
+And implementing that is super easy with CSS.
+
+90
+00:04:26,940 --> 00:04:30,170
+We can simply go to this block class,
+
+91
+00:04:30,170 --> 00:04:34,040
+which is the base CSS class this div has.
+
+92
+00:04:34,040 --> 00:04:36,830
+And on that block class here,
+
+93
+00:04:36,830 --> 00:04:39,490
+we can add the transition CSS property.
+
+94
+00:04:39,490 --> 00:04:42,950
+Which is another built in property CSS offers.
+
+95
+00:04:42,950 --> 00:04:44,973
+It has nothing to do with Vue.
+
+96
+00:04:46,240 --> 00:04:49,690
+The transition property takes a couple of values.
+
+97
+00:04:49,690 --> 00:04:52,200
+It first of all wants to know
+
+98
+00:04:52,200 --> 00:04:56,080
+which other CSS property we wanna transition.
+
+99
+00:04:56,080 --> 00:04:56,913
+For example,
+
+100
+00:04:56,913 --> 00:05:00,000
+we could say that we want to animate the opacity.
+
+101
+00:05:00,000 --> 00:05:03,050
+But here on this block, we're never changing the opacity
+
+102
+00:05:03,050 --> 00:05:04,940
+so this makes no sense.
+
+103
+00:05:04,940 --> 00:05:08,360
+We can say all, to animate any changes
+
+104
+00:05:08,360 --> 00:05:11,630
+in any animatable CSS properties.
+
+105
+00:05:11,630 --> 00:05:15,720
+Or we target transform specifically since we know
+
+106
+00:05:15,720 --> 00:05:19,420
+that we're going to change the transform property.
+
+107
+00:05:19,420 --> 00:05:21,370
+Initially on this base class,
+
+108
+00:05:21,370 --> 00:05:23,970
+we're not saying anything about transform.
+
+109
+00:05:23,970 --> 00:05:28,780
+And then later we set it to translate X -150 pixels.
+
+110
+00:05:28,780 --> 00:05:30,300
+So when that kicks in,
+
+111
+00:05:30,300 --> 00:05:33,350
+transition with the transform value here
+
+112
+00:05:33,350 --> 00:05:38,350
+tells CSS that any changes applied to the transform property
+
+113
+00:05:38,960 --> 00:05:42,723
+or with help of the transform property, should be animated.
+
+114
+00:05:44,130 --> 00:05:44,963
+And therefore
+
+115
+00:05:44,963 --> 00:05:47,390
+besides the name of the property we wanna animate,
+
+116
+00:05:47,390 --> 00:05:49,650
+we also have to provide a duration
+
+117
+00:05:49,650 --> 00:05:52,500
+over which this animation should be done.
+
+118
+00:05:52,500 --> 00:05:55,240
+For example, 0.3 seconds.
+
+119
+00:05:55,240 --> 00:05:56,310
+Now, as a side note.
+
+120
+00:05:56,310 --> 00:05:58,080
+If you wanna learn more about that,
+
+121
+00:05:58,080 --> 00:06:00,100
+the potential values you can set up here
+
+122
+00:06:00,100 --> 00:06:02,270
+and how CSS animations work.
+
+123
+00:06:02,270 --> 00:06:05,610
+You might wanna check out a dedicated CSS course
+
+124
+00:06:05,610 --> 00:06:08,330
+or some free CSS animation resources
+
+125
+00:06:08,330 --> 00:06:09,580
+which you'll find out there.
+
+126
+00:06:09,580 --> 00:06:12,480
+I'll not dive too deeply into that here
+
+127
+00:06:12,480 --> 00:06:14,890
+since it's still a Vue course in the end
+
+128
+00:06:14,890 --> 00:06:18,963
+and not primarily as CSS or CSS animations course.
+
+129
+00:06:20,130 --> 00:06:22,970
+Nonetheless here, we now animate changes
+
+130
+00:06:22,970 --> 00:06:25,660
+and transform over 0.3 seconds.
+
+131
+00:06:25,660 --> 00:06:28,260
+And we kind of find that easing function
+
+132
+00:06:28,260 --> 00:06:32,090
+which basically determines how this animation accelerates
+
+133
+00:06:32,090 --> 00:06:35,390
+and then throttles at the end.
+
+134
+00:06:35,390 --> 00:06:38,870
+If we now save that. You'll see if I click animate,
+
+135
+00:06:38,870 --> 00:06:41,040
+now this animates.
+
+136
+00:06:41,040 --> 00:06:45,190
+And this moves in the duration we specified.
+
+137
+00:06:45,190 --> 00:06:49,870
+And we are using Vue here to start this animation
+
+138
+00:06:49,870 --> 00:06:53,150
+by setting animated block to true.
+
+139
+00:06:53,150 --> 00:06:55,660
+Initially it's false but we set it to true here.
+
+140
+00:06:55,660 --> 00:06:57,950
+And that adds the animate class.
+
+141
+00:06:57,950 --> 00:07:00,560
+So that's the part where we use Vue.
+
+142
+00:07:00,560 --> 00:07:02,500
+But thereafter it's just CSS.
+
+143
+00:07:02,500 --> 00:07:05,800
+And it's just the transform property combined
+
+144
+00:07:05,800 --> 00:07:07,503
+with the transition property.
+
+145
+00:07:08,450 --> 00:07:12,100
+And that's important. This is a perfectly fine way.
+
+146
+00:07:12,100 --> 00:07:13,330
+It's not just fine.
+
+147
+00:07:13,330 --> 00:07:15,230
+It's actually the recommended way
+
+148
+00:07:15,230 --> 00:07:18,120
+for adding animation like this.
+
+149
+00:07:18,120 --> 00:07:21,110
+Now there is an alternative for cases where
+
+150
+00:07:21,110 --> 00:07:23,980
+a simple transition like that is not enough though.
+
+151
+00:07:23,980 --> 00:07:26,453
+Let me show you that alternative as well.
+

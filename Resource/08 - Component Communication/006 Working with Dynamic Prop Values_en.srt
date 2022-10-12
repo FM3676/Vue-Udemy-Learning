@@ -1,0 +1,436 @@
+1
+00:00:01,644 --> 00:00:03,350
+Now of course,
+
+2
+00:00:03,350 --> 00:00:06,720
+props cannot just be set to string values.
+
+3
+00:00:06,720 --> 00:00:10,140
+And of course, just like other HTML elements,
+
+4
+00:00:10,140 --> 00:00:13,340
+you can bind them to dynamic values.
+
+5
+00:00:13,340 --> 00:00:17,840
+For example, is favorite currently works with one or zero.
+
+6
+00:00:17,840 --> 00:00:20,420
+Now, since we have exactly two values,
+
+7
+00:00:20,420 --> 00:00:25,060
+it would make much more sense, that we want a Boolean here.
+
+8
+00:00:25,060 --> 00:00:26,220
+So that we make it clear,
+
+9
+00:00:26,220 --> 00:00:28,850
+that this should be of type Boolean.
+
+10
+00:00:28,850 --> 00:00:31,350
+Then we can also get rid of that validator,
+
+11
+00:00:31,350 --> 00:00:34,520
+because a Boolean can only be true or false.
+
+12
+00:00:34,520 --> 00:00:36,710
+There are no other values.
+
+13
+00:00:36,710 --> 00:00:39,270
+The default value then could be false here.
+
+14
+00:00:39,270 --> 00:00:41,603
+So that is favorite is false by default.
+
+15
+00:00:42,870 --> 00:00:45,000
+But now to pass false,
+
+16
+00:00:45,000 --> 00:00:49,810
+we can't just set this to true or false here.
+
+17
+00:00:49,810 --> 00:00:51,240
+This is not how it works,
+
+18
+00:00:51,240 --> 00:00:54,690
+because this will always be some text here.
+
+19
+00:00:54,690 --> 00:00:58,300
+Instead to use the true value type,
+
+20
+00:00:58,300 --> 00:01:01,780
+we need to bind this with v-bind,
+
+21
+00:01:01,780 --> 00:01:03,710
+and that is something we can do.
+
+22
+00:01:03,710 --> 00:01:06,100
+We can bind our own props,
+
+23
+00:01:06,100 --> 00:01:10,490
+just as we can bind any other HTML attribute.
+
+24
+00:01:10,490 --> 00:01:14,480
+And if we got a prop that needs a JavaScript value,
+
+25
+00:01:14,480 --> 00:01:18,150
+other than a string, then we need to use v-bind,
+
+26
+00:01:18,150 --> 00:01:22,260
+or the shorthand of course, to pass in that value,
+
+27
+00:01:22,260 --> 00:01:24,670
+You can, of course, still also execute
+
+28
+00:01:24,670 --> 00:01:26,830
+any JavaScript expression here,
+
+29
+00:01:26,830 --> 00:01:29,290
+call a method or whatever you wanna do,
+
+30
+00:01:29,290 --> 00:01:33,083
+but you can also use that to pass non string values.
+
+31
+00:01:35,350 --> 00:01:38,000
+But being able to bind props dynamically,
+
+32
+00:01:38,000 --> 00:01:39,900
+is not just useful for that.
+
+33
+00:01:39,900 --> 00:01:43,120
+It's not just useful to pass non-string values,
+
+34
+00:01:43,120 --> 00:01:45,160
+even though that is useful.
+
+35
+00:01:45,160 --> 00:01:47,880
+But it's also useful to make those components,
+
+36
+00:01:47,880 --> 00:01:49,810
+a bit more dynamic.
+
+37
+00:01:49,810 --> 00:01:52,550
+Maybe you forgot about it already,
+
+38
+00:01:52,550 --> 00:01:55,780
+but we have our friends here in NRA,
+
+39
+00:01:55,780 --> 00:01:59,160
+inside of our App.vue file.
+
+40
+00:01:59,160 --> 00:02:03,173
+Now wouldn't it be nice if we could use v-for again,
+
+41
+00:02:04,530 --> 00:02:06,810
+but now repeat our own component,
+
+42
+00:02:06,810 --> 00:02:10,770
+and then pass in the different data for each loop iteration?
+
+43
+00:02:10,770 --> 00:02:12,950
+Well, turns out you can do that.
+
+44
+00:02:12,950 --> 00:02:16,440
+You can use v-for, and also v-if by the way,
+
+45
+00:02:16,440 --> 00:02:17,960
+on your own components,
+
+46
+00:02:17,960 --> 00:02:21,963
+just as you can use it on default HTML elements.
+
+47
+00:02:23,000 --> 00:02:27,080
+So here, I can loop through my friends like this,
+
+48
+00:02:27,080 --> 00:02:29,600
+and now there's just one important rule.
+
+49
+00:02:29,600 --> 00:02:32,780
+You always need to add a key here.
+
+50
+00:02:32,780 --> 00:02:34,740
+I talked about the key before.
+
+51
+00:02:34,740 --> 00:02:38,280
+Keys are important, when you deal with v-for.
+
+52
+00:02:38,280 --> 00:02:41,000
+When you use v-for on a custom component,
+
+53
+00:02:41,000 --> 00:02:43,000
+adding a key is mandatory.
+
+54
+00:02:43,000 --> 00:02:45,720
+So, make sure you add the key prop here.
+
+55
+00:02:45,720 --> 00:02:48,410
+You don't need to specify it in your component.
+
+56
+00:02:48,410 --> 00:02:50,970
+Vue automatically knows what to do with it.
+
+57
+00:02:50,970 --> 00:02:54,560
+Make sure you use it when you use v-for,
+
+58
+00:02:54,560 --> 00:02:56,250
+on a custom component.
+
+59
+00:02:56,250 --> 00:02:59,090
+And then here we can bind key dynamically,
+
+60
+00:02:59,090 --> 00:03:02,070
+to friend.id for example.
+
+61
+00:03:02,070 --> 00:03:04,510
+And now we can not just find key dynamically,
+
+62
+00:03:04,510 --> 00:03:07,360
+but also all the other fields like name.
+
+63
+00:03:07,360 --> 00:03:11,090
+Here, we can set this equal to friend.name.
+
+64
+00:03:11,090 --> 00:03:15,320
+Phone number, we can set this equal to friend.phone,
+
+65
+00:03:15,320 --> 00:03:17,740
+because that is the field we have here,
+
+66
+00:03:17,740 --> 00:03:20,520
+where we store our dummy phone number.
+
+67
+00:03:20,520 --> 00:03:23,840
+And the same, of course, although for email address,
+
+68
+00:03:23,840 --> 00:03:28,840
+bind it's dynamically to friend.email.
+
+69
+00:03:29,890 --> 00:03:32,880
+And for the moment I'll leave is favorite as it is,
+
+70
+00:03:32,880 --> 00:03:34,993
+we'll work on that again later.
+
+71
+00:03:37,040 --> 00:03:39,020
+Now we can remove that second usage
+
+72
+00:03:39,020 --> 00:03:42,240
+of friend contact, because now v-for,
+
+73
+00:03:42,240 --> 00:03:46,470
+will create multiple friend-contact elements on this page.
+
+74
+00:03:46,470 --> 00:03:48,803
+One for every friend in France.
+
+75
+00:03:50,180 --> 00:03:53,300
+And we're binding all prop values dynamically,
+
+76
+00:03:53,300 --> 00:03:57,540
+to pass in the different data we have for every friend.
+
+77
+00:03:57,540 --> 00:04:01,110
+This of course also means, that we now can get rid,
+
+78
+00:04:01,110 --> 00:04:02,740
+of that dummy friend,
+
+79
+00:04:02,740 --> 00:04:05,290
+we're defining in friend contact.view.
+
+80
+00:04:05,290 --> 00:04:08,530
+We don't need that anymore, because we already are receiving
+
+81
+00:04:08,530 --> 00:04:11,880
+all the prop data we need from outside.
+
+82
+00:04:11,880 --> 00:04:14,880
+And we can also change toggle favorite.
+
+83
+00:04:14,880 --> 00:04:18,720
+Since is favorite is now a Boolean by default,
+
+84
+00:04:18,720 --> 00:04:22,790
+we no longer should check if it's one or zero,
+
+85
+00:04:22,790 --> 00:04:26,060
+we can simplify this and set this friend is favorite,
+
+86
+00:04:26,060 --> 00:04:29,200
+equal to what it's currently not, to toggle it like this,
+
+87
+00:04:29,200 --> 00:04:31,360
+and set it to true if it was false,
+
+88
+00:04:31,360 --> 00:04:33,530
+and false if it was true.
+
+89
+00:04:33,530 --> 00:04:36,660
+And with all of that, if we now go back,
+
+90
+00:04:36,660 --> 00:04:39,500
+you now see your different data still,
+
+91
+00:04:39,500 --> 00:04:43,423
+but now in two components, that are created with v-for.
+
+92
+00:04:44,370 --> 00:04:47,260
+Now, toggle favorite is not working here,
+
+93
+00:04:47,260 --> 00:04:50,010
+let's see why that is the case.
+
+94
+00:04:50,010 --> 00:04:52,470
+Yeah, because this check of course is wrong.
+
+95
+00:04:52,470 --> 00:04:54,210
+Since it's a Boolean, we should check
+
+96
+00:04:54,210 --> 00:04:56,993
+if it's true or false like this.
+
+97
+00:04:57,930 --> 00:04:59,930
+So, for now adjust this.
+
+98
+00:04:59,930 --> 00:05:01,990
+That now looks better.
+
+99
+00:05:01,990 --> 00:05:04,200
+Now at the moment, both are favorites,
+
+100
+00:05:04,200 --> 00:05:07,440
+because I set is favorite to true,
+
+101
+00:05:07,440 --> 00:05:10,210
+here on the friend-contact component in general.
+
+102
+00:05:10,210 --> 00:05:13,270
+So, for every iteration we create a new friend-contact,
+
+103
+00:05:13,270 --> 00:05:15,960
+but it always has is favorite set to true.
+
+104
+00:05:15,960 --> 00:05:18,483
+But that is something we'll take care about later.
+
+105
+00:05:19,950 --> 00:05:22,880
+The key takeaway here, is that we can use v-for,
+
+106
+00:05:22,880 --> 00:05:25,910
+that we can bind those props to dynamic values,
+
+107
+00:05:25,910 --> 00:05:30,250
+and that now, we got a even more reusable component.
+
+108
+00:05:30,250 --> 00:05:33,170
+Hopefully making it clearer and clearer,
+
+109
+00:05:33,170 --> 00:05:35,703
+why components are that amazing.
+

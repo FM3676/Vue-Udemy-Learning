@@ -1,0 +1,236 @@
+1
+00:00:02,370 --> 00:00:04,520
+So that's how we can use computed.
+
+2
+00:00:04,520 --> 00:00:06,680
+Let me come back to those inputs.
+
+3
+00:00:06,680 --> 00:00:10,620
+I mentioned that event listening works just as before.
+
+4
+00:00:10,620 --> 00:00:13,640
+You can call those methods as you need to.
+
+5
+00:00:13,640 --> 00:00:17,410
+You can forward the default event argument.
+
+6
+00:00:17,410 --> 00:00:19,790
+It's forwarded automatically if you just point
+
+7
+00:00:19,790 --> 00:00:22,891
+at the method, and you can forward any other arguments
+
+8
+00:00:22,891 --> 00:00:25,163
+your methods might need.
+
+9
+00:00:26,250 --> 00:00:29,500
+But you can also use our core vue features
+
+10
+00:00:29,500 --> 00:00:31,040
+with the composition API.
+
+11
+00:00:31,040 --> 00:00:35,470
+For example, V-model to add two-way binding
+
+12
+00:00:35,470 --> 00:00:37,990
+in case you want it this year.
+
+13
+00:00:37,990 --> 00:00:41,760
+So instead of manually listening to the input event,
+
+14
+00:00:41,760 --> 00:00:43,960
+and calling our functions here.
+
+15
+00:00:43,960 --> 00:00:45,910
+Which of course were extended is fine,
+
+16
+00:00:45,910 --> 00:00:50,380
+but instead of just doing that, you can also use V-model.
+
+17
+00:00:50,380 --> 00:00:54,580
+And here's the cool thing, V-model also accepts refs
+
+18
+00:00:54,580 --> 00:00:56,470
+and reactive values.
+
+19
+00:00:56,470 --> 00:00:58,910
+So here I can just bind first name
+
+20
+00:00:58,910 --> 00:01:01,430
+and here I just bind that last name,
+
+21
+00:01:01,430 --> 00:01:05,950
+and vue will automatically detect that these are refs.
+
+22
+00:01:05,950 --> 00:01:08,770
+And it will update the value properties
+
+23
+00:01:08,770 --> 00:01:11,273
+whenever you type into those fields.
+
+24
+00:01:12,240 --> 00:01:16,730
+So you don't bind dot value, instead, as mentioned before,
+
+25
+00:01:16,730 --> 00:01:19,420
+in the template, when working with a ref,
+
+26
+00:01:19,420 --> 00:01:23,240
+you'll always just use the ref like this without drilling
+
+27
+00:01:23,240 --> 00:01:24,800
+into the value property.
+
+28
+00:01:24,800 --> 00:01:27,743
+Vue will do this for you behind the scenes.
+
+29
+00:01:29,160 --> 00:01:30,930
+So with that we're binding first name
+
+30
+00:01:30,930 --> 00:01:33,580
+and last name here, but if we save that, we'll see
+
+31
+00:01:33,580 --> 00:01:35,160
+that it won't work.
+
+32
+00:01:35,160 --> 00:01:37,200
+If I reload, I'm getting a warning already.
+
+33
+00:01:37,200 --> 00:01:40,900
+And if I type here, we see no update on the screen.
+
+34
+00:01:40,900 --> 00:01:43,350
+And the warning is that property last name
+
+35
+00:01:43,350 --> 00:01:47,170
+was accessed during render but it's not defined.
+
+36
+00:01:47,170 --> 00:01:48,730
+Wait what?
+
+37
+00:01:48,730 --> 00:01:50,780
+It is defined here.
+
+38
+00:01:50,780 --> 00:01:55,122
+Well, it's defined in setup, and we're using it in template,
+
+39
+00:01:55,122 --> 00:01:57,440
+but one thing is missing.
+
+40
+00:01:57,440 --> 00:01:59,800
+We're not exposing it to the template.
+
+41
+00:01:59,800 --> 00:02:04,236
+Whatever you wanna use in a template needs to be part
+
+42
+00:02:04,236 --> 00:02:07,610
+of that object, you return at the end of setup.
+
+43
+00:02:07,610 --> 00:02:11,203
+And here, we're not returning first and last name.
+
+44
+00:02:12,060 --> 00:02:16,120
+We are returning our old update functions,
+
+45
+00:02:16,120 --> 00:02:18,260
+but we're actually not using those anymore,
+
+46
+00:02:18,260 --> 00:02:20,240
+so we can't even delete them.
+
+47
+00:02:20,240 --> 00:02:23,820
+Instead, we should now expose first name
+
+48
+00:02:23,820 --> 00:02:26,160
+and point and our first name or ref.
+
+49
+00:02:26,160 --> 00:02:29,470
+Or use the shorthand, if we use the same key name
+
+50
+00:02:29,470 --> 00:02:31,630
+as we have for the variable name,
+
+51
+00:02:31,630 --> 00:02:33,653
+and expose last name.
+
+52
+00:02:34,800 --> 00:02:38,510
+So we need to expose those two ref's
+
+53
+00:02:38,510 --> 00:02:40,190
+under any names of our choice,
+
+54
+00:02:40,190 --> 00:02:42,550
+for example, under the same names,
+
+55
+00:02:42,550 --> 00:02:44,423
+so that we can access them here.
+
+56
+00:02:45,950 --> 00:02:48,870
+And now with that, if we save this and reload,
+
+57
+00:02:48,870 --> 00:02:50,430
+the warning is gone.
+
+58
+00:02:50,430 --> 00:02:55,240
+And now you'll see two-way binding works just as before
+
+59
+00:02:55,240 --> 00:02:56,483
+with refs here.
+

@@ -1,0 +1,700 @@
+1
+00:00:02,060 --> 00:00:05,510
+So we use mutations to edit our data
+
+2
+00:00:05,510 --> 00:00:06,500
+in the state,
+
+3
+00:00:06,500 --> 00:00:08,130
+in the store.
+
+4
+00:00:08,130 --> 00:00:11,350
+Now just as we shouldn't directly edit the state,
+
+5
+00:00:11,350 --> 00:00:12,800
+from inside components,
+
+6
+00:00:12,800 --> 00:00:16,280
+we could also argue that directly reading the state,
+
+7
+00:00:16,280 --> 00:00:18,660
+might not be ideal.
+
+8
+00:00:18,660 --> 00:00:21,133
+Why could this be sub-optimal?
+
+9
+00:00:22,020 --> 00:00:23,196
+Well in this app we got the,
+
+10
+00:00:23,196 --> 00:00:24,650
+TheCounter component,
+
+11
+00:00:24,650 --> 00:00:26,870
+where I output to counter.
+
+12
+00:00:26,870 --> 00:00:28,460
+Now lets say for whatever reason
+
+13
+00:00:28,460 --> 00:00:30,203
+we also have another component.
+
+14
+00:00:31,090 --> 00:00:33,910
+Favoritevalue.vue
+
+15
+00:00:34,980 --> 00:00:38,840
+And in their we do the same thing as in the counter.
+
+16
+00:00:38,840 --> 00:00:40,210
+But maybe we do more.
+
+17
+00:00:40,210 --> 00:00:42,430
+That's why we have separate component.
+
+18
+00:00:42,430 --> 00:00:44,353
+So we do more here.
+
+19
+00:00:47,040 --> 00:00:48,990
+Now of course we can use this
+
+20
+00:00:48,990 --> 00:00:49,960
+component here,
+
+21
+00:00:49,960 --> 00:00:50,793
+in AppVue,
+
+22
+00:00:50,793 --> 00:00:55,793
+we can import FavoriteValue from components
+
+23
+00:00:56,150 --> 00:00:57,727
+FavoriteValue.vue
+
+24
+00:00:57,727 --> 00:01:00,050
+and register it here,
+
+25
+00:01:00,050 --> 00:01:03,100
+and also add this here below the counter maybe.
+
+26
+00:01:03,100 --> 00:01:05,492
+FavoriteValue like this.
+
+27
+00:01:07,530 --> 00:01:09,250
+Now of course this will work.
+
+28
+00:01:09,250 --> 00:01:10,750
+We got the counter twice now,
+
+29
+00:01:10,750 --> 00:01:13,630
+and it updates in both components.
+
+30
+00:01:13,630 --> 00:01:15,350
+Now lets say we decide
+
+31
+00:01:15,350 --> 00:01:18,270
+that actually we always want our output to counter
+
+32
+00:01:18,270 --> 00:01:19,520
+times two.
+
+33
+00:01:19,520 --> 00:01:22,340
+So we update it here in FavoriteValue
+
+34
+00:01:22,340 --> 00:01:24,713
+and we update it in the counter.
+
+35
+00:01:26,420 --> 00:01:27,940
+Do you see the problem?
+
+36
+00:01:27,940 --> 00:01:31,360
+We are again replicating logic here.
+
+37
+00:01:31,360 --> 00:01:33,060
+We do have duplicate code.
+
+38
+00:01:33,060 --> 00:01:36,820
+And again in bigger more realistic applications,
+
+39
+00:01:36,820 --> 00:01:38,670
+this might absolutely happen.
+
+40
+00:01:38,670 --> 00:01:42,000
+That we need the same kind of data in different components,
+
+41
+00:01:42,000 --> 00:01:44,980
+and then we decide that we want to format
+
+42
+00:01:44,980 --> 00:01:47,400
+or calculate the data differently.
+
+43
+00:01:47,400 --> 00:01:49,690
+And therefore we suddenly need to change it
+
+44
+00:01:49,690 --> 00:01:51,283
+in all the different places.
+
+45
+00:01:52,490 --> 00:01:57,120
+This is why we might not want to directly talk to the state.
+
+46
+00:01:57,120 --> 00:02:00,730
+Instead we can use a concept called Getters.
+
+47
+00:02:00,730 --> 00:02:01,930
+Which in the end are,
+
+48
+00:02:01,930 --> 00:02:04,110
+you could say computer properties
+
+49
+00:02:04,110 --> 00:02:07,080
+defined directly in the store,
+
+50
+00:02:07,080 --> 00:02:09,710
+which we then can use from inside any component
+
+51
+00:02:09,710 --> 00:02:11,640
+of our choice.
+
+52
+00:02:11,640 --> 00:02:15,830
+So here is how we add a getter to our Vuex store.
+
+53
+00:02:15,830 --> 00:02:17,760
+Next to mutations,
+
+54
+00:02:17,760 --> 00:02:20,910
+doesn't matter where exactly but in the same place as
+
+55
+00:02:20,910 --> 00:02:22,510
+State and Mutations,
+
+56
+00:02:22,510 --> 00:02:24,176
+you add getters.
+
+57
+00:02:24,176 --> 00:02:26,046
+This takes an object,
+
+58
+00:02:26,046 --> 00:02:29,590
+and every getter is a method in this object now.
+
+59
+00:02:29,590 --> 00:02:32,810
+So basically just like computer properties are methods
+
+60
+00:02:32,810 --> 00:02:35,770
+in the computed option of components.
+
+61
+00:02:35,770 --> 00:02:38,960
+Here we could have the final counter getter
+
+62
+00:02:38,960 --> 00:02:40,450
+lets say.
+
+63
+00:02:40,450 --> 00:02:43,210
+And the final Counter Getter method
+
+64
+00:02:43,210 --> 00:02:45,397
+like all getter method in Vuex,
+
+65
+00:02:45,397 --> 00:02:47,940
+gets two arguments.
+
+66
+00:02:47,940 --> 00:02:49,490
+The current State,
+
+67
+00:02:49,490 --> 00:02:51,847
+which we need to get a value out of it,
+
+68
+00:02:51,847 --> 00:02:54,649
+and other getters.
+
+69
+00:02:54,649 --> 00:02:57,550
+Getting other getters in a getter
+
+70
+00:02:57,550 --> 00:03:01,090
+can be helpful if the value you wanna calculate here,
+
+71
+00:03:01,090 --> 00:03:04,140
+depends on the result of an another getter.
+
+72
+00:03:04,140 --> 00:03:05,260
+But lets ignore that for now,
+
+73
+00:03:05,260 --> 00:03:08,040
+lets just work with the state argument.
+
+74
+00:03:08,040 --> 00:03:10,100
+We wanna return a value here,
+
+75
+00:03:10,100 --> 00:03:12,098
+a getter has to return a value.
+
+76
+00:03:12,098 --> 00:03:14,470
+And the value here is our counter
+
+77
+00:03:14,470 --> 00:03:16,290
+which is manged in the state,
+
+78
+00:03:16,290 --> 00:03:17,823
+times two lets say.
+
+79
+00:03:19,310 --> 00:03:21,760
+And we can now use this getter
+
+80
+00:03:21,760 --> 00:03:24,170
+from any component of our choice.
+
+81
+00:03:24,170 --> 00:03:25,040
+For example,
+
+82
+00:03:25,040 --> 00:03:28,120
+from inside the counter.
+
+83
+00:03:28,120 --> 00:03:30,370
+Here in this computed property,
+
+84
+00:03:30,370 --> 00:03:31,540
+which we keep,
+
+85
+00:03:31,540 --> 00:03:34,320
+we now access this $store,
+
+86
+00:03:34,320 --> 00:03:36,830
+but no longer the state but instead
+
+87
+00:03:36,830 --> 00:03:38,150
+store.getters.
+
+88
+00:03:39,580 --> 00:03:41,710
+And then the name of your getter.
+
+89
+00:03:41,710 --> 00:03:44,187
+Which in this case was FinalCounter.
+
+90
+00:03:45,190 --> 00:03:47,730
+So here it's also FinalCounter.
+
+91
+00:03:47,730 --> 00:03:49,070
+And you don't call it,
+
+92
+00:03:49,070 --> 00:03:50,520
+you don't execute it,
+
+93
+00:03:50,520 --> 00:03:52,033
+you just point at it.
+
+94
+00:03:53,010 --> 00:03:53,843
+Like this.
+
+95
+00:03:53,843 --> 00:03:55,007
+Like a property.
+
+96
+00:03:55,007 --> 00:03:59,230
+And Vuex will execute this getter method for you then,
+
+97
+00:03:59,230 --> 00:04:02,023
+passing into current state into the getter.
+
+98
+00:04:03,430 --> 00:04:04,950
+So we do this here,
+
+99
+00:04:04,950 --> 00:04:06,190
+in the counter,
+
+100
+00:04:06,190 --> 00:04:08,153
+and also in FavoriteValue.
+
+101
+00:04:09,330 --> 00:04:12,830
+And with that if we ever decide that the counter should be
+
+102
+00:04:12,830 --> 00:04:15,360
+lets say the Value times three,
+
+103
+00:04:15,360 --> 00:04:17,730
+we just need to do this in one place,
+
+104
+00:04:17,730 --> 00:04:19,733
+instead of in two places.
+
+105
+00:04:21,410 --> 00:04:23,520
+So with that,
+
+106
+00:04:23,520 --> 00:04:26,150
+if we go back,
+
+107
+00:04:26,150 --> 00:04:28,713
+you see this works now.
+
+108
+00:04:29,620 --> 00:04:31,613
+And this is the concept of getters.
+
+109
+00:04:33,222 --> 00:04:35,900
+Now I mentioned that you can't have multiple getters,
+
+110
+00:04:35,900 --> 00:04:39,340
+and that getters can also depend on each other.
+
+111
+00:04:39,340 --> 00:04:40,173
+Lets say,
+
+112
+00:04:40,173 --> 00:04:42,120
+besides our FinalCounter getter,
+
+113
+00:04:42,120 --> 00:04:44,540
+we have another getter
+
+114
+00:04:45,650 --> 00:04:47,543
+which is called normalizedCounter.
+
+115
+00:04:49,558 --> 00:04:51,170
+And the idea here is simple,
+
+116
+00:04:51,170 --> 00:04:54,030
+I wanna use my counter value,
+
+117
+00:04:54,030 --> 00:04:56,720
+to be precise the FinalCounter value,
+
+118
+00:04:56,720 --> 00:05:00,370
+but I want to make sure it's greater than zero
+
+119
+00:05:00,370 --> 00:05:02,353
+and smaller than 100.
+
+120
+00:05:03,270 --> 00:05:07,150
+And I either output zero or 100 if one of this boundaries
+
+121
+00:05:07,150 --> 00:05:08,770
+is crossed.
+
+122
+00:05:08,770 --> 00:05:10,770
+Now one way of building this,
+
+123
+00:05:10,770 --> 00:05:11,940
+would be,
+
+124
+00:05:11,940 --> 00:05:15,850
+that we recalculate our counter times three here,
+
+125
+00:05:15,850 --> 00:05:20,430
+and then we have our FinalCounter here.
+
+126
+00:05:20,430 --> 00:05:24,010
+We check if FinalCounter is smaller than zero,
+
+127
+00:05:24,010 --> 00:05:27,330
+which can't happen here but lets say we still check it.
+
+128
+00:05:27,330 --> 00:05:29,600
+In which case we return zero,
+
+129
+00:05:29,600 --> 00:05:33,120
+we check if FinalCounter is greater than 100,
+
+130
+00:05:33,120 --> 00:05:35,173
+in which case we return 100.
+
+131
+00:05:36,270 --> 00:05:39,400
+And only if neither of the two things is the case,
+
+132
+00:05:39,400 --> 00:05:41,437
+we return the FinalCounter.
+
+133
+00:05:42,680 --> 00:05:43,550
+As a side note,
+
+134
+00:05:43,550 --> 00:05:46,160
+this also shows us that you of course
+
+135
+00:05:46,160 --> 00:05:48,990
+can have more than one line of code in a getter.
+
+136
+00:05:48,990 --> 00:05:51,610
+That's another advantage of using getters.
+
+137
+00:05:51,610 --> 00:05:53,350
+You can move such code
+
+138
+00:05:53,350 --> 00:05:56,360
+out of components into your Vuex Store.
+
+139
+00:05:56,360 --> 00:05:58,383
+So that your components stay lead.
+
+140
+00:05:59,920 --> 00:06:02,680
+But now with that we got the normalizedCounter.
+
+141
+00:06:02,680 --> 00:06:05,080
+And we could use the normalizedCounter
+
+142
+00:06:05,080 --> 00:06:06,910
+in the FavoriteValue component.
+
+143
+00:06:06,910 --> 00:06:10,703
+Simply by referring to normalizedCounter here.
+
+144
+00:06:13,370 --> 00:06:15,440
+That is the name of this getter.
+
+145
+00:06:15,440 --> 00:06:17,570
+And with that you would see
+
+146
+00:06:17,570 --> 00:06:19,790
+that as soon as we exceed 100,
+
+147
+00:06:19,790 --> 00:06:22,720
+the bottom counters stays at 100.
+
+148
+00:06:22,720 --> 00:06:24,853
+Because of the logic we just added.
+
+149
+00:06:26,020 --> 00:06:28,423
+Now this works but it's not great.
+
+150
+00:06:29,730 --> 00:06:31,930
+We are calculating something,
+
+151
+00:06:31,930 --> 00:06:34,810
+which we've already calculate in another getter.
+
+152
+00:06:34,810 --> 00:06:38,820
+And that's why we get this getters second argument here.
+
+153
+00:06:38,820 --> 00:06:41,530
+With that we can refer to our getters,
+
+154
+00:06:41,530 --> 00:06:42,780
+and get our FinalCounter,
+
+155
+00:06:43,730 --> 00:06:46,553
+simply by calling getters.FinalCounter
+
+156
+00:06:47,780 --> 00:06:50,230
+and imagine we had more code in there.
+
+157
+00:06:50,230 --> 00:06:52,740
+Replicating that all in another getter,
+
+158
+00:06:52,740 --> 00:06:56,413
+is just unnecessary if we already do have a getter for that.
+
+159
+00:06:57,270 --> 00:07:00,490
+So that's how we can use finalCounter like this here.
+
+160
+00:07:00,490 --> 00:07:01,330
+And in this case,
+
+161
+00:07:01,330 --> 00:07:03,350
+I don't even need to state them,
+
+162
+00:07:03,350 --> 00:07:06,080
+but if we would need it we could still use it as well.
+
+163
+00:07:06,080 --> 00:07:07,523
+In this second getter.
+
+164
+00:07:09,160 --> 00:07:12,540
+Here I will replace the state argument with an under score,
+
+165
+00:07:12,540 --> 00:07:15,360
+which is a convection signaling my setup,
+
+166
+00:07:15,360 --> 00:07:19,570
+my project setup here that I do have to take this argument
+
+167
+00:07:19,570 --> 00:07:21,559
+in order to get to the second one,
+
+168
+00:07:21,559 --> 00:07:24,270
+but then I don't wanna work with it.
+
+169
+00:07:24,270 --> 00:07:26,790
+Otherwise this specific project setup,
+
+170
+00:07:26,790 --> 00:07:29,420
+won't complain about an unused argument,
+
+171
+00:07:29,420 --> 00:07:31,070
+following this naming convection.
+
+172
+00:07:31,070 --> 00:07:32,163
+It won't complain.
+
+173
+00:07:33,020 --> 00:07:35,110
+With that if we reload if we get the same behavior
+
+174
+00:07:35,110 --> 00:07:36,500
+as before,
+
+175
+00:07:36,500 --> 00:07:38,933
+but now in a slightly more elegant way.
+

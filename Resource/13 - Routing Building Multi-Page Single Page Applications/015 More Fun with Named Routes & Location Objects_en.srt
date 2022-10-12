@@ -1,0 +1,424 @@
+1
+00:00:02,240 --> 00:00:04,560
+So now we learned about nested routes.
+
+2
+00:00:04,560 --> 00:00:08,970
+Now imagine a bigger view application where you have dozens,
+
+3
+00:00:08,970 --> 00:00:11,660
+or maybe even hundreds of different routes,
+
+4
+00:00:11,660 --> 00:00:14,810
+some routes deeply nested in our routes.
+
+5
+00:00:14,810 --> 00:00:17,460
+You can also have multiple levels of nesting,
+
+6
+00:00:17,460 --> 00:00:20,900
+you could have children here on this nested route as well.
+
+7
+00:00:20,900 --> 00:00:22,460
+So imagine an application
+
+8
+00:00:22,460 --> 00:00:25,650
+where you have a lot of such nested routes.
+
+9
+00:00:25,650 --> 00:00:27,600
+If you have such an app,
+
+10
+00:00:27,600 --> 00:00:30,583
+constructing links like recurrently doing it,
+
+11
+00:00:32,030 --> 00:00:34,730
+like this, can quickly become cumbersome,
+
+12
+00:00:34,730 --> 00:00:37,890
+you always have to add the full path here,
+
+13
+00:00:37,890 --> 00:00:39,040
+and build it out like this.
+
+14
+00:00:39,040 --> 00:00:41,100
+You have to build such a long string,
+
+15
+00:00:41,100 --> 00:00:43,963
+which describes the path you wanna navigate to.
+
+16
+00:00:45,140 --> 00:00:48,090
+Now, because this can get cumbersome,
+
+17
+00:00:48,090 --> 00:00:52,460
+the view router offers two very useful features,
+
+18
+00:00:52,460 --> 00:00:55,000
+which make building such links,
+
+19
+00:00:55,000 --> 00:00:57,983
+which we pass to router link more convenient.
+
+20
+00:00:59,150 --> 00:01:01,420
+The first useful feature which we have,
+
+21
+00:01:01,420 --> 00:01:05,160
+is the fact that the two prop on router link,
+
+22
+00:01:05,160 --> 00:01:08,420
+does not just take such a string link.
+
+23
+00:01:08,420 --> 00:01:11,560
+It does take that, but not just.
+
+24
+00:01:11,560 --> 00:01:14,900
+Besides passing such a string which holds the path,
+
+25
+00:01:14,900 --> 00:01:19,340
+you can also use an object as a value for two.
+
+26
+00:01:19,340 --> 00:01:20,360
+For that, of course you need
+
+27
+00:01:20,360 --> 00:01:22,783
+to bind two dynamically with a colon.
+
+28
+00:01:23,700 --> 00:01:28,640
+And then this object may have various options,
+
+29
+00:01:28,640 --> 00:01:31,820
+that allow you to describe the route you wanna load.
+
+30
+00:01:31,820 --> 00:01:36,130
+In this object, you can set a path property,
+
+31
+00:01:36,130 --> 00:01:37,700
+and that then takes a string,
+
+32
+00:01:37,700 --> 00:01:41,510
+which could be slashed teams plus this ID,
+
+33
+00:01:41,510 --> 00:01:44,150
+so what you returned as a string before.
+
+34
+00:01:44,150 --> 00:01:46,680
+Now, by just doing that, we of course don't gain much.
+
+35
+00:01:46,680 --> 00:01:48,750
+We basically do what we did before,
+
+36
+00:01:48,750 --> 00:01:51,220
+but now inside of an object.
+
+37
+00:01:51,220 --> 00:01:52,810
+This gets more useful,
+
+38
+00:01:52,810 --> 00:01:55,170
+if we combine it with another nice feature,
+
+39
+00:01:55,170 --> 00:01:59,490
+the view router offers, and that would be named routes.
+
+40
+00:01:59,490 --> 00:02:02,503
+We can assign a name to every route which we have,
+
+41
+00:02:03,450 --> 00:02:07,770
+simply by adding a name property to the route config.
+
+42
+00:02:07,770 --> 00:02:10,443
+Here for example, we could name the route, teams.
+
+43
+00:02:11,290 --> 00:02:14,713
+We could name this nested route here as well,
+
+44
+00:02:15,790 --> 00:02:17,960
+team dash members, maybe.
+
+45
+00:02:17,960 --> 00:02:19,520
+The names are totally up to you,
+
+46
+00:02:19,520 --> 00:02:21,143
+they just should be strings.
+
+47
+00:02:22,390 --> 00:02:24,180
+So now I assigned two names,
+
+48
+00:02:24,180 --> 00:02:27,340
+and of course you can assign names to any routes you want.
+
+49
+00:02:27,340 --> 00:02:30,653
+And now we can leverage that name, team members.
+
+50
+00:02:31,750 --> 00:02:34,790
+Back in the teams item component,
+
+51
+00:02:34,790 --> 00:02:38,500
+now instead of setting the path property, which we can do,
+
+52
+00:02:38,500 --> 00:02:42,660
+we can at the name property on this route location object,
+
+53
+00:02:42,660 --> 00:02:44,560
+which we pass to two.
+
+54
+00:02:44,560 --> 00:02:47,620
+And here we can use team dash members for example,
+
+55
+00:02:47,620 --> 00:02:50,700
+making it clear that this router link,
+
+56
+00:02:50,700 --> 00:02:53,900
+should load this nested route.
+
+57
+00:02:53,900 --> 00:02:57,030
+Of course, this route has a dynamic segment,
+
+58
+00:02:57,030 --> 00:02:58,930
+so we should also set this.
+
+59
+00:02:58,930 --> 00:03:02,580
+And we do that by adding a second property to this object,
+
+60
+00:03:02,580 --> 00:03:05,280
+which describes the destination we wanna go to.
+
+61
+00:03:05,280 --> 00:03:07,710
+And that's the params property.
+
+62
+00:03:07,710 --> 00:03:09,340
+Params takes an object,
+
+63
+00:03:09,340 --> 00:03:12,820
+where you now can set up your params as key value pairs.
+
+64
+00:03:12,820 --> 00:03:14,310
+And of course, I mean the params,
+
+65
+00:03:14,310 --> 00:03:17,630
+which are expected by the route with that name.
+
+66
+00:03:17,630 --> 00:03:18,630
+So in this case,
+
+67
+00:03:18,630 --> 00:03:21,730
+that team members route once a team ID param,
+
+68
+00:03:21,730 --> 00:03:25,280
+because that's the name we chose here as a dynamic segment,
+
+69
+00:03:25,280 --> 00:03:29,130
+hence here, we can add team ID in this nested object,
+
+70
+00:03:29,130 --> 00:03:30,630
+which we provide to params,
+
+71
+00:03:30,630 --> 00:03:33,303
+and then set our value here to this ID.
+
+72
+00:03:34,890 --> 00:03:38,230
+Now arguably, that's a bit more code than before,
+
+73
+00:03:38,230 --> 00:03:41,900
+but it actually has two great advantages I would say.
+
+74
+00:03:41,900 --> 00:03:44,240
+It's very readable and maintainable,
+
+75
+00:03:44,240 --> 00:03:47,200
+and it has one extra huge advantage.
+
+76
+00:03:47,200 --> 00:03:49,310
+If you ever should decide
+
+77
+00:03:49,310 --> 00:03:51,650
+that you wanna go with a different path,
+
+78
+00:03:51,650 --> 00:03:54,573
+let's say team instead of teams,
+
+79
+00:03:55,620 --> 00:04:00,620
+then you don't need to go to this team item component,
+
+80
+00:04:00,650 --> 00:04:04,200
+and update the path everywhere where you used it,
+
+81
+00:04:04,200 --> 00:04:06,040
+instead, the name didn't change.
+
+82
+00:04:06,040 --> 00:04:08,670
+So you don't need to update anything here,
+
+83
+00:04:08,670 --> 00:04:11,670
+and you can still conveniently change the path,
+
+84
+00:04:11,670 --> 00:04:13,490
+how often you want.
+
+85
+00:04:13,490 --> 00:04:17,839
+That's why navigating by name instead of by path,
+
+86
+00:04:17,839 --> 00:04:21,360
+might be a useful pattern, especially of course,
+
+87
+00:04:21,360 --> 00:04:24,260
+in bigger applications where you use a route,
+
+88
+00:04:24,260 --> 00:04:26,720
+in a lot of different components.
+
+89
+00:04:26,720 --> 00:04:29,430
+You then don't have to update all those components,
+
+90
+00:04:29,430 --> 00:04:31,733
+whenever you decide to change the path.
+
+91
+00:04:33,210 --> 00:04:35,670
+And that's why passing such an object instead
+
+92
+00:04:35,670 --> 00:04:38,880
+of a string to two, can be useful.
+
+93
+00:04:38,880 --> 00:04:41,540
+By the way, you can provide the same object
+
+94
+00:04:41,540 --> 00:04:44,080
+to this router push,
+
+95
+00:04:44,080 --> 00:04:47,030
+in case you should be navigating programmatically.
+
+96
+00:04:47,030 --> 00:04:51,460
+You can provide the same kind of object to this push method,
+
+97
+00:04:51,460 --> 00:04:52,893
+but that's just a side note.
+
+98
+00:04:54,390 --> 00:04:58,230
+And if I do that and save everything, and reload,
+
+99
+00:04:58,230 --> 00:05:01,400
+our links here, therefore still work fine.
+
+100
+00:05:01,400 --> 00:05:04,890
+And I can load different team members now,
+
+101
+00:05:04,890 --> 00:05:07,380
+bypassing this object to two.
+
+102
+00:05:07,380 --> 00:05:10,200
+And the view router will analyze this object,
+
+103
+00:05:10,200 --> 00:05:12,300
+compare it to your route set up,
+
+104
+00:05:12,300 --> 00:05:14,700
+and create the correct anchor tech,
+
+105
+00:05:14,700 --> 00:05:16,090
+with the correct link
+
+106
+00:05:16,090 --> 00:05:19,593
+to and to be loaded route and therefore component.
+

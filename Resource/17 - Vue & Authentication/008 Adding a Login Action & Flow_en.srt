@@ -1,0 +1,272 @@
+1
+00:00:02,090 --> 00:00:03,880
+So, to make "Log in" work,
+
+2
+00:00:03,880 --> 00:00:06,200
+we can go back to our Vuex actions.
+
+3
+00:00:06,200 --> 00:00:08,720
+And here, the "Login" action.
+
+4
+00:00:08,720 --> 00:00:10,120
+We can already add "Async."
+
+5
+00:00:10,120 --> 00:00:13,030
+Because, we will definitely also send that HTTP request
+
+6
+00:00:13,030 --> 00:00:14,140
+in here.
+
+7
+00:00:14,140 --> 00:00:16,940
+We can copy this code from "Signup."
+
+8
+00:00:16,940 --> 00:00:19,400
+Because, we sent the same kind of data.
+
+9
+00:00:19,400 --> 00:00:21,140
+We also send a post request.
+
+10
+00:00:21,140 --> 00:00:23,890
+But, the URL will be different.
+
+11
+00:00:23,890 --> 00:00:27,650
+If we have a look at the Firebase Auth REST API docs.
+
+12
+00:00:27,650 --> 00:00:30,480
+Here, under "Sign in"; which is "Log in."
+
+13
+00:00:30,480 --> 00:00:33,073
+It's this URL, which we need now.
+
+14
+00:00:35,210 --> 00:00:38,150
+It has the same request body payload though.
+
+15
+00:00:38,150 --> 00:00:41,373
+So, grab this URL and replace it.
+
+16
+00:00:42,840 --> 00:00:45,883
+Here, up to your API key. Which is the same.
+
+17
+00:00:46,910 --> 00:00:49,360
+And with that, this should work.
+
+18
+00:00:49,360 --> 00:00:52,760
+Of course, you could also refactor this into some function,
+
+19
+00:00:52,760 --> 00:00:54,700
+to have less code duplication.
+
+20
+00:00:54,700 --> 00:00:56,430
+But, I like to be explicit here.
+
+21
+00:00:56,430 --> 00:00:57,913
+So I will keep it like this.
+
+22
+00:00:59,020 --> 00:01:02,000
+Now, we still wanna get the response data,
+
+23
+00:01:02,000 --> 00:01:05,110
+check for errors, and commit some action at the end.
+
+24
+00:01:05,110 --> 00:01:07,183
+So, we can copy all of that, as well.
+
+25
+00:01:09,280 --> 00:01:11,900
+And with that, we should be pretty good!
+
+26
+00:01:11,900 --> 00:01:14,180
+We can also commit the same mutation,
+
+27
+00:01:14,180 --> 00:01:16,110
+because we get the same data back.
+
+28
+00:01:16,110 --> 00:01:18,720
+It's really just the URL that's different.
+
+29
+00:01:18,720 --> 00:01:21,250
+That, then, ensures that we're logging in,
+
+30
+00:01:21,250 --> 00:01:22,360
+instead of signing up.
+
+31
+00:01:22,360 --> 00:01:26,170
+But, other than that we're doing the exact same thing.
+
+32
+00:01:26,170 --> 00:01:28,160
+And again, therefore, if you wanted to,
+
+33
+00:01:28,160 --> 00:01:32,859
+you could absolutely, also, refactor this to be one action,
+
+34
+00:01:32,859 --> 00:01:36,830
+where we control the URL with a payload, for example.
+
+35
+00:01:36,830 --> 00:01:40,463
+Or, anything like that. But I'll go for two actions here.
+
+36
+00:01:41,470 --> 00:01:44,760
+And of course, also get my "Context and payload."
+
+37
+00:01:44,760 --> 00:01:48,993
+Here, on the "Login action." And with that done,
+
+38
+00:01:49,880 --> 00:01:52,400
+we now, can dispatch this action.
+
+39
+00:01:52,400 --> 00:01:54,077
+So back in "UserAuth."
+
+40
+00:01:59,910 --> 00:02:00,743
+Here,
+
+41
+00:02:01,900 --> 00:02:04,367
+I want to: "Await this.
+
+42
+00:02:04,367 --> 00:02:05,320
+$store.
+
+43
+00:02:05,320 --> 00:02:07,874
+dispatch/
+
+44
+00:02:07,874 --> 00:02:11,933
+('login')" and send the same payload as before.
+
+45
+00:02:14,440 --> 00:02:16,680
+Now, we can, of course, also refactor this.
+
+46
+00:02:16,680 --> 00:02:17,933
+For example:
+
+47
+00:02:19,300 --> 00:02:21,770
+create an "ActionPayload" constant,
+
+48
+00:02:21,770 --> 00:02:23,720
+which holds this object.
+
+49
+00:02:23,720 --> 00:02:25,450
+And then simply use this object,
+
+50
+00:02:25,450 --> 00:02:26,283
+here
+
+51
+00:02:27,270 --> 00:02:28,113
+and here.
+
+52
+00:02:29,040 --> 00:02:31,740
+So, that we are reusing at least a little bit of code.
+
+53
+00:02:32,950 --> 00:02:35,330
+So, now we're dispatching these actions.
+
+54
+00:02:35,330 --> 00:02:37,560
+We're waiting for them. We're showing feedback.
+
+55
+00:02:37,560 --> 00:02:39,060
+And if we give this a try
+
+56
+00:02:39,060 --> 00:02:40,490
+and save that,
+
+57
+00:02:40,490 --> 00:02:42,260
+back in our
+
+58
+00:02:42,260 --> 00:02:43,820
+application here.
+
+59
+00:02:43,820 --> 00:02:47,930
+If I use an email address and a valid password,
+
+60
+00:02:47,930 --> 00:02:51,830
+and I click "Log in," this looks like a success response.
+
+61
+00:02:51,830 --> 00:02:54,703
+If I use an invalid password, I get an error.
+
+62
+00:02:56,850 --> 00:02:58,480
+So, that's looking good!
+
+63
+00:02:58,480 --> 00:02:59,950
+With that,
+
+64
+00:02:59,950 --> 00:03:02,910
+we can now start using that token.
+
+65
+00:03:02,910 --> 00:03:05,930
+and attach it on outgoing requests.
+
+66
+00:03:05,930 --> 00:03:09,380
+So, that, we again are able to register as a coach
+
+67
+00:03:09,380 --> 00:03:10,720
+and view requests.
+
+68
+00:03:10,720 --> 00:03:13,120
+Because at at the moment, this of course, fails.
+

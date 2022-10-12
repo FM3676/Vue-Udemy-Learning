@@ -1,0 +1,140 @@
+1
+00:00:02,160 --> 00:00:04,950
+We now know that components
+
+2
+00:00:04,950 --> 00:00:06,130
+can be very useful.
+
+3
+00:00:06,130 --> 00:00:09,600
+We know how to build them, how to make them reusable.
+
+4
+00:00:09,600 --> 00:00:13,030
+Also, with the help of props and custom events,
+
+5
+00:00:13,030 --> 00:00:15,530
+we learned how to combine components
+
+6
+00:00:15,530 --> 00:00:19,140
+and start building user interfaces with them.
+
+7
+00:00:19,140 --> 00:00:21,730
+In this module, we're going to dig a bit deeper.
+
+8
+00:00:21,730 --> 00:00:24,010
+We're going to dive deeper into components
+
+9
+00:00:24,010 --> 00:00:28,360
+to unlock their full potential and to turn you
+
+10
+00:00:28,360 --> 00:00:30,220
+into a component and today,
+
+11
+00:00:30,220 --> 00:00:33,470
+for most importantly, view master.
+
+12
+00:00:33,470 --> 00:00:35,930
+Now, specifically, we're going to have a look at
+
+13
+00:00:35,930 --> 00:00:39,090
+component registration and styling.
+
+14
+00:00:39,090 --> 00:00:42,750
+Of course, we already know how to register a component
+
+15
+00:00:42,750 --> 00:00:44,850
+with our Vue app, but it turns out
+
+16
+00:00:44,850 --> 00:00:47,640
+that there is more than one way of doing that,
+
+17
+00:00:47,640 --> 00:00:50,740
+and that every way has its purpose
+
+18
+00:00:50,740 --> 00:00:53,040
+and could be the right way of doing it
+
+19
+00:00:53,040 --> 00:00:55,180
+under certain circumstances.
+
+20
+00:00:55,180 --> 00:00:56,380
+We're also going to have a look
+
+21
+00:00:56,380 --> 00:00:58,170
+at how we can style components
+
+22
+00:00:58,170 --> 00:01:00,367
+and make sure that certain styling
+
+23
+00:01:00,367 --> 00:01:03,840
+only affects certain components.
+
+24
+00:01:03,840 --> 00:01:07,670
+We're then also going to explore a concept called slots,
+
+25
+00:01:07,670 --> 00:01:09,920
+what that is, and why it is useful,
+
+26
+00:01:09,920 --> 00:01:12,877
+and we're going to explore dynamic components
+
+27
+00:01:12,877 --> 00:01:16,020
+and where dynamic components could help us.
+
+28
+00:01:16,020 --> 00:01:17,570
+And last but not least,
+
+29
+00:01:17,570 --> 00:01:20,820
+we're going to have a look at component names
+
+30
+00:01:20,820 --> 00:01:24,950
+and possible folder structures we can use in our projects,
+
+31
+00:01:24,950 --> 00:01:27,980
+especially if our projects are getting bigger
+
+32
+00:01:27,980 --> 00:01:31,300
+and we wanna make sure that we are quickly able to find
+
+33
+00:01:31,300 --> 00:01:33,190
+all our different files.
+
+34
+00:01:33,190 --> 00:01:34,023
+So with that,
+
+35
+00:01:34,023 --> 00:01:36,533
+let's not waste any time, and let's dive right in.
+

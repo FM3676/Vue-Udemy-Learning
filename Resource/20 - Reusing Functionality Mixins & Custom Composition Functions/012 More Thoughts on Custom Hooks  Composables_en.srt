@@ -1,0 +1,256 @@
+1
+00:00:01,350 --> 00:00:03,620
+No, there are a couple of notes,
+
+2
+00:00:03,620 --> 00:00:06,810
+which I still wanna make about our solution here.
+
+3
+00:00:06,810 --> 00:00:08,820
+For one here enhance projects.
+
+4
+00:00:08,820 --> 00:00:12,030
+I'm also using props user projects.
+
+5
+00:00:12,030 --> 00:00:14,650
+Well, since we're already extracting user
+
+6
+00:00:14,650 --> 00:00:16,973
+into our ref here in this line.
+
+7
+00:00:18,080 --> 00:00:20,533
+We can, of course also utilize this here.
+
+8
+00:00:21,510 --> 00:00:25,430
+User dot value projects and access stat.
+
+9
+00:00:25,430 --> 00:00:28,790
+One other thing I wanna highlight is this watcher .
+
+10
+00:00:28,790 --> 00:00:33,370
+here, I'm changing the value of the entered search term.
+
+11
+00:00:33,370 --> 00:00:34,540
+Now keep in mind,
+
+12
+00:00:34,540 --> 00:00:39,030
+entered search term is exposed by our use search hook.
+
+13
+00:00:39,030 --> 00:00:42,130
+It's one of the values I'm extracting here.
+
+14
+00:00:42,130 --> 00:00:46,450
+It's originally defined inside of that hook.
+
+15
+00:00:46,450 --> 00:00:48,860
+Now changing things, changing a ref.
+
+16
+00:00:48,860 --> 00:00:52,160
+That's defined in that hook from inside,
+
+17
+00:00:52,160 --> 00:00:54,560
+the component where you use the hook,
+
+18
+00:00:54,560 --> 00:00:56,420
+is something you can do.
+
+19
+00:00:56,420 --> 00:00:58,320
+It will work as you can tell,
+
+20
+00:00:58,320 --> 00:01:01,930
+but maybe it's also something you wanna highlight.
+
+21
+00:01:01,930 --> 00:01:03,420
+for one simple reason,
+
+22
+00:01:03,420 --> 00:01:07,120
+to keep your code understandable and maintainable.
+
+23
+00:01:07,120 --> 00:01:08,780
+If I see this code.
+
+24
+00:01:08,780 --> 00:01:10,810
+I might think that entered search term,
+
+25
+00:01:10,810 --> 00:01:12,810
+should be a ref of this component,
+
+26
+00:01:12,810 --> 00:01:14,370
+and I'll not find it there.
+
+27
+00:01:14,370 --> 00:01:18,340
+Until eventually I see it's coming from this hook here.
+
+28
+00:01:18,340 --> 00:01:20,640
+In addition, changing it here.
+
+29
+00:01:20,640 --> 00:01:21,580
+outside of the hook
+
+30
+00:01:21,580 --> 00:01:25,130
+could interfere with our logic you have inside of the hook.
+
+31
+00:01:25,130 --> 00:01:26,230
+It doesn't here,
+
+32
+00:01:26,230 --> 00:01:28,883
+but it could in other apps and other scenarios.
+
+33
+00:01:30,120 --> 00:01:33,600
+So therefore a more elegant way of changing a value
+
+34
+00:01:33,600 --> 00:01:36,280
+that's defined and used inside of a hook,
+
+35
+00:01:36,280 --> 00:01:38,810
+could be to define a separate function
+
+36
+00:01:38,810 --> 00:01:40,570
+that is meant to be used,
+
+37
+00:01:40,570 --> 00:01:42,113
+If you wanna change a value.
+
+38
+00:01:43,290 --> 00:01:46,530
+And we get such a functional ready update search,
+
+39
+00:01:46,530 --> 00:01:47,900
+it takes a value.
+
+40
+00:01:47,900 --> 00:01:49,330
+And assigns this value'
+
+41
+00:01:49,330 --> 00:01:52,540
+as a new value to the entered search term.
+
+42
+00:01:52,540 --> 00:01:55,420
+And in the end, that's just what I'm doing here, right?
+
+43
+00:01:55,420 --> 00:01:57,890
+So therefore I can just call, update.
+
+44
+00:01:57,890 --> 00:02:01,650
+search and pass an empty string as a new value here,
+
+45
+00:02:01,650 --> 00:02:02,980
+because that's what I wanna do.
+
+46
+00:02:02,980 --> 00:02:06,043
+I want to set entered search term to an empty string.
+
+47
+00:02:07,298 --> 00:02:08,889
+There was this, I ensured.
+
+48
+00:02:08,889 --> 00:02:12,100
+That if I select a user and I'm filtering,
+
+49
+00:02:12,100 --> 00:02:14,943
+I still reset this when I select a different user.
+
+50
+00:02:16,030 --> 00:02:18,210
+So this watcher now still works.
+
+51
+00:02:18,210 --> 00:02:21,180
+and still resets my entered search ref.
+
+52
+00:02:21,180 --> 00:02:23,800
+But now it does this in a better way.
+
+53
+00:02:23,800 --> 00:02:24,633
+I would say.
+
+54
+00:02:26,290 --> 00:02:27,123
+Now with that,
+
+55
+00:02:27,123 --> 00:02:29,720
+I'm done with the search functionality though,
+
+56
+00:02:29,720 --> 00:02:33,360
+as a final practice task for you.
+
+57
+00:02:33,360 --> 00:02:34,690
+I want you
+
+58
+00:02:34,690 --> 00:02:36,100
+to now think about a way
+
+59
+00:02:36,100 --> 00:02:39,333
+of outsourcing this sorting functionality.
+
+60
+00:02:40,210 --> 00:02:42,540
+We're only using it in one component.
+
+61
+00:02:42,540 --> 00:02:43,920
+but theoretically, that could,
+
+62
+00:02:43,920 --> 00:02:47,230
+of course also be used in multiple components.
+
+63
+00:02:47,230 --> 00:02:49,740
+So try creating a custom hook for this.
+
+64
+00:02:49,740 --> 00:02:52,323
+We'll do it together in the next lecture.
+

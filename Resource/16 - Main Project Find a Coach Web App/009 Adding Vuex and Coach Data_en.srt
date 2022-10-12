@@ -1,0 +1,960 @@
+1
+00:00:02,040 --> 00:00:05,520
+So as mentioned, I wanna get started adding some data.
+
+2
+00:00:05,520 --> 00:00:09,320
+And we're going to use Vuex for managing that data,
+
+3
+00:00:09,320 --> 00:00:12,060
+because it will not just be static data,
+
+4
+00:00:12,060 --> 00:00:13,630
+which never changes,
+
+5
+00:00:13,630 --> 00:00:16,230
+but obviously we'll be able to add coaches.
+
+6
+00:00:16,230 --> 00:00:19,200
+After all we will be able to register as one.
+
+7
+00:00:19,200 --> 00:00:21,920
+And we'll also be able to send requests ends on.
+
+8
+00:00:21,920 --> 00:00:25,220
+And that's why we already installed Vuex.
+
+9
+00:00:25,220 --> 00:00:27,710
+Hence I'll add a store folder
+
+10
+00:00:27,710 --> 00:00:31,750
+next to my pages and components folders.
+
+11
+00:00:31,750 --> 00:00:33,620
+And then that store folder,
+
+12
+00:00:33,620 --> 00:00:35,570
+I'll add a index js file,
+
+13
+00:00:35,570 --> 00:00:37,890
+where we set up the store in general.
+
+14
+00:00:37,890 --> 00:00:40,510
+But I also wanna work with modules here,
+
+15
+00:00:40,510 --> 00:00:43,780
+because we have two main features, coaches and requests,
+
+16
+00:00:43,780 --> 00:00:47,640
+and I'll make each feature and the state and actions
+
+17
+00:00:47,640 --> 00:00:50,840
+that belong to this feature, a module.
+
+18
+00:00:50,840 --> 00:00:53,510
+Hence, I'll add a modules folder in there.
+
+19
+00:00:53,510 --> 00:00:57,280
+And now it's up to you how you wanna split that code.
+
+20
+00:00:57,280 --> 00:01:02,280
+One file for the entire module or multiple files per module.
+
+21
+00:01:02,310 --> 00:01:05,349
+And I'm really just to show you different approaches,
+
+22
+00:01:05,349 --> 00:01:08,630
+I'll go with multiple files per module.
+
+23
+00:01:08,630 --> 00:01:11,120
+So I'll add another sub folder here,
+
+24
+00:01:11,120 --> 00:01:15,210
+coaches and a second sub folder next to coaches,
+
+25
+00:01:15,210 --> 00:01:16,733
+which is requests.
+
+26
+00:01:17,630 --> 00:01:20,130
+And now we're going to start with some coach data.
+
+27
+00:01:20,130 --> 00:01:23,800
+So here I'll add a index js file inside of coaches.
+
+28
+00:01:23,800 --> 00:01:27,550
+This is the file where we will merge all the coach related
+
+29
+00:01:27,550 --> 00:01:30,343
+mutations actions, getters ends on together.
+
+30
+00:01:31,180 --> 00:01:34,730
+And then we'll have a mutations js file,
+
+31
+00:01:34,730 --> 00:01:39,250
+a actions js file, a getters JS file.
+
+32
+00:01:39,250 --> 00:01:42,710
+And we then split our logic across those files.
+
+33
+00:01:42,710 --> 00:01:46,470
+This may be overkill. This is not something you have to do.
+
+34
+00:01:46,470 --> 00:01:49,120
+But again, my idea with this course
+
+35
+00:01:49,120 --> 00:01:53,110
+is that I also show you different ways of doing something.
+
+36
+00:01:53,110 --> 00:01:55,370
+So therefore now here in index js,
+
+37
+00:01:55,370 --> 00:01:58,260
+inside of the coaches module,
+
+38
+00:01:58,260 --> 00:02:01,440
+I'll export an object which will hold
+
+39
+00:02:01,440 --> 00:02:04,560
+all the coach related state and so on.
+
+40
+00:02:04,560 --> 00:02:07,530
+And therefore here will have some state,
+
+41
+00:02:07,530 --> 00:02:09,729
+but will also have mutations,
+
+42
+00:02:09,729 --> 00:02:13,060
+which I import from the mutations file.
+
+43
+00:02:13,060 --> 00:02:17,750
+So import mutations from ./mutations js
+
+44
+00:02:18,760 --> 00:02:21,930
+and assign mutations to mutations here.
+
+45
+00:02:21,930 --> 00:02:25,480
+And since key name is similar to value name here,
+
+46
+00:02:25,480 --> 00:02:27,470
+we can use this JavaScript shorthand
+
+47
+00:02:27,470 --> 00:02:29,620
+I showed you a couple of times already
+
+48
+00:02:29,620 --> 00:02:31,250
+where we merged just like that.
+
+49
+00:02:31,250 --> 00:02:32,923
+Simply to write less code.
+
+50
+00:02:33,840 --> 00:02:36,199
+And I'll do the same now with actions,
+
+51
+00:02:36,199 --> 00:02:39,360
+which I import from actions js
+
+52
+00:02:39,360 --> 00:02:41,760
+and import getters
+
+53
+00:02:41,760 --> 00:02:46,640
+from ./getters js like this,
+
+54
+00:02:46,640 --> 00:02:50,040
+and also add those to this module object.
+
+55
+00:02:50,040 --> 00:02:54,820
+So then we have actions and getters in there as well.
+
+56
+00:02:54,820 --> 00:02:56,860
+And now we export this module
+
+57
+00:02:56,860 --> 00:02:59,160
+to merge it into our main store,
+
+58
+00:02:59,160 --> 00:03:01,193
+which we have yet to create.
+
+59
+00:03:02,270 --> 00:03:05,340
+So in the index js file in the store folder.
+
+60
+00:03:05,340 --> 00:03:08,780
+So this file here, I'll now import
+
+61
+00:03:08,780 --> 00:03:12,350
+create store from Vuex
+
+62
+00:03:13,340 --> 00:03:17,490
+and then simply create a store by calling create store
+
+63
+00:03:17,490 --> 00:03:19,330
+and I'll export this store
+
+64
+00:03:19,330 --> 00:03:21,823
+so that we can later use it in main js.
+
+65
+00:03:23,100 --> 00:03:26,690
+Now this store takes a conflict object, as you learned,
+
+66
+00:03:26,690 --> 00:03:30,030
+and here we can add the modules option
+
+67
+00:03:30,030 --> 00:03:33,500
+to then import the coaches module
+
+68
+00:03:33,500 --> 00:03:38,500
+from ./modules/coaches/index js in there.
+
+69
+00:03:41,150 --> 00:03:44,160
+Because it's this nested index js file
+
+70
+00:03:44,160 --> 00:03:46,310
+where we set up this entire module
+
+71
+00:03:46,310 --> 00:03:49,210
+and combined the mutations action, scatters
+
+72
+00:03:49,210 --> 00:03:51,140
+and state of that module.
+
+73
+00:03:51,140 --> 00:03:52,470
+Hence it's that file
+
+74
+00:03:52,470 --> 00:03:54,910
+where we combine it all which we import.
+
+75
+00:03:54,910 --> 00:03:57,480
+And then modules takes an object
+
+76
+00:03:57,480 --> 00:04:00,549
+and I'll give this a key coaches
+
+77
+00:04:00,549 --> 00:04:03,363
+and point at my coaches module here.
+
+78
+00:04:05,020 --> 00:04:06,960
+And that key will be important
+
+79
+00:04:06,960 --> 00:04:09,550
+because I want to use name spacing.
+
+80
+00:04:09,550 --> 00:04:12,730
+So in the index js file in the coaches folder,
+
+81
+00:04:12,730 --> 00:04:14,668
+here I'll add name spaced,
+
+82
+00:04:14,668 --> 00:04:18,010
+true to use this name spacing feature
+
+83
+00:04:18,010 --> 00:04:20,142
+I taught you in the Vuex section.
+
+84
+00:04:21,829 --> 00:04:24,563
+Now all those files were importing from mutations,
+
+85
+00:04:24,563 --> 00:04:27,370
+action, getters, they're all empty.
+
+86
+00:04:27,370 --> 00:04:31,500
+So here we should also export objects.
+
+87
+00:04:31,500 --> 00:04:33,170
+They can be empty right now
+
+88
+00:04:33,170 --> 00:04:35,270
+because we don't have any mutations
+
+89
+00:04:35,270 --> 00:04:37,120
+or actions or getters yet,
+
+90
+00:04:37,120 --> 00:04:41,170
+but you should export at least an empty object in every file
+
+91
+00:04:41,170 --> 00:04:43,290
+so that the imports here work,
+
+92
+00:04:43,290 --> 00:04:48,083
+and we at least have empty objects in our module here.
+
+93
+00:04:49,060 --> 00:04:51,540
+Okay, so that is the first step.
+
+94
+00:04:51,540 --> 00:04:56,180
+Now in the state here, in index js, in the coaches module,
+
+95
+00:04:56,180 --> 00:04:58,540
+I want to return my state object.
+
+96
+00:04:58,540 --> 00:05:02,610
+And in here the state should be that we of course have
+
+97
+00:05:02,610 --> 00:05:04,713
+a list of coaches.
+
+98
+00:05:06,360 --> 00:05:09,440
+And we're going to start with some dummy data here.
+
+99
+00:05:09,440 --> 00:05:11,530
+Now you'll find that dummy data
+
+100
+00:05:11,530 --> 00:05:14,780
+attached in the coaches js file,
+
+101
+00:05:14,780 --> 00:05:16,800
+which you can open with a text editor.
+
+102
+00:05:16,800 --> 00:05:20,360
+And in there, you'll just find an array full of coaches,
+
+103
+00:05:20,360 --> 00:05:22,940
+which will be my value for this coaches key
+
+104
+00:05:22,940 --> 00:05:24,970
+in our coaches state.
+
+105
+00:05:24,970 --> 00:05:28,020
+And here I prepared two dummy coaches for you
+
+106
+00:05:28,020 --> 00:05:30,210
+with some dummy IDs and data.
+
+107
+00:05:30,210 --> 00:05:33,223
+So did we have something on the screen right from the start.
+
+108
+00:05:36,500 --> 00:05:37,920
+Now, did we have a state?
+
+109
+00:05:37,920 --> 00:05:41,310
+I of course all the want a getter to get that state,
+
+110
+00:05:41,310 --> 00:05:44,020
+because as I mentioned in the Vuex module,
+
+111
+00:05:44,020 --> 00:05:46,670
+whilst you can directly access the state
+
+112
+00:05:46,670 --> 00:05:48,220
+from inside your components,
+
+113
+00:05:48,220 --> 00:05:51,970
+it is recommended that you always use getters and stat,
+
+114
+00:05:51,970 --> 00:05:54,150
+and we are using getters here.
+
+115
+00:05:54,150 --> 00:05:57,310
+So in the getters js file for the coaches,
+
+116
+00:05:57,310 --> 00:06:00,800
+I went to add a getter and that will be to coaches getter.
+
+117
+00:06:00,800 --> 00:06:05,800
+Let's say where we received a state we always do in getters
+
+118
+00:06:06,000 --> 00:06:09,220
+and where we then return state coaches.
+
+119
+00:06:09,220 --> 00:06:10,820
+So nothing too fancy,
+
+120
+00:06:10,820 --> 00:06:13,420
+no transformation or anything like that,
+
+121
+00:06:13,420 --> 00:06:15,943
+but at least a getter in place now.
+
+122
+00:06:17,200 --> 00:06:19,920
+I will also add a second getter already though.
+
+123
+00:06:19,920 --> 00:06:22,640
+And that's the hasCoaches getter.
+
+124
+00:06:22,640 --> 00:06:26,830
+Because later in this coaches list component,
+
+125
+00:06:26,830 --> 00:06:30,620
+I only wanna render this list if we have coaches.
+
+126
+00:06:30,620 --> 00:06:33,250
+If we have no coaches at all,
+
+127
+00:06:33,250 --> 00:06:37,170
+which will be the case once we switched to real data
+
+128
+00:06:37,170 --> 00:06:38,610
+away from the dummy data
+
+129
+00:06:38,610 --> 00:06:40,750
+and we haven't added any coaches yet,
+
+130
+00:06:40,750 --> 00:06:43,230
+if we don't have any coaches at all,
+
+131
+00:06:43,230 --> 00:06:44,990
+I don't wanna show that list
+
+132
+00:06:44,990 --> 00:06:48,110
+because it would be an empty list anyways.
+
+133
+00:06:48,110 --> 00:06:49,990
+So then instead I wanna show a message
+
+134
+00:06:49,990 --> 00:06:51,853
+like no coaches found.
+
+135
+00:06:53,040 --> 00:06:55,780
+So therefore I'll add a helper getter
+
+136
+00:06:55,780 --> 00:06:58,600
+where I simply check whether we have coaches or not,
+
+137
+00:06:58,600 --> 00:07:01,260
+and where I then return true or false.
+
+138
+00:07:01,260 --> 00:07:04,260
+So I wanna return to result of checking
+
+139
+00:07:04,260 --> 00:07:06,680
+if state coaches is truthy
+
+140
+00:07:06,680 --> 00:07:07,690
+and
+
+141
+00:07:07,690 --> 00:07:11,973
+state coaches length is greater than zero.
+
+142
+00:07:13,320 --> 00:07:16,245
+This returns true if we have coaches,
+
+143
+00:07:16,245 --> 00:07:18,150
+at least one coach.
+
+144
+00:07:18,150 --> 00:07:20,483
+And it returns false otherwise.
+
+145
+00:07:22,000 --> 00:07:25,050
+And now with the getters in place, the state in place,
+
+146
+00:07:25,050 --> 00:07:29,690
+we can go back to main js and import our store here
+
+147
+00:07:29,690 --> 00:07:31,920
+to make sure we use it in this app.
+
+148
+00:07:31,920 --> 00:07:35,800
+So import from the store folder index js file,
+
+149
+00:07:35,800 --> 00:07:37,190
+and then
+
+150
+00:07:37,190 --> 00:07:39,820
+app use our store.
+
+151
+00:07:39,820 --> 00:07:42,823
+Now that Vuex store is part of this Vue app.
+
+152
+00:07:44,870 --> 00:07:49,070
+And with this, I'm getting an error, state is not defined.
+
+153
+00:07:49,070 --> 00:07:52,280
+I assume in my getters here, yes.
+
+154
+00:07:52,280 --> 00:07:54,090
+In has coaches I'm using state.
+
+155
+00:07:54,090 --> 00:07:56,890
+Of course, I should also accept this argument therefore.
+
+156
+00:07:57,776 --> 00:08:00,420
+But now with this, we're all set regarding that.
+
+157
+00:08:00,420 --> 00:08:02,880
+And we can now go to coaches list
+
+158
+00:08:02,880 --> 00:08:06,670
+and pull in our dummy data, our coaches.
+
+159
+00:08:06,670 --> 00:08:10,040
+So for that, we should add a script here.
+
+160
+00:08:10,040 --> 00:08:12,510
+And to reach out to our coaches getter,
+
+161
+00:08:12,510 --> 00:08:15,370
+and we do this with a computer property.
+
+162
+00:08:15,370 --> 00:08:17,750
+So we add to computed option here.
+
+163
+00:08:17,750 --> 00:08:20,250
+And there, I will now add a computed property,
+
+164
+00:08:20,250 --> 00:08:23,840
+which I name filtered coaches.
+
+165
+00:08:23,840 --> 00:08:26,290
+We are not filtering right now,
+
+166
+00:08:26,290 --> 00:08:29,520
+but we soon will be once we also added
+
+167
+00:08:29,520 --> 00:08:31,180
+this filter functionality.
+
+168
+00:08:31,180 --> 00:08:34,970
+So I will already name the computed property as such.
+
+169
+00:08:34,970 --> 00:08:35,960
+But for the moment here,
+
+170
+00:08:35,960 --> 00:08:40,780
+I just want to return this store dollar assigned store
+
+171
+00:08:40,780 --> 00:08:44,020
+getters, and then get the coaches
+
+172
+00:08:44,020 --> 00:08:46,070
+from this coaches getter.
+
+173
+00:08:46,070 --> 00:08:49,110
+Now, how do we get access to that coaches getter?
+
+174
+00:08:49,110 --> 00:08:53,860
+It's not getters.coaches because keep in mind,
+
+175
+00:08:53,860 --> 00:08:56,260
+this module is name spaced.
+
+176
+00:08:56,260 --> 00:08:59,170
+So therefore we have to reach this getter
+
+177
+00:08:59,170 --> 00:09:03,123
+that belongs to this module through its namespace.
+
+178
+00:09:03,123 --> 00:09:07,770
+And the namespace name is defined in index js here,
+
+179
+00:09:07,770 --> 00:09:10,703
+this key, which we set up here for this module.
+
+180
+00:09:11,900 --> 00:09:16,400
+So we get access to our coaches here through getters
+
+181
+00:09:16,400 --> 00:09:21,400
+and then square brackets, coaches/coaches.
+
+182
+00:09:21,770 --> 00:09:24,900
+The first coaches here is the namespace name.
+
+183
+00:09:24,900 --> 00:09:28,793
+The second coaches after the slash is the getter name.
+
+184
+00:09:30,740 --> 00:09:34,400
+This now gives us our coaches here under filtered coaches.
+
+185
+00:09:34,400 --> 00:09:36,040
+And now we can utilize them
+
+186
+00:09:36,040 --> 00:09:38,600
+to output our real list of coaches.
+
+187
+00:09:38,600 --> 00:09:42,113
+So here we can now render list items.
+
+188
+00:09:43,140 --> 00:09:46,460
+And with the four, we can go through to coaches
+
+189
+00:09:46,460 --> 00:09:48,550
+and filtered coaches,
+
+190
+00:09:48,550 --> 00:09:53,410
+bind the key to coach.id because every coach stored
+
+191
+00:09:53,410 --> 00:09:56,283
+in our store here has an ID.
+
+192
+00:09:58,700 --> 00:09:59,533
+And then of course,
+
+193
+00:09:59,533 --> 00:10:02,340
+I'll put whatever we wanna, I'll put for the second,
+
+194
+00:10:02,340 --> 00:10:04,150
+just to see whether this works.
+
+195
+00:10:04,150 --> 00:10:08,730
+I'll just interpolate coach.firstName here.
+
+196
+00:10:08,730 --> 00:10:09,620
+We will of course,
+
+197
+00:10:09,620 --> 00:10:11,953
+I'll put this in a different way very soon.
+
+198
+00:10:15,000 --> 00:10:18,230
+If we now go to all coaches and reload,
+
+199
+00:10:18,230 --> 00:10:21,073
+we should see two coach names here.
+
+200
+00:10:21,980 --> 00:10:25,170
+And that proves stat Vuex is wired up correctly
+
+201
+00:10:25,170 --> 00:10:27,450
+and that we're able to access our coach data.
+
+202
+00:10:27,450 --> 00:10:30,343
+And that of course is a great first step.
+
+203
+00:10:31,270 --> 00:10:34,050
+Now we can also use that other getter we set up,
+
+204
+00:10:34,050 --> 00:10:37,710
+hasCoaches, to make sure we only rendered this list
+
+205
+00:10:37,710 --> 00:10:39,430
+if we have coaches.
+
+206
+00:10:39,430 --> 00:10:41,140
+So here on this unordered list,
+
+207
+00:10:41,140 --> 00:10:43,460
+I'll add a v-if check
+
+208
+00:10:43,460 --> 00:10:47,110
+and check if we have coaches
+
+209
+00:10:48,120 --> 00:10:52,300
+and I'll add a h3 tag below that let's see
+
+210
+00:10:52,300 --> 00:10:54,750
+with v-else on it, which is the fallback.
+
+211
+00:10:54,750 --> 00:10:58,170
+Whereas say, no coaches found in case we,
+
+212
+00:10:58,170 --> 00:11:00,635
+well, guess what have no coaches.
+
+213
+00:11:00,635 --> 00:11:02,780
+Now adding this year however
+
+214
+00:11:02,780 --> 00:11:04,480
+now implies that we need to have
+
+215
+00:11:04,480 --> 00:11:08,330
+a hasCoaches data property, or computed property
+
+216
+00:11:08,330 --> 00:11:11,070
+in this component, which we don't have yet.
+
+217
+00:11:11,070 --> 00:11:14,000
+So here in the computed of this component,
+
+218
+00:11:14,000 --> 00:11:16,110
+I'll add hasCoaches
+
+219
+00:11:16,110 --> 00:11:19,260
+because just having a getter off that name in Vuex,
+
+220
+00:11:19,260 --> 00:11:21,130
+of course doesn't do much.
+
+221
+00:11:21,130 --> 00:11:22,240
+It's not a way level
+
+222
+00:11:22,240 --> 00:11:25,150
+as a computed property in every component then.
+
+223
+00:11:25,150 --> 00:11:26,660
+That's not how this works.
+
+224
+00:11:26,660 --> 00:11:29,670
+So we have to add a separate computed property here
+
+225
+00:11:29,670 --> 00:11:30,920
+in coaches list.
+
+226
+00:11:30,920 --> 00:11:32,990
+And now here we can return
+
+227
+00:11:33,890 --> 00:11:37,500
+this store getters.
+
+228
+00:11:37,500 --> 00:11:39,430
+And then again, access coaches,
+
+229
+00:11:39,430 --> 00:11:42,110
+which is the namespace/hasCoaches,
+
+230
+00:11:42,110 --> 00:11:43,360
+which is the getter name.
+
+231
+00:11:45,100 --> 00:11:46,790
+Now with that, let's test this
+
+232
+00:11:46,790 --> 00:11:49,850
+and temporarily remove the coaches
+
+233
+00:11:49,850 --> 00:11:54,170
+here from our coaches array in the module.
+
+234
+00:11:54,170 --> 00:11:56,523
+And we should see no coaches found now.
+
+235
+00:11:57,880 --> 00:12:00,840
+And if I bring back those coaches here in the module
+
+236
+00:12:00,840 --> 00:12:03,980
+and save this, we see the coach data again.
+
+237
+00:12:03,980 --> 00:12:05,220
+So now that's working.
+
+238
+00:12:05,220 --> 00:12:07,360
+Now that dummy data is wired up,
+
+239
+00:12:07,360 --> 00:12:10,890
+and with that we can go back to working on our components,
+
+240
+00:12:10,890 --> 00:12:13,193
+and also improving the styling here.
+

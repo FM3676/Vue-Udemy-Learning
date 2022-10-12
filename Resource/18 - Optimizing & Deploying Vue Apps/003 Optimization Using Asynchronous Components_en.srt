@@ -1,0 +1,928 @@
+1
+00:00:02,320 --> 00:00:04,000
+Now as a first step
+
+2
+00:00:04,000 --> 00:00:06,930
+before we upload anything anywhere,
+
+3
+00:00:06,930 --> 00:00:10,630
+we wanna finalize our code, we wanna polish our code
+
+4
+00:00:10,630 --> 00:00:13,330
+and make sure it's optimized.
+
+5
+00:00:13,330 --> 00:00:16,239
+That of course means that we wanna test it,
+
+6
+00:00:16,239 --> 00:00:18,670
+we wanna test different scenarios
+
+7
+00:00:18,670 --> 00:00:22,730
+and find possible errors in the code and fix them.
+
+8
+00:00:22,730 --> 00:00:26,380
+We also might wanna consider refactoring our code
+
+9
+00:00:26,380 --> 00:00:29,330
+so that we don't repeat ourselves too often,
+
+10
+00:00:29,330 --> 00:00:33,290
+or that we solve a certain problem with less code,
+
+11
+00:00:33,290 --> 00:00:35,550
+because the less code you have,
+
+12
+00:00:35,550 --> 00:00:38,920
+the less code the users of your website have to download
+
+13
+00:00:38,920 --> 00:00:41,020
+before they see something on the screen,
+
+14
+00:00:41,020 --> 00:00:44,420
+so less code means faster websites.
+
+15
+00:00:44,420 --> 00:00:47,490
+And there's one specific optimization technique
+
+16
+00:00:47,490 --> 00:00:49,440
+which I wanna take a closer look at,
+
+17
+00:00:49,440 --> 00:00:53,120
+and that would be asynchronous components,
+
+18
+00:00:53,120 --> 00:00:55,270
+which are supported by Vue.
+
+19
+00:00:55,270 --> 00:00:58,660
+Now, what is that, what are asynchronous components?
+
+20
+00:00:58,660 --> 00:01:00,330
+I'm taking this course project,
+
+21
+00:01:00,330 --> 00:01:02,650
+which we built earlier in this course,
+
+22
+00:01:02,650 --> 00:01:05,580
+and you'll find that code snapshot attached
+
+23
+00:01:05,580 --> 00:01:08,330
+in case you don't have that at hand.
+
+24
+00:01:08,330 --> 00:01:12,050
+Here, we have a bunch of components, a couple of components
+
+25
+00:01:12,050 --> 00:01:15,220
+which we load as pages through the Vue router,
+
+26
+00:01:15,220 --> 00:01:17,070
+and a bunch of code in general.
+
+27
+00:01:17,070 --> 00:01:18,890
+Now we can definitely test this
+
+28
+00:01:18,890 --> 00:01:21,330
+and we can definitely refactor some code,
+
+29
+00:01:21,330 --> 00:01:23,970
+but that's not what I wanna focus on here.
+
+30
+00:01:23,970 --> 00:01:27,680
+Instead of wanna focus on that async component approach.
+
+31
+00:01:27,680 --> 00:01:29,560
+What do I mean with that?
+
+32
+00:01:29,560 --> 00:01:31,240
+Well, there are certain components
+
+33
+00:01:31,240 --> 00:01:34,863
+which we don't need every time this application is loaded.
+
+34
+00:01:35,710 --> 00:01:40,580
+A good example could be that dialogue,
+
+35
+00:01:40,580 --> 00:01:42,730
+which we see here during login.
+
+36
+00:01:42,730 --> 00:01:46,610
+When we log in, we need it, but in the rest of this app,
+
+37
+00:01:46,610 --> 00:01:48,780
+we don't use it too often,
+
+38
+00:01:48,780 --> 00:01:52,670
+so we might not always need the dialogue component.
+
+39
+00:01:52,670 --> 00:01:54,750
+And the implication of that is that
+
+40
+00:01:54,750 --> 00:01:58,720
+we don't necessarily need to download the source code
+
+41
+00:01:58,720 --> 00:02:01,260
+behind that component all the time,
+
+42
+00:02:01,260 --> 00:02:05,200
+because as I mentioned, if users visiting this webpage
+
+43
+00:02:05,200 --> 00:02:07,490
+have to download less code,
+
+44
+00:02:07,490 --> 00:02:10,009
+that means the website can be used earlier,
+
+45
+00:02:10,009 --> 00:02:13,530
+you don't have to wait for as much code to download.
+
+46
+00:02:13,530 --> 00:02:15,910
+So the dialogue could be a component
+
+47
+00:02:15,910 --> 00:02:19,570
+which we can load lazily, asynchronously,
+
+48
+00:02:19,570 --> 00:02:22,630
+only when we need it and not in advance,
+
+49
+00:02:22,630 --> 00:02:25,460
+because right now, all those components,
+
+50
+00:02:25,460 --> 00:02:29,190
+all pages and all other components are downloaded
+
+51
+00:02:29,190 --> 00:02:33,490
+all the time, no matter if a user needs them or not,
+
+52
+00:02:33,490 --> 00:02:35,390
+and that means we have everything
+
+53
+00:02:35,390 --> 00:02:37,610
+available when we need it, that's great,
+
+54
+00:02:37,610 --> 00:02:41,480
+but it also means we download a lot of code in advance,
+
+55
+00:02:41,480 --> 00:02:45,470
+which we don't need yet, or which we might never need.
+
+56
+00:02:45,470 --> 00:02:48,910
+And a similar example could be found for many routes here,
+
+57
+00:02:48,910 --> 00:02:53,250
+the register as coach route, for example, for this user,
+
+58
+00:02:53,250 --> 00:02:56,670
+since I already am a coach, I can't even visit it,
+
+59
+00:02:56,670 --> 00:02:58,870
+so I definitely don't need to code for that.
+
+60
+00:02:59,770 --> 00:03:02,490
+And that is something where Vue can help us,
+
+61
+00:03:02,490 --> 00:03:04,800
+and let's start with that base dialogue,
+
+62
+00:03:04,800 --> 00:03:06,473
+which we don't need all the time.
+
+63
+00:03:07,760 --> 00:03:11,620
+In main.js, we register this base dialogue.
+
+64
+00:03:11,620 --> 00:03:14,100
+We import base dialogue from this file
+
+65
+00:03:14,100 --> 00:03:15,860
+and we then register it.
+
+66
+00:03:15,860 --> 00:03:18,660
+Whenever you have an import statement like this,
+
+67
+00:03:18,660 --> 00:03:21,280
+this in the end tells Vue that the code
+
+68
+00:03:21,280 --> 00:03:24,350
+in that file you're importing is needed,
+
+69
+00:03:24,350 --> 00:03:28,170
+and you can imagine that all these imports are in the end,
+
+70
+00:03:28,170 --> 00:03:32,460
+when you build your project, when you finalize your project,
+
+71
+00:03:32,460 --> 00:03:35,000
+all these imported files are basically merged
+
+72
+00:03:35,000 --> 00:03:38,633
+into one big file, kind of, that's how you can imagine this.
+
+73
+00:03:39,640 --> 00:03:42,990
+So therefore it would be great if we wouldn't import this,
+
+74
+00:03:42,990 --> 00:03:45,810
+if we would only import it when we need it,
+
+75
+00:03:45,810 --> 00:03:48,850
+then it would not be merged into this big file,
+
+76
+00:03:48,850 --> 00:03:51,150
+but instead Vue would try to download
+
+77
+00:03:51,150 --> 00:03:54,350
+the required code only when it's needed.
+
+78
+00:03:54,350 --> 00:03:57,060
+And for that, Vue has a function we can use,
+
+79
+00:03:57,060 --> 00:04:00,173
+the defineAsyncComponent function.
+
+80
+00:04:01,480 --> 00:04:04,130
+With that, we can define a component
+
+81
+00:04:04,130 --> 00:04:07,623
+which is loaded asynchronously, only when it's needed.
+
+82
+00:04:08,660 --> 00:04:12,660
+Here, we could then create a constant named base dialogue
+
+83
+00:04:12,660 --> 00:04:15,650
+so that I don't have to change the name down there,
+
+84
+00:04:15,650 --> 00:04:18,149
+and the value I store in there is the result
+
+85
+00:04:18,149 --> 00:04:20,623
+of calling defineAsyncComponent.
+
+86
+00:04:21,538 --> 00:04:25,620
+defineAsyncComponent wants a function,
+
+87
+00:04:25,620 --> 00:04:27,793
+and here I'm using an arrow function.
+
+88
+00:04:28,880 --> 00:04:30,760
+It wants a function that in the end
+
+89
+00:04:30,760 --> 00:04:33,710
+then returns the imported component,
+
+90
+00:04:33,710 --> 00:04:36,000
+but Vue will only call that function
+
+91
+00:04:36,000 --> 00:04:38,310
+when the component is really needed.
+
+92
+00:04:38,310 --> 00:04:40,700
+So here I can use the shorthand notation
+
+93
+00:04:40,700 --> 00:04:44,520
+of arrow functions and call import,
+
+94
+00:04:44,520 --> 00:04:48,980
+which also exists as a function like this in JavaScript.
+
+95
+00:04:48,980 --> 00:04:51,250
+So it's not the import statement we have here,
+
+96
+00:04:51,250 --> 00:04:54,600
+instead now I call import as a function.
+
+97
+00:04:54,600 --> 00:04:57,410
+And when we call import as a function,
+
+98
+00:04:57,410 --> 00:05:00,180
+that will only do that import
+
+99
+00:05:00,180 --> 00:05:02,310
+when the surrounding code executes,
+
+100
+00:05:02,310 --> 00:05:04,150
+which in this case, it's this function
+
+101
+00:05:04,150 --> 00:05:07,330
+we pass to defineAsyncComponent.
+
+102
+00:05:07,330 --> 00:05:10,810
+Well, and this function is executed by Vue
+
+103
+00:05:10,810 --> 00:05:14,910
+only when that component is used, when it's needed.
+
+104
+00:05:14,910 --> 00:05:16,740
+And with that, we ensure that the code
+
+105
+00:05:16,740 --> 00:05:19,030
+of the entire base dialogue component
+
+106
+00:05:19,030 --> 00:05:20,633
+is only imported when needed.
+
+107
+00:05:21,590 --> 00:05:24,960
+Now for that, we still need to provide a path
+
+108
+00:05:24,960 --> 00:05:28,520
+to that component here to import though,
+
+109
+00:05:28,520 --> 00:05:30,740
+but now with this dynamic import,
+
+110
+00:05:30,740 --> 00:05:35,480
+we don't import it in advance, but only when it's required.
+
+111
+00:05:35,480 --> 00:05:37,580
+And now we can still assign base dialogue
+
+112
+00:05:37,580 --> 00:05:40,640
+as a component here for base dialogue,
+
+113
+00:05:40,640 --> 00:05:43,190
+and Vue will know how to handle that
+
+114
+00:05:43,190 --> 00:05:45,883
+when it needs to bring a dialogue to the screen.
+
+115
+00:05:47,290 --> 00:05:50,130
+So if we save that and reload,
+
+116
+00:05:50,130 --> 00:05:53,720
+if I log out and log in like this,
+
+117
+00:05:53,720 --> 00:05:56,580
+we still see the dialogue, so that still works,
+
+118
+00:05:56,580 --> 00:05:59,840
+but actually code is only downloaded when it's needed,
+
+119
+00:05:59,840 --> 00:06:02,430
+and I can prove this to you, log out again,
+
+120
+00:06:02,430 --> 00:06:05,030
+and go to login and reload there,
+
+121
+00:06:05,030 --> 00:06:07,030
+we can open up the dev tools,
+
+122
+00:06:07,030 --> 00:06:10,940
+ignore the warnings here and go to network.
+
+123
+00:06:10,940 --> 00:06:12,490
+And now I have to reload again,
+
+124
+00:06:13,860 --> 00:06:15,810
+you see a couple of files
+
+125
+00:06:15,810 --> 00:06:19,090
+that were downloaded from our development server,
+
+126
+00:06:19,090 --> 00:06:22,870
+and one file you see here is this 0.js file,
+
+127
+00:06:22,870 --> 00:06:24,480
+maybe it's named differently for you,
+
+128
+00:06:24,480 --> 00:06:27,180
+but you should see an extra JavaScript file
+
+129
+00:06:27,180 --> 00:06:29,900
+next to app.js which is your main app,
+
+130
+00:06:29,900 --> 00:06:33,430
+and maybe this chunk-vendors.js file.
+
+131
+00:06:33,430 --> 00:06:36,710
+Now, if I log in, you won't see any changes in here,
+
+132
+00:06:36,710 --> 00:06:39,520
+but if I now go to register as coach,
+
+133
+00:06:39,520 --> 00:06:43,760
+if I now clear this network log and reload,
+
+134
+00:06:43,760 --> 00:06:47,710
+you still see 0.js, but you see it only once.
+
+135
+00:06:47,710 --> 00:06:51,075
+If I now clear this again and go back to all coaches
+
+136
+00:06:51,075 --> 00:06:53,860
+you see now here, that's where
+
+137
+00:06:53,860 --> 00:06:58,580
+this file is actually downloaded, and 0.js in the end
+
+138
+00:06:58,580 --> 00:07:02,133
+holds the transformed code for this dialogue.
+
+139
+00:07:03,010 --> 00:07:04,710
+Hard to tell if you look at this code here,
+
+140
+00:07:04,710 --> 00:07:06,620
+but that is what you'll find in there.
+
+141
+00:07:06,620 --> 00:07:09,900
+You see some hints at it here, like this name.
+
+142
+00:07:09,900 --> 00:07:11,180
+So what I wanna show you now
+
+143
+00:07:11,180 --> 00:07:13,610
+is that Vue now checks the template
+
+144
+00:07:13,610 --> 00:07:16,120
+of the components you're currently working with,
+
+145
+00:07:16,120 --> 00:07:19,960
+and if none of those templates uses the dialogue,
+
+146
+00:07:19,960 --> 00:07:22,680
+it doesn't download the dialogue,
+
+147
+00:07:22,680 --> 00:07:25,360
+and the coach registration component
+
+148
+00:07:25,360 --> 00:07:28,700
+doesn't use the dialogue, neither does the coach form
+
+149
+00:07:28,700 --> 00:07:30,890
+or any other child component there.
+
+150
+00:07:30,890 --> 00:07:33,830
+That's why here, if you're on this part of the app,
+
+151
+00:07:33,830 --> 00:07:37,150
+Vue won't download the dialogue.
+
+152
+00:07:37,150 --> 00:07:39,440
+On the other hand, for the all coaches page,
+
+153
+00:07:39,440 --> 00:07:43,093
+it does download it because here on coaches list,
+
+154
+00:07:44,015 --> 00:07:46,843
+we do use the base dialogue,
+
+155
+00:07:49,810 --> 00:07:52,400
+and that's a pretty neat feature.
+
+156
+00:07:52,400 --> 00:07:54,940
+Now regarding that warning which I'm getting here,
+
+157
+00:07:54,940 --> 00:07:58,440
+this might just be a bug by Vue at the moment
+
+158
+00:07:58,440 --> 00:08:01,110
+because everything seems to work correctly and we are
+
+159
+00:08:01,110 --> 00:08:04,423
+definitely using defineAsyncComponent correctly.
+
+160
+00:08:05,440 --> 00:08:08,140
+Now we cannot just use defineAsyncComponent
+
+161
+00:08:08,140 --> 00:08:10,910
+for global components like this, though,
+
+162
+00:08:10,910 --> 00:08:14,000
+we can also use it for local components,
+
+163
+00:08:14,000 --> 00:08:18,260
+and, and that's pretty interesting, for routes,
+
+164
+00:08:18,260 --> 00:08:20,280
+because here, we probably got
+
+165
+00:08:20,280 --> 00:08:23,360
+the biggest code splitting potential.
+
+166
+00:08:23,360 --> 00:08:25,780
+If we never visit a certain route,
+
+167
+00:08:25,780 --> 00:08:28,700
+fetching all the code for that route component
+
+168
+00:08:28,700 --> 00:08:32,293
+and all the child components there is really redundant.
+
+169
+00:08:33,409 --> 00:08:34,809
+So therefore, here, we can also
+
+170
+00:08:34,809 --> 00:08:39,230
+use this defineAsyncComponent function,
+
+171
+00:08:39,230 --> 00:08:41,696
+so we can import from Vue
+
+172
+00:08:41,696 --> 00:08:46,696
+this defineAsyncComponent function here inside of router.js.
+
+173
+00:08:48,780 --> 00:08:50,900
+And then we can replace the routes
+
+174
+00:08:50,900 --> 00:08:54,070
+which are maybe never visited
+
+175
+00:08:54,070 --> 00:08:56,740
+with asynchronously loaded components.
+
+176
+00:08:56,740 --> 00:08:58,777
+For example, CoachDetail,
+
+177
+00:08:59,730 --> 00:09:02,950
+maybe a user never clicks that detail button,
+
+178
+00:09:02,950 --> 00:09:04,930
+so then we can also set CoachDetail
+
+179
+00:09:04,930 --> 00:09:09,200
+equal to defineAsyncComponent, passing a function to it,
+
+180
+00:09:09,200 --> 00:09:13,783
+calling import there, and then pointing at this path.
+
+181
+00:09:14,770 --> 00:09:17,380
+And then we can comment out this static import
+
+182
+00:09:17,380 --> 00:09:20,293
+here at the top, and just work with the dynamic one.
+
+183
+00:09:21,690 --> 00:09:24,590
+We can do the same for, let's say, the coach registration.
+
+184
+00:09:26,830 --> 00:09:29,853
+And that should be CoachRegistration as I see.
+
+185
+00:09:31,000 --> 00:09:35,673
+We can also grab this here, call the defineAsyncComponent,
+
+186
+00:09:36,750 --> 00:09:41,440
+and import this dynamically so that if the user
+
+187
+00:09:41,440 --> 00:09:44,170
+never visits the coach registration page,
+
+188
+00:09:44,170 --> 00:09:46,810
+we don't bother loading the code for it,
+
+189
+00:09:46,810 --> 00:09:48,673
+so we can comment this out as well.
+
+190
+00:09:49,620 --> 00:09:51,500
+And we can do this for all those components
+
+191
+00:09:51,500 --> 00:09:54,480
+or for most components it makes sense I would say.
+
+192
+00:09:54,480 --> 00:09:56,680
+For ContactCoach, for example,
+
+193
+00:09:56,680 --> 00:09:59,760
+maybe a user never sends a contact message,
+
+194
+00:09:59,760 --> 00:10:01,760
+well, then we don't need to load to code
+
+195
+00:10:01,760 --> 00:10:04,510
+for that component and its child components,
+
+196
+00:10:04,510 --> 00:10:07,020
+so that's another component
+
+197
+00:10:07,020 --> 00:10:09,263
+we can turn into an async component.
+
+198
+00:10:10,500 --> 00:10:14,440
+And why don't we do the same for RequestsReceived?
+
+199
+00:10:16,060 --> 00:10:19,010
+Maybe this page is never visited,
+
+200
+00:10:19,010 --> 00:10:23,120
+so therefore here, we can also load this lazily,
+
+201
+00:10:23,120 --> 00:10:25,733
+asynchronously, and not all the time,
+
+202
+00:10:27,440 --> 00:10:29,853
+so let's comment this out as well.
+
+203
+00:10:30,840 --> 00:10:32,290
+And the same for auth,
+
+204
+00:10:32,290 --> 00:10:35,960
+if a user is authenticated and reloads the page,
+
+205
+00:10:35,960 --> 00:10:38,950
+we don't need to load the auth page again,
+
+206
+00:10:38,950 --> 00:10:41,713
+we won't need it, so we can copy that,
+
+207
+00:10:43,420 --> 00:10:48,397
+and also load this lazily with AsyncComponents,
+
+208
+00:10:50,410 --> 00:10:54,390
+and comment this out as well.
+
+209
+00:10:54,390 --> 00:10:56,920
+And you might find more places where this makes sense,
+
+210
+00:10:56,920 --> 00:10:59,490
+but I will go with these components.
+
+211
+00:10:59,490 --> 00:11:04,100
+And now also change the coach registration name,
+
+212
+00:11:04,100 --> 00:11:05,753
+which I mistyped earlier.
+
+213
+00:11:08,130 --> 00:11:10,510
+And with this, if you save this,
+
+214
+00:11:10,510 --> 00:11:13,963
+what you will notice is if you open the network tab,
+
+215
+00:11:17,890 --> 00:11:21,260
+you see a bunch of chunks are downloaded here,
+
+216
+00:11:21,260 --> 00:11:23,390
+you can ignore these chunks up here,
+
+217
+00:11:23,390 --> 00:11:26,390
+you see only 0.js appears twice,
+
+218
+00:11:26,390 --> 00:11:29,510
+and that's then the only extra code chunk
+
+219
+00:11:29,510 --> 00:11:31,390
+which is really downloaded.
+
+220
+00:11:31,390 --> 00:11:35,200
+So only 0.js appears twice, but for example,
+
+221
+00:11:35,200 --> 00:11:38,720
+if I click on requests, we see 1.js was downloaded,
+
+222
+00:11:38,720 --> 00:11:40,257
+so looks like this was the code
+
+223
+00:11:40,257 --> 00:11:42,720
+for the requests received page.
+
+224
+00:11:42,720 --> 00:11:44,770
+If I go to register as coach,
+
+225
+00:11:44,770 --> 00:11:47,380
+we see another code file was downloaded,
+
+226
+00:11:47,380 --> 00:11:52,350
+so now really the files are only downloaded as we need them,
+
+227
+00:11:52,350 --> 00:11:55,860
+and that of course is very useful, because with that,
+
+228
+00:11:55,860 --> 00:12:00,300
+we can download a slimmer initial bundle and then only
+
+229
+00:12:00,300 --> 00:12:03,963
+download the extra component code as we need it.
+
+230
+00:12:05,240 --> 00:12:08,050
+And that's the idea behind async component,
+
+231
+00:12:08,050 --> 00:12:10,530
+and that's therefore a key optimization step
+
+232
+00:12:10,530 --> 00:12:14,103
+you should be aware of, especially when it comes to routing.
+

@@ -1,0 +1,96 @@
+1
+00:00:02,220 --> 00:00:04,540
+Now that we spent so much time
+
+2
+00:00:04,540 --> 00:00:08,450
+on dummy projects and all those important basics,
+
+3
+00:00:08,450 --> 00:00:12,310
+it's time for our first, a little bit bigger project.
+
+4
+00:00:12,310 --> 00:00:15,050
+We're going to build this Monster Slayer game
+
+5
+00:00:15,050 --> 00:00:16,490
+in this module.
+
+6
+00:00:16,490 --> 00:00:19,650
+It's a little game where we got various options
+
+7
+00:00:19,650 --> 00:00:22,040
+for fighting against a monster.
+
+8
+00:00:22,040 --> 00:00:25,790
+We got a battle log where we can see what happened,
+
+9
+00:00:25,790 --> 00:00:28,050
+for example, how much damage we dealt.
+
+10
+00:00:28,050 --> 00:00:31,300
+And most importantly, in this game,
+
+11
+00:00:31,300 --> 00:00:35,050
+we'll practice all those core basics we learned about
+
+12
+00:00:35,050 --> 00:00:38,390
+throughout the last modules and lectures.
+
+13
+00:00:38,390 --> 00:00:42,280
+We'll practice data binding, interpolation, V-bind,
+
+14
+00:00:42,280 --> 00:00:44,890
+event binding with V-on.
+
+15
+00:00:44,890 --> 00:00:49,290
+We'll practice how to output lists of data with V-for.
+
+16
+00:00:49,290 --> 00:00:52,530
+We'll have conditional content with V-if,
+
+17
+00:00:52,530 --> 00:00:56,040
+like this Game Over screen, and so much more.
+
+18
+00:00:56,040 --> 00:00:58,140
+It's all in there, and therefore,
+
+19
+00:00:58,140 --> 00:01:01,720
+that's the game we're now going to explore in this module
+
+20
+00:01:01,720 --> 00:01:05,060
+to really strengthen all that core knowledge,
+
+21
+00:01:05,060 --> 00:01:07,400
+we gained over the last module
+
+22
+00:01:07,400 --> 00:01:10,410
+and to ensure that we're all on the same page
+
+23
+00:01:10,410 --> 00:01:15,080
+and well-prepared to venture deeper into Vue JS
+
+24
+00:01:15,080 --> 00:01:16,393
+after this module.
+

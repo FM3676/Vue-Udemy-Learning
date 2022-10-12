@@ -1,0 +1,924 @@
+1
+00:00:02,290 --> 00:00:03,660
+So let's get started.
+
+2
+00:00:03,660 --> 00:00:07,330
+Attached to this lecture, you find this starting project,
+
+3
+00:00:07,330 --> 00:00:12,040
+which is this index HTML file with a basic skeleton
+
+4
+00:00:12,040 --> 00:00:13,720
+for our application.
+
+5
+00:00:13,720 --> 00:00:18,280
+No Vue logic is in there yet, it's really just HTML.
+
+6
+00:00:18,280 --> 00:00:21,070
+You got to style CSS file with some basic styles
+
+7
+00:00:21,070 --> 00:00:22,910
+we're going to use throughout this module
+
+8
+00:00:22,910 --> 00:00:24,660
+so throughout this app.
+
+9
+00:00:24,660 --> 00:00:27,910
+And you've got an empty app JS file because we're going to
+
+10
+00:00:27,910 --> 00:00:31,163
+write all the Vue logic together step by step.
+
+11
+00:00:32,630 --> 00:00:34,680
+Now, as I said in the last lecture,
+
+12
+00:00:34,680 --> 00:00:37,810
+we're going to build a simple monster slayer game
+
+13
+00:00:37,810 --> 00:00:40,800
+where we have a monster health and our health.
+
+14
+00:00:40,800 --> 00:00:43,660
+We've got various options for attacking,
+
+15
+00:00:43,660 --> 00:00:45,240
+launching a special attack,
+
+16
+00:00:45,240 --> 00:00:47,260
+healing ourselves or surrendering
+
+17
+00:00:47,260 --> 00:00:50,360
+and we wanna implement all of that with Vue
+
+18
+00:00:50,360 --> 00:00:53,860
+so that we have this browser based game here,
+
+19
+00:00:53,860 --> 00:00:56,720
+which we can fully control with JavaScript
+
+20
+00:00:56,720 --> 00:00:59,850
+but of course not with just JavaScript,
+
+21
+00:00:59,850 --> 00:01:03,660
+but instead with Vue and JavaScript.
+
+22
+00:01:03,660 --> 00:01:07,070
+And for that, obviously we're going to start
+
+23
+00:01:07,070 --> 00:01:09,980
+by controlling this with Vue.
+
+24
+00:01:09,980 --> 00:01:14,760
+So by taking over control over some HTML code with Vue
+
+25
+00:01:14,760 --> 00:01:17,740
+so that we can use Vue features here.
+
+26
+00:01:17,740 --> 00:01:20,940
+And you might notice I already prepared this div
+
+27
+00:01:20,940 --> 00:01:25,410
+with an ID game here and well, that looks very tempting.
+
+28
+00:01:25,410 --> 00:01:27,080
+And indeed this is the div
+
+29
+00:01:27,080 --> 00:01:29,060
+we're going to control with the Vue,
+
+30
+00:01:29,060 --> 00:01:32,450
+because it turns out that inside of that div,
+
+31
+00:01:32,450 --> 00:01:35,590
+we got the entire game HTML code.
+
+32
+00:01:35,590 --> 00:01:37,850
+The header is outside of the div
+
+33
+00:01:37,850 --> 00:01:41,330
+but the header is nothing we need to control with Vue.
+
+34
+00:01:41,330 --> 00:01:44,840
+We're not going to use any Vue features in there.
+
+35
+00:01:44,840 --> 00:01:48,840
+Therefore in app JS, like we did many times before
+
+36
+00:01:48,840 --> 00:01:53,010
+we can create a Vue app by calling Vue.createApp
+
+37
+00:01:53,010 --> 00:01:55,350
+and we can store it as a constant
+
+38
+00:01:55,350 --> 00:02:00,350
+and then mount our app here to this game div.
+
+39
+00:02:00,460 --> 00:02:03,650
+So to this div with an ID game and therefore,
+
+40
+00:02:03,650 --> 00:02:07,350
+we use the ID game selector here.
+
+41
+00:02:07,350 --> 00:02:10,300
+So now we got a Vue app connected to this div
+
+42
+00:02:10,300 --> 00:02:14,423
+and now the question is with which parts do we wanna start?
+
+43
+00:02:15,260 --> 00:02:18,460
+There certainly is not just one possible route
+
+44
+00:02:18,460 --> 00:02:21,090
+you could take, there are multiple routes,
+
+45
+00:02:21,090 --> 00:02:22,960
+like always in programming,
+
+46
+00:02:22,960 --> 00:02:25,030
+but I would suggest that we simply start
+
+47
+00:02:25,030 --> 00:02:26,830
+with the attack button.
+
+48
+00:02:26,830 --> 00:02:30,200
+So we basically implement features top to bottom.
+
+49
+00:02:30,200 --> 00:02:34,190
+So the attack button here when pressed should of course
+
+50
+00:02:34,190 --> 00:02:37,600
+reduce the Monster's health, but at the same time,
+
+51
+00:02:37,600 --> 00:02:40,030
+the monster should then also strike back
+
+52
+00:02:40,030 --> 00:02:42,790
+so that our health is also reduced.
+
+53
+00:02:42,790 --> 00:02:47,790
+And we probably don't want to use a single hard-coded value
+
+54
+00:02:48,080 --> 00:02:50,030
+by which we reduce healths,
+
+55
+00:02:50,030 --> 00:02:52,200
+but we wanna use some randomness
+
+56
+00:02:52,200 --> 00:02:55,210
+so that our game isn't too predictable.
+
+57
+00:02:55,210 --> 00:02:57,710
+And therefore in app JS,
+
+58
+00:02:57,710 --> 00:03:00,870
+I'm going to start by managing some data.
+
+59
+00:03:00,870 --> 00:03:04,550
+And you already saw it by now in the last lectures
+
+60
+00:03:04,550 --> 00:03:05,520
+and modules,
+
+61
+00:03:05,520 --> 00:03:10,520
+data of course is a core concept, a core thing in Vue apps
+
+62
+00:03:11,070 --> 00:03:14,260
+because pretty much any app you're going to build
+
+63
+00:03:14,260 --> 00:03:15,950
+needs some data,
+
+64
+00:03:15,950 --> 00:03:18,050
+no matter what you're managing in there,
+
+65
+00:03:18,050 --> 00:03:20,790
+but you're going to need some data.
+
+66
+00:03:20,790 --> 00:03:23,110
+Think of data as the variables you need
+
+67
+00:03:23,110 --> 00:03:25,870
+in your regular JavaScript codes
+
+68
+00:03:25,870 --> 00:03:28,950
+and it makes a lot of sense that we need data.
+
+69
+00:03:28,950 --> 00:03:30,960
+For example, here in this game,
+
+70
+00:03:30,960 --> 00:03:33,940
+which kind of data do we need to manage here
+
+71
+00:03:33,940 --> 00:03:37,670
+to make anything really work?
+
+72
+00:03:37,670 --> 00:03:41,850
+Well, how about the healths of the player and the monster?
+
+73
+00:03:41,850 --> 00:03:44,000
+We need to manage that data,
+
+74
+00:03:44,000 --> 00:03:46,380
+we need to manage that health data
+
+75
+00:03:46,380 --> 00:03:50,280
+because we're going to change it and changes in the health
+
+76
+00:03:50,280 --> 00:03:54,270
+of course, should later be reflected back on the UI
+
+77
+00:03:54,270 --> 00:03:57,580
+so that these health bars are reduced.
+
+78
+00:03:57,580 --> 00:04:00,820
+So therefore we need data, we need this data option
+
+79
+00:04:00,820 --> 00:04:03,550
+in our Vue app configuration object.
+
+80
+00:04:03,550 --> 00:04:07,520
+And as you learnt in this data method which it should be,
+
+81
+00:04:07,520 --> 00:04:11,550
+we returned the object that holds our actual data.
+
+82
+00:04:11,550 --> 00:04:16,540
+And here as I just explained, I have two main data points
+
+83
+00:04:16,540 --> 00:04:18,870
+and that would be the player health.
+
+84
+00:04:18,870 --> 00:04:22,380
+And let's say we start at a value of 100 here,
+
+85
+00:04:22,380 --> 00:04:25,830
+though of course you can pick any values you want
+
+86
+00:04:25,830 --> 00:04:28,140
+and we'll need a monster health.
+
+87
+00:04:28,140 --> 00:04:31,440
+Now we could say to monster has more or less health,
+
+88
+00:04:31,440 --> 00:04:34,363
+but I'm always going to set the monster health to 100.
+
+89
+00:04:35,520 --> 00:04:39,890
+So now we got these two health values which allow us to well
+
+90
+00:04:39,890 --> 00:04:44,620
+manage the health of our two game participants.
+
+91
+00:04:44,620 --> 00:04:46,830
+But the health alone is not enough.
+
+92
+00:04:46,830 --> 00:04:49,580
+Of course, we also need ways of changing the health,
+
+93
+00:04:49,580 --> 00:04:52,280
+for example, when an attack is launched.
+
+94
+00:04:52,280 --> 00:04:57,120
+So that screams for methods because methods are essentially
+
+95
+00:04:57,120 --> 00:05:01,270
+the actions we support in our Vue application.
+
+96
+00:05:01,270 --> 00:05:04,120
+For example, when the attack button is clicked,
+
+97
+00:05:04,120 --> 00:05:08,650
+we want to trigger a method that reduces the monster health.
+
+98
+00:05:08,650 --> 00:05:12,940
+And therefore I'm going to name that method attackMonster,
+
+99
+00:05:12,940 --> 00:05:14,260
+because that's what we're doing.
+
+100
+00:05:14,260 --> 00:05:16,373
+We're attacking the monster.
+
+101
+00:05:17,600 --> 00:05:20,330
+Now, what should we do inside of this method then?
+
+102
+00:05:20,330 --> 00:05:23,525
+What should happen instead of attackMonster?
+
+103
+00:05:23,525 --> 00:05:27,290
+Well, we wanna calculate the damage we're dealing
+
+104
+00:05:27,290 --> 00:05:29,500
+and we then want to reduce the monster health
+
+105
+00:05:29,500 --> 00:05:31,290
+by that damage.
+
+106
+00:05:31,290 --> 00:05:35,520
+And as I said before, I wanna use a random value here.
+
+107
+00:05:35,520 --> 00:05:38,690
+You could, of course always deduct the same amount
+
+108
+00:05:38,690 --> 00:05:40,080
+from the monster health
+
+109
+00:05:40,080 --> 00:05:43,150
+but your game would be pretty predictable then.
+
+110
+00:05:43,150 --> 00:05:45,490
+So to calculate a random value,
+
+111
+00:05:45,490 --> 00:05:48,310
+we can use the math random function,
+
+112
+00:05:48,310 --> 00:05:51,780
+which gives us a random number between zero and one.
+
+113
+00:05:51,780 --> 00:05:54,960
+Now, I don't want a value between zero and one.
+
+114
+00:05:54,960 --> 00:05:58,480
+Instead, since we're working with a health of 100,
+
+115
+00:05:58,480 --> 00:06:00,980
+we probably want a higher number.
+
+116
+00:06:00,980 --> 00:06:05,310
+So for example, we could say that we want to
+
+117
+00:06:05,310 --> 00:06:09,090
+get a random number between a minimum and the maximum value.
+
+118
+00:06:09,090 --> 00:06:11,500
+Let's say between five and 12,
+
+119
+00:06:11,500 --> 00:06:14,220
+we wanna deal at least five points of damage
+
+120
+00:06:14,220 --> 00:06:17,360
+but no more than 12 points of damage.
+
+121
+00:06:17,360 --> 00:06:20,700
+And the formula for calculating this
+
+122
+00:06:20,700 --> 00:06:24,360
+is to multiply math random
+
+123
+00:06:24,360 --> 00:06:28,770
+with the difference of max, which is 12 as I just explained
+
+124
+00:06:28,770 --> 00:06:33,250
+minus the min value, which should be five, for example.
+
+125
+00:06:33,250 --> 00:06:38,250
+And then we take the floor of that to round it down
+
+126
+00:06:38,310 --> 00:06:41,660
+so that we don't have a number with a decimal place
+
+127
+00:06:41,660 --> 00:06:43,700
+but we have an integer number instead,
+
+128
+00:06:43,700 --> 00:06:46,130
+and we add the minimum again.
+
+129
+00:06:46,130 --> 00:06:49,500
+This is a formula for calculating a random number
+
+130
+00:06:49,500 --> 00:06:51,143
+between five and 12.
+
+131
+00:06:52,530 --> 00:06:57,530
+So this will give me my attack value let's say
+
+132
+00:06:58,700 --> 00:07:00,963
+by which I wanna reduce to monster health.
+
+133
+00:07:04,530 --> 00:07:06,660
+So therefore here,
+
+134
+00:07:06,660 --> 00:07:10,510
+I want to reach out to this monster health
+
+135
+00:07:10,510 --> 00:07:14,680
+and I explained that we can access all data properties
+
+136
+00:07:14,680 --> 00:07:17,772
+in your methods through the this keyword because
+
+137
+00:07:17,772 --> 00:07:22,640
+Vue will merge all your data properties in this object
+
+138
+00:07:22,640 --> 00:07:26,720
+into a global behind the scenes managed object
+
+139
+00:07:26,720 --> 00:07:30,120
+and that's why we can use this here in a method
+
+140
+00:07:30,120 --> 00:07:32,890
+and get access to this monster health
+
+141
+00:07:32,890 --> 00:07:35,200
+and we want access to monster health
+
+142
+00:07:35,200 --> 00:07:37,290
+so that we can set monster health
+
+143
+00:07:37,290 --> 00:07:39,520
+equal to this monster health
+
+144
+00:07:39,520 --> 00:07:43,300
+minus the attack value we just derived.
+
+145
+00:07:43,300 --> 00:07:45,640
+We can also write this in a bit of a shorter way.
+
+146
+00:07:45,640 --> 00:07:47,900
+We can use a JavaScript shortcut here,
+
+147
+00:07:47,900 --> 00:07:52,900
+a shorthand notation and use minus equal attack value.
+
+148
+00:07:54,370 --> 00:07:56,270
+That's exactly doing the same thing
+
+149
+00:07:56,270 --> 00:07:58,930
+with that we're reducing the monster health
+
+150
+00:07:58,930 --> 00:08:02,003
+by the attack value we derived here.
+
+151
+00:08:03,100 --> 00:08:05,360
+Now that's one part of the equation.
+
+152
+00:08:05,360 --> 00:08:08,120
+We want to be able to attack the monster,
+
+153
+00:08:08,120 --> 00:08:11,270
+but of course the monster should also be able
+
+154
+00:08:11,270 --> 00:08:13,430
+to attack us as a player.
+
+155
+00:08:13,430 --> 00:08:17,440
+And let's say, whenever we attacked the monster
+
+156
+00:08:17,440 --> 00:08:19,500
+as a consequence there after,
+
+157
+00:08:19,500 --> 00:08:21,910
+the monster should attack back.
+
+158
+00:08:21,910 --> 00:08:23,700
+So we can add a second method,
+
+159
+00:08:23,700 --> 00:08:27,110
+a second action to our game so to say,
+
+160
+00:08:27,110 --> 00:08:29,110
+which is attack player.
+
+161
+00:08:29,110 --> 00:08:32,630
+So that is the monster attacking us as a player.
+
+162
+00:08:32,630 --> 00:08:35,179
+And here we wanna do essentially the same.
+
+163
+00:08:35,179 --> 00:08:40,179
+We wanna get an attack value calculated randomly,
+
+164
+00:08:40,650 --> 00:08:45,160
+but let's say the monster actually hits a bit harder
+
+165
+00:08:45,160 --> 00:08:47,370
+so the max damage is 15
+
+166
+00:08:47,370 --> 00:08:50,720
+and the min damage let's say is eight instead of five.
+
+167
+00:08:50,720 --> 00:08:54,080
+so that by just spamming attack all the time,
+
+168
+00:08:54,080 --> 00:08:58,003
+we probably won't win because the monster hits us harder.
+
+169
+00:08:59,720 --> 00:09:02,660
+And then we take this calculated attack value
+
+170
+00:09:02,660 --> 00:09:07,660
+and deduct it from the player health like this.
+
+171
+00:09:08,830 --> 00:09:10,900
+Now since I have the same formula
+
+172
+00:09:10,900 --> 00:09:13,000
+for calculating a random number,
+
+173
+00:09:13,000 --> 00:09:16,470
+I will actually outsource this into a separate function
+
+174
+00:09:16,470 --> 00:09:19,470
+and here I'll use our regular JavaScript function
+
+175
+00:09:19,470 --> 00:09:23,140
+and not a Vue method because this will be a function
+
+176
+00:09:23,140 --> 00:09:26,400
+which I only call from inside my JavaScript code,
+
+177
+00:09:26,400 --> 00:09:31,060
+which will not use any Vue controlled data properties
+
+178
+00:09:31,060 --> 00:09:32,480
+or anything like that
+
+179
+00:09:32,480 --> 00:09:35,890
+and which will not be called from inside our template
+
+180
+00:09:35,890 --> 00:09:38,053
+so from inside our HTML code.
+
+181
+00:09:38,970 --> 00:09:40,620
+And if all of that is the case,
+
+182
+00:09:40,620 --> 00:09:43,730
+if you don't need access to Vue controlled properties,
+
+183
+00:09:43,730 --> 00:09:47,180
+if you're not calling the function from inside HTML
+
+184
+00:09:47,180 --> 00:09:50,600
+and you only use it from inside the JavaScript code,
+
+185
+00:09:50,600 --> 00:09:53,480
+then you can write a regular JavaScript function
+
+186
+00:09:53,480 --> 00:09:56,333
+and I'll name it getRandomValue.
+
+187
+00:09:56,333 --> 00:10:00,380
+And I want to get a min and a max boundary here
+
+188
+00:10:01,510 --> 00:10:06,510
+and then just wrap that formula, cut it and return it here
+
+189
+00:10:07,260 --> 00:10:12,260
+and replace 12 with max and five with min.
+
+190
+00:10:13,170 --> 00:10:16,740
+And the advantage of this is that we can now simply call,
+
+191
+00:10:16,740 --> 00:10:21,170
+getRandomValue here and pass in five and 12
+
+192
+00:10:21,170 --> 00:10:26,140
+and do the same down there and pass in eight and 15.
+
+193
+00:10:26,140 --> 00:10:27,880
+And with that we save some code
+
+194
+00:10:27,880 --> 00:10:31,283
+and we simply outsourced this into a separate function.
+
+195
+00:10:33,680 --> 00:10:36,010
+So with that, we got our two actions.
+
+196
+00:10:36,010 --> 00:10:38,600
+One thing is missing here in those methods
+
+197
+00:10:38,600 --> 00:10:39,800
+and then of course
+
+198
+00:10:39,800 --> 00:10:42,836
+we also need to connect this to the HTML code.
+
+199
+00:10:42,836 --> 00:10:47,070
+But the missing thing here of course is that attack player
+
+200
+00:10:47,070 --> 00:10:50,760
+should be triggered whenever we attacked the monster.
+
+201
+00:10:50,760 --> 00:10:53,230
+So here after attackMonster,
+
+202
+00:10:53,230 --> 00:10:58,050
+I'll reach out to attackPlayer and call this method here.
+
+203
+00:10:58,050 --> 00:11:00,810
+And that's something we haven't done thus far
+
+204
+00:11:00,810 --> 00:11:02,750
+in the previous modules.
+
+205
+00:11:02,750 --> 00:11:05,300
+But just as we can access data properties
+
+206
+00:11:05,300 --> 00:11:07,560
+through the this key word,
+
+207
+00:11:07,560 --> 00:11:11,660
+we can also access methods through the this keyword
+
+208
+00:11:11,660 --> 00:11:15,800
+inside of the Vue instance config object here.
+
+209
+00:11:15,800 --> 00:11:16,730
+And the reason for that
+
+210
+00:11:16,730 --> 00:11:19,700
+is the same as with the data properties.
+
+211
+00:11:19,700 --> 00:11:22,900
+I mentioned that this data would be merged
+
+212
+00:11:22,900 --> 00:11:26,480
+into a behind the scenes managed global object
+
+213
+00:11:26,480 --> 00:11:30,820
+and it's the same for methods and for computed properties.
+
+214
+00:11:30,820 --> 00:11:32,930
+All of that is getting merged
+
+215
+00:11:32,930 --> 00:11:36,580
+into that behind the scenes controlled global object.
+
+216
+00:11:36,580 --> 00:11:39,800
+And therefore just as we can access data properties
+
+217
+00:11:39,800 --> 00:11:42,500
+through the this keyword inside of methods,
+
+218
+00:11:42,500 --> 00:11:45,573
+we can also access our methods in there and call them.
+
+219
+00:11:46,560 --> 00:11:48,910
+So we can call attackPlayer here
+
+220
+00:11:48,910 --> 00:11:52,120
+from inside attackMonster to make sure that
+
+221
+00:11:52,120 --> 00:11:56,550
+this method executes right after this method executed.
+
+222
+00:11:56,550 --> 00:11:59,870
+And with that we're done with the JavaScript code for now.
+
+223
+00:11:59,870 --> 00:12:01,690
+But of course we also
+
+224
+00:12:01,690 --> 00:12:05,970
+need to connect this to our HTML content now.
+
+225
+00:12:05,970 --> 00:12:09,200
+We need to make sure that in our HTML code,
+
+226
+00:12:09,200 --> 00:12:12,470
+we now also trigger attackMonster
+
+227
+00:12:12,470 --> 00:12:14,240
+when the attack button is clicked
+
+228
+00:12:14,240 --> 00:12:17,100
+and that we update those health bars
+
+229
+00:12:17,100 --> 00:12:18,930
+so let's work on that next.
+
+230
+00:12:18,930 --> 00:12:22,370
+Of course, feel free to try this on your own first
+
+231
+00:12:22,370 --> 00:12:25,203
+before we then continue together in the next lecture.
+

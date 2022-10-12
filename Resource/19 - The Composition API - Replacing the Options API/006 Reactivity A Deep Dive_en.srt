@@ -1,0 +1,840 @@
+1
+00:00:02,070 --> 00:00:03,380
+Now before we dig deeper
+
+2
+00:00:03,380 --> 00:00:05,010
+into the composition API,
+
+3
+00:00:05,010 --> 00:00:07,930
+here is an optional lecture
+
+4
+00:00:07,930 --> 00:00:10,870
+and I really want to emphasize this, it's optional.
+
+5
+00:00:10,870 --> 00:00:12,830
+You can skip this lecture for now,
+
+6
+00:00:12,830 --> 00:00:14,020
+proceed with the rest
+
+7
+00:00:14,020 --> 00:00:15,683
+and come back to it later.
+
+8
+00:00:16,580 --> 00:00:20,060
+I wanna explore this reactivity concept a bit more
+
+9
+00:00:20,060 --> 00:00:22,070
+to make sure we're all on the same page
+
+10
+00:00:22,070 --> 00:00:25,280
+and there are no unanswered questions here.
+
+11
+00:00:25,280 --> 00:00:26,800
+I hope I could make it clear,
+
+12
+00:00:26,800 --> 00:00:28,600
+how ref and reactive works,
+
+13
+00:00:28,600 --> 00:00:30,080
+that they're very similar
+
+14
+00:00:30,080 --> 00:00:31,600
+but that I could also make it clear
+
+15
+00:00:31,600 --> 00:00:33,380
+what the difference is.
+
+16
+00:00:33,380 --> 00:00:35,620
+I locked both to the console
+
+17
+00:00:35,620 --> 00:00:37,490
+and I'll do it again here
+
+18
+00:00:37,490 --> 00:00:40,200
+with the age here as an example
+
+19
+00:00:40,200 --> 00:00:43,210
+so that we can again see the difference.
+
+20
+00:00:43,210 --> 00:00:44,860
+So I'm logging uAge
+
+21
+00:00:44,860 --> 00:00:45,920
+which is a ref
+
+22
+00:00:45,920 --> 00:00:48,280
+and user which is a reactive object
+
+23
+00:00:50,770 --> 00:00:53,940
+and I need to import ref again for that
+
+24
+00:00:54,920 --> 00:00:55,790
+and if I do that,
+
+25
+00:00:55,790 --> 00:00:57,010
+if I save this
+
+26
+00:00:58,110 --> 00:00:59,840
+and I reload,
+
+27
+00:00:59,840 --> 00:01:01,200
+here our log.
+
+28
+00:01:01,200 --> 00:01:02,320
+The first one here,
+
+29
+00:01:02,320 --> 00:01:03,660
+that is our ref,
+
+30
+00:01:03,660 --> 00:01:05,970
+you'll see it's an object with the value prop
+
+31
+00:01:05,970 --> 00:01:07,220
+and in that value prop
+
+32
+00:01:07,220 --> 00:01:08,520
+the number is stored
+
+33
+00:01:09,720 --> 00:01:11,880
+and we have the getters and setters.
+
+34
+00:01:11,880 --> 00:01:13,710
+The object, the reactive object
+
+35
+00:01:13,710 --> 00:01:16,500
+is a proxy wrapped around our object
+
+36
+00:01:16,500 --> 00:01:18,570
+and it has those extra handlers
+
+37
+00:01:18,570 --> 00:01:20,950
+for dealing with data changes
+
+38
+00:01:20,950 --> 00:01:22,603
+so that vue is aware of them.
+
+39
+00:01:24,450 --> 00:01:26,700
+Now a common mistake
+
+40
+00:01:26,700 --> 00:01:29,880
+or something which can be hard to understand,
+
+41
+00:01:29,880 --> 00:01:32,910
+is that these objects,
+
+42
+00:01:32,910 --> 00:01:33,910
+the ref object
+
+43
+00:01:33,910 --> 00:01:37,200
+and the reactive object are reactive
+
+44
+00:01:37,200 --> 00:01:39,860
+but not the values stored in them
+
+45
+00:01:39,860 --> 00:01:41,460
+which is why we have to pass
+
+46
+00:01:41,460 --> 00:01:43,560
+the entire user object here
+
+47
+00:01:43,560 --> 00:01:47,170
+and not the name and age separated.
+
+48
+00:01:47,170 --> 00:01:48,870
+Just to make this clear again,
+
+49
+00:01:48,870 --> 00:01:51,720
+if I would pass user, name
+
+50
+00:01:51,720 --> 00:01:54,210
+and age like this to the template,
+
+51
+00:01:54,210 --> 00:01:56,680
+so if I drill into the user object here
+
+52
+00:01:56,680 --> 00:01:59,730
+and I provide that on a name and age key,
+
+53
+00:01:59,730 --> 00:02:01,220
+if we do this
+
+54
+00:02:01,220 --> 00:02:04,230
+and then try outputting name and age here,
+
+55
+00:02:04,230 --> 00:02:06,080
+that would work,
+
+56
+00:02:06,080 --> 00:02:07,610
+as you can tell
+
+57
+00:02:07,610 --> 00:02:09,009
+but after two seconds
+
+58
+00:02:09,009 --> 00:02:10,590
+it wouldn't update.
+
+59
+00:02:10,590 --> 00:02:13,900
+It always stays at Maximilian 31
+
+60
+00:02:13,900 --> 00:02:16,330
+and those changes made here
+
+61
+00:02:16,330 --> 00:02:17,400
+aren't picked up
+
+62
+00:02:18,310 --> 00:02:19,390
+and the reason for that
+
+63
+00:02:19,390 --> 00:02:21,830
+is that the entire object is reactive
+
+64
+00:02:21,830 --> 00:02:24,700
+but the values in those properties are not
+
+65
+00:02:24,700 --> 00:02:27,740
+and if we expose those values to the template
+
+66
+00:02:27,740 --> 00:02:30,300
+vue thinks that only the values matter
+
+67
+00:02:30,300 --> 00:02:31,890
+and not the entire object
+
+68
+00:02:31,890 --> 00:02:35,170
+hence it's just interested in changes to those values
+
+69
+00:02:35,170 --> 00:02:38,460
+and since those values are not reactive objects
+
+70
+00:02:38,460 --> 00:02:39,890
+and not refs,
+
+71
+00:02:39,890 --> 00:02:42,310
+it will never know about these changes.
+
+72
+00:02:42,310 --> 00:02:45,350
+That's why we had to do it differently
+
+73
+00:02:45,350 --> 00:02:49,340
+hence I'm reversing this to go back to the old code
+
+74
+00:02:49,340 --> 00:02:51,240
+where I expose the entire user
+
+75
+00:02:51,240 --> 00:02:52,800
+and access it in the template
+
+76
+00:02:54,560 --> 00:02:57,440
+but now back to this console log statement.
+
+77
+00:02:57,440 --> 00:03:00,120
+Here we can basically see the problem.
+
+78
+00:03:00,120 --> 00:03:04,390
+If I console log uAge.value
+
+79
+00:03:04,390 --> 00:03:06,950
+and I also console log user.name
+
+80
+00:03:06,950 --> 00:03:08,273
+and user.age.
+
+81
+00:03:09,680 --> 00:03:12,640
+If I log these three things here,
+
+82
+00:03:12,640 --> 00:03:13,690
+if I reload,
+
+83
+00:03:13,690 --> 00:03:15,750
+you see 31 Maximilian
+
+84
+00:03:15,750 --> 00:03:18,180
+and 31 here in the console
+
+85
+00:03:18,180 --> 00:03:21,940
+and these are ordinary JavaScript values.
+
+86
+00:03:21,940 --> 00:03:23,810
+These are not special objects
+
+87
+00:03:23,810 --> 00:03:28,220
+hence they have no watch mechanism attached to them.
+
+88
+00:03:28,220 --> 00:03:31,280
+This is what would arrive in the template
+
+89
+00:03:31,280 --> 00:03:33,900
+if we just return user.name
+
+90
+00:03:33,900 --> 00:03:36,860
+or user.age in this object down here,
+
+91
+00:03:36,860 --> 00:03:38,150
+what I did a second ago
+
+92
+00:03:39,320 --> 00:03:41,630
+and then it hopefully is clear that,
+
+93
+00:03:41,630 --> 00:03:43,520
+this will never change to vue.
+
+94
+00:03:43,520 --> 00:03:44,610
+It's just a string,
+
+95
+00:03:44,610 --> 00:03:45,443
+just a number.
+
+96
+00:03:45,443 --> 00:03:46,760
+It never changes.
+
+97
+00:03:46,760 --> 00:03:49,870
+Yes the object from which I extracted those values,
+
+98
+00:03:49,870 --> 00:03:51,730
+that object changes
+
+99
+00:03:51,730 --> 00:03:54,370
+but I took a snapshot of those values
+
+100
+00:03:54,370 --> 00:03:55,810
+before the change happened,
+
+101
+00:03:55,810 --> 00:03:57,630
+that's basically what I'm doing here
+
+102
+00:03:57,630 --> 00:03:58,883
+and that's the problem.
+
+103
+00:04:00,440 --> 00:04:02,740
+Now vue has helper methods here
+
+104
+00:04:02,740 --> 00:04:04,580
+which can help us with understanding
+
+105
+00:04:04,580 --> 00:04:06,400
+what's reactive and not.
+
+106
+00:04:06,400 --> 00:04:08,170
+It has isReactive
+
+107
+00:04:08,170 --> 00:04:10,540
+and that is ref function
+
+108
+00:04:10,540 --> 00:04:12,600
+and whenever something is reactive
+
+109
+00:04:12,600 --> 00:04:13,670
+or is a ref
+
+110
+00:04:13,670 --> 00:04:15,690
+when you expose it to the template
+
+111
+00:04:15,690 --> 00:04:17,360
+updates will be picked up.
+
+112
+00:04:17,360 --> 00:04:18,890
+Whenever that's not the case,
+
+113
+00:04:18,890 --> 00:04:20,930
+updates will not be picked up.
+
+114
+00:04:20,930 --> 00:04:24,920
+So here we can check if uAge.value is a ref
+
+115
+00:04:24,920 --> 00:04:28,960
+and we can check if username,
+
+116
+00:04:28,960 --> 00:04:31,990
+user.name I mean is reactive
+
+117
+00:04:31,990 --> 00:04:33,330
+and if I do that,
+
+118
+00:04:33,330 --> 00:04:35,460
+save this and reload,
+
+119
+00:04:35,460 --> 00:04:37,200
+I get false twice
+
+120
+00:04:38,040 --> 00:04:39,960
+and that's just what I've been talking about
+
+121
+00:04:39,960 --> 00:04:41,623
+over the last minutes or so.
+
+122
+00:04:42,810 --> 00:04:43,643
+On the other hand,
+
+123
+00:04:43,643 --> 00:04:45,480
+if I check the entire uAge
+
+124
+00:04:45,480 --> 00:04:47,283
+and the entire user object,
+
+125
+00:04:48,170 --> 00:04:51,400
+instead of the nested properties,
+
+126
+00:04:51,400 --> 00:04:53,470
+I get true twice.
+
+127
+00:04:53,470 --> 00:04:56,080
+So whenever we expose the entire ref
+
+128
+00:04:56,080 --> 00:04:58,030
+or the entire reactive object
+
+129
+00:04:58,030 --> 00:05:00,100
+to the template by returning it here
+
+130
+00:05:00,100 --> 00:05:01,800
+changes will be picked up
+
+131
+00:05:01,800 --> 00:05:03,480
+and reflected in the template.
+
+132
+00:05:03,480 --> 00:05:04,953
+It's as easy as that.
+
+133
+00:05:06,690 --> 00:05:09,150
+Now I'll remove this here
+
+134
+00:05:09,150 --> 00:05:11,930
+but it can be helpful to be aware of these helper methods
+
+135
+00:05:11,930 --> 00:05:13,294
+in case you wanna find out
+
+136
+00:05:13,294 --> 00:05:15,263
+whether something is reactive or not.
+
+137
+00:05:17,320 --> 00:05:19,850
+Now there actually also would be a way
+
+138
+00:05:19,850 --> 00:05:22,860
+of making the nested values
+
+139
+00:05:22,860 --> 00:05:25,090
+inside of a reactive object
+
+140
+00:05:25,090 --> 00:05:26,530
+reactive as well
+
+141
+00:05:26,530 --> 00:05:29,650
+or turn them into refs to be precise.
+
+142
+00:05:29,650 --> 00:05:34,500
+There is a toRefs function
+
+143
+00:05:34,500 --> 00:05:36,140
+which you can import from vue
+
+144
+00:05:37,680 --> 00:05:40,690
+and toRefs is a very simple function,
+
+145
+00:05:40,690 --> 00:05:42,170
+you give it an object
+
+146
+00:05:42,170 --> 00:05:43,710
+and it will then automatically
+
+147
+00:05:43,710 --> 00:05:47,320
+turn all property values into refs.
+
+148
+00:05:47,320 --> 00:05:49,070
+So with that,
+
+149
+00:05:49,070 --> 00:05:51,180
+we could get our user refs
+
+150
+00:05:51,180 --> 00:05:52,390
+by calling toRefs
+
+151
+00:05:53,900 --> 00:05:56,470
+and passing user,
+
+152
+00:05:56,470 --> 00:05:59,300
+so our reactive object to it,
+
+153
+00:05:59,300 --> 00:06:01,560
+you can pass in any object by the way
+
+154
+00:06:02,910 --> 00:06:04,250
+and with that,
+
+155
+00:06:04,250 --> 00:06:06,040
+you get back an object
+
+156
+00:06:06,040 --> 00:06:07,360
+which now has a name
+
+157
+00:06:07,360 --> 00:06:08,660
+and age property
+
+158
+00:06:08,660 --> 00:06:12,320
+but now the values in there will be refs.
+
+159
+00:06:12,320 --> 00:06:15,660
+So now I could expose userName
+
+160
+00:06:15,660 --> 00:06:18,840
+by accessing userRefs.name
+
+161
+00:06:18,840 --> 00:06:23,090
+and age by accessing userRefs.age
+
+162
+00:06:23,090 --> 00:06:24,770
+and we could use username
+
+163
+00:06:24,770 --> 00:06:26,483
+and age in the template now,
+
+164
+00:06:27,810 --> 00:06:32,260
+like this username and age
+
+165
+00:06:33,170 --> 00:06:34,710
+and if I save this
+
+166
+00:06:34,710 --> 00:06:37,070
+I get an error related to uAge
+
+167
+00:06:38,170 --> 00:06:39,910
+which I'm not using anymore
+
+168
+00:06:39,910 --> 00:06:42,270
+so if a comment out uAge here real quick
+
+169
+00:06:44,000 --> 00:06:45,890
+and ref is also on use now
+
+170
+00:06:45,890 --> 00:06:48,290
+and I get rid of the ref import,
+
+171
+00:06:48,290 --> 00:06:50,410
+it now compiles
+
+172
+00:06:50,410 --> 00:06:51,470
+and now if I reload
+
+173
+00:06:51,470 --> 00:06:53,410
+and wait for two seconds,
+
+174
+00:06:53,410 --> 00:06:55,120
+the update is reflected
+
+175
+00:06:55,120 --> 00:06:58,870
+because now not just the object is reactive
+
+176
+00:06:58,870 --> 00:06:59,703
+but with toRefs
+
+177
+00:07:00,550 --> 00:07:04,480
+we also wrapped the nested properties into refs
+
+178
+00:07:04,480 --> 00:07:07,590
+so that now we can also pass those properties,
+
+179
+00:07:07,590 --> 00:07:10,880
+those property values directly to the template
+
+180
+00:07:10,880 --> 00:07:13,430
+because now they are refs
+
+181
+00:07:13,430 --> 00:07:14,600
+and as I mentioned
+
+182
+00:07:14,600 --> 00:07:16,630
+if you pass a reactive object
+
+183
+00:07:16,630 --> 00:07:18,570
+or a ref to the template,
+
+184
+00:07:18,570 --> 00:07:21,960
+then changes to that value will be picked up
+
+185
+00:07:21,960 --> 00:07:23,800
+and reflected in the template,
+
+186
+00:07:23,800 --> 00:07:25,243
+otherwise they won't.
+
+187
+00:07:26,910 --> 00:07:30,510
+Now that was a lot of extra deep dive stuff.
+
+188
+00:07:30,510 --> 00:07:31,343
+As I said,
+
+189
+00:07:31,343 --> 00:07:33,300
+it's an optional lecture
+
+190
+00:07:33,300 --> 00:07:35,420
+you can come back to that later again
+
+191
+00:07:35,420 --> 00:07:37,700
+in case it's not entirely clear,
+
+192
+00:07:37,700 --> 00:07:40,750
+you won't need all of that all the time.
+
+193
+00:07:40,750 --> 00:07:43,450
+I'm just a fan of teaching something thoroughly
+
+194
+00:07:43,450 --> 00:07:45,760
+and diving deep into a topic
+
+195
+00:07:45,760 --> 00:07:48,710
+to give you a chance of fully understanding
+
+196
+00:07:48,710 --> 00:07:50,420
+what's happening behind the scenes
+
+197
+00:07:50,420 --> 00:07:54,330
+and why we are doing something in a certain way.
+
+198
+00:07:54,330 --> 00:07:55,820
+With that however,
+
+199
+00:07:55,820 --> 00:07:59,040
+I'm going to revert all that code here
+
+200
+00:07:59,040 --> 00:08:00,580
+because it's not important
+
+201
+00:08:00,580 --> 00:08:02,670
+for the next lectures
+
+202
+00:08:02,670 --> 00:08:05,180
+and I don't want to confuse you with it
+
+203
+00:08:05,180 --> 00:08:07,433
+so let me get rid of all of that.
+
+204
+00:08:08,300 --> 00:08:10,150
+Get rid of the toRefs import
+
+205
+00:08:10,150 --> 00:08:11,990
+and go back to user.name
+
+206
+00:08:11,990 --> 00:08:14,320
+and user.age here in the template
+
+207
+00:08:15,570 --> 00:08:16,430
+and now with that,
+
+208
+00:08:16,430 --> 00:08:18,100
+let's leave this deep dive
+
+209
+00:08:18,100 --> 00:08:19,720
+and instead see what we can do
+
+210
+00:08:19,720 --> 00:08:21,463
+beyond data management.
+

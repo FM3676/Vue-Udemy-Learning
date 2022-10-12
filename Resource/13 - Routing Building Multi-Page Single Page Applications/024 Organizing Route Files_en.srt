@@ -1,0 +1,360 @@
+1
+00:00:02,180 --> 00:00:04,040
+Now we know all the core
+
+2
+00:00:04,040 --> 00:00:06,820
+and even some advanced features which you need to know
+
+3
+00:00:06,820 --> 00:00:09,780
+about the Vue Router and about routing.
+
+4
+00:00:09,780 --> 00:00:12,360
+And we saw all those important features
+
+5
+00:00:12,360 --> 00:00:14,960
+in action in this demo project.
+
+6
+00:00:14,960 --> 00:00:19,430
+Now we're going to build a bigger project in the next module
+
+7
+00:00:19,430 --> 00:00:22,580
+where all of that makes even a bit more sense
+
+8
+00:00:22,580 --> 00:00:25,590
+since we'll then have a more realistic project.
+
+9
+00:00:25,590 --> 00:00:27,580
+Before we go there though,
+
+10
+00:00:27,580 --> 00:00:32,580
+let's talk about organizing our different files and folders,
+
+11
+00:00:33,240 --> 00:00:36,610
+because at the moment I'm working with the components folder
+
+12
+00:00:36,610 --> 00:00:39,570
+with my different feature areas
+
+13
+00:00:39,570 --> 00:00:43,400
+and then the different components, nothing wrong with that.
+
+14
+00:00:43,400 --> 00:00:46,750
+But when you use routing, you could also argue
+
+15
+00:00:46,750 --> 00:00:48,990
+that you don't just want to have components,
+
+16
+00:00:48,990 --> 00:00:53,470
+but maybe also a pages or a screens folder.
+
+17
+00:00:53,470 --> 00:00:55,670
+And I'll go with pages.
+
+18
+00:00:55,670 --> 00:00:56,760
+This is optional.
+
+19
+00:00:56,760 --> 00:00:57,980
+You don't need that,
+
+20
+00:00:57,980 --> 00:01:00,460
+but you could then put the components
+
+21
+00:01:00,460 --> 00:01:03,520
+which are loaded as pages through your router
+
+22
+00:01:03,520 --> 00:01:07,680
+into the pages folder to have a clear distinction
+
+23
+00:01:07,680 --> 00:01:11,700
+between the components which are loaded through the router,
+
+24
+00:01:11,700 --> 00:01:13,560
+and the regular components,
+
+25
+00:01:13,560 --> 00:01:15,870
+which you embed in your templates.
+
+26
+00:01:15,870 --> 00:01:18,210
+Maybe you don't want this distinction.
+
+27
+00:01:18,210 --> 00:01:21,320
+For team members, we for example ensured
+
+28
+00:01:21,320 --> 00:01:24,430
+that route parents are passed in as prompts.
+
+29
+00:01:24,430 --> 00:01:26,040
+So maybe that should be usable
+
+30
+00:01:26,040 --> 00:01:28,770
+as a regular component as well,
+
+31
+00:01:28,770 --> 00:01:31,170
+but maybe you do want this distinction.
+
+32
+00:01:31,170 --> 00:01:34,590
+And then, of course, we could move Users List Vue
+
+33
+00:01:34,590 --> 00:01:36,520
+and Teams List Vue,
+
+34
+00:01:36,520 --> 00:01:41,520
+and also the Not Found page over into the pages folder,
+
+35
+00:01:41,990 --> 00:01:46,630
+and also adds to Users Footer and the Teams Footer diary.
+
+36
+00:01:46,630 --> 00:01:47,620
+And it's up to you,
+
+37
+00:01:47,620 --> 00:01:50,463
+whether you also want to use Team Members or not.
+
+38
+00:01:52,360 --> 00:01:55,410
+Now we just need to update all the imports
+
+39
+00:01:55,410 --> 00:01:58,863
+and import team's list from pages/TeamsList,
+
+40
+00:02:01,070 --> 00:02:06,070
+users list from pages/UsersList and so on.
+
+41
+00:02:06,560 --> 00:02:09,030
+Do that for all those pages.
+
+42
+00:02:09,030 --> 00:02:11,380
+And again, this is really optional,
+
+43
+00:02:11,380 --> 00:02:14,350
+but it can make sense especially in bigger apps,
+
+44
+00:02:14,350 --> 00:02:16,330
+since it makes it easier to see
+
+45
+00:02:16,330 --> 00:02:19,540
+which components will be loaded as pages through the router
+
+46
+00:02:19,540 --> 00:02:22,680
+and which components will be used as components
+
+47
+00:02:22,680 --> 00:02:26,153
+that are embedded into other components templates.
+
+48
+00:02:27,640 --> 00:02:30,380
+Now, with that you don't just need to update all the imports
+
+49
+00:02:30,380 --> 00:02:32,240
+in the main JS file, of course,
+
+50
+00:02:32,240 --> 00:02:34,150
+but also any imports you have
+
+51
+00:02:34,150 --> 00:02:36,500
+inside all of your page components,
+
+52
+00:02:36,500 --> 00:02:39,300
+because here the POS are now incorrect.
+
+53
+00:02:39,300 --> 00:02:43,080
+We need to go up one level with two dots and a slash,
+
+54
+00:02:43,080 --> 00:02:45,250
+then go into the Components folder
+
+55
+00:02:45,250 --> 00:02:50,250
+and then here into Users, UserItem.vue for teams list.
+
+56
+00:02:50,480 --> 00:02:53,020
+I also need to update teams item,
+
+57
+00:02:53,020 --> 00:02:55,130
+which I get from components.
+
+58
+00:02:55,130 --> 00:02:58,690
+So going up on level of components, teams,
+
+59
+00:02:58,690 --> 00:03:00,793
+and TeamsTtem.vue.
+
+60
+00:03:02,300 --> 00:03:06,150
+And with that that re-compiles and works as before,
+
+61
+00:03:06,150 --> 00:03:10,240
+but now the pages are organized in a separate folder.
+
+62
+00:03:10,240 --> 00:03:12,070
+Again, it's up to you whether you want this,
+
+63
+00:03:12,070 --> 00:03:14,270
+but I want to show this possible way
+
+64
+00:03:14,270 --> 00:03:15,993
+of organizing components.
+
+65
+00:03:18,710 --> 00:03:22,560
+Now related to reorganizing our files and folders,
+
+66
+00:03:22,560 --> 00:03:26,340
+you might notice that the main JS file gets rather big
+
+67
+00:03:26,340 --> 00:03:28,320
+with all our routes in here.
+
+68
+00:03:28,320 --> 00:03:31,370
+Now this is of course a small app but even with that,
+
+69
+00:03:31,370 --> 00:03:35,710
+all the routing logic takes up quite a bit of space in here.
+
+70
+00:03:35,710 --> 00:03:37,810
+Now this is not bad per se,
+
+71
+00:03:37,810 --> 00:03:40,900
+but it makes it harder to find the place
+
+72
+00:03:40,900 --> 00:03:44,110
+where you actually create your app and so on.
+
+73
+00:03:44,110 --> 00:03:48,120
+Hence you might wanna use a separate router JS file
+
+74
+00:03:48,120 --> 00:03:51,290
+and actually move all the routing related code
+
+75
+00:03:51,290 --> 00:03:52,650
+into that file.
+
+76
+00:03:52,650 --> 00:03:57,310
+So grab all that code here and move it into router JS,
+
+77
+00:03:57,310 --> 00:03:59,543
+except for the app Import.
+
+78
+00:04:00,600 --> 00:04:04,690
+And in main JS now get rid of all those other imports
+
+79
+00:04:05,630 --> 00:04:07,500
+and then take the router
+
+80
+00:04:08,730 --> 00:04:13,400
+and all the routing logic catted from main JS
+
+81
+00:04:13,400 --> 00:04:16,290
+and added here in router JS.
+
+82
+00:04:16,290 --> 00:04:20,839
+And then at the very bottom, export to router as a default
+
+83
+00:04:21,899 --> 00:04:24,800
+so that we can import it into another file,
+
+84
+00:04:24,800 --> 00:04:28,040
+because we need to import it into main JS now.
+
+85
+00:04:28,040 --> 00:04:31,913
+We can import a router from ./outer.js,
+
+86
+00:04:32,960 --> 00:04:36,130
+and then we can still use router because we're importing it.
+
+87
+00:04:36,130 --> 00:04:38,913
+But with that, everything will work as before,
+
+88
+00:04:38,913 --> 00:04:42,600
+but our routing code is now in a separate file
+
+89
+00:04:42,600 --> 00:04:44,890
+and that makes our code overall
+
+90
+00:04:44,890 --> 00:04:47,333
+more manageable and maintainable.
+

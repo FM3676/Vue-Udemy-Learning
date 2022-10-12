@@ -1,0 +1,15 @@
+
+001 Official-Release-Notes
+https://github.com/vuejs/vue-next/releases/tag/v3.0.0
+
+002 Demo-Project-Starting-Code-
+https://github.com/academind/vue-3-update/tree/starting-state
+
+002 Demo-Project-Finished-Code-
+https://github.com/academind/vue-3-update/tree/vue3-update
+
+004 Demo-Project-Starting-Code-
+https://github.com/academind/vue-3-update/tree/starting-state/composition-api
+
+004 Demo-Project-Finished-Code-
+https://github.com/academind/vue-3-update/tree/vue3-update/composition-api

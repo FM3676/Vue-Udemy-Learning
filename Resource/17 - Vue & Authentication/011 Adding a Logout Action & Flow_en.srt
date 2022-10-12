@@ -1,0 +1,328 @@
+1
+00:00:02,120 --> 00:00:04,210
+Now to add a log out functionality
+
+2
+00:00:04,210 --> 00:00:05,230
+here in the header,
+
+3
+00:00:05,230 --> 00:00:07,140
+I'll add a nother list item
+
+4
+00:00:08,150 --> 00:00:10,513
+with a base button in it,
+
+5
+00:00:12,000 --> 00:00:13,323
+where I say,
+
+6
+00:00:14,690 --> 00:00:15,573
+log out.
+
+7
+00:00:18,370 --> 00:00:21,295
+Gives us this button
+
+8
+00:00:21,295 --> 00:00:23,390
+and then buttons should do just what it says.
+
+9
+00:00:23,390 --> 00:00:25,010
+It should log us out.
+
+10
+00:00:25,010 --> 00:00:27,210
+Of course this list items should only be visible
+
+11
+00:00:27,210 --> 00:00:28,880
+if we are locked in,
+
+12
+00:00:28,880 --> 00:00:31,540
+because it makes no sense to show a log out button,
+
+13
+00:00:31,540 --> 00:00:32,993
+if we aren't locked in.
+
+14
+00:00:33,900 --> 00:00:35,680
+And now we need to add a new action,
+
+15
+00:00:35,680 --> 00:00:37,620
+and that's the log out action.
+
+16
+00:00:37,620 --> 00:00:40,950
+So here in the off module in the actions file,
+
+17
+00:00:40,950 --> 00:00:42,780
+I add a log out action.
+
+18
+00:00:42,780 --> 00:00:45,500
+And now logging out is really trivial.
+
+19
+00:00:45,500 --> 00:00:47,790
+We don't need to send any request
+
+20
+00:00:47,790 --> 00:00:50,570
+because you might remember that I said that the server
+
+21
+00:00:50,570 --> 00:00:53,920
+doesn't store any information about us anyways.
+
+22
+00:00:53,920 --> 00:00:56,760
+So there's no need to send a request.
+
+23
+00:00:56,760 --> 00:00:58,610
+Instead, the only thing we gotta do
+
+24
+00:00:58,610 --> 00:01:01,230
+is clear all that data here,
+
+25
+00:01:01,230 --> 00:01:02,683
+set it back to null.
+
+26
+00:01:04,269 --> 00:01:06,350
+Hence, we get our state
+
+27
+00:01:06,350 --> 00:01:09,870
+and we can simply set state token equal to null,
+
+28
+00:01:09,870 --> 00:01:12,920
+state user ID and set is equal to null,
+
+29
+00:01:12,920 --> 00:01:17,190
+and state token expiration and set it to null.
+
+30
+00:01:17,190 --> 00:01:18,920
+And that's all we gotta do.
+
+31
+00:01:18,920 --> 00:01:20,240
+Now, since we, for example,
+
+32
+00:01:20,240 --> 00:01:22,360
+checking our is authenticated headed gather,
+
+33
+00:01:22,360 --> 00:01:23,910
+whether we have a token,
+
+34
+00:01:23,910 --> 00:01:26,650
+this we'll set is authenticated header to false.
+
+35
+00:01:26,650 --> 00:01:28,500
+Once we set the token to null,
+
+36
+00:01:28,500 --> 00:01:31,540
+because that then is an invalid token.
+
+37
+00:01:31,540 --> 00:01:32,373
+Now of course though,
+
+38
+00:01:32,373 --> 00:01:34,280
+that's not the valid way of doing it.
+
+39
+00:01:34,280 --> 00:01:36,610
+That's an action, not a mutation,
+
+40
+00:01:36,610 --> 00:01:38,980
+we got a mutation set user already.
+
+41
+00:01:38,980 --> 00:01:41,450
+And in the end here, we are setting the free fields
+
+42
+00:01:41,450 --> 00:01:42,930
+which we wanna reset.
+
+43
+00:01:42,930 --> 00:01:44,560
+So we just need to pass a payload
+
+44
+00:01:44,560 --> 00:01:47,700
+with null values for all those fields.
+
+45
+00:01:47,700 --> 00:01:49,690
+So in the log out, action,
+
+46
+00:01:49,690 --> 00:01:51,690
+we actually get the context of the state
+
+47
+00:01:52,850 --> 00:01:56,290
+but then here we should simply context commit,
+
+48
+00:01:56,290 --> 00:01:57,940
+set user,
+
+49
+00:01:57,940 --> 00:02:00,760
+and pass in our payload object,
+
+50
+00:02:00,760 --> 00:02:03,470
+where token is null,
+
+51
+00:02:03,470 --> 00:02:05,570
+user ID is null,
+
+52
+00:02:05,570 --> 00:02:07,440
+and token expiration is null
+
+53
+00:02:07,440 --> 00:02:10,130
+for the same reason as just explained.
+
+54
+00:02:10,130 --> 00:02:12,073
+That's now a proper way of doing it.
+
+55
+00:02:13,430 --> 00:02:17,110
+And with that action added back in the header,
+
+56
+00:02:17,110 --> 00:02:19,480
+we can add a click listener
+
+57
+00:02:19,480 --> 00:02:21,610
+to this log out button
+
+58
+00:02:21,610 --> 00:02:24,140
+and in our script then add methods
+
+59
+00:02:24,140 --> 00:02:26,300
+and add a log out method
+
+60
+00:02:26,300 --> 00:02:28,940
+where we reach out to our store
+
+61
+00:02:28,940 --> 00:02:31,793
+and dispatched this log out action.
+
+62
+00:02:33,360 --> 00:02:37,233
+And now this log out method can be connected to this button.
+
+63
+00:02:38,720 --> 00:02:41,730
+And if we do this once this reloads,
+
+64
+00:02:41,730 --> 00:02:43,933
+we can log in,
+
+65
+00:02:45,650 --> 00:02:47,940
+let's say with test2 user
+
+66
+00:02:48,840 --> 00:02:50,640
+like this
+
+67
+00:02:50,640 --> 00:02:54,010
+now on all coaches, we also see the register as coach button
+
+68
+00:02:54,010 --> 00:02:57,390
+because this user isn't registered yet.
+
+69
+00:02:57,390 --> 00:03:01,200
+We can go to requests and we can click log out
+
+70
+00:03:01,200 --> 00:03:03,560
+and we see that updates.
+
+71
+00:03:03,560 --> 00:03:05,640
+Now, one thing that doesn't update
+
+72
+00:03:05,640 --> 00:03:09,020
+neither when we log out, nor when we log in,
+
+73
+00:03:09,020 --> 00:03:11,440
+is the page on which we are.
+
+74
+00:03:11,440 --> 00:03:13,870
+Now, if we do log in, it would be nice
+
+75
+00:03:13,870 --> 00:03:15,610
+if we would be redirected
+
+76
+00:03:15,610 --> 00:03:18,470
+back to the coaches' page for example.
+
+77
+00:03:18,470 --> 00:03:21,230
+If we do log out and I'm on requests,
+
+78
+00:03:21,230 --> 00:03:22,640
+it may be, would be nice,
+
+79
+00:03:22,640 --> 00:03:25,720
+since I can't technically go to requests anymore,
+
+80
+00:03:25,720 --> 00:03:28,810
+if I all did would be redirected somewhere else.
+
+81
+00:03:28,810 --> 00:03:30,080
+So let's work on that
+
+82
+00:03:30,080 --> 00:03:32,793
+routing and redirection part next.
+

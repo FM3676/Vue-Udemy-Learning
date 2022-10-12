@@ -1,0 +1,568 @@
+1
+00:00:02,410 --> 00:00:04,150
+We're you successful?
+
+2
+00:00:04,150 --> 00:00:05,350
+Let's try this together.
+
+3
+00:00:06,410 --> 00:00:07,920
+I'll add a new hook for this.
+
+4
+00:00:07,920 --> 00:00:08,890
+A new file.
+
+5
+00:00:08,890 --> 00:00:11,130
+sort dot js
+
+6
+00:00:11,130 --> 00:00:13,257
+And I'll export a function,
+
+7
+00:00:13,257 --> 00:00:14,540
+useSort.
+
+8
+00:00:14,540 --> 00:00:16,219
+Sounds like a fitting name.
+
+9
+00:00:16,219 --> 00:00:17,053
+Which in the end,
+
+10
+00:00:17,053 --> 00:00:18,800
+should later replace,
+
+11
+00:00:18,800 --> 00:00:20,461
+this sorting functionality.
+
+12
+00:00:20,461 --> 00:00:22,670
+So this sorting ref,
+
+13
+00:00:22,670 --> 00:00:24,360
+this computed property,
+
+14
+00:00:24,360 --> 00:00:25,963
+and this function.
+
+15
+00:00:28,110 --> 00:00:31,020
+Therefore, we can grab all of that,
+
+16
+00:00:31,020 --> 00:00:33,620
+cut it here, in userList,
+
+17
+00:00:33,620 --> 00:00:34,830
+and actually move it over
+
+18
+00:00:34,830 --> 00:00:37,853
+into this newly created useSort function.
+
+19
+00:00:39,440 --> 00:00:42,320
+Now, here I'm using a computed property and ref.
+
+20
+00:00:42,320 --> 00:00:46,400
+So, we should import ref and computed from vue.
+
+21
+00:00:46,400 --> 00:00:48,383
+So that these features are available.
+
+22
+00:00:49,514 --> 00:00:53,300
+I'm also relying on availableItems dot value,
+
+23
+00:00:53,300 --> 00:00:55,480
+and therefore, this should be an input,
+
+24
+00:00:55,480 --> 00:00:57,233
+a parameter in this function.
+
+25
+00:00:58,310 --> 00:01:00,920
+So, I will accept availableItems here,
+
+26
+00:01:00,920 --> 00:01:02,073
+as a parameter.
+
+27
+00:01:04,190 --> 00:01:08,580
+I'm also relying on fullName for the comparison,
+
+28
+00:01:08,580 --> 00:01:10,520
+which item should come first.
+
+29
+00:01:10,520 --> 00:01:14,070
+And that's, of course, very specific to users.
+
+30
+00:01:14,070 --> 00:01:16,770
+Now here, we're only using the sort functionality,
+
+31
+00:01:16,770 --> 00:01:17,800
+for the users.
+
+32
+00:01:17,800 --> 00:01:19,470
+So we could leave it like this.
+
+33
+00:01:19,470 --> 00:01:23,170
+But if you wanted a more generic sorting functionality,
+
+34
+00:01:23,170 --> 00:01:25,830
+a more generic useSort hook,
+
+35
+00:01:25,830 --> 00:01:29,150
+we might want to accept a dynamic value here.
+
+36
+00:01:29,150 --> 00:01:31,590
+So that the sortProperty,
+
+37
+00:01:31,590 --> 00:01:33,630
+is another parameter we get.
+
+38
+00:01:33,630 --> 00:01:37,410
+And here, we then access this dynamic value.
+
+39
+00:01:37,410 --> 00:01:39,460
+So that any property name,
+
+40
+00:01:39,460 --> 00:01:41,810
+can be passed in from outside.
+
+41
+00:01:41,810 --> 00:01:42,663
+Like this.
+
+42
+00:01:44,610 --> 00:01:46,970
+With that, however, we should be fine.
+
+43
+00:01:46,970 --> 00:01:48,780
+And now, we can again return,
+
+44
+00:01:48,780 --> 00:01:51,790
+our data and functions,
+
+45
+00:01:51,790 --> 00:01:52,623
+and so on,
+
+46
+00:01:52,623 --> 00:01:55,210
+from inside the useSort function,
+
+47
+00:01:55,210 --> 00:01:58,113
+to the places where we're going to call it.
+
+48
+00:01:58,980 --> 00:02:02,570
+So here, I want to return displayedUsers,
+
+49
+00:02:02,570 --> 00:02:03,723
+and sort,
+
+50
+00:02:05,415 --> 00:02:07,850
+displayedUsers and sort,
+
+51
+00:02:07,850 --> 00:02:09,770
+so that they can go back to UserList,
+
+52
+00:02:09,770 --> 00:02:11,830
+and use that data there.
+
+53
+00:02:11,830 --> 00:02:13,330
+I see in UserList,
+
+54
+00:02:13,330 --> 00:02:17,010
+I'm also exposing sorting to my template.
+
+55
+00:02:17,010 --> 00:02:18,580
+So therefore, in useSort,
+
+56
+00:02:18,580 --> 00:02:21,360
+we should also return this sorting ref.
+
+57
+00:02:21,360 --> 00:02:23,960
+So, that we have it available in the setup method,
+
+58
+00:02:23,960 --> 00:02:25,623
+of the UserList component.
+
+59
+00:02:27,300 --> 00:02:29,750
+And then here in the UserList component,
+
+60
+00:02:29,750 --> 00:02:31,860
+we can import,
+
+61
+00:02:31,860 --> 00:02:33,580
+useSort from
+
+62
+00:02:34,980 --> 00:02:36,700
+hooks,
+
+63
+00:02:36,700 --> 00:02:38,163
+sort.js.
+
+64
+00:02:39,520 --> 00:02:40,570
+And now,
+
+65
+00:02:40,570 --> 00:02:42,013
+call useSort here.
+
+66
+00:02:44,420 --> 00:02:45,577
+And to
+
+67
+00:02:45,577 --> 00:02:46,680
+useSort,
+
+68
+00:02:46,680 --> 00:02:49,170
+I want to forward my available items.
+
+69
+00:02:49,170 --> 00:02:51,080
+So the availableItems I'm getting here,
+
+70
+00:02:51,080 --> 00:02:52,460
+from useSearch.
+
+71
+00:02:52,460 --> 00:02:54,630
+This is a ref, a read only ref,
+
+72
+00:02:54,630 --> 00:02:55,690
+if you remember.
+
+73
+00:02:55,690 --> 00:02:56,830
+So I'm forwarding this
+
+74
+00:02:56,830 --> 00:02:58,363
+to useSort now.
+
+75
+00:02:59,630 --> 00:03:02,670
+And, I also pass in this property,
+
+76
+00:03:02,670 --> 00:03:03,950
+on which you want to sort.
+
+77
+00:03:03,950 --> 00:03:05,633
+Which here, is the fullName.
+
+78
+00:03:07,080 --> 00:03:08,640
+And we get back an object,
+
+79
+00:03:08,640 --> 00:03:10,560
+which we can destructure.
+
+80
+00:03:10,560 --> 00:03:14,800
+Where we will receive these three properties.
+
+81
+00:03:14,800 --> 00:03:16,760
+So, I'm copying them here,
+
+82
+00:03:16,760 --> 00:03:19,000
+putting them in here, reformatting this.
+
+83
+00:03:19,000 --> 00:03:20,650
+And now we have a sorting const,
+
+84
+00:03:20,650 --> 00:03:22,090
+a displayedUsers const,
+
+85
+00:03:22,090 --> 00:03:24,263
+and a sort const available here.
+
+86
+00:03:25,250 --> 00:03:27,330
+Sort will be this sort function.
+
+87
+00:03:27,330 --> 00:03:30,020
+It will point at this sort function,
+
+88
+00:03:30,020 --> 00:03:32,380
+which we defined here in useSort
+
+89
+00:03:32,380 --> 00:03:34,300
+and return in here.
+
+90
+00:03:34,300 --> 00:03:35,630
+And displayedUsers,
+
+91
+00:03:35,630 --> 00:03:38,170
+will be the displayedUsers computed property.
+
+92
+00:03:38,170 --> 00:03:40,430
+And therefore, a read only ref.
+
+93
+00:03:40,430 --> 00:03:42,480
+And sorting is our regular ref,
+
+94
+00:03:42,480 --> 00:03:44,260
+which we defined up here,
+
+95
+00:03:44,260 --> 00:03:45,093
+in useSort.
+
+96
+00:03:47,010 --> 00:03:49,970
+So now, we're forwarding sorting and sort,
+
+97
+00:03:49,970 --> 00:03:53,163
+to the template and displayedUsers as well.
+
+98
+00:03:54,530 --> 00:03:56,040
+If we now save this,
+
+99
+00:03:56,040 --> 00:03:56,930
+I'm getting an error,
+
+100
+00:03:56,930 --> 00:03:58,790
+that I'm still importing some things,
+
+101
+00:03:58,790 --> 00:04:00,110
+which I'm not needing anymore,
+
+102
+00:04:00,110 --> 00:04:02,300
+in the UserList dot vue file.
+
+103
+00:04:02,300 --> 00:04:04,420
+Because we're not defining any refs,
+
+104
+00:04:04,420 --> 00:04:06,670
+or computed properties anymore.
+
+105
+00:04:06,670 --> 00:04:08,540
+So, we can remove these two imports
+
+106
+00:04:08,540 --> 00:04:10,730
+and just continue importing toRefs,
+
+107
+00:04:10,730 --> 00:04:12,253
+because I'm still using that.
+
+108
+00:04:13,550 --> 00:04:14,393
+With that it,
+
+109
+00:04:15,630 --> 00:04:16,579
+compiled still,
+
+110
+00:04:16,579 --> 00:04:18,550
+and I can see the app here.
+
+111
+00:04:18,550 --> 00:04:20,610
+And sorting seems to work,
+
+112
+00:04:20,610 --> 00:04:22,253
+just as before.
+
+113
+00:04:23,140 --> 00:04:25,510
+So, if I give this a try,
+
+114
+00:04:25,510 --> 00:04:26,343
+yeah,
+
+115
+00:04:26,343 --> 00:04:28,160
+that seems to work.
+
+116
+00:04:28,160 --> 00:04:29,540
+And with that,
+
+117
+00:04:29,540 --> 00:04:31,200
+we now also would have,
+
+118
+00:04:31,200 --> 00:04:33,793
+our reusable useSort hook.
+
+119
+00:04:34,890 --> 00:04:37,140
+Now, the goal with decomposition API,
+
+120
+00:04:37,140 --> 00:04:39,050
+is not that you always,
+
+121
+00:04:39,050 --> 00:04:42,070
+need to outsource all your setup logic,
+
+122
+00:04:42,070 --> 00:04:44,030
+into separate hooks.
+
+123
+00:04:44,030 --> 00:04:45,210
+Here, we're just doing
+
+124
+00:04:45,210 --> 00:04:47,130
+this for practice purposes.
+
+125
+00:04:47,130 --> 00:04:48,650
+It would be absolutely fine,
+
+126
+00:04:48,650 --> 00:04:50,220
+if you have some refs,
+
+127
+00:04:50,220 --> 00:04:52,310
+and computed properties and so on,
+
+128
+00:04:52,310 --> 00:04:54,053
+left in this setup method.
+
+129
+00:04:54,980 --> 00:04:56,450
+Here, it just turns out,
+
+130
+00:04:56,450 --> 00:04:59,291
+that we just have these two main functionalities,
+
+131
+00:04:59,291 --> 00:05:01,500
+which are now outsourced,
+
+132
+00:05:01,500 --> 00:05:03,350
+and which should now be usable
+
+133
+00:05:03,350 --> 00:05:05,130
+in any component here,
+
+134
+00:05:05,130 --> 00:05:09,270
+which needs searching or sorting functionality.
+
+135
+00:05:09,270 --> 00:05:11,280
+And that's the great advantage
+
+136
+00:05:11,280 --> 00:05:13,375
+of decomposition API.
+
+137
+00:05:13,375 --> 00:05:17,020
+Especially, once you know about custom hooks.
+
+138
+00:05:17,020 --> 00:05:19,520
+Because now we have a lean component here.
+
+139
+00:05:19,520 --> 00:05:21,570
+We got reusable functionality.
+
+140
+00:05:21,570 --> 00:05:23,060
+And that really allows us,
+
+141
+00:05:23,060 --> 00:05:25,150
+to build super huge components,
+
+142
+00:05:25,150 --> 00:05:27,033
+which are still maintainable.
+

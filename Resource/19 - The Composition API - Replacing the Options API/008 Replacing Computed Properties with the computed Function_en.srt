@@ -1,0 +1,616 @@
+1
+00:00:02,220 --> 00:00:04,500
+So now we get started with ReFS
+
+2
+00:00:04,500 --> 00:00:08,443
+reactive and with functions which replace methods.
+
+3
+00:00:09,370 --> 00:00:11,520
+What about computed properties?
+
+4
+00:00:11,520 --> 00:00:13,880
+How can we replace those?
+
+5
+00:00:13,880 --> 00:00:17,450
+Again, let's expand our example here a little bit.
+
+6
+00:00:17,450 --> 00:00:21,660
+Let's say we actually don't just have to change Age button,
+
+7
+00:00:21,660 --> 00:00:25,530
+but we have a div below that below the Change Age button.
+
+8
+00:00:25,530 --> 00:00:28,780
+and in there we have two inputs.
+
+9
+00:00:28,780 --> 00:00:30,603
+The first input here,
+
+10
+00:00:32,290 --> 00:00:35,090
+is for the First Name.
+
+11
+00:00:35,090 --> 00:00:39,070
+The second input is for the Last Name.
+
+12
+00:00:39,070 --> 00:00:43,150
+And I want to use the values entered here
+
+13
+00:00:43,150 --> 00:00:44,700
+to output my userName.
+
+14
+00:00:44,700 --> 00:00:46,230
+Which should be combined
+
+15
+00:00:46,230 --> 00:00:48,710
+from first and Last Name.
+
+16
+00:00:48,710 --> 00:00:51,170
+Now let's see how we can implement this.
+
+17
+00:00:51,170 --> 00:00:54,400
+First of all, I will add two ReFS here.
+
+18
+00:00:54,400 --> 00:00:58,000
+I will add a firstName, ref,
+
+19
+00:00:58,000 --> 00:00:59,803
+which initially is an empty string.
+
+20
+00:01:01,480 --> 00:01:05,170
+And a lastName ref, which also is empty initially.
+
+21
+00:01:05,170 --> 00:01:07,830
+Of course you could have different default values,
+
+22
+00:01:07,830 --> 00:01:09,773
+but I will start with empty strings.
+
+23
+00:01:11,600 --> 00:01:14,810
+Now I want to update the firstName
+
+24
+00:01:14,810 --> 00:01:17,120
+whenever we type into this input,
+
+25
+00:01:17,120 --> 00:01:20,600
+and the lastName, whenever we type into this input.
+
+26
+00:01:20,600 --> 00:01:22,440
+We'll have a look at two-Way binding
+
+27
+00:01:22,440 --> 00:01:24,210
+and V model in a second,
+
+28
+00:01:24,210 --> 00:01:25,870
+for the moment I'll do it manually
+
+29
+00:01:25,870 --> 00:01:29,300
+by listening to, at input.
+
+30
+00:01:29,300 --> 00:01:31,223
+So by listening to the input event.
+
+31
+00:01:32,270 --> 00:01:35,800
+Now I want to trigger some code whenever this event occurs
+
+32
+00:01:35,800 --> 00:01:38,350
+and therefore I'll actually add a new function
+
+33
+00:01:39,289 --> 00:01:44,289
+setFirstName where I get the default event object.
+
+34
+00:01:44,330 --> 00:01:47,550
+And where I then want to setFirstName dot value,
+
+35
+00:01:47,550 --> 00:01:50,320
+so the value of the firstName ref
+
+36
+00:01:50,320 --> 00:01:52,453
+equal to event target value.
+
+37
+00:01:54,010 --> 00:01:57,060
+And do the same for the lastName
+
+38
+00:01:57,060 --> 00:02:00,060
+setLastName getting the event
+
+39
+00:02:00,060 --> 00:02:02,260
+and setting lastName dot value
+
+40
+00:02:02,260 --> 00:02:04,653
+equal to event target value.
+
+41
+00:02:06,860 --> 00:02:09,759
+Now we can expose these two functions
+
+42
+00:02:09,759 --> 00:02:11,773
+through this object to the template.
+
+43
+00:02:14,562 --> 00:02:18,210
+SetFirstName points at setFirstName.
+
+44
+00:02:18,210 --> 00:02:20,690
+And here I use the same name for the key
+
+45
+00:02:20,690 --> 00:02:24,330
+as I do for the variable that holds the function.
+
+46
+00:02:24,330 --> 00:02:27,780
+And hence we can use the modern JavaScript Shorthand,
+
+47
+00:02:27,780 --> 00:02:29,700
+to just use this name once,
+
+48
+00:02:29,700 --> 00:02:31,950
+and this will automatically be expanded
+
+49
+00:02:31,950 --> 00:02:34,410
+to this longer syntax by JavaScript.
+
+50
+00:02:34,410 --> 00:02:38,290
+This simply saves us some code which we don't have to type
+
+51
+00:02:38,290 --> 00:02:40,330
+and the same for setLastName.
+
+52
+00:02:40,330 --> 00:02:42,945
+So now these functions setFirstName
+
+53
+00:02:42,945 --> 00:02:44,460
+and setLastName are exposed
+
+54
+00:02:44,460 --> 00:02:46,873
+under these identifiers to the template.
+
+55
+00:02:48,380 --> 00:02:51,270
+So we can bind them, here
+
+56
+00:02:51,270 --> 00:02:54,440
+on the first input our point at setFirstName,
+
+57
+00:02:54,440 --> 00:02:56,690
+on the second one, I'll point at setLastName.
+
+58
+00:02:59,160 --> 00:03:02,120
+And calling these functions works just as you learned it
+
+59
+00:03:02,120 --> 00:03:03,840
+you can call them manually,
+
+60
+00:03:03,840 --> 00:03:06,540
+you can forward the event object manually then,
+
+61
+00:03:06,540 --> 00:03:08,580
+or you just point at them,
+
+62
+00:03:08,580 --> 00:03:11,380
+and let view execute those functions for you
+
+63
+00:03:11,380 --> 00:03:14,470
+passing on the default event object for you
+
+64
+00:03:14,470 --> 00:03:16,200
+when these events occur.
+
+65
+00:03:16,200 --> 00:03:19,470
+So regarding event listening and how you call functions
+
+66
+00:03:19,470 --> 00:03:20,913
+nothing changed.
+
+67
+00:03:22,490 --> 00:03:24,720
+But now we got these two inputs in place,
+
+68
+00:03:24,720 --> 00:03:26,634
+and we're updating firstName
+
+69
+00:03:26,634 --> 00:03:28,950
+and lastName with every keystroke.
+
+70
+00:03:28,950 --> 00:03:31,550
+Now, I don't really need uName anymore,
+
+71
+00:03:31,550 --> 00:03:35,010
+instead now I want to have a computed userName,
+
+72
+00:03:35,010 --> 00:03:37,740
+which is based on the first and the lastName
+
+73
+00:03:37,740 --> 00:03:40,510
+and which therefore should update whenever first
+
+74
+00:03:40,510 --> 00:03:42,910
+and lastName changes.
+
+75
+00:03:42,910 --> 00:03:44,500
+Now, as you might guess,
+
+76
+00:03:44,500 --> 00:03:48,440
+we're not going to do it is by adding the computed option.
+
+77
+00:03:48,440 --> 00:03:51,060
+This is as we would have done it in the past,
+
+78
+00:03:51,060 --> 00:03:53,700
+but this is not how we'll do it anymore.
+
+79
+00:03:53,700 --> 00:03:56,240
+Instead again, we'll write more code
+
+80
+00:03:56,240 --> 00:03:58,180
+here in the setup method.
+
+81
+00:03:58,180 --> 00:03:59,163
+But which code?
+
+82
+00:04:00,040 --> 00:04:02,030
+Well, there is another function
+
+83
+00:04:02,030 --> 00:04:04,570
+we can import from the view framework.
+
+84
+00:04:04,570 --> 00:04:07,830
+And that is the computed function.
+
+85
+00:04:07,830 --> 00:04:11,683
+And it already gives us a clear hint at what it will do.
+
+86
+00:04:12,520 --> 00:04:17,110
+You call computed in your setup function,
+
+87
+00:04:17,110 --> 00:04:20,560
+and then computed once a function
+
+88
+00:04:21,610 --> 00:04:23,380
+as an argument.
+
+89
+00:04:23,380 --> 00:04:26,310
+It's the function that holds your computed logic.
+
+90
+00:04:26,310 --> 00:04:27,780
+So basically what you had
+
+91
+00:04:27,780 --> 00:04:30,800
+in a computed property before as well,
+
+92
+00:04:30,800 --> 00:04:34,990
+computed properties with the options API were methods
+
+93
+00:04:34,990 --> 00:04:37,860
+where you returns to computed value.
+
+94
+00:04:37,860 --> 00:04:40,220
+And we're doing the same here in this function
+
+95
+00:04:40,220 --> 00:04:42,740
+which we pass to the computed call here,
+
+96
+00:04:42,740 --> 00:04:44,960
+we return our computed value.
+
+97
+00:04:44,960 --> 00:04:49,793
+So for example, firstName plus a blank plus lastName.
+
+98
+00:04:50,794 --> 00:04:52,800
+And not this firstName,
+
+99
+00:04:52,800 --> 00:04:55,050
+because we're not referring to a property,
+
+100
+00:04:55,050 --> 00:04:58,370
+I'm just referring to this firstName, ref here
+
+101
+00:04:58,370 --> 00:05:00,183
+and to this lastName, ref.
+
+102
+00:05:01,320 --> 00:05:04,310
+Well and actually since I'm referring to ReFS,
+
+103
+00:05:04,310 --> 00:05:06,190
+we should use dot value,
+
+104
+00:05:06,190 --> 00:05:08,740
+because you learned a ref is an object
+
+105
+00:05:08,740 --> 00:05:13,280
+with a value property and the actual value which is managed,
+
+106
+00:05:13,280 --> 00:05:15,863
+is stored in that value property.
+
+107
+00:05:17,060 --> 00:05:20,240
+Which is also why we're setting the value property here
+
+108
+00:05:20,240 --> 00:05:22,740
+in set first and set lastName.
+
+109
+00:05:22,740 --> 00:05:26,330
+You're only allowed to omit the value property,
+
+110
+00:05:26,330 --> 00:05:29,610
+if you use this ref in the template.
+
+111
+00:05:29,610 --> 00:05:32,160
+If you use it anywhere in JavaScript code,
+
+112
+00:05:32,160 --> 00:05:34,620
+and you wanna read or write to the value,
+
+113
+00:05:34,620 --> 00:05:36,823
+then you have to access dot value.
+
+114
+00:05:38,150 --> 00:05:42,090
+But with that we return this value as a computed property.
+
+115
+00:05:42,090 --> 00:05:44,710
+And this computed function simply makes sure that
+
+116
+00:05:44,710 --> 00:05:48,550
+this function we pass to it is re-executed
+
+117
+00:05:48,550 --> 00:05:51,130
+whenever one of the dependencies.
+
+118
+00:05:51,130 --> 00:05:55,860
+So in this case, whenever firstName or lastName changes.
+
+119
+00:05:55,860 --> 00:05:59,500
+And the view will automatically dive into this function
+
+120
+00:05:59,500 --> 00:06:03,520
+and keep track of all the dependencies specified there.
+
+121
+00:06:03,520 --> 00:06:07,620
+It will see that you're using firstName and lastName here
+
+122
+00:06:07,620 --> 00:06:10,510
+and therefore, it will automatically keep track of those
+
+123
+00:06:10,510 --> 00:06:13,410
+ReFS and updates the computed property
+
+124
+00:06:13,410 --> 00:06:15,933
+whenever one of the two ReFS changes.
+
+125
+00:06:17,260 --> 00:06:20,010
+Now of course computing a value is nice,
+
+126
+00:06:20,010 --> 00:06:22,410
+but only useful if we save it somewhere.
+
+127
+00:06:22,410 --> 00:06:24,373
+So here I have my,
+
+128
+00:06:25,382 --> 00:06:27,040
+uName,
+
+129
+00:06:27,040 --> 00:06:29,690
+I commented out the old uName.
+
+130
+00:06:29,690 --> 00:06:33,860
+So now I have my new uName, which is a computed property.
+
+131
+00:06:33,860 --> 00:06:38,356
+And a computed property under hood is also just a ref.
+
+132
+00:06:38,356 --> 00:06:41,730
+So on uname, you can access a value,
+
+133
+00:06:41,730 --> 00:06:43,870
+but, and that's important
+
+134
+00:06:43,870 --> 00:06:47,270
+but it is a ref which is read-only.
+
+135
+00:06:47,270 --> 00:06:50,650
+Normal ReFS like firstName and lastName and Age
+
+136
+00:06:50,650 --> 00:06:52,430
+are read and write.
+
+137
+00:06:52,430 --> 00:06:57,253
+We can set new values as we're doing it in various places.
+
+138
+00:06:58,410 --> 00:07:02,490
+Computed properties, computed ReFS are read-only.
+
+139
+00:07:02,490 --> 00:07:05,930
+Setting value like I'm doing it here
+
+140
+00:07:05,930 --> 00:07:07,780
+is not something you should do
+
+141
+00:07:07,780 --> 00:07:09,630
+is not something that's allowed.
+
+142
+00:07:09,630 --> 00:07:11,003
+Reading is okay though.
+
+143
+00:07:12,660 --> 00:07:13,860
+And with that,
+
+144
+00:07:13,860 --> 00:07:16,650
+we return our userName
+
+145
+00:07:16,650 --> 00:07:21,650
+still pointing at uName, which now is this new computed ref.
+
+146
+00:07:21,720 --> 00:07:24,710
+And with that userName should be output here.
+
+147
+00:07:24,710 --> 00:07:29,070
+And it should be updated whenever we type into those inputs.
+
+148
+00:07:29,070 --> 00:07:32,970
+So if we save this, you initially see no name up there,
+
+149
+00:07:32,970 --> 00:07:37,020
+but if I start typing, you see that name
+
+150
+00:07:37,020 --> 00:07:38,820
+getting longer and longer.
+
+151
+00:07:38,820 --> 00:07:42,180
+And that is because we're using a computed property
+
+152
+00:07:42,180 --> 00:07:45,490
+a computed ref which we exposed to the template,
+
+153
+00:07:45,490 --> 00:07:48,970
+which we update by updating our first
+
+154
+00:07:48,970 --> 00:07:50,453
+and lastName ReFS.
+

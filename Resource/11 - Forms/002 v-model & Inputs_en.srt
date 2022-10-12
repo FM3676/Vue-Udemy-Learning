@@ -1,0 +1,464 @@
+1
+00:00:02,260 --> 00:00:05,230
+And for that as so often,
+
+2
+00:00:05,230 --> 00:00:09,180
+you find a starting project attached, downloaded, extracted.
+
+3
+00:00:09,180 --> 00:00:11,790
+Run npm install and then npm run serv
+
+4
+00:00:11,790 --> 00:00:13,770
+once you installed all dependencies.
+
+5
+00:00:13,770 --> 00:00:17,580
+And this brings up the development server.
+
+6
+00:00:17,580 --> 00:00:19,890
+Once this up and running,
+
+7
+00:00:19,890 --> 00:00:22,900
+this is what you should see on the screen.
+
+8
+00:00:22,900 --> 00:00:26,770
+Now here I prepared a very basic form for us.
+
+9
+00:00:26,770 --> 00:00:29,320
+We got input field for a text here,
+
+10
+00:00:29,320 --> 00:00:31,420
+input field for a number.
+
+11
+00:00:31,420 --> 00:00:32,810
+We got a drop down,
+
+12
+00:00:32,810 --> 00:00:36,830
+we got some check boxes and we got some radio buttons.
+
+13
+00:00:36,830 --> 00:00:40,090
+And then also a button to submit the form.
+
+14
+00:00:40,090 --> 00:00:44,290
+Now let's first of all focus on how we can connect view
+
+15
+00:00:44,290 --> 00:00:45,430
+to all those inputs
+
+16
+00:00:45,430 --> 00:00:48,390
+and get information out of these inputs.
+
+17
+00:00:48,390 --> 00:00:51,110
+Since this is probably something you'll need a lot
+
+18
+00:00:51,110 --> 00:00:52,720
+in apps you're building.
+
+19
+00:00:52,720 --> 00:00:56,630
+Let's there after talk about form validation
+
+20
+00:00:56,630 --> 00:00:59,600
+and how we can add basic validation here.
+
+21
+00:00:59,600 --> 00:01:04,489
+And let's at the end, also build our own form control.
+
+22
+00:01:04,489 --> 00:01:08,310
+But step by step, here's TheForm.vue file.
+
+23
+00:01:08,310 --> 00:01:11,420
+And here you see all the markup for the form
+
+24
+00:01:11,420 --> 00:01:13,500
+you see here on the screen.
+
+25
+00:01:13,500 --> 00:01:17,130
+Now this component has no script logic at the moment.
+
+26
+00:01:17,130 --> 00:01:20,550
+It just has a template and some styles.
+
+27
+00:01:20,550 --> 00:01:24,060
+So let's actually get started by adding a script object
+
+28
+00:01:24,060 --> 00:01:27,640
+and let's start by extracting some data out of these inputs.
+
+29
+00:01:27,640 --> 00:01:28,570
+And for the moment,
+
+30
+00:01:28,570 --> 00:01:31,680
+I will simply log that data to the console
+
+31
+00:01:31,680 --> 00:01:33,983
+so that we see that extraction worked.
+
+32
+00:01:34,840 --> 00:01:37,850
+So we will need a method for that of course,
+
+33
+00:01:37,850 --> 00:01:41,620
+which is triggered when the form is submitted
+
+34
+00:01:41,620 --> 00:01:44,120
+and I'll name it submitForm.
+
+35
+00:01:44,120 --> 00:01:45,480
+That's my method name.
+
+36
+00:01:45,480 --> 00:01:48,440
+And that's something we already did in this course.
+
+37
+00:01:48,440 --> 00:01:50,880
+We can now trigger this method here
+
+38
+00:01:50,880 --> 00:01:53,980
+when this form is submitted.
+
+39
+00:01:53,980 --> 00:01:56,510
+We could also add a click listener
+
+40
+00:01:56,510 --> 00:01:58,280
+to the button we have here.
+
+41
+00:01:58,280 --> 00:02:01,250
+But since buttons, inside of forms,
+
+42
+00:02:01,250 --> 00:02:05,410
+submit those forms and trigger the submit events,
+
+43
+00:02:05,410 --> 00:02:09,710
+you typically wanna listen to those submit events instead.
+
+44
+00:02:09,710 --> 00:02:13,030
+And here, that's also something you already saw quite a bit
+
+45
+00:02:13,030 --> 00:02:13,863
+in this course.
+
+46
+00:02:13,863 --> 00:02:17,330
+Here, you typically add the prevent modifier
+
+47
+00:02:17,330 --> 00:02:20,520
+to ensure that when form submission occurs,
+
+48
+00:02:20,520 --> 00:02:23,100
+we don't have that browser default.
+
+49
+00:02:23,100 --> 00:02:25,780
+Which would be that a request is sent
+
+50
+00:02:25,780 --> 00:02:29,180
+and which would therefore result in a page reload,
+
+51
+00:02:29,180 --> 00:02:31,320
+which in the end restarts our view app
+
+52
+00:02:31,320 --> 00:02:33,970
+and we therefore lose all our data.
+
+53
+00:02:33,970 --> 00:02:35,753
+That's definitely not what we want.
+
+54
+00:02:37,810 --> 00:02:41,400
+So here I wanna trigger the submitForm method,
+
+55
+00:02:41,400 --> 00:02:44,200
+and now let's see how we can connect view
+
+56
+00:02:44,200 --> 00:02:45,893
+to those different inputs.
+
+57
+00:02:47,270 --> 00:02:51,430
+Now let's start with the text input here for the name.
+
+58
+00:02:51,430 --> 00:02:56,430
+We have two main ways of getting data out of such an input.
+
+59
+00:02:56,520 --> 00:02:59,960
+Option one, is that we use the model
+
+60
+00:02:59,960 --> 00:03:04,730
+or our own custom input event listener for example,
+
+61
+00:03:04,730 --> 00:03:07,010
+to listen to every keystroke
+
+62
+00:03:07,010 --> 00:03:10,780
+and store what's the user entered in some data property
+
+63
+00:03:10,780 --> 00:03:12,063
+with every keystroke.
+
+64
+00:03:13,050 --> 00:03:16,350
+This is perfectly fine and especially useful
+
+65
+00:03:16,350 --> 00:03:19,600
+if you maybe also want to validate this input
+
+66
+00:03:19,600 --> 00:03:22,400
+on every keystroke to show an error message,
+
+67
+00:03:22,400 --> 00:03:25,283
+even before the user tries to submit anything.
+
+68
+00:03:26,630 --> 00:03:29,490
+In addition, if you use the model,
+
+69
+00:03:29,490 --> 00:03:32,010
+you of course have two way binding,
+
+70
+00:03:32,010 --> 00:03:35,230
+which can also help with resetting the form.
+
+71
+00:03:35,230 --> 00:03:36,700
+With two way binding,
+
+72
+00:03:36,700 --> 00:03:39,610
+you can not just listen to what the user entered,
+
+73
+00:03:39,610 --> 00:03:42,500
+but you can also overwrite what's in the form
+
+74
+00:03:42,500 --> 00:03:45,350
+and you can change the value which is stored in the input.
+
+75
+00:03:45,350 --> 00:03:47,423
+And that also can be helpful.
+
+76
+00:03:48,690 --> 00:03:51,260
+And actually that is what I will do here.
+
+77
+00:03:51,260 --> 00:03:54,210
+I will add a couple of data properties
+
+78
+00:03:54,210 --> 00:03:56,970
+and therefore we need this data option
+
+79
+00:03:56,970 --> 00:04:00,760
+in our component configuration object here,
+
+80
+00:04:00,760 --> 00:04:04,660
+and I will start by adding a data property
+
+81
+00:04:04,660 --> 00:04:09,033
+for this name input I have up here for the username.
+
+82
+00:04:10,110 --> 00:04:14,580
+So let's go down here and let's add a username field.
+
+83
+00:04:14,580 --> 00:04:16,700
+This name of course is totally up to you.
+
+84
+00:04:16,700 --> 00:04:19,000
+You can name it whatever you want,
+
+85
+00:04:19,000 --> 00:04:20,209
+but I'll name it userName
+
+86
+00:04:20,209 --> 00:04:22,490
+since I'm going to store a username in a here.
+
+87
+00:04:22,490 --> 00:04:26,093
+And I'll start with an empty string as an initial value.
+
+88
+00:04:28,210 --> 00:04:33,210
+Now we can bind this with v-model here to this input.
+
+89
+00:04:33,690 --> 00:04:36,730
+And that means that view will automatically detect
+
+90
+00:04:36,730 --> 00:04:40,990
+every keystroke, update the value stored in username,
+
+91
+00:04:40,990 --> 00:04:43,960
+but when on the other hand we change
+
+92
+00:04:43,960 --> 00:04:46,990
+what's stored in username with our code.
+
+93
+00:04:46,990 --> 00:04:49,110
+For example, when the form is submitted
+
+94
+00:04:49,110 --> 00:04:51,030
+and we reset the value,
+
+95
+00:04:51,030 --> 00:04:55,263
+then our change will also be reflected in this input.
+
+96
+00:04:57,120 --> 00:04:59,000
+And that's something we can test here.
+
+97
+00:04:59,000 --> 00:05:00,910
+We're now storing this in userName.
+
+98
+00:05:00,910 --> 00:05:05,683
+So now in submitForm, we can of course console log username.
+
+99
+00:05:07,580 --> 00:05:10,580
+So output that we're going to print the username
+
+100
+00:05:10,580 --> 00:05:13,870
+and then output the concrete values stored in username.
+
+101
+00:05:13,870 --> 00:05:16,600
+And there after, I'll set this username
+
+102
+00:05:16,600 --> 00:05:18,083
+back to an empty string.
+
+103
+00:05:19,590 --> 00:05:22,810
+Effectively resetting what the user entered.
+
+104
+00:05:22,810 --> 00:05:27,160
+If we now save all of that and open up the developer tools,
+
+105
+00:05:27,160 --> 00:05:30,120
+I can enter Max here in this name field.
+
+106
+00:05:30,120 --> 00:05:33,980
+And if I click save data, you see username Max.
+
+107
+00:05:33,980 --> 00:05:36,680
+So using the value worked.
+
+108
+00:05:36,680 --> 00:05:39,090
+And you see the input field is empty now
+
+109
+00:05:39,090 --> 00:05:42,453
+because I did set username back to an empty string here.
+
+110
+00:05:43,640 --> 00:05:46,100
+And that is all something you learned already.
+
+111
+00:05:46,100 --> 00:05:47,320
+I'm aware of that.
+
+112
+00:05:47,320 --> 00:05:51,210
+But this is the foundation of working with user input.
+
+113
+00:05:51,210 --> 00:05:54,060
+Now, let's build up on that foundation.
+
+114
+00:05:54,060 --> 00:05:56,200
+Let's learn more about v-model
+
+115
+00:05:56,200 --> 00:05:58,870
+and let's learn how we can extract values
+
+116
+00:05:58,870 --> 00:06:01,263
+from these other control types here.
+

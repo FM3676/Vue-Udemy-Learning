@@ -1,0 +1,448 @@
+1
+00:00:02,120 --> 00:00:05,010
+Now that's it for the changes that you should be aware of.
+
+2
+00:00:05,010 --> 00:00:07,750
+Now let's dive into the new features.
+
+3
+00:00:07,750 --> 00:00:10,140
+Here we got a teleport component
+
+4
+00:00:10,140 --> 00:00:12,320
+and a feature called fragments.
+
+5
+00:00:12,320 --> 00:00:13,903
+Now what's that all about.
+
+6
+00:00:14,820 --> 00:00:16,840
+Again, I prepared something for you.
+
+7
+00:00:16,840 --> 00:00:19,440
+The teleport fragments folder.
+
+8
+00:00:19,440 --> 00:00:20,823
+Let's dive into that.
+
+9
+00:00:23,490 --> 00:00:26,473
+And NPM install and NPM run serve.
+
+10
+00:00:27,700 --> 00:00:31,020
+Once this is up and running. If I reload,
+
+11
+00:00:31,020 --> 00:00:33,380
+that is what I got. And if I click on a button here,
+
+12
+00:00:33,380 --> 00:00:36,230
+I get this modal where I can confirm
+
+13
+00:00:36,230 --> 00:00:38,470
+that I want to deactivate this or cancel.
+
+14
+00:00:38,470 --> 00:00:39,850
+And if I confirm it's gone,
+
+15
+00:00:39,850 --> 00:00:42,913
+so a very simple dummy app here, using Vue 3.
+
+16
+00:00:43,790 --> 00:00:46,060
+Now, here we can use two new features,
+
+17
+00:00:46,060 --> 00:00:48,943
+teleport and fragments. Let's start with teleport.
+
+18
+00:00:49,820 --> 00:00:51,850
+If I opened this modal,
+
+19
+00:00:51,850 --> 00:00:55,340
+we can inspect this in the dev tools.
+
+20
+00:00:55,340 --> 00:00:57,393
+And here in the elements tab,
+
+21
+00:00:58,520 --> 00:01:02,280
+we actually see that this dialogue and the backdrop
+
+22
+00:01:02,280 --> 00:01:06,920
+is rendered somewhere nested in our element tree, right?
+
+23
+00:01:06,920 --> 00:01:09,070
+So this is the real DOM and our backdrop
+
+24
+00:01:09,070 --> 00:01:11,603
+and dialogue is deeply nested in the DOM.
+
+25
+00:01:12,510 --> 00:01:15,410
+Now, visually that's no problem,
+
+26
+00:01:15,410 --> 00:01:19,150
+but it's actually not perfect for semantics
+
+27
+00:01:19,150 --> 00:01:20,820
+for accessibility, maybe.
+
+28
+00:01:20,820 --> 00:01:22,780
+And it could even break your styling
+
+29
+00:01:22,780 --> 00:01:25,820
+if you don't work with set index, for example.
+
+30
+00:01:25,820 --> 00:01:29,530
+In general, this of course should be an overlay to the app.
+
+31
+00:01:29,530 --> 00:01:34,470
+So logically it should not be deeply nested in the DOM tree.
+
+32
+00:01:34,470 --> 00:01:37,310
+Instead, it should be directly inside of the body,
+
+33
+00:01:37,310 --> 00:01:39,040
+for example.
+
+34
+00:01:39,040 --> 00:01:41,450
+Now this is not something you technically need,
+
+35
+00:01:41,450 --> 00:01:44,620
+but it's simply would be a bit better logically,
+
+36
+00:01:44,620 --> 00:01:47,400
+semantically, from accessibility perspectives.
+
+37
+00:01:47,400 --> 00:01:50,140
+And hence, it would be great if we could move this div
+
+38
+00:01:50,140 --> 00:01:52,590
+and the dialogue to a different place in the DOM.
+
+39
+00:01:53,470 --> 00:01:56,210
+With Vue 2 this wasn't really possible,
+
+40
+00:01:56,210 --> 00:01:58,070
+with Vue 3 it is.
+
+41
+00:01:58,070 --> 00:02:00,340
+We now got a feature called teleport.
+
+42
+00:02:00,340 --> 00:02:03,423
+If you know, react there, it's called portal.
+
+43
+00:02:04,320 --> 00:02:05,890
+Now, how does it work?
+
+44
+00:02:05,890 --> 00:02:09,130
+In the component where you want to move things,
+
+45
+00:02:09,130 --> 00:02:12,100
+for example, here in the confirmed dialogue component,
+
+46
+00:02:12,100 --> 00:02:17,100
+you can simply wrap your entire component here,
+
+47
+00:02:17,380 --> 00:02:22,380
+your entire template with a new built in teleport component,
+
+48
+00:02:22,730 --> 00:02:24,830
+just like this.
+
+49
+00:02:24,830 --> 00:02:27,910
+And then on teleport, you need the to prop
+
+50
+00:02:27,910 --> 00:02:30,980
+where you pass in a CSS selector, for example,
+
+51
+00:02:30,980 --> 00:02:33,250
+selecting the body element to make it clear
+
+52
+00:02:33,250 --> 00:02:36,100
+that everything in here should actually be rendered
+
+53
+00:02:36,100 --> 00:02:38,320
+directly in the body.
+
+54
+00:02:38,320 --> 00:02:41,430
+Now you still use this component as you did before.
+
+55
+00:02:41,430 --> 00:02:43,780
+So I can still use it in the template
+
+56
+00:02:43,780 --> 00:02:45,940
+of another nested component.
+
+57
+00:02:45,940 --> 00:02:50,210
+As I'm doing here in admin mode, this is still possible.
+
+58
+00:02:50,210 --> 00:02:54,260
+We can still pass props to this component, listen to events.
+
+59
+00:02:54,260 --> 00:02:56,610
+This all works as you learned it.
+
+60
+00:02:56,610 --> 00:02:59,380
+But now the actual DOM, which has rendered
+
+61
+00:02:59,380 --> 00:03:02,090
+will be rendered in a different place.
+
+62
+00:03:02,090 --> 00:03:07,090
+If we save that and reload, I can still view this modal,
+
+63
+00:03:07,320 --> 00:03:11,400
+but if we now inspect it, we see this div, the backdrop,
+
+64
+00:03:11,400 --> 00:03:13,860
+the dialogue and the div which holds both
+
+65
+00:03:13,860 --> 00:03:15,840
+that's now directly in the body.
+
+66
+00:03:15,840 --> 00:03:19,670
+It's not deeply nested in our arbor component tree
+
+67
+00:03:19,670 --> 00:03:22,640
+in our arbor node tree, I should say.
+
+68
+00:03:22,640 --> 00:03:25,450
+So that's teleport a nice new feature,
+
+69
+00:03:25,450 --> 00:03:27,290
+which allows you to write semantically
+
+70
+00:03:27,290 --> 00:03:29,853
+more correct HTML code, I guess.
+
+71
+00:03:31,330 --> 00:03:34,440
+Another nice feature is the fragment feature.
+
+72
+00:03:34,440 --> 00:03:37,400
+Here in admin mode, I got this confirmed dialogue
+
+73
+00:03:37,400 --> 00:03:38,980
+inside of this list item.
+
+74
+00:03:38,980 --> 00:03:41,030
+Now, technically I can place it anywhere
+
+75
+00:03:41,030 --> 00:03:42,500
+because we just learned
+
+76
+00:03:42,500 --> 00:03:45,510
+that the HTML code will be rendered somewhere else.
+
+77
+00:03:45,510 --> 00:03:47,260
+But still to make it clear that
+
+78
+00:03:47,260 --> 00:03:49,330
+this is not really in the list item.
+
+79
+00:03:49,330 --> 00:03:51,760
+It just belongs to this component.
+
+80
+00:03:51,760 --> 00:03:54,100
+We might want to move it out of there.
+
+81
+00:03:54,100 --> 00:03:56,480
+And with Vue 2 this was not allowed.
+
+82
+00:03:56,480 --> 00:03:58,880
+My IDE still gives me an error here,
+
+83
+00:03:58,880 --> 00:04:02,250
+but I can tell you with Vue 3, this is allowed.
+
+84
+00:04:02,250 --> 00:04:06,950
+With Vue 3 you may have multiple root elements
+
+85
+00:04:06,950 --> 00:04:09,190
+inside of your component template.
+
+86
+00:04:09,190 --> 00:04:12,010
+You're not restricted to have just one.
+
+87
+00:04:12,010 --> 00:04:14,290
+You can have multiple sibling elements
+
+88
+00:04:14,290 --> 00:04:16,160
+directly in your template.
+
+89
+00:04:16,160 --> 00:04:17,079
+This is new.
+
+90
+00:04:17,079 --> 00:04:21,230
+This was not supported with Vue 2, now with Vue 3,
+
+91
+00:04:21,230 --> 00:04:25,003
+this works, as you can tell, we got no error here.
+
+92
+00:04:25,950 --> 00:04:28,310
+And that's teleport and fragments.
+
+93
+00:04:28,310 --> 00:04:30,050
+Now the biggest new feature,
+
+94
+00:04:30,050 --> 00:04:34,400
+which is 100% optional is the composition API.
+
+95
+00:04:34,400 --> 00:04:39,310
+The composition API can replace the existing options API.
+
+96
+00:04:39,310 --> 00:04:41,640
+And I actually want to take a closer look
+
+97
+00:04:41,640 --> 00:04:44,850
+at this composition API, therefore I have this
+
+98
+00:04:44,850 --> 00:04:47,780
+in a separate lecture right after this lecture.
+
+99
+00:04:47,780 --> 00:04:50,340
+Before we go to that separate video though,
+
+100
+00:04:50,340 --> 00:04:52,970
+here's the last new feature I wanna touch on.
+
+101
+00:04:52,970 --> 00:04:55,560
+It's kind of new TypeScript support.
+
+102
+00:04:55,560 --> 00:04:58,600
+You always could use TypeScript with Vue,
+
+103
+00:04:58,600 --> 00:05:02,830
+with Vue 3, it's now easier because Vue 3 internally
+
+104
+00:05:02,830 --> 00:05:04,770
+is built with TypeScript.
+
+105
+00:05:04,770 --> 00:05:06,600
+Now, if you wanna learn more about that,
+
+106
+00:05:06,600 --> 00:05:08,670
+I recommend the official docs.
+
+107
+00:05:08,670 --> 00:05:11,420
+There, you can learn all about TypeScript support
+
+108
+00:05:11,420 --> 00:05:14,590
+and how to use TypeScript in your Vue 3 projects,
+
+109
+00:05:14,590 --> 00:05:16,980
+and how to write TypeScript code there.
+
+110
+00:05:16,980 --> 00:05:20,190
+It's an alternative. You don't have to use TypeScript.
+
+111
+00:05:20,190 --> 00:05:22,840
+I'm using Java script in most of my projects,
+
+112
+00:05:22,840 --> 00:05:25,543
+but you can use TypeScript if you prefer that.
+

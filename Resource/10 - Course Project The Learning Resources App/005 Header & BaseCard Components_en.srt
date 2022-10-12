@@ -1,0 +1,544 @@
+1
+00:00:02,080 --> 00:00:04,910
+Now, I will start with the card look
+
+2
+00:00:04,910 --> 00:00:06,990
+and for that in the Components folder,
+
+3
+00:00:06,990 --> 00:00:09,680
+I'll create a new subfolder which I will name UI
+
+4
+00:00:10,540 --> 00:00:14,540
+because I wanna store some general UI components in there.
+
+5
+00:00:14,540 --> 00:00:19,030
+And my card should be one of those general components.
+
+6
+00:00:19,030 --> 00:00:22,340
+So in there I'll add a BaseCard.vue file
+
+7
+00:00:22,340 --> 00:00:25,510
+following this Vue style guide recommendation
+
+8
+00:00:26,610 --> 00:00:29,470
+and in here we now need a template of course.
+
+9
+00:00:29,470 --> 00:00:31,380
+Now how should a card look like?
+
+10
+00:00:31,380 --> 00:00:33,900
+What should a card component do?
+
+11
+00:00:33,900 --> 00:00:35,410
+It's a very simple component.
+
+12
+00:00:35,410 --> 00:00:38,920
+It will have no logic attached to it.
+
+13
+00:00:38,920 --> 00:00:43,010
+It's just about being a wrapper to other content,
+
+14
+00:00:43,010 --> 00:00:45,360
+which then has a certain look.
+
+15
+00:00:45,360 --> 00:00:48,343
+And for that in this template, I'll just add a Div,
+
+16
+00:00:49,560 --> 00:00:51,600
+opening and closing,
+
+17
+00:00:51,600 --> 00:00:54,263
+and then provide a certain styling.
+
+18
+00:00:56,440 --> 00:01:01,160
+So for that, I'm again adding my scoped styles
+
+19
+00:01:01,160 --> 00:01:05,250
+and attach to find the BaseCard CSS file,
+
+20
+00:01:05,250 --> 00:01:08,240
+which as before contains the styling,
+
+21
+00:01:08,240 --> 00:01:11,880
+the CSS rules you wanna add between your style text here
+
+22
+00:01:11,880 --> 00:01:13,713
+in the BaseCard.vue file.
+
+23
+00:01:15,230 --> 00:01:17,560
+This will style the div in a certain way,
+
+24
+00:01:17,560 --> 00:01:19,913
+but now one important thing is missing here.
+
+25
+00:01:21,070 --> 00:01:24,820
+I mentioned that this card should be usable as a wrapper
+
+26
+00:01:24,820 --> 00:01:27,100
+around any content we want
+
+27
+00:01:27,100 --> 00:01:29,920
+and Vue has a built-in feature
+
+28
+00:01:29,920 --> 00:01:34,640
+that makes building such components easy slots.
+
+29
+00:01:34,640 --> 00:01:38,300
+So here I will add a slot now between those divs
+
+30
+00:01:38,300 --> 00:01:41,530
+so that we can feed in any markup,
+
+31
+00:01:41,530 --> 00:01:44,210
+any HTML code of our choice
+
+32
+00:01:44,210 --> 00:01:47,730
+and it will be wrapped by this div with this style,
+
+33
+00:01:47,730 --> 00:01:48,933
+that's the idea.
+
+34
+00:01:50,110 --> 00:01:52,540
+Now we don't need to give this slot a name
+
+35
+00:01:52,540 --> 00:01:55,170
+because it's the only slot here
+
+36
+00:01:55,170 --> 00:01:58,870
+and with that we can now go to the LearningResource
+
+37
+00:01:58,870 --> 00:02:01,370
+where I wanna use that card
+
+38
+00:02:01,370 --> 00:02:05,913
+and replace this div here with that base-card.
+
+39
+00:02:07,850 --> 00:02:09,770
+And actually here, I just noticed
+
+40
+00:02:09,770 --> 00:02:11,860
+the div was placed incorrectly.
+
+41
+00:02:11,860 --> 00:02:14,470
+The div should of course wrap all the content
+
+42
+00:02:14,470 --> 00:02:15,950
+inside of the list item.
+
+43
+00:02:15,950 --> 00:02:19,630
+So it wraps the header, the paragraph and the nav here.
+
+44
+00:02:19,630 --> 00:02:23,783
+That's all part of this base-card.
+
+45
+00:02:25,810 --> 00:02:27,760
+But, wait a second,
+
+46
+00:02:27,760 --> 00:02:30,660
+is base-card available already?
+
+47
+00:02:30,660 --> 00:02:33,610
+It's not because we haven't registered it.
+
+48
+00:02:33,610 --> 00:02:35,120
+Now since we're using it here
+
+49
+00:02:35,120 --> 00:02:37,470
+in the LearningResource.vue file,
+
+50
+00:02:37,470 --> 00:02:40,653
+we could of course add it as a local component here,
+
+51
+00:02:41,490 --> 00:02:44,640
+but this BaseCard component will probably be used
+
+52
+00:02:44,640 --> 00:02:47,400
+in other parts of the application as well.
+
+53
+00:02:47,400 --> 00:02:50,530
+Therefore, adding it as a global component
+
+54
+00:02:50,530 --> 00:02:52,750
+might make more sense.
+
+55
+00:02:52,750 --> 00:02:56,420
+And in general, these base components
+
+56
+00:02:56,420 --> 00:02:58,760
+will typically be global components
+
+57
+00:02:58,760 --> 00:03:01,900
+because typically being based components,
+
+58
+00:03:01,900 --> 00:03:04,180
+they will be used multiple times
+
+59
+00:03:04,180 --> 00:03:06,053
+in different parts of your app.
+
+60
+00:03:07,460 --> 00:03:09,910
+So therefore I'll go to main.js
+
+61
+00:03:09,910 --> 00:03:12,770
+and I will import BaseCard there
+
+62
+00:03:12,770 --> 00:03:17,770
+from ./components/UI/BaseCard.vue.
+
+63
+00:03:19,480 --> 00:03:23,860
+And now store my created app here in a constant
+
+64
+00:03:23,860 --> 00:03:25,340
+so that on this app
+
+65
+00:03:25,340 --> 00:03:28,370
+I can then all the conveniently call component
+
+66
+00:03:28,370 --> 00:03:32,520
+and register the base-card HTML element name
+
+67
+00:03:32,520 --> 00:03:36,333
+for this BaseCard component we're importing here.
+
+68
+00:03:38,290 --> 00:03:40,190
+And with that if I saved this,
+
+69
+00:03:40,190 --> 00:03:44,810
+we now got this card look for our LearningResources
+
+70
+00:03:44,810 --> 00:03:47,403
+and that already looks quite a bit better.
+
+71
+00:03:49,540 --> 00:03:51,650
+Now let's work on the header
+
+72
+00:03:51,650 --> 00:03:54,500
+and for that I'll add yet another subfolder,
+
+73
+00:03:54,500 --> 00:03:57,130
+the Layouts subfolder,
+
+74
+00:03:57,130 --> 00:04:00,673
+which should hold my layout specific components,
+
+75
+00:04:01,830 --> 00:04:04,320
+so basically the header and the footer
+
+76
+00:04:04,320 --> 00:04:05,910
+if we would have one.
+
+77
+00:04:05,910 --> 00:04:07,950
+Here I'll add the header
+
+78
+00:04:07,950 --> 00:04:10,160
+and since we'll only have one header
+
+79
+00:04:10,160 --> 00:04:12,100
+in the entire application,
+
+80
+00:04:12,100 --> 00:04:13,790
+I'll name it, TheHeader.
+
+81
+00:04:16,050 --> 00:04:19,005
+Side note, I could have also named the StoredResources,
+
+82
+00:04:19,005 --> 00:04:20,450
+TheResources
+
+83
+00:04:20,450 --> 00:04:22,860
+because we're also only using that ones,
+
+84
+00:04:22,860 --> 00:04:25,900
+but here I think StoredResources is the better name
+
+85
+00:04:25,900 --> 00:04:29,200
+because it describes in greater detail
+
+86
+00:04:29,200 --> 00:04:31,200
+what this component will be about.
+
+87
+00:04:31,200 --> 00:04:32,420
+Header on the other end
+
+88
+00:04:32,420 --> 00:04:34,610
+would otherwise just be a single word
+
+89
+00:04:34,610 --> 00:04:37,090
+which is not recommended anyways.
+
+90
+00:04:37,090 --> 00:04:38,500
+Keep in mind that your components
+
+91
+00:04:38,500 --> 00:04:40,020
+should consist of two words
+
+92
+00:04:40,020 --> 00:04:42,823
+and therefore TheHeader is a great name here.
+
+93
+00:04:43,680 --> 00:04:45,510
+Long story short, that's my header.
+
+94
+00:04:45,510 --> 00:04:47,120
+I'll add my template here
+
+95
+00:04:47,120 --> 00:04:48,250
+and in that template
+
+96
+00:04:48,250 --> 00:04:51,150
+I of course want to have a header element,
+
+97
+00:04:51,150 --> 00:04:54,150
+the built in HTML header element
+
+98
+00:04:54,150 --> 00:04:57,580
+and in there I'll have h1 element
+
+99
+00:04:59,240 --> 00:05:01,830
+and between those tags,
+
+100
+00:05:01,830 --> 00:05:04,190
+I wanna output the title
+
+101
+00:05:04,190 --> 00:05:06,870
+and I could hard code the title here,
+
+102
+00:05:06,870 --> 00:05:09,240
+but also for practice purposes,
+
+103
+00:05:09,240 --> 00:05:11,310
+I'll make this a prop here,
+
+104
+00:05:11,310 --> 00:05:13,300
+but you could also just hard code it here.
+
+105
+00:05:13,300 --> 00:05:14,763
+That would be fine as well.
+
+106
+00:05:15,750 --> 00:05:17,520
+So now I'll add my script here
+
+107
+00:05:17,520 --> 00:05:20,240
+and make it clear that I want to get a title prop
+
+108
+00:05:20,240 --> 00:05:22,373
+so that I can output it here.
+
+109
+00:05:23,230 --> 00:05:26,610
+And this header should now be used in our App.vue file
+
+110
+00:05:26,610 --> 00:05:29,490
+above the StoredResources.
+
+111
+00:05:29,490 --> 00:05:32,090
+Hence here, I want to import TheHeader
+
+112
+00:05:32,090 --> 00:05:37,090
+from /components/layouts,TheHeader.vue,
+
+113
+00:05:40,740 --> 00:05:44,253
+and I will register it here as a local component.
+
+114
+00:05:46,120 --> 00:05:50,750
+And then here I can add the-header, like this,
+
+115
+00:05:50,750 --> 00:05:53,670
+and now also set the title prop
+
+116
+00:05:53,670 --> 00:05:57,600
+and I'll name my demo application here RememberMe
+
+117
+00:05:57,600 --> 00:06:00,680
+because it's all about remembering learning resources,
+
+118
+00:06:00,680 --> 00:06:01,513
+right?
+
+119
+00:06:02,790 --> 00:06:04,280
+So that's TheHeader component.
+
+120
+00:06:04,280 --> 00:06:08,040
+Let's now also add some styling to TheHeader.vue file
+
+121
+00:06:08,040 --> 00:06:10,490
+and for that you know what we add,
+
+122
+00:06:10,490 --> 00:06:15,040
+our style tag here with the scoped attribute
+
+123
+00:06:15,040 --> 00:06:19,050
+to make sure that the styling only affects this component.
+
+124
+00:06:19,050 --> 00:06:21,900
+And as before you find a file attached
+
+125
+00:06:21,900 --> 00:06:24,630
+in this case a header.css file,
+
+126
+00:06:24,630 --> 00:06:26,970
+which contains the styles you should copy
+
+127
+00:06:26,970 --> 00:06:28,743
+into those style tags here.
+
+128
+00:06:31,240 --> 00:06:33,630
+And then, if we reload,
+
+129
+00:06:33,630 --> 00:06:37,250
+we see this header above our StoredResources,
+
+130
+00:06:37,250 --> 00:06:40,360
+so this is slowly taking shape.
+
+131
+00:06:40,360 --> 00:06:42,290
+As a next step,
+
+132
+00:06:42,290 --> 00:06:47,200
+why don't we also turn the button into a separate component.
+
+133
+00:06:47,200 --> 00:06:50,860
+A separate component which has some default styling.
+
+134
+00:06:50,860 --> 00:06:53,200
+Again, try this on your own,
+
+135
+00:06:53,200 --> 00:06:55,100
+come up with a solution on your own.
+
+136
+00:06:55,100 --> 00:06:57,963
+We'll implement it together in the next lecture.
+

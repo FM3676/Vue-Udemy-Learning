@@ -1,0 +1,420 @@
+1
+00:00:02,070 --> 00:00:04,760
+So let's add some dummy content to the other pages
+
+2
+00:00:04,760 --> 00:00:07,110
+and I'll continue with requests received,
+
+3
+00:00:07,110 --> 00:00:09,410
+because we can easily reach that page by clicking
+
+4
+00:00:09,410 --> 00:00:11,530
+on requests in the header.
+
+5
+00:00:11,530 --> 00:00:13,480
+And well we got no requests yet
+
+6
+00:00:13,480 --> 00:00:16,530
+so for the moment, I'll just output requests here,
+
+7
+00:00:16,530 --> 00:00:19,523
+just so that we see that loading this works.
+
+8
+00:00:20,470 --> 00:00:23,280
+So therefore we now see requests here.
+
+9
+00:00:23,280 --> 00:00:26,370
+Now the other pages are a bit hard to reach at the moment,
+
+10
+00:00:26,370 --> 00:00:29,510
+we got no links to get to the contact page
+
+11
+00:00:29,510 --> 00:00:31,793
+or to get to the registration page,
+
+12
+00:00:32,689 --> 00:00:35,570
+but we can at least add some of those links already
+
+13
+00:00:35,570 --> 00:00:37,050
+I guess.
+
+14
+00:00:37,050 --> 00:00:39,670
+For example in the coaches list,
+
+15
+00:00:39,670 --> 00:00:42,060
+yes, we don't have any coaches yet,
+
+16
+00:00:42,060 --> 00:00:43,980
+but outputting the list of coaches
+
+17
+00:00:43,980 --> 00:00:48,520
+will actually just be a part of this component here.
+
+18
+00:00:48,520 --> 00:00:52,680
+Let's say we will have an unordered list down here later,
+
+19
+00:00:52,680 --> 00:00:54,860
+but above that unordered list
+
+20
+00:00:54,860 --> 00:00:56,840
+I want to have a div,
+
+21
+00:00:56,840 --> 00:00:58,860
+so a different container here in the end,
+
+22
+00:00:58,860 --> 00:01:01,900
+which will give us CSS class of controls,
+
+23
+00:01:01,900 --> 00:01:05,800
+which should have two buttons let's say,
+
+24
+00:01:05,800 --> 00:01:10,500
+one button that allows us to refresh the list of coaches,
+
+25
+00:01:10,500 --> 00:01:14,070
+later we'll have coaches stored on a database in the web
+
+26
+00:01:14,070 --> 00:01:16,960
+and this button should then fetch the latest
+
+27
+00:01:16,960 --> 00:01:18,670
+snapshot of that data.
+
+28
+00:01:18,670 --> 00:01:21,430
+But besides that refresh button,
+
+29
+00:01:21,430 --> 00:01:22,540
+which we need,
+
+30
+00:01:22,540 --> 00:01:24,650
+we'll also have a button here
+
+31
+00:01:24,650 --> 00:01:28,423
+which should allow us to register as a coach.
+
+32
+00:01:30,380 --> 00:01:33,090
+And therefore actually this should not be a button,
+
+33
+00:01:33,090 --> 00:01:34,563
+but a router link.
+
+34
+00:01:35,400 --> 00:01:39,000
+So here I wanna have a router link, register as coach,
+
+35
+00:01:39,000 --> 00:01:42,570
+which goes to /register
+
+36
+00:01:42,570 --> 00:01:46,343
+because that was our registration route here.
+
+37
+00:01:47,990 --> 00:01:52,030
+So this is our link I want here on the coaches page.
+
+38
+00:01:52,030 --> 00:01:53,490
+This one.
+
+39
+00:01:53,490 --> 00:01:56,010
+And therefore we can now also add some dummy code here
+
+40
+00:01:56,010 --> 00:01:58,390
+to the coach registration.
+
+41
+00:01:58,390 --> 00:02:00,460
+For now I'll just say register here,
+
+42
+00:02:00,460 --> 00:02:02,640
+but soon we'll add a form on this page,
+
+43
+00:02:02,640 --> 00:02:05,070
+which allows us to fill in all the details
+
+44
+00:02:05,070 --> 00:02:08,293
+we need to provide to register as a coach.
+
+45
+00:02:09,770 --> 00:02:12,933
+So now if I click this, we should see register at least.
+
+46
+00:02:14,010 --> 00:02:16,790
+Now we also have this contact page,
+
+47
+00:02:16,790 --> 00:02:21,430
+which we later can reach by clicking on the contact button
+
+48
+00:02:21,430 --> 00:02:23,240
+of a specific coach.
+
+49
+00:02:23,240 --> 00:02:25,390
+At the moment we have no specific coach,
+
+50
+00:02:25,390 --> 00:02:28,110
+which is also a problem for the coach detail page,
+
+51
+00:02:28,110 --> 00:02:30,200
+which we can't reach for that reason.
+
+52
+00:02:30,200 --> 00:02:32,550
+But of course we can manually reach it
+
+53
+00:02:32,550 --> 00:02:34,990
+by filling in coaches/
+
+54
+00:02:34,990 --> 00:02:37,680
+and then some fictional coach ID here.
+
+55
+00:02:37,680 --> 00:02:39,780
+And if we do that, we would theoretically
+
+56
+00:02:39,780 --> 00:02:42,510
+reach the coach details page.
+
+57
+00:02:42,510 --> 00:02:46,830
+So we can therefore add a dummy template
+
+58
+00:02:46,830 --> 00:02:48,453
+to coach detail as well,
+
+59
+00:02:49,500 --> 00:02:52,713
+details for coach.
+
+60
+00:02:53,620 --> 00:02:56,330
+And if we save that, we should see this on the screen
+
+61
+00:02:56,330 --> 00:02:59,433
+if we reach this path here in the URL.
+
+62
+00:03:01,680 --> 00:03:04,210
+And with that, of course, we can then also
+
+63
+00:03:04,210 --> 00:03:07,700
+add a router link here, in that,
+
+64
+00:03:07,700 --> 00:03:10,553
+or on that, coach detail page,
+
+65
+00:03:11,980 --> 00:03:16,980
+where we say contact, where I wanna go to, /coaches,
+
+66
+00:03:17,310 --> 00:03:20,050
+then the ID, which later will be dynamic,
+
+67
+00:03:20,050 --> 00:03:24,020
+but for now I'll hard-code it, /contact,
+
+68
+00:03:24,020 --> 00:03:26,460
+because you might remember that the contact page
+
+69
+00:03:26,460 --> 00:03:28,650
+was this nested child route here,
+
+70
+00:03:28,650 --> 00:03:32,670
+which we reached with coaches, some ID, /contact,
+
+71
+00:03:32,670 --> 00:03:36,050
+and therefore that's just what I'm using here.
+
+72
+00:03:36,050 --> 00:03:37,490
+And if I save that,
+
+73
+00:03:37,490 --> 00:03:40,380
+we now have that link on the coach detail page.
+
+74
+00:03:40,380 --> 00:03:45,093
+And if we click that we reach contact here.
+
+75
+00:03:46,110 --> 00:03:48,730
+But what we also notice is that we reach it
+
+76
+00:03:48,730 --> 00:03:50,940
+but nothing changes on the page.
+
+77
+00:03:50,940 --> 00:03:54,130
+Well keep in mind that this is a child route.
+
+78
+00:03:54,130 --> 00:03:58,120
+Contact is a child route of that detail route here.
+
+79
+00:03:58,120 --> 00:04:00,050
+And the consequence of that
+
+80
+00:04:00,050 --> 00:04:04,170
+is that it will not be loaded to replace the route
+
+81
+00:04:04,170 --> 00:04:06,140
+that was on the screen previously,
+
+82
+00:04:06,140 --> 00:04:09,280
+but that instead it needs a new router view.
+
+83
+00:04:09,280 --> 00:04:11,720
+It needs a separate router view,
+
+84
+00:04:11,720 --> 00:04:14,970
+which has to be inside of the parent component
+
+85
+00:04:14,970 --> 00:04:16,600
+of the child route.
+
+86
+00:04:16,600 --> 00:04:19,220
+So in this case, in the coach detail component.
+
+87
+00:04:19,220 --> 00:04:22,089
+We need to add a router view there.
+
+88
+00:04:22,089 --> 00:04:25,930
+So here we can add a router view
+
+89
+00:04:25,930 --> 00:04:29,440
+and that's where then the child routes of coach detail
+
+90
+00:04:29,440 --> 00:04:33,140
+will be loaded, in this case, the only child route we have,
+
+91
+00:04:33,140 --> 00:04:35,320
+which is this contact route.
+
+92
+00:04:35,320 --> 00:04:38,540
+So with that if we now also add some dummy content
+
+93
+00:04:38,540 --> 00:04:40,640
+to contact coach,
+
+94
+00:04:40,640 --> 00:04:44,090
+contact a coach or anything like that,
+
+95
+00:04:44,090 --> 00:04:49,090
+you see that this now shows up here if we are on /contact.
+
+96
+00:04:49,300 --> 00:04:52,410
+If we are on just /c1 it's not there,
+
+97
+00:04:52,410 --> 00:04:54,403
+if you click contact it is there.
+
+98
+00:04:55,470 --> 00:04:57,900
+And with that we can reach all the routes
+
+99
+00:04:57,900 --> 00:05:01,530
+and we can see some dummy content on those pages.
+
+100
+00:05:01,530 --> 00:05:04,850
+But of course we're not just there for dummy content only.
+
+101
+00:05:04,850 --> 00:05:08,130
+So therefore why don't we as a next step,
+
+102
+00:05:08,130 --> 00:05:12,690
+add Vuex so that we at least have a list of dummy coaches,
+
+103
+00:05:12,690 --> 00:05:15,620
+which we can display and start working with
+
+104
+00:05:15,620 --> 00:05:18,050
+before we then later add the functionality
+
+105
+00:05:18,050 --> 00:05:19,993
+to add our own coach data.
+

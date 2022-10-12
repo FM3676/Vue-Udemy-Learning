@@ -1,0 +1,444 @@
+1
+00:00:02,090 --> 00:00:05,510
+Now I'll start with the data here.
+
+2
+00:00:05,510 --> 00:00:08,900
+So I'll plan my data first,
+
+3
+00:00:08,900 --> 00:00:11,320
+but this is just one approach.
+
+4
+00:00:11,320 --> 00:00:13,430
+I'll then move on to the sign
+
+5
+00:00:13,430 --> 00:00:15,240
+of the components as a next step,
+
+6
+00:00:15,240 --> 00:00:17,240
+what do we need here?
+
+7
+00:00:17,240 --> 00:00:20,200
+Well, obviously we got these two main features,
+
+8
+00:00:20,200 --> 00:00:23,480
+we got the Coaches
+
+9
+00:00:23,480 --> 00:00:25,920
+and we got the Requests
+
+10
+00:00:25,920 --> 00:00:28,370
+so the messages basically.
+
+11
+00:00:28,370 --> 00:00:31,330
+I hope you can read my writing here,
+
+12
+00:00:31,330 --> 00:00:34,280
+I'll soon start to draw and this will not be better.
+
+13
+00:00:34,280 --> 00:00:36,300
+So yeah, that's why I'm also talking
+
+14
+00:00:36,300 --> 00:00:38,900
+hopefully we're all on the same page at the end.
+
+15
+00:00:38,900 --> 00:00:40,640
+So we've got Coaches and Requests,
+
+16
+00:00:40,640 --> 00:00:44,800
+these are our two main pieces of data.
+
+17
+00:00:44,800 --> 00:00:46,590
+Now we will probably need
+
+18
+00:00:46,590 --> 00:00:49,340
+a list of Coaches.
+
+19
+00:00:49,340 --> 00:00:51,440
+So we want that
+
+20
+00:00:51,440 --> 00:00:56,440
+and we probably also need a list of Requests, right?
+
+21
+00:00:56,460 --> 00:00:59,810
+Because multiple Requests can be sent
+
+22
+00:00:59,810 --> 00:01:03,240
+also multiple Requests to the same Coach.
+
+23
+00:01:03,240 --> 00:01:06,650
+Now every Request item of course,
+
+24
+00:01:06,650 --> 00:01:09,430
+should point at Coaches.
+
+25
+00:01:09,430 --> 00:01:11,430
+So a Request
+
+26
+00:01:12,680 --> 00:01:15,230
+will definitely be an important data piece
+
+27
+00:01:15,230 --> 00:01:20,120
+and a Request will definitely hold some Coach ID
+
+28
+00:01:20,120 --> 00:01:22,380
+because a Request needs to be connected
+
+29
+00:01:22,380 --> 00:01:26,330
+to the Coach to which it was sent.
+
+30
+00:01:26,330 --> 00:01:28,120
+Now in addition our Request
+
+31
+00:01:28,120 --> 00:01:29,980
+will need a message,
+
+32
+00:01:29,980 --> 00:01:33,190
+like the text that sent to the Coach,
+
+33
+00:01:33,190 --> 00:01:36,340
+and so that the Coach is able to respond
+
+34
+00:01:36,340 --> 00:01:40,393
+let's say a Request should contain an email address.
+
+35
+00:01:41,370 --> 00:01:44,010
+So these are the three pieces of data
+
+36
+00:01:44,010 --> 00:01:46,720
+I want to have in a Request.
+
+37
+00:01:46,720 --> 00:01:49,100
+And we'll have a list of such Requests
+
+38
+00:01:49,100 --> 00:01:51,113
+also as part of the application.
+
+39
+00:01:52,890 --> 00:01:54,670
+Now back to the Coaches,
+
+40
+00:01:54,670 --> 00:01:57,320
+what is a Coach?
+
+41
+00:01:57,320 --> 00:02:00,290
+Well obviously, Coaches are important.
+
+42
+00:02:00,290 --> 00:02:02,910
+A Coach will have an ID,
+
+43
+00:02:02,910 --> 00:02:04,730
+a Coach also will have a name.
+
+44
+00:02:04,730 --> 00:02:08,500
+Let's say we have a first name
+
+45
+00:02:08,500 --> 00:02:13,200
+and we have a last name here.
+
+46
+00:02:13,200 --> 00:02:15,030
+Now we can have more data
+
+47
+00:02:15,030 --> 00:02:16,913
+I want to have a,
+
+48
+00:02:18,003 --> 00:02:19,510
+description
+
+49
+00:02:20,900 --> 00:02:22,270
+where the coach simply is able
+
+50
+00:02:22,270 --> 00:02:24,400
+to describe him or herself
+
+51
+00:02:24,400 --> 00:02:26,070
+and I want to have a rate
+
+52
+00:02:26,070 --> 00:02:29,453
+so the hourly rate we would charge for a coaching.
+
+53
+00:02:30,320 --> 00:02:33,790
+Now that looks like a good set of data for me
+
+54
+00:02:33,790 --> 00:02:35,180
+and with that,
+
+55
+00:02:35,180 --> 00:02:38,530
+we should have the core data entities
+
+56
+00:02:38,530 --> 00:02:42,120
+to core data models we'll need in this app.
+
+57
+00:02:42,120 --> 00:02:45,490
+Coaches and Requests and Requests through to
+
+58
+00:02:45,490 --> 00:02:48,900
+Coach ID are connected to Coaches.
+
+59
+00:02:48,900 --> 00:02:51,040
+Now that's just a rough data model.
+
+60
+00:02:51,040 --> 00:02:54,420
+You can definitely do this in a more professional way,
+
+61
+00:02:54,420 --> 00:02:58,010
+you can use what you maybe learned in university.
+
+62
+00:02:58,010 --> 00:03:00,070
+This is just a general plan
+
+63
+00:03:00,070 --> 00:03:03,260
+and that's how I like to start my projects.
+
+64
+00:03:03,260 --> 00:03:06,150
+I now have a general idea of the data I'll need,
+
+65
+00:03:06,150 --> 00:03:08,940
+and this will help me lay out VueX later.
+
+66
+00:03:08,940 --> 00:03:13,210
+For example, we'll probably have two VueX modules,
+
+67
+00:03:13,210 --> 00:03:15,200
+We'll have a module for our Coaches
+
+68
+00:03:15,200 --> 00:03:17,723
+and we'll have a module for Requests.
+
+69
+00:03:19,000 --> 00:03:22,640
+Now of course data where planning data and planning VueX
+
+70
+00:03:22,640 --> 00:03:25,700
+is not just about planning the data we want to store,
+
+71
+00:03:25,700 --> 00:03:28,020
+it's also about planning our Getters,
+
+72
+00:03:28,020 --> 00:03:30,430
+our actions, our mutations.
+
+73
+00:03:30,430 --> 00:03:32,330
+So regarding the Getters,
+
+74
+00:03:32,330 --> 00:03:34,020
+it will be straightforward.
+
+75
+00:03:34,020 --> 00:03:36,580
+We want a Getter to fetch all Coaches
+
+76
+00:03:36,580 --> 00:03:39,440
+and a Getter to fetch all Requests.
+
+77
+00:03:39,440 --> 00:03:43,030
+Now what about the mutations though?
+
+78
+00:03:43,030 --> 00:03:44,920
+What about those?
+
+79
+00:03:44,920 --> 00:03:46,230
+Well for a Coach,
+
+80
+00:03:46,230 --> 00:03:48,640
+we definitely need a mutation to
+
+81
+00:03:48,640 --> 00:03:51,150
+register as a Coach
+
+82
+00:03:51,150 --> 00:03:56,150
+and we need a mutation to set Coaches,
+
+83
+00:03:56,770 --> 00:03:58,250
+which might not be obvious,
+
+84
+00:03:58,250 --> 00:03:59,570
+but when the app starts,
+
+85
+00:03:59,570 --> 00:04:02,590
+I want to load Coaches from a database,
+
+86
+00:04:02,590 --> 00:04:04,250
+from a web server.
+
+87
+00:04:04,250 --> 00:04:06,900
+So from a backend and from Firebase in this case,
+
+88
+00:04:06,900 --> 00:04:08,410
+and once the data is loaded,
+
+89
+00:04:08,410 --> 00:04:11,230
+once the list of Coaches is loaded from the database,
+
+90
+00:04:11,230 --> 00:04:14,410
+I want to set it in my local VueX store.
+
+91
+00:04:14,410 --> 00:04:18,490
+So these will be the two mutations I need for Coaches.
+
+92
+00:04:18,490 --> 00:04:22,620
+Now for requests, I need a contact
+
+93
+00:04:23,800 --> 00:04:25,250
+Coach mutation,
+
+94
+00:04:25,250 --> 00:04:28,610
+which basically sets or adds a new Request.
+
+95
+00:04:28,610 --> 00:04:30,490
+And I also need a set
+
+96
+00:04:31,670 --> 00:04:34,410
+Requests mutation here
+
+97
+00:04:34,410 --> 00:04:36,150
+so that I can set my Requests
+
+98
+00:04:36,150 --> 00:04:38,300
+once I loaded them from a backend,
+
+99
+00:04:38,300 --> 00:04:40,150
+because just like Coaches,
+
+100
+00:04:40,150 --> 00:04:42,260
+Requests will be sent to a database,
+
+101
+00:04:42,260 --> 00:04:43,450
+will be stored in there
+
+102
+00:04:43,450 --> 00:04:45,520
+and I want to be able to load them from there
+
+103
+00:04:45,520 --> 00:04:48,150
+and then set them through a mutation.
+
+104
+00:04:48,150 --> 00:04:49,550
+So when it comes to actions,
+
+105
+00:04:49,550 --> 00:04:52,350
+we basically have actions for loading Coaches
+
+106
+00:04:52,350 --> 00:04:54,070
+and loading Requests,
+
+107
+00:04:54,070 --> 00:04:57,420
+and we'll have actions for adding a new Coach
+
+108
+00:04:57,420 --> 00:04:59,640
+and for adding a new Request.
+
+109
+00:04:59,640 --> 00:05:04,300
+And this is about it regarding the data of this application.
+
+110
+00:05:04,300 --> 00:05:07,220
+Now let's move on to the layout, the components,
+
+111
+00:05:07,220 --> 00:05:09,920
+and also their routes where we are going to work with.
+

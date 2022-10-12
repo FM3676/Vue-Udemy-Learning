@@ -1,0 +1,452 @@
+1
+00:00:02,200 --> 00:00:03,920
+The source folder contains
+
+2
+00:00:03,920 --> 00:00:07,230
+all the JavaScript files we're going to write code in.
+
+3
+00:00:07,230 --> 00:00:11,580
+In the end, the source folder is our main working directory.
+
+4
+00:00:11,580 --> 00:00:14,350
+We're going to write our Vue application code
+
+5
+00:00:14,350 --> 00:00:15,843
+in that source folder.
+
+6
+00:00:16,840 --> 00:00:20,800
+The main JavaScript file here is the main entry point.
+
+7
+00:00:20,800 --> 00:00:24,060
+And here you see we've got an import syntax,
+
+8
+00:00:24,060 --> 00:00:26,020
+which we haven't used thus far,
+
+9
+00:00:26,020 --> 00:00:28,930
+but that is actually default JavaScript code,
+
+10
+00:00:28,930 --> 00:00:32,689
+a modern JavaScript feature for importing functionality
+
+11
+00:00:32,689 --> 00:00:35,250
+from one file into another file.
+
+12
+00:00:35,250 --> 00:00:38,500
+And here we're importing the createApp function
+
+13
+00:00:38,500 --> 00:00:40,940
+from the Vue framework.
+
+14
+00:00:40,940 --> 00:00:42,653
+Before we used vue.createApp,
+
+15
+00:00:43,806 --> 00:00:46,360
+now we don't do that because now we don't have
+
+16
+00:00:46,360 --> 00:00:48,780
+a globally available Vue object,
+
+17
+00:00:48,780 --> 00:00:52,040
+but instead we can now import from the Vue framework
+
+18
+00:00:52,040 --> 00:00:56,030
+and import things like the createApp method.
+
+19
+00:00:56,030 --> 00:01:00,190
+And then we create an app with a configuration that seems
+
+20
+00:01:00,190 --> 00:01:03,990
+to come from the App.vue file, more on that in a second,
+
+21
+00:01:03,990 --> 00:01:08,200
+and we mount it to an element with an ID of app.
+
+22
+00:01:08,200 --> 00:01:11,830
+And that's just this div here with the ID app
+
+23
+00:01:11,830 --> 00:01:14,170
+in that index HTML file.
+
+24
+00:01:14,170 --> 00:01:16,823
+So that's how our Vue app ends up there.
+
+25
+00:01:18,540 --> 00:01:20,890
+So it's a different way of calling createApp
+
+26
+00:01:20,890 --> 00:01:23,270
+by using this import syntax,
+
+27
+00:01:23,270 --> 00:01:25,440
+but we're going to use this import syntax
+
+28
+00:01:25,440 --> 00:01:26,990
+throughout this course from now on,
+
+29
+00:01:26,990 --> 00:01:30,960
+because this is the modern JavaScript way of exporting
+
+30
+00:01:30,960 --> 00:01:33,893
+and importing features from one file to another.
+
+31
+00:01:35,120 --> 00:01:37,810
+But what about this App.vue file?
+
+32
+00:01:37,810 --> 00:01:41,090
+I mean, createApp always took this object
+
+33
+00:01:41,090 --> 00:01:42,800
+with the data and so on.
+
+34
+00:01:42,800 --> 00:01:45,440
+So why are we now passing app,
+
+35
+00:01:45,440 --> 00:01:49,820
+which is coming from the App.vue file to createApp?
+
+36
+00:01:49,820 --> 00:01:52,080
+Well, let's see what's in App.vue
+
+37
+00:01:53,527 --> 00:01:57,470
+.vue files are a special Vue.JS feature
+
+38
+00:01:57,470 --> 00:02:02,470
+or a special Vue CLI project feature, I could say.
+
+39
+00:02:03,847 --> 00:02:08,847
+.vue file allow us to right Vue apps and to be precise
+
+40
+00:02:09,220 --> 00:02:13,730
+Vue components specifically in a much nicer way.
+
+41
+00:02:13,730 --> 00:02:16,890
+They allow us to split our template,
+
+42
+00:02:16,890 --> 00:02:21,580
+so the HTML code that belongs to an app or a component,
+
+43
+00:02:21,580 --> 00:02:24,610
+the script part and also some styles
+
+44
+00:02:24,610 --> 00:02:28,310
+into three different sections here.
+
+45
+00:02:28,310 --> 00:02:33,030
+You see, we have a template tag here in this Vue file,
+
+46
+00:02:33,030 --> 00:02:35,630
+which contains the template of this app,
+
+47
+00:02:35,630 --> 00:02:39,220
+a script tag, which contains actually this conflict object
+
+48
+00:02:39,220 --> 00:02:42,410
+we saw before, just with different keys,
+
+49
+00:02:42,410 --> 00:02:44,250
+which we haven't seen before,
+
+50
+00:02:44,250 --> 00:02:48,230
+but this indeed is where you also would add your data.
+
+51
+00:02:48,230 --> 00:02:51,890
+But we'll have a look at that in greater detail in a second.
+
+52
+00:02:51,890 --> 00:02:55,140
+And we have a style tag here,
+
+53
+00:02:55,140 --> 00:02:59,090
+which allows us to define the styles, the CSS styles
+
+54
+00:02:59,090 --> 00:03:02,610
+that should be available in this Vue app.
+
+55
+00:03:02,610 --> 00:03:06,040
+And this is a file which would not work like this
+
+56
+00:03:06,040 --> 00:03:09,990
+in the browser, but which Vue CLI will transform
+
+57
+00:03:09,990 --> 00:03:13,190
+behind the scenes to a code that will work.
+
+58
+00:03:13,190 --> 00:03:16,540
+So that, we as a developer, have a nice way of defining
+
+59
+00:03:16,540 --> 00:03:19,500
+our Vue apps with three sections like this,
+
+60
+00:03:19,500 --> 00:03:21,800
+and we still will end up with code
+
+61
+00:03:21,800 --> 00:03:24,520
+that just works in the browser.
+
+62
+00:03:24,520 --> 00:03:29,520
+But how exactly does this work and why might we want this?
+
+63
+00:03:29,550 --> 00:03:33,500
+In the end, the project, which we created with the Vue CLI
+
+64
+00:03:33,500 --> 00:03:36,510
+uses a so-called build workflow.
+
+65
+00:03:36,510 --> 00:03:39,850
+That's a fancy way of saying that the code we write
+
+66
+00:03:39,850 --> 00:03:42,670
+is not the code that runs in the browser.
+
+67
+00:03:42,670 --> 00:03:46,980
+Instead, our code has certain features, for example,
+
+68
+00:03:46,980 --> 00:03:49,380
+next-gen JavaScript features,
+
+69
+00:03:49,380 --> 00:03:52,320
+but also Vue specific features and syntax
+
+70
+00:03:52,320 --> 00:03:54,330
+like the .vue files,
+
+71
+00:03:54,330 --> 00:03:57,093
+which wouldn't work like that in the browser.
+
+72
+00:03:58,070 --> 00:04:01,160
+If you try to load a .vue file with the structure
+
+73
+00:04:01,160 --> 00:04:04,910
+you just saw in the browser, it simply wouldn't do anything
+
+74
+00:04:04,910 --> 00:04:08,910
+because the browser doesn't know what to do with that code.
+
+75
+00:04:08,910 --> 00:04:10,510
+But that's the important thing.
+
+76
+00:04:10,510 --> 00:04:15,150
+Now, the project generated with the Vue CLI
+
+77
+00:04:15,150 --> 00:04:20,149
+has a lot of under the hood tools working on our code
+
+78
+00:04:20,920 --> 00:04:25,500
+to transform that code in a so-called built step to code
+
+79
+00:04:25,500 --> 00:04:27,110
+that works in the browser.
+
+80
+00:04:27,110 --> 00:04:29,120
+So that build step is simply just
+
+81
+00:04:29,120 --> 00:04:32,560
+a couple of transformations being applied to our code
+
+82
+00:04:32,560 --> 00:04:36,160
+to change that code to standard JavaScript code
+
+83
+00:04:36,160 --> 00:04:38,740
+with standard JavaScript features
+
+84
+00:04:38,740 --> 00:04:41,120
+that do work in the browser.
+
+85
+00:04:41,120 --> 00:04:44,210
+And then the development or a real web server
+
+86
+00:04:44,210 --> 00:04:48,160
+that hosts our app is able to show something on the screen
+
+87
+00:04:48,160 --> 00:04:51,340
+because it only receives regular JavaScript code
+
+88
+00:04:51,340 --> 00:04:53,750
+that just works.
+
+89
+00:04:53,750 --> 00:04:56,730
+And at the end, our project also has such a setup
+
+90
+00:04:56,730 --> 00:04:58,350
+under the hood.
+
+91
+00:04:58,350 --> 00:05:00,490
+In the end, the npm run service script
+
+92
+00:05:00,490 --> 00:05:03,330
+does not just spin up that development server,
+
+93
+00:05:03,330 --> 00:05:05,720
+but also start this build process,
+
+94
+00:05:05,720 --> 00:05:08,950
+which watches our code files and transforms to code.
+
+95
+00:05:08,950 --> 00:05:11,200
+And that's my code like this here,
+
+96
+00:05:11,200 --> 00:05:14,110
+with a separate template, script, and style tech,
+
+97
+00:05:14,110 --> 00:05:17,280
+in the end is transformed to just JavaScript code,
+
+98
+00:05:17,280 --> 00:05:19,233
+which runs in the browser.
+
+99
+00:05:20,630 --> 00:05:23,590
+And this is a good thing because you will see
+
+100
+00:05:23,590 --> 00:05:27,554
+throughout the course that those .vue files
+
+101
+00:05:27,554 --> 00:05:30,480
+are also called signal file components,
+
+102
+00:05:30,480 --> 00:05:33,060
+that those single file components
+
+103
+00:05:33,060 --> 00:05:37,430
+are a pretty convenient way of writing Vue components
+
+104
+00:05:37,430 --> 00:05:40,000
+and writing Vue code.
+
+105
+00:05:40,000 --> 00:05:41,350
+On the other end at the moment,
+
+106
+00:05:41,350 --> 00:05:42,970
+it doesn't look too appealing
+
+107
+00:05:42,970 --> 00:05:46,430
+because, well, my IDE does not understand
+
+108
+00:05:46,430 --> 00:05:48,610
+this .vue file at all.
+
+109
+00:05:48,610 --> 00:05:52,640
+It's just a bunch of white text, no syntax highlighting.
+
+110
+00:05:52,640 --> 00:05:55,020
+So at the moment, it's not really looking
+
+111
+00:05:55,020 --> 00:05:57,470
+like a better way of writing code.
+
+112
+00:05:57,470 --> 00:06:00,670
+Well, time to tweak the IDE Visual Studio Code
+
+113
+00:06:00,670 --> 00:06:02,113
+a little bit as well.
+

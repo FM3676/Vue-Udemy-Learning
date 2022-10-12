@@ -1,0 +1,368 @@
+1
+00:00:02,100 --> 00:00:03,680
+So as you can clearly tell
+
+2
+00:00:03,680 --> 00:00:06,200
+custom events are important,
+
+3
+00:00:06,200 --> 00:00:09,850
+an important feature for a component communication.
+
+4
+00:00:09,850 --> 00:00:12,070
+Now, just as with props,
+
+5
+00:00:12,070 --> 00:00:13,530
+you can define them.
+
+6
+00:00:13,530 --> 00:00:14,960
+You can let Vue know
+
+7
+00:00:14,960 --> 00:00:18,160
+about the events your component will emit.
+
+8
+00:00:18,160 --> 00:00:20,690
+For props, this is actually required.
+
+9
+00:00:20,690 --> 00:00:23,410
+For events, it's recommended.
+
+10
+00:00:23,410 --> 00:00:26,690
+Now I'll just close this here to gain some space.
+
+11
+00:00:26,690 --> 00:00:28,370
+The props are still there,
+
+12
+00:00:28,370 --> 00:00:32,659
+I'm just collapsing this so that it takes up less space.
+
+13
+00:00:32,659 --> 00:00:34,840
+And I'll add a new property
+
+14
+00:00:34,840 --> 00:00:38,190
+to the FriendContact configuration object.
+
+15
+00:00:38,190 --> 00:00:40,403
+And that's the emit property.
+
+16
+00:00:41,440 --> 00:00:43,500
+Now emits, so to say,
+
+17
+00:00:43,500 --> 00:00:46,300
+is the counterpart to props.
+
+18
+00:00:46,300 --> 00:00:47,700
+In props you will define
+
+19
+00:00:47,700 --> 00:00:49,890
+which props this component receives.
+
+20
+00:00:49,890 --> 00:00:52,890
+In emits, you will define which custom events
+
+21
+00:00:52,890 --> 00:00:56,550
+your component will eventually at some point emit.
+
+22
+00:00:56,550 --> 00:00:59,620
+And you're doing this to document your component,
+
+23
+00:00:59,620 --> 00:01:02,290
+to make it obvious to other developers,
+
+24
+00:01:02,290 --> 00:01:04,050
+how your component works,
+
+25
+00:01:04,050 --> 00:01:06,610
+and to which events they can listen.
+
+26
+00:01:06,610 --> 00:01:08,010
+This is simply useful.
+
+27
+00:01:08,010 --> 00:01:11,080
+It makes it easier to understand your component.
+
+28
+00:01:11,080 --> 00:01:14,500
+Because otherwise I have to look through all your code
+
+29
+00:01:14,500 --> 00:01:16,720
+to see that there is some code
+
+30
+00:01:16,720 --> 00:01:19,370
+where you emit toggle-favorite.
+
+31
+00:01:19,370 --> 00:01:22,200
+With emits, you would simply add
+
+32
+00:01:22,200 --> 00:01:23,033
+toggle
+
+33
+00:01:24,610 --> 00:01:27,050
+favorite here as a string to this disarray,
+
+34
+00:01:27,050 --> 00:01:28,400
+and that would make it clear that
+
+35
+00:01:28,400 --> 00:01:31,530
+there definitely is some code in your component,
+
+36
+00:01:31,530 --> 00:01:35,303
+which leads to an event with that identifier to be emitted.
+
+37
+00:01:36,360 --> 00:01:39,200
+And you can also take emits to the next level.
+
+38
+00:01:39,200 --> 00:01:41,350
+This is the basic form of using it,
+
+39
+00:01:41,350 --> 00:01:45,000
+and it already helps with understanding your component.
+
+40
+00:01:45,000 --> 00:01:46,610
+But just as with props,
+
+41
+00:01:46,610 --> 00:01:49,590
+you can also specify an object instead,
+
+42
+00:01:49,590 --> 00:01:52,190
+and then add your admitted events
+
+43
+00:01:52,190 --> 00:01:55,120
+as keys here
+
+44
+00:01:55,120 --> 00:01:56,750
+like this,
+
+45
+00:01:56,750 --> 00:02:00,610
+and then provide a more detailed configuration.
+
+46
+00:02:00,610 --> 00:02:04,370
+The configuration you should then add is a function,
+
+47
+00:02:04,370 --> 00:02:07,200
+a function that receives the data,
+
+48
+00:02:07,200 --> 00:02:10,810
+which you eventually will emit as parameters.
+
+49
+00:02:10,810 --> 00:02:12,050
+So in this case,
+
+50
+00:02:12,050 --> 00:02:14,270
+we will eventually emit an ID.
+
+51
+00:02:14,270 --> 00:02:16,260
+So here we would add
+
+52
+00:02:16,260 --> 00:02:19,170
+ID as a parameter,
+
+53
+00:02:19,170 --> 00:02:22,900
+and I'm doing that to make it obvious that "toggle-favorite"
+
+54
+00:02:22,900 --> 00:02:26,570
+is an event that should be handled by a function
+
+55
+00:02:26,570 --> 00:02:28,283
+that expects an ID.
+
+56
+00:02:29,170 --> 00:02:31,393
+Because I will emit an ID here.
+
+57
+00:02:32,560 --> 00:02:34,960
+You can then also add validation here
+
+58
+00:02:34,960 --> 00:02:37,870
+to make sure that when the event is emitted,
+
+59
+00:02:37,870 --> 00:02:40,670
+this data, which should be part of the event
+
+60
+00:02:40,670 --> 00:02:42,690
+is not forgotten.
+
+61
+00:02:42,690 --> 00:02:46,230
+We can check if ID exists,
+
+62
+00:02:46,230 --> 00:02:47,930
+if this is true
+
+63
+00:02:47,930 --> 00:02:50,590
+and return true, if that's the case
+
+64
+00:02:50,590 --> 00:02:53,610
+and else return false,
+
+65
+00:02:53,610 --> 00:02:58,007
+and maybe also issue a warning in the console that
+
+66
+00:02:59,170 --> 00:03:00,930
+ID is missing,
+
+67
+00:03:00,930 --> 00:03:03,940
+to help developers that are emitting this event,
+
+68
+00:03:03,940 --> 00:03:05,293
+catch this error.
+
+69
+00:03:06,930 --> 00:03:08,000
+And now, for example,
+
+70
+00:03:08,000 --> 00:03:10,460
+if I remove this second argument here,
+
+71
+00:03:10,460 --> 00:03:11,930
+and I saved that
+
+72
+00:03:11,930 --> 00:03:13,870
+and I click "toggle-favorite",
+
+73
+00:03:13,870 --> 00:03:15,640
+I get an error here.
+
+74
+00:03:15,640 --> 00:03:17,320
+But before that error,
+
+75
+00:03:17,320 --> 00:03:20,660
+I actually also get a warning
+
+76
+00:03:20,660 --> 00:03:22,460
+invalid event arguments,
+
+77
+00:03:22,460 --> 00:03:25,880
+event validation failed for event "toggle-favorite",
+
+78
+00:03:25,880 --> 00:03:27,430
+ID is missing.
+
+79
+00:03:27,430 --> 00:03:29,800
+So this is something which you don't have to add,
+
+80
+00:03:29,800 --> 00:03:33,240
+but which can make your life as a developer easier,
+
+81
+00:03:33,240 --> 00:03:36,420
+especially again if you're working in a team.
+
+82
+00:03:36,420 --> 00:03:38,320
+Now let's bring this ID back
+
+83
+00:03:38,320 --> 00:03:42,350
+and I will not add this detailed of a validation
+
+84
+00:03:42,350 --> 00:03:44,270
+to the custom events throughout the course.
+
+85
+00:03:44,270 --> 00:03:45,670
+But since it is the complete guide,
+
+86
+00:03:45,670 --> 00:03:47,700
+I of course want to show this to you
+
+87
+00:03:47,700 --> 00:03:49,303
+so that you know this feature.
+
+88
+00:03:50,480 --> 00:03:52,810
+Nonetheless, I will revert to this here,
+
+89
+00:03:52,810 --> 00:03:55,200
+and go back to this simpler definition,
+
+90
+00:03:55,200 --> 00:03:57,730
+which is the approach I will use throughout the course
+
+91
+00:03:57,730 --> 00:03:59,430
+simply to make it obvious
+
+92
+00:03:59,430 --> 00:04:03,393
+which custom events this component will eventually emit.
+

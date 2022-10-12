@@ -1,0 +1,580 @@
+1
+00:00:02,190 --> 00:00:05,010
+Time to finally leave slots.
+
+2
+00:00:05,010 --> 00:00:08,973
+In App.vue, I'm going to remove,
+
+3
+00:00:10,410 --> 00:00:12,720
+all those components I've been using this far,
+
+4
+00:00:12,720 --> 00:00:14,550
+except for TheHeader,
+
+5
+00:00:14,550 --> 00:00:16,210
+because I now wanna clean up the UI.
+
+6
+00:00:16,210 --> 00:00:19,430
+I will leave the files here though for reference.
+
+7
+00:00:19,430 --> 00:00:22,870
+But now let me quickly create two brand new components here,
+
+8
+00:00:22,870 --> 00:00:24,160
+which have nothing to do with
+
+9
+00:00:24,160 --> 00:00:27,190
+this dummy code we used before.
+
+10
+00:00:27,190 --> 00:00:30,570
+Let's say we have a ManageGoals.vue file
+
+11
+00:00:30,570 --> 00:00:33,413
+and ActiveGoals.vue file.
+
+12
+00:00:34,662 --> 00:00:36,770
+ManageGoals could be a component where
+
+13
+00:00:36,770 --> 00:00:39,000
+the user is able to add new course goals,
+
+14
+00:00:39,000 --> 00:00:40,870
+and ActiveGoals is a component
+
+15
+00:00:40,870 --> 00:00:44,160
+where all added and active goals are displayed.
+
+16
+00:00:44,160 --> 00:00:46,650
+We're not going to add all the logic for that though,
+
+17
+00:00:46,650 --> 00:00:48,530
+because I wanna show you something else.
+
+18
+00:00:48,530 --> 00:00:49,960
+Therefore, I'll keep it simple
+
+19
+00:00:49,960 --> 00:00:52,640
+and just say Active Goals here
+
+20
+00:00:52,640 --> 00:00:55,120
+in the template of the ActiveGoal component
+
+21
+00:00:55,120 --> 00:00:57,403
+so that we can recognize this component.
+
+22
+00:00:58,740 --> 00:01:00,280
+And in ManageGoals,
+
+23
+00:01:00,280 --> 00:01:04,530
+I'm going to add a template where I say Manage Goals.
+
+24
+00:01:04,530 --> 00:01:07,610
+I'll not even add script tags here.
+
+25
+00:01:07,610 --> 00:01:10,540
+I'll not export a default config object,
+
+26
+00:01:10,540 --> 00:01:13,260
+because if it is empty, you don't even need to export it.
+
+27
+00:01:13,260 --> 00:01:15,240
+It will so to say,
+
+28
+00:01:15,240 --> 00:01:17,820
+be exported and created for you automatically
+
+29
+00:01:17,820 --> 00:01:18,770
+behind the scenes.
+
+30
+00:01:18,770 --> 00:01:20,620
+You then don't need to define it
+
+31
+00:01:20,620 --> 00:01:22,053
+if it is empty anyways.
+
+32
+00:01:23,040 --> 00:01:26,450
+So you can have components with just templates like here
+
+33
+00:01:26,450 --> 00:01:30,530
+and now we can add them as local components in App.vue.
+
+34
+00:01:30,530 --> 00:01:34,889
+I'll import ActiveGoals from components
+
+35
+00:01:34,889 --> 00:01:36,850
+ActiveGoals.vue of course,
+
+36
+00:01:36,850 --> 00:01:39,317
+and import ManageGoals from
+
+37
+00:01:39,317 --> 00:01:44,313
+./components/ManageGoals.vue like this.
+
+38
+00:01:46,260 --> 00:01:48,430
+And then register both as
+
+39
+00:01:49,480 --> 00:01:51,664
+local components here in this case,
+
+40
+00:01:51,664 --> 00:01:53,997
+ActiveGoals and ManageGoals.
+
+41
+00:01:55,100 --> 00:01:57,240
+And now of course that shouldn't be a surprise.
+
+42
+00:01:57,240 --> 00:01:58,530
+We can use them here
+
+43
+00:01:58,530 --> 00:02:02,420
+active-goals can be used like this
+
+44
+00:02:02,420 --> 00:02:07,023
+and manage-goals can also be used like this.
+
+45
+00:02:08,759 --> 00:02:11,100
+And then now my build process here
+
+46
+00:02:11,100 --> 00:02:12,840
+is complaining about the fact
+
+47
+00:02:12,840 --> 00:02:14,810
+that I have components registered,
+
+48
+00:02:14,810 --> 00:02:17,570
+which I'm not using so let me actually remove
+
+49
+00:02:17,570 --> 00:02:20,410
+BadgeList, UserInfo, and CourseGoals from here,
+
+50
+00:02:20,410 --> 00:02:24,873
+and also comment out those imports then here.
+
+51
+00:02:25,850 --> 00:02:27,423
+So now it is rebuilds.
+
+52
+00:02:28,990 --> 00:02:31,100
+And now we can see Active Goals
+
+53
+00:02:31,100 --> 00:02:32,730
+and Manage Goals on the screen.
+
+54
+00:02:32,730 --> 00:02:34,670
+Now that's certainly not too exciting,
+
+55
+00:02:34,670 --> 00:02:37,360
+but here's the cool feature I wanna show you.
+
+56
+00:02:37,360 --> 00:02:41,010
+Vue has this concept of dynamic components
+
+57
+00:02:41,010 --> 00:02:43,400
+and here's where this could be handy.
+
+58
+00:02:43,400 --> 00:02:46,810
+Let's say we're building a component that has various tabs,
+
+59
+00:02:46,810 --> 00:02:48,200
+so various buttons in the end,
+
+60
+00:02:48,200 --> 00:02:51,120
+which we can press to show a different component
+
+61
+00:02:51,120 --> 00:02:54,530
+so that we either see Active Goals or Manage Goals,
+
+62
+00:02:54,530 --> 00:02:57,150
+but not both at the same time.
+
+63
+00:02:57,150 --> 00:03:00,260
+For that we could've our tab buttons here,
+
+64
+00:03:00,260 --> 00:03:04,910
+Active Goals, and then another button where I say
+
+65
+00:03:04,910 --> 00:03:08,120
+Manage Goals so I have these two buttons
+
+66
+00:03:09,220 --> 00:03:10,970
+like tabs here.
+
+67
+00:03:10,970 --> 00:03:12,570
+And when I press a button,
+
+68
+00:03:12,570 --> 00:03:14,650
+the respective components should be shown
+
+69
+00:03:14,650 --> 00:03:16,990
+and the other components shouldn't.
+
+70
+00:03:16,990 --> 00:03:19,243
+Now here's how we could implement this.
+
+71
+00:03:20,100 --> 00:03:23,827
+We can manage some extra data here,
+
+72
+00:03:23,827 --> 00:03:26,750
+selectedComponent, for example.
+
+73
+00:03:26,750 --> 00:03:30,050
+And initially let's say that is active-goals.
+
+74
+00:03:30,050 --> 00:03:32,700
+So the HTML tag name,
+
+75
+00:03:32,700 --> 00:03:35,220
+which we are also using here in the Dum.
+
+76
+00:03:35,220 --> 00:03:36,913
+active-goals.
+
+77
+00:03:38,070 --> 00:03:41,630
+And then we add a method here.
+
+78
+00:03:41,630 --> 00:03:43,150
+So we add the methods key
+
+79
+00:03:44,920 --> 00:03:46,150
+and in there add a method,
+
+80
+00:03:46,150 --> 00:03:47,150
+setSelectedComponent
+
+81
+00:03:50,940 --> 00:03:54,580
+where I get the component as an argument,
+
+82
+00:03:54,580 --> 00:03:58,270
+and then set this.selectedcomponent equal to the value
+
+83
+00:03:58,270 --> 00:04:00,220
+I'm getting here as an argument.
+
+84
+00:04:00,220 --> 00:04:03,910
+And now we can bind this method here to the buttons.
+
+85
+00:04:03,910 --> 00:04:06,050
+So here upon a click I wanna call
+
+86
+00:04:06,050 --> 00:04:10,950
+setSelectedComponent and pass in active-goals.
+
+87
+00:04:10,950 --> 00:04:14,780
+And on the Manage Goals button upon a click,
+
+88
+00:04:14,780 --> 00:04:19,040
+I will call setSelectedComponent and pass in manage-goals
+
+89
+00:04:21,209 --> 00:04:23,733
+as a value for the parameter.
+
+90
+00:04:25,160 --> 00:04:26,860
+So these are now the buttons,
+
+91
+00:04:26,860 --> 00:04:29,380
+and now that we can change to selected the component,
+
+92
+00:04:29,380 --> 00:04:34,100
+we can add v-if here on, these two components text
+
+93
+00:04:34,100 --> 00:04:36,330
+and check if selectedComponent is equal
+
+94
+00:04:36,330 --> 00:04:40,650
+to active-goals here or here on the second component,
+
+95
+00:04:40,650 --> 00:04:44,093
+if selectedComponent is equal to manage-goals.
+
+96
+00:04:45,980 --> 00:04:47,170
+And if I now save that
+
+97
+00:04:48,040 --> 00:04:50,910
+we can use this like tabs and we can switch
+
+98
+00:04:50,910 --> 00:04:52,380
+between these components.
+
+99
+00:04:52,380 --> 00:04:53,690
+but that's nothing new.
+
+100
+00:04:53,690 --> 00:04:55,670
+Here we're only using features
+
+101
+00:04:55,670 --> 00:04:57,590
+you already learned about.
+
+102
+00:04:57,590 --> 00:04:59,600
+Now, whilst you can build it like this,
+
+103
+00:04:59,600 --> 00:05:01,870
+if you have more and more components
+
+104
+00:05:01,870 --> 00:05:03,730
+between which you wanna circle
+
+105
+00:05:03,730 --> 00:05:05,690
+using v-if all the time
+
+106
+00:05:05,690 --> 00:05:08,440
+and repeating that v-if code all the time,
+
+107
+00:05:08,440 --> 00:05:10,500
+is pretty annoying.
+
+108
+00:05:10,500 --> 00:05:14,160
+That's why Vue has an alternative way of doing that.
+
+109
+00:05:14,160 --> 00:05:16,120
+So let's comment out this here
+
+110
+00:05:16,120 --> 00:05:19,463
+and let me introduce dynamic components to you.
+
+111
+00:05:20,710 --> 00:05:25,440
+Vue offers you a special HTML element which you can use.
+
+112
+00:05:25,440 --> 00:05:27,323
+The component element.
+
+113
+00:05:28,850 --> 00:05:33,220
+This is an element, a component provided by Vue.
+
+114
+00:05:33,220 --> 00:05:35,330
+And the interesting thing is that
+
+115
+00:05:35,330 --> 00:05:38,360
+this component won't work like this stand alone.
+
+116
+00:05:38,360 --> 00:05:40,940
+It doesn't show anything on the screen.
+
+117
+00:05:40,940 --> 00:05:44,140
+Instead, it needs one key property.
+
+118
+00:05:44,140 --> 00:05:46,670
+And that's the is property.
+
+119
+00:05:46,670 --> 00:05:50,040
+The is property tells component,
+
+120
+00:05:50,040 --> 00:05:53,150
+which component of all the components you defined
+
+121
+00:05:53,150 --> 00:05:56,180
+should be shown in place of this component.
+
+122
+00:05:56,180 --> 00:05:59,023
+So for example we could set this to active-goals,
+
+123
+00:06:00,050 --> 00:06:02,070
+but of course we don't wanna hard-code this
+
+124
+00:06:02,070 --> 00:06:03,070
+because if we did,
+
+125
+00:06:03,070 --> 00:06:05,610
+we could just use active-goals like that.
+
+126
+00:06:05,610 --> 00:06:09,193
+If we would always show just that component.
+
+127
+00:06:09,193 --> 00:06:11,380
+Instead, what we wanna do here
+
+128
+00:06:11,380 --> 00:06:15,570
+is we wanna bind is dynamically with v-bind
+
+129
+00:06:15,570 --> 00:06:17,760
+or with the shorthand.
+
+130
+00:06:17,760 --> 00:06:20,313
+And then in this case point at selectedComponent,
+
+131
+00:06:21,360 --> 00:06:25,540
+which holds our component HTML tags as values.
+
+132
+00:06:25,540 --> 00:06:27,850
+It's active-goals initially,
+
+133
+00:06:27,850 --> 00:06:29,440
+and in our method here,
+
+134
+00:06:29,440 --> 00:06:33,120
+in the end we switch between active-goals and manage-goals.
+
+135
+00:06:33,120 --> 00:06:35,573
+Which are our component tags.
+
+136
+00:06:37,500 --> 00:06:39,240
+And with that we're telling Vue,
+
+137
+00:06:39,240 --> 00:06:42,720
+that component should basically swap itself
+
+138
+00:06:42,720 --> 00:06:45,820
+for v-if active-goals or manage-goals.
+
+139
+00:06:45,820 --> 00:06:48,320
+Whatever is currently stored in selectedComponent.
+
+140
+00:06:49,810 --> 00:06:51,490
+So with that if I reload,
+
+141
+00:06:51,490 --> 00:06:54,110
+I got the same behavior as before,
+
+142
+00:06:54,110 --> 00:06:56,470
+but now with less code
+
+143
+00:06:56,470 --> 00:06:58,960
+without multiple v-if statements,
+
+144
+00:06:58,960 --> 00:07:02,260
+which of course makes our life as a developer easier.
+
+145
+00:07:02,260 --> 00:07:04,993
+And it means that we have less code to write.
+

@@ -1,0 +1,128 @@
+1
+00:00:02,070 --> 00:00:03,969
+Throughout the last modules,
+
+2
+00:00:03,969 --> 00:00:06,910
+we learned a lot about components
+
+3
+00:00:06,910 --> 00:00:10,200
+and therefore, of course, all about Vue.
+
+4
+00:00:10,200 --> 00:00:12,970
+Now, it's again time to practice what we learned
+
+5
+00:00:12,970 --> 00:00:15,340
+and we will apply all that knowledge
+
+6
+00:00:15,340 --> 00:00:18,220
+we gained in a course project here.
+
+7
+00:00:18,220 --> 00:00:20,260
+We're going to see components in action
+
+8
+00:00:20,260 --> 00:00:23,940
+and we're going to build a course project from A to Z.
+
+9
+00:00:23,940 --> 00:00:27,350
+Now, this is the project we're going to build here.
+
+10
+00:00:27,350 --> 00:00:30,050
+It's an application where we have two areas
+
+11
+00:00:30,050 --> 00:00:32,930
+between which we can switch here with our tabs.
+
+12
+00:00:32,930 --> 00:00:36,570
+We got a list of our favorite learning resources,
+
+13
+00:00:36,570 --> 00:00:38,570
+including links on which we can click
+
+14
+00:00:38,570 --> 00:00:41,000
+that take us to those resources,
+
+15
+00:00:41,000 --> 00:00:43,600
+and we can add new resources.
+
+16
+00:00:43,600 --> 00:00:45,030
+And if you wanna get rid of one,
+
+17
+00:00:45,030 --> 00:00:47,640
+we can of course also just delete it.
+
+18
+00:00:47,640 --> 00:00:50,590
+We can then also add a new resource.
+
+19
+00:00:50,590 --> 00:00:55,590
+You need to know how to Google, like this,
+
+20
+00:00:58,750 --> 00:01:02,260
+and it works, but if we decide to enter something
+
+21
+00:01:02,260 --> 00:01:05,530
+invalid here, we get an alert which you of course
+
+22
+00:01:05,530 --> 00:01:08,630
+then can confirm and fix our error.
+
+23
+00:01:08,630 --> 00:01:10,270
+That's what we're going to build
+
+24
+00:01:10,270 --> 00:01:13,890
+and whilst this application of course still doesn't have
+
+25
+00:01:13,890 --> 00:01:17,210
+20 different features, it does actually use
+
+26
+00:01:17,210 --> 00:01:20,230
+all the important features you learned about
+
+27
+00:01:20,230 --> 00:01:21,830
+over the last modules.
+
+28
+00:01:21,830 --> 00:01:25,350
+And you will get a good idea of how components work,
+
+29
+00:01:25,350 --> 00:01:27,730
+how these different features are used,
+
+30
+00:01:27,730 --> 00:01:29,700
+how components are combined,
+
+31
+00:01:29,700 --> 00:01:32,500
+and how you can build Vue applications
+
+32
+00:01:32,500 --> 00:01:34,853
+that use all those important features.
+

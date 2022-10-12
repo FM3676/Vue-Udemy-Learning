@@ -1,0 +1,924 @@
+1
+00:00:02,210 --> 00:00:03,900
+So did you succeed?
+
+2
+00:00:03,900 --> 00:00:05,810
+Let's try this together.
+
+3
+00:00:05,810 --> 00:00:09,120
+For this, I will add a store folder here
+
+4
+00:00:09,120 --> 00:00:11,593
+and in there add an index JS file.
+
+5
+00:00:12,880 --> 00:00:15,800
+I will also already add a modules folder
+
+6
+00:00:15,800 --> 00:00:18,710
+because I will definitely use some modules.
+
+7
+00:00:18,710 --> 00:00:21,770
+Looking at our state here in App.vue,
+
+8
+00:00:21,770 --> 00:00:24,710
+I think we have three main kinds of state,
+
+9
+00:00:24,710 --> 00:00:26,510
+we have the products,
+
+10
+00:00:26,510 --> 00:00:28,120
+we have the cart,
+
+11
+00:00:28,120 --> 00:00:31,940
+we could also treat products and cart as one state
+
+12
+00:00:31,940 --> 00:00:33,853
+to shop state so to say.
+
+13
+00:00:34,720 --> 00:00:36,860
+And we then have isLoggedIn
+
+14
+00:00:36,860 --> 00:00:38,773
+which is the authentication state.
+
+15
+00:00:39,690 --> 00:00:41,720
+Now there will be different ways of solving this.
+
+16
+00:00:41,720 --> 00:00:45,760
+But I will put isLoggedIn into my root state so to say,
+
+17
+00:00:45,760 --> 00:00:47,630
+so not into a module,
+
+18
+00:00:47,630 --> 00:00:49,420
+but then I'll work with a product
+
+19
+00:00:49,420 --> 00:00:52,840
+and with a cart module.
+
+20
+00:00:52,840 --> 00:00:56,320
+And therefore in modules we can create two sub folders,
+
+21
+00:00:56,320 --> 00:00:59,350
+products and cart and there is nothing wrong with it
+
+22
+00:00:59,350 --> 00:01:01,580
+but I will use a different approach,
+
+23
+00:01:01,580 --> 00:01:05,653
+all instead at a cart.js and a products.js file.
+
+24
+00:01:06,790 --> 00:01:09,270
+That is not what I showed you in the last lectures.
+
+25
+00:01:09,270 --> 00:01:10,380
+I am aware of this,
+
+26
+00:01:10,380 --> 00:01:12,830
+but that's also an alternative.
+
+27
+00:01:12,830 --> 00:01:15,630
+I don't want to split my mutations and so on
+
+28
+00:01:15,630 --> 00:01:17,180
+in separate files here,
+
+29
+00:01:17,180 --> 00:01:19,250
+instead, I wanna have them in one file,
+
+30
+00:01:19,250 --> 00:01:22,640
+but still separate files for different modules.
+
+31
+00:01:22,640 --> 00:01:26,460
+So that's an alternative to having multiple module folders,
+
+32
+00:01:26,460 --> 00:01:28,680
+where in every module folder,
+
+33
+00:01:28,680 --> 00:01:31,610
+you then have separate actions and mutations files,
+
+34
+00:01:31,610 --> 00:01:33,480
+which you could also do though,
+
+35
+00:01:33,480 --> 00:01:34,763
+just to make this clear.
+
+36
+00:01:36,130 --> 00:01:37,610
+But with all of that,
+
+37
+00:01:37,610 --> 00:01:42,610
+I'm going to npm install vuex,
+
+38
+00:01:42,670 --> 00:01:45,970
+so that we have this available here in this project
+
+39
+00:01:48,140 --> 00:01:51,090
+and bring up the development server thereafter.
+
+40
+00:01:51,090 --> 00:01:53,130
+And in index.js,
+
+41
+00:01:53,130 --> 00:01:54,950
+in the store folder.
+
+42
+00:01:54,950 --> 00:01:57,760
+I will then import create,
+
+43
+00:01:57,760 --> 00:02:00,403
+store from vuex.
+
+44
+00:02:01,630 --> 00:02:05,980
+And then call create store here to create a store,
+
+45
+00:02:05,980 --> 00:02:08,592
+which I then export as a default.
+
+46
+00:02:10,110 --> 00:02:11,830
+This store text and object
+
+47
+00:02:11,830 --> 00:02:15,100
+and we're going to configure the store here soon.
+
+48
+00:02:15,100 --> 00:02:16,540
+Since I'm exporting the store,
+
+49
+00:02:16,540 --> 00:02:20,050
+we can already import it in main.js though,
+
+50
+00:02:20,050 --> 00:02:24,480
+here import store from store.js.
+
+51
+00:02:24,480 --> 00:02:26,450
+And besides using the router,
+
+52
+00:02:26,450 --> 00:02:28,513
+we will now also use the store.
+
+53
+00:02:30,280 --> 00:02:32,240
+But now back to the store.
+
+54
+00:02:32,240 --> 00:02:34,980
+I mentioned that I want to have some global state
+
+55
+00:02:34,980 --> 00:02:38,810
+the authentication status and then module state
+
+56
+00:02:38,810 --> 00:02:43,810
+for my different modules for products and for the cart.
+
+57
+00:02:45,390 --> 00:02:47,403
+Let's maybe start with products.
+
+58
+00:02:49,490 --> 00:02:52,360
+For that we're exporting an object in here,
+
+59
+00:02:52,360 --> 00:02:54,910
+which will be our module object
+
+60
+00:02:54,910 --> 00:02:57,600
+and set up state which is a method
+
+61
+00:02:57,600 --> 00:03:00,740
+it returns an object which defines our state.
+
+62
+00:03:00,740 --> 00:03:01,800
+And in here,
+
+63
+00:03:01,800 --> 00:03:03,700
+I want to have my products array,
+
+64
+00:03:03,700 --> 00:03:06,630
+which currently is in App.vue.
+
+65
+00:03:06,630 --> 00:03:10,630
+So we can grab this entire array from App.vue,
+
+66
+00:03:10,630 --> 00:03:11,463
+cut it,
+
+67
+00:03:12,640 --> 00:03:15,500
+and go to products.js.
+
+68
+00:03:15,500 --> 00:03:19,893
+And add it here products is now this array.
+
+69
+00:03:22,570 --> 00:03:24,100
+In App.vue,
+
+70
+00:03:24,100 --> 00:03:27,423
+we therefore no longer provide products.
+
+71
+00:03:30,950 --> 00:03:34,163
+And we remove products from the data property.
+
+72
+00:03:35,940 --> 00:03:38,970
+Now for products I actually have no mutations
+
+73
+00:03:38,970 --> 00:03:41,450
+and actions because we never change products
+
+74
+00:03:41,450 --> 00:03:43,530
+in this example app.
+
+75
+00:03:43,530 --> 00:03:45,010
+They offer of course,
+
+76
+00:03:45,010 --> 00:03:47,990
+this is not really state which we need to manage.
+
+77
+00:03:47,990 --> 00:03:50,330
+It's just some static data,
+
+78
+00:03:50,330 --> 00:03:53,750
+which we also could export and import like this.
+
+79
+00:03:53,750 --> 00:03:55,230
+But to practice vuex,
+
+80
+00:03:55,230 --> 00:03:56,620
+I'll put it into some state
+
+81
+00:03:56,620 --> 00:03:59,463
+even though that is state which will never change.
+
+82
+00:04:00,750 --> 00:04:02,910
+There is at least one thing which we need though.
+
+83
+00:04:02,910 --> 00:04:04,190
+And that's a getter.
+
+84
+00:04:04,190 --> 00:04:07,020
+Because we shouldn't directly access state,
+
+85
+00:04:07,020 --> 00:04:09,270
+we should use getters for that.
+
+86
+00:04:09,270 --> 00:04:11,030
+So here I'll add a getter,
+
+87
+00:04:11,030 --> 00:04:12,913
+also named products maybe,
+
+88
+00:04:14,130 --> 00:04:17,459
+which gets the local state of this module.
+
+89
+00:04:17,459 --> 00:04:21,890
+And we're at then simply returns state products like this.
+
+90
+00:04:21,890 --> 00:04:23,710
+So it's not a super fancy getter,
+
+91
+00:04:23,710 --> 00:04:25,020
+it's not doing a lot of things,
+
+92
+00:04:25,020 --> 00:04:26,873
+but hey, it's better than nothing.
+
+93
+00:04:28,280 --> 00:04:32,060
+That's it for the product module already.
+
+94
+00:04:32,060 --> 00:04:33,280
+So in index.js,
+
+95
+00:04:33,280 --> 00:04:35,270
+where I create the main store,
+
+96
+00:04:35,270 --> 00:04:38,390
+I can import my products module
+
+97
+00:04:38,390 --> 00:04:43,390
+from modules/products.js,
+
+98
+00:04:43,460 --> 00:04:46,850
+and then add the modules key here.
+
+99
+00:04:46,850 --> 00:04:48,823
+And add let's say,
+
+100
+00:04:50,050 --> 00:04:55,050
+prods as a namespace if we want to use namespaces later,
+
+101
+00:04:55,668 --> 00:04:57,460
+otherwise this is just required,
+
+102
+00:04:57,460 --> 00:04:59,950
+technically but has no effect.
+
+103
+00:04:59,950 --> 00:05:03,223
+And register products module under the name space.
+
+104
+00:05:04,110 --> 00:05:06,550
+Now currently it is not name spaced.
+
+105
+00:05:06,550 --> 00:05:08,820
+Currently it will be merged globally.
+
+106
+00:05:08,820 --> 00:05:12,240
+So together will be available just like that.
+
+107
+00:05:12,240 --> 00:05:13,840
+But I wanna make it name spaced
+
+108
+00:05:13,840 --> 00:05:15,690
+so that we all to practices.
+
+109
+00:05:15,690 --> 00:05:19,310
+Therefore, we can add name spaced as an option
+
+110
+00:05:19,310 --> 00:05:22,663
+in the exported module object and set this to true.
+
+111
+00:05:23,550 --> 00:05:27,093
+And now prods will be the namespace for this module.
+
+112
+00:05:28,410 --> 00:05:30,210
+Let's continue with the cart.
+
+113
+00:05:30,210 --> 00:05:32,360
+Here in the cart.
+
+114
+00:05:32,360 --> 00:05:36,100
+I of course want to have my carts data.
+
+115
+00:05:36,100 --> 00:05:38,660
+So we can cut this from App.vue,
+
+116
+00:05:38,660 --> 00:05:42,090
+but also later to methods that's changed the cart.
+
+117
+00:05:42,090 --> 00:05:45,740
+So in cart.js in the store modules folder,
+
+118
+00:05:45,740 --> 00:05:48,900
+we export our module object,
+
+119
+00:05:48,900 --> 00:05:50,520
+add our state,
+
+120
+00:05:50,520 --> 00:05:53,883
+and here I return an object which has this cart.
+
+121
+00:05:54,740 --> 00:05:55,830
+And actually,
+
+122
+00:05:55,830 --> 00:05:59,250
+since this is an entire module for just the cart,
+
+123
+00:05:59,250 --> 00:06:03,440
+we can also flatten this and just add items total
+
+124
+00:06:03,440 --> 00:06:08,113
+and quantity as separate keys in this overall module state.
+
+125
+00:06:11,420 --> 00:06:14,600
+Now here, we will need mutations as well,
+
+126
+00:06:14,600 --> 00:06:18,650
+because in App.vue I have two methods for changing the cart,
+
+127
+00:06:18,650 --> 00:06:20,360
+add product to cart,
+
+128
+00:06:20,360 --> 00:06:22,283
+and remove product from cart.
+
+129
+00:06:23,490 --> 00:06:26,093
+So I can grab these methods,
+
+130
+00:06:27,580 --> 00:06:30,090
+cut them from App.vue,
+
+131
+00:06:30,090 --> 00:06:32,460
+and add them to cart.js here
+
+132
+00:06:33,920 --> 00:06:35,163
+in mutations,
+
+133
+00:06:36,240 --> 00:06:39,600
+but we of course have to tweak those mutations now,
+
+134
+00:06:39,600 --> 00:06:42,040
+because now they don't just get an argument
+
+135
+00:06:42,040 --> 00:06:42,980
+and do something.
+
+136
+00:06:42,980 --> 00:06:45,370
+Instead, they now need two arguments,
+
+137
+00:06:45,370 --> 00:06:48,080
+the current state which they should change,
+
+138
+00:06:48,080 --> 00:06:49,253
+and the payload.
+
+139
+00:06:50,230 --> 00:06:52,870
+The payload can then hold all the extra data
+
+140
+00:06:52,870 --> 00:06:54,430
+that might be needed.
+
+141
+00:06:54,430 --> 00:06:55,590
+Here for example,
+
+142
+00:06:55,590 --> 00:06:59,770
+I expect to get some product data describing the product
+
+143
+00:06:59,770 --> 00:07:01,643
+that should be added to the cart.
+
+144
+00:07:02,510 --> 00:07:05,060
+So to make sure that the rest of the code works,
+
+145
+00:07:05,060 --> 00:07:07,630
+I will add a constant named product data
+
+146
+00:07:07,630 --> 00:07:10,120
+because that's what's getting used down there.
+
+147
+00:07:10,120 --> 00:07:12,980
+And expect to get that on my payload.
+
+148
+00:07:12,980 --> 00:07:16,560
+Let's say payload.product.
+
+149
+00:07:16,560 --> 00:07:19,030
+We have to provide this payload later.
+
+150
+00:07:19,030 --> 00:07:21,570
+So we can of course expect any data we want.
+
+151
+00:07:21,570 --> 00:07:24,963
+We just have to make sure that this data exists later.
+
+152
+00:07:26,270 --> 00:07:29,090
+And then we have to update the state.
+
+153
+00:07:29,090 --> 00:07:29,960
+So here for example,
+
+154
+00:07:29,960 --> 00:07:33,960
+it's not this cart items find something.
+
+155
+00:07:33,960 --> 00:07:37,200
+It's state items,
+
+156
+00:07:37,200 --> 00:07:40,740
+because items is now a property in our local state
+
+157
+00:07:40,740 --> 00:07:41,843
+of this module.
+
+158
+00:07:45,040 --> 00:07:48,853
+Here it's also State.items.quantity.
+
+159
+00:07:51,180 --> 00:07:55,730
+Assuming that items in the cart do have a quantity field,
+
+160
+00:07:55,730 --> 00:07:59,210
+and they do because this is how we add items to a cart,
+
+161
+00:07:59,210 --> 00:08:01,530
+we set up products ID, title, image price
+
+162
+00:08:01,530 --> 00:08:04,250
+and quantity for that product in the cart.
+
+163
+00:08:04,250 --> 00:08:05,950
+And this should all continue to work
+
+164
+00:08:05,950 --> 00:08:08,823
+because this doesn't use the state or anything like that.
+
+165
+00:08:09,780 --> 00:08:10,740
+But then here in the end,
+
+166
+00:08:10,740 --> 00:08:14,360
+we access state items and push our new item.
+
+167
+00:08:14,360 --> 00:08:19,360
+And we access state.quantity and state.total.
+
+168
+00:08:22,120 --> 00:08:25,023
+So the other state properties which we added here.
+
+169
+00:08:26,140 --> 00:08:29,093
+And that's the add product to cart mutation.
+
+170
+00:08:30,070 --> 00:08:32,090
+Now for remove product from cart,
+
+171
+00:08:32,090 --> 00:08:35,090
+we also get a state and a payload.
+
+172
+00:08:35,090 --> 00:08:36,400
+And again,
+
+173
+00:08:36,400 --> 00:08:39,530
+prodId was received previously as an argument.
+
+174
+00:08:39,530 --> 00:08:41,950
+So I will add a constant prodId,
+
+175
+00:08:41,950 --> 00:08:45,380
+and extract this productId let's say
+
+176
+00:08:45,380 --> 00:08:46,833
+from the payload object.
+
+177
+00:08:47,990 --> 00:08:48,823
+And then again,
+
+178
+00:08:48,823 --> 00:08:51,603
+we search state.items here.
+
+179
+00:08:52,480 --> 00:08:55,640
+And here, it's all those state.items
+
+180
+00:08:55,640 --> 00:09:00,640
+and we manipulate state items, state quantity
+
+181
+00:09:01,650 --> 00:09:03,583
+and state total.
+
+182
+00:09:05,600 --> 00:09:08,160
+Now we get the mutations in place.
+
+183
+00:09:08,160 --> 00:09:11,290
+Now we learned that we shouldn't directly commit mutations
+
+184
+00:09:11,290 --> 00:09:12,520
+from inside components.
+
+185
+00:09:12,520 --> 00:09:15,380
+So I'm going to add some actions as well.
+
+186
+00:09:15,380 --> 00:09:18,010
+And here I'll add an add to cart action
+
+187
+00:09:19,060 --> 00:09:22,453
+and remove from cart action.
+
+188
+00:09:23,460 --> 00:09:27,170
+And add to cart receives this context
+
+189
+00:09:27,170 --> 00:09:29,510
+and maybe also a payload.
+
+190
+00:09:29,510 --> 00:09:32,243
+And the same here for removed from cart.
+
+191
+00:09:33,610 --> 00:09:35,260
+And in here I then simply commit,
+
+192
+00:09:38,420 --> 00:09:39,980
+add product to cart
+
+193
+00:09:42,280 --> 00:09:45,323
+and forwards the payload to the mutation.
+
+194
+00:09:47,450 --> 00:09:52,380
+And for the other action we commit remove product from cart.
+
+195
+00:09:52,380 --> 00:09:56,600
+So that would be context commit,
+
+196
+00:09:56,600 --> 00:09:59,860
+remove product from cart and forward to payload
+
+197
+00:10:01,240 --> 00:10:04,830
+And with that we just have to add some getters now.
+
+198
+00:10:04,830 --> 00:10:08,230
+Getters that allow us to get access to various pieces
+
+199
+00:10:08,230 --> 00:10:09,903
+of information about the cart.
+
+200
+00:10:11,470 --> 00:10:13,810
+And here, we can get creative.
+
+201
+00:10:13,810 --> 00:10:16,490
+Previously we shared the overall cart.
+
+202
+00:10:16,490 --> 00:10:18,320
+And then in different components,
+
+203
+00:10:18,320 --> 00:10:21,140
+we extracted different features.
+
+204
+00:10:21,140 --> 00:10:25,010
+For example in the user card page,
+
+205
+00:10:25,010 --> 00:10:28,713
+I extracted the cart total like this.
+
+206
+00:10:30,820 --> 00:10:32,390
+In the header,
+
+207
+00:10:32,390 --> 00:10:34,280
+I'm extracting
+
+208
+00:10:35,780 --> 00:10:38,010
+the card quantity here.
+
+209
+00:10:38,010 --> 00:10:42,470
+Now we can define some getters for that in our module,
+
+210
+00:10:42,470 --> 00:10:44,550
+we can have a cart item scatter,
+
+211
+00:10:44,550 --> 00:10:46,773
+which gives us the overall cart items.
+
+212
+00:10:47,710 --> 00:10:49,220
+A cart total getter,
+
+213
+00:10:49,220 --> 00:10:53,530
+which gives us the total sum and a cart quantity getter,
+
+214
+00:10:53,530 --> 00:10:57,180
+or since this is all in the cart module already
+
+215
+00:10:57,180 --> 00:11:02,090
+just name this items or products or whatever you want,
+
+216
+00:11:02,090 --> 00:11:05,323
+total sum maybe and quantity.
+
+217
+00:11:06,800 --> 00:11:10,500
+And then here return state which we get
+
+218
+00:11:10,500 --> 00:11:13,990
+in a getter automatically state items
+
+219
+00:11:15,170 --> 00:11:18,423
+here in total sum return state,
+
+220
+00:11:19,660 --> 00:11:20,493
+total.
+
+221
+00:11:21,810 --> 00:11:23,360
+And here return
+
+222
+00:11:24,720 --> 00:11:27,270
+state quantity.
+
+223
+00:11:27,270 --> 00:11:31,300
+And now we can go to index.js in the store folder,
+
+224
+00:11:31,300 --> 00:11:36,300
+import the cart module from ./modules/cart.js
+
+225
+00:11:38,580 --> 00:11:41,423
+and add this to our modules here as well.
+
+226
+00:11:42,500 --> 00:11:45,620
+And I'm going to namespace this cart
+
+227
+00:11:45,620 --> 00:11:47,853
+and save to cart module in there.
+
+228
+00:11:49,540 --> 00:11:50,940
+Now with that we're not done
+
+229
+00:11:50,940 --> 00:11:53,950
+but we made an important first step.
+
+230
+00:11:53,950 --> 00:11:56,080
+Now let's continue with cleaning up
+
+231
+00:11:56,080 --> 00:11:58,763
+and with using the store in the next lectures.
+

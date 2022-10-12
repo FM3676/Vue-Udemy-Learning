@@ -1,0 +1,172 @@
+1
+00:00:02,260 --> 00:00:09,220
+So that's it for the module, and this was a huge course section, of course, since we covered all
+
+2
+00:00:09,220 --> 00:00:16,480
+the important fundamentals, you need to know about the way you learned how interacting with the DOM
+
+3
+00:00:16,480 --> 00:00:24,940
+works and how View manages templates to allow you to use certain view features which are then reflected
+
+4
+00:00:24,940 --> 00:00:26,560
+on the actual page.
+
+5
+00:00:27,520 --> 00:00:35,170
+You learned that view has this core idea of letting you define the goal rather than the individual steps
+
+6
+00:00:35,350 --> 00:00:43,540
+so that it follows that declarative approach where you define how your page should look like and which
+
+7
+00:00:43,540 --> 00:00:50,020
+parts on the page might be dynamic and you let them view figure out how to get there.
+
+8
+00:00:50,920 --> 00:00:58,720
+Now, in order to let view do its job, you need to connect your view app, your view instance, the
+
+9
+00:00:58,720 --> 00:01:02,920
+actual HTML code with the mound method which you saw.
+
+10
+00:01:03,490 --> 00:01:10,930
+Then you can use a see us as selector to select a part ofthe page and turn that part into the template
+
+11
+00:01:10,930 --> 00:01:18,150
+of the View app in which you then can use all these new features, like, for example, the data and
+
+12
+00:01:18,170 --> 00:01:20,410
+event binding features you learned about.
+
+13
+00:01:21,280 --> 00:01:25,500
+You learned that data can be output in that template.
+
+14
+00:01:25,600 --> 00:01:34,060
+So in the controlled HTML code, by using the double curly brace syntax for this interpolation syntax
+
+15
+00:01:34,420 --> 00:01:42,160
+to just output some text which might change over time in a certain place off the page or with the V
+
+16
+00:01:42,730 --> 00:01:48,040
+directive to bind HTML attributes to some dynamic value.
+
+17
+00:01:48,430 --> 00:01:56,890
+You also learn about the is shorthand notation where instead of the bind colon, some attribute, you
+
+18
+00:01:56,890 --> 00:02:03,160
+just have colon, some attribute to then bind that attribute to a dynamic value.
+
+19
+00:02:04,060 --> 00:02:06,840
+And we of course cannot just output data.
+
+20
+00:02:06,970 --> 00:02:14,120
+We can also listen to events with the V on DirecTV or at shorthand notation.
+
+21
+00:02:15,100 --> 00:02:19,330
+Now these are the powerful core features view is all about.
+
+22
+00:02:19,570 --> 00:02:27,490
+But in order to make these features really powerful and to make them more useful, we rely on views
+
+23
+00:02:27,490 --> 00:02:29,800
+built in reactivity system.
+
+24
+00:02:30,760 --> 00:02:38,140
+That simply means that we will update the real DOM whenever some data which you're outputting with the
+
+25
+00:02:38,140 --> 00:02:45,290
+BINDE or double curly braces changes and you learned that you can register data which might change in
+
+26
+00:02:45,340 --> 00:02:51,310
+the data object of your view app, and that you can also work with computed properties and watchers
+
+27
+00:02:51,490 --> 00:02:55,630
+to calculate results dynamically or to run some code.
+
+28
+00:02:55,630 --> 00:03:03,610
+Whenever some data changes and view Worchester data for you, it automatically detects changes for you
+
+29
+00:03:03,820 --> 00:03:11,110
+and it will update the DOM and therefore what the user sees on the page whenever such changes are detected.
+
+30
+00:03:11,530 --> 00:03:17,320
+Now, that's the important foundation you need when working with view, but it's, of course, not just
+
+31
+00:03:17,320 --> 00:03:21,060
+about outputting text or data in Web apps.
+
+32
+00:03:21,070 --> 00:03:25,930
+We also, of course, want to make them look pretty and that involves styling.
+
+33
+00:03:26,380 --> 00:03:33,550
+And here you also can help us with achieving dynamic styling because we can, of course, also said
+
+34
+00:03:33,550 --> 00:03:38,200
+Sears's classes or inline styles dynamically with the bind.
+
+35
+00:03:39,040 --> 00:03:47,050
+And you also learned that view has special syntaxes for classes and inline styles to help you assign
+
+36
+00:03:47,050 --> 00:03:54,660
+dynamic styles to make that easier for you with that object or Arason text I covered over the last lectures.
+
+37
+00:03:55,720 --> 00:03:57,300
+Now that's the foundation.
+
+38
+00:03:57,310 --> 00:04:02,470
+It's of course not all you need to know, but it's the foundation for the rest of the course and you
+
+39
+00:04:02,470 --> 00:04:09,280
+will see the concepts taught in Discourse section throughout all our course sections.
+
+40
+00:04:09,400 --> 00:04:11,320
+So make sure you understand this.
+
+41
+00:04:11,500 --> 00:04:15,760
+Go through the lectures, which might not be clear to you at this point.
+
+42
+00:04:16,060 --> 00:04:23,020
+And due to challenges and exercises I offer to you in the section so that you really know what these
+
+43
+00:04:23,020 --> 00:04:24,970
+core concepts are all about.
+

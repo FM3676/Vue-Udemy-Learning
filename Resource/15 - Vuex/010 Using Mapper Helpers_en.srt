@@ -1,0 +1,476 @@
+1
+00:00:02,130 --> 00:00:04,920
+Now we know the core Vuex features,
+
+2
+00:00:04,920 --> 00:00:08,400
+we'll see it in a more realistic app in a second.
+
+3
+00:00:08,400 --> 00:00:10,410
+Before we go there though,
+
+4
+00:00:10,410 --> 00:00:13,440
+let's talk about a couple of utility features,
+
+5
+00:00:13,440 --> 00:00:17,480
+which make our life as a developer a bit easier.
+
+6
+00:00:17,480 --> 00:00:20,470
+And let's start with mappers.
+
+7
+00:00:20,470 --> 00:00:22,470
+In the counter, for example,
+
+8
+00:00:22,470 --> 00:00:26,800
+we have this counter computed property,
+
+9
+00:00:26,800 --> 00:00:27,700
+where we in the end,
+
+10
+00:00:27,700 --> 00:00:30,503
+just access our final counter getter.
+
+11
+00:00:31,470 --> 00:00:36,090
+So we have this code here just to get access to our getter.
+
+12
+00:00:36,090 --> 00:00:38,160
+Now, this is obviously not a lot of code,
+
+13
+00:00:38,160 --> 00:00:40,580
+but we're not doing anything besides
+
+14
+00:00:40,580 --> 00:00:43,180
+drilling into our store.
+
+15
+00:00:43,180 --> 00:00:44,250
+This is not horrible.
+
+16
+00:00:44,250 --> 00:00:46,210
+But in case you're not happy with that
+
+17
+00:00:46,210 --> 00:00:48,920
+Vuex has a helper which you can use.
+
+18
+00:00:48,920 --> 00:00:51,550
+You can import something from Vuex,
+
+19
+00:00:51,550 --> 00:00:56,363
+and that something is a mapGetters function.
+
+20
+00:00:57,740 --> 00:01:00,400
+You can use it inside of this computed object.
+
+21
+00:01:00,400 --> 00:01:03,940
+Instead of defining a computed property on your own,
+
+22
+00:01:03,940 --> 00:01:06,770
+you can call mapGetters here.
+
+23
+00:01:06,770 --> 00:01:10,270
+And this will return an object which you can then spread
+
+24
+00:01:10,270 --> 00:01:12,610
+with the free.spread operator
+
+25
+00:01:12,610 --> 00:01:15,543
+into your computed property object.
+
+26
+00:01:16,400 --> 00:01:20,050
+So mapGetters gives you an object, which we now merge
+
+27
+00:01:20,050 --> 00:01:22,073
+into the computed properties object.
+
+28
+00:01:22,950 --> 00:01:25,500
+Because the object mapGetters will give you
+
+29
+00:01:25,500 --> 00:01:28,170
+is an object full of computed properties,
+
+30
+00:01:28,170 --> 00:01:30,853
+which are defined automatically for you.
+
+31
+00:01:31,710 --> 00:01:32,560
+Well, now,
+
+32
+00:01:32,560 --> 00:01:35,250
+which computed properties do we get here?
+
+33
+00:01:35,250 --> 00:01:38,560
+Well, mapGetters takes an array as an argument.
+
+34
+00:01:38,560 --> 00:01:43,420
+And in here, you list all getter names as strings,
+
+35
+00:01:43,420 --> 00:01:44,710
+which you want to have
+
+36
+00:01:44,710 --> 00:01:47,480
+as computed properties in this component.
+
+37
+00:01:47,480 --> 00:01:50,320
+So in this case, for example, the final counter,
+
+38
+00:01:50,320 --> 00:01:52,870
+but of course, we could have multiple getters here.
+
+39
+00:01:53,740 --> 00:01:55,980
+And now this will give us a final counter
+
+40
+00:01:55,980 --> 00:01:58,360
+computed property in this component,
+
+41
+00:01:58,360 --> 00:02:02,053
+which automatically points at the finalCounter getter.
+
+42
+00:02:03,970 --> 00:02:04,803
+And with that,
+
+43
+00:02:04,803 --> 00:02:07,340
+we just need to change this here to finalCounter,
+
+44
+00:02:07,340 --> 00:02:10,289
+because that will be the computed property name.
+
+45
+00:02:10,289 --> 00:02:12,240
+And then if we reload,
+
+46
+00:02:12,240 --> 00:02:14,370
+it still works as before.
+
+47
+00:02:14,370 --> 00:02:16,120
+But now with mapGetters,
+
+48
+00:02:16,120 --> 00:02:18,500
+especially when you use multiple getters
+
+49
+00:02:18,500 --> 00:02:19,860
+in a given component,
+
+50
+00:02:19,860 --> 00:02:21,980
+you might be able to save some code
+
+51
+00:02:21,980 --> 00:02:25,973
+and not drill unnecessarily into the store all the time.
+
+52
+00:02:27,660 --> 00:02:31,370
+Now, we have something similar for state and mutations,
+
+53
+00:02:31,370 --> 00:02:34,840
+but you don't really use those in your components anyways.
+
+54
+00:02:34,840 --> 00:02:37,320
+So let's have a look at mapActions then,
+
+55
+00:02:37,320 --> 00:02:41,800
+which also exists to mapActions into your components.
+
+56
+00:02:41,800 --> 00:02:43,440
+How does this look like?
+
+57
+00:02:43,440 --> 00:02:44,980
+Let's say in change counter,
+
+58
+00:02:44,980 --> 00:02:47,980
+we don't manually want to define methods,
+
+59
+00:02:47,980 --> 00:02:50,950
+which in the end also just drill into the store
+
+60
+00:02:50,950 --> 00:02:53,533
+to dispatch some action here.
+
+61
+00:02:54,730 --> 00:02:57,860
+Instead, we could just as with getters,
+
+62
+00:02:57,860 --> 00:03:02,090
+import something from Vuex,
+
+63
+00:03:02,090 --> 00:03:05,620
+and that something here is mapActions.
+
+64
+00:03:07,350 --> 00:03:11,140
+Now, just as with mapGetters we call mapActions.
+
+65
+00:03:11,140 --> 00:03:13,590
+Now inside of methods though,
+
+66
+00:03:13,590 --> 00:03:15,160
+not inside of computed,
+
+67
+00:03:15,160 --> 00:03:17,110
+but inside of methods.
+
+68
+00:03:17,110 --> 00:03:20,610
+We call mapActions, like this.
+
+69
+00:03:20,610 --> 00:03:23,840
+And again get back an object which we merge
+
+70
+00:03:23,840 --> 00:03:27,173
+with the methods object by using the spread operator.
+
+71
+00:03:28,040 --> 00:03:31,250
+MapActions now also takes an array.
+
+72
+00:03:31,250 --> 00:03:34,090
+And now here we define all the action names,
+
+73
+00:03:34,090 --> 00:03:37,840
+which we wanna have as methods in this component.
+
+74
+00:03:37,840 --> 00:03:39,820
+So in this case, increment.
+
+75
+00:03:39,820 --> 00:03:42,660
+But of course, we could also add the increase action here
+
+76
+00:03:42,660 --> 00:03:46,820
+to map both actions to methods in this component.
+
+77
+00:03:46,820 --> 00:03:50,310
+And these methods will be created for you by mapActions.
+
+78
+00:03:50,310 --> 00:03:52,163
+That's the idea behind using it.
+
+79
+00:03:53,750 --> 00:03:56,960
+Now with that, we could add a second button
+
+80
+00:03:56,960 --> 00:04:00,300
+and on the first button, call increment.
+
+81
+00:04:00,300 --> 00:04:01,760
+That's the name of the method
+
+82
+00:04:01,760 --> 00:04:05,090
+which will be created for the increment action
+
+83
+00:04:05,090 --> 00:04:07,853
+and point at increase on the second button.
+
+84
+00:04:08,750 --> 00:04:11,470
+Now, of course here we need a payload.
+
+85
+00:04:11,470 --> 00:04:16,350
+And you can simply pass your payload as an argument then.
+
+86
+00:04:16,350 --> 00:04:20,360
+So in this case, an object with a value of 10.
+
+87
+00:04:20,360 --> 00:04:23,670
+Because we expect a payload in our store,
+
+88
+00:04:23,670 --> 00:04:25,163
+which will be an object,
+
+89
+00:04:26,030 --> 00:04:28,680
+which has a value property.
+
+90
+00:04:28,680 --> 00:04:31,780
+So that's why we pass an object with a value property here
+
+91
+00:04:31,780 --> 00:04:36,260
+simply as an argument to this automatically created method.
+
+92
+00:04:36,260 --> 00:04:39,350
+With that, we can change this button caption
+
+93
+00:04:39,350 --> 00:04:42,650
+maybe to 11 to tell it apart from the other button,
+
+94
+00:04:42,650 --> 00:04:44,050
+also change the value.
+
+95
+00:04:44,050 --> 00:04:45,900
+And with that,
+
+96
+00:04:45,900 --> 00:04:49,200
+now we got this new button, which also works.
+
+97
+00:04:49,200 --> 00:04:51,510
+So now we're also mapping actions
+
+98
+00:04:51,510 --> 00:04:53,610
+and this saves us the time to
+
+99
+00:04:53,610 --> 00:04:55,973
+add to those methods on our own.
+
+100
+00:04:57,210 --> 00:05:00,700
+There also is an alternative way of mapping actions,
+
+101
+00:05:00,700 --> 00:05:03,800
+in case you're not happy with the default names,
+
+102
+00:05:03,800 --> 00:05:06,060
+you can also call mapActions
+
+103
+00:05:06,060 --> 00:05:10,360
+and not pass an array to it but an object instead.
+
+104
+00:05:10,360 --> 00:05:12,780
+And then you can define the method names
+
+105
+00:05:12,780 --> 00:05:16,920
+you want to have in your component as keys.
+
+106
+00:05:16,920 --> 00:05:18,410
+For example, inc,
+
+107
+00:05:18,410 --> 00:05:20,330
+and then hold the action
+
+108
+00:05:20,330 --> 00:05:23,573
+which should be mapped to this method as a value.
+
+109
+00:05:25,130 --> 00:05:30,130
+So with that, we could go with inc and increase like this.
+
+110
+00:05:30,190 --> 00:05:32,220
+And with that, the increment action
+
+111
+00:05:32,220 --> 00:05:34,110
+would be mapped to an inc method,
+
+112
+00:05:34,110 --> 00:05:37,160
+increase would be mapped to an increased method.
+
+113
+00:05:37,160 --> 00:05:38,960
+And therefore we would have to call
+
+114
+00:05:38,960 --> 00:05:41,353
+increment by calling inc now,
+
+115
+00:05:42,860 --> 00:05:44,060
+increase stays increase,
+
+116
+00:05:44,060 --> 00:05:46,510
+because that's how I'm mapping it.
+
+117
+00:05:46,510 --> 00:05:48,520
+And with data of course,
+
+118
+00:05:48,520 --> 00:05:51,363
+that would still work if we try this.
+
+119
+00:05:52,250 --> 00:05:55,563
+So mapActions and mapGetters can be very, very useful.
+

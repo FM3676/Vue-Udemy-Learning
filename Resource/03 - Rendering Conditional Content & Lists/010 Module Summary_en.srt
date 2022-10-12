@@ -1,0 +1,212 @@
+1
+00:00:02,110 --> 00:00:04,450
+So that's it for this module.
+
+2
+00:00:04,450 --> 00:00:05,700
+And now we're a key module,
+
+3
+00:00:05,700 --> 00:00:08,508
+which together with that module before it forms
+
+4
+00:00:08,508 --> 00:00:10,710
+the foundation of view.
+
+5
+00:00:10,710 --> 00:00:13,300
+Now you really already know a lot,
+
+6
+00:00:13,300 --> 00:00:17,130
+all the core basics you need to build view applications.
+
+7
+00:00:17,130 --> 00:00:19,040
+And in this module, we of course learned
+
+8
+00:00:19,040 --> 00:00:21,290
+about conditional content and lists.
+
+9
+00:00:21,290 --> 00:00:23,960
+Conditional content is all about the v-if
+
+10
+00:00:23,960 --> 00:00:25,550
+and v- show directives.
+
+11
+00:00:25,550 --> 00:00:28,830
+Where v-if is the more important one as I mentioned.
+
+12
+00:00:28,830 --> 00:00:31,040
+V-if allows you to render content only
+
+13
+00:00:31,040 --> 00:00:32,780
+for certain condition is met,
+
+14
+00:00:32,780 --> 00:00:35,310
+and with v-if the element is really added,
+
+15
+00:00:35,310 --> 00:00:38,140
+and removed to and from the DOM with the show,
+
+16
+00:00:38,140 --> 00:00:41,410
+and it's just shown where hidden with CSS.
+
+17
+00:00:41,410 --> 00:00:44,070
+We, if can also be combined with v-else,
+
+18
+00:00:44,070 --> 00:00:46,020
+and v-else-if to render.
+
+19
+00:00:46,020 --> 00:00:48,350
+Abra elements as alternatives,
+
+20
+00:00:48,350 --> 00:00:50,530
+only on direct sibling elements though.
+
+21
+00:00:50,530 --> 00:00:52,690
+So v-else and v-else-if need to be used
+
+22
+00:00:52,690 --> 00:00:56,720
+on elements directly after v-if not inside v-if,
+
+23
+00:00:56,720 --> 00:00:58,183
+but after v-if.
+
+24
+00:00:59,600 --> 00:01:02,770
+We all learned about lists and outputting lists of data.
+
+25
+00:01:02,770 --> 00:01:04,930
+For dad, we have to v-for directive,
+
+26
+00:01:04,930 --> 00:01:08,640
+which can be used to render multiple elements dynamically.
+
+27
+00:01:08,640 --> 00:01:10,510
+And you'll learn that before it can be used
+
+28
+00:01:10,510 --> 00:01:12,800
+with a raise with objects and all the,
+
+29
+00:01:12,800 --> 00:01:15,240
+with ranges, so with numbers,
+
+30
+00:01:15,240 --> 00:01:17,440
+we always had a couple of variations steer,
+
+31
+00:01:17,440 --> 00:01:19,484
+for example, you can extract values,
+
+32
+00:01:19,484 --> 00:01:23,450
+and indexes, or even values, keys, and indexes.
+
+33
+00:01:23,450 --> 00:01:26,590
+If you're working with objects and before.
+
+34
+00:01:26,590 --> 00:01:29,160
+And if you need before v-for and v-if together,
+
+35
+00:01:29,160 --> 00:01:30,810
+as we had it in the assignment,
+
+36
+00:01:30,810 --> 00:01:32,620
+don't use them on the same element.
+
+37
+00:01:32,620 --> 00:01:34,880
+use a wrapper with v-if instead,
+
+38
+00:01:34,880 --> 00:01:36,630
+for example, use it on a template,
+
+39
+00:01:36,630 --> 00:01:39,520
+a diff, a UL element or whatever makes sense,
+
+40
+00:01:39,520 --> 00:01:40,740
+in your application.
+
+41
+00:01:40,740 --> 00:01:42,490
+Don't use them on the same element.
+
+42
+00:01:43,410 --> 00:01:44,257
+In addition, v-for has this concept of keys,
+
+43
+00:01:44,257 --> 00:01:45,090
+that you might consider using,
+
+44
+00:01:45,090 --> 00:01:50,090
+you needed whenever you have state in your list items,
+
+45
+00:01:52,910 --> 00:01:55,029
+because of view reuse this DOM elements
+
+46
+00:01:55,029 --> 00:01:56,850
+to optimize performance,
+
+47
+00:01:56,850 --> 00:01:58,330
+but this can lead to bugs.
+
+48
+00:01:58,330 --> 00:02:01,180
+If your list item elements contain some state
+
+49
+00:02:01,180 --> 00:02:03,720
+that should move to gabber with the content.
+
+50
+00:02:03,720 --> 00:02:04,672
+For dad you can use keys,
+
+51
+00:02:04,672 --> 00:02:08,039
+and you should bind them to unique values,
+
+52
+00:02:08,039 --> 00:02:11,810
+so that view has a clear way of identifying every element,
+
+53
+00:02:11,810 --> 00:02:12,853
+in a unique way.
+

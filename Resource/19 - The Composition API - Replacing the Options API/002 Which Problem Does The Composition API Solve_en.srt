@@ -1,0 +1,524 @@
+1
+00:00:02,240 --> 00:00:06,070
+What exactly is the Composition API?
+
+2
+00:00:06,070 --> 00:00:10,080
+Well, let's start with what we learned thus far.
+
+3
+00:00:10,080 --> 00:00:13,760
+When it comes to building Vue apps and Vue components,
+
+4
+00:00:13,760 --> 00:00:18,760
+we thus far used the so-called Options API.
+
+5
+00:00:19,040 --> 00:00:22,560
+We created this configuration object,
+
+6
+00:00:22,560 --> 00:00:26,270
+and in there we configured various options,
+
+7
+00:00:26,270 --> 00:00:28,550
+for example, the data option,
+
+8
+00:00:28,550 --> 00:00:33,550
+the methods option, but maybe also computed or watchers.
+
+9
+00:00:34,290 --> 00:00:36,850
+So we had this configuration object
+
+10
+00:00:36,850 --> 00:00:40,070
+where we set up our data, our methods.
+
+11
+00:00:40,070 --> 00:00:42,210
+So to code, we could run up on events,
+
+12
+00:00:42,210 --> 00:00:44,600
+for example, and so on.
+
+13
+00:00:44,600 --> 00:00:46,820
+And I will emphasize that again,
+
+14
+00:00:46,820 --> 00:00:50,900
+this approach is absolutely fine and you can stick to it.
+
+15
+00:00:50,900 --> 00:00:54,910
+It's not bad, it's not a second best option.
+
+16
+00:00:54,910 --> 00:00:57,060
+It is absolutely fine.
+
+17
+00:00:57,060 --> 00:01:00,090
+And knowing it is actually a requirement
+
+18
+00:01:00,090 --> 00:01:03,573
+for understanding the Composition API, I would say.
+
+19
+00:01:04,690 --> 00:01:07,100
+But what is the Composition API then?
+
+20
+00:01:07,100 --> 00:01:09,220
+This is the Options API.
+
+21
+00:01:09,220 --> 00:01:12,970
+The Composition API is an alternative way
+
+22
+00:01:12,970 --> 00:01:16,340
+of writing the logic behind our components.
+
+23
+00:01:16,340 --> 00:01:20,100
+And it was introduced because we might,
+
+24
+00:01:20,100 --> 00:01:25,100
+and I'm saying might, face two main limitations or issues
+
+25
+00:01:26,150 --> 00:01:29,310
+when building bigger Vue apps.
+
+26
+00:01:29,310 --> 00:01:31,740
+In smaller and medium-sized apps,
+
+27
+00:01:31,740 --> 00:01:35,110
+we will very likely never face those issues,
+
+28
+00:01:35,110 --> 00:01:38,430
+but in bigger apps, we might face them.
+
+29
+00:01:38,430 --> 00:01:41,220
+Issue number one is that code
+
+30
+00:01:41,220 --> 00:01:43,460
+that belongs together logically
+
+31
+00:01:43,460 --> 00:01:47,000
+is actually split up across multiple options,
+
+32
+00:01:47,000 --> 00:01:50,410
+data, methods, computed, for example.
+
+33
+00:01:50,410 --> 00:01:52,950
+And I have a little example project here.
+
+34
+00:01:52,950 --> 00:01:54,760
+You don't find it attached here
+
+35
+00:01:54,760 --> 00:01:56,670
+because we're not going to work with it here.
+
+36
+00:01:56,670 --> 00:01:58,820
+I just want to show it to you.
+
+37
+00:01:58,820 --> 00:02:00,900
+Now, in this demo app,
+
+38
+00:02:00,900 --> 00:02:02,950
+which brings this to the screen
+
+39
+00:02:02,950 --> 00:02:05,470
+where we can sort various users,
+
+40
+00:02:05,470 --> 00:02:10,470
+filter for users, and view the projects of our users,
+
+41
+00:02:10,500 --> 00:02:13,380
+and also filter those projects,
+
+42
+00:02:13,380 --> 00:02:16,760
+in this app, I'm using a couple of different components,
+
+43
+00:02:16,760 --> 00:02:20,240
+which together form this user interface.
+
+44
+00:02:20,240 --> 00:02:23,730
+And this app is built with the features we learned
+
+45
+00:02:23,730 --> 00:02:26,640
+over the last modules in this course.
+
+46
+00:02:26,640 --> 00:02:30,110
+In all those components, I'm managing data,
+
+47
+00:02:30,110 --> 00:02:32,120
+I might be getting some props,
+
+48
+00:02:32,120 --> 00:02:35,440
+I might be registering more local components.
+
+49
+00:02:35,440 --> 00:02:37,400
+We get some computed properties,
+
+50
+00:02:37,400 --> 00:02:39,480
+some methods, some watchers.
+
+51
+00:02:39,480 --> 00:02:42,420
+And that's not just the case in this one component,
+
+52
+00:02:42,420 --> 00:02:44,493
+but in multiple components.
+
+53
+00:02:45,900 --> 00:02:48,630
+Now, coming back to that first problem,
+
+54
+00:02:48,630 --> 00:02:50,283
+I brought up here, that code
+
+55
+00:02:50,283 --> 00:02:52,830
+that might belong together logically
+
+56
+00:02:52,830 --> 00:02:56,290
+is split up across data methods and computed,
+
+57
+00:02:56,290 --> 00:02:58,910
+so across these different options.
+
+58
+00:02:58,910 --> 00:03:03,180
+That's something we can see in this demo application.
+
+59
+00:03:03,180 --> 00:03:06,100
+In the user list component here, for example,
+
+60
+00:03:06,100 --> 00:03:09,640
+I have some data that is related to searching
+
+61
+00:03:09,640 --> 00:03:12,833
+and other data that is related to sorting.
+
+62
+00:03:14,270 --> 00:03:17,220
+I got a computed property that deals with searching
+
+63
+00:03:17,220 --> 00:03:19,503
+and then one that deals with sorting.
+
+64
+00:03:20,870 --> 00:03:23,100
+I got a method that deals with searching,
+
+65
+00:03:23,100 --> 00:03:24,940
+one that deals with sorting.
+
+66
+00:03:24,940 --> 00:03:28,080
+Got a watcher that deals with searching and so on.
+
+67
+00:03:28,080 --> 00:03:31,800
+And that's what I meant with features that belong together
+
+68
+00:03:31,800 --> 00:03:34,770
+are split across these different options.
+
+69
+00:03:34,770 --> 00:03:37,380
+Now, this is definitely not a horrible problem,
+
+70
+00:03:37,380 --> 00:03:41,470
+and this is definitely not a super huge application,
+
+71
+00:03:41,470 --> 00:03:43,250
+but it is an application
+
+72
+00:03:43,250 --> 00:03:46,770
+where this component already could become
+
+73
+00:03:46,770 --> 00:03:48,560
+a bit annoying to manage.
+
+74
+00:03:48,560 --> 00:03:51,300
+Because if you change something about searching,
+
+75
+00:03:51,300 --> 00:03:53,710
+you might have to change it here in data
+
+76
+00:03:53,710 --> 00:03:56,640
+then change something here in the computed property,
+
+77
+00:03:56,640 --> 00:03:58,250
+change something here in methods.
+
+78
+00:03:58,250 --> 00:04:00,220
+And you have to scroll around a lot
+
+79
+00:04:00,220 --> 00:04:02,220
+and find the different pieces
+
+80
+00:04:02,220 --> 00:04:05,700
+that together make up the search feature
+
+81
+00:04:05,700 --> 00:04:07,370
+because the different pieces
+
+82
+00:04:07,370 --> 00:04:11,453
+that make up that feature are split across various options.
+
+83
+00:04:12,400 --> 00:04:15,840
+But that's not just the only issue we could be facing
+
+84
+00:04:15,840 --> 00:04:18,753
+with the current way of building Vue apps.
+
+85
+00:04:19,769 --> 00:04:22,780
+In addition to the problem I just described,
+
+86
+00:04:22,780 --> 00:04:25,580
+re-using logic across components
+
+87
+00:04:25,580 --> 00:04:28,070
+can also be tricky or cumbersome.
+
+88
+00:04:28,070 --> 00:04:31,240
+Now, I will say there are ways of reusing logic,
+
+89
+00:04:31,240 --> 00:04:35,053
+but they all have their downsides and might not be ideal.
+
+90
+00:04:36,340 --> 00:04:37,470
+And in this demo app,
+
+91
+00:04:37,470 --> 00:04:39,620
+there is logic that could be re-used.
+
+92
+00:04:39,620 --> 00:04:41,230
+Both in the user list
+
+93
+00:04:41,230 --> 00:04:43,340
+as well in the projects list component,
+
+94
+00:04:43,340 --> 00:04:46,350
+I have my search functionality.
+
+95
+00:04:46,350 --> 00:04:51,350
+And I have similar computed properties and similar watchers.
+
+96
+00:04:51,840 --> 00:04:55,230
+And it would be nice if we could reuse some logic here
+
+97
+00:04:55,230 --> 00:04:59,210
+so that we don't have to write almost the same code twice
+
+98
+00:04:59,210 --> 00:05:01,610
+in two different components.
+
+99
+00:05:01,610 --> 00:05:04,700
+Well, and these are the problems we could be facing
+
+100
+00:05:04,700 --> 00:05:09,100
+in bigger Vue applications with the current approach.
+
+101
+00:05:09,100 --> 00:05:13,300
+Not technical problems and maybe not problems at all to you,
+
+102
+00:05:13,300 --> 00:05:15,870
+maybe you're absolutely fine with that,
+
+103
+00:05:15,870 --> 00:05:19,043
+but maybe things you would like to get rid of.
+
+104
+00:05:20,640 --> 00:05:25,313
+And that's exactly where the Composition API can help us.
+
+105
+00:05:26,250 --> 00:05:28,510
+Instead of writing code like this,
+
+106
+00:05:28,510 --> 00:05:32,520
+where we split our logic across multiple options,
+
+107
+00:05:32,520 --> 00:05:37,060
+that's all the white, this API is called the Options API,
+
+108
+00:05:37,060 --> 00:05:41,540
+we instead bundle our logic in a new setup method,
+
+109
+00:05:41,540 --> 00:05:44,890
+which we add to our component config object.
+
+110
+00:05:44,890 --> 00:05:47,950
+The setup method is added next to data,
+
+111
+00:05:47,950 --> 00:05:49,650
+and methods, and so on,
+
+112
+00:05:49,650 --> 00:05:53,600
+but it will actually replace data methods and so on.
+
+113
+00:05:53,600 --> 00:05:55,500
+And we will manage our data,
+
+114
+00:05:55,500 --> 00:05:58,050
+our functions, our computed properties,
+
+115
+00:05:58,050 --> 00:06:01,770
+and our watchers in that set up method
+
+116
+00:06:01,770 --> 00:06:05,110
+where we then also expose them to the template
+
+117
+00:06:05,110 --> 00:06:08,250
+so that we can interact with those things.
+
+118
+00:06:08,250 --> 00:06:09,840
+And that's, by the way, important.
+
+119
+00:06:09,840 --> 00:06:11,760
+The template code you write,
+
+120
+00:06:11,760 --> 00:06:14,430
+features like VF, and data binding,
+
+121
+00:06:14,430 --> 00:06:18,480
+and all of that stays exactly the way you learned it.
+
+122
+00:06:18,480 --> 00:06:22,260
+It's just how we set up our code in this object,
+
+123
+00:06:22,260 --> 00:06:24,540
+in this component, conflict object.
+
+124
+00:06:24,540 --> 00:06:26,520
+That is what will change a bit
+
+125
+00:06:26,520 --> 00:06:29,730
+when you switch to the Composition API.
+
+126
+00:06:29,730 --> 00:06:32,100
+Because we're going to merge,
+
+127
+00:06:32,100 --> 00:06:36,540
+you could say these four main options, data methods,
+
+128
+00:06:36,540 --> 00:06:40,430
+computed, and watch, into this setup method.
+
+129
+00:06:40,430 --> 00:06:42,920
+But with that, we got enough theory.
+
+130
+00:06:42,920 --> 00:06:45,210
+Let's now dig into the code and see
+
+131
+00:06:45,210 --> 00:06:48,593
+how we actually get started with the Composition API.
+

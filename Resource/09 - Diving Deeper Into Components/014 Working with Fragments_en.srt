@@ -1,0 +1,100 @@
+1
+00:00:02,170 --> 00:00:04,040
+There's another feature
+
+2
+00:00:04,040 --> 00:00:07,870
+or aspect about components you should be aware of.
+
+3
+00:00:07,870 --> 00:00:11,990
+In some components, like the header here,
+
+4
+00:00:11,990 --> 00:00:15,720
+we have only one root HTML element,
+
+5
+00:00:15,720 --> 00:00:17,520
+like the header element here,
+
+6
+00:00:17,520 --> 00:00:19,750
+and all our elements, in this case,
+
+7
+00:00:19,750 --> 00:00:24,293
+the only other element, h1, are child elements of that.
+
+8
+00:00:25,720 --> 00:00:29,290
+In other components, like managed goals on the other hand,
+
+9
+00:00:29,290 --> 00:00:34,280
+we theoretically have multiple top-level HTML elements,
+
+10
+00:00:34,280 --> 00:00:37,830
+at least if I remove that div here.
+
+11
+00:00:37,830 --> 00:00:40,300
+And it is important to know,
+
+12
+00:00:40,300 --> 00:00:43,330
+to be aware of the fact that this is okay,
+
+13
+00:00:43,330 --> 00:00:46,910
+and I'm highlighting this because in Vue two,
+
+14
+00:00:46,910 --> 00:00:48,850
+this was actually not supported.
+
+15
+00:00:48,850 --> 00:00:52,900
+In Vue.js version two, you were required
+
+16
+00:00:52,900 --> 00:00:56,470
+to have one root level element per template,
+
+17
+00:00:56,470 --> 00:00:57,940
+and then, in there, you could have
+
+18
+00:00:57,940 --> 00:01:00,750
+as many sibling elements as you wanted to.
+
+19
+00:01:00,750 --> 00:01:03,840
+In Vue free, this changed,
+
+20
+00:01:03,840 --> 00:01:05,600
+and now, you can have as many
+
+21
+00:01:05,600 --> 00:01:08,190
+top-level elements as you want.
+
+22
+00:01:08,190 --> 00:01:11,010
+So if you don't need a wrapping element for semantic
+
+23
+00:01:11,010 --> 00:01:15,370
+or styling reasons, there is no reason to keep one around.
+
+24
+00:01:15,370 --> 00:01:17,600
+This is a feature called fragments.
+
+25
+00:01:17,600 --> 00:01:21,073
+You are allowed to have multiple top-level elements now.
+

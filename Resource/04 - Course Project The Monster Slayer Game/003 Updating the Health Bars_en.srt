@@ -1,0 +1,528 @@
+1
+00:00:02,090 --> 00:00:03,850
+So let's do this together now.
+
+2
+00:00:03,850 --> 00:00:06,458
+Let's make sure attackMonster is triggered,
+
+3
+00:00:06,458 --> 00:00:08,700
+when the attack button is clicked.
+
+4
+00:00:08,700 --> 00:00:10,320
+And for that of course,
+
+5
+00:00:10,320 --> 00:00:13,150
+we need to go to the index HTML file,
+
+6
+00:00:13,150 --> 00:00:15,390
+here we have the attack button,
+
+7
+00:00:15,390 --> 00:00:18,830
+and we simply wanna add a click listener to it.
+
+8
+00:00:18,830 --> 00:00:21,480
+We can do this with v-on click,
+
+9
+00:00:21,480 --> 00:00:23,830
+or as you learned, we can use the short end
+
+10
+00:00:23,830 --> 00:00:25,870
+with just @click.
+
+11
+00:00:25,870 --> 00:00:29,150
+And that's the style I'm going to use throughout the course.
+
+12
+00:00:29,150 --> 00:00:31,093
+So I'm using it here as well.
+
+13
+00:00:32,210 --> 00:00:34,450
+Now here as a value,
+
+14
+00:00:34,450 --> 00:00:37,760
+we wanna make sure that attackMonster gets executed.
+
+15
+00:00:37,760 --> 00:00:41,580
+And therefore we can call attackMonster like this,
+
+16
+00:00:41,580 --> 00:00:45,940
+or as you learned, alternatively, we just point edit.
+
+17
+00:00:45,940 --> 00:00:50,150
+We just provide the name of the to be executed function,
+
+18
+00:00:50,150 --> 00:00:54,700
+to view here and view will execute attackMonster for us,
+
+19
+00:00:54,700 --> 00:00:56,170
+when a click occurs.
+
+20
+00:00:56,170 --> 00:00:58,560
+Both is supported by view,
+
+21
+00:00:58,560 --> 00:01:03,460
+I'm going to use this point at the function approach.
+
+22
+00:01:03,460 --> 00:01:06,220
+So now a attackMonster should be executed,
+
+23
+00:01:06,220 --> 00:01:08,660
+when we click the attack button.
+
+24
+00:01:08,660 --> 00:01:11,340
+But in order to see something,
+
+25
+00:01:11,340 --> 00:01:15,640
+I also wanna make sure that those health bars are updated
+
+26
+00:01:15,640 --> 00:01:19,170
+when the player and monster healths change.
+
+27
+00:01:19,170 --> 00:01:21,300
+And how could we now achieve this?
+
+28
+00:01:21,300 --> 00:01:24,470
+Well, this div year, these two divs,
+
+29
+00:01:24,470 --> 00:01:27,000
+the healthbar value divs,
+
+30
+00:01:27,000 --> 00:01:29,590
+in the end these are the divs that control
+
+31
+00:01:29,590 --> 00:01:32,660
+by how much the health bars are filled.
+
+32
+00:01:32,660 --> 00:01:35,080
+So if we change their width
+
+33
+00:01:35,080 --> 00:01:38,920
+we'll reduce the healthbar on the screen.
+
+34
+00:01:38,920 --> 00:01:42,130
+And here I will actually use inline styles
+
+35
+00:01:42,130 --> 00:01:45,050
+with the style attribute to set that width
+
+36
+00:01:45,050 --> 00:01:48,830
+and override any width set through a class.
+
+37
+00:01:48,830 --> 00:01:50,170
+This is one of the scenarios
+
+38
+00:01:50,170 --> 00:01:53,500
+where such an inline style approach makes sense,
+
+39
+00:01:53,500 --> 00:01:57,660
+because we want to be able to set the width to any value.
+
+40
+00:01:57,660 --> 00:02:01,590
+So predefining CSS classes with all possible widths,
+
+41
+00:02:01,590 --> 00:02:06,460
+we might need is pretty cumbersome and almost impossible.
+
+42
+00:02:06,460 --> 00:02:09,590
+Therefore here I wanna set the inline style,
+
+43
+00:02:09,590 --> 00:02:12,240
+but of course I wanna set it dynamically.
+
+44
+00:02:12,240 --> 00:02:14,270
+And we can do this with the bind
+
+45
+00:02:14,270 --> 00:02:18,000
+or just a short end of colon style.
+
+46
+00:02:18,000 --> 00:02:21,530
+And then you learned that you can pass an object here
+
+47
+00:02:21,530 --> 00:02:24,760
+to your style binding, and in that object,
+
+48
+00:02:24,760 --> 00:02:28,590
+you can define which CSS property you wanna change,
+
+49
+00:02:28,590 --> 00:02:33,570
+and then give that property a potentially dynamic value.
+
+50
+00:02:33,570 --> 00:02:38,280
+And here I wanna change the width property off to stiff,
+
+51
+00:02:38,280 --> 00:02:41,890
+and set it to a value which indeed will be dynamic.
+
+52
+00:02:41,890 --> 00:02:45,980
+I want to set it basically to my player
+
+53
+00:02:45,980 --> 00:02:48,070
+or to my monsterHealth,
+
+54
+00:02:48,070 --> 00:02:51,040
+depending on which healthbar I'm working on.
+
+55
+00:02:51,040 --> 00:02:52,950
+Here this the first healthbar,
+
+56
+00:02:52,950 --> 00:02:54,900
+which is the monster's healthbar.
+
+57
+00:02:54,900 --> 00:02:58,843
+So here I want to use the monsterHealth.
+
+58
+00:03:00,850 --> 00:03:04,200
+So this data property.
+
+59
+00:03:04,200 --> 00:03:06,900
+And as you learned throughout the last lectures and modules
+
+60
+00:03:06,900 --> 00:03:10,440
+here in your HTML code in the template
+
+61
+00:03:10,440 --> 00:03:12,600
+of your review app so to say,
+
+62
+00:03:12,600 --> 00:03:16,950
+it's not this monsterHealth, it's not data monsterHealth,
+
+63
+00:03:16,950 --> 00:03:19,010
+it's just monsterHealth.
+
+64
+00:03:19,010 --> 00:03:22,460
+You have direct access to all your data properties,
+
+65
+00:03:22,460 --> 00:03:24,080
+and to all your methods
+
+66
+00:03:24,080 --> 00:03:26,523
+without using this or anything like that.
+
+67
+00:03:28,350 --> 00:03:33,150
+Now the monsterHealth will be a value between zero and 100.
+
+68
+00:03:33,150 --> 00:03:35,460
+At least once we're done at the moment,
+
+69
+00:03:35,460 --> 00:03:39,300
+it could also become negative, but will prevent this soon,
+
+70
+00:03:39,300 --> 00:03:43,010
+but it will definitely be not higher than 100.
+
+71
+00:03:43,010 --> 00:03:44,070
+And that's pretty good.
+
+72
+00:03:44,070 --> 00:03:47,040
+That means we can use a percentage width here.
+
+73
+00:03:47,040 --> 00:03:52,040
+Where initially it's 100% and it can go down to 0%.
+
+74
+00:03:53,050 --> 00:03:56,290
+So in the end we set this to monsterHealth plus
+
+75
+00:03:56,290 --> 00:03:59,090
+percentage sign as a string,
+
+76
+00:03:59,090 --> 00:04:02,350
+because width is a CSS property,
+
+77
+00:04:02,350 --> 00:04:05,340
+and it wants a value like 10 pixels,
+
+78
+00:04:05,340 --> 00:04:08,720
+one RAM or 50% or anything like that.
+
+79
+00:04:08,720 --> 00:04:10,720
+So you need to add a unit.
+
+80
+00:04:10,720 --> 00:04:13,350
+Hence the number alone is not enough.
+
+81
+00:04:13,350 --> 00:04:16,329
+Instead we combined a number with a string
+
+82
+00:04:16,329 --> 00:04:18,470
+to turn it over all in a string,
+
+83
+00:04:18,470 --> 00:04:22,330
+which is what width once here if we set it fruit JavaScript,
+
+84
+00:04:22,330 --> 00:04:26,200
+and that string contains the unit off this value,
+
+85
+00:04:26,200 --> 00:04:31,200
+so that we set this to 100% to 80% and so on.
+
+86
+00:04:31,480 --> 00:04:33,560
+And of course we don't just wanna do that here
+
+87
+00:04:33,560 --> 00:04:37,485
+on the monsterHealth, but also here on the second div
+
+88
+00:04:37,485 --> 00:04:39,700
+on the player healthbar.
+
+89
+00:04:39,700 --> 00:04:43,277
+But of course here we therefore refer to playerHealth.
+
+90
+00:04:45,040 --> 00:04:48,280
+And now if we save all files and reload here,
+
+91
+00:04:48,280 --> 00:04:50,190
+if we press attack,
+
+92
+00:04:50,190 --> 00:04:55,190
+you see the healthbars become lower and lower.
+
+93
+00:04:55,370 --> 00:05:00,370
+They are reduced and that proves that both our data,
+
+94
+00:05:01,130 --> 00:05:04,140
+as well as methods, logic here works,
+
+95
+00:05:04,140 --> 00:05:07,393
+and that our dynamic style bindings also work.
+
+96
+00:05:08,330 --> 00:05:10,400
+Now there's one thing I wanna improve,
+
+97
+00:05:10,400 --> 00:05:12,993
+it's optional, but something I would recommend.
+
+98
+00:05:13,880 --> 00:05:15,630
+As I also mentioned already,
+
+99
+00:05:15,630 --> 00:05:17,620
+a couple of times throughout this course,
+
+100
+00:05:17,620 --> 00:05:22,470
+you shouldn't put too much logic into your HTML code.
+
+101
+00:05:22,470 --> 00:05:26,440
+You wanna keep that HTML code relatively lean.
+
+102
+00:05:26,440 --> 00:05:30,380
+And therefore I will actually cut this here,
+
+103
+00:05:30,380 --> 00:05:33,730
+and add computed properties as a side note.
+
+104
+00:05:33,730 --> 00:05:35,590
+This is a nice practice.
+
+105
+00:05:35,590 --> 00:05:37,780
+So here I'll add computed properties
+
+106
+00:05:37,780 --> 00:05:42,590
+with the computed option in our view instance config object
+
+107
+00:05:42,590 --> 00:05:44,390
+next to data and methods
+
+108
+00:05:44,390 --> 00:05:47,010
+though the exact position does not matter,
+
+109
+00:05:47,010 --> 00:05:51,200
+you could add it after methods or before it doesn't matter.
+
+110
+00:05:51,200 --> 00:05:55,050
+And in here I'll have my monsterBarStyles,
+
+111
+00:05:57,199 --> 00:06:01,790
+where I wanna return this object I just cut.
+
+112
+00:06:01,790 --> 00:06:04,950
+But here of course, we should now use this monsterHealth
+
+113
+00:06:04,950 --> 00:06:06,860
+since we're now having code inside
+
+114
+00:06:06,860 --> 00:06:09,580
+of our view instance object.
+
+115
+00:06:09,580 --> 00:06:11,927
+And we'll need playerBarStyles,
+
+116
+00:06:15,350 --> 00:06:19,760
+where I want to return this object here,
+
+117
+00:06:19,760 --> 00:06:22,090
+which I had on the playerHealth bar.
+
+118
+00:06:22,090 --> 00:06:25,290
+So returned is here this JavaScript object
+
+119
+00:06:25,290 --> 00:06:28,340
+of course referenced this playerHealth here
+
+120
+00:06:28,340 --> 00:06:30,080
+as just explained.
+
+121
+00:06:30,080 --> 00:06:33,170
+And now we can use these two computed properties here,
+
+122
+00:06:33,170 --> 00:06:35,350
+to set our styles dynamically.
+
+123
+00:06:35,350 --> 00:06:37,567
+So here it's the monsterBarStyles
+
+124
+00:06:38,550 --> 00:06:40,420
+and down there on the second bar,
+
+125
+00:06:40,420 --> 00:06:42,247
+it's the playerBarStyles.
+
+126
+00:06:43,790 --> 00:06:46,040
+Now let me reform it that and save that.
+
+127
+00:06:46,040 --> 00:06:48,760
+If I reload, it still works,
+
+128
+00:06:48,760 --> 00:06:52,580
+but now we got the logic out of the HTML code
+
+129
+00:06:52,580 --> 00:06:55,850
+and we are also using computed properties.
+
+130
+00:06:55,850 --> 00:06:59,070
+So that is our first important step.
+
+131
+00:06:59,070 --> 00:07:01,440
+The attack function works.
+
+132
+00:07:01,440 --> 00:07:05,733
+Now let's make sure the special attack function also works.
+

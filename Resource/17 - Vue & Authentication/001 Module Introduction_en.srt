@@ -1,0 +1,76 @@
+1
+00:00:02,300 --> 00:00:04,420
+In the last course section,
+
+2
+00:00:04,420 --> 00:00:07,273
+we worked on this course project here.
+
+3
+00:00:08,130 --> 00:00:10,250
+In this course section,
+
+4
+00:00:10,250 --> 00:00:13,380
+we are going to continue working on this project,
+
+5
+00:00:13,380 --> 00:00:16,770
+but we will focus on one specific aspect,
+
+6
+00:00:16,770 --> 00:00:19,450
+and that's authentication.
+
+7
+00:00:19,450 --> 00:00:23,840
+We will add users, real users to this application.
+
+8
+00:00:23,840 --> 00:00:25,540
+To be precise, we'll make sure
+
+9
+00:00:25,540 --> 00:00:27,200
+that you can log in and sign up
+
+10
+00:00:27,200 --> 00:00:29,890
+and that you then can become a coach
+
+11
+00:00:29,890 --> 00:00:31,443
+once you are signed up.
+
+12
+00:00:32,439 --> 00:00:33,930
+Therefore in this module,
+
+13
+00:00:33,930 --> 00:00:37,160
+we'll explore how authentication actually works
+
+14
+00:00:37,160 --> 00:00:41,040
+in Vue apps and which steps we need to take to make it work.
+
+15
+00:00:41,040 --> 00:00:45,390
+We'll then, as I just said, add log in, sign up and log out,
+
+16
+00:00:45,390 --> 00:00:50,120
+and we'll also add a check to keep users locked in
+
+17
+00:00:50,120 --> 00:00:52,230
+if they logged in in the past
+
+18
+00:00:52,230 --> 00:00:55,040
+and then leave the page and then come back.
+
+19
+00:00:55,040 --> 00:00:58,223
+So plenty of things to cover, let's dive right in.
+

@@ -1,0 +1,124 @@
+1
+00:00:02,170 --> 00:00:04,260
+Knowing the basics about Vue,
+
+2
+00:00:04,260 --> 00:00:06,960
+which we do by now, is of course important.
+
+3
+00:00:06,960 --> 00:00:09,530
+It's the most important part,
+
+4
+00:00:09,530 --> 00:00:12,450
+but in my opinion, it's also important
+
+5
+00:00:12,450 --> 00:00:15,940
+that you understand what Vue does behind the scenes,
+
+6
+00:00:15,940 --> 00:00:17,960
+how it works behind the scenes.
+
+7
+00:00:17,960 --> 00:00:20,760
+And that is exactly what we're going to explore
+
+8
+00:00:20,760 --> 00:00:22,520
+in this module.
+
+9
+00:00:22,520 --> 00:00:26,370
+Now, I will say this module is optional.
+
+10
+00:00:26,370 --> 00:00:28,610
+At least the majority of it.
+
+11
+00:00:28,610 --> 00:00:31,690
+There are free lectures, which you should not skip.
+
+12
+00:00:31,690 --> 00:00:33,250
+The lecture about Refs
+
+13
+00:00:33,250 --> 00:00:37,010
+and the two lectures about the Vue app lifecycle.
+
+14
+00:00:37,010 --> 00:00:39,550
+You can skip the rest of the module for now,
+
+15
+00:00:39,550 --> 00:00:41,050
+if you're not interested,
+
+16
+00:00:41,050 --> 00:00:44,130
+though I strongly recommend that you don't skip it,
+
+17
+00:00:44,130 --> 00:00:46,480
+or you at least come back later,
+
+18
+00:00:46,480 --> 00:00:48,870
+but you will definitely get the most out of this course
+
+19
+00:00:48,870 --> 00:00:51,360
+if you go through this module right now.
+
+20
+00:00:51,360 --> 00:00:54,690
+I mean, after all, that is why I did add it
+
+21
+00:00:54,690 --> 00:00:57,020
+at this point of time in the course,
+
+22
+00:00:57,020 --> 00:01:00,790
+because having that extra behind the scenes knowledge
+
+23
+00:01:00,790 --> 00:01:04,300
+will help you overall as a Vue developer.
+
+24
+00:01:04,300 --> 00:01:07,680
+Because if you understand the tool you're working with,
+
+25
+00:01:07,680 --> 00:01:10,600
+you're able to work with it better.
+
+26
+00:01:10,600 --> 00:01:13,340
+Specifically in this module, we will explore
+
+27
+00:01:13,340 --> 00:01:15,600
+how Vue works under the hood,
+
+28
+00:01:15,600 --> 00:01:19,560
+how it's reactivity system works under the hood,
+
+29
+00:01:19,560 --> 00:01:21,880
+and we'll also understand
+
+30
+00:01:21,880 --> 00:01:25,800
+how it uses a concept called the Virtual DOM,
+
+31
+00:01:25,800 --> 00:01:29,583
+to efficiently update what you see on the screen.
+

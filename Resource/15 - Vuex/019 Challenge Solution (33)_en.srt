@@ -1,0 +1,276 @@
+1
+00:00:02,290 --> 00:00:03,640
+Now lets finish this up
+
+2
+00:00:03,640 --> 00:00:06,193
+by migrating is logged in.
+
+3
+00:00:07,510 --> 00:00:09,330
+Currently we're managing it in App Vue
+
+4
+00:00:09,330 --> 00:00:11,050
+and that's of course not the goal.
+
+5
+00:00:11,050 --> 00:00:13,480
+Instead, I'll manage this as a route state,
+
+6
+00:00:13,480 --> 00:00:15,070
+which is not in a module,
+
+7
+00:00:15,070 --> 00:00:17,050
+but which is managed ind the store itself
+
+8
+00:00:17,050 --> 00:00:18,530
+though, of course you could put it
+
+9
+00:00:18,530 --> 00:00:20,623
+into a module if you want it to.
+
+10
+00:00:21,700 --> 00:00:23,950
+But with that we return an object here
+
+11
+00:00:23,950 --> 00:00:25,800
+and then there we got is logged in,
+
+12
+00:00:25,800 --> 00:00:29,923
+which initially is false in our main store.
+
+13
+00:00:30,760 --> 00:00:31,860
+With that in App Vue,
+
+14
+00:00:31,860 --> 00:00:33,823
+we can entirely get rid of data.
+
+15
+00:00:35,200 --> 00:00:36,350
+Now I got these two methods,
+
+16
+00:00:36,350 --> 00:00:38,170
+which I will now also cut
+
+17
+00:00:38,170 --> 00:00:40,690
+and hence, we can remove methods here
+
+18
+00:00:40,690 --> 00:00:43,630
+and add them as mutations instead.
+
+19
+00:00:43,630 --> 00:00:45,630
+So here we got the mutations
+
+20
+00:00:46,920 --> 00:00:49,890
+and in login we get to the state
+
+21
+00:00:49,890 --> 00:00:51,750
+and we change state is logged in
+
+22
+00:00:51,750 --> 00:00:53,590
+and set it to true.
+
+23
+00:00:53,590 --> 00:00:55,423
+In logout we do the opposite.
+
+24
+00:00:57,200 --> 00:00:59,670
+Now we also need actions as you learned.
+
+25
+00:00:59,670 --> 00:01:04,670
+So here I will also add login and logout actions
+
+26
+00:01:06,820 --> 00:01:09,680
+and we get our context here
+
+27
+00:01:09,680 --> 00:01:13,563
+and then context commit login here.
+
+28
+00:01:14,480 --> 00:01:19,373
+And in logout, we do the same with the log out mutation.
+
+29
+00:01:20,600 --> 00:01:22,030
+And then we can add a getter
+
+30
+00:01:24,100 --> 00:01:27,080
+is authenticated could be together name,
+
+31
+00:01:27,080 --> 00:01:29,340
+the name is up to you of course.
+
+32
+00:01:29,340 --> 00:01:31,150
+Here we also get our state
+
+33
+00:01:32,250 --> 00:01:34,870
+and then we return state is logged in,
+
+34
+00:01:34,870 --> 00:01:36,313
+which is true or false.
+
+35
+00:01:37,870 --> 00:01:40,360
+Now we can wire up the rest of the app.
+
+36
+00:01:40,360 --> 00:01:42,830
+In App Vue we're not using authentication,
+
+37
+00:01:42,830 --> 00:01:45,410
+but in the header we are.
+
+38
+00:01:45,410 --> 00:01:47,540
+Here I got login and logout buttons
+
+39
+00:01:47,540 --> 00:01:49,590
+and I'm using the is logged in instead
+
+40
+00:01:49,590 --> 00:01:52,083
+to show our height and extra menu item.
+
+41
+00:01:53,440 --> 00:01:55,240
+So to make that all work,
+
+42
+00:01:55,240 --> 00:01:56,570
+I'll add methods here
+
+43
+00:01:56,570 --> 00:01:58,460
+to wire up those buttons
+
+44
+00:01:58,460 --> 00:02:00,550
+and add a login method,
+
+45
+00:02:00,550 --> 00:02:03,130
+which will trigger this store,
+
+46
+00:02:03,130 --> 00:02:07,510
+this patch, and then log in.
+
+47
+00:02:07,510 --> 00:02:08,880
+We got no namespace here
+
+48
+00:02:08,880 --> 00:02:11,793
+because this is a route action directly in the store.
+
+49
+00:02:13,790 --> 00:02:15,900
+Now save the thing for log out
+
+50
+00:02:19,760 --> 00:02:22,393
+of course with a different action being dispatched.
+
+51
+00:02:23,420 --> 00:02:28,420
+And in computed I will add is logged in computed property,
+
+52
+00:02:28,460 --> 00:02:30,950
+which points at the this store
+
+53
+00:02:32,100 --> 00:02:35,313
+is authenticated getter we just added.
+
+54
+00:02:37,040 --> 00:02:39,330
+So that is this gather.
+
+55
+00:02:39,330 --> 00:02:41,910
+It's a global getter, not namespace,
+
+56
+00:02:41,910 --> 00:02:44,003
+which is why we access it like this.
+
+57
+00:02:45,680 --> 00:02:49,470
+This year should be at click of course not at logout.
+
+58
+00:02:49,470 --> 00:02:51,970
+This was a mistake on my side.
+
+59
+00:02:51,970 --> 00:02:54,610
+It was fixed in your attachment already though,
+
+60
+00:02:54,610 --> 00:02:57,310
+but make sure you have click listers on those buttons.
+
+61
+00:02:58,290 --> 00:03:01,390
+And then this works.
+
+62
+00:03:01,390 --> 00:03:04,210
+The admin page doesn't allow us to do much,
+
+63
+00:03:04,210 --> 00:03:05,390
+but we can go there.
+
+64
+00:03:05,390 --> 00:03:06,900
+Now we stay there if you log out,
+
+65
+00:03:06,900 --> 00:03:09,150
+but it's not about that at the moment.
+
+66
+00:03:09,150 --> 00:03:11,050
+Instead, this is about Vue.js
+
+67
+00:03:11,050 --> 00:03:13,230
+and you now hopefully have a good understanding
+
+68
+00:03:13,230 --> 00:03:14,190
+of how it works
+
+69
+00:03:14,190 --> 00:03:16,663
+and how you may add it to your projects.
+

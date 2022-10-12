@@ -1,0 +1,860 @@
+1
+00:00:02,240 --> 00:00:05,110
+So let's work on the validation of this form
+
+2
+00:00:05,110 --> 00:00:07,460
+because at the moment we can submit it
+
+3
+00:00:07,460 --> 00:00:09,070
+without entering anything
+
+4
+00:00:09,070 --> 00:00:12,760
+and that's of course not the idea behind this form.
+
+5
+00:00:12,760 --> 00:00:15,250
+So in the coach form component here,
+
+6
+00:00:15,250 --> 00:00:16,360
+we're fetching the input,
+
+7
+00:00:16,360 --> 00:00:20,430
+but now I wanna add an extra step when we submit the form.
+
+8
+00:00:20,430 --> 00:00:22,350
+I also want to validate it
+
+9
+00:00:22,350 --> 00:00:26,620
+and for that I'll add a separate method, validateForm simply
+
+10
+00:00:26,620 --> 00:00:28,750
+to split the logic in two methods
+
+11
+00:00:28,750 --> 00:00:31,510
+and not have one super long method
+
+12
+00:00:31,510 --> 00:00:35,200
+and in submitForm right at the start,
+
+13
+00:00:35,200 --> 00:00:38,433
+I'll simply call this validateForm,
+
+14
+00:00:39,500 --> 00:00:41,903
+so this new method which we're adding here.
+
+15
+00:00:43,190 --> 00:00:45,960
+Now in here I want to go through all the inputs
+
+16
+00:00:45,960 --> 00:00:49,150
+and check whether they are valid or not,
+
+17
+00:00:49,150 --> 00:00:52,440
+and I will add an overall new data property here
+
+18
+00:00:52,440 --> 00:00:57,310
+to this entire component, the formIsValid data component,
+
+19
+00:00:57,310 --> 00:00:59,210
+which initially is true,
+
+20
+00:00:59,210 --> 00:01:03,063
+but which will be false as soon as one input is false.
+
+21
+00:01:05,370 --> 00:01:07,560
+No actually I'll make form validation
+
+22
+00:01:07,560 --> 00:01:10,500
+even a bit more complex than just that.
+
+23
+00:01:10,500 --> 00:01:14,510
+I also want to manage the validity of every single element,
+
+24
+00:01:14,510 --> 00:01:17,580
+so that I can later re-highlight the elements
+
+25
+00:01:17,580 --> 00:01:22,380
+by coloring the label red for example, that were invalid.
+
+26
+00:01:22,380 --> 00:01:25,100
+Therefore, the other data which has managed here
+
+27
+00:01:25,100 --> 00:01:29,120
+is no longer just devalue of a certain property,
+
+28
+00:01:29,120 --> 00:01:32,290
+but instead here that will be an object now,
+
+29
+00:01:32,290 --> 00:01:34,590
+where I want to have a val key,
+
+30
+00:01:34,590 --> 00:01:37,190
+which holds the value the user entered
+
+31
+00:01:37,190 --> 00:01:40,140
+and a isValidKey which initially is true,
+
+32
+00:01:40,140 --> 00:01:44,343
+which can become false if data input should be invalid.
+
+33
+00:01:45,600 --> 00:01:48,370
+So I'm going to replace my values here
+
+34
+00:01:48,370 --> 00:01:50,593
+with that new concept.
+
+35
+00:01:51,970 --> 00:01:54,660
+Here val is null initially,
+
+36
+00:01:54,660 --> 00:01:58,690
+and here it's an empty array initially.
+
+37
+00:01:58,690 --> 00:02:01,380
+So now the data got a little bit more complex
+
+38
+00:02:01,380 --> 00:02:03,550
+and now we need to update v-model
+
+39
+00:02:03,550 --> 00:02:08,530
+and bind this to firstName.val, lastName.val
+
+40
+00:02:08,530 --> 00:02:12,420
+and so on because now first name, last name, description,
+
+41
+00:02:12,420 --> 00:02:16,100
+actually hold objects where we have a val property,
+
+42
+00:02:16,100 --> 00:02:18,980
+which then holds to value that should be bound,.
+
+43
+00:02:18,980 --> 00:02:21,830
+so that's why I'm updating my v-model bindings
+
+44
+00:02:21,830 --> 00:02:23,533
+for all the inputs here,
+
+45
+00:02:24,420 --> 00:02:28,220
+including the checkboxes of course like this
+
+46
+00:02:29,600 --> 00:02:34,600
+and now with that in our validateForm method,
+
+47
+00:02:34,980 --> 00:02:36,620
+I will go through all these inputs,
+
+48
+00:02:36,620 --> 00:02:37,940
+have a look at each of them
+
+49
+00:02:37,940 --> 00:02:39,833
+and see whether it's valid or not.
+
+50
+00:02:41,150 --> 00:02:44,550
+For this initially I'll set thisFormIsValid to true
+
+51
+00:02:44,550 --> 00:02:47,640
+in case it got invalid and therefore falls in
+
+52
+00:02:47,640 --> 00:02:49,790
+between since the last validation
+
+53
+00:02:49,790 --> 00:02:53,300
+and then I'll go through all these inputs.
+
+54
+00:02:53,300 --> 00:02:56,100
+The first one I'll check is the firstName.
+
+55
+00:02:56,100 --> 00:03:00,020
+Here with an IF statement I'll check if the value is empty,
+
+56
+00:03:00,020 --> 00:03:02,250
+keep in mind we're trimming it already,
+
+57
+00:03:02,250 --> 00:03:03,980
+so therefore excess white space
+
+58
+00:03:03,980 --> 00:03:06,440
+will already have been removed.
+
+59
+00:03:06,440 --> 00:03:08,990
+If it's still empty it's invalid
+
+60
+00:03:08,990 --> 00:03:12,100
+and therefore then I would set this firstName.isValid
+
+61
+00:03:12,100 --> 00:03:15,690
+to false and since the overall form is invalid,
+
+62
+00:03:15,690 --> 00:03:17,940
+if at least one input is invalid,
+
+63
+00:03:17,940 --> 00:03:21,723
+I'll set this formIsValid to false here.
+
+64
+00:03:23,250 --> 00:03:26,823
+And then we can repeat this for the lastName
+
+65
+00:03:27,730 --> 00:03:31,313
+and set this lastName is valid to false here.
+
+66
+00:03:32,160 --> 00:03:35,500
+And again, repeat it for the description
+
+67
+00:03:37,110 --> 00:03:40,823
+and set this description is valid to false.
+
+68
+00:03:42,200 --> 00:03:44,840
+Now for to rate the check is a bit different,
+
+69
+00:03:44,840 --> 00:03:47,380
+here I'll not check whether it's empty,
+
+70
+00:03:47,380 --> 00:03:52,030
+but I'll check if we don't have a rate, so if it's null
+
+71
+00:03:52,030 --> 00:03:57,030
+or zero or anything like that, or even if we do have a rate,
+
+72
+00:03:58,360 --> 00:04:01,980
+I'll check if this rate val is smaller than zero,
+
+73
+00:04:01,980 --> 00:04:03,300
+because you shouldn't be able
+
+74
+00:04:03,300 --> 00:04:06,163
+to have a negative hourly rate of course.
+
+75
+00:04:07,450 --> 00:04:11,440
+So in these cases, rate is valid would become false.
+
+76
+00:04:11,440 --> 00:04:16,440
+And for the areas I'll check if this areas val.length
+
+77
+00:04:18,170 --> 00:04:21,050
+is equal to zero which means no areas
+
+78
+00:04:21,050 --> 00:04:24,530
+of expertise have been added, that's also not valid,
+
+79
+00:04:24,530 --> 00:04:26,600
+you need at least one area.
+
+80
+00:04:26,600 --> 00:04:30,270
+So in this case, this.areasisValid would become false
+
+81
+00:04:30,270 --> 00:04:33,303
+and this.formisValid would become false.
+
+82
+00:04:35,000 --> 00:04:37,120
+So that's my validation logic,
+
+83
+00:04:37,120 --> 00:04:40,560
+that means that after calling this.validateForm,
+
+84
+00:04:40,560 --> 00:04:44,620
+this.formIsValid will be false if the form is invalid,
+
+85
+00:04:44,620 --> 00:04:46,910
+so therefore in submitForm I can check,
+
+86
+00:04:46,910 --> 00:04:49,110
+if not this.formIsValid
+
+87
+00:04:50,480 --> 00:04:52,710
+and in this case just return to make sure
+
+88
+00:04:52,710 --> 00:04:55,330
+that the rest of this method doesn't execute
+
+89
+00:04:55,330 --> 00:04:58,783
+because I don't want to continue if the form is invalid.
+
+90
+00:05:00,520 --> 00:05:03,270
+And now we can go to our template
+
+91
+00:05:03,270 --> 00:05:07,590
+and actually show users some feedback if inputs
+
+92
+00:05:07,590 --> 00:05:10,520
+or the overall form are invalid.
+
+93
+00:05:10,520 --> 00:05:14,170
+Let's start with the overall maybe, for that
+
+94
+00:05:14,170 --> 00:05:18,673
+before the base button I'll add a paragraph where I say,
+
+95
+00:05:19,880 --> 00:05:22,820
+please fix the above errors
+
+96
+00:05:22,820 --> 00:05:27,110
+and submit again or anything like that
+
+97
+00:05:27,110 --> 00:05:31,879
+and we only show this with the IF, if not formIsValid,
+
+98
+00:05:31,879 --> 00:05:35,613
+so if the form is invalid, if formIsValid is false,
+
+99
+00:05:37,340 --> 00:05:40,430
+But that's not all instead I also wanna highlight the inputs
+
+100
+00:05:40,430 --> 00:05:44,410
+that were invalid, so let's start with the first name.
+
+101
+00:05:44,410 --> 00:05:48,000
+There on the overall div I'll bind a class dynamically
+
+102
+00:05:48,940 --> 00:05:51,390
+and I'll use this object syntax for that
+
+103
+00:05:51,390 --> 00:05:54,540
+and here, I wanna add the invalid class,
+
+104
+00:05:54,540 --> 00:05:57,210
+which is defined down there in the CSS rules
+
+105
+00:05:57,210 --> 00:06:00,200
+to then change the label color and so on.
+
+106
+00:06:00,200 --> 00:06:04,150
+I wanna add that invalid class here on first name,
+
+107
+00:06:04,150 --> 00:06:09,150
+If not firstName.isValid, if it is invalid therefore.
+
+108
+00:06:10,440 --> 00:06:13,773
+Then this invalid CSS class will be added to this div.
+
+109
+00:06:14,940 --> 00:06:19,840
+In addition, below the input I'll have a paragraph,
+
+110
+00:06:19,840 --> 00:06:24,840
+where I say first name must not be empty
+
+111
+00:06:25,120 --> 00:06:29,883
+and this has shown IF not first name is valid.
+
+112
+00:06:31,640 --> 00:06:33,950
+Now I'm going to copy that paragraph
+
+113
+00:06:33,950 --> 00:06:35,930
+because for last name I wanna say this,
+
+114
+00:06:35,930 --> 00:06:37,900
+to say the name just with last name
+
+115
+00:06:37,900 --> 00:06:41,220
+and check if last name is not valid,
+
+116
+00:06:41,220 --> 00:06:44,400
+and I will also copy that class assignment
+
+117
+00:06:44,400 --> 00:06:46,200
+and assign it on this divv as well
+
+118
+00:06:46,200 --> 00:06:49,780
+but of course, checking last name is valid
+
+119
+00:06:49,780 --> 00:06:52,483
+or it not being valid to be precise.
+
+120
+00:06:55,020 --> 00:06:58,670
+Now for the text area for the description it's the same,
+
+121
+00:06:58,670 --> 00:07:00,460
+copy to paragraph and say
+
+122
+00:07:04,005 --> 00:07:06,210
+description must not be empty
+
+123
+00:07:06,210 --> 00:07:10,800
+and also copy this CSS class assignment to the div
+
+124
+00:07:10,800 --> 00:07:12,900
+by checking description is valid
+
+125
+00:07:14,860 --> 00:07:18,750
+and again, copy the paragraph over to the rate
+
+126
+00:07:18,750 --> 00:07:20,860
+and here, I of course wanna say
+
+127
+00:07:20,860 --> 00:07:25,860
+rate must be greater than zero
+
+128
+00:07:27,830 --> 00:07:30,500
+and also add the CSS class here
+
+129
+00:07:30,500 --> 00:07:33,603
+to the div if rate is not valid.
+
+130
+00:07:35,470 --> 00:07:38,910
+Copy the paragraph again and go down to the checkboxes
+
+131
+00:07:38,910 --> 00:07:43,910
+and here below all checkboxes, I'll also add this paragraph
+
+132
+00:07:44,210 --> 00:07:47,140
+and say, whoops here,
+
+133
+00:07:47,140 --> 00:07:52,140
+say at least one expertise must be selected.
+
+134
+00:07:55,150 --> 00:07:59,280
+and of course show this if areas are not valid,
+
+135
+00:07:59,280 --> 00:08:01,290
+I forgot this on the other paragraphs,
+
+136
+00:08:01,290 --> 00:08:03,950
+here I should check if rate is not valid here,
+
+137
+00:08:03,950 --> 00:08:07,740
+if description is not valid
+
+138
+00:08:08,660 --> 00:08:11,860
+and I did update it for first and last name,
+
+139
+00:08:11,860 --> 00:08:14,290
+but also now I'll copy that class here
+
+140
+00:08:16,370 --> 00:08:19,300
+and add it on that form control div
+
+141
+00:08:19,300 --> 00:08:23,593
+around the checkboxes if areas are not valid.
+
+142
+00:08:25,370 --> 00:08:27,480
+With that, we hopefully have some validation,
+
+143
+00:08:27,480 --> 00:08:30,940
+if I now reload and submit the empty form everything is red,
+
+144
+00:08:30,940 --> 00:08:32,640
+we got these error messages
+
+145
+00:08:32,640 --> 00:08:35,313
+and we got this main form error message.
+
+146
+00:08:36,250 --> 00:08:40,679
+If a reload again and I do enter something here and here,
+
+147
+00:08:40,679 --> 00:08:44,020
+but I have a negative rate here for example,
+
+148
+00:08:44,020 --> 00:08:47,470
+only the invalid values are marked as such.
+
+149
+00:08:47,470 --> 00:08:52,470
+And of course if we enter something valid in all the fields,
+
+150
+00:08:52,560 --> 00:08:55,950
+we are able to submit this but of course we get an error
+
+151
+00:08:55,950 --> 00:08:58,370
+because at the moment I'm still not extracting
+
+152
+00:08:58,370 --> 00:09:01,230
+the values correctly in my form data,
+
+153
+00:09:01,230 --> 00:09:02,880
+that's something we'll fix later.
+
+154
+00:09:03,820 --> 00:09:07,000
+Before we fix that, there's one other thing I wanna fix.
+
+155
+00:09:07,000 --> 00:09:09,290
+If this is invalid, it would maybe be nice,
+
+156
+00:09:09,290 --> 00:09:13,870
+if it wouldn't stay red after we entered a valid value here,
+
+157
+00:09:13,870 --> 00:09:14,950
+it's a minor thing,
+
+158
+00:09:14,950 --> 00:09:18,410
+but I think it's a better user experience if as soon
+
+159
+00:09:18,410 --> 00:09:21,220
+as this was fixed, this would go away,
+
+160
+00:09:21,220 --> 00:09:23,820
+this red color and this error text
+
+161
+00:09:23,820 --> 00:09:27,053
+and therefore that's a functionality I also wanna add here.
+
+162
+00:09:28,050 --> 00:09:31,560
+For that, we can add a new method, clearValidity
+
+163
+00:09:33,720 --> 00:09:38,720
+or anything like that and expect to get the input name here
+
+164
+00:09:38,880 --> 00:09:43,443
+as a argument and then reach out to this input,
+
+165
+00:09:44,770 --> 00:09:48,730
+so to a data property, first name, last name, description
+
+166
+00:09:48,730 --> 00:09:52,810
+and so on, of that inputs some value.
+
+167
+00:09:52,810 --> 00:09:54,380
+So if input is first name,
+
+168
+00:09:54,380 --> 00:09:56,040
+we'll reach out to this first name.
+
+169
+00:09:56,040 --> 00:09:59,070
+If this last name we'll reach out to this last name
+
+170
+00:09:59,070 --> 00:10:01,930
+and set isValid of that input to true
+
+171
+00:10:03,750 --> 00:10:05,930
+and clear validity should be called
+
+172
+00:10:05,930 --> 00:10:08,710
+whenever an input loses focus
+
+173
+00:10:08,710 --> 00:10:11,660
+and for that on every input element in HTML,
+
+174
+00:10:11,660 --> 00:10:15,370
+we got the blur event, it's a built in event,
+
+175
+00:10:15,370 --> 00:10:19,070
+which is triggered whenever well, this loses focus.
+
+176
+00:10:19,070 --> 00:10:21,250
+That's when I wanna call clear validity
+
+177
+00:10:21,250 --> 00:10:24,740
+and in this case forward first name,
+
+178
+00:10:24,740 --> 00:10:26,903
+because that's for the first name input.
+
+179
+00:10:28,530 --> 00:10:33,530
+But now repeat this also on the last name here
+
+180
+00:10:35,110 --> 00:10:38,900
+also on the text area,
+
+181
+00:10:38,900 --> 00:10:41,453
+here it's description,
+
+182
+00:10:42,430 --> 00:10:45,270
+and also repeat this on the rate
+
+183
+00:10:48,960 --> 00:10:50,930
+and then of course is on the checkboxes,
+
+184
+00:10:50,930 --> 00:10:55,930
+so in every checkbox element, I'll clear areas, whoops,
+
+185
+00:10:58,130 --> 00:11:01,870
+copy that to all the checkbox inputs.
+
+186
+00:11:01,870 --> 00:11:04,920
+Reformat this to make it a bit easier to read
+
+187
+00:11:04,920 --> 00:11:07,250
+and with this, if we now saved this,
+
+188
+00:11:07,250 --> 00:11:10,180
+if I submit the invalid form, it's all red
+
+189
+00:11:10,180 --> 00:11:12,683
+but if I enter a valid name that becomes black.
+
+190
+00:11:15,750 --> 00:11:17,690
+This is a test.
+
+191
+00:11:17,690 --> 00:11:20,180
+If I enter something invalid, it also becomes black
+
+192
+00:11:20,180 --> 00:11:22,110
+because we have to validate again,
+
+193
+00:11:22,110 --> 00:11:24,730
+but at least it recognizes that we did something
+
+194
+00:11:24,730 --> 00:11:28,830
+and when I, I blurred something here it also becomes black.
+
+195
+00:11:28,830 --> 00:11:31,540
+Now of course, if I do have an invalid input here,
+
+196
+00:11:31,540 --> 00:11:32,910
+we still get an error,
+
+197
+00:11:32,910 --> 00:11:36,150
+but at least we give the user the feedback that we see
+
+198
+00:11:36,150 --> 00:11:37,923
+that he or she changed something.
+
+199
+00:11:39,010 --> 00:11:42,010
+With that though we got validation in place
+
+200
+00:11:42,010 --> 00:11:43,320
+and I'm happy with that.
+
+201
+00:11:43,320 --> 00:11:46,400
+Now, I just wanna make sure data is submitted correctly
+
+202
+00:11:46,400 --> 00:11:50,570
+and for that here in the submit form method,
+
+203
+00:11:50,570 --> 00:11:53,710
+we need to drill into the val properties
+
+204
+00:11:53,710 --> 00:11:55,940
+of all our input properties,
+
+205
+00:11:55,940 --> 00:11:59,283
+because that is where we store the concrete values.
+
+206
+00:12:01,440 --> 00:12:04,510
+WIth that though, if you reload,
+
+207
+00:12:04,510 --> 00:12:07,460
+if I have something invalid, we get an error
+
+208
+00:12:07,460 --> 00:12:11,463
+but if I do enter valid values here,
+
+209
+00:12:13,270 --> 00:12:17,683
+like this, this is submittable and we see our coach here.
+
+210
+00:12:18,700 --> 00:12:22,240
+So that's all working, as a next step we can move on
+
+211
+00:12:22,240 --> 00:12:24,740
+to their requests feature and make sure
+
+212
+00:12:24,740 --> 00:12:26,420
+that we've got a contact form
+
+213
+00:12:26,420 --> 00:12:29,120
+and that when we do use that contact form,
+
+214
+00:12:29,120 --> 00:12:30,420
+we send a request which
+
+215
+00:12:30,420 --> 00:12:33,333
+then also shows up here under requests.
+

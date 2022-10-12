@@ -1,0 +1,180 @@
+1
+00:00:02,120 --> 00:00:04,660
+So we learned about provide inject
+
+2
+00:00:04,660 --> 00:00:06,550
+in the last lectures.
+
+3
+00:00:06,550 --> 00:00:10,010
+And it is a very powerful tool built into vue.
+
+4
+00:00:10,010 --> 00:00:13,670
+It's very useful for letting components communicate.
+
+5
+00:00:13,670 --> 00:00:15,485
+It's important for you to keep in mind
+
+6
+00:00:15,485 --> 00:00:17,140
+that you can only communicate
+
+7
+00:00:17,140 --> 00:00:19,630
+between parent and child components
+
+8
+00:00:19,630 --> 00:00:22,800
+or child components of other child components
+
+9
+00:00:22,800 --> 00:00:24,690
+so that you can't use it to communicate
+
+10
+00:00:24,690 --> 00:00:26,910
+between neighbors or anything like that,
+
+11
+00:00:26,910 --> 00:00:29,763
+as I explained and showed over the last lectures.
+
+12
+00:00:30,870 --> 00:00:32,970
+But here's also one other important thing,
+
+13
+00:00:32,970 --> 00:00:35,970
+you should not always use provide inject
+
+14
+00:00:35,970 --> 00:00:38,600
+to replace props and custom events.
+
+15
+00:00:38,600 --> 00:00:40,750
+Indeed props and custom events
+
+16
+00:00:40,750 --> 00:00:44,530
+should be your default communication mechanism.
+
+17
+00:00:44,530 --> 00:00:48,080
+You might consider using provide inject though,
+
+18
+00:00:48,080 --> 00:00:52,190
+if you find yourself having some pass through components,
+
+19
+00:00:52,190 --> 00:00:53,540
+as we had it here.
+
+20
+00:00:53,540 --> 00:00:57,910
+Knowledge base was just a component passing through props
+
+21
+00:00:57,910 --> 00:01:00,630
+and passing through the immediate event.
+
+22
+00:01:00,630 --> 00:01:03,520
+In such cases using provide inject
+
+23
+00:01:03,520 --> 00:01:06,410
+can save you some unnecessary code
+
+24
+00:01:06,410 --> 00:01:10,020
+and can make your code base a bit leaner.
+
+25
+00:01:10,020 --> 00:01:12,370
+You could also argue that it makes a code
+
+26
+00:01:12,370 --> 00:01:14,460
+a bit harder to understand though,
+
+27
+00:01:14,460 --> 00:01:16,330
+because if I look at this code,
+
+28
+00:01:16,330 --> 00:01:20,660
+I see that I got two provided values here in App.vue
+
+29
+00:01:20,660 --> 00:01:23,940
+but then I have to dig into all the components
+
+30
+00:01:23,940 --> 00:01:27,370
+to understand where those values are being used.
+
+31
+00:01:27,370 --> 00:01:30,000
+This is absolutely doable in this app,
+
+32
+00:01:30,000 --> 00:01:32,060
+since it's not a complex app,
+
+33
+00:01:32,060 --> 00:01:35,360
+but it is something that can be cumbersome in bigger apps.
+
+34
+00:01:35,360 --> 00:01:37,630
+So use it wisely.
+
+35
+00:01:37,630 --> 00:01:39,970
+And if you have a lot of pass through components,
+
+36
+00:01:39,970 --> 00:01:41,270
+definitely use it.
+
+37
+00:01:41,270 --> 00:01:43,770
+If you have just one pass through component,
+
+38
+00:01:43,770 --> 00:01:47,440
+you might still be fine with using props and custom events,
+
+39
+00:01:47,440 --> 00:01:50,080
+even though you have some redundant code though.
+
+40
+00:01:50,080 --> 00:01:51,360
+But that is up to you
+
+41
+00:01:51,360 --> 00:01:54,930
+and ultimately comes down to your personal preferences.
+
+42
+00:01:54,930 --> 00:01:59,140
+With provide inject and props and custom events,
+
+43
+00:01:59,140 --> 00:02:00,780
+you got all the core tools though,
+
+44
+00:02:00,780 --> 00:02:03,740
+which you need to let components communicate
+
+45
+00:02:03,740 --> 00:02:04,603
+with each other.
+

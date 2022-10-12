@@ -1,0 +1,352 @@
+1
+00:00:00,120 --> 00:00:01,750
+Now that were mix ins,
+
+2
+00:00:01,750 --> 00:00:04,930
+a very useful mechanism for sharing data
+
+3
+00:00:04,930 --> 00:00:07,470
+and functionality across components,
+
+4
+00:00:07,470 --> 00:00:10,550
+either across all components with global mix ins
+
+5
+00:00:10,550 --> 00:00:13,220
+or across a few selected components
+
+6
+00:00:13,220 --> 00:00:16,670
+by manually adding mix ins to components.
+
+7
+00:00:16,670 --> 00:00:19,080
+But mix ins have some drawbacks
+
+8
+00:00:19,080 --> 00:00:22,890
+or at least one possibly bigger drawback.
+
+9
+00:00:22,890 --> 00:00:25,010
+If you build bigger applications,
+
+10
+00:00:25,010 --> 00:00:27,160
+far bigger than this demo here,
+
+11
+00:00:27,160 --> 00:00:29,490
+and you're maybe also working in a team,
+
+12
+00:00:29,490 --> 00:00:31,410
+mix ins can make it harder
+
+13
+00:00:31,410 --> 00:00:33,640
+to understand your code,
+
+14
+00:00:33,640 --> 00:00:35,290
+your component structure,
+
+15
+00:00:35,290 --> 00:00:37,600
+because it's not always obvious
+
+16
+00:00:37,600 --> 00:00:40,470
+where some value is coming from.
+
+17
+00:00:40,470 --> 00:00:43,130
+In our alert mix in, we got these show alert
+
+18
+00:00:43,130 --> 00:00:45,190
+and hide alert methods.
+
+19
+00:00:45,190 --> 00:00:47,880
+In our delete user component,
+
+20
+00:00:47,880 --> 00:00:49,410
+we don't have these methods.
+
+21
+00:00:49,410 --> 00:00:51,950
+Of course because they are in the mix in.
+
+22
+00:00:51,950 --> 00:00:55,690
+But we are calling them from inside our template.
+
+23
+00:00:55,690 --> 00:00:57,390
+Now, the problem with that
+
+24
+00:00:57,390 --> 00:01:00,500
+is that here in this simple demo for us,
+
+25
+00:01:00,500 --> 00:01:02,020
+since we're the only developer
+
+26
+00:01:02,020 --> 00:01:03,420
+who worked on this code,
+
+27
+00:01:03,420 --> 00:01:05,920
+it's obvious where this is coming from.
+
+28
+00:01:05,920 --> 00:01:07,920
+But think about bigger projects
+
+29
+00:01:07,920 --> 00:01:11,590
+where one component maybe is not just using one,
+
+30
+00:01:11,590 --> 00:01:14,580
+but let's say five or six mix ins.
+
+31
+00:01:14,580 --> 00:01:16,770
+And you're maybe also working in a team
+
+32
+00:01:16,770 --> 00:01:20,250
+with many developers working on the code base.
+
+33
+00:01:20,250 --> 00:01:22,730
+Then it's not always as obvious
+
+34
+00:01:22,730 --> 00:01:24,400
+where something is coming from.
+
+35
+00:01:24,400 --> 00:01:27,050
+If show alert is coming from the alert mix in,
+
+36
+00:01:27,050 --> 00:01:29,630
+or maybe from the error handling mix in,
+
+37
+00:01:29,630 --> 00:01:31,400
+which you also might have.
+
+38
+00:01:31,400 --> 00:01:33,150
+And that can be a problem.
+
+39
+00:01:33,150 --> 00:01:35,130
+With mix ins bigger projects,
+
+40
+00:01:35,130 --> 00:01:39,040
+bigger code bases can be harder to manage.
+
+41
+00:01:39,040 --> 00:01:40,670
+In addition, you have to take care
+
+42
+00:01:40,670 --> 00:01:42,320
+about this merging behavior.
+
+43
+00:01:42,320 --> 00:01:44,350
+And in case you have a scenario
+
+44
+00:01:44,350 --> 00:01:47,430
+where the default merging strategies don't fit you,
+
+45
+00:01:47,430 --> 00:01:49,270
+yes, you can override them,
+
+46
+00:01:49,270 --> 00:01:51,280
+but that's a lot of extra care
+
+47
+00:01:51,280 --> 00:01:52,930
+you have to take to ensure
+
+48
+00:01:52,930 --> 00:01:54,610
+that mix ins work correctly.
+
+49
+00:01:54,610 --> 00:01:56,840
+And even if they do, you still are left
+
+50
+00:01:56,840 --> 00:01:59,690
+with the problem of not immediately seeing
+
+51
+00:01:59,690 --> 00:02:02,550
+where some method or where some data piece
+
+52
+00:02:02,550 --> 00:02:04,015
+is coming from.
+
+53
+00:02:04,015 --> 00:02:06,510
+That might not be a problem for you,
+
+54
+00:02:06,510 --> 00:02:08,270
+especially in smaller projects
+
+55
+00:02:08,270 --> 00:02:09,870
+or if you're working on your own.
+
+56
+00:02:09,870 --> 00:02:11,490
+But as I said in bigger projects,
+
+57
+00:02:11,490 --> 00:02:12,700
+it could be a problem,
+
+58
+00:02:12,700 --> 00:02:16,240
+and that's why Vue.js has a solution for that,
+
+59
+00:02:16,240 --> 00:02:18,300
+and why Vue.js actually has
+
+60
+00:02:18,300 --> 00:02:20,940
+an entire alternative way for you
+
+61
+00:02:20,940 --> 00:02:22,840
+to write your components.
+
+62
+00:02:22,840 --> 00:02:24,900
+Instead of setting up data, methods,
+
+63
+00:02:24,900 --> 00:02:26,800
+computed and watches,
+
+64
+00:02:26,800 --> 00:02:28,790
+as you learn it throughout the course,
+
+65
+00:02:28,790 --> 00:02:30,910
+Vue offers an alternative way,
+
+66
+00:02:30,910 --> 00:02:32,490
+the composition API,
+
+67
+00:02:32,490 --> 00:02:33,690
+which I already covered
+
+68
+00:02:33,690 --> 00:02:36,380
+in the previous course module.
+
+69
+00:02:36,380 --> 00:02:39,600
+And you might remember that in that last module,
+
+70
+00:02:39,600 --> 00:02:42,500
+I already mentioned one possible downside
+
+71
+00:02:42,500 --> 00:02:44,640
+you might face in bigger Vue apps
+
+72
+00:02:44,640 --> 00:02:46,670
+when using the options API,
+
+73
+00:02:46,670 --> 00:02:48,840
+so the way of building components with data,
+
+74
+00:02:48,840 --> 00:02:50,220
+methods, computed and watch,
+
+75
+00:02:50,220 --> 00:02:52,500
+which we used in the majority of this course.
+
+76
+00:02:52,500 --> 00:02:55,450
+It's a great way, but re-using logic
+
+77
+00:02:55,450 --> 00:02:58,850
+can be tricky or cumbersome because we use mix ins
+
+78
+00:02:58,850 --> 00:03:02,420
+for re-using logic when using that options API
+
+79
+00:03:02,420 --> 00:03:04,830
+and for the reasons I just mentioned
+
+80
+00:03:04,830 --> 00:03:07,960
+that can be problematic in bigger apps.
+
+81
+00:03:07,960 --> 00:03:10,000
+And with the composition API,
+
+82
+00:03:10,000 --> 00:03:12,750
+we have a nicer way of re-using logic
+
+83
+00:03:12,750 --> 00:03:14,520
+across components.
+
+84
+00:03:14,520 --> 00:03:17,660
+Because whilst we have mix ins for sharing logic
+
+85
+00:03:17,660 --> 00:03:19,570
+in the options API,
+
+86
+00:03:19,570 --> 00:03:22,030
+we have custom composition functions
+
+87
+00:03:22,030 --> 00:03:24,400
+when working with the composition API.
+
+88
+00:03:24,400 --> 00:03:26,323
+So let's see how that would work.
+

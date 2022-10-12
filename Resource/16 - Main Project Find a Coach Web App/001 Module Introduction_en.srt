@@ -1,0 +1,184 @@
+1
+00:00:02,090 --> 00:00:04,030
+Now with all the course modules
+
+2
+00:00:04,030 --> 00:00:07,670
+you completed up to this point, you learned a lot about Vue.
+
+3
+00:00:07,670 --> 00:00:12,120
+And of course, you already practiced a lot with Vue too.
+
+4
+00:00:12,120 --> 00:00:14,110
+We already had a couple of projects,
+
+5
+00:00:14,110 --> 00:00:19,110
+and we had tons of demos, assignments and challenges.
+
+6
+00:00:19,120 --> 00:00:22,860
+Now however, it's time for our main course project,
+
+7
+00:00:22,860 --> 00:00:25,083
+the Coach Finder application.
+
+8
+00:00:25,930 --> 00:00:28,083
+Now, here is the web app we are going to build
+
+9
+00:00:28,083 --> 00:00:30,180
+throughout this module.
+
+10
+00:00:30,180 --> 00:00:34,170
+It's an application where we got a bunch of coaches here,
+
+11
+00:00:34,170 --> 00:00:37,780
+we can filter those coaches, to for example
+
+12
+00:00:37,780 --> 00:00:41,720
+find a coach that is able to teach us backend development,
+
+13
+00:00:41,720 --> 00:00:45,010
+we can then contact this coach,
+
+14
+00:00:45,010 --> 00:00:49,610
+leave our email address, and share a message.
+
+15
+00:00:49,610 --> 00:00:51,880
+Now this message has been sent to the coach
+
+16
+00:00:51,880 --> 00:00:56,490
+and under requests, we can view all the incoming requests,
+
+17
+00:00:56,490 --> 00:00:58,730
+all the incoming messages.
+
+18
+00:00:58,730 --> 00:01:02,450
+We can then use the email address to reply back.
+
+19
+00:01:02,450 --> 00:01:04,340
+Now this application,
+
+20
+00:01:04,340 --> 00:01:08,180
+has basically all we learned throughout this course.
+
+21
+00:01:08,180 --> 00:01:11,390
+It uses routing and animations as you can tell.
+
+22
+00:01:11,390 --> 00:01:14,800
+It also uses Vuex to manage data
+
+23
+00:01:14,800 --> 00:01:18,720
+and it uses a bunch of components as you can see here.
+
+24
+00:01:18,720 --> 00:01:21,360
+It uses all kinds of ways of communicating
+
+25
+00:01:21,360 --> 00:01:25,450
+between components, Vuex and props and route parameters,
+
+26
+00:01:25,450 --> 00:01:28,770
+and you will see how all these things work together
+
+27
+00:01:28,770 --> 00:01:32,010
+step by step and in great detail.
+
+28
+00:01:32,010 --> 00:01:34,990
+This is a big Vue application,
+
+29
+00:01:34,990 --> 00:01:38,630
+which we are going to build together from the ground up
+
+30
+00:01:38,630 --> 00:01:42,100
+where all the things we learned will come together.
+
+31
+00:01:42,100 --> 00:01:46,860
+Routing, Vuex, Components, HTTP, everything.
+
+32
+00:01:46,860 --> 00:01:49,590
+It'll all be in that project and therefore
+
+33
+00:01:49,590 --> 00:01:53,950
+with this project you will get a complete demo
+
+34
+00:01:53,950 --> 00:01:55,610
+and a lot of practice
+
+35
+00:01:55,610 --> 00:01:59,940
+when it comes to building an entire app from the ground up.
+
+36
+00:01:59,940 --> 00:02:02,660
+You can definitely also take this as a challenge
+
+37
+00:02:02,660 --> 00:02:04,830
+and try this on your own first,
+
+38
+00:02:04,830 --> 00:02:07,540
+but we will build this app from the ground up,
+
+39
+00:02:07,540 --> 00:02:10,449
+including the planning phase together
+
+40
+00:02:10,449 --> 00:02:12,683
+step by step throughout this module.
+
+41
+00:02:13,580 --> 00:02:17,530
+We'll add routing and Vuex and a lot of other features
+
+42
+00:02:17,530 --> 00:02:19,340
+and with this module,
+
+43
+00:02:19,340 --> 00:02:23,140
+you will not just get another app and more practice,
+
+44
+00:02:23,140 --> 00:02:26,770
+but you will also see a lot of common conventions
+
+45
+00:02:26,770 --> 00:02:31,450
+and practices and you will learn how to solve problems.
+
+46
+00:02:31,450 --> 00:02:33,393
+So with that, let's dive right in.
+

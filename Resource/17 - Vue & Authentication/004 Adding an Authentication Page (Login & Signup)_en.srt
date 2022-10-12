@@ -1,0 +1,808 @@
+1
+00:00:02,190 --> 00:00:05,070
+So time to add a signup page.
+
+2
+00:00:05,070 --> 00:00:07,350
+For that here under pages,
+
+3
+00:00:07,350 --> 00:00:10,890
+I will add a new subfolder, auth.
+
+4
+00:00:10,890 --> 00:00:14,900
+And in there, add the UserAuth.vue file,
+
+5
+00:00:14,900 --> 00:00:19,720
+which will hold our user authentication form.
+
+6
+00:00:19,720 --> 00:00:20,880
+And as I just said it,
+
+7
+00:00:20,880 --> 00:00:22,553
+in here, I wanna have a form.
+
+8
+00:00:23,540 --> 00:00:25,670
+A very simple form
+
+9
+00:00:25,670 --> 00:00:30,120
+where we maybe have a div with a class of form-control.
+
+10
+00:00:30,120 --> 00:00:31,650
+And then inside of that div,
+
+11
+00:00:31,650 --> 00:00:35,410
+we have a label for the email field
+
+12
+00:00:35,410 --> 00:00:37,280
+where we say E-Mail
+
+13
+00:00:38,310 --> 00:00:41,140
+and below that, we have an input of type email
+
+14
+00:00:41,140 --> 00:00:44,160
+where users should enter his or her email address.
+
+15
+00:00:44,160 --> 00:00:46,283
+So I have an id of email here.
+
+16
+00:00:47,260 --> 00:00:52,250
+And then we can copy that to do the same for the password.
+
+17
+00:00:52,250 --> 00:00:55,700
+So here we have type password, id=password
+
+18
+00:00:55,700 --> 00:00:58,573
+and we say Password on the label.
+
+19
+00:00:59,900 --> 00:01:02,070
+And below that, we have the base-button
+
+20
+00:01:02,070 --> 00:01:04,450
+where we say Login.
+
+21
+00:01:04,450 --> 00:01:06,680
+And the caption of this button should change,
+
+22
+00:01:06,680 --> 00:01:08,970
+depending whether we wanna log in or not
+
+23
+00:01:08,970 --> 00:01:11,830
+because I'll add a second button here
+
+24
+00:01:11,830 --> 00:01:13,680
+where I set the type to button
+
+25
+00:01:13,680 --> 00:01:17,730
+so that this button won't submit the surrounding form
+
+26
+00:01:17,730 --> 00:01:20,500
+where I say Signup instead.
+
+27
+00:01:20,500 --> 00:01:23,780
+And where I set the mode to flat.
+
+28
+00:01:23,780 --> 00:01:25,940
+This will ensure that this allows us
+
+29
+00:01:25,940 --> 00:01:28,253
+to switch between signing up and logging in.
+
+30
+00:01:29,220 --> 00:01:30,710
+Now, for some styling,
+
+31
+00:01:30,710 --> 00:01:35,710
+I think we can reuse the styling we find on another page,
+
+32
+00:01:36,000 --> 00:01:37,923
+the ContactCoach page.
+
+33
+00:01:38,840 --> 00:01:43,623
+Here we can grab the styling defined here.
+
+34
+00:01:46,880 --> 00:01:48,530
+I don't grab the errors
+
+35
+00:01:48,530 --> 00:01:49,970
+and don't grab the actions
+
+36
+00:01:49,970 --> 00:01:51,570
+because I'm not using this here.
+
+37
+00:01:53,880 --> 00:01:57,520
+And simply add styling to this component now
+
+38
+00:01:57,520 --> 00:01:59,940
+and yes, we could try to set this up
+
+39
+00:01:59,940 --> 00:02:02,100
+as general app-wide styling
+
+40
+00:02:02,100 --> 00:02:05,450
+or create separate components and hold inputs
+
+41
+00:02:05,450 --> 00:02:07,720
+but I will just copy those styles here
+
+42
+00:02:07,720 --> 00:02:10,769
+and repeat the styling code a little bit.
+
+43
+00:02:10,769 --> 00:02:13,220
+And one thing I forgot,
+
+44
+00:02:13,220 --> 00:02:18,220
+I also wanna put all of that into a base-card component here
+
+45
+00:02:19,140 --> 00:02:21,333
+for some nice styling.
+
+46
+00:02:22,780 --> 00:02:23,760
+Okay.
+
+47
+00:02:23,760 --> 00:02:27,870
+Now, that's the basic UserAuth page.
+
+48
+00:02:27,870 --> 00:02:29,590
+Let's now bring it to the screen
+
+49
+00:02:29,590 --> 00:02:31,400
+so that we can fine tune it.
+
+50
+00:02:31,400 --> 00:02:33,310
+And it should be loaded as a route.
+
+51
+00:02:33,310 --> 00:02:35,330
+So in the router.js file,
+
+52
+00:02:35,330 --> 00:02:37,830
+we can register a new route.
+
+53
+00:02:37,830 --> 00:02:40,880
+Maybe here right before our catch all route,
+
+54
+00:02:40,880 --> 00:02:44,100
+which is /auth let's say
+
+55
+00:02:44,100 --> 00:02:47,480
+where the component is this newly added component.
+
+56
+00:02:47,480 --> 00:02:52,480
+So we import UserAuth from ./pages/auth/UserAuth.vue.
+
+57
+00:02:55,810 --> 00:02:59,850
+That's the component we just added here.
+
+58
+00:02:59,850 --> 00:03:02,320
+And now, UserAuth is the component
+
+59
+00:03:02,320 --> 00:03:05,533
+that should be loaded when we visit /.auth.
+
+60
+00:03:06,980 --> 00:03:08,220
+So with that added,
+
+61
+00:03:08,220 --> 00:03:11,190
+if we now enter /auth,
+
+62
+00:03:11,190 --> 00:03:13,460
+and of course, we'll soon add navigation options
+
+63
+00:03:13,460 --> 00:03:16,183
+to get there, this is this component.
+
+64
+00:03:17,470 --> 00:03:20,240
+Now, one thing I wanna change here in the styling,
+
+65
+00:03:20,240 --> 00:03:23,060
+the form shouldn't have this border,
+
+66
+00:03:23,060 --> 00:03:25,070
+doesn't need the border radius.
+
+67
+00:03:25,070 --> 00:03:26,640
+We can get rid of that.
+
+68
+00:03:26,640 --> 00:03:28,140
+Now this looks better.
+
+69
+00:03:28,140 --> 00:03:31,010
+And actually, I will also swap this
+
+70
+00:03:31,010 --> 00:03:33,870
+and move the form into the base-card
+
+71
+00:03:33,870 --> 00:03:35,320
+and not the other way around.
+
+72
+00:03:37,270 --> 00:03:39,250
+Yeah, this now looks better.
+
+73
+00:03:39,250 --> 00:03:41,230
+So now we've got this form.
+
+74
+00:03:41,230 --> 00:03:43,140
+This button will submit the form.
+
+75
+00:03:43,140 --> 00:03:45,559
+This button will later help us switch
+
+76
+00:03:45,559 --> 00:03:47,930
+between signing up and logging in
+
+77
+00:03:47,930 --> 00:03:49,700
+because of course, this form should be able
+
+78
+00:03:49,700 --> 00:03:50,763
+to handle both.
+
+79
+00:03:51,620 --> 00:03:53,180
+And speaking of that,
+
+80
+00:03:53,180 --> 00:03:55,850
+let's maybe continue with this form right away
+
+81
+00:03:55,850 --> 00:03:59,600
+and let's make sure that we do gather some user data
+
+82
+00:03:59,600 --> 00:04:02,990
+and that we do send this to Firebase thereafter.
+
+83
+00:04:02,990 --> 00:04:05,620
+So for that, back in the UserAuth component,
+
+84
+00:04:05,620 --> 00:04:07,170
+we, of course, need a script
+
+85
+00:04:07,170 --> 00:04:09,490
+and we've got some data we wanna manage here
+
+86
+00:04:09,490 --> 00:04:12,930
+because for example, we wanna manage the user input.
+
+87
+00:04:12,930 --> 00:04:14,740
+That will be an email address
+
+88
+00:04:14,740 --> 00:04:17,880
+and that will be a password.
+
+89
+00:04:17,880 --> 00:04:21,142
+Now, you can also add more complex validation
+
+90
+00:04:21,142 --> 00:04:24,990
+as we did it in the CoachRegistration component,
+
+91
+00:04:24,990 --> 00:04:27,430
+in the CoachForm to be precise.
+
+92
+00:04:27,430 --> 00:04:29,580
+You could do this here in UserAuth
+
+93
+00:04:29,580 --> 00:04:31,630
+but we practiced this before.
+
+94
+00:04:31,630 --> 00:04:34,850
+Here I wanna focus just on authentication,
+
+95
+00:04:34,850 --> 00:04:37,553
+so I will add only very basic validation here.
+
+96
+00:04:38,620 --> 00:04:41,280
+For example, I will add a formIsValid key,
+
+97
+00:04:41,280 --> 00:04:42,860
+which initially is true.
+
+98
+00:04:42,860 --> 00:04:44,820
+And we'll set that to false
+
+99
+00:04:44,820 --> 00:04:46,550
+if the user submits the form
+
+100
+00:04:46,550 --> 00:04:49,720
+and email or password should be invalid.
+
+101
+00:04:49,720 --> 00:04:51,040
+We also need to be able
+
+102
+00:04:51,040 --> 00:04:53,730
+to switch between signup and login mode
+
+103
+00:04:53,730 --> 00:04:56,520
+because that will change which action
+
+104
+00:04:56,520 --> 00:04:57,820
+will be dispatched later,
+
+105
+00:04:57,820 --> 00:05:00,530
+which HTTP request should be sent.
+
+106
+00:05:00,530 --> 00:05:04,660
+So therefore, I will also add a mode data property here
+
+107
+00:05:04,660 --> 00:05:07,050
+and set this to login initially
+
+108
+00:05:07,050 --> 00:05:09,340
+but this can also be signup
+
+109
+00:05:09,340 --> 00:05:11,480
+once we added the logic.
+
+110
+00:05:11,480 --> 00:05:12,770
+And that's the next thing.
+
+111
+00:05:12,770 --> 00:05:14,130
+Let's add some methods.
+
+112
+00:05:14,130 --> 00:05:17,613
+submitForm is one method.
+
+113
+00:05:17,613 --> 00:05:20,553
+SwitchAuthMode is another method.
+
+114
+00:05:22,210 --> 00:05:23,940
+submitForm, well, you guess it,
+
+115
+00:05:23,940 --> 00:05:26,766
+should be triggered when the form is submitted.
+
+116
+00:05:26,766 --> 00:05:28,740
+switchAuthMode should be triggered
+
+117
+00:05:28,740 --> 00:05:31,723
+when this switch button here is clicked.
+
+118
+00:05:33,160 --> 00:05:35,080
+So we can already wire this up.
+
+119
+00:05:35,080 --> 00:05:36,590
+Wire up this second button
+
+120
+00:05:36,590 --> 00:05:39,150
+and point at switchAuthMode.
+
+121
+00:05:39,150 --> 00:05:43,640
+And on the form, add the submit event handler
+
+122
+00:05:43,640 --> 00:05:45,320
+with the prevent modifier
+
+123
+00:05:46,290 --> 00:05:48,080
+and point at submitForm.
+
+124
+00:05:49,450 --> 00:05:53,110
+Also, connect the inputs with v-model
+
+125
+00:05:53,110 --> 00:05:55,120
+and connect this one to email
+
+126
+00:05:55,120 --> 00:05:57,313
+and the second one to password.
+
+127
+00:05:59,720 --> 00:06:03,600
+With that done, we can start with submitForm
+
+128
+00:06:03,600 --> 00:06:07,910
+and check if this.email is empty
+
+129
+00:06:08,760 --> 00:06:09,900
+and actually, therefore,
+
+130
+00:06:09,900 --> 00:06:12,010
+I wanna use the trim modifier again
+
+131
+00:06:12,010 --> 00:06:14,233
+to trim any excess white space.
+
+132
+00:06:15,600 --> 00:06:18,290
+So check if email is then empty.
+
+133
+00:06:18,290 --> 00:06:23,180
+Or if not this.email.includes an @ symbol,
+
+134
+00:06:23,180 --> 00:06:25,600
+which is a very trivial validation
+
+135
+00:06:25,600 --> 00:06:27,750
+of whether we have an email address or not.
+
+136
+00:06:28,680 --> 00:06:33,500
+Or if this.password.length
+
+137
+00:06:33,500 --> 00:06:37,560
+is smaller than six characters.
+
+138
+00:06:37,560 --> 00:06:40,310
+I think that's the minimum Firebase actually wants,
+
+139
+00:06:40,310 --> 00:06:42,230
+if any of these conditions is met,
+
+140
+00:06:42,230 --> 00:06:44,900
+then we set formIsValid to false
+
+141
+00:06:44,900 --> 00:06:48,163
+and we return so that no other code executes.
+
+142
+00:06:49,330 --> 00:06:51,760
+And we set formIsValid to true initially
+
+143
+00:06:51,760 --> 00:06:54,640
+when the form is submitted to clear any errors
+
+144
+00:06:54,640 --> 00:06:56,420
+we might be displaying
+
+145
+00:06:56,420 --> 00:06:58,880
+because we can now use formIsValid
+
+146
+00:06:58,880 --> 00:07:02,610
+to show an error message, maybe here in the paragraph
+
+147
+00:07:02,610 --> 00:07:06,780
+with v-id, check if formIsValid.
+
+148
+00:07:06,780 --> 00:07:10,150
+Or if it's not valid to be precise
+
+149
+00:07:10,150 --> 00:07:11,690
+and then show a message
+
+150
+00:07:11,690 --> 00:07:15,633
+of Please enter a valid email and password.
+
+151
+00:07:17,000 --> 00:07:21,670
+Must be at least six characters long.
+
+152
+00:07:23,780 --> 00:07:25,210
+So now we've got this as well.
+
+153
+00:07:25,210 --> 00:07:27,833
+And that's the basic validation I wanna do here.
+
+154
+00:07:29,570 --> 00:07:32,040
+Now, if we make it past this if check,
+
+155
+00:07:32,040 --> 00:07:35,990
+we will then send an appropriate http request
+
+156
+00:07:35,990 --> 00:07:37,750
+for logging in or singing up
+
+157
+00:07:37,750 --> 00:07:40,030
+but that will be the next step.
+
+158
+00:07:40,030 --> 00:07:42,284
+First, let's work on the AuthMode
+
+159
+00:07:42,284 --> 00:07:45,210
+and here I wanna check if this.mode
+
+160
+00:07:45,210 --> 00:07:47,280
+is equal to login,
+
+161
+00:07:47,280 --> 00:07:49,890
+so if we are currently in login mode,
+
+162
+00:07:49,890 --> 00:07:52,247
+in that case, I'll set mode to signup.
+
+163
+00:07:53,680 --> 00:07:55,480
+Else if we are in signup,
+
+164
+00:07:55,480 --> 00:07:58,093
+I'll set mode to login.
+
+165
+00:07:59,460 --> 00:08:02,220
+And now we can use this mode data property
+
+166
+00:08:03,350 --> 00:08:06,950
+to control what's displayed on the button here as a caption
+
+167
+00:08:06,950 --> 00:08:09,770
+but then also, to later change which kind
+
+168
+00:08:09,770 --> 00:08:11,813
+of HTTP request is sent here.
+
+169
+00:08:12,720 --> 00:08:14,640
+Now, to change the button captions,
+
+170
+00:08:14,640 --> 00:08:16,300
+I will use computed properties
+
+171
+00:08:16,300 --> 00:08:18,820
+to keep that logic in the script here.
+
+172
+00:08:18,820 --> 00:08:21,890
+And here, I'll have the submitButtonCaption
+
+173
+00:08:23,180 --> 00:08:27,347
+and the switchModeButtonCaption computed property.
+
+174
+00:08:29,640 --> 00:08:31,430
+And on the submitButton,
+
+175
+00:08:31,430 --> 00:08:36,179
+I wanna check if this.mode is equal to login.
+
+176
+00:08:36,179 --> 00:08:40,873
+And if that's the case, I'll return a caption of Login.
+
+177
+00:08:42,610 --> 00:08:45,370
+Else we are in signup mode.
+
+178
+00:08:45,370 --> 00:08:46,653
+I will say Signup.
+
+179
+00:08:48,520 --> 00:08:50,640
+And for the switchModeButton,
+
+180
+00:08:50,640 --> 00:08:52,520
+I'll basically do the same.
+
+181
+00:08:52,520 --> 00:08:54,870
+I will also check in which mode we are.
+
+182
+00:08:54,870 --> 00:08:56,710
+And if we are in Login mode,
+
+183
+00:08:56,710 --> 00:08:58,780
+I'll say Signup instead
+
+184
+00:08:58,780 --> 00:09:01,970
+because that's the new mode this button should toggle.
+
+185
+00:09:01,970 --> 00:09:03,800
+If we are Signup mode,
+
+186
+00:09:03,800 --> 00:09:05,603
+I'll say Login instead.
+
+187
+00:09:06,820 --> 00:09:09,520
+And now we can use these computed properties here.
+
+188
+00:09:09,520 --> 00:09:11,880
+So here on the submit button,
+
+189
+00:09:11,880 --> 00:09:13,920
+I output my submitButtonCaption
+
+190
+00:09:13,920 --> 00:09:18,800
+with interpolation and here on the switch button,
+
+191
+00:09:18,800 --> 00:09:20,423
+I output my switchModeButtonCaption.
+
+192
+00:09:27,100 --> 00:09:27,933
+Okay.
+
+193
+00:09:30,810 --> 00:09:33,400
+Now we can click the Switch button
+
+194
+00:09:33,400 --> 00:09:35,610
+and we switch between those modes
+
+195
+00:09:35,610 --> 00:09:36,730
+but at the moment, this, of course,
+
+196
+00:09:36,730 --> 00:09:38,710
+only affects what we see on the screen
+
+197
+00:09:38,710 --> 00:09:40,600
+but that's better than nothing.
+
+198
+00:09:40,600 --> 00:09:42,180
+Now, as a next step,
+
+199
+00:09:42,180 --> 00:09:45,660
+we need to really get that user input
+
+200
+00:09:45,660 --> 00:09:48,430
+and then send that data to Firebase
+
+201
+00:09:48,430 --> 00:09:50,150
+to exchange it for a token
+
+202
+00:09:50,150 --> 00:09:52,793
+or to create a new user to start with.
+

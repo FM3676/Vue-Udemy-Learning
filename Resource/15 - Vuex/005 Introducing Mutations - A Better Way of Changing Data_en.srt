@@ -1,0 +1,572 @@
+1
+00:00:02,320 --> 00:00:04,210
+Remember this slide?
+
+2
+00:00:04,210 --> 00:00:08,330
+There I mentioned this predictable state management,
+
+3
+00:00:08,330 --> 00:00:12,140
+this predictable flow, the clearly defined data flow,
+
+4
+00:00:12,140 --> 00:00:16,219
+which makes sure that we have to use a certain approach
+
+5
+00:00:16,219 --> 00:00:17,640
+of updating our data
+
+6
+00:00:17,640 --> 00:00:19,360
+and of getting our data
+
+7
+00:00:19,360 --> 00:00:22,570
+and this would be less error prone.
+
+8
+00:00:22,570 --> 00:00:26,356
+Well, actually, the way we're using Vuex at the moment works
+
+9
+00:00:26,356 --> 00:00:30,183
+but it's not fully following the Vuex philosophy.
+
+10
+00:00:31,040 --> 00:00:34,000
+We're directly tapping into our store.state
+
+11
+00:00:34,000 --> 00:00:37,050
+to change something from inside a component
+
+12
+00:00:37,050 --> 00:00:40,020
+and whilst this works technically here,
+
+13
+00:00:40,020 --> 00:00:41,285
+this is not ideal.
+
+14
+00:00:41,285 --> 00:00:44,820
+We can change the state from anywhere in the application
+
+15
+00:00:44,820 --> 00:00:46,950
+and it's up to us if we add one
+
+16
+00:00:46,950 --> 00:00:51,950
+or if we set it equal to state.counter + 10
+
+17
+00:00:52,060 --> 00:00:55,290
+or we have a typo and accidentally type one twice
+
+18
+00:00:55,290 --> 00:00:58,383
+and hence add 11 every time we increment this.
+
+19
+00:00:59,300 --> 00:01:01,720
+So what I wanna say is that here,
+
+20
+00:01:01,720 --> 00:01:04,870
+we still can introduce errors
+
+21
+00:01:04,870 --> 00:01:06,320
+because we're not having
+
+22
+00:01:06,320 --> 00:01:09,160
+a clearly defined state-changing mechanism.
+
+23
+00:01:09,160 --> 00:01:11,333
+We can change the state from anywhere.
+
+24
+00:01:12,470 --> 00:01:15,720
+That is why we should use Vuex a bit differently.
+
+25
+00:01:15,720 --> 00:01:18,830
+We have this app-wide, central Data Store,
+
+26
+00:01:18,830 --> 00:01:20,360
+this State Store,
+
+27
+00:01:20,360 --> 00:01:22,120
+and we communicate with it
+
+28
+00:01:22,120 --> 00:01:23,853
+from inside our components.
+
+29
+00:01:24,720 --> 00:01:27,230
+Now, I have a dashed arrow here
+
+30
+00:01:27,230 --> 00:01:30,130
+because yes, we want to communicate
+
+31
+00:01:30,130 --> 00:01:31,810
+but not directly.
+
+32
+00:01:31,810 --> 00:01:34,350
+What we're doing at the moment is not ideal.
+
+33
+00:01:34,350 --> 00:01:38,663
+Instead, Vuex has a built-in concept called mutations.
+
+34
+00:01:39,630 --> 00:01:43,030
+Mutations are clearly defined methods,
+
+35
+00:01:43,030 --> 00:01:46,380
+which have the logic to update the state.
+
+36
+00:01:46,380 --> 00:01:48,440
+And from inside our components,
+
+37
+00:01:48,440 --> 00:01:52,040
+we should, in the end, just trigger those mutations
+
+38
+00:01:52,040 --> 00:01:54,373
+instead of directly manipulating the state.
+
+39
+00:01:55,430 --> 00:01:57,420
+By triggering mutations,
+
+40
+00:01:57,420 --> 00:02:01,200
+all components that want to edit a state do it
+
+41
+00:02:01,200 --> 00:02:02,660
+in the same way.
+
+42
+00:02:02,660 --> 00:02:05,523
+And it's guaranteed that they do it in the same way.
+
+43
+00:02:06,490 --> 00:02:08,350
+And to give you an example,
+
+44
+00:02:08,350 --> 00:02:11,243
+I will actually add another component here.
+
+45
+00:02:12,285 --> 00:02:14,300
+ChangeCounter.vue.
+
+46
+00:02:14,300 --> 00:02:16,020
+And this will be a very simple component,
+
+47
+00:02:16,020 --> 00:02:17,840
+which also just has a button
+
+48
+00:02:19,370 --> 00:02:21,600
+where I also say Add 1
+
+49
+00:02:21,600 --> 00:02:23,020
+and where we're gonna click,
+
+50
+00:02:23,020 --> 00:02:25,230
+I want a trigger addOne.
+
+51
+00:02:25,230 --> 00:02:27,570
+And then I have my script in here.
+
+52
+00:02:27,570 --> 00:02:29,610
+And in there, my methods
+
+53
+00:02:29,610 --> 00:02:33,120
+where I have the addOne method.
+
+54
+00:02:33,120 --> 00:02:36,350
+And every component is able to use Vuex as you learned it.
+
+55
+00:02:36,350 --> 00:02:39,180
+So here I can access store.state.counter
+
+56
+00:02:39,180 --> 00:02:40,623
+and increment this by one.
+
+57
+00:02:42,060 --> 00:02:45,287
+Now, in App.vue, we can import ChangeCounter
+
+58
+00:02:48,279 --> 00:02:49,779
+and register it as a component
+
+59
+00:02:51,220 --> 00:02:53,510
+and use it in addition to the button,
+
+60
+00:02:53,510 --> 00:02:55,053
+which we already have here.
+
+61
+00:02:56,160 --> 00:02:57,880
+So I got two buttons now.
+
+62
+00:02:57,880 --> 00:02:59,370
+One here in the app component
+
+63
+00:02:59,370 --> 00:03:00,923
+and one in change-counter.
+
+64
+00:03:01,950 --> 00:03:04,940
+Both should add one but here I'm adding 11
+
+65
+00:03:04,940 --> 00:03:08,650
+because I mistyped or I changed my logic
+
+66
+00:03:08,650 --> 00:03:11,080
+and forgot to rename the method
+
+67
+00:03:11,080 --> 00:03:12,620
+and the text on the button.
+
+68
+00:03:12,620 --> 00:03:13,660
+Whatever.
+
+69
+00:03:13,660 --> 00:03:15,460
+But now we have two buttons.
+
+70
+00:03:15,460 --> 00:03:18,880
+One button adds 11 and one really adds one.
+
+71
+00:03:18,880 --> 00:03:20,580
+Now, why am I doing this?
+
+72
+00:03:20,580 --> 00:03:23,840
+I want to show you that now we have different places
+
+73
+00:03:23,840 --> 00:03:26,210
+in the app where we update our state.
+
+74
+00:03:26,210 --> 00:03:28,800
+And even if we wouldn't have that stupid mistake
+
+75
+00:03:28,800 --> 00:03:30,480
+of having 11 here,
+
+76
+00:03:30,480 --> 00:03:32,270
+even if we would have one,
+
+77
+00:03:32,270 --> 00:03:35,780
+if we ever decide that we want to add two,
+
+78
+00:03:35,780 --> 00:03:39,670
+we have to change that in two components.
+
+79
+00:03:39,670 --> 00:03:42,438
+We have to go to two components
+
+80
+00:03:42,438 --> 00:03:45,060
+and change our logic in two places
+
+81
+00:03:46,090 --> 00:03:47,560
+and in bigger applications,
+
+82
+00:03:47,560 --> 00:03:49,400
+we might have even more places
+
+83
+00:03:49,400 --> 00:03:52,030
+where we need to change the logic.
+
+84
+00:03:52,030 --> 00:03:53,990
+Now, that's a lot of code duplication
+
+85
+00:03:53,990 --> 00:03:57,253
+and that's exactly why we have this mutations concept.
+
+86
+00:03:58,160 --> 00:04:01,360
+Back in main.js where we create our store,
+
+87
+00:04:01,360 --> 00:04:03,360
+we don't just have the state here,
+
+88
+00:04:03,360 --> 00:04:06,180
+we also have mutations.
+
+89
+00:04:06,180 --> 00:04:08,196
+Mutations takes an object
+
+90
+00:04:08,196 --> 00:04:12,010
+and in this object, you can define methods.
+
+91
+00:04:12,010 --> 00:04:15,770
+For example, I addOne method or increment.
+
+92
+00:04:15,770 --> 00:04:17,142
+Whatever you wanna call it.
+
+93
+00:04:18,060 --> 00:04:20,920
+And this method should contain the logic
+
+94
+00:04:20,920 --> 00:04:22,493
+to change this state.
+
+95
+00:04:23,550 --> 00:04:26,610
+Now, this method will automatically get the current state
+
+96
+00:04:26,610 --> 00:04:28,410
+as a argument.
+
+97
+00:04:28,410 --> 00:04:30,720
+This is guaranteed by Vuex.
+
+98
+00:04:30,720 --> 00:04:32,490
+Vuex will give us the current state
+
+99
+00:04:32,490 --> 00:04:34,340
+whenever this method is triggered
+
+100
+00:04:34,340 --> 00:04:36,980
+and I will show you how to trigger such a method
+
+101
+00:04:36,980 --> 00:04:37,823
+in a second.
+
+102
+00:04:38,760 --> 00:04:40,870
+And since we get the current state here,
+
+103
+00:04:40,870 --> 00:04:43,320
+the guaranteed latest state,
+
+104
+00:04:43,320 --> 00:04:45,730
+we can access state.counter in here
+
+105
+00:04:45,730 --> 00:04:47,920
+and increment this by one.
+
+106
+00:04:47,920 --> 00:04:50,730
+Also, of course, with this code.
+
+107
+00:04:50,730 --> 00:04:52,640
+Or if we ever change our logic,
+
+108
+00:04:52,640 --> 00:04:54,023
+we simply change it here.
+
+109
+00:04:55,120 --> 00:04:57,870
+And now we want to trigger this mutation
+
+110
+00:04:57,870 --> 00:04:59,340
+from all the places
+
+111
+00:04:59,340 --> 00:05:01,700
+that should change our state.
+
+112
+00:05:01,700 --> 00:05:03,610
+And of course, it should be needless to say
+
+113
+00:05:03,610 --> 00:05:05,770
+that you can have multiple mutations.
+
+114
+00:05:05,770 --> 00:05:08,853
+You can have as many as you need for your application.
+
+115
+00:05:09,800 --> 00:05:11,170
+So here I've got one
+
+116
+00:05:11,170 --> 00:05:14,250
+and I wanna trigger it for the button in App.vue
+
+117
+00:05:14,250 --> 00:05:16,670
+and for the button in ChangeCounter.
+
+118
+00:05:16,670 --> 00:05:19,980
+Now, let's start with the button in ChangeCounter.
+
+119
+00:05:19,980 --> 00:05:22,350
+Here, to trigger a mutation,
+
+120
+00:05:22,350 --> 00:05:25,020
+we access this.$store
+
+121
+00:05:25,020 --> 00:05:28,610
+but now there we've got a commit method.
+
+122
+00:05:28,610 --> 00:05:29,950
+It's a built-in method,
+
+123
+00:05:29,950 --> 00:05:33,037
+which Vuex gives you on its store.
+
+124
+00:05:33,037 --> 00:05:36,137
+And commit takes the name
+
+125
+00:05:36,137 --> 00:05:38,833
+of the mutation you want to perform.
+
+126
+00:05:40,280 --> 00:05:42,730
+In this case, that's increment
+
+127
+00:05:42,730 --> 00:05:45,710
+and the name should be provided as a string.
+
+128
+00:05:45,710 --> 00:05:49,500
+It's increment because I named my mutation increment.
+
+129
+00:05:49,500 --> 00:05:51,600
+If you used a different name here,
+
+130
+00:05:51,600 --> 00:05:54,143
+you also need to commit a different name.
+
+131
+00:05:55,270 --> 00:05:59,490
+But now we can commit this here in ChangeCounter
+
+132
+00:05:59,490 --> 00:06:01,023
+and also in App.vue.
+
+133
+00:06:02,250 --> 00:06:04,260
+And now we moved the logic,
+
+134
+00:06:04,260 --> 00:06:07,740
+the concrete logic on how the state is updated out
+
+135
+00:06:07,740 --> 00:06:10,140
+of the components into our store,
+
+136
+00:06:10,140 --> 00:06:11,720
+into this mutation.
+
+137
+00:06:11,720 --> 00:06:14,220
+And we just commit this mutation
+
+138
+00:06:14,220 --> 00:06:16,480
+from inside our components.
+
+139
+00:06:16,480 --> 00:06:17,963
+So now, if we save that,
+
+140
+00:06:19,500 --> 00:06:21,190
+this still works
+
+141
+00:06:21,190 --> 00:06:23,300
+but now with help of mutations,
+
+142
+00:06:23,300 --> 00:06:25,080
+which is the more elegant
+
+143
+00:06:25,080 --> 00:06:28,363
+and more predictable way of updating our state.
+

@@ -1,0 +1,116 @@
+1
+00:00:02,130 --> 00:00:06,230
+Now, that is the core of the composition API.
+
+2
+00:00:06,230 --> 00:00:10,090
+We covered the core features in the last lectures,
+
+3
+00:00:10,090 --> 00:00:14,250
+ref and reactive, computed, watch,
+
+4
+00:00:14,250 --> 00:00:18,260
+and calling functions from inside the template.
+
+5
+00:00:18,260 --> 00:00:21,780
+What's really important to me here is that you realize
+
+6
+00:00:21,780 --> 00:00:24,890
+that the template code does not change.
+
+7
+00:00:24,890 --> 00:00:29,780
+We still use interpolation, we could still use v-bind.
+
+8
+00:00:29,780 --> 00:00:32,490
+We still listen to events in exactly
+
+9
+00:00:32,490 --> 00:00:34,150
+the same way we did before.
+
+10
+00:00:34,150 --> 00:00:36,010
+We can still use v-model.
+
+11
+00:00:36,010 --> 00:00:37,433
+That's all the same.
+
+12
+00:00:38,680 --> 00:00:42,350
+Other options we might have, like components or props,
+
+13
+00:00:42,350 --> 00:00:44,130
+also would not change.
+
+14
+00:00:44,130 --> 00:00:47,380
+It's just the logic here and setup which is new,
+
+15
+00:00:47,380 --> 00:00:49,870
+and which replaces, as you learned,
+
+16
+00:00:49,870 --> 00:00:52,563
+data, methods, computed, and watch.
+
+17
+00:00:53,740 --> 00:00:57,520
+Now, of course, still there are many other minor things
+
+18
+00:00:57,520 --> 00:01:00,510
+you gotta know when working with the composition API,
+
+19
+00:01:00,510 --> 00:01:05,030
+some issues and problems you will eventually run into,
+
+20
+00:01:05,030 --> 00:01:07,870
+which you gotta know how to solve when switching
+
+21
+00:01:07,870 --> 00:01:11,560
+from the options API to the composition API,
+
+22
+00:01:11,560 --> 00:01:14,930
+which is why we will also apply to composition API
+
+23
+00:01:14,930 --> 00:01:17,770
+to a bigger project, to see all those
+
+24
+00:01:17,770 --> 00:01:19,923
+special cases in action.
+
+25
+00:01:21,010 --> 00:01:23,730
+There are a couple of special cases,
+
+26
+00:01:23,730 --> 00:01:27,670
+which I wanna cover before we dive into a project though.
+
+27
+00:01:27,670 --> 00:01:29,010
+So in the next lectures,
+
+28
+00:01:29,010 --> 00:01:31,900
+I'll dive into some individual aspects you should
+
+29
+00:01:31,900 --> 00:01:35,463
+be aware of when working with the composition API.
+

@@ -1,0 +1,404 @@
+1
+00:00:02,180 --> 00:00:04,530
+So let's add a default button,
+
+2
+00:00:04,530 --> 00:00:08,230
+which we can use, and that will be another base component.
+
+3
+00:00:08,230 --> 00:00:10,430
+So I will add it to the UI folder.
+
+4
+00:00:10,430 --> 00:00:13,683
+And I'll name the file name BaseButton.vue.
+
+5
+00:00:14,710 --> 00:00:16,890
+Now in there, of course we'll have a template
+
+6
+00:00:16,890 --> 00:00:19,280
+and there I'll have my button element,
+
+7
+00:00:19,280 --> 00:00:21,140
+the default button element,
+
+8
+00:00:21,140 --> 00:00:23,940
+but now it's all about having some default styling
+
+9
+00:00:23,940 --> 00:00:25,450
+for the button.
+
+10
+00:00:25,450 --> 00:00:29,440
+So for that I'll add my style tag here
+
+11
+00:00:30,300 --> 00:00:32,400
+and of course scope it.
+
+12
+00:00:32,400 --> 00:00:35,470
+And I'm providing some default styling you can take
+
+13
+00:00:35,470 --> 00:00:39,120
+attached to this lecture in the buttoned dot CSS file.
+
+14
+00:00:39,120 --> 00:00:42,010
+I'm fully aware that this is probably not the styling
+
+15
+00:00:42,010 --> 00:00:45,330
+you came up with, but you can now use it.
+
+16
+00:00:45,330 --> 00:00:47,917
+This sets up a general button style,
+
+17
+00:00:47,917 --> 00:00:50,840
+also when it's hovered or active.
+
+18
+00:00:50,840 --> 00:00:52,840
+But then I also have a CSS class,
+
+19
+00:00:52,840 --> 00:00:55,670
+which we can add conditionally to give it
+
+20
+00:00:55,670 --> 00:00:59,080
+an alternative look so that we can actually have
+
+21
+00:00:59,080 --> 00:01:01,058
+one base button component,
+
+22
+00:01:01,058 --> 00:01:04,440
+which can be configured to look differently
+
+23
+00:01:04,440 --> 00:01:08,170
+and it should be configurable with props.
+
+24
+00:01:08,170 --> 00:01:11,130
+So for that I'll also add a script tag here
+
+25
+00:01:11,130 --> 00:01:13,090
+and add the props option.
+
+26
+00:01:13,090 --> 00:01:17,020
+And the props I wanna accept here is let's say the type prop
+
+27
+00:01:17,020 --> 00:01:19,700
+so that we can set the type of the button
+
+28
+00:01:19,700 --> 00:01:23,618
+and bind the default type attribute to this type prop,
+
+29
+00:01:23,618 --> 00:01:26,570
+but I'll always accept the mode prop,
+
+30
+00:01:26,570 --> 00:01:30,290
+which I want to set as a CSS class here,
+
+31
+00:01:30,290 --> 00:01:34,763
+so I'll bind to class attribute to this mode prop value.
+
+32
+00:01:36,230 --> 00:01:41,230
+And my idea is that you can then use this base-button
+
+33
+00:01:42,220 --> 00:01:47,220
+with the mode of flat later, in another component of course.
+
+34
+00:01:47,280 --> 00:01:51,100
+And if you do so, this flat text here
+
+35
+00:01:51,100 --> 00:01:53,430
+will be added as a CSS class.
+
+36
+00:01:53,430 --> 00:01:56,550
+And we do have a selector for this class
+
+37
+00:01:56,550 --> 00:01:59,063
+giving this button an alternative look.
+
+38
+00:02:00,370 --> 00:02:02,650
+And of course we could add more classes
+
+39
+00:02:02,650 --> 00:02:05,163
+to support more alternative looks.
+
+40
+00:02:06,340 --> 00:02:09,750
+Now that's almost it, but one important thing is missing.
+
+41
+00:02:09,750 --> 00:02:12,590
+And that's another slot because of course
+
+42
+00:02:12,590 --> 00:02:16,240
+the content inside of the button, the text for example,
+
+43
+00:02:16,240 --> 00:02:18,853
+should be passed in from outside.
+
+44
+00:02:20,090 --> 00:02:23,230
+We could also accept another prop for that, for example,
+
+45
+00:02:23,230 --> 00:02:26,698
+a captioned prop and use that.
+
+46
+00:02:26,698 --> 00:02:29,950
+But by using a slot, we give the user,
+
+47
+00:02:29,950 --> 00:02:33,810
+the developer using our button a bit more flexibility
+
+48
+00:02:33,810 --> 00:02:36,590
+because now you can not just feed in text,
+
+49
+00:02:36,590 --> 00:02:39,460
+but you could also pass in an icon,
+
+50
+00:02:39,460 --> 00:02:42,673
+a SVG icon or any markup of your choice.
+
+51
+00:02:44,080 --> 00:02:47,420
+Now that's the base button, just like the base card,
+
+52
+00:02:47,420 --> 00:02:50,650
+I'm going to register it globally so that we can use it
+
+53
+00:02:50,650 --> 00:02:53,160
+anywhere in this application.
+
+54
+00:02:53,160 --> 00:02:56,144
+So in main JS, I'm importing it from components,
+
+55
+00:02:56,144 --> 00:02:58,473
+UI BaseButton.vue.
+
+56
+00:02:59,780 --> 00:03:03,420
+And I will register it with the component method here
+
+57
+00:03:03,420 --> 00:03:06,750
+based dash button points at this imported
+
+58
+00:03:06,750 --> 00:03:08,503
+base-button, like this.
+
+59
+00:03:11,040 --> 00:03:13,170
+And now that we've got this space button set up.
+
+60
+00:03:13,170 --> 00:03:15,450
+We can go back to the learning resource
+
+61
+00:03:15,450 --> 00:03:20,163
+where I'm using a button and replace that default button
+
+62
+00:03:20,163 --> 00:03:22,783
+with the base-button.
+
+63
+00:03:24,160 --> 00:03:28,180
+And if we do have that, we should see our new button here.
+
+64
+00:03:28,180 --> 00:03:29,630
+Now that's the default look.
+
+65
+00:03:29,630 --> 00:03:33,900
+And I liked that look in many places, but not here.
+
+66
+00:03:33,900 --> 00:03:36,170
+Here I wanna use that alternative look
+
+67
+00:03:36,170 --> 00:03:39,090
+and we can achieve this by adding the mode prop
+
+68
+00:03:39,090 --> 00:03:41,110
+and setting it to flat,
+
+69
+00:03:41,110 --> 00:03:44,070
+which in this case is the only supported mode, of course,
+
+70
+00:03:44,070 --> 00:03:46,080
+except for the default look.
+
+71
+00:03:46,080 --> 00:03:48,297
+But with that, we now have this flat look,
+
+72
+00:03:48,297 --> 00:03:50,930
+this hopefully also gives you an idea
+
+73
+00:03:50,930 --> 00:03:53,250
+of what you can do with components.
+
+74
+00:03:53,250 --> 00:03:57,060
+We now are building a button which can easily be configured
+
+75
+00:03:57,060 --> 00:04:00,920
+through some props, through some attributes you could say,
+
+76
+00:04:00,920 --> 00:04:04,040
+and we don't need to write complex styling here.
+
+77
+00:04:04,040 --> 00:04:06,970
+Instead, the styling is all inside of the button
+
+78
+00:04:06,970 --> 00:04:09,860
+and whoever then uses our buttoning code
+
+79
+00:04:09,860 --> 00:04:12,620
+just needs to set these props.
+
+80
+00:04:12,620 --> 00:04:15,860
+If you were working on a bigger project, in a bigger team,
+
+81
+00:04:15,860 --> 00:04:19,630
+writing components like this, of course is super powerful
+
+82
+00:04:19,630 --> 00:04:22,770
+because just one person needs to create the component
+
+83
+00:04:22,770 --> 00:04:26,240
+and the styling, and then the entire team can use it
+
+84
+00:04:26,240 --> 00:04:28,360
+and could figure it through props.
+
+85
+00:04:28,360 --> 00:04:31,520
+So through attributes in the end.
+
+86
+00:04:31,520 --> 00:04:34,190
+That's also why I'm showing you something like this
+
+87
+00:04:34,190 --> 00:04:36,760
+in this course, because you need to be able
+
+88
+00:04:36,760 --> 00:04:39,320
+to do things like that, and you should be aware
+
+89
+00:04:39,320 --> 00:04:41,533
+of patterns and approaches like that.
+
+90
+00:04:42,630 --> 00:04:44,300
+Well, and that's our button.
+
+91
+00:04:44,300 --> 00:04:46,927
+That is the next component added.
+
+92
+00:04:46,927 --> 00:04:50,835
+And with that, we spent enough time on visual components,
+
+93
+00:04:50,835 --> 00:04:53,820
+let's come back to adding some logic.
+
+94
+00:04:53,820 --> 00:04:56,200
+At the moment, we have a list of resources,
+
+95
+00:04:56,200 --> 00:04:58,720
+but we're still working on all the dummy resources
+
+96
+00:04:58,720 --> 00:05:00,010
+we started with.
+
+97
+00:05:00,010 --> 00:05:03,300
+So as a next step, let's make sure we allow the user
+
+98
+00:05:03,300 --> 00:05:08,140
+to go to add resource form where data like this
+
+99
+00:05:08,140 --> 00:05:10,460
+can be entered into form inputs
+
+100
+00:05:10,460 --> 00:05:13,850
+and where then ultimately a new resource can be added
+
+101
+00:05:13,850 --> 00:05:17,133
+by the user of our web application to this array.
+

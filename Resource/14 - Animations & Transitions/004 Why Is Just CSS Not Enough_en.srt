@@ -1,0 +1,328 @@
+1
+00:00:02,590 --> 00:00:05,630
+So what would be a scenario where these
+
+2
+00:00:05,630 --> 00:00:10,130
+basic CSS transitions and animations might not be enough?
+
+3
+00:00:10,130 --> 00:00:12,470
+Well, first of all, and that's really important.
+
+4
+00:00:12,470 --> 00:00:16,360
+CSS animations and transitions will very often be enough,
+
+5
+00:00:16,360 --> 00:00:18,810
+but adding them like we're currently doing it,
+
+6
+00:00:18,810 --> 00:00:22,090
+that might not be enough, and here's an example.
+
+7
+00:00:22,090 --> 00:00:25,660
+In our running application, if I take show dialog,
+
+8
+00:00:25,660 --> 00:00:28,570
+this model dialog pops up immediately,
+
+9
+00:00:28,570 --> 00:00:31,308
+it's just there and it's gone when we close it.
+
+10
+00:00:31,308 --> 00:00:32,980
+This might be fine.
+
+11
+00:00:32,980 --> 00:00:35,909
+This might be absolutely the behavior you want,
+
+12
+00:00:35,909 --> 00:00:39,760
+but sometimes you might wanna animate it in.
+
+13
+00:00:39,760 --> 00:00:41,260
+You want to have a little animation
+
+14
+00:00:41,260 --> 00:00:45,360
+when it appears and the same for removing it.
+
+15
+00:00:45,360 --> 00:00:47,450
+And that is the part that will be tricky
+
+16
+00:00:47,450 --> 00:00:52,200
+with just CSS animations and with just adding CSS classes
+
+17
+00:00:52,200 --> 00:00:54,630
+with Vue as we did before,
+
+18
+00:00:54,630 --> 00:00:58,740
+especially when you also want to animate the disappearance.
+
+19
+00:00:58,740 --> 00:01:01,060
+Let me show you why it's tricky.
+
+20
+00:01:01,060 --> 00:01:03,570
+We can go to the base modal,
+
+21
+00:01:03,570 --> 00:01:05,470
+which holds to code for this dialog
+
+22
+00:01:05,470 --> 00:01:08,860
+and there on the dialog selector here,
+
+23
+00:01:08,860 --> 00:01:11,080
+we can add a little animation.
+
+24
+00:01:11,080 --> 00:01:14,750
+We can for this again, to find some key frames here
+
+25
+00:01:14,750 --> 00:01:18,750
+and give it any name of our choice and I'll name it modal.
+
+26
+00:01:18,750 --> 00:01:22,600
+But again this name is up to you and I'll start at 0%
+
+27
+00:01:22,600 --> 00:01:24,980
+and I wanna go to 100%.
+
+28
+00:01:24,980 --> 00:01:28,570
+And if you just define two styles, two states,
+
+29
+00:01:28,570 --> 00:01:29,740
+as I'm doing it here,
+
+30
+00:01:29,740 --> 00:01:34,740
+you can also use the from and to shorthands basically.
+
+31
+00:01:36,180 --> 00:01:38,390
+And now here we define the starting state
+
+32
+00:01:38,390 --> 00:01:41,870
+and there let's say the modal should initially be invisible
+
+33
+00:01:41,870 --> 00:01:46,830
+by setting the opacity to zero with transform translate Y,
+
+34
+00:01:46,830 --> 00:01:51,543
+I will move it up on the Y axis by 50 pixels.
+
+35
+00:01:52,380 --> 00:01:57,380
+And I will actually also scale it from zero dot nine
+
+36
+00:01:57,530 --> 00:01:59,230
+to its final size.
+
+37
+00:01:59,230 --> 00:02:04,050
+And speaking of final, in to, I now add the final states.
+
+38
+00:02:04,050 --> 00:02:07,200
+Opacity one, translate Y of zero
+
+39
+00:02:07,200 --> 00:02:10,060
+to reach the real position this element should have
+
+40
+00:02:10,060 --> 00:02:12,640
+and scale one to reach the real size
+
+41
+00:02:12,640 --> 00:02:13,890
+this element should have.
+
+42
+00:02:14,880 --> 00:02:17,820
+And now we could this modal animation
+
+43
+00:02:17,820 --> 00:02:21,097
+to our dialog selector to basically make sure
+
+44
+00:02:21,097 --> 00:02:24,410
+that every dialog we're selecting with that.
+
+45
+00:02:24,410 --> 00:02:28,510
+So the only dialog we have here receives that animation.
+
+46
+00:02:28,510 --> 00:02:29,480
+And by default,
+
+47
+00:02:29,480 --> 00:02:31,790
+the animation will be played when the element
+
+48
+00:02:31,790 --> 00:02:34,420
+is then first being part of the page.
+
+49
+00:02:34,420 --> 00:02:36,563
+So the animation starts instantly.
+
+50
+00:02:37,660 --> 00:02:41,582
+We can utilize this here, with animation I can point at my
+
+51
+00:02:41,582 --> 00:02:45,940
+modal animation here, give it a duration, ease out
+
+52
+00:02:46,850 --> 00:02:50,740
+and important, add forwards to tell CSS
+
+53
+00:02:50,740 --> 00:02:52,993
+that the final state should be kept.
+
+54
+00:02:54,270 --> 00:02:57,890
+And if we now save everything, when I click show dialog,
+
+55
+00:02:57,890 --> 00:03:01,150
+we have this little animation here, as you can tell,
+
+56
+00:03:01,150 --> 00:03:04,760
+and we have this animation because the animation is part
+
+57
+00:03:04,760 --> 00:03:06,570
+of the dialog selector.
+
+58
+00:03:06,570 --> 00:03:10,370
+So whenever this selector finds something on the page
+
+59
+00:03:10,370 --> 00:03:13,580
+and it will find something when the dialogue is added
+
+60
+00:03:13,580 --> 00:03:16,929
+to the page, which I do in app Vue in the end
+
+61
+00:03:16,929 --> 00:03:20,920
+with v-if on my custom component, the whole component
+
+62
+00:03:20,920 --> 00:03:23,880
+is only added if dialog is visible as true
+
+63
+00:03:23,880 --> 00:03:26,590
+and therefore the dialogue element in the component
+
+64
+00:03:26,590 --> 00:03:29,120
+is only added under that circumstances.
+
+65
+00:03:29,120 --> 00:03:31,343
+And therefore whenever that is the case.
+
+66
+00:03:32,470 --> 00:03:36,523
+This here, this animation will be played thanks to that key,
+
+67
+00:03:37,830 --> 00:03:41,560
+but the problems start if we all do want to animate
+
+68
+00:03:41,560 --> 00:03:43,800
+the removal of the element,
+
+69
+00:03:43,800 --> 00:03:47,100
+if I wanna do that, currently it disappears instantly.
+
+70
+00:03:47,100 --> 00:03:49,560
+The problem we'll have is that the element
+
+71
+00:03:49,560 --> 00:03:51,493
+is detached from the DOM.
+
+72
+00:03:52,380 --> 00:03:56,460
+And that means there is no way to animate it with CSS.
+
+73
+00:03:56,460 --> 00:03:57,670
+It's removed instantly.
+
+74
+00:03:57,670 --> 00:04:01,620
+You can't play an animation and then tell the browser
+
+75
+00:04:01,620 --> 00:04:04,525
+to only remove it once that animation is finished,
+
+76
+00:04:04,525 --> 00:04:07,480
+but that is what you would need to do
+
+77
+00:04:07,480 --> 00:04:10,430
+in order to animate the disappearance.
+
+78
+00:04:10,430 --> 00:04:14,030
+And that's exactly what Vue is able to help us with.
+
+79
+00:04:14,030 --> 00:04:17,045
+Vue can help us with animating the appearance
+
+80
+00:04:17,045 --> 00:04:21,360
+and also the disappearance of elements by for example,
+
+81
+00:04:21,360 --> 00:04:23,390
+delaying the disappearance
+
+82
+00:04:23,390 --> 00:04:25,803
+until a certain animation has finished.
+

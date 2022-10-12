@@ -1,0 +1,376 @@
+1
+00:00:02,220 --> 00:00:05,090
+Now in order to use that enter data,
+
+2
+00:00:05,090 --> 00:00:07,310
+and create a user on Firebase,
+
+3
+00:00:07,310 --> 00:00:09,470
+or get such a token.
+
+4
+00:00:09,470 --> 00:00:11,350
+We need to go to the Firebase console
+
+5
+00:00:11,350 --> 00:00:13,223
+and there to authentication.
+
+6
+00:00:14,440 --> 00:00:17,010
+And here you need to set up a sign in method.
+
+7
+00:00:17,010 --> 00:00:20,620
+You can also do this here under the sign and methods tap.
+
+8
+00:00:20,620 --> 00:00:23,320
+And here we want to go with email password
+
+9
+00:00:23,320 --> 00:00:27,430
+and enable this only this first one click save
+
+10
+00:00:27,430 --> 00:00:30,260
+And now Firebase supports creating users
+
+11
+00:00:30,260 --> 00:00:31,580
+with email password.
+
+12
+00:00:31,580 --> 00:00:33,980
+And of course it also supports logging those in.
+
+13
+00:00:35,370 --> 00:00:38,770
+Now, if you Google for Firebase off arrest API,
+
+14
+00:00:38,770 --> 00:00:40,560
+you also find the Firebase docs
+
+15
+00:00:40,560 --> 00:00:43,450
+for the rest API day offer
+
+16
+00:00:43,450 --> 00:00:46,620
+for creating users and signing users in
+
+17
+00:00:46,620 --> 00:00:48,930
+the two end points here are interesting
+
+18
+00:00:48,930 --> 00:00:50,640
+sign up with email password
+
+19
+00:00:50,640 --> 00:00:52,840
+sign in with email password.
+
+20
+00:00:52,840 --> 00:00:54,730
+This only works once you enabled
+
+21
+00:00:54,730 --> 00:00:56,753
+authentication in your project though.
+
+22
+00:00:57,720 --> 00:00:59,360
+So these are the end points
+
+23
+00:00:59,360 --> 00:01:02,020
+to which we now want to send requests
+
+24
+00:01:02,020 --> 00:01:04,970
+from inside our view app to create a user
+
+25
+00:01:04,970 --> 00:01:08,000
+and get a token or log a user in.
+
+26
+00:01:08,000 --> 00:01:09,880
+Before we sent that, though
+
+27
+00:01:09,880 --> 00:01:11,280
+we can write some code here
+
+28
+00:01:11,280 --> 00:01:13,230
+because I don't want to send the request
+
+29
+00:01:13,230 --> 00:01:14,910
+from inside this component.
+
+30
+00:01:14,910 --> 00:01:17,170
+But again, i want to use view UX,
+
+31
+00:01:17,170 --> 00:01:19,480
+because it will also be UX
+
+32
+00:01:19,480 --> 00:01:22,090
+in which we later need to store that token
+
+33
+00:01:22,090 --> 00:01:24,150
+and stored the information
+
+34
+00:01:24,150 --> 00:01:26,420
+wherever the user is logged in or not,
+
+35
+00:01:26,420 --> 00:01:29,670
+because Dad log in mode in which we are,
+
+36
+00:01:29,670 --> 00:01:32,740
+will affect what we want to display on the page here,
+
+37
+00:01:32,740 --> 00:01:34,560
+for example, in the navigation.
+
+38
+00:01:34,560 --> 00:01:37,363
+So we need that as app white state.
+
+39
+00:01:39,270 --> 00:01:42,160
+Now for this, we can create a new module,
+
+40
+00:01:42,160 --> 00:01:43,910
+the off module,
+
+41
+00:01:43,910 --> 00:01:46,640
+or we managed as, as a root state
+
+42
+00:01:46,640 --> 00:01:49,150
+in our main store object.
+
+43
+00:01:49,150 --> 00:01:50,450
+So to say,
+
+44
+00:01:50,450 --> 00:01:52,760
+Now I will go for a separate module.
+
+45
+00:01:52,760 --> 00:01:54,430
+The Auth module
+
+46
+00:01:54,430 --> 00:01:58,430
+and in their Eta index.jS fall mutations.js
+
+47
+00:01:58,430 --> 00:02:01,970
+actions.JS and getters.js
+
+48
+00:02:01,970 --> 00:02:04,110
+So what we did before as well,
+
+49
+00:02:04,110 --> 00:02:08,419
+and in our main store module here,
+
+50
+00:02:08,419 --> 00:02:11,910
+I will then import the auth module
+
+51
+00:02:11,910 --> 00:02:16,490
+from thought slash modules off in index.js
+
+52
+00:02:17,790 --> 00:02:21,463
+and add it here under auth key.
+
+53
+00:02:22,950 --> 00:02:25,180
+Now here's one thing which i won't do.
+
+54
+00:02:25,180 --> 00:02:28,490
+I will not namespace the auth module
+
+55
+00:02:28,490 --> 00:02:29,850
+for one simple reason
+
+56
+00:02:29,850 --> 00:02:32,490
+because in the past i managed my user ID here
+
+57
+00:02:32,490 --> 00:02:33,980
+as a global state.
+
+58
+00:02:33,980 --> 00:02:35,830
+And I don't want to change all the code
+
+59
+00:02:35,830 --> 00:02:37,440
+all over the application
+
+60
+00:02:37,440 --> 00:02:41,060
+where I use this user ID getter, for example.
+
+61
+00:02:41,060 --> 00:02:43,200
+So I will now take that getter
+
+62
+00:02:43,200 --> 00:02:44,700
+and remove it from here,
+
+63
+00:02:44,700 --> 00:02:47,460
+but by not name spacing this module,
+
+64
+00:02:47,460 --> 00:02:50,400
+when that module is added to our roots store,
+
+65
+00:02:50,400 --> 00:02:54,360
+all the gatherers and so on are still accessible as before,
+
+66
+00:02:54,360 --> 00:02:57,513
+and therefore we don't need to change any ABRA code.
+
+67
+00:02:58,710 --> 00:02:59,770
+So with the however,
+
+68
+00:02:59,770 --> 00:03:02,290
+I will grab this getter object here,
+
+69
+00:03:02,290 --> 00:03:04,930
+remove it and remove togethers key here
+
+70
+00:03:04,930 --> 00:03:08,100
+and go to my gatters.js file in your folder
+
+71
+00:03:08,100 --> 00:03:09,880
+and export that object
+
+72
+00:03:11,900 --> 00:03:14,050
+and grab the state here,
+
+73
+00:03:14,050 --> 00:03:17,610
+this state, this entire state actually.
+
+74
+00:03:17,610 --> 00:03:18,750
+Cut it as well.
+
+75
+00:03:18,750 --> 00:03:21,010
+And add this to index.js
+
+76
+00:03:21,010 --> 00:03:23,680
+here i export a default object
+
+77
+00:03:24,530 --> 00:03:26,363
+and here I'll bring in that state.
+
+78
+00:03:27,800 --> 00:03:30,220
+And here we then also import mutations
+
+79
+00:03:30,220 --> 00:03:33,070
+from mutations.js
+
+80
+00:03:34,200 --> 00:03:38,910
+import actions from actions.js
+
+81
+00:03:38,910 --> 00:03:43,310
+And of course all the import getters from getters.js
+
+82
+00:03:45,700 --> 00:03:49,560
+and add all those things to this off module object.
+
+83
+00:03:49,560 --> 00:03:51,410
+So add mutations
+
+84
+00:03:51,410 --> 00:03:52,340
+actions,
+
+85
+00:03:52,340 --> 00:03:53,180
+and getters.
+
+86
+00:03:53,180 --> 00:03:55,150
+Using these JavaScript shorten's
+
+87
+00:03:57,380 --> 00:04:01,500
+and now we just need to export empty objects
+
+88
+00:04:01,500 --> 00:04:05,330
+in actions and mutations.
+
+89
+00:04:05,330 --> 00:04:07,260
+We got our getter and getters.
+
+90
+00:04:07,260 --> 00:04:11,130
+And with that, we now are using that off module.
+
+91
+00:04:11,130 --> 00:04:13,720
+Here i now want to define actions
+
+92
+00:04:13,720 --> 00:04:15,910
+for logging in and signing up.
+
+93
+00:04:15,910 --> 00:04:17,610
+And of course, all the mutations
+
+94
+00:04:17,610 --> 00:04:20,023
+that will be committed once that succeeded.
+

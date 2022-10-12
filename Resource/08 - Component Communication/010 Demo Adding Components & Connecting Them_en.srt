@@ -1,0 +1,924 @@
+1
+00:00:02,170 --> 00:00:05,130
+I'm fully aware that this was a lot
+
+2
+00:00:05,130 --> 00:00:08,930
+of new information about components, props and events.
+
+3
+00:00:08,930 --> 00:00:11,420
+The key takeaway of course is that props are there
+
+4
+00:00:11,420 --> 00:00:14,930
+to send data into a component and events are there
+
+5
+00:00:14,930 --> 00:00:17,683
+to send data out of a component, you could say.
+
+6
+00:00:18,830 --> 00:00:22,350
+Now let's practice this together, you will later also have
+
+7
+00:00:22,350 --> 00:00:24,140
+an assignment which you do on your own.
+
+8
+00:00:24,140 --> 00:00:26,450
+But let's start together and let's add
+
+9
+00:00:26,450 --> 00:00:28,340
+a brand new component to this app.
+
+10
+00:00:28,340 --> 00:00:30,993
+And a brand new functionality as well.
+
+11
+00:00:32,240 --> 00:00:36,590
+Because at the moment, our friends here are fairly static.
+
+12
+00:00:36,590 --> 00:00:40,810
+We got an array with two friends and yes isFavorite
+
+13
+00:00:40,810 --> 00:00:43,780
+is able to change, but we got no way of adding
+
+14
+00:00:43,780 --> 00:00:45,570
+or deleting friends here.
+
+15
+00:00:45,570 --> 00:00:47,610
+And that is a feature I'd like to add to
+
+16
+00:00:47,610 --> 00:00:49,053
+this demo application.
+
+17
+00:00:49,950 --> 00:00:53,300
+So therefore, we'll add a new component that allows us
+
+18
+00:00:53,300 --> 00:00:56,390
+to enter the data for a new friend.
+
+19
+00:00:56,390 --> 00:00:59,690
+So the name, the phone and the email address let's say.
+
+20
+00:00:59,690 --> 00:01:02,930
+And then I want to be able to confirm that data
+
+21
+00:01:02,930 --> 00:01:05,272
+and that data should be added here.
+
+22
+00:01:06,730 --> 00:01:10,190
+Now we could absolutely add this form here.
+
+23
+00:01:10,190 --> 00:01:13,573
+Let's say below the header, we could add a form.
+
+24
+00:01:14,860 --> 00:01:19,860
+And in here we could then add our inputs, like this.
+
+25
+00:01:21,100 --> 00:01:24,870
+And we could then also add proper styling and make sure
+
+26
+00:01:24,870 --> 00:01:28,020
+that we got all the input elements we need and whenever data
+
+27
+00:01:28,020 --> 00:01:31,533
+is entered and confirmed we add it to this array of friends.
+
+28
+00:01:32,870 --> 00:01:36,283
+This would work but it is exactly not what you should do.
+
+29
+00:01:37,620 --> 00:01:41,030
+Instead of having large view files with a lot of logic
+
+30
+00:01:41,030 --> 00:01:42,380
+in there, you should
+
+31
+00:01:42,380 --> 00:01:46,690
+have multiple smaller specialized components instead.
+
+32
+00:01:46,690 --> 00:01:51,110
+And then build your UI by combining these components.
+
+33
+00:01:51,110 --> 00:01:55,200
+So in reality, we would not add the form here
+
+34
+00:01:55,200 --> 00:01:57,910
+but instead in the components folder, we would add
+
+35
+00:01:57,910 --> 00:01:58,993
+a new component.
+
+36
+00:02:00,374 --> 00:02:05,113
+NewFriend could be the component name.
+
+37
+00:02:06,070 --> 00:02:09,023
+So I'll name the file NewFriend.vue.
+
+38
+00:02:10,400 --> 00:02:13,290
+And in there we will add our template again
+
+39
+00:02:14,580 --> 00:02:16,653
+and our script section.
+
+40
+00:02:19,530 --> 00:02:23,400
+And we would create that form and handle the user input
+
+41
+00:02:23,400 --> 00:02:26,400
+in this component, and then just emit
+
+42
+00:02:26,400 --> 00:02:29,860
+a custom event once everything is confirmed
+
+43
+00:02:29,860 --> 00:02:30,864
+to the App.vue file
+
+44
+00:02:30,864 --> 00:02:35,023
+and pass all the entered data onto App.vue.
+
+45
+00:02:36,550 --> 00:02:39,193
+Now, definitely feel free to try this on your own.
+
+46
+00:02:40,360 --> 00:02:42,920
+Here's your chance to pause the video and implement
+
+47
+00:02:42,920 --> 00:02:45,830
+this on your own, but thereafter we'll do this step
+
+48
+00:02:45,830 --> 00:02:47,000
+by step together.
+
+49
+00:02:47,000 --> 00:02:50,820
+To practice this component concept and also the props
+
+50
+00:02:50,820 --> 00:02:53,040
+and the custom events concept.
+
+51
+00:02:53,040 --> 00:02:54,460
+Nonetheless, if you wanna try it
+
+52
+00:02:54,460 --> 00:02:57,163
+on your own, here's your chance to pause the video.
+
+53
+00:03:01,160 --> 00:03:03,570
+So, were are you successful?
+
+54
+00:03:03,570 --> 00:03:05,610
+Let's now try together.
+
+55
+00:03:05,610 --> 00:03:09,453
+In NewFriends.vue, I'll add a form.
+
+56
+00:03:11,470 --> 00:03:14,300
+A default HTML element therefore.
+
+57
+00:03:14,300 --> 00:03:17,780
+And in here I now wanna have various inputs.
+
+58
+00:03:17,780 --> 00:03:22,780
+So I'll add an input of type text for the name
+
+59
+00:03:23,200 --> 00:03:27,013
+and maybe also add a label where we say name.
+
+60
+00:03:29,080 --> 00:03:32,280
+And then I will repeat that a couple of times here.
+
+61
+00:03:32,280 --> 00:03:36,430
+I'll actually also put each label input set into
+
+62
+00:03:36,430 --> 00:03:39,980
+a separate div to make it easier to tell them apart.
+
+63
+00:03:39,980 --> 00:03:44,980
+So here, we also have an input for the phone number then.
+
+64
+00:03:45,550 --> 00:03:47,870
+And here we can set the type to tell because we want
+
+65
+00:03:47,870 --> 00:03:49,890
+to get a telephone number here.
+
+66
+00:03:49,890 --> 00:03:52,900
+And here we got the email address and we can set the type
+
+67
+00:03:52,900 --> 00:03:55,730
+to email to get an email address.
+
+68
+00:03:55,730 --> 00:03:58,690
+And that's all regular HTML.
+
+69
+00:03:58,690 --> 00:04:01,380
+Below that let's say we have another div, in
+
+70
+00:04:01,380 --> 00:04:05,720
+there we have our button, where we say Add Contact.
+
+71
+00:04:06,970 --> 00:04:09,740
+And since this button is inside of a form
+
+72
+00:04:09,740 --> 00:04:12,363
+when it's clicked, that form will be submitted.
+
+73
+00:04:15,380 --> 00:04:19,700
+Now here in the script text, I'll export
+
+74
+00:04:19,700 --> 00:04:22,160
+a default JavaScript object
+
+75
+00:04:22,160 --> 00:04:26,300
+which will hold the configuration for this component.
+
+76
+00:04:26,300 --> 00:04:28,963
+But for the moment it's empty, we'll add more later.
+
+77
+00:04:30,370 --> 00:04:35,370
+And in main.js, we can now import this component.
+
+78
+00:04:35,410 --> 00:04:38,830
+We can import the new friend component
+
+79
+00:04:38,830 --> 00:04:43,750
+from ./components NewFriend.vue.
+
+80
+00:04:43,750 --> 00:04:48,623
+And register this as a component with app component.
+
+81
+00:04:50,350 --> 00:04:54,200
+New-friend could be our custom HTML tag.
+
+82
+00:04:54,200 --> 00:04:57,350
+Keep in mind that it should be a two word tag with
+
+83
+00:04:57,350 --> 00:04:59,410
+a dash between new words.
+
+84
+00:04:59,410 --> 00:05:03,170
+And new friend is our component configuration, even
+
+85
+00:05:03,170 --> 00:05:05,223
+though it currently is an empty object.
+
+86
+00:05:06,270 --> 00:05:08,763
+But the template will already be picked up.
+
+87
+00:05:10,320 --> 00:05:13,440
+And therefore in App.vue, here between header
+
+88
+00:05:13,440 --> 00:05:14,700
+and unordered list.
+
+89
+00:05:14,700 --> 00:05:18,860
+We can add our new-friend component.
+
+90
+00:05:18,860 --> 00:05:20,333
+Opening and closing.
+
+91
+00:05:22,370 --> 00:05:25,530
+And if we do that, we see our form here.
+
+92
+00:05:25,530 --> 00:05:28,560
+Now the styling is not super beautiful.
+
+93
+00:05:28,560 --> 00:05:32,010
+So I will tweak that a bit in the style tags
+
+94
+00:05:32,010 --> 00:05:33,563
+in the App.vue file.
+
+95
+00:05:35,410 --> 00:05:38,920
+And in the end I will just reuse the styling I used
+
+96
+00:05:38,920 --> 00:05:40,890
+for a list items.
+
+97
+00:05:40,890 --> 00:05:45,080
+So here, I will target the form element with that as well.
+
+98
+00:05:45,080 --> 00:05:46,790
+And now we have this form.
+
+99
+00:05:46,790 --> 00:05:49,370
+Now it's still not super pretty when it comes to
+
+100
+00:05:49,370 --> 00:05:51,210
+the labels and inputs.
+
+101
+00:05:51,210 --> 00:05:54,230
+So for that I'll quickly add some new styling,
+
+102
+00:05:54,230 --> 00:05:56,330
+but I don't want to bore you with that.
+
+103
+00:05:56,330 --> 00:05:59,230
+So attach to find a form dot CSS file
+
+104
+00:05:59,230 --> 00:06:01,913
+which contains these styles, which I'll add here.
+
+105
+00:06:05,170 --> 00:06:08,840
+And now with these three styles added to the style text,
+
+106
+00:06:08,840 --> 00:06:11,050
+this is what you should see on the screen.
+
+107
+00:06:11,050 --> 00:06:12,830
+So now this is our own component,
+
+108
+00:06:12,830 --> 00:06:16,670
+a brand new form component which allows us to enter data
+
+109
+00:06:16,670 --> 00:06:19,600
+for the name, the phone number and the email address
+
+110
+00:06:19,600 --> 00:06:21,423
+and then click Add Contact.
+
+111
+00:06:22,500 --> 00:06:27,290
+So now for the logic, which props do we need here?
+
+112
+00:06:27,290 --> 00:06:30,040
+Well, I would say we need no props.
+
+113
+00:06:30,040 --> 00:06:33,410
+Because this component will gather some user data
+
+114
+00:06:33,410 --> 00:06:36,830
+and eventually it should provide that to App.ue,
+
+115
+00:06:36,830 --> 00:06:40,070
+but it doesn't really need any external data.
+
+116
+00:06:40,070 --> 00:06:42,490
+So I don't see any props which we would need here
+
+117
+00:06:42,490 --> 00:06:43,323
+at the moment.
+
+118
+00:06:44,660 --> 00:06:48,250
+But as I just said we'll definitely need to emit an event.
+
+119
+00:06:48,250 --> 00:06:52,280
+And therefore I'll already at the emits property
+
+120
+00:06:52,280 --> 00:06:56,920
+and add an event name of my choice here or of your choice
+
+121
+00:06:56,920 --> 00:06:58,140
+of course in your case.
+
+122
+00:06:58,140 --> 00:07:02,310
+And I'll name it, add-contact because that's the kind
+
+123
+00:07:02,310 --> 00:07:04,000
+of event we'll emit here.
+
+124
+00:07:04,000 --> 00:07:07,110
+But you can also pick a different name, any name
+
+125
+00:07:07,110 --> 00:07:08,333
+that makes sense to you.
+
+126
+00:07:09,650 --> 00:07:12,260
+I will also add my data property here
+
+127
+00:07:12,260 --> 00:07:15,770
+and manage some components specific data.
+
+128
+00:07:15,770 --> 00:07:19,360
+So data that is required by this component.
+
+129
+00:07:19,360 --> 00:07:23,300
+And here essentially I want to store what the user enters
+
+130
+00:07:23,300 --> 00:07:27,540
+as a name, as a phone number and as an email address.
+
+131
+00:07:27,540 --> 00:07:30,800
+And therefore I'll just add three data properties here.
+
+132
+00:07:30,800 --> 00:07:33,950
+Entered name, which initially is an empty string.
+
+133
+00:07:33,950 --> 00:07:36,990
+Entered phone, which initially is an empty string
+
+134
+00:07:36,990 --> 00:07:39,893
+and you guessed it, entered email.
+
+135
+00:07:41,740 --> 00:07:45,970
+And I will bind these data properties with v-model.
+
+136
+00:07:45,970 --> 00:07:50,090
+So here v-model is bound to entered name.
+
+137
+00:07:50,090 --> 00:07:54,510
+Here, I'll bind the phone number input
+
+138
+00:07:54,510 --> 00:07:58,200
+with v-model to entered phone and the email
+
+139
+00:07:58,200 --> 00:08:03,200
+with v-model, to entered email.
+
+140
+00:08:03,370 --> 00:08:06,583
+So that with every keystroke we store what the user enters.
+
+141
+00:08:08,270 --> 00:08:10,680
+I'll also listen to the submit event
+
+142
+00:08:10,680 --> 00:08:13,160
+on the form with @submit.
+
+143
+00:08:13,160 --> 00:08:17,010
+And I will use the prevent modifier to ensure that
+
+144
+00:08:17,010 --> 00:08:20,750
+when this is submitted, we prevent the browser default.
+
+145
+00:08:20,750 --> 00:08:23,510
+Which would lead to the page being reloaded, which
+
+146
+00:08:23,510 --> 00:08:24,810
+is not what I want.
+
+147
+00:08:24,810 --> 00:08:27,080
+I want to handle this fully inside
+
+148
+00:08:27,080 --> 00:08:28,713
+the running view application.
+
+149
+00:08:30,930 --> 00:08:34,049
+Here we can point at a method of our choice
+
+150
+00:08:34,049 --> 00:08:37,110
+and I'll name the method submit data.
+
+151
+00:08:37,110 --> 00:08:39,860
+But again it's your code, your method you can name
+
+152
+00:08:39,860 --> 00:08:41,059
+it whatever you want.
+
+153
+00:08:41,059 --> 00:08:43,620
+But we do have to add that method of course.
+
+154
+00:08:43,620 --> 00:08:46,780
+So here after data, we add methods to
+
+155
+00:08:46,780 --> 00:08:50,040
+this NewFriend component config object.
+
+156
+00:08:50,040 --> 00:08:53,520
+And there I'll add to submit data method, which now
+
+157
+00:08:53,520 --> 00:08:56,390
+will be triggered when the form is submitted.
+
+158
+00:08:56,390 --> 00:08:59,610
+And here I have one simple thing which I wanna do.
+
+159
+00:08:59,610 --> 00:09:03,750
+I want to emit my custom add contact event,
+
+160
+00:09:03,750 --> 00:09:07,460
+so that I can forward that data to whoever
+
+161
+00:09:07,460 --> 00:09:09,750
+is listening to that custom event.
+
+162
+00:09:09,750 --> 00:09:12,583
+Which later will be the App.vue file.
+
+163
+00:09:13,630 --> 00:09:16,540
+So here we use this dollar sign emit.
+
+164
+00:09:16,540 --> 00:09:20,190
+And then emit, add-contact.
+
+165
+00:09:20,190 --> 00:09:24,693
+So the Custom Event I'm announcing here, basically.
+
+166
+00:09:25,910 --> 00:09:30,910
+And we forward this entered name, this entered phone
+
+167
+00:09:31,020 --> 00:09:33,380
+and this entered email.
+
+168
+00:09:33,380 --> 00:09:36,130
+You could also group this together into an object
+
+169
+00:09:36,130 --> 00:09:39,680
+and just emit one argument they have for or, like I'm doing
+
+170
+00:09:39,680 --> 00:09:42,003
+it here emit three arguments.
+
+171
+00:09:43,570 --> 00:09:47,200
+And now we can go to App.vue and listen
+
+172
+00:09:47,200 --> 00:09:50,630
+to this custom event on the NewFriend component.
+
+173
+00:09:50,630 --> 00:09:54,543
+With @add-contact.
+
+174
+00:09:56,940 --> 00:10:00,630
+And then point at a method which we need to define here.
+
+175
+00:10:00,630 --> 00:10:03,840
+And I'll named add method add contact as well.
+
+176
+00:10:03,840 --> 00:10:06,700
+But again this name is up to you, it doesn't have to be
+
+177
+00:10:06,700 --> 00:10:09,530
+the same one as we used for the event.
+
+178
+00:10:09,530 --> 00:10:11,703
+These two don't have to be the same.
+
+179
+00:10:12,980 --> 00:10:17,310
+So now down in methods, I'll add addContact
+
+180
+00:10:17,310 --> 00:10:20,400
+and we expect three parameters here.
+
+181
+00:10:20,400 --> 00:10:24,460
+Because we're emitting three pieces of data the name,
+
+182
+00:10:24,460 --> 00:10:25,923
+the phone number, the email.
+
+183
+00:10:26,830 --> 00:10:30,610
+So here I expect to get name, phone and email.
+
+184
+00:10:30,610 --> 00:10:33,550
+These parameter names are up to you, but the order
+
+185
+00:10:33,550 --> 00:10:35,260
+of course matters.
+
+186
+00:10:35,260 --> 00:10:38,270
+Because it's the same order as specified here
+
+187
+00:10:38,270 --> 00:10:40,780
+when we emit the event.
+
+188
+00:10:40,780 --> 00:10:45,780
+And then here, we can create a newFriend contact
+
+189
+00:10:47,750 --> 00:10:50,283
+which should be a new JavaScript object.
+
+190
+00:10:51,160 --> 00:10:53,140
+Which now has the same structure
+
+191
+00:10:53,140 --> 00:10:55,960
+as our dummy starting objects.
+
+192
+00:10:55,960 --> 00:10:59,620
+So name, phone and email but also in id
+
+193
+00:10:59,620 --> 00:11:02,083
+and also isFavorite property.
+
+194
+00:11:02,920 --> 00:11:07,550
+Now we can generate a pseudo unique id, by
+
+195
+00:11:07,550 --> 00:11:11,100
+for example using the current date, which we can get like
+
+196
+00:11:11,100 --> 00:11:13,070
+this in JavaScript.
+
+197
+00:11:13,070 --> 00:11:16,360
+And converting that to an ISO string
+
+198
+00:11:16,360 --> 00:11:18,930
+so that we basically have a string that reflects
+
+199
+00:11:18,930 --> 00:11:21,810
+the current timestamp, which is not perfectly unique
+
+200
+00:11:21,810 --> 00:11:23,593
+but unique enough for now.
+
+201
+00:11:25,390 --> 00:11:28,130
+And then we can set our other data properties.
+
+202
+00:11:28,130 --> 00:11:30,390
+Like the name, which we set equal to
+
+203
+00:11:30,390 --> 00:11:31,730
+the name we're getting here.
+
+204
+00:11:31,730 --> 00:11:34,760
+So that's the property name in this object.
+
+205
+00:11:34,760 --> 00:11:37,180
+This here on the right side of the colon,
+
+206
+00:11:37,180 --> 00:11:40,240
+is referring to the name argument we're getting.
+
+207
+00:11:40,240 --> 00:11:44,550
+And I'm going to do the same here for phone and email.
+
+208
+00:11:44,550 --> 00:11:47,980
+And that I picked the same names for the arguments
+
+209
+00:11:47,980 --> 00:11:51,320
+as I did for the properties is a pure coincidence.
+
+210
+00:11:51,320 --> 00:11:53,430
+You don't have to do that of course.
+
+211
+00:11:53,430 --> 00:11:56,240
+But the property names should be the same ones
+
+212
+00:11:56,240 --> 00:11:59,730
+as in your dummy objects, because you're referring
+
+213
+00:11:59,730 --> 00:12:03,040
+to those properties here when you're setting values
+
+214
+00:12:03,040 --> 00:12:06,073
+for the props of the friend contact component.
+
+215
+00:12:10,660 --> 00:12:13,330
+Now we also need the isFavorite property here
+
+216
+00:12:13,330 --> 00:12:16,033
+and let's say that's false as a default.
+
+217
+00:12:17,210 --> 00:12:19,580
+Now we got the newFriendContact
+
+218
+00:12:19,580 --> 00:12:22,920
+and now we can reach out to this friends.
+
+219
+00:12:22,920 --> 00:12:26,620
+So to our friends data property, which we have
+
+220
+00:12:26,620 --> 00:12:29,023
+in our app config object here.
+
+221
+00:12:30,360 --> 00:12:33,560
+So reach out to this friends and push
+
+222
+00:12:34,660 --> 00:12:39,403
+the new friend contact here, this newly created object.
+
+223
+00:12:40,890 --> 00:12:45,890
+And with all of that in place if we save that, I should
+
+224
+00:12:46,020 --> 00:12:50,780
+be able to enter a new contact here.
+
+225
+00:12:50,780 --> 00:12:53,560
+Click Add contact and here he is.
+
+226
+00:12:53,560 --> 00:12:57,380
+Here's Max with the data I just entered, working like
+
+227
+00:12:57,380 --> 00:12:58,603
+the other components.
+
+228
+00:13:00,570 --> 00:13:04,630
+So that's now working, we're able to add our own contact
+
+229
+00:13:04,630 --> 00:13:08,010
+and we're doing that with help of a new component,
+
+230
+00:13:08,010 --> 00:13:09,400
+the NewFriend component.
+
+231
+00:13:09,400 --> 00:13:12,883
+Which also is using custom events.
+

@@ -1,0 +1,824 @@
+1
+00:00:02,120 --> 00:00:05,430
+So let's move on to the Requests Received page.
+
+2
+00:00:05,430 --> 00:00:09,460
+Here, I wanna show all the requests for the active coach.
+
+3
+00:00:09,460 --> 00:00:12,340
+And for the moment, I'll simply show all requests here
+
+4
+00:00:12,340 --> 00:00:15,360
+since we don't really have an active coach yet.
+
+5
+00:00:15,360 --> 00:00:17,870
+That's something which will follow soon though.
+
+6
+00:00:17,870 --> 00:00:22,033
+So here I'll simply add a new section let's say,
+
+7
+00:00:23,000 --> 00:00:25,790
+in which I wanna use my base-cart
+
+8
+00:00:25,790 --> 00:00:27,910
+to have that general container style
+
+9
+00:00:27,910 --> 00:00:29,460
+we're using throughout the app.
+
+10
+00:00:29,460 --> 00:00:31,610
+And in there, we can add a header
+
+11
+00:00:32,479 --> 00:00:34,840
+with a HQ tag inside,
+
+12
+00:00:34,840 --> 00:00:37,230
+where we say requests received,
+
+13
+00:00:37,230 --> 00:00:39,453
+because that's what this page is there for.
+
+14
+00:00:41,150 --> 00:00:42,680
+And now below that,
+
+15
+00:00:42,680 --> 00:00:45,520
+I want to render an unordered list
+
+16
+00:00:45,520 --> 00:00:48,150
+with all the requests we received,
+
+17
+00:00:48,150 --> 00:00:52,040
+or at the moment, with all the requests in general.
+
+18
+00:00:52,040 --> 00:00:56,300
+And below that I actually wanna have an H three tag,
+
+19
+00:00:56,300 --> 00:01:01,300
+where I say "You haven't received any requests yet",
+
+20
+00:01:02,100 --> 00:01:03,300
+which should show up
+
+21
+00:01:03,300 --> 00:01:06,563
+if no requests have been created and stored yet.
+
+22
+00:01:08,660 --> 00:01:11,680
+So we'll come back to the list items later.
+
+23
+00:01:11,680 --> 00:01:12,600
+For the moment,
+
+24
+00:01:12,600 --> 00:01:16,320
+let's add styling and a script section.
+
+25
+00:01:16,320 --> 00:01:17,270
+So first of all,
+
+26
+00:01:17,270 --> 00:01:19,330
+I'll add scoped styling.
+
+27
+00:01:19,330 --> 00:01:20,500
+And as always,
+
+28
+00:01:20,500 --> 00:01:24,430
+attached you'll find the Requests Received CSS file,
+
+29
+00:01:24,430 --> 00:01:26,840
+which contains the CSS styles,
+
+30
+00:01:26,840 --> 00:01:30,813
+you can copy and paste between your scoped style tags here.
+
+31
+00:01:33,170 --> 00:01:34,590
+And with that done,
+
+32
+00:01:34,590 --> 00:01:38,920
+now we can work on the script part of this component.
+
+33
+00:01:38,920 --> 00:01:41,480
+And here, the goal is in the end simple.
+
+34
+00:01:41,480 --> 00:01:43,380
+We wanna get access to the requests
+
+35
+00:01:43,380 --> 00:01:45,790
+we're managing in Vue X.
+
+36
+00:01:45,790 --> 00:01:46,930
+And therefore,
+
+37
+00:01:46,930 --> 00:01:48,440
+as we did always before,
+
+38
+00:01:48,440 --> 00:01:51,330
+when we wanted to get access to Vue X data,
+
+39
+00:01:51,330 --> 00:01:53,960
+we will use a computed property.
+
+40
+00:01:53,960 --> 00:01:56,470
+So we can add our computed key here,
+
+41
+00:01:56,470 --> 00:01:58,410
+and then in here,
+
+42
+00:01:58,410 --> 00:02:03,410
+I will add a computed property named Received Requests,
+
+43
+00:02:03,590 --> 00:02:06,790
+where I now wanna reach out to the store,
+
+44
+00:02:06,790 --> 00:02:11,160
+and for the moment, get all the requests we find in there.
+
+45
+00:02:11,160 --> 00:02:13,833
+So in getters, in the requests folder,
+
+46
+00:02:15,340 --> 00:02:18,163
+I'll export an object,
+
+47
+00:02:19,670 --> 00:02:22,460
+and add a requests field here
+
+48
+00:02:22,460 --> 00:02:25,960
+where I get the state automatically as argument
+
+49
+00:02:25,960 --> 00:02:27,110
+as you learned,
+
+50
+00:02:27,110 --> 00:02:30,420
+and where we can then return state.requests
+
+51
+00:02:30,420 --> 00:02:32,713
+to return this list of requests.
+
+52
+00:02:33,930 --> 00:02:35,820
+And in Requests Received,
+
+53
+00:02:35,820 --> 00:02:37,620
+we can now reach out to this getter
+
+54
+00:02:37,620 --> 00:02:40,000
+here in this computed property.
+
+55
+00:02:40,000 --> 00:02:44,060
+We can reach out to this store.getters.
+
+56
+00:02:44,060 --> 00:02:45,830
+And now since it's named spaced,
+
+57
+00:02:45,830 --> 00:02:48,360
+then reach out to requests,
+
+58
+00:02:48,360 --> 00:02:49,577
+which is the namespace name,
+
+59
+00:02:49,577 --> 00:02:53,033
+/ requests, which is also the getter name here,
+
+60
+00:02:54,270 --> 00:02:57,423
+and then return this here in this computed property.
+
+61
+00:02:59,380 --> 00:03:02,100
+I will add a second computed property,
+
+62
+00:03:02,100 --> 00:03:04,250
+where I say "hasRequests",
+
+63
+00:03:05,230 --> 00:03:08,783
+and where I simply wanna return this,
+
+64
+00:03:09,780 --> 00:03:11,800
+store.getters,
+
+65
+00:03:11,800 --> 00:03:13,413
+requests/hasRequests,
+
+66
+00:03:15,096 --> 00:03:17,300
+which is a getter we have yet to add,
+
+67
+00:03:17,300 --> 00:03:18,380
+to Vue X.
+
+68
+00:03:18,380 --> 00:03:19,780
+So let's quickly do that.
+
+69
+00:03:19,780 --> 00:03:21,600
+Copy that and
+
+70
+00:03:21,600 --> 00:03:25,250
+go to getters in the requests module,
+
+71
+00:03:25,250 --> 00:03:27,950
+add the hasRequests getter,
+
+72
+00:03:27,950 --> 00:03:29,570
+and there, I wanna return
+
+73
+00:03:30,770 --> 00:03:33,790
+basically state.requests and
+
+74
+00:03:33,790 --> 00:03:37,500
+state.requests.length greater Zero.
+
+75
+00:03:37,500 --> 00:03:41,070
+So this will yield true if we have at least one request.
+
+76
+00:03:41,070 --> 00:03:42,963
+Otherwise it yields false.
+
+77
+00:03:43,960 --> 00:03:47,090
+And I added this extra computed property here
+
+78
+00:03:47,090 --> 00:03:50,670
+because we can use that with V-if
+
+79
+00:03:50,670 --> 00:03:54,050
+to show this unordered list, if it's true,
+
+80
+00:03:54,050 --> 00:03:58,450
+but then with V-else show this H three tag if it's not true,
+
+81
+00:03:58,450 --> 00:03:59,883
+if we have no requests.
+
+82
+00:04:01,270 --> 00:04:03,490
+So now with that, we got access to the requests.
+
+83
+00:04:03,490 --> 00:04:05,850
+Now we need to render them.
+
+84
+00:04:05,850 --> 00:04:07,310
+And for that, we wanna
+
+85
+00:04:07,310 --> 00:04:10,530
+render a bunch of list items here in this unordered list,
+
+86
+00:04:10,530 --> 00:04:12,950
+though I will outsource the concrete item
+
+87
+00:04:12,950 --> 00:04:14,223
+into a new component.
+
+88
+00:04:15,150 --> 00:04:17,200
+So for that, I'll go to components.
+
+89
+00:04:17,200 --> 00:04:18,610
+And then in there,
+
+90
+00:04:18,610 --> 00:04:21,320
+next to coaches, layout, and UI,
+
+91
+00:04:21,320 --> 00:04:24,070
+we can add a requests subfolder
+
+92
+00:04:24,070 --> 00:04:27,960
+to manage all the requests related components.
+
+93
+00:04:27,960 --> 00:04:30,900
+For me here, that will be just one component though,
+
+94
+00:04:30,900 --> 00:04:34,090
+the request item component,
+
+95
+00:04:34,090 --> 00:04:37,910
+which has a template where we render a list item, let's say.
+
+96
+00:04:37,910 --> 00:04:39,430
+And in that list item,
+
+97
+00:04:39,430 --> 00:04:44,430
+we have a div in which I simply have an anchor tag
+
+98
+00:04:46,200 --> 00:04:49,110
+where I wanna output the email address and make it clickable
+
+99
+00:04:49,110 --> 00:04:52,853
+to automatically open an email client once you click it.
+
+100
+00:04:54,200 --> 00:04:55,930
+And below that,
+
+101
+00:04:55,930 --> 00:04:58,400
+the message, the paragraph maybe.
+
+102
+00:04:58,400 --> 00:05:03,400
+So here, I wanna interpolate the message of a user.
+
+103
+00:05:03,840 --> 00:05:05,720
+Here between the anchor tag,
+
+104
+00:05:05,720 --> 00:05:07,680
+I wanna output the email address
+
+105
+00:05:08,860 --> 00:05:11,700
+that was sent along with that request.
+
+106
+00:05:11,700 --> 00:05:15,330
+And I wanna bind the ref attribute here,
+
+107
+00:05:15,330 --> 00:05:16,920
+que,
+
+108
+00:05:16,920 --> 00:05:18,080
+well, to a link that
+
+109
+00:05:18,080 --> 00:05:21,610
+automatically opens the local email client.
+
+110
+00:05:21,610 --> 00:05:23,530
+For that we can add a script here.
+
+111
+00:05:23,530 --> 00:05:25,890
+And first of all, accept props,
+
+112
+00:05:25,890 --> 00:05:28,250
+because we are going to render a request item
+
+113
+00:05:28,250 --> 00:05:31,420
+as part of the list in Requests Received.
+
+114
+00:05:31,420 --> 00:05:34,460
+Requests Received has those requests.
+
+115
+00:05:34,460 --> 00:05:36,310
+So we can then simply feed the data
+
+116
+00:05:36,310 --> 00:05:39,680
+into the individual list items, fruit props.
+
+117
+00:05:39,680 --> 00:05:44,680
+And the data will need is the email address and the message.
+
+118
+00:05:45,650 --> 00:05:47,933
+So the keys I'm using here in the template,
+
+119
+00:05:49,080 --> 00:05:51,780
+but I'll also add computed prop here,
+
+120
+00:05:51,780 --> 00:05:53,950
+and that's the email link
+
+121
+00:05:53,950 --> 00:05:56,670
+simply to put that logic into Java script
+
+122
+00:05:56,670 --> 00:05:58,570
+and into the template.
+
+123
+00:05:58,570 --> 00:06:01,633
+And here, I wanna return mailto:
+
+124
+00:06:03,800 --> 00:06:05,700
+plus this email.
+
+125
+00:06:05,700 --> 00:06:08,880
+And that's a special instruction the browser understands,
+
+126
+00:06:08,880 --> 00:06:12,710
+if this is your link in an anchor tag,
+
+127
+00:06:12,710 --> 00:06:15,920
+the browser will automatically open your email client
+
+128
+00:06:15,920 --> 00:06:18,150
+with this email address,
+
+129
+00:06:18,150 --> 00:06:21,970
+pre-filled into a new email that opens up.
+
+130
+00:06:21,970 --> 00:06:24,863
+So here we can then point at email link.
+
+131
+00:06:26,160 --> 00:06:27,410
+And as always,
+
+132
+00:06:27,410 --> 00:06:28,670
+attached you'll also find
+
+133
+00:06:28,670 --> 00:06:31,080
+some styling, which you can add here,
+
+134
+00:06:31,080 --> 00:06:34,740
+it's the request items CSS file,
+
+135
+00:06:34,740 --> 00:06:38,210
+copy and paste the styles into your component.
+
+136
+00:06:38,210 --> 00:06:40,900
+And we should then have the look and the behavior
+
+137
+00:06:40,900 --> 00:06:42,743
+of this component, which we need.
+
+138
+00:06:44,760 --> 00:06:47,450
+So back in Requests Received,
+
+139
+00:06:47,450 --> 00:06:50,760
+we can now register this component as a local component.
+
+140
+00:06:50,760 --> 00:06:53,710
+So import requestItem from
+
+141
+00:06:54,737 --> 00:06:56,170
+going up,
+
+142
+00:06:56,170 --> 00:06:57,910
+into components,
+
+143
+00:06:57,910 --> 00:06:59,360
+into requests,
+
+144
+00:06:59,360 --> 00:07:01,113
+to requestItem.Vue,
+
+145
+00:07:02,160 --> 00:07:05,590
+and then here at components,
+
+146
+00:07:05,590 --> 00:07:09,403
+and register request item as a local component.
+
+147
+00:07:10,880 --> 00:07:14,330
+And that of course allows us to use it here in the template
+
+148
+00:07:14,330 --> 00:07:15,580
+like this.
+
+149
+00:07:15,580 --> 00:07:17,900
+And now render multiple instances
+
+150
+00:07:17,900 --> 00:07:20,110
+off this component with V-for,
+
+151
+00:07:20,110 --> 00:07:25,110
+by going through all the requests in Received Requests,
+
+152
+00:07:25,440 --> 00:07:27,863
+which is our computed property down there.
+
+153
+00:07:30,090 --> 00:07:32,150
+And now here, we wanna add a key,
+
+154
+00:07:32,150 --> 00:07:37,150
+set this to request.id because every request has an ID,
+
+155
+00:07:37,160 --> 00:07:40,623
+and also pass in the email address,
+
+156
+00:07:42,300 --> 00:07:45,920
+which is the user email field
+
+157
+00:07:45,920 --> 00:07:49,270
+in Vue X in the action here.
+
+158
+00:07:49,270 --> 00:07:52,210
+I stored the email under a user email field.
+
+159
+00:07:52,210 --> 00:07:56,260
+That's why I have to access it by that field here
+
+160
+00:07:56,260 --> 00:07:59,133
+in Requests Received,
+
+161
+00:08:00,130 --> 00:08:03,380
+and feed the message prop into request item
+
+162
+00:08:03,380 --> 00:08:06,163
+by accessing request.message.
+
+163
+00:08:08,100 --> 00:08:09,120
+So with that,
+
+164
+00:08:09,120 --> 00:08:11,310
+we implemented almost all we need to do.
+
+165
+00:08:11,310 --> 00:08:12,460
+There's one thing left.
+
+166
+00:08:13,330 --> 00:08:15,780
+Our getters here are defined,
+
+167
+00:08:15,780 --> 00:08:16,940
+but just as before,
+
+168
+00:08:16,940 --> 00:08:19,900
+we need to add them to our module object.
+
+169
+00:08:19,900 --> 00:08:23,713
+So we need to import getters from ./getters.js,
+
+170
+00:08:24,560 --> 00:08:28,400
+and then add them here in this module's object,
+
+171
+00:08:28,400 --> 00:08:31,153
+into this module object for the requests module.
+
+172
+00:08:32,610 --> 00:08:33,623
+With that done,
+
+173
+00:08:34,659 --> 00:08:35,770
+if we reload this app,
+
+174
+00:08:35,770 --> 00:08:39,440
+we see you haven't received any requests yet.
+
+175
+00:08:39,440 --> 00:08:41,909
+But then if we contact a coach
+
+176
+00:08:42,870 --> 00:08:44,747
+from our email address,
+
+177
+00:08:44,747 --> 00:08:48,130
+"Hi, I'd like to get some coaching.
+
+178
+00:08:48,130 --> 00:08:49,677
+Can you help me?"
+
+179
+00:08:50,890 --> 00:08:52,960
+If I sent this message,
+
+180
+00:08:52,960 --> 00:08:55,003
+under requests, we see it here.
+
+181
+00:08:55,920 --> 00:08:58,820
+And if I send another message to the other coach
+
+182
+00:08:58,820 --> 00:09:01,987
+for the moment, we'll see messages of all coaches.
+
+183
+00:09:01,987 --> 00:09:02,940
+"Hi, I am
+
+184
+00:09:04,240 --> 00:09:05,590
+Max and I
+
+185
+00:09:07,210 --> 00:09:09,200
+really need some
+
+186
+00:09:09,200 --> 00:09:11,067
+support in web dev."
+
+187
+00:09:12,450 --> 00:09:15,460
+If I add this request, we see this as well.
+
+188
+00:09:15,460 --> 00:09:18,080
+And if we click such an email address,
+
+189
+00:09:18,080 --> 00:09:20,850
+this opens up the email client
+
+190
+00:09:20,850 --> 00:09:23,410
+with that email address prepopulated.
+
+191
+00:09:23,410 --> 00:09:25,600
+So that's another nice feature.
+
+192
+00:09:25,600 --> 00:09:26,480
+Okay.
+
+193
+00:09:26,480 --> 00:09:29,540
+So now we also can send requests,
+
+194
+00:09:29,540 --> 00:09:31,960
+but of course, now we always see all requests
+
+195
+00:09:31,960 --> 00:09:34,120
+of all coaches.
+
+196
+00:09:34,120 --> 00:09:36,300
+And that's not what you want.
+
+197
+00:09:36,300 --> 00:09:38,670
+So let's try to restrict this.
+
+198
+00:09:38,670 --> 00:09:40,070
+And in our root state,
+
+199
+00:09:40,070 --> 00:09:42,420
+we actually already got a user ID
+
+200
+00:09:42,420 --> 00:09:45,180
+assuming that this is us.
+
+201
+00:09:45,180 --> 00:09:47,490
+So if we register as a coach,
+
+202
+00:09:47,490 --> 00:09:51,060
+this will be the ID off the registered coach.
+
+203
+00:09:51,060 --> 00:09:52,380
+And thereafter,
+
+204
+00:09:52,380 --> 00:09:55,310
+only messages sent to that coach
+
+205
+00:09:55,310 --> 00:09:57,600
+should be showing up for us.
+
+206
+00:09:57,600 --> 00:09:59,743
+So that'll be the next step.
+

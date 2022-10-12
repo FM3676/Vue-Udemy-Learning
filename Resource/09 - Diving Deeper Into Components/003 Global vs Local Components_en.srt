@@ -1,0 +1,732 @@
+1
+00:00:02,100 --> 00:00:04,570
+Let's start with Component Registration.
+
+2
+00:00:04,570 --> 00:00:07,010
+We are registering our components
+
+3
+00:00:07,010 --> 00:00:09,840
+with the component method on our App.
+
+4
+00:00:09,840 --> 00:00:14,100
+And that's how we did it in all the past modules.
+
+5
+00:00:14,100 --> 00:00:18,270
+Now, there is nothing wrong with this approach per se.
+
+6
+00:00:18,270 --> 00:00:20,740
+But it's also not always the best way
+
+7
+00:00:20,740 --> 00:00:22,360
+of registering components.
+
+8
+00:00:22,360 --> 00:00:25,620
+Because it turns out there is an alternative.
+
+9
+00:00:25,620 --> 00:00:28,390
+Now, when we register components like this
+
+10
+00:00:28,390 --> 00:00:31,260
+with the component method on our App,
+
+11
+00:00:31,260 --> 00:00:34,930
+then we are registering those components
+
+12
+00:00:34,930 --> 00:00:38,860
+as so called Global Components.
+
+13
+00:00:38,860 --> 00:00:42,080
+That means they're available globally
+
+14
+00:00:42,080 --> 00:00:44,430
+in this entire Vue App.
+
+15
+00:00:44,430 --> 00:00:46,600
+So we can use these components
+
+16
+00:00:46,600 --> 00:00:51,600
+as custom HTML elements anywhere in this App.
+
+17
+00:00:51,700 --> 00:00:56,700
+In the App.Vue file, but also in any of our components here.
+
+18
+00:00:57,230 --> 00:01:01,540
+So they're simply available anywhere in this Route App.
+
+19
+00:01:01,540 --> 00:01:03,140
+This is of course very useful,
+
+20
+00:01:03,140 --> 00:01:06,150
+because it means we can use these components
+
+21
+00:01:06,150 --> 00:01:08,140
+as custom elements anywhere.
+
+22
+00:01:08,140 --> 00:01:11,430
+And we don't have to think about where to use them.
+
+23
+00:01:11,430 --> 00:01:14,390
+But it also has one potential downside.
+
+24
+00:01:14,390 --> 00:01:17,530
+These components, of course, all contain some code.
+
+25
+00:01:17,530 --> 00:01:20,730
+Now, of course, here, they're all fairly simple components.
+
+26
+00:01:20,730 --> 00:01:23,190
+But still, it's a little bit of template code,
+
+27
+00:01:23,190 --> 00:01:25,200
+a little bit of scripting code.
+
+28
+00:01:25,200 --> 00:01:27,680
+Now, this code, of course grows,
+
+29
+00:01:27,680 --> 00:01:29,500
+the bigger our application becomes.
+
+30
+00:01:29,500 --> 00:01:32,490
+The more components we have, the more code packages
+
+31
+00:01:32,490 --> 00:01:33,930
+we have, you could say.
+
+32
+00:01:33,930 --> 00:01:37,090
+And if you're registering them all globally,
+
+33
+00:01:37,090 --> 00:01:41,730
+that in the end means Vue needs to load them all
+
+34
+00:01:41,730 --> 00:01:44,270
+when the application is loaded initially.
+
+35
+00:01:44,270 --> 00:01:46,710
+So the browser needs to download the code
+
+36
+00:01:46,710 --> 00:01:48,963
+for all those components initially.
+
+37
+00:01:50,330 --> 00:01:52,110
+This is absolutely no problem
+
+38
+00:01:52,110 --> 00:01:53,910
+for our basic application here,
+
+39
+00:01:53,910 --> 00:01:57,310
+but for bigger applications, that could be a problem.
+
+40
+00:01:57,310 --> 00:02:01,260
+In addition, if you register everything globally here,
+
+41
+00:02:01,260 --> 00:02:03,870
+this can be a very long list.
+
+42
+00:02:03,870 --> 00:02:06,050
+If you have a application with, let's say,
+
+43
+00:02:06,050 --> 00:02:09,550
+hundreds of components, this would be a super long list.
+
+44
+00:02:09,550 --> 00:02:11,980
+And it would not be obvious where
+
+45
+00:02:11,980 --> 00:02:13,710
+those components are getting used.
+
+46
+00:02:13,710 --> 00:02:15,990
+If all these components are meant
+
+47
+00:02:15,990 --> 00:02:18,950
+to be used in multiple places, or if maybe
+
+48
+00:02:18,950 --> 00:02:22,393
+some of these components are only used in a few places.
+
+49
+00:02:23,580 --> 00:02:25,320
+For example, TheHeader.
+
+50
+00:02:25,320 --> 00:02:28,260
+This component is really only used once.
+
+51
+00:02:28,260 --> 00:02:32,520
+It's used here in App.Vue, the same for UserInfo.
+
+52
+00:02:32,520 --> 00:02:34,920
+These are components which are just getting
+
+53
+00:02:34,920 --> 00:02:39,830
+used once and registering them globally, therefore works.
+
+54
+00:02:39,830 --> 00:02:42,103
+But there's a bit redundant, you could say.
+
+55
+00:02:43,400 --> 00:02:45,860
+We're just having these components
+
+56
+00:02:45,860 --> 00:02:48,060
+so that we can outsource our code
+
+57
+00:02:48,060 --> 00:02:50,640
+and keep our App.Vue file lean,
+
+58
+00:02:50,640 --> 00:02:52,640
+because that's the idea behind components.
+
+59
+00:02:52,640 --> 00:02:55,400
+We wanna build complex user interfaces
+
+60
+00:02:55,400 --> 00:02:57,853
+by combining multiple building blocks.
+
+61
+00:02:59,490 --> 00:03:01,270
+That's why we also have another way
+
+62
+00:03:01,270 --> 00:03:03,340
+of registering components.
+
+63
+00:03:03,340 --> 00:03:05,860
+Despite registering them globally
+
+64
+00:03:05,860 --> 00:03:08,400
+with this component method on our App,
+
+65
+00:03:08,400 --> 00:03:11,840
+we can also register them locally in the component
+
+66
+00:03:11,840 --> 00:03:13,570
+where we plan on using them.
+
+67
+00:03:13,570 --> 00:03:15,620
+So for example, with TheHeader,
+
+68
+00:03:15,620 --> 00:03:19,860
+we could remove this component registration in main.js,
+
+69
+00:03:19,860 --> 00:03:22,540
+and remove this import here.
+
+70
+00:03:22,540 --> 00:03:25,630
+And instead go to our App.Vue file,
+
+71
+00:03:25,630 --> 00:03:27,970
+which is where we plan on using this.
+
+72
+00:03:27,970 --> 00:03:30,230
+And then here in the script section,
+
+73
+00:03:30,230 --> 00:03:35,230
+we can import TheHeader from components TheHeader.Vue.
+
+74
+00:03:38,170 --> 00:03:42,550
+And now we can also register this component locally
+
+75
+00:03:42,550 --> 00:03:46,360
+in this App component or in this App object here
+
+76
+00:03:46,360 --> 00:03:48,683
+in this App options object.
+
+77
+00:03:50,190 --> 00:03:52,910
+We do this by adding a new property here
+
+78
+00:03:52,910 --> 00:03:55,810
+next to data methods computed
+
+79
+00:03:55,810 --> 00:03:57,990
+and all the other properties you learned about
+
+80
+00:03:57,990 --> 00:04:01,430
+and that would be the components property,
+
+81
+00:04:01,430 --> 00:04:04,023
+which we haven't seen before, but here it is.
+
+82
+00:04:04,960 --> 00:04:08,930
+And we can now tell Vue, which components
+
+83
+00:04:08,930 --> 00:04:12,740
+may be used in the template of this App here
+
+84
+00:04:12,740 --> 00:04:14,620
+or of this component.
+
+85
+00:04:14,620 --> 00:04:16,920
+And the components registered here
+
+86
+00:04:16,920 --> 00:04:19,640
+are then really only usable here,
+
+87
+00:04:19,640 --> 00:04:22,000
+not in any other child components,
+
+88
+00:04:22,000 --> 00:04:24,530
+not anywhere else in our application,
+
+89
+00:04:24,530 --> 00:04:28,543
+just here in this file, in this .Vue file.
+
+90
+00:04:30,110 --> 00:04:32,090
+Now components wants an object,
+
+91
+00:04:32,090 --> 00:04:34,680
+and then we need a key-value pair,
+
+92
+00:04:34,680 --> 00:04:38,410
+where the key is our custom HTML element.
+
+93
+00:04:38,410 --> 00:04:42,140
+So TheHeader for example, the tag we wanna use
+
+94
+00:04:42,140 --> 00:04:43,770
+for this element, so to say,
+
+95
+00:04:43,770 --> 00:04:46,770
+and then the value is the imported
+
+96
+00:04:46,770 --> 00:04:49,263
+component config object, we're pointing at.
+
+97
+00:04:50,741 --> 00:04:54,980
+And If I do that, and Save this, this still all works.
+
+98
+00:04:54,980 --> 00:04:58,250
+But now TheHeader is registered locally.
+
+99
+00:04:58,250 --> 00:05:00,560
+And you can actually also write this differently.
+
+100
+00:05:00,560 --> 00:05:03,070
+This is perfectly fine, but you can
+
+101
+00:05:03,070 --> 00:05:07,510
+also use TheHeader like this as a key here,
+
+102
+00:05:07,510 --> 00:05:10,370
+as a property name and you will still be able
+
+103
+00:05:10,370 --> 00:05:13,210
+to use it like this in your template.
+
+104
+00:05:13,210 --> 00:05:15,930
+Vue automatically translates this
+
+105
+00:05:15,930 --> 00:05:19,940
+so that you can use the-header in your template
+
+106
+00:05:19,940 --> 00:05:24,940
+or in case you prefer it, TheHeader like this.
+
+107
+00:05:24,940 --> 00:05:26,100
+And then you can also write it
+
+108
+00:05:26,100 --> 00:05:28,683
+as a self-closing element if you want to.
+
+109
+00:05:29,540 --> 00:05:32,700
+This self-closing tag is not supported
+
+110
+00:05:32,700 --> 00:05:35,260
+if you write it with a dash in between,
+
+111
+00:05:35,260 --> 00:05:37,870
+then this self-closing tag will not work
+
+112
+00:05:37,870 --> 00:05:40,753
+if you write it in this PascallCase it works.
+
+113
+00:05:41,820 --> 00:05:44,820
+So this is then up to you which style you prefer.
+
+114
+00:05:44,820 --> 00:05:47,370
+I will stick to the-header because
+
+115
+00:05:47,370 --> 00:05:49,480
+that's the style I've been using before
+
+116
+00:05:49,480 --> 00:05:52,453
+but you could now also use this PascalCase style.
+
+117
+00:05:53,440 --> 00:05:56,880
+When you register it like this both is possible.
+
+118
+00:05:56,880 --> 00:05:58,850
+And then you can shorten this even more,
+
+119
+00:05:58,850 --> 00:06:01,420
+you can remove this key here,
+
+120
+00:06:01,420 --> 00:06:04,220
+and just pass TheHeader like this,
+
+121
+00:06:04,220 --> 00:06:07,500
+because there is a modern JavaScript syntax feature
+
+122
+00:06:07,500 --> 00:06:09,850
+which is supported in this project setup,
+
+123
+00:06:09,850 --> 00:06:13,290
+where if you just provide a single value here
+
+124
+00:06:13,290 --> 00:06:18,290
+in an object, this is automatically expanded to this syntax.
+
+125
+00:06:18,780 --> 00:06:22,020
+So that's simply key and value variable
+
+126
+00:06:22,020 --> 00:06:24,633
+or value constant have the same name.
+
+127
+00:06:25,940 --> 00:06:28,387
+So you can then just write TheHeader
+
+128
+00:06:28,387 --> 00:06:31,457
+and this will register this TheHeader component
+
+129
+00:06:31,457 --> 00:06:34,509
+under the TheHeader identifier, and you can
+
+130
+00:06:34,509 --> 00:06:37,320
+then use the-header like this,
+
+131
+00:06:37,320 --> 00:06:41,220
+or as I explained before, use this PascalCase
+
+132
+00:06:41,220 --> 00:06:42,170
+if you prefer that.
+
+133
+00:06:43,410 --> 00:06:46,163
+That if we Save that would also work.
+
+134
+00:06:47,070 --> 00:06:50,410
+So this is how you can write your components
+
+135
+00:06:50,410 --> 00:06:51,600
+and use your components.
+
+136
+00:06:51,600 --> 00:06:54,963
+And this is local component registration.
+
+137
+00:06:56,170 --> 00:06:58,500
+And of course here in this demo application,
+
+138
+00:06:58,500 --> 00:07:02,493
+TheHeader is not the only component we can register locally.
+
+139
+00:07:03,630 --> 00:07:06,420
+If we have a look, the UserInfo
+
+140
+00:07:06,420 --> 00:07:11,040
+is also a component we simply use here in our App template.
+
+141
+00:07:11,040 --> 00:07:13,490
+The badge-list would be another candidate.
+
+142
+00:07:13,490 --> 00:07:17,423
+We also only use that here in our App.Vue file.
+
+143
+00:07:18,600 --> 00:07:21,830
+So we can actually grab the imports
+
+144
+00:07:21,830 --> 00:07:24,980
+to UserInfo and BadgeList from main.js
+
+145
+00:07:24,980 --> 00:07:26,313
+and cut them there.
+
+146
+00:07:27,340 --> 00:07:30,940
+And remove these global component registrations,
+
+147
+00:07:30,940 --> 00:07:33,003
+and only leave the BaseBadge here.
+
+148
+00:07:34,480 --> 00:07:38,850
+And then go to App.Vue and add those imports here.
+
+149
+00:07:38,850 --> 00:07:42,850
+And then add BadgeList and UserInfo
+
+150
+00:07:42,850 --> 00:07:47,023
+as local components in the components option here.
+
+151
+00:07:48,810 --> 00:07:50,460
+And this code should still work
+
+152
+00:07:50,460 --> 00:07:53,670
+because I didn't change those names here.
+
+153
+00:07:53,670 --> 00:07:55,840
+Now, this components option is available
+
+154
+00:07:55,840 --> 00:07:59,780
+in any config object, not just in App.View.
+
+155
+00:07:59,780 --> 00:08:02,580
+You Could also register local components
+
+156
+00:08:02,580 --> 00:08:04,400
+in one of your other components
+
+157
+00:08:04,400 --> 00:08:07,820
+if you had local components that would belong there.
+
+158
+00:08:07,820 --> 00:08:10,110
+But in this App, that's not the case.
+
+159
+00:08:10,110 --> 00:08:13,770
+We're now left with the BaseBadge component,
+
+160
+00:08:13,770 --> 00:08:16,390
+which I'm still configuring globally.
+
+161
+00:08:16,390 --> 00:08:18,490
+And this is a component I wanna keep
+
+162
+00:08:18,490 --> 00:08:21,250
+as a global component, because I'm actually
+
+163
+00:08:21,250 --> 00:08:24,050
+using it in multiple parts of this App.
+
+164
+00:08:24,050 --> 00:08:26,610
+I'm using it in the BadgeList component,
+
+165
+00:08:26,610 --> 00:08:29,340
+and also in the UserInfo component.
+
+166
+00:08:29,340 --> 00:08:33,330
+And whenever you have a general purpose component,
+
+167
+00:08:33,330 --> 00:08:35,940
+which you're using in a lot of different places,
+
+168
+00:08:35,940 --> 00:08:38,419
+whenever that's the case, you typically wanna
+
+169
+00:08:38,419 --> 00:08:41,823
+use a global component, at least you wanna consider it.
+
+170
+00:08:42,900 --> 00:08:44,560
+Of course, you could also add it
+
+171
+00:08:44,560 --> 00:08:47,830
+as a local component to multiple other components
+
+172
+00:08:47,830 --> 00:08:49,490
+if that makes more sense.
+
+173
+00:08:49,490 --> 00:08:52,190
+But using a global component also often
+
+174
+00:08:52,190 --> 00:08:54,490
+is correct in such cases.
+
+175
+00:08:54,490 --> 00:08:56,690
+On the other hand, if you do have components,
+
+176
+00:08:56,690 --> 00:08:59,230
+which you only use in one hour,
+
+177
+00:08:59,230 --> 00:09:01,610
+component let's say, then you might
+
+178
+00:09:01,610 --> 00:09:04,940
+wanna consider registering them as local components
+
+179
+00:09:04,940 --> 00:09:08,210
+simply to keep your main.js file short
+
+180
+00:09:08,210 --> 00:09:11,223
+and to not register everything globally.
+
+181
+00:09:12,320 --> 00:09:14,420
+With that, we got this working,
+
+182
+00:09:14,420 --> 00:09:18,230
+but now we know global and local registration
+
+183
+00:09:18,230 --> 00:09:19,923
+and when to use what.
+

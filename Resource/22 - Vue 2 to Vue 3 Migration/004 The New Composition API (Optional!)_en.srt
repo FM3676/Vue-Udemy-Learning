@@ -1,0 +1,2116 @@
+1
+00:00:02,240 --> 00:00:05,070
+The biggest new feature introduced
+
+2
+00:00:05,070 --> 00:00:08,620
+by Vue 3 is the so-called Composition API.
+
+3
+00:00:08,620 --> 00:00:11,230
+It's 100% optional
+
+4
+00:00:11,230 --> 00:00:14,470
+and it's an alternative to the Options API.
+
+5
+00:00:14,470 --> 00:00:18,220
+Now, the Options API is simply what we used thus far
+
+6
+00:00:18,220 --> 00:00:20,450
+for building Vue apps and components.
+
+7
+00:00:20,450 --> 00:00:22,483
+When you configure a component like this
+
+8
+00:00:22,483 --> 00:00:25,110
+with a data and methods option,
+
+9
+00:00:25,110 --> 00:00:27,560
+that's using the Options API.
+
+10
+00:00:27,560 --> 00:00:30,888
+You're passing or you are setting various options
+
+11
+00:00:30,888 --> 00:00:34,500
+in the config object of that Vue instance
+
+12
+00:00:34,500 --> 00:00:36,580
+of this Vue component.
+
+13
+00:00:36,580 --> 00:00:38,610
+This approach is absolutely fine.
+
+14
+00:00:38,610 --> 00:00:41,490
+It's not going anywhere and you can stick to it.
+
+15
+00:00:41,490 --> 00:00:42,947
+That's really important to me.
+
+16
+00:00:42,947 --> 00:00:46,050
+But we've now got an alternative to that.
+
+17
+00:00:46,050 --> 00:00:48,650
+You can replace data, methods, computed
+
+18
+00:00:48,650 --> 00:00:51,460
+and watch with a different option,
+
+19
+00:00:51,460 --> 00:00:52,970
+with a different approach
+
+20
+00:00:52,970 --> 00:00:55,460
+and that would be the Composition API.
+
+21
+00:00:55,460 --> 00:00:58,280
+Because you might face too main limitations
+
+22
+00:00:58,280 --> 00:01:01,360
+or issues when building bigger Vue apps
+
+23
+00:01:01,360 --> 00:01:03,580
+with the Options API.
+
+24
+00:01:03,580 --> 00:01:06,644
+For one, code that belongs together logically
+
+25
+00:01:06,644 --> 00:01:10,820
+might be split up across multiple different options
+
+26
+00:01:10,820 --> 00:01:12,853
+across data methods and computed.
+
+27
+00:01:13,870 --> 00:01:15,690
+I actually got an example here,
+
+28
+00:01:15,690 --> 00:01:19,340
+which is not the example we'll dive in in this video.
+
+29
+00:01:19,340 --> 00:01:21,800
+This is taken from my Vue course
+
+30
+00:01:21,800 --> 00:01:24,520
+where I completely updated it to Vue 3.
+
+31
+00:01:24,520 --> 00:01:26,443
+And here I, for example,
+
+32
+00:01:26,443 --> 00:01:27,940
+I got a couple of components
+
+33
+00:01:27,940 --> 00:01:30,480
+and in the UserList component here,
+
+34
+00:01:30,480 --> 00:01:33,640
+I have some data where I manage my users
+
+35
+00:01:33,640 --> 00:01:36,690
+but also a SearchTerm entered by the user
+
+36
+00:01:36,690 --> 00:01:39,440
+and a sorting logic chosen by the user.
+
+37
+00:01:39,440 --> 00:01:41,450
+And then I have computed property
+
+38
+00:01:41,450 --> 00:01:44,180
+for deriving the displayedUsers based
+
+39
+00:01:44,180 --> 00:01:46,240
+on the sorting logic that was chosen
+
+40
+00:01:46,240 --> 00:01:47,910
+by the user of this app.
+
+41
+00:01:47,910 --> 00:01:51,490
+And I also have a search method,
+
+42
+00:01:51,490 --> 00:01:53,420
+so a method related to searching.
+
+43
+00:01:53,420 --> 00:01:55,460
+A method related to sorting.
+
+44
+00:01:55,460 --> 00:01:57,860
+I've got a watcher related to searching.
+
+45
+00:01:57,860 --> 00:02:00,600
+Another watcher related to searching.
+
+46
+00:02:00,600 --> 00:02:03,870
+And as you can see, that logic is kind of split up, right?
+
+47
+00:02:03,870 --> 00:02:06,790
+We've got search data here in the data option.
+
+48
+00:02:06,790 --> 00:02:09,900
+We've got a search method, we've got search watchers
+
+49
+00:02:09,900 --> 00:02:12,310
+and for sorting, we've also got an option,
+
+50
+00:02:12,310 --> 00:02:14,670
+a computed property, data,
+
+51
+00:02:14,670 --> 00:02:16,616
+it's all over the place.
+
+52
+00:02:16,616 --> 00:02:19,160
+This is not horrible necessarily
+
+53
+00:02:19,160 --> 00:02:21,920
+but in bigger applications and bigger components,
+
+54
+00:02:21,920 --> 00:02:24,700
+it may result in a lot of scrolling
+
+55
+00:02:24,700 --> 00:02:26,820
+to update your search logic.
+
+56
+00:02:26,820 --> 00:02:28,320
+If I change something here,
+
+57
+00:02:28,320 --> 00:02:30,700
+let's say the name of the enteredSearchTerm,
+
+58
+00:02:30,700 --> 00:02:33,190
+I have to change it in a couple of places.
+
+59
+00:02:33,190 --> 00:02:34,740
+And such big components
+
+60
+00:02:34,740 --> 00:02:36,550
+where everything is scattered out
+
+61
+00:02:36,550 --> 00:02:39,600
+could become hard or difficult to manage.
+
+62
+00:02:39,600 --> 00:02:43,100
+In addition, reusing logic across components
+
+63
+00:02:43,100 --> 00:02:45,323
+can also be tricky or cumbersome.
+
+64
+00:02:46,400 --> 00:02:47,870
+Here in this demo app,
+
+65
+00:02:47,870 --> 00:02:49,690
+which you find in my course,
+
+66
+00:02:49,690 --> 00:02:52,230
+I do have the ProjectsList component,
+
+67
+00:02:52,230 --> 00:02:53,800
+in addition to the UserList
+
+68
+00:02:53,800 --> 00:02:56,440
+and there I also got search logic.
+
+69
+00:02:56,440 --> 00:03:00,430
+Now, we could share this code maybe with a mix in,
+
+70
+00:03:00,430 --> 00:03:01,460
+but with a mix in,
+
+71
+00:03:01,460 --> 00:03:03,600
+we would face new difficulties.
+
+72
+00:03:03,600 --> 00:03:05,900
+For example, it wouldn't be obvious
+
+73
+00:03:05,900 --> 00:03:08,020
+where this logic is coming from.
+
+74
+00:03:08,020 --> 00:03:10,420
+We would have to look into all mix ins,
+
+75
+00:03:10,420 --> 00:03:12,160
+if we're using multiple mix ins
+
+76
+00:03:12,160 --> 00:03:16,040
+to find out which mix in is holding the search logic.
+
+77
+00:03:16,040 --> 00:03:18,986
+That can also be tricky in bigger applications.
+
+78
+00:03:18,986 --> 00:03:21,940
+So these are not technical problems.
+
+79
+00:03:21,940 --> 00:03:24,170
+These might even be problems for you
+
+80
+00:03:24,170 --> 00:03:26,380
+which you've ever faced and then of course,
+
+81
+00:03:26,380 --> 00:03:27,510
+everything is fine
+
+82
+00:03:27,510 --> 00:03:29,530
+but this could be problems you face
+
+83
+00:03:29,530 --> 00:03:32,820
+in bigger Vue apps and bigger Vue components.
+
+84
+00:03:32,820 --> 00:03:34,610
+And that's why you could move
+
+85
+00:03:34,610 --> 00:03:36,110
+from the Options API
+
+86
+00:03:36,110 --> 00:03:38,520
+to the new Composition API,
+
+87
+00:03:38,520 --> 00:03:42,122
+which merges data methods computed
+
+88
+00:03:42,122 --> 00:03:45,050
+into one setup method,
+
+89
+00:03:45,050 --> 00:03:48,130
+which you still add to your component config object
+
+90
+00:03:48,130 --> 00:03:50,290
+where you then use new features
+
+91
+00:03:50,290 --> 00:03:53,840
+to manage it all and to solve these two problems.
+
+92
+00:03:53,840 --> 00:03:55,240
+So to see this in action,
+
+93
+00:03:55,240 --> 00:03:58,390
+I also prepared a little project for us here.
+
+94
+00:03:58,390 --> 00:04:00,860
+You find a link attached to this video
+
+95
+00:04:00,860 --> 00:04:02,200
+in the video description
+
+96
+00:04:02,200 --> 00:04:04,940
+to this entire repository of all the changed,
+
+97
+00:04:04,940 --> 00:04:07,030
+which I also cover in another video
+
+98
+00:04:07,030 --> 00:04:08,160
+and here in this video,
+
+99
+00:04:08,160 --> 00:04:11,690
+I wanna dive into this composition-api folder.
+
+100
+00:04:11,690 --> 00:04:13,630
+Once you navigated into this folder,
+
+101
+00:04:13,630 --> 00:04:16,390
+run npm install and npm run serve
+
+102
+00:04:16,390 --> 00:04:18,060
+to install all dependencies
+
+103
+00:04:18,060 --> 00:04:20,550
+and bring up the development server.
+
+104
+00:04:20,550 --> 00:04:22,500
+And then you'll see a little application,
+
+105
+00:04:22,500 --> 00:04:26,020
+which I prepared, which uses the Options API,
+
+106
+00:04:26,020 --> 00:04:28,680
+which still works with Vue 3.
+
+107
+00:04:28,680 --> 00:04:30,220
+Here is the app I prepared.
+
+108
+00:04:30,220 --> 00:04:33,793
+I can enter some goals like learn Vue.
+
+109
+00:04:35,240 --> 00:04:40,020
+Explore the new Vue 3 course.
+
+110
+00:04:40,020 --> 00:04:43,100
+But if you enter something like learn React,
+
+111
+00:04:43,100 --> 00:04:44,820
+then this won't show up here
+
+112
+00:04:44,820 --> 00:04:47,510
+because I actually have some logic in there
+
+113
+00:04:47,510 --> 00:04:50,700
+to filter for Angular and React
+
+114
+00:04:50,700 --> 00:04:54,440
+and remove such goals that include these terms.
+
+115
+00:04:54,440 --> 00:04:56,450
+That's the little app we have here.
+
+116
+00:04:56,450 --> 00:04:59,740
+I'm using one component in my App.vue file
+
+117
+00:04:59,740 --> 00:05:01,400
+and that's the CourseGoals component.
+
+118
+00:05:01,400 --> 00:05:03,470
+And there I used two other components,
+
+119
+00:05:03,470 --> 00:05:04,570
+GoalsList and AddGoal.
+
+120
+00:05:05,720 --> 00:05:08,630
+I'm managing some data here in CourseGoals.
+
+121
+00:05:08,630 --> 00:05:11,700
+I have a computed property for filtering my goals
+
+122
+00:05:11,700 --> 00:05:13,670
+for Angular and React.
+
+123
+00:05:13,670 --> 00:05:16,710
+And I have methods for adding a goal to be precise.
+
+124
+00:05:16,710 --> 00:05:19,070
+One method which creates a new goal
+
+125
+00:05:19,070 --> 00:05:21,350
+and adds it to the data property.
+
+126
+00:05:21,350 --> 00:05:25,290
+In AddGoal, I have some data for the enteredText
+
+127
+00:05:25,290 --> 00:05:27,640
+and for the validity of the input.
+
+128
+00:05:27,640 --> 00:05:29,060
+I get the addGoal method
+
+129
+00:05:29,060 --> 00:05:30,770
+where I check the validity
+
+130
+00:05:30,770 --> 00:05:33,800
+and possibly set this to true
+
+131
+00:05:33,800 --> 00:05:36,650
+so that this error message is shown
+
+132
+00:05:36,650 --> 00:05:38,810
+and ultimately, if everything is okay,
+
+133
+00:05:38,810 --> 00:05:40,020
+I emit a custom event
+
+134
+00:05:40,020 --> 00:05:43,990
+with the enteredText and reset the enteredText thereafter.
+
+135
+00:05:43,990 --> 00:05:47,760
+And the enteredText data is bound to this input
+
+136
+00:05:47,760 --> 00:05:50,890
+with v-model, so with two-way binding.
+
+137
+00:05:50,890 --> 00:05:52,800
+In addition, I got a watcher
+
+138
+00:05:52,800 --> 00:05:55,030
+where I watch for invalid input
+
+139
+00:05:55,030 --> 00:05:57,820
+and simply log that to the console.
+
+140
+00:05:57,820 --> 00:06:00,200
+In GoalsList, I got nothing special.
+
+141
+00:06:00,200 --> 00:06:03,943
+Here I just take a prop and output my list items.
+
+142
+00:06:05,220 --> 00:06:07,510
+Now, I'm using the Options API here
+
+143
+00:06:07,510 --> 00:06:10,659
+and now I wanna migrate to the Composition API.
+
+144
+00:06:10,659 --> 00:06:14,560
+And let's maybe start with CourseGoals.
+
+145
+00:06:14,560 --> 00:06:17,323
+As I mentioned, we're going to replace data computed
+
+146
+00:06:17,323 --> 00:06:20,610
+and methods with something new.
+
+147
+00:06:20,610 --> 00:06:22,246
+So I'm going to comment it out.
+
+148
+00:06:22,246 --> 00:06:25,760
+And we're going to replace it with this setup method,
+
+149
+00:06:25,760 --> 00:06:29,600
+which you can now add to your component config objects.
+
+150
+00:06:29,600 --> 00:06:32,260
+Setup is automatically called by Vue
+
+151
+00:06:32,260 --> 00:06:35,120
+when it creates this Vue component.
+
+152
+00:06:35,120 --> 00:06:37,130
+It's called around the same time
+
+153
+00:06:37,130 --> 00:06:41,566
+when the created lifecycle hook would normally be executed.
+
+154
+00:06:41,566 --> 00:06:44,560
+Now, in here, you have to set everything up
+
+155
+00:06:44,560 --> 00:06:45,780
+this component needs.
+
+156
+00:06:45,780 --> 00:06:48,040
+All the data, all the computed properties,
+
+157
+00:06:48,040 --> 00:06:51,010
+all the functions and all the watchers.
+
+158
+00:06:51,010 --> 00:06:52,520
+Now, how do we do that
+
+159
+00:06:52,520 --> 00:06:55,040
+since we don't have these options anymore?
+
+160
+00:06:55,040 --> 00:06:59,220
+Well data can be replaced with refs, for example,
+
+161
+00:06:59,220 --> 00:07:02,240
+and you need to import something from Vue for that.
+
+162
+00:07:02,240 --> 00:07:04,200
+So import from vue
+
+163
+00:07:04,200 --> 00:07:07,270
+and what we import between curly braces here
+
+164
+00:07:07,270 --> 00:07:09,483
+is the ref function.
+
+165
+00:07:10,660 --> 00:07:14,830
+Ref is simply a reactive piece of data you could say.
+
+166
+00:07:14,830 --> 00:07:17,691
+You create such a reactive piece of data
+
+167
+00:07:17,691 --> 00:07:20,030
+by calling ref in setup.
+
+168
+00:07:20,030 --> 00:07:23,080
+It's basically creating a JavaScript variable,
+
+169
+00:07:23,080 --> 00:07:23,990
+you could say,
+
+170
+00:07:23,990 --> 00:07:27,800
+but one where Vue is aware of any changes made to it.
+
+171
+00:07:27,800 --> 00:07:30,780
+And where Vue then is able to update the template
+
+172
+00:07:30,780 --> 00:07:33,410
+if such a change is detected.
+
+173
+00:07:33,410 --> 00:07:35,751
+A ref can take a default value.
+
+174
+00:07:35,751 --> 00:07:38,150
+So here, since I wanna replace goals,
+
+175
+00:07:38,150 --> 00:07:40,371
+ultimately I'll pass in an array.
+
+176
+00:07:40,371 --> 00:07:44,270
+Now we can store this ref, this reactive variable
+
+177
+00:07:44,270 --> 00:07:46,210
+in a constant or variable
+
+178
+00:07:46,210 --> 00:07:47,710
+and I'll name it goals.
+
+179
+00:07:47,710 --> 00:07:49,010
+And a constant is enough here
+
+180
+00:07:49,010 --> 00:07:51,560
+because we'll never assign a new value to this.
+
+181
+00:07:51,560 --> 00:07:53,390
+We can change the values stored in a ref
+
+182
+00:07:53,390 --> 00:07:54,250
+but behind the scenes,
+
+183
+00:07:54,250 --> 00:07:57,540
+the ref will create a wrapper object around this array,
+
+184
+00:07:57,540 --> 00:08:00,210
+so we'll only change the wrapped value,
+
+185
+00:08:00,210 --> 00:08:02,113
+not the entire ref object.
+
+186
+00:08:03,160 --> 00:08:06,180
+And with that, we've got our reactive variable,
+
+187
+00:08:06,180 --> 00:08:07,820
+which holds this array,
+
+188
+00:08:07,820 --> 00:08:09,960
+which, and that's important,
+
+189
+00:08:09,960 --> 00:08:13,760
+is known by Vue and where when we change this array,
+
+190
+00:08:13,760 --> 00:08:15,930
+Vue will be aware of those changes
+
+191
+00:08:15,930 --> 00:08:17,970
+and if we use this array in the template,
+
+192
+00:08:17,970 --> 00:08:20,393
+it will then know where to update the template.
+
+193
+00:08:21,270 --> 00:08:23,240
+So that's one important step.
+
+194
+00:08:23,240 --> 00:08:25,731
+This is how we can replace our data.
+
+195
+00:08:25,731 --> 00:08:27,650
+There's also another way of replacing data.
+
+196
+00:08:27,650 --> 00:08:29,830
+There also is a reactive function,
+
+197
+00:08:29,830 --> 00:08:32,679
+which you could use but I'll not dive into this here.
+
+198
+00:08:32,679 --> 00:08:34,400
+I cover it in detail in my course
+
+199
+00:08:34,400 --> 00:08:35,669
+if you're interested in that
+
+200
+00:08:35,669 --> 00:08:38,799
+but refs are what I use most commonly
+
+201
+00:08:38,799 --> 00:08:40,880
+and you can use them for pretty much everything,
+
+202
+00:08:40,880 --> 00:08:42,472
+so here that's all we need.
+
+203
+00:08:43,559 --> 00:08:46,490
+Now we need to one important thing here in setup.
+
+204
+00:08:46,490 --> 00:08:47,888
+We need to let Vue know
+
+205
+00:08:47,888 --> 00:08:51,050
+about the things it should be able to use
+
+206
+00:08:51,050 --> 00:08:52,700
+in the template.
+
+207
+00:08:52,700 --> 00:08:54,370
+Setup needs to return
+
+208
+00:08:54,370 --> 00:08:56,920
+what should be available in the template
+
+209
+00:08:56,920 --> 00:08:58,738
+and that always is an object
+
+210
+00:08:58,738 --> 00:09:02,420
+where you now map the different things you have in setup,
+
+211
+00:09:02,420 --> 00:09:03,980
+like this goals ref,
+
+212
+00:09:03,980 --> 00:09:06,080
+to identifiers of your choice.
+
+213
+00:09:06,080 --> 00:09:08,770
+It can be the same name, goals,
+
+214
+00:09:08,770 --> 00:09:12,350
+or something totally different like this.
+
+215
+00:09:12,350 --> 00:09:15,770
+And these keys here can now be used in your template
+
+216
+00:09:15,770 --> 00:09:16,970
+of this component.
+
+217
+00:09:16,970 --> 00:09:20,650
+So for example, now I can use userGoals here
+
+218
+00:09:20,650 --> 00:09:23,630
+instead of filteredGoals if I wanted to.
+
+219
+00:09:23,630 --> 00:09:26,440
+I don't want to but we could do this.
+
+220
+00:09:26,440 --> 00:09:28,380
+Now, we actually don't need goals like this
+
+221
+00:09:28,380 --> 00:09:29,600
+in the template though
+
+222
+00:09:29,600 --> 00:09:32,810
+because we just used the computed property in the past.
+
+223
+00:09:32,810 --> 00:09:34,870
+So I'm actually not going to expose it
+
+224
+00:09:34,870 --> 00:09:37,840
+but we're going to add things to this object soon.
+
+225
+00:09:37,840 --> 00:09:40,540
+Let's maybe continue with this computed property then.
+
+226
+00:09:40,540 --> 00:09:42,720
+How do we create this when using setup
+
+227
+00:09:42,720 --> 00:09:44,233
+and the Composition API?
+
+228
+00:09:45,560 --> 00:09:48,290
+Well, we import another function from Vue.
+
+229
+00:09:48,290 --> 00:09:50,030
+The computed function,
+
+230
+00:09:50,030 --> 00:09:52,841
+which is used to create computed properties.
+
+231
+00:09:52,841 --> 00:09:55,260
+You simply call computed
+
+232
+00:09:55,260 --> 00:09:57,800
+and then pass a function to it.
+
+233
+00:09:57,800 --> 00:10:00,300
+This function has to return a value,
+
+234
+00:10:00,300 --> 00:10:02,440
+the value of your computed property,
+
+235
+00:10:02,440 --> 00:10:04,160
+and here, for example,
+
+236
+00:10:04,160 --> 00:10:06,480
+I can use the same logic I used before
+
+237
+00:10:06,480 --> 00:10:08,050
+for filtering my goals.
+
+238
+00:10:08,050 --> 00:10:11,500
+So goals.filter like this.
+
+239
+00:10:11,500 --> 00:10:14,020
+Return that, comment it in
+
+240
+00:10:14,020 --> 00:10:18,170
+and now Vue will automatically see which other refs
+
+241
+00:10:18,170 --> 00:10:19,970
+or which other data you're using
+
+242
+00:10:19,970 --> 00:10:21,301
+in this computed property
+
+243
+00:10:21,301 --> 00:10:24,740
+and it will then recalculate this computed property
+
+244
+00:10:24,740 --> 00:10:28,300
+whenever one of these reactive values changes.
+
+245
+00:10:28,300 --> 00:10:30,630
+For example, here whenever goals changes,
+
+246
+00:10:30,630 --> 00:10:34,240
+it will then recalculate the computed property.
+
+247
+00:10:34,240 --> 00:10:36,650
+Now, we should store the computed property somewhere
+
+248
+00:10:36,650 --> 00:10:38,880
+and I will name it filteredGoals
+
+249
+00:10:38,880 --> 00:10:40,770
+because that's the name I used before
+
+250
+00:10:40,770 --> 00:10:42,703
+in the Options API as well.
+
+251
+00:10:43,700 --> 00:10:45,082
+Now we've got the filteredGoals
+
+252
+00:10:45,082 --> 00:10:48,020
+and we do need those in the template.
+
+253
+00:10:48,020 --> 00:10:51,100
+So now I will expose them in this object returned
+
+254
+00:10:51,100 --> 00:10:54,790
+by setup and I will use filteredGoals as a key name
+
+255
+00:10:54,790 --> 00:10:57,320
+and then point at the filteredGoals constant,
+
+256
+00:10:57,320 --> 00:10:59,773
+which holds the value which should be exposed.
+
+257
+00:11:01,970 --> 00:11:02,803
+And with that,
+
+258
+00:11:02,803 --> 00:11:05,840
+we're exposing all the data this template needs.
+
+259
+00:11:05,840 --> 00:11:08,220
+It also needs a method though.
+
+260
+00:11:08,220 --> 00:11:10,050
+And how do we replace methods
+
+261
+00:11:10,050 --> 00:11:11,523
+when using Composition API?
+
+262
+00:11:12,440 --> 00:11:17,000
+Well, you simply define a function here in setup.
+
+263
+00:11:17,000 --> 00:11:18,540
+This might look strange at first
+
+264
+00:11:18,540 --> 00:11:21,250
+but you can absolutely add functions
+
+265
+00:11:21,250 --> 00:11:22,560
+inside of functions.
+
+266
+00:11:22,560 --> 00:11:25,280
+So you can define a function inside of setup
+
+267
+00:11:25,280 --> 00:11:26,660
+and we're doing nothing else here
+
+268
+00:11:26,660 --> 00:11:29,210
+with this anonymous function by the way.
+
+269
+00:11:29,210 --> 00:11:30,690
+So we can add a function.
+
+270
+00:11:30,690 --> 00:11:33,283
+Name it addGoal, for example.
+
+271
+00:11:34,830 --> 00:11:37,560
+And in this function, do whatever you wanna do.
+
+272
+00:11:37,560 --> 00:11:39,610
+Now again, I'll do the same as before.
+
+273
+00:11:39,610 --> 00:11:42,110
+So I'll copy the logic I had in the method before.
+
+274
+00:11:43,930 --> 00:11:45,123
+Add this here.
+
+275
+00:11:47,810 --> 00:11:50,640
+And now with that added here,
+
+276
+00:11:50,640 --> 00:11:52,530
+I just have to adjust one thing.
+
+277
+00:11:52,530 --> 00:11:54,150
+It's no longer this.goals
+
+278
+00:11:54,150 --> 00:11:56,640
+but just goals because I'm referring just
+
+279
+00:11:56,640 --> 00:11:59,290
+to this goals constant, which is part of setup
+
+280
+00:11:59,290 --> 00:12:02,140
+and therefore, available in this nested function as well.
+
+281
+00:12:03,010 --> 00:12:04,370
+This will now change goals
+
+282
+00:12:04,370 --> 00:12:05,870
+and because goals is a ref,
+
+283
+00:12:05,870 --> 00:12:07,980
+Vue will be appear of that change.
+
+284
+00:12:07,980 --> 00:12:09,280
+Since goals is a ref,
+
+285
+00:12:09,280 --> 00:12:11,880
+it will know that this computed property needs
+
+286
+00:12:11,880 --> 00:12:14,520
+to be recalculated when goals changed
+
+287
+00:12:14,520 --> 00:12:16,610
+and therefore filteredGoals will update
+
+288
+00:12:16,610 --> 00:12:18,580
+whenever goals changed.
+
+289
+00:12:18,580 --> 00:12:21,270
+And filteredGoals is exposed to the template.
+
+290
+00:12:21,270 --> 00:12:23,810
+That's why the template will also be updated
+
+291
+00:12:23,810 --> 00:12:25,420
+when our goals change.
+
+292
+00:12:25,420 --> 00:12:27,580
+That's how this will work.
+
+293
+00:12:27,580 --> 00:12:30,330
+Now, in order to be able to use addGoal
+
+294
+00:12:30,330 --> 00:12:32,730
+and reference it from inside our template
+
+295
+00:12:32,730 --> 00:12:34,040
+as we're doing it here,
+
+296
+00:12:34,040 --> 00:12:37,470
+we also need to expose it to the template though.
+
+297
+00:12:37,470 --> 00:12:40,160
+Because by default, nothing is available
+
+298
+00:12:40,160 --> 00:12:41,150
+in the template.
+
+299
+00:12:41,150 --> 00:12:43,400
+We explicitly have to return
+
+300
+00:12:43,400 --> 00:12:45,290
+what should be available there.
+
+301
+00:12:45,290 --> 00:12:49,933
+So here I can expose addGoal under an addGoal key.
+
+302
+00:12:51,410 --> 00:12:54,680
+And if I do that, I replaced data,
+
+303
+00:12:54,680 --> 00:12:57,690
+computed and methods in this component
+
+304
+00:12:57,690 --> 00:13:00,500
+with the Composition API equivalence.
+
+305
+00:13:00,500 --> 00:13:04,300
+So if we save this now, I get an error.
+
+306
+00:13:04,300 --> 00:13:08,790
+Must use value to read or write the value wrapped by a ref.
+
+307
+00:13:08,790 --> 00:13:11,810
+This is important and I'm showing this on purpose
+
+308
+00:13:11,810 --> 00:13:13,480
+because I mentioned before
+
+309
+00:13:13,480 --> 00:13:15,910
+that ref creates a wrapper object
+
+310
+00:13:15,910 --> 00:13:18,221
+and this is important to be aware of.
+
+311
+00:13:18,221 --> 00:13:20,390
+When you then work with this ref,
+
+312
+00:13:20,390 --> 00:13:22,880
+you're not working with the value you passed
+
+313
+00:13:22,880 --> 00:13:24,420
+to the ref function,
+
+314
+00:13:24,420 --> 00:13:27,570
+you are working with the ref wrapper object.
+
+315
+00:13:27,570 --> 00:13:30,190
+And you get access to the wrapped value
+
+316
+00:13:30,190 --> 00:13:33,378
+by accessing .value on the ref.
+
+317
+00:13:33,378 --> 00:13:36,480
+And this has to be .value.
+
+318
+00:13:36,480 --> 00:13:39,080
+This gives you access to the wrapped value
+
+319
+00:13:39,080 --> 00:13:40,880
+and allows you to change this value
+
+320
+00:13:40,880 --> 00:13:42,320
+or read from it.
+
+321
+00:13:42,320 --> 00:13:46,690
+So we have to use .value for pushing a new goal
+
+322
+00:13:46,690 --> 00:13:48,013
+and for filtering.
+
+323
+00:13:49,780 --> 00:13:54,150
+Now, the other error is saying that text is not defined.
+
+324
+00:13:54,150 --> 00:13:58,710
+And that simply is coming from this line here.
+
+325
+00:13:58,710 --> 00:14:03,360
+Of course, addGoal previously received a text parameter.
+
+326
+00:14:03,360 --> 00:14:07,510
+I should still add this here to this function.
+
+327
+00:14:07,510 --> 00:14:09,420
+But now if we save this,
+
+328
+00:14:09,420 --> 00:14:11,850
+and reload, this works.
+
+329
+00:14:11,850 --> 00:14:13,760
+And I can learn Vue!
+
+330
+00:14:13,760 --> 00:14:16,610
+But learning React written like this
+
+331
+00:14:16,610 --> 00:14:17,683
+will not be shown.
+
+332
+00:14:18,740 --> 00:14:21,440
+So this is the Composition API in action.
+
+333
+00:14:21,440 --> 00:14:23,146
+And I also wanna highlight
+
+334
+00:14:23,146 --> 00:14:26,530
+that in this app here, in this mini app,
+
+335
+00:14:26,530 --> 00:14:29,430
+I'm using the Composition API in CourseGoals
+
+336
+00:14:29,430 --> 00:14:31,650
+but not in AddGoal.
+
+337
+00:14:31,650 --> 00:14:34,160
+There I still have the Options API.
+
+338
+00:14:34,160 --> 00:14:35,993
+And not in GoalsList.
+
+339
+00:14:36,830 --> 00:14:40,510
+So it's not a thing or it's not a feature you have
+
+340
+00:14:40,510 --> 00:14:42,290
+to use in the entire app.
+
+341
+00:14:42,290 --> 00:14:45,060
+You can migrate individual components
+
+342
+00:14:45,060 --> 00:14:46,460
+to the Composition API
+
+343
+00:14:46,460 --> 00:14:48,210
+and mix those components
+
+344
+00:14:48,210 --> 00:14:52,290
+with other components that still use the Options API.
+
+345
+00:14:52,290 --> 00:14:54,000
+You can even use the Options
+
+346
+00:14:54,000 --> 00:14:56,380
+and the Composition APIs side by side
+
+347
+00:14:56,380 --> 00:14:57,650
+in the same component,
+
+348
+00:14:57,650 --> 00:14:59,980
+though the two sides will not really be able
+
+349
+00:14:59,980 --> 00:15:02,250
+to interact with each other and typically,
+
+350
+00:15:02,250 --> 00:15:06,023
+you will probably migrate an entire component.
+
+351
+00:15:06,900 --> 00:15:09,390
+Now, regarding the not able to interact
+
+352
+00:15:09,390 --> 00:15:10,456
+with each other point,
+
+353
+00:15:10,456 --> 00:15:14,120
+in the setup method, you don't have access to this.
+
+354
+00:15:14,120 --> 00:15:17,550
+You can't read any data you might have in the data option.
+
+355
+00:15:17,550 --> 00:15:21,700
+You can't access anything with this in here.
+
+356
+00:15:21,700 --> 00:15:23,990
+And this, of course, could be a problem
+
+357
+00:15:23,990 --> 00:15:27,700
+if you are in a component that needs some props
+
+358
+00:15:27,700 --> 00:15:30,840
+because normally, your props are available
+
+359
+00:15:30,840 --> 00:15:32,770
+through the this keyword.
+
+360
+00:15:32,770 --> 00:15:34,380
+Now, we don't need props here
+
+361
+00:15:34,380 --> 00:15:37,410
+but if you would need access to props in setup,
+
+362
+00:15:37,410 --> 00:15:41,840
+the good thing is setup receives a props argument.
+
+363
+00:15:41,840 --> 00:15:45,210
+The first argument you get here is a props object,
+
+364
+00:15:45,210 --> 00:15:48,530
+which holds all the props a component might be getting.
+
+365
+00:15:48,530 --> 00:15:51,200
+This component gets no props, so we don't need it
+
+366
+00:15:51,200 --> 00:15:53,250
+but if you would need it, this is your friend
+
+367
+00:15:53,250 --> 00:15:57,150
+because using this is not possible in setup.
+
+368
+00:15:57,150 --> 00:15:59,120
+Now, for all the other edge cases,
+
+369
+00:15:59,120 --> 00:16:03,180
+like how you could use this.$router and so on,
+
+370
+00:16:03,180 --> 00:16:05,530
+you best visit their official docs
+
+371
+00:16:05,530 --> 00:16:08,150
+or you dive into other resources like my course,
+
+372
+00:16:08,150 --> 00:16:10,970
+for example, because there I dive way deeper
+
+373
+00:16:10,970 --> 00:16:12,710
+into the Composition API
+
+374
+00:16:12,710 --> 00:16:16,270
+and I also cover how to use the router or Vuex
+
+375
+00:16:16,270 --> 00:16:18,300
+with the Composition API.
+
+376
+00:16:18,300 --> 00:16:20,652
+But the core logic hopefully is clear now.
+
+377
+00:16:20,652 --> 00:16:23,960
+We can also practice it again on AddGoal.
+
+378
+00:16:23,960 --> 00:16:28,000
+Here we also have data methods and now a watcher.
+
+379
+00:16:28,000 --> 00:16:32,580
+We can replace all of that with the setup method
+
+380
+00:16:33,870 --> 00:16:35,500
+and now in there, we've got data,
+
+381
+00:16:35,500 --> 00:16:37,700
+two pieces of data and therefore again,
+
+382
+00:16:37,700 --> 00:16:39,900
+here I will use refs.
+
+383
+00:16:39,900 --> 00:16:41,210
+I will import ref
+
+384
+00:16:43,740 --> 00:16:44,740
+from vue
+
+385
+00:16:45,970 --> 00:16:49,563
+and then simply create a new ref with an empty string,
+
+386
+00:16:50,486 --> 00:16:51,990
+which is my enteredText
+
+387
+00:16:53,830 --> 00:16:56,137
+and also the invalidInput,
+
+388
+00:16:58,500 --> 00:17:00,093
+which holds false initially.
+
+389
+00:17:01,020 --> 00:17:03,750
+And then here, we can return enteredText
+
+390
+00:17:05,569 --> 00:17:08,470
+and you can use a JavaScript shorthand here.
+
+391
+00:17:08,470 --> 00:17:12,339
+If the value name and the key name is equal,
+
+392
+00:17:12,339 --> 00:17:14,579
+you can omit the value and the colon
+
+393
+00:17:14,579 --> 00:17:17,589
+and it's automatically expanded to the longer form
+
+394
+00:17:17,589 --> 00:17:18,563
+behind the scenes.
+
+395
+00:17:19,710 --> 00:17:24,300
+And invalidInput is also exposed like this.
+
+396
+00:17:24,300 --> 00:17:27,800
+So now these two refs are exposed to the template.
+
+397
+00:17:27,800 --> 00:17:29,220
+In the template we're using them,
+
+398
+00:17:29,220 --> 00:17:32,550
+for example, for two-way binding but also for v-if.
+
+399
+00:17:32,550 --> 00:17:36,400
+And one important note about refs and the template,
+
+400
+00:17:36,400 --> 00:17:38,350
+in the template, you don't need
+
+401
+00:17:38,350 --> 00:17:41,210
+to access .value to read or write.
+
+402
+00:17:41,210 --> 00:17:43,240
+You don't need to do this here
+
+403
+00:17:43,240 --> 00:17:47,220
+because in the template, Vue automatically drills
+
+404
+00:17:47,220 --> 00:17:49,870
+into that value property for you.
+
+405
+00:17:49,870 --> 00:17:53,870
+So in your JavaScript code, you need to use .value.
+
+406
+00:17:53,870 --> 00:17:55,610
+In the template, you don't.
+
+407
+00:17:55,610 --> 00:17:56,973
+A very simple rule.
+
+408
+00:17:58,060 --> 00:17:59,470
+So now we've got the data,
+
+409
+00:17:59,470 --> 00:18:03,160
+we also need the method, the addGoal method.
+
+410
+00:18:03,160 --> 00:18:05,113
+So I'll just copy this here.
+
+411
+00:18:09,520 --> 00:18:13,793
+And create it as a function like that.
+
+412
+00:18:16,850 --> 00:18:20,260
+Now, here of course, we don't set this invalidInput to false
+
+413
+00:18:20,260 --> 00:18:21,832
+but invalidInput.value.
+
+414
+00:18:21,832 --> 00:18:26,832
+We don't check this.enteredText, but enteredText.value.
+
+415
+00:18:27,100 --> 00:18:30,033
+And we update invalidInput.value again.
+
+416
+00:18:31,640 --> 00:18:36,320
+We also set enteredText.value to an empty string down there.
+
+417
+00:18:36,320 --> 00:18:37,340
+Now, what about emitting?
+
+418
+00:18:37,340 --> 00:18:39,210
+How do we do this if we don't have access
+
+419
+00:18:39,210 --> 00:18:40,483
+to the this keyword?
+
+420
+00:18:41,480 --> 00:18:44,470
+I mentioned that setup receives a props object.
+
+421
+00:18:44,470 --> 00:18:46,830
+It also receives a second parameter,
+
+422
+00:18:46,830 --> 00:18:51,230
+a context object, which holds extra pieces of information
+
+423
+00:18:51,230 --> 00:18:53,320
+or of functionality.
+
+424
+00:18:53,320 --> 00:18:55,632
+And on this context object,
+
+425
+00:18:55,632 --> 00:18:59,490
+you can call emit, however, not with a dollar sign
+
+426
+00:18:59,490 --> 00:19:00,756
+but just like this.
+
+427
+00:19:00,756 --> 00:19:03,880
+Context is an object with an emit method,
+
+428
+00:19:03,880 --> 00:19:06,480
+which allows you to emit a custom event.
+
+429
+00:19:06,480 --> 00:19:09,385
+And here, of course, we emit enteredText.value
+
+430
+00:19:09,385 --> 00:19:10,983
+as a value.
+
+431
+00:19:12,210 --> 00:19:13,810
+Now, I don't need props here
+
+432
+00:19:13,810 --> 00:19:15,870
+so I'll rename this to an underscore
+
+433
+00:19:15,870 --> 00:19:17,800
+so that we still take this argument
+
+434
+00:19:17,800 --> 00:19:20,640
+but I signal that I'm not planning on using it.
+
+435
+00:19:20,640 --> 00:19:23,020
+Otherwise this project setup would complain
+
+436
+00:19:23,020 --> 00:19:24,623
+about an unused argument.
+
+437
+00:19:25,640 --> 00:19:27,640
+But with that, we added this function
+
+438
+00:19:27,640 --> 00:19:31,663
+and we can also expose that under its name to the template.
+
+439
+00:19:33,160 --> 00:19:34,790
+Now, what about the watcher?
+
+440
+00:19:34,790 --> 00:19:36,460
+Here, this watcher.
+
+441
+00:19:36,460 --> 00:19:39,110
+We can also set up watchers with the Composition API.
+
+442
+00:19:40,490 --> 00:19:44,130
+You can import watch from Vue for that
+
+443
+00:19:44,130 --> 00:19:46,350
+and simply call watch
+
+444
+00:19:47,740 --> 00:19:49,403
+in your setup method.
+
+445
+00:19:50,260 --> 00:19:53,940
+Now, watch takes two arguments.
+
+446
+00:19:53,940 --> 00:19:58,240
+The first argument is the dependency of the watcher.
+
+447
+00:19:58,240 --> 00:20:00,190
+The second argument is the function
+
+448
+00:20:00,190 --> 00:20:04,240
+that should be executed when that dependency changed.
+
+449
+00:20:04,240 --> 00:20:05,595
+So here in this case,
+
+450
+00:20:05,595 --> 00:20:08,940
+we have this logic here in the watcher.
+
+451
+00:20:08,940 --> 00:20:13,343
+This if check where I want to log the invalidInput output.
+
+452
+00:20:14,850 --> 00:20:15,683
+Like this.
+
+453
+00:20:16,830 --> 00:20:18,100
+And this should be locked
+
+454
+00:20:18,100 --> 00:20:20,700
+whenever invalidInput changed.
+
+455
+00:20:20,700 --> 00:20:23,530
+So invalidInput is our dependency.
+
+456
+00:20:23,530 --> 00:20:26,710
+Not .value but just the entire ref.
+
+457
+00:20:26,710 --> 00:20:29,080
+For a watcher, if you provide a ref,
+
+458
+00:20:29,080 --> 00:20:33,240
+Vue will automatically drill into the value property.
+
+459
+00:20:33,240 --> 00:20:35,410
+And whenever this value changes,
+
+460
+00:20:35,410 --> 00:20:37,670
+this function will now be executed.
+
+461
+00:20:37,670 --> 00:20:40,720
+And here we also get access to the latest value.
+
+462
+00:20:40,720 --> 00:20:42,800
+We also get access to the oldValue
+
+463
+00:20:42,800 --> 00:20:45,860
+if we wanted it as a second argument.
+
+464
+00:20:45,860 --> 00:20:47,420
+Now we then can run this code
+
+465
+00:20:47,420 --> 00:20:48,690
+and we should print this
+
+466
+00:20:48,690 --> 00:20:52,053
+to the console whenever this changed and is true.
+
+467
+00:20:53,200 --> 00:20:54,033
+And that's it.
+
+468
+00:20:54,033 --> 00:20:55,628
+If we now saved that all
+
+469
+00:20:55,628 --> 00:20:59,340
+and reload here and open the console
+
+470
+00:20:59,340 --> 00:21:01,560
+to see our log from the watcher,
+
+471
+00:21:01,560 --> 00:21:04,480
+I can add learn Vue and this works.
+
+472
+00:21:04,480 --> 00:21:06,370
+But if I click Add Goal like this,
+
+473
+00:21:06,370 --> 00:21:07,800
+I get my error here
+
+474
+00:21:07,800 --> 00:21:10,470
+and this watcher console.log
+
+475
+00:21:10,470 --> 00:21:13,700
+every time I press this without a value.
+
+476
+00:21:13,700 --> 00:21:14,533
+And then, of course,
+
+477
+00:21:14,533 --> 00:21:16,840
+I can also enter a valid value again.
+
+478
+00:21:16,840 --> 00:21:21,220
+So now we migrated this to the Composition API as well.
+
+479
+00:21:21,220 --> 00:21:24,540
+Now, when it comes to App.vue and GoalsList,
+
+480
+00:21:24,540 --> 00:21:26,540
+there's nothing we need to migrate here
+
+481
+00:21:26,540 --> 00:21:28,450
+because we're not using data methods,
+
+482
+00:21:28,450 --> 00:21:30,340
+computed or a watcher here.
+
+483
+00:21:30,340 --> 00:21:33,700
+And when it comes to props or components,
+
+484
+00:21:33,700 --> 00:21:37,830
+these options are not touched by the Composition API.
+
+485
+00:21:37,830 --> 00:21:39,530
+If you use the Composition API
+
+486
+00:21:39,530 --> 00:21:41,300
+instead of the Options API,
+
+487
+00:21:41,300 --> 00:21:44,270
+it's really just mainly about data, methods,
+
+488
+00:21:44,270 --> 00:21:45,830
+computed and watch.
+
+489
+00:21:45,830 --> 00:21:48,457
+Lifecycle hooks are also used a bit differently
+
+490
+00:21:48,457 --> 00:21:51,230
+but that's also not something I'll dive into here.
+
+491
+00:21:51,230 --> 00:21:53,150
+You can check out the official docs
+
+492
+00:21:53,150 --> 00:21:55,700
+or my course to learn all about that
+
+493
+00:21:55,700 --> 00:21:56,860
+but with this video,
+
+494
+00:21:56,860 --> 00:21:58,880
+you hopefully got a good introduction
+
+495
+00:21:58,880 --> 00:22:00,829
+to the Composition API.
+
+496
+00:22:00,829 --> 00:22:04,310
+And now to circle back to the beginning of the video
+
+497
+00:22:04,310 --> 00:22:07,170
+that the Composition API can help us
+
+498
+00:22:07,170 --> 00:22:10,440
+in bigger projects and bigger components,
+
+499
+00:22:10,440 --> 00:22:12,593
+here's that example from the beginning again
+
+500
+00:22:12,593 --> 00:22:14,670
+what you find in my course.
+
+501
+00:22:14,670 --> 00:22:17,690
+There we had ProjectsList and UserList
+
+502
+00:22:17,690 --> 00:22:20,860
+and I mentioned that with the Options API,
+
+503
+00:22:20,860 --> 00:22:24,270
+the different kinds of logic were scattered out
+
+504
+00:22:24,270 --> 00:22:28,510
+and reusing logic was difficult or cumbersome.
+
+505
+00:22:28,510 --> 00:22:31,693
+Now, I migrated it to the Composition API
+
+506
+00:22:31,693 --> 00:22:34,310
+and now the advantage could be
+
+507
+00:22:34,310 --> 00:22:38,450
+that we know have all the search logic in one place.
+
+508
+00:22:38,450 --> 00:22:41,430
+Actually here in a custom hook,
+
+509
+00:22:41,430 --> 00:22:44,910
+in a custom composition function, which I created,
+
+510
+00:22:44,910 --> 00:22:48,000
+which now contains the search data,
+
+511
+00:22:48,000 --> 00:22:51,450
+the search computed property, the search watcher,
+
+512
+00:22:51,450 --> 00:22:53,200
+the search function
+
+513
+00:22:53,200 --> 00:22:55,730
+and exposes all that to the place
+
+514
+00:22:55,730 --> 00:22:59,110
+where this custom hook, this custom function is used.
+
+515
+00:22:59,110 --> 00:23:00,659
+For example, the UserList
+
+516
+00:23:00,659 --> 00:23:04,470
+and I can simply call my custom function here
+
+517
+00:23:04,470 --> 00:23:07,140
+to get access to all that data and so on,
+
+518
+00:23:07,140 --> 00:23:09,400
+which is managed inside in that function.
+
+519
+00:23:09,400 --> 00:23:12,439
+And I can still expose it in this setup method
+
+520
+00:23:12,439 --> 00:23:14,850
+to the template of this component.
+
+521
+00:23:14,850 --> 00:23:18,460
+And I can use the very same reusable hook
+
+522
+00:23:18,460 --> 00:23:21,770
+or composable custom composition function,
+
+523
+00:23:21,770 --> 00:23:23,410
+whatever you wanna call it
+
+524
+00:23:23,410 --> 00:23:26,330
+in ProjectsList, for example.
+
+525
+00:23:26,330 --> 00:23:30,110
+And that can be the benefit of the Composition API.
+
+526
+00:23:30,110 --> 00:23:33,060
+It allows you to write elegant code like this,
+
+527
+00:23:33,060 --> 00:23:35,910
+reuse logic and have all the logic
+
+528
+00:23:35,910 --> 00:23:39,600
+and all the data that belongs together in one place.
+
+529
+00:23:39,600 --> 00:23:43,293
+It's optional but in bigger projects, it could be useful.
+

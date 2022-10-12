@@ -1,0 +1,724 @@
+1
+00:00:02,440 --> 00:00:06,300
+So for that, let's go to coach registration,
+
+2
+00:00:06,300 --> 00:00:10,340
+and replace this dummy text with a proper template.
+
+3
+00:00:10,340 --> 00:00:12,910
+Here, I want to have a section, let's say,
+
+4
+00:00:12,910 --> 00:00:17,910
+where I say an h2 tag, register as a coach now,
+
+5
+00:00:21,210 --> 00:00:25,270
+and below that, I wanna have the entire form for signing up.
+
+6
+00:00:25,270 --> 00:00:28,700
+Eventually, this component will grow a little bit,
+
+7
+00:00:28,700 --> 00:00:31,780
+later once we add HTTP requests.
+
+8
+00:00:31,780 --> 00:00:33,880
+Therefore I will outsource this form into
+
+9
+00:00:33,880 --> 00:00:36,110
+a separate component right away.
+
+10
+00:00:36,110 --> 00:00:41,110
+Add the coachform.vue file here in components coaches,
+
+11
+00:00:41,710 --> 00:00:44,393
+and then we'll have the actual form in there.
+
+12
+00:00:45,330 --> 00:00:46,910
+So here in the template,
+
+13
+00:00:46,910 --> 00:00:48,810
+I want to have a form element of course,
+
+14
+00:00:48,810 --> 00:00:51,840
+because we'll well, have a form in here.
+
+15
+00:00:51,840 --> 00:00:54,290
+This form needs a couple of controls,
+
+16
+00:00:54,290 --> 00:00:58,100
+because every coach has a first and last name,
+
+17
+00:00:58,100 --> 00:01:00,450
+areas of expertise, a description,
+
+18
+00:01:00,450 --> 00:01:02,560
+and an hourly rate.
+
+19
+00:01:02,560 --> 00:01:05,403
+We need these input fields in our form.
+
+20
+00:01:06,240 --> 00:01:08,810
+Hence here, I'll get started by adding
+
+21
+00:01:08,810 --> 00:01:12,180
+a div with a class of form-control,
+
+22
+00:01:12,180 --> 00:01:14,403
+which is important for styling later.
+
+23
+00:01:15,540 --> 00:01:20,220
+Where I now add a label saying first name,
+
+24
+00:01:20,220 --> 00:01:24,050
+and below that input field with a type of text
+
+25
+00:01:25,640 --> 00:01:30,550
+and let's say an ID of first name therefore this label,
+
+26
+00:01:30,550 --> 00:01:32,530
+it gets the for attribute and points
+
+27
+00:01:32,530 --> 00:01:34,773
+at this element with this ID.
+
+28
+00:01:36,660 --> 00:01:38,540
+Then I'm going to duplicate this
+
+29
+00:01:38,540 --> 00:01:42,160
+because we also of course need a last name.
+
+30
+00:01:42,160 --> 00:01:46,620
+So here is last name on the second input,
+
+31
+00:01:46,620 --> 00:01:51,280
+and then we also need an input for the description.
+
+32
+00:01:51,280 --> 00:01:55,700
+Duplicate it again for the description here,
+
+33
+00:01:55,700 --> 00:01:58,120
+pointing at description, but now here
+
+34
+00:01:58,120 --> 00:02:01,630
+it's not an input, but let's say a text area element.
+
+35
+00:02:01,630 --> 00:02:04,200
+So that we have a multi-line input.
+
+36
+00:02:04,200 --> 00:02:06,720
+I'll give that an idea of description
+
+37
+00:02:06,720 --> 00:02:08,803
+and let's say five rows.
+
+38
+00:02:11,460 --> 00:02:14,320
+Then again, I'm going to copy the default input here
+
+39
+00:02:15,420 --> 00:02:19,710
+and set up the hourly rate input field,
+
+40
+00:02:19,710 --> 00:02:22,720
+so here the ID is rate,
+
+41
+00:02:22,720 --> 00:02:26,810
+and the type here can be number, or should be number
+
+42
+00:02:26,810 --> 00:02:29,900
+to make sure that well, we allow the user
+
+43
+00:02:29,900 --> 00:02:32,403
+to enter a number here in a pleasant way.
+
+44
+00:02:34,270 --> 00:02:37,420
+Now as a last step, users should be able
+
+45
+00:02:37,420 --> 00:02:40,820
+to choose their area of expertise.
+
+46
+00:02:40,820 --> 00:02:44,220
+Now that means that I wanna have free checkboxes
+
+47
+00:02:44,220 --> 00:02:47,500
+where users can check the expertise they have.
+
+48
+00:02:47,500 --> 00:02:49,820
+So front and back and then career,
+
+49
+00:02:49,820 --> 00:02:52,060
+and you can select as many as you know,
+
+50
+00:02:52,060 --> 00:02:54,610
+or as many as you feel comfortable teaching others.
+
+51
+00:02:55,820 --> 00:02:59,120
+So therefore again, I'll add a div here,
+
+52
+00:02:59,120 --> 00:03:02,653
+with a class of form control, this doesn't change.
+
+53
+00:03:05,534 --> 00:03:08,767
+But inside of here, I now first of all want
+
+54
+00:03:08,767 --> 00:03:11,640
+to have a h3 tag where I say,
+
+55
+00:03:11,640 --> 00:03:15,030
+areas of expertise to let the user know
+
+56
+00:03:15,030 --> 00:03:17,970
+what these checkboxes will be about,
+
+57
+00:03:17,970 --> 00:03:20,900
+then I'll have more divs in there.
+
+58
+00:03:20,900 --> 00:03:24,593
+Every div then holds an input of type checkbox,
+
+59
+00:03:25,570 --> 00:03:27,970
+and this first one, will have an ideal front-end
+
+60
+00:03:29,060 --> 00:03:31,130
+and a value of front-end,
+
+61
+00:03:31,130 --> 00:03:33,040
+the value will be important later
+
+62
+00:03:33,040 --> 00:03:36,826
+for retrieving the checkboxes.
+
+63
+00:03:36,826 --> 00:03:41,826
+After the input, also a label for front-end in this case,
+
+64
+00:03:44,150 --> 00:03:46,520
+where I'll say front-end development,
+
+65
+00:03:46,520 --> 00:03:49,173
+letting the user know what this checkbox means.
+
+66
+00:03:50,840 --> 00:03:54,270
+Now we replicate this twice,
+
+67
+00:03:54,270 --> 00:03:57,130
+to also have a checkbox for back-end
+
+68
+00:03:57,130 --> 00:04:02,130
+with a value of back-end for back-end,
+
+69
+00:04:05,200 --> 00:04:08,233
+and here saying back-end development.
+
+70
+00:04:09,680 --> 00:04:11,400
+Then on the last checkbox here,
+
+71
+00:04:11,400 --> 00:04:14,990
+I say career, with a value of Career,
+
+72
+00:04:14,990 --> 00:04:19,990
+for a career and saying career advisory maybe.
+
+73
+00:04:24,123 --> 00:04:28,190
+These are the different checkboxes here,
+
+74
+00:04:28,190 --> 00:04:32,670
+now with that, below all those divs,
+
+75
+00:04:32,670 --> 00:04:34,520
+I'll add a base-button,
+
+76
+00:04:34,520 --> 00:04:37,120
+which will be the submit button in the end,
+
+77
+00:04:37,120 --> 00:04:39,163
+where I simply say register.
+
+78
+00:04:40,420 --> 00:04:41,830
+Now that's the basic form.
+
+79
+00:04:41,830 --> 00:04:43,720
+We'll come back to that markup later,
+
+80
+00:04:43,720 --> 00:04:45,360
+we also need to add bindings
+
+81
+00:04:45,360 --> 00:04:47,960
+and I also wanna add validation later,
+
+82
+00:04:47,960 --> 00:04:49,530
+but that's a start.
+
+83
+00:04:49,530 --> 00:04:51,760
+With that form created now,
+
+84
+00:04:51,760 --> 00:04:56,520
+we can add our script area here, our script block,
+
+85
+00:04:56,520 --> 00:04:58,520
+and add some data here.
+
+86
+00:04:58,520 --> 00:05:00,950
+So here I return the data object
+
+87
+00:05:00,950 --> 00:05:04,740
+and in there, I of course want to manage a first name
+
+88
+00:05:05,630 --> 00:05:07,860
+and a last name field,
+
+89
+00:05:07,860 --> 00:05:11,360
+which we will bind with the model later,
+
+90
+00:05:11,360 --> 00:05:14,340
+add a description and a rate
+
+91
+00:05:14,340 --> 00:05:16,640
+which initially is null let's say,
+
+92
+00:05:16,640 --> 00:05:21,640
+areas which initially is an empty array and that is it.
+
+93
+00:05:23,260 --> 00:05:25,350
+Now we can bind these data properties
+
+94
+00:05:25,350 --> 00:05:27,000
+with two way binding.
+
+95
+00:05:27,000 --> 00:05:29,280
+So here, on the first input with the model,
+
+96
+00:05:29,280 --> 00:05:31,810
+I bind this to first name,
+
+97
+00:05:31,810 --> 00:05:34,803
+which is that first name data property we just added.
+
+98
+00:05:35,670 --> 00:05:37,260
+Then here on the second input,
+
+99
+00:05:37,260 --> 00:05:40,910
+I of course, bind it to last name,
+
+100
+00:05:40,910 --> 00:05:45,423
+here on the text area that is bound to description,
+
+101
+00:05:50,950 --> 00:05:54,810
+and here the rate that is bound to rate.
+
+102
+00:05:54,810 --> 00:05:57,090
+Now here I will use the number modifier
+
+103
+00:05:57,090 --> 00:05:59,540
+to force a conversion to number,
+
+104
+00:05:59,540 --> 00:06:01,780
+I showed you that this should happen automatically
+
+105
+00:06:01,780 --> 00:06:04,110
+if the type is number but to be super safe,
+
+106
+00:06:04,110 --> 00:06:07,250
+I'll force it here, and whilst we're at it,
+
+107
+00:06:07,250 --> 00:06:11,490
+I'll actually add trim on the other V model such as,
+
+108
+00:06:11,490 --> 00:06:13,873
+so that we always trim excess whitespace,
+
+109
+00:06:17,150 --> 00:06:20,150
+and with that only the checkboxes are left,
+
+110
+00:06:20,150 --> 00:06:21,760
+Here we can also use V model
+
+111
+00:06:21,760 --> 00:06:23,610
+as you learned earlier in the course,
+
+112
+00:06:23,610 --> 00:06:27,380
+here we can bind this to areas,
+
+113
+00:06:27,380 --> 00:06:31,660
+here we bind to the same property on all checkboxes,
+
+114
+00:06:31,660 --> 00:06:33,860
+of course, because they all belong together.
+
+115
+00:06:35,280 --> 00:06:39,290
+Now with that, I'll go down to the script part again
+
+116
+00:06:39,290 --> 00:06:42,340
+and add a method, a method that should be triggered
+
+117
+00:06:42,340 --> 00:06:44,230
+when the form is submitted.
+
+118
+00:06:44,230 --> 00:06:47,183
+Hence, I'll name it, submit form.
+
+119
+00:06:48,638 --> 00:06:52,680
+In here, we will later validate the form,
+
+120
+00:06:52,680 --> 00:06:54,180
+but for the moment, I'll just create
+
+121
+00:06:54,180 --> 00:06:56,260
+a form data object
+
+122
+00:06:56,260 --> 00:06:59,320
+where I group all those values together.
+
+123
+00:06:59,320 --> 00:07:01,390
+Here, I wanna have a first key,
+
+124
+00:07:01,390 --> 00:07:03,730
+which points at this first name,
+
+125
+00:07:03,730 --> 00:07:06,970
+a last key, which points to this last name,
+
+126
+00:07:06,970 --> 00:07:10,460
+a desk key, which points at this description.
+
+127
+00:07:10,460 --> 00:07:12,330
+You could use the same names of course here,
+
+128
+00:07:12,330 --> 00:07:14,040
+but I'll go with these names
+
+129
+00:07:14,040 --> 00:07:16,470
+I will also use these names later in the course.
+
+130
+00:07:16,470 --> 00:07:19,763
+So maybe you should stick to them to follow along smoothly.
+
+131
+00:07:20,620 --> 00:07:25,533
+bind the rate to this rate, and areas to this areas.
+
+132
+00:07:27,050 --> 00:07:29,600
+For the moment, I'll just console.log,
+
+133
+00:07:29,600 --> 00:07:32,613
+my form data here to see whether that worked.
+
+134
+00:07:34,110 --> 00:07:37,460
+Now it's submit form which is bound here,
+
+135
+00:07:37,460 --> 00:07:40,390
+to the submit event on the form element
+
+136
+00:07:40,390 --> 00:07:42,370
+where I used the prevent modifier
+
+137
+00:07:42,370 --> 00:07:46,670
+to prevent the default of an automatic request being sent
+
+138
+00:07:46,670 --> 00:07:48,170
+to a server that doesn't exist
+
+139
+00:07:48,170 --> 00:07:50,670
+which I don't want here and bind this
+
+140
+00:07:50,670 --> 00:07:52,310
+to submit form like that.
+
+141
+00:07:54,200 --> 00:07:58,520
+Now we can use the coach form here in coach registration,
+
+142
+00:07:58,520 --> 00:08:00,220
+so there in the script area,
+
+143
+00:08:00,220 --> 00:08:05,220
+we import coachform from going up and going up
+
+144
+00:08:06,770 --> 00:08:10,193
+to components, coaches, coachform.vue,
+
+145
+00:08:14,160 --> 00:08:17,423
+then adding this here to the components option like that.
+
+146
+00:08:18,500 --> 00:08:21,950
+Now we can simply add the coachform
+
+147
+00:08:21,950 --> 00:08:26,863
+as a HTML element, so to say here in coach registration.
+
+148
+00:08:28,070 --> 00:08:31,180
+If we load this, we see this form.
+
+149
+00:08:31,180 --> 00:08:33,070
+Now it's of course super ugly,
+
+150
+00:08:33,070 --> 00:08:35,360
+so there are two changes I wanna make.
+
+151
+00:08:35,360 --> 00:08:39,470
+First of all, in coach registration in this section,
+
+152
+00:08:39,470 --> 00:08:43,923
+use the base-card to wrap the h2 tag and the form,
+
+153
+00:08:45,080 --> 00:08:47,930
+and inside of coachform, I of course prepared
+
+154
+00:08:47,930 --> 00:08:50,510
+a couple of styles which we can use.
+
+155
+00:08:50,510 --> 00:08:55,510
+Here at the bottom, we add scoped styling as always,
+
+156
+00:08:57,940 --> 00:08:59,660
+then attach to find styles
+
+157
+00:08:59,660 --> 00:09:01,000
+which you should copy in here.
+
+158
+00:09:01,000 --> 00:09:03,030
+The coachform CSS file.
+
+159
+00:09:03,030 --> 00:09:05,940
+There are some styles which we're not even using yet,
+
+160
+00:09:05,940 --> 00:09:07,730
+like the invalid styles,
+
+161
+00:09:07,730 --> 00:09:11,620
+but we will need them later once we add form validation.
+
+162
+00:09:11,620 --> 00:09:13,210
+With that, if you save this,
+
+163
+00:09:13,210 --> 00:09:15,610
+this all looks much nicer,
+
+164
+00:09:15,610 --> 00:09:19,030
+now we got our registration form in place.
+
+165
+00:09:19,030 --> 00:09:20,900
+If I click Register,
+
+166
+00:09:20,900 --> 00:09:24,500
+I print an empty object here, and I get a warning,
+
+167
+00:09:24,500 --> 00:09:27,710
+which we can ignore here for the moment.
+
+168
+00:09:27,710 --> 00:09:29,483
+But I'm getting this object here,
+
+169
+00:09:31,970 --> 00:09:34,320
+in this object, we see of course,
+
+170
+00:09:34,320 --> 00:09:35,420
+that everything is empty
+
+171
+00:09:35,420 --> 00:09:37,200
+because we haven't entered anything.
+
+172
+00:09:37,200 --> 00:09:41,483
+So if I clear this now and do enter some values here,
+
+173
+00:09:44,560 --> 00:09:47,160
+like that, and register this.
+
+174
+00:09:47,160 --> 00:09:50,180
+Now we see our values here, in areas
+
+175
+00:09:50,180 --> 00:09:53,050
+which is wrapped by a proxy to be reactive,
+
+176
+00:09:53,050 --> 00:09:55,800
+we see front-end and career being checked,
+
+177
+00:09:55,800 --> 00:09:58,090
+we see the other data as well and therefore,
+
+178
+00:09:58,090 --> 00:10:01,330
+we are ready to pass that data on
+
+179
+00:10:01,330 --> 00:10:05,010
+to coach registration, and in there,
+
+180
+00:10:05,010 --> 00:10:07,320
+then use it to create a new coach
+
+181
+00:10:07,320 --> 00:10:11,063
+in our view x store, that's what we're going to do next.
+

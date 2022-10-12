@@ -1,0 +1,352 @@
+1
+00:00:02,200 --> 00:00:04,300
+To install this routing package
+
+2
+00:00:04,300 --> 00:00:06,410
+quits this running development server
+
+3
+00:00:06,410 --> 00:00:08,890
+by pressing control see here,
+
+4
+00:00:08,890 --> 00:00:13,890
+and then run NPM install - - save, Vue-router.
+
+5
+00:00:14,370 --> 00:00:18,320
+This is another package developed by the official vue team.
+
+6
+00:00:18,320 --> 00:00:20,120
+So it's an official package,
+
+7
+00:00:20,120 --> 00:00:22,770
+which you can add to your Vue projects
+
+8
+00:00:22,770 --> 00:00:25,563
+to add this routing functionality.
+
+9
+00:00:27,070 --> 00:00:28,620
+Now this will install this package
+
+10
+00:00:28,620 --> 00:00:30,900
+and once you're done installing it,
+
+11
+00:00:30,900 --> 00:00:34,720
+you can restart your development server with NPM run serve
+
+12
+00:00:34,720 --> 00:00:38,853
+but now we'll be able to add a routing to this application.
+
+13
+00:00:39,880 --> 00:00:42,680
+And what does this mean add routing?
+
+14
+00:00:42,680 --> 00:00:45,130
+Well, now we can go to main JS
+
+15
+00:00:45,130 --> 00:00:49,020
+where we create our main Vue app this single app,
+
+16
+00:00:49,020 --> 00:00:50,350
+which we have here in the end.
+
+17
+00:00:50,350 --> 00:00:54,910
+And on this app, we can now register this router,
+
+18
+00:00:54,910 --> 00:00:56,360
+which we just installed
+
+19
+00:00:56,360 --> 00:00:58,210
+and more importantly,
+
+20
+00:00:58,210 --> 00:01:00,630
+the routes we wanna have in this project.
+
+21
+00:01:00,630 --> 00:01:04,462
+So simply the different URLs we wanna support.
+
+22
+00:01:05,850 --> 00:01:08,710
+And to do that we need to import something
+
+23
+00:01:08,710 --> 00:01:10,540
+from Vue-router
+
+24
+00:01:10,540 --> 00:01:13,500
+so from this newly installed package
+
+25
+00:01:13,500 --> 00:01:18,500
+and that this something is a function create Router
+
+26
+00:01:19,100 --> 00:01:22,460
+so we have create app from Vue to create a Vue app.
+
+27
+00:01:22,460 --> 00:01:25,670
+We have create router from Vue router to create a router
+
+28
+00:01:25,670 --> 00:01:26,743
+for such an app.
+
+29
+00:01:28,040 --> 00:01:30,720
+We can now create the router here for example,
+
+30
+00:01:30,720 --> 00:01:33,650
+simply by creating a new constant router,
+
+31
+00:01:33,650 --> 00:01:36,680
+sounds like a fitting name and calling create router
+
+32
+00:01:36,680 --> 00:01:41,210
+and storing the result of that call in this constant,
+
+33
+00:01:41,210 --> 00:01:43,760
+but create router needs some configuration
+
+34
+00:01:43,760 --> 00:01:46,810
+now it needs to know which different routes
+
+35
+00:01:46,810 --> 00:01:49,800
+so which different URLs we wanna support
+
+36
+00:01:49,800 --> 00:01:52,160
+and we can also set up more things.
+
+37
+00:01:52,160 --> 00:01:56,590
+So for that, you pass a JavaScript object to create router
+
+38
+00:01:56,590 --> 00:02:00,890
+and in that object, we now got two important options,
+
+39
+00:02:01,860 --> 00:02:06,180
+which we can set the obvious important option is the
+
+40
+00:02:06,180 --> 00:02:07,500
+routes option.
+
+41
+00:02:07,500 --> 00:02:11,370
+Here we register all the routes, the different paths,
+
+42
+00:02:11,370 --> 00:02:15,850
+the different URLs you could say which you wanna to support
+
+43
+00:02:15,850 --> 00:02:17,900
+this will be an array because typically
+
+44
+00:02:17,900 --> 00:02:20,950
+it's not just one route which you want to have in your app
+
+45
+00:02:20,950 --> 00:02:23,560
+if that would be the case, you don't need to router
+
+46
+00:02:23,560 --> 00:02:25,650
+so we'll have an array full of routes in here
+
+47
+00:02:25,650 --> 00:02:27,580
+and I will come back to this route conflict
+
+48
+00:02:27,580 --> 00:02:28,793
+in just a second,
+
+49
+00:02:29,670 --> 00:02:32,510
+but there also is another option which you should set.
+
+50
+00:02:32,510 --> 00:02:35,030
+And that's the history option.
+
+51
+00:02:35,030 --> 00:02:37,816
+Now that is basically telling the router
+
+52
+00:02:37,816 --> 00:02:42,816
+how to manage the routing history in this app
+
+53
+00:02:43,320 --> 00:02:46,960
+so when a user clicks somewhere goes to a different page,
+
+54
+00:02:46,960 --> 00:02:51,080
+then this new page is added to the browsing history
+
+55
+00:02:51,080 --> 00:02:54,240
+you could say and if the user then clicks a back button,
+
+56
+00:02:54,240 --> 00:02:56,750
+the history makes sure that well,
+
+57
+00:02:56,750 --> 00:03:00,210
+the router knows what the last page was.
+
+58
+00:03:00,210 --> 00:03:03,550
+And there are two different kinds of history
+
+59
+00:03:03,550 --> 00:03:04,820
+you could use here.
+
+60
+00:03:04,820 --> 00:03:09,020
+and we want to import another function from you router here
+
+61
+00:03:09,020 --> 00:03:12,120
+and that stick, create web history function,
+
+62
+00:03:12,120 --> 00:03:15,340
+which we then call here as a history option.
+
+63
+00:03:15,340 --> 00:03:16,980
+Now this might sound confusing,
+
+64
+00:03:16,980 --> 00:03:19,810
+but historically Java script in the browser,
+
+65
+00:03:19,810 --> 00:03:24,810
+wasn't always able to manipulate to browsers memory
+
+66
+00:03:24,880 --> 00:03:26,780
+on which page the user is on
+
+67
+00:03:26,780 --> 00:03:28,500
+and where the user came from.
+
+68
+00:03:28,500 --> 00:03:31,410
+Therefore, historically the router
+
+69
+00:03:31,410 --> 00:03:34,910
+had to emulate this behavior you could say,
+
+70
+00:03:34,910 --> 00:03:38,580
+and we didn't use the built in browser history,
+
+71
+00:03:38,580 --> 00:03:41,060
+but since a couple of years, does this no problem
+
+72
+00:03:41,060 --> 00:03:44,690
+and with create web history by calling this function,
+
+73
+00:03:44,690 --> 00:03:45,830
+we tell the router,
+
+74
+00:03:45,830 --> 00:03:49,060
+Hey, just use the browsers built in mechanism
+
+75
+00:03:49,060 --> 00:03:52,570
+for remembering where to user came from and so on.
+
+76
+00:03:52,570 --> 00:03:54,840
+And that's the end what we're telling the router here
+
+77
+00:03:54,840 --> 00:03:58,143
+use to build in browser support simple has that.
+
+78
+00:03:59,200 --> 00:04:01,900
+Now that's all we got to do related to that.
+
+79
+00:04:01,900 --> 00:04:04,480
+Now we can focus on those routes
+
+80
+00:04:04,480 --> 00:04:06,750
+because that's the heart of the router
+
+81
+00:04:06,750 --> 00:04:10,110
+here we'll be able to tell the router
+
+82
+00:04:10,110 --> 00:04:13,100
+which Vue component should be loaded
+
+83
+00:04:13,100 --> 00:04:17,220
+for which URL ,because ultimately that will be our goal.
+
+84
+00:04:17,220 --> 00:04:19,339
+We wanna to load the team's component,
+
+85
+00:04:19,339 --> 00:04:23,470
+let's say when we're on our domain slash teams
+
+86
+00:04:23,470 --> 00:04:25,730
+and we wanna load to the users component,
+
+87
+00:04:25,730 --> 00:04:30,260
+let's say when we are on our domain slash users,
+
+88
+00:04:30,260 --> 00:04:34,483
+so let's work on registering routes and loading them next.
+

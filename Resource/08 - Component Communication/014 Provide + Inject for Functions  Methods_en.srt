@@ -1,0 +1,280 @@
+1
+00:00:02,460 --> 00:00:06,010
+So can we use provide inject also for custom events?
+
+2
+00:00:06,010 --> 00:00:08,050
+The answer is yes,
+
+3
+00:00:08,050 --> 00:00:11,800
+but by implementing that a bit differently.
+
+4
+00:00:11,800 --> 00:00:14,850
+We don't have a similar mechanism for events,
+
+5
+00:00:14,850 --> 00:00:19,630
+But we can think about this event thing differently.
+
+6
+00:00:19,630 --> 00:00:22,720
+Ultimately, when a custom event is emitted,
+
+7
+00:00:22,720 --> 00:00:25,630
+we at some point connect a method
+
+8
+00:00:25,630 --> 00:00:29,030
+here in App dot Vue in this case, which should be triggered
+
+9
+00:00:29,030 --> 00:00:30,173
+upon this event.
+
+10
+00:00:31,720 --> 00:00:35,640
+Well, of course, we could also pass such a method
+
+11
+00:00:35,640 --> 00:00:40,480
+with props down to the component where it should be called.
+
+12
+00:00:40,480 --> 00:00:45,430
+So we could remove this SelectTopic custom event here
+
+13
+00:00:45,430 --> 00:00:48,490
+on knowledge base in App dot view.
+
+14
+00:00:48,490 --> 00:00:51,860
+And we could then go to Knowledge-Base
+
+15
+00:00:51,860 --> 00:00:55,290
+and therefore remove it here as well
+
+16
+00:00:55,290 --> 00:00:59,793
+and removed is emits option and the same in knowledgeGrid.
+
+17
+00:01:00,640 --> 00:01:04,117
+Remove this listener here on the KnowledgeElement
+
+18
+00:01:04,117 --> 00:01:06,653
+and remove this emits option.
+
+19
+00:01:07,590 --> 00:01:11,200
+And in knowledgeElement where we emit this
+
+20
+00:01:11,200 --> 00:01:16,040
+also not emitted here, but instead do something else.
+
+21
+00:01:16,040 --> 00:01:19,850
+Instead here, we could expect to get the function
+
+22
+00:01:19,850 --> 00:01:23,430
+that should be called when the button is pressed as props,
+
+23
+00:01:23,430 --> 00:01:27,400
+or in this case, as an injected value.
+
+24
+00:01:27,400 --> 00:01:31,120
+So we can add inject here, and then simply expect
+
+25
+00:01:31,120 --> 00:01:35,177
+any key of our choice any name we pick, for example,
+
+26
+00:01:35,177 --> 00:01:36,177
+SelectTopic,
+
+27
+00:01:37,730 --> 00:01:39,250
+but this name is up to you,
+
+28
+00:01:39,250 --> 00:01:42,423
+and then bind this here to the click.
+
+29
+00:01:43,630 --> 00:01:46,580
+So I expect that select topic,
+
+30
+00:01:46,580 --> 00:01:50,300
+the value which I get injected here is a function
+
+31
+00:01:50,300 --> 00:01:51,133
+in the end.
+
+32
+00:01:51,133 --> 00:01:54,810
+A function, which is then executed when this click occurs.
+
+33
+00:01:54,810 --> 00:01:56,282
+So I point at a function here
+
+34
+00:01:56,282 --> 00:01:59,450
+and I want to get this function as a value
+
+35
+00:01:59,450 --> 00:02:01,863
+for this Provide inject mechanism.
+
+36
+00:02:03,430 --> 00:02:06,950
+Now injecting it is not enough, we also need to provide it.
+
+37
+00:02:06,950 --> 00:02:09,539
+So we can go to App dot view.
+
+38
+00:02:09,539 --> 00:02:12,280
+And there we now need to provide that.
+
+39
+00:02:12,280 --> 00:02:15,430
+Now we got function that should be used
+
+40
+00:02:15,430 --> 00:02:18,170
+for activating a topic.
+
+41
+00:02:18,170 --> 00:02:21,290
+And that is our ActivateTopic method here.
+
+42
+00:02:21,290 --> 00:02:25,730
+So we can provide this SelectTopic key,
+
+43
+00:02:25,730 --> 00:02:27,720
+because that's the key I'm listening to
+
+44
+00:02:27,720 --> 00:02:31,100
+in KnowledgeElement. That's the key I'm injecting there,
+
+45
+00:02:31,100 --> 00:02:33,120
+so it's the key I want to provide
+
+46
+00:02:33,120 --> 00:02:37,580
+and the value for that is this activateTopic.
+
+47
+00:02:37,580 --> 00:02:41,620
+So I'm pointing at this method. I'm not executing it here.
+
+48
+00:02:41,620 --> 00:02:44,270
+I'm just pointing at it to let you know,
+
+49
+00:02:44,270 --> 00:02:48,862
+hey, that method here, ActivateTopic, that is the method
+
+50
+00:02:48,862 --> 00:02:52,200
+and therefore the function you should provide
+
+51
+00:02:52,200 --> 00:02:54,823
+as a value for SelectTopic.
+
+52
+00:02:56,180 --> 00:02:58,730
+And then when SelectTopic is injected
+
+53
+00:02:58,730 --> 00:03:00,720
+here in KnowledgeElement,
+
+54
+00:03:00,720 --> 00:03:02,963
+We can execute it in this component.
+
+55
+00:03:03,970 --> 00:03:07,330
+Now keep in mind that activatesTopic wants to know
+
+56
+00:03:07,330 --> 00:03:11,860
+which ID we selected. So therefore, in KnowledgeElement
+
+57
+00:03:11,860 --> 00:03:14,080
+where I'm pointing at selectTopic
+
+58
+00:03:14,080 --> 00:03:17,350
+as a to be executed function when this is clicked.
+
+59
+00:03:17,350 --> 00:03:20,487
+I should make sure that this ID,
+
+60
+00:03:20,487 --> 00:03:24,710
+which we're getting as a prop conveniently, is provided.
+
+61
+00:03:24,710 --> 00:03:27,070
+So I'm now calling it myself telling view
+
+62
+00:03:27,070 --> 00:03:30,420
+that this is how the function should be called eventually,
+
+63
+00:03:30,420 --> 00:03:34,460
+and that this ID should be provided to the function we get
+
+64
+00:03:34,460 --> 00:03:35,660
+on this selectTopic key.
+
+65
+00:03:37,980 --> 00:03:42,580
+And if we now save that and reload, this is our application,
+
+66
+00:03:42,580 --> 00:03:46,600
+and we can still pick and select the different topics.
+
+67
+00:03:46,600 --> 00:03:49,530
+So now this works without passing props,
+
+68
+00:03:49,530 --> 00:03:52,790
+through multiple components and without emitting
+
+69
+00:03:52,790 --> 00:03:55,670
+our custom event through multiple components.
+
+70
+00:03:55,670 --> 00:03:57,763
+It's simply a different approach.
+

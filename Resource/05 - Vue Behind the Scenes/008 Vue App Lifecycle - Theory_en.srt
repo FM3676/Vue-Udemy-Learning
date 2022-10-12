@@ -1,0 +1,376 @@
+1
+00:00:01,492 --> 00:00:04,550
+Now to concludes this module,
+
+2
+00:00:04,550 --> 00:00:09,080
+we'll have our second lecture, which you should not skip.
+
+3
+00:00:09,080 --> 00:00:11,040
+The first one was the refs lecture.
+
+4
+00:00:11,040 --> 00:00:14,570
+Now we're going to talk about the Vue Instance Lifecycle,
+
+5
+00:00:14,570 --> 00:00:16,460
+which is also important.
+
+6
+00:00:16,460 --> 00:00:18,510
+We learned how Vue works under the hood,
+
+7
+00:00:18,510 --> 00:00:20,280
+we learned about the virtual DOM,
+
+8
+00:00:20,280 --> 00:00:22,200
+and that there are various steps
+
+9
+00:00:22,200 --> 00:00:24,820
+for bringing something onto the screen.
+
+10
+00:00:24,820 --> 00:00:28,940
+Sometimes you need to run code during those steps.
+
+11
+00:00:28,940 --> 00:00:32,400
+And that's why Vue has a quite elaborate life cycle,
+
+12
+00:00:32,400 --> 00:00:34,980
+where you can step in at any time
+
+13
+00:00:34,980 --> 00:00:37,460
+to execute code you need to execute.
+
+14
+00:00:37,460 --> 00:00:40,130
+And you will see some of those lifecycle hooks
+
+15
+00:00:40,130 --> 00:00:42,580
+we're going to discuss now in action
+
+16
+00:00:42,580 --> 00:00:44,650
+throughout this course, by the way.
+
+17
+00:00:44,650 --> 00:00:46,980
+It all starts with us creating a new app.
+
+18
+00:00:46,980 --> 00:00:50,300
+And of course, mounting it with the mount method
+
+19
+00:00:50,300 --> 00:00:52,430
+to the HTML code, to the DOM,
+
+20
+00:00:52,430 --> 00:00:55,870
+so that Vue knows where to render the app.
+
+21
+00:00:55,870 --> 00:00:58,440
+Then, when it starts creating the app,
+
+22
+00:00:58,440 --> 00:01:00,960
+and starts bringing something on to the screen,
+
+23
+00:01:00,960 --> 00:01:05,960
+it reaches a couple of points, a couple of lifecycle phases,
+
+24
+00:01:07,220 --> 00:01:10,760
+which are also reflected in methods
+
+25
+00:01:10,760 --> 00:01:14,500
+you can add to your Vue app configuration object
+
+26
+00:01:14,500 --> 00:01:18,410
+to run code you might need to run at this point of time.
+
+27
+00:01:18,410 --> 00:01:21,190
+For example, the first lifecycle phase,
+
+28
+00:01:21,190 --> 00:01:23,303
+the first so called lifecycle hook
+
+29
+00:01:23,303 --> 00:01:27,600
+that is reached is the beforeCreate phase.
+
+30
+00:01:27,600 --> 00:01:29,890
+It's followed by a created phase.
+
+31
+00:01:29,890 --> 00:01:32,140
+The difference is that beforeCreate
+
+32
+00:01:32,140 --> 00:01:34,880
+is basically called before the app
+
+33
+00:01:34,880 --> 00:01:36,950
+has been fully initialized,
+
+34
+00:01:36,950 --> 00:01:39,630
+whereas created is called thereafter.
+
+35
+00:01:39,630 --> 00:01:41,210
+At this point of time,
+
+36
+00:01:41,210 --> 00:01:43,600
+we still have nothing on the screen though.
+
+37
+00:01:43,600 --> 00:01:47,910
+After created Vue just knows its data properties,
+
+38
+00:01:47,910 --> 00:01:51,163
+and it's aware of the general app configuration.
+
+39
+00:01:52,540 --> 00:01:56,503
+But now's the time where the template is compiled.
+
+40
+00:01:57,390 --> 00:02:00,030
+So where all the dynamic placeholders,
+
+41
+00:02:00,030 --> 00:02:03,280
+all the interpolations and so on are removed
+
+42
+00:02:03,280 --> 00:02:05,570
+and replaced with the concrete values
+
+43
+00:02:05,570 --> 00:02:07,253
+that should be shown to the user.
+
+44
+00:02:08,187 --> 00:02:12,620
+Thereafter the before mount hook is reached
+
+45
+00:02:12,620 --> 00:02:16,250
+Before mount means that this is right before Vue
+
+46
+00:02:16,250 --> 00:02:19,760
+is actually going to bring something to the screen.
+
+47
+00:02:19,760 --> 00:02:23,233
+So right before we can see something on the screen.
+
+48
+00:02:24,170 --> 00:02:28,410
+So now after created and beforeMount, we reach mounted.
+
+49
+00:02:28,410 --> 00:02:30,760
+So that in the end just means that now
+
+50
+00:02:30,760 --> 00:02:32,570
+we see something on the screen.
+
+51
+00:02:32,570 --> 00:02:34,680
+Now the Vue app was initialized
+
+52
+00:02:34,680 --> 00:02:36,420
+the template was compiled,
+
+53
+00:02:36,420 --> 00:02:38,680
+Vue knows what to show on the screen.
+
+54
+00:02:38,680 --> 00:02:42,873
+And it handed those instructions off to the browser,
+
+55
+00:02:42,873 --> 00:02:47,450
+so that the browser really adds all the HTML elements
+
+56
+00:02:47,450 --> 00:02:52,123
+with all the content we need, as defined by our Vue app.
+
+57
+00:02:53,010 --> 00:02:55,190
+So now we have our mounted Vue app,
+
+58
+00:02:55,190 --> 00:02:57,910
+our Mountain Vue Instance.
+
+59
+00:02:57,910 --> 00:03:01,870
+Now of course, in most Vue apps data changes
+
+60
+00:03:01,870 --> 00:03:03,370
+at some point of time.
+
+61
+00:03:03,370 --> 00:03:06,670
+And that then triggers a new life cycle.
+
+62
+00:03:06,670 --> 00:03:09,910
+Now we reach the beforeUpdate hook
+
+63
+00:03:09,910 --> 00:03:13,440
+and there after the updated hook.
+
+64
+00:03:13,440 --> 00:03:16,120
+This is a bit like beforeCreate and created.
+
+65
+00:03:16,120 --> 00:03:19,420
+BeforeUpdate is reached before the update
+
+66
+00:03:19,420 --> 00:03:24,300
+has been fully processed internally by Vue in its app,
+
+67
+00:03:24,300 --> 00:03:28,033
+updated is reached, once that has been processed.
+
+68
+00:03:29,180 --> 00:03:32,410
+This by the way, also means that at this point of time,
+
+69
+00:03:32,410 --> 00:03:35,300
+the update is visible on the screen.
+
+70
+00:03:35,300 --> 00:03:37,510
+So we don't reach mounted again,
+
+71
+00:03:37,510 --> 00:03:40,840
+because the template was never unmounted,
+
+72
+00:03:40,840 --> 00:03:42,650
+so it always was visible.
+
+73
+00:03:42,650 --> 00:03:46,220
+After updated, the changes just have been processed
+
+74
+00:03:46,220 --> 00:03:48,450
+and have been rendered to the screen.
+
+75
+00:03:48,450 --> 00:03:51,023
+Whereas in beforeUpdate, they haven't.
+
+76
+00:03:52,220 --> 00:03:55,030
+Now sometimes, an instance can also be unmounted.
+
+77
+00:03:55,030 --> 00:03:58,210
+A Vue app can be unmounted.
+
+78
+00:03:58,210 --> 00:04:01,160
+We haven't had this scenario yet,
+
+79
+00:04:01,160 --> 00:04:04,360
+it will become more important later, as you will see.
+
+80
+00:04:04,360 --> 00:04:05,740
+But I can also show you
+
+81
+00:04:05,740 --> 00:04:08,900
+how we could unmount an app in the next lecture.
+
+82
+00:04:08,900 --> 00:04:12,700
+When an app is unmounted all its content is removed
+
+83
+00:04:12,700 --> 00:04:15,250
+from the screen and the app is dead.
+
+84
+00:04:15,250 --> 00:04:17,649
+And we have two lifecycle hooks here as well.
+
+85
+00:04:17,649 --> 00:04:20,529
+BeforeUnmount, which runs right before
+
+86
+00:04:20,529 --> 00:04:22,270
+it's about to be removed,
+
+87
+00:04:22,270 --> 00:04:25,630
+and unmounted, which runs after it has been removed.
+
+88
+00:04:25,630 --> 00:04:28,300
+You can for example, use these hooks
+
+89
+00:04:28,300 --> 00:04:31,480
+to execute any cleanup code you might wanna do,
+
+90
+00:04:31,480 --> 00:04:34,240
+send a HTTP request to your server
+
+91
+00:04:34,240 --> 00:04:36,740
+to keep track of that app being unmounted
+
+92
+00:04:36,740 --> 00:04:39,210
+or whatever you need to do.
+
+93
+00:04:39,210 --> 00:04:41,730
+Now let's see all those hooks in action
+
+94
+00:04:41,730 --> 00:04:44,303
+to make it a bit clearer how they work.
+

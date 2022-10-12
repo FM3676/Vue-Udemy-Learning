@@ -1,0 +1,508 @@
+1
+00:00:02,100 --> 00:00:05,230
+So let's make sure Resources can be deleted.
+
+2
+00:00:05,230 --> 00:00:07,720
+For that we got this Delete button here
+
+3
+00:00:07,720 --> 00:00:10,600
+in the learning Resource.view file.
+
+4
+00:00:10,600 --> 00:00:13,408
+At the moment this button isn't doing anything though.
+
+5
+00:00:13,408 --> 00:00:17,850
+Now of course it should remove the Resource
+
+6
+00:00:17,850 --> 00:00:22,040
+on which we click this from our storedResources array
+
+7
+00:00:22,040 --> 00:00:23,778
+in the Resources.
+
+8
+00:00:23,778 --> 00:00:26,740
+Now, since we're using dynamic components,
+
+9
+00:00:26,740 --> 00:00:30,349
+custom events are probably not how we wanna solve this.
+
+10
+00:00:30,349 --> 00:00:35,040
+And therefore, instead I will do it just like we're handling
+
+11
+00:00:35,040 --> 00:00:37,360
+it for adding Resources.
+
+12
+00:00:37,360 --> 00:00:41,920
+I'll add a removeResource method here,
+
+13
+00:00:41,920 --> 00:00:44,770
+where I expect to get that Resource ID
+
+14
+00:00:44,770 --> 00:00:47,590
+of the Resource that should be deleted.
+
+15
+00:00:47,590 --> 00:00:50,353
+And now we need to update our storedResources.
+
+16
+00:00:52,420 --> 00:00:54,310
+Now, there are two ways of doing that,
+
+17
+00:00:54,310 --> 00:00:56,240
+and I will, first of all show you the way
+
+18
+00:00:56,240 --> 00:01:00,196
+that will not work and let you know why it's not working.
+
+19
+00:01:00,196 --> 00:01:04,430
+The first approach would be that we set our storedResources
+
+20
+00:01:04,430 --> 00:01:07,300
+equal to a new array, a new array,
+
+21
+00:01:07,300 --> 00:01:09,930
+which is the rive from storedResources,
+
+22
+00:01:09,930 --> 00:01:13,130
+but where we use the filter method to filter out
+
+23
+00:01:13,130 --> 00:01:15,700
+the Resource that has this ID.
+
+24
+00:01:15,700 --> 00:01:18,730
+For that we could execute a function on every Resource.
+
+25
+00:01:18,730 --> 00:01:21,106
+JavaScript does this for us automatically.
+
+26
+00:01:21,106 --> 00:01:24,689
+And we will ensure that the Resource
+
+27
+00:01:24,689 --> 00:01:26,610
+with the ID we're getting here
+
+28
+00:01:26,610 --> 00:01:29,233
+gets dropped by adding this code.
+
+29
+00:01:30,871 --> 00:01:34,480
+This will indeed if I Console.log this,
+
+30
+00:01:34,480 --> 00:01:36,683
+this will indeed ensure that the Resource
+
+31
+00:01:36,683 --> 00:01:38,403
+is removed from storedResources.
+
+32
+00:01:39,495 --> 00:01:42,120
+We can now provide this function
+
+33
+00:01:42,120 --> 00:01:44,980
+just as we're providing addResource.
+
+34
+00:01:44,980 --> 00:01:47,920
+We can add deleteResource as a key here,
+
+35
+00:01:47,920 --> 00:01:49,570
+and point at this removeResource.
+
+36
+00:01:50,870 --> 00:01:52,910
+Of course you could always use the same names here
+
+37
+00:01:52,910 --> 00:01:54,650
+if you wanted that.
+
+38
+00:01:54,650 --> 00:01:57,081
+And now we can inject deleteResource
+
+39
+00:01:57,081 --> 00:01:59,940
+into the learning Resource component.
+
+40
+00:01:59,940 --> 00:02:03,780
+Here we can now inject deleteResource
+
+41
+00:02:04,630 --> 00:02:06,260
+so this newly added key,
+
+42
+00:02:06,260 --> 00:02:09,580
+which points at the removeResource method.
+
+43
+00:02:09,580 --> 00:02:13,030
+And when the user clicks this button here
+
+44
+00:02:13,030 --> 00:02:15,641
+with a click listener, we point at this
+
+45
+00:02:15,641 --> 00:02:19,153
+deleteResource method, which was injected.
+
+46
+00:02:20,990 --> 00:02:24,700
+Actually we don't just point at it we also execute it.
+
+47
+00:02:24,700 --> 00:02:27,480
+And for that we need the idea of the Resource.
+
+48
+00:02:27,480 --> 00:02:29,843
+So we should expect that as a prop.
+
+49
+00:02:31,500 --> 00:02:34,670
+And once we do get the idea of this Resource as a prop,
+
+50
+00:02:34,670 --> 00:02:37,038
+we can use it here to provide it to this
+
+51
+00:02:37,038 --> 00:02:39,550
+deleteResource method, and therefore
+
+52
+00:02:39,550 --> 00:02:43,193
+to the removeResource method in the Resources.
+
+53
+00:02:44,500 --> 00:02:48,230
+Now we just need to ensure that this ID prop is provided.
+
+54
+00:02:48,230 --> 00:02:51,490
+So in storedResources where we are creating
+
+55
+00:02:51,490 --> 00:02:54,465
+all the learning Resources, there we now also provide
+
+56
+00:02:54,465 --> 00:02:57,293
+this ID prop, which we just added.
+
+57
+00:02:59,700 --> 00:03:02,890
+With that it should work, but you'll notice
+
+58
+00:03:02,890 --> 00:03:06,520
+that if I click Delete, nothing happens.
+
+59
+00:03:06,520 --> 00:03:09,385
+On the other hand if I open the developer tools,
+
+60
+00:03:09,385 --> 00:03:13,230
+we will see that the Resource was deleted.
+
+61
+00:03:13,230 --> 00:03:18,230
+We can actually see this best if I don't log the Resources.
+
+62
+00:03:18,230 --> 00:03:20,163
+But for example, the length here.
+
+63
+00:03:21,010 --> 00:03:23,620
+If the length is one, that means that the Resource
+
+64
+00:03:23,620 --> 00:03:27,125
+was deleted because initially we have a length of two.
+
+65
+00:03:27,125 --> 00:03:28,440
+So let's try this again.
+
+66
+00:03:28,440 --> 00:03:30,590
+If I reload, click Delete, you'll see,
+
+67
+00:03:30,590 --> 00:03:32,135
+we get a length of one.
+
+68
+00:03:32,135 --> 00:03:34,170
+So the Resource was deleted,
+
+69
+00:03:34,170 --> 00:03:36,370
+but we don't see this on the screen.
+
+70
+00:03:36,370 --> 00:03:37,203
+Why?
+
+71
+00:03:38,610 --> 00:03:42,540
+Because of provide inject and how it works.
+
+72
+00:03:42,540 --> 00:03:47,380
+We do provide our storedResources here right.
+
+73
+00:03:47,380 --> 00:03:50,210
+Now, view executes this provide method
+
+74
+00:03:50,210 --> 00:03:52,940
+in the end when it creates this component.
+
+75
+00:03:52,940 --> 00:03:56,526
+So it then injects this storedResources array
+
+76
+00:03:56,526 --> 00:04:00,220
+into all the components that need Resources.
+
+77
+00:04:00,220 --> 00:04:02,550
+The thing is, this is an array,
+
+78
+00:04:02,550 --> 00:04:06,100
+and therefore it's a value stored in memory.
+
+79
+00:04:06,100 --> 00:04:09,410
+It's a reference value in JavaScript.
+
+80
+00:04:09,410 --> 00:04:13,410
+When we change this array by pushing or by unshifting,
+
+81
+00:04:13,410 --> 00:04:15,600
+as we're doing it for adding a Resource
+
+82
+00:04:15,600 --> 00:04:18,269
+that changes the same array in memory,
+
+83
+00:04:18,269 --> 00:04:20,260
+which we originally provided,
+
+84
+00:04:20,260 --> 00:04:22,619
+and therefore view as able to recognize
+
+85
+00:04:22,619 --> 00:04:24,650
+the changes we made to it.
+
+86
+00:04:24,650 --> 00:04:28,000
+And all the places that injected this Resources key,
+
+87
+00:04:28,000 --> 00:04:30,593
+will get notified about those changes.
+
+88
+00:04:32,000 --> 00:04:34,320
+If we however use this approach,
+
+89
+00:04:34,320 --> 00:04:39,243
+I'm overriding this storedResources with a brand new array.
+
+90
+00:04:39,243 --> 00:04:44,040
+And this brand new array is then not reprovided
+
+91
+00:04:44,040 --> 00:04:45,760
+to all the other components.
+
+92
+00:04:45,760 --> 00:04:48,842
+So all the components that inject the Resources
+
+93
+00:04:48,842 --> 00:04:53,023
+are still working with the old, with the original array.
+
+94
+00:04:54,080 --> 00:04:55,910
+So how can we work around that?
+
+95
+00:04:55,910 --> 00:04:59,290
+Well, one easy way of working around that here
+
+96
+00:04:59,290 --> 00:05:02,732
+is that we don't overwrite the old array,
+
+97
+00:05:02,732 --> 00:05:06,850
+but that instead we use a slightly different approach.
+
+98
+00:05:06,850 --> 00:05:10,550
+We get the index of the Resource we wanna delete
+
+99
+00:05:10,550 --> 00:05:12,800
+in our storedResources array.
+
+100
+00:05:12,800 --> 00:05:15,670
+And we can do this with the findIndex method,
+
+101
+00:05:15,670 --> 00:05:18,540
+which exists on JavaScript arrays.
+
+102
+00:05:18,540 --> 00:05:21,630
+Here I wanna find the Resource where the ID
+
+103
+00:05:21,630 --> 00:05:25,300
+is equal to the Resource ID we're getting as a argument.
+
+104
+00:05:25,300 --> 00:05:28,220
+That's then giving us the index of the Resource
+
+105
+00:05:28,220 --> 00:05:29,273
+we wanna delete.
+
+106
+00:05:30,890 --> 00:05:33,320
+And then we can use the splice method
+
+107
+00:05:33,320 --> 00:05:36,770
+on the storedResources array to splice.
+
+108
+00:05:36,770 --> 00:05:40,840
+So to remove this element at this index
+
+109
+00:05:40,840 --> 00:05:42,563
+and just this element.
+
+110
+00:05:44,080 --> 00:05:46,580
+This manipulates the original array
+
+111
+00:05:46,580 --> 00:05:48,810
+instead of creating a new one.
+
+112
+00:05:48,810 --> 00:05:51,310
+So it's just like pushing and unshifting,
+
+113
+00:05:51,310 --> 00:05:54,720
+and therefore here view will be able to recognize this
+
+114
+00:05:54,720 --> 00:05:57,791
+and all the components that injected this array
+
+115
+00:05:57,791 --> 00:06:00,282
+will notice this as well.
+
+116
+00:06:00,282 --> 00:06:03,320
+So now if I reload and click Delete,
+
+117
+00:06:03,320 --> 00:06:07,030
+we are able to delete Resources.
+
+118
+00:06:07,030 --> 00:06:10,080
+So let's also add a new Resource here
+
+119
+00:06:12,570 --> 00:06:15,120
+and we can delete that as well.
+
+120
+00:06:15,120 --> 00:06:17,286
+So that's now all working,
+
+121
+00:06:17,286 --> 00:06:21,160
+and with that, we got this app finished.
+
+122
+00:06:21,160 --> 00:06:24,630
+And we used a lot of the concepts you learned about
+
+123
+00:06:24,630 --> 00:06:26,590
+throughout the last modules.
+
+124
+00:06:26,590 --> 00:06:30,250
+And therefore hopefully you now have a better idea
+
+125
+00:06:30,250 --> 00:06:32,290
+of how to work with components,
+
+126
+00:06:32,290 --> 00:06:36,670
+how to build at least a little bit bigger view applications
+
+127
+00:06:36,670 --> 00:06:39,873
+and how all these different features are working together.
+

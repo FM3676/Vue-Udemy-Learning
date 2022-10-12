@@ -1,0 +1,76 @@
+1
+00:00:02,220 --> 00:00:03,310
+Now in the module,
+
+2
+00:00:03,310 --> 00:00:05,770
+we're just getting started with components,
+
+3
+00:00:05,770 --> 00:00:09,370
+and we don't really see their full potential yet.
+
+4
+00:00:09,370 --> 00:00:10,690
+This will change.
+
+5
+00:00:10,690 --> 00:00:14,370
+Over the next modules, you will learn all about components
+
+6
+00:00:14,370 --> 00:00:16,800
+and you will learn how you can build applications
+
+7
+00:00:16,800 --> 00:00:20,250
+like this one where the entire user interface
+
+8
+00:00:20,250 --> 00:00:23,080
+is built by combining components.
+
+9
+00:00:23,080 --> 00:00:25,250
+And where we use components
+
+10
+00:00:25,250 --> 00:00:29,170
+to encapsulate different templates and logic
+
+11
+00:00:29,170 --> 00:00:33,670
+tied to that templates into reusable building blocks,
+
+12
+00:00:33,670 --> 00:00:37,180
+you will see how that makes it easier to structure
+
+13
+00:00:37,180 --> 00:00:41,150
+the code phase of complex apps and keep it manageable
+
+14
+00:00:41,150 --> 00:00:43,730
+by splitting your code, your logic,
+
+15
+00:00:43,730 --> 00:00:46,790
+and all of your templates and what's on the screen
+
+16
+00:00:46,790 --> 00:00:50,390
+into smaller reusable pieces.
+
+17
+00:00:50,390 --> 00:00:53,900
+Now this is all code you won't understand at this point
+
+18
+00:00:53,900 --> 00:00:56,290
+but we'll get there, and we'll get there
+
+19
+00:00:56,290 --> 00:00:58,293
+starting in the next module.
+

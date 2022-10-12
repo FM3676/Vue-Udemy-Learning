@@ -1,0 +1,488 @@
+1
+00:00:02,290 --> 00:00:04,480
+So what is routing about?
+
+2
+00:00:04,480 --> 00:00:07,900
+Attached you find another starting project,
+
+3
+00:00:07,900 --> 00:00:11,220
+which when you start the server
+
+4
+00:00:11,220 --> 00:00:14,910
+gives you this simple application on the screen.
+
+5
+00:00:14,910 --> 00:00:16,079
+This is a view app
+
+6
+00:00:16,079 --> 00:00:18,570
+where we have two main areas,
+
+7
+00:00:18,570 --> 00:00:20,460
+Teams and Users,
+
+8
+00:00:20,460 --> 00:00:21,750
+we can switch between them
+
+9
+00:00:21,750 --> 00:00:22,610
+and for every team,
+
+10
+00:00:22,610 --> 00:00:25,020
+we can also click View Members,
+
+11
+00:00:25,020 --> 00:00:25,930
+though at the moment,
+
+12
+00:00:25,930 --> 00:00:28,090
+nothing happens when we do that.
+
+13
+00:00:28,090 --> 00:00:30,980
+So that's a very simple starting application
+
+14
+00:00:30,980 --> 00:00:34,020
+and if we have a look at this application,
+
+15
+00:00:34,020 --> 00:00:37,940
+it looks like if we had two pages here, right,
+
+16
+00:00:37,940 --> 00:00:40,360
+two links here in the navigation,
+
+17
+00:00:40,360 --> 00:00:43,120
+the teams and the users link.
+
+18
+00:00:43,120 --> 00:00:45,270
+But what you will notice is
+
+19
+00:00:45,270 --> 00:00:47,780
+that when I click those links,
+
+20
+00:00:47,780 --> 00:00:50,700
+what we see on the screen changes,
+
+21
+00:00:50,700 --> 00:00:53,610
+but the URL does not change.
+
+22
+00:00:53,610 --> 00:00:56,040
+It's always the same URL.
+
+23
+00:00:56,040 --> 00:00:57,050
+And that's in the end
+
+24
+00:00:57,050 --> 00:00:58,990
+what routing will be about.
+
+25
+00:00:58,990 --> 00:01:00,960
+With View we build
+
+26
+00:01:00,960 --> 00:01:05,239
+JavaScript driven client side web applications.
+
+27
+00:01:05,239 --> 00:01:07,080
+So web applications
+
+28
+00:01:07,080 --> 00:01:09,430
+where what the user sees,
+
+29
+00:01:09,430 --> 00:01:11,290
+is entirely controlled
+
+30
+00:01:11,290 --> 00:01:14,290
+by JavaScript running in the browser.
+
+31
+00:01:14,290 --> 00:01:16,253
+That is what a View is all about.
+
+32
+00:01:17,100 --> 00:01:19,010
+And we're also basically building a
+
+33
+00:01:19,010 --> 00:01:22,080
+so called single page application,
+
+34
+00:01:22,080 --> 00:01:23,090
+which means we have that
+
+35
+00:01:23,090 --> 00:01:25,370
+one single HTML file,
+
+36
+00:01:25,370 --> 00:01:26,720
+which is being fetched,
+
+37
+00:01:26,720 --> 00:01:29,560
+and that file includes imports to the,
+
+38
+00:01:29,560 --> 00:01:32,910
+to the scripts to all the JavaScript code
+
+39
+00:01:32,910 --> 00:01:34,770
+we're writing here in the end,
+
+40
+00:01:34,770 --> 00:01:37,070
+not to the code we are writing here,
+
+41
+00:01:37,070 --> 00:01:39,010
+but to a slightly transformed
+
+42
+00:01:39,010 --> 00:01:40,800
+and optimized version of that code.
+
+43
+00:01:40,800 --> 00:01:43,240
+And the CLI is taking care of all of that
+
+44
+00:01:43,240 --> 00:01:44,970
+behind the scenes.
+
+45
+00:01:44,970 --> 00:01:47,470
+But in the end it's all that JavaScript code,
+
+46
+00:01:47,470 --> 00:01:48,930
+which runs in the browser,
+
+47
+00:01:48,930 --> 00:01:51,100
+which is responsible for what we see
+
+48
+00:01:51,100 --> 00:01:52,260
+on the screen here.
+
+49
+00:01:52,260 --> 00:01:54,250
+And that's why we call this kind of app
+
+50
+00:01:54,250 --> 00:01:56,053
+a single page application.
+
+51
+00:01:57,190 --> 00:01:58,540
+So we want to have just
+
+52
+00:01:58,540 --> 00:02:00,420
+one HTML file
+
+53
+00:02:00,420 --> 00:02:03,650
+and then our JavaScript code controlling what we see
+
+54
+00:02:03,650 --> 00:02:05,090
+on the screen.
+
+55
+00:02:05,090 --> 00:02:06,620
+But with this approach,
+
+56
+00:02:06,620 --> 00:02:08,340
+we have one problem,
+
+57
+00:02:08,340 --> 00:02:11,270
+we have the same URL
+
+58
+00:02:11,270 --> 00:02:12,940
+for all areas
+
+59
+00:02:12,940 --> 00:02:14,290
+of our page.
+
+60
+00:02:14,290 --> 00:02:17,480
+And that means if I would want to share
+
+61
+00:02:17,480 --> 00:02:18,970
+this user's page
+
+62
+00:02:18,970 --> 00:02:21,240
+with another user,
+
+63
+00:02:21,240 --> 00:02:24,630
+well I could just share this regular URL,
+
+64
+00:02:24,630 --> 00:02:26,680
+which in this case is just our domain name,
+
+65
+00:02:26,680 --> 00:02:27,860
+and then nothing.
+
+66
+00:02:27,860 --> 00:02:28,890
+And if you enter this
+
+67
+00:02:28,890 --> 00:02:30,030
+and hit Enter,
+
+68
+00:02:30,030 --> 00:02:32,430
+you always end up on the starting page.
+
+69
+00:02:32,430 --> 00:02:34,970
+So I can't share anything else
+
+70
+00:02:34,970 --> 00:02:38,150
+than the starting page off this application.
+
+71
+00:02:38,150 --> 00:02:41,330
+Because the change that happens when I click this button
+
+72
+00:02:41,330 --> 00:02:43,520
+is driven by JavaScript
+
+73
+00:02:43,520 --> 00:02:46,360
+and has nothing to do with the URL.
+
+74
+00:02:46,360 --> 00:02:48,970
+It just happens up on the button, click here.
+
+75
+00:02:48,970 --> 00:02:50,867
+And whilst this works,
+
+76
+00:02:50,867 --> 00:02:52,870
+and this application works,
+
+77
+00:02:52,870 --> 00:02:56,740
+in reality, you would want applications
+
+78
+00:02:56,740 --> 00:02:58,230
+powered by you
+
+79
+00:02:58,230 --> 00:03:01,700
+and powered by that client's JavaScript code,
+
+80
+00:03:01,700 --> 00:03:04,820
+which still interact with the URL
+
+81
+00:03:04,820 --> 00:03:07,570
+so that the URL represents
+
+82
+00:03:07,570 --> 00:03:09,780
+where on the page we are
+
+83
+00:03:09,780 --> 00:03:13,330
+and so did we got a shareable URL,
+
+84
+00:03:13,330 --> 00:03:16,070
+which we can share with our users,
+
+85
+00:03:16,070 --> 00:03:17,570
+so that I could share
+
+86
+00:03:17,570 --> 00:03:19,200
+a link to this Users page
+
+87
+00:03:19,200 --> 00:03:20,520
+with our users
+
+88
+00:03:20,520 --> 00:03:22,053
+of this web application.
+
+89
+00:03:24,360 --> 00:03:26,190
+And of course we could try to make this work
+
+90
+00:03:26,190 --> 00:03:28,870
+by having more than one HTML file,
+
+91
+00:03:28,870 --> 00:03:32,290
+and then pointing at a different HTML file here,
+
+92
+00:03:32,290 --> 00:03:34,510
+like users HTML.
+
+93
+00:03:34,510 --> 00:03:36,640
+But that's not how this will work.
+
+94
+00:03:36,640 --> 00:03:39,820
+This is not how you build such view applications.
+
+95
+00:03:39,820 --> 00:03:41,460
+If you would do that,
+
+96
+00:03:41,460 --> 00:03:42,740
+the script code loaded
+
+97
+00:03:42,740 --> 00:03:44,980
+by that extra HTML file
+
+98
+00:03:44,980 --> 00:03:46,740
+would be totally unrelated
+
+99
+00:03:46,740 --> 00:03:48,330
+to your other script code,
+
+100
+00:03:48,330 --> 00:03:51,650
+which is probably also not what you want.
+
+101
+00:03:51,650 --> 00:03:54,090
+And that's the kind of problem routing
+
+102
+00:03:54,090 --> 00:03:55,640
+will solve for us.
+
+103
+00:03:55,640 --> 00:03:56,930
+Because it turns out
+
+104
+00:03:56,930 --> 00:03:59,000
+that there is a tool
+
+105
+00:03:59,000 --> 00:04:00,160
+an extra package
+
+106
+00:04:00,160 --> 00:04:01,600
+which we can install,
+
+107
+00:04:01,600 --> 00:04:05,010
+which allows us to handle URL changes
+
+108
+00:04:05,010 --> 00:04:07,530
+with JavaScript in the browser,
+
+109
+00:04:07,530 --> 00:04:10,050
+and then load something different on the screen
+
+110
+00:04:10,050 --> 00:04:12,590
+in the same single page application
+
+111
+00:04:12,590 --> 00:04:14,620
+when that URL changes
+
+112
+00:04:14,620 --> 00:04:16,930
+or based on that URL.
+
+113
+00:04:16,930 --> 00:04:18,450
+And that same package
+
+114
+00:04:18,450 --> 00:04:21,329
+will also help us change the URL
+
+115
+00:04:21,329 --> 00:04:24,410
+when we navigate somewhere else in this application,
+
+116
+00:04:24,410 --> 00:04:27,110
+so that the URL reflects the place
+
+117
+00:04:27,110 --> 00:04:28,210
+where we are
+
+118
+00:04:28,210 --> 00:04:29,200
+in the app.
+
+119
+00:04:29,200 --> 00:04:31,560
+And that is what routing is all about
+
+120
+00:04:31,560 --> 00:04:33,270
+and why we might want it.
+
+121
+00:04:33,270 --> 00:04:35,660
+So let's now install that extra package
+
+122
+00:04:35,660 --> 00:04:37,543
+to get started with routing.
+

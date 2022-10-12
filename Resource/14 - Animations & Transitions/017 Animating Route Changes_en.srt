@@ -1,0 +1,912 @@
+1
+00:00:02,130 --> 00:00:04,689
+By now we get a pretty good understanding
+
+2
+00:00:04,689 --> 00:00:09,240
+about how Vue helps us with animating things.
+
+3
+00:00:09,240 --> 00:00:12,200
+There's one specific kind of thing
+
+4
+00:00:12,200 --> 00:00:13,420
+which you might want to navigate,
+
+5
+00:00:13,420 --> 00:00:15,710
+which we haven't seen thus far though.
+
+6
+00:00:15,710 --> 00:00:19,890
+And that would be changes between two routes.
+
+7
+00:00:19,890 --> 00:00:23,380
+For that, I'll quickly add routing here,
+
+8
+00:00:23,380 --> 00:00:25,950
+simply by adding a new pages folder.
+
+9
+00:00:25,950 --> 00:00:30,950
+And then in here we could have AllUsers page, let's say,
+
+10
+00:00:31,690 --> 00:00:34,210
+and also a CourseGoals page.
+
+11
+00:00:34,210 --> 00:00:38,370
+I will not really populate those components with life
+
+12
+00:00:38,370 --> 00:00:39,810
+or with real values,
+
+13
+00:00:39,810 --> 00:00:42,860
+I just want to dive into how we can animate
+
+14
+00:00:42,860 --> 00:00:44,920
+between these pages.
+
+15
+00:00:44,920 --> 00:00:47,450
+For that, here I'll simply add a div
+
+16
+00:00:47,450 --> 00:00:52,450
+with a class of container in the template off AllUsers.
+
+17
+00:00:52,870 --> 00:00:57,083
+And add a h2 tag where I say All Users.
+
+18
+00:00:58,950 --> 00:01:01,330
+And I'll then copy that
+
+19
+00:01:01,330 --> 00:01:03,580
+and add the same here to CourseGoals,
+
+20
+00:01:03,580 --> 00:01:06,130
+but of course here I will say CourseGoals
+
+21
+00:01:06,130 --> 00:01:09,370
+so that we can tell these two pages apart.
+
+22
+00:01:09,370 --> 00:01:11,500
+So these are very simple dummy components
+
+23
+00:01:11,500 --> 00:01:13,800
+which just have templates.
+
+24
+00:01:13,800 --> 00:01:17,300
+Now we can quit the development server with Control + C,
+
+25
+00:01:17,300 --> 00:01:22,300
+and npm install, dash, dash, save the vue-router.
+
+26
+00:01:22,430 --> 00:01:24,740
+This package, which we already installed
+
+27
+00:01:24,740 --> 00:01:26,293
+in the routing module.
+
+28
+00:01:27,610 --> 00:01:30,650
+Once it is installed, we can restart the development server
+
+29
+00:01:30,650 --> 00:01:33,220
+and then add routing as you learned it
+
+30
+00:01:33,220 --> 00:01:34,770
+in the routing module.
+
+31
+00:01:34,770 --> 00:01:39,250
+So here in main.js or in a separate router.js file.
+
+32
+00:01:39,250 --> 00:01:42,840
+But since we'll only have two routes, I'll go with main.js.
+
+33
+00:01:42,840 --> 00:01:47,840
+You can import createRouter from vue-router
+
+34
+00:01:47,930 --> 00:01:51,367
+and also already import createWebHistory
+
+35
+00:01:53,120 --> 00:01:55,610
+and then set up the router here.
+
+36
+00:01:55,610 --> 00:01:59,790
+So here we have the router we created with createRouter
+
+37
+00:01:59,790 --> 00:02:02,313
+and pass a config object to createRouter.
+
+38
+00:02:03,150 --> 00:02:05,953
+Set the history two to result of createWebHistory.
+
+39
+00:02:07,540 --> 00:02:11,200
+And then add our routes.
+
+40
+00:02:11,200 --> 00:02:13,730
+And I gonna have two routes here.
+
+41
+00:02:13,730 --> 00:02:18,730
+The first route should be applied if we have slash, nothing.
+
+42
+00:02:19,000 --> 00:02:24,000
+In this case, I want to load the AllUsers component.
+
+43
+00:02:24,630 --> 00:02:26,861
+Therefore, we should import it,
+
+44
+00:02:26,861 --> 00:02:31,861
+AllUsers from dot, slash, pages/AllUsers.vue.
+
+45
+00:02:32,030 --> 00:02:35,010
+And we can also already import CourseGoals
+
+46
+00:02:35,010 --> 00:02:39,673
+from dot, slash, pages/CourseGoals.vue.
+
+47
+00:02:40,950 --> 00:02:45,110
+Then load AllUsers here on this first route.
+
+48
+00:02:45,110 --> 00:02:46,970
+And then add a second route
+
+49
+00:02:46,970 --> 00:02:50,420
+with a path of slash, goals, let's say,
+
+50
+00:02:50,420 --> 00:02:54,523
+where we want to load the CourseGoals component.
+
+51
+00:02:55,550 --> 00:02:58,200
+So these are the two routes I have here.
+
+52
+00:02:58,200 --> 00:03:01,990
+Now we can call app.use to register this router
+
+53
+00:03:01,990 --> 00:03:03,380
+with our Vue app.
+
+54
+00:03:03,380 --> 00:03:06,533
+And with that, Vue is aware of these routes.
+
+55
+00:03:07,720 --> 00:03:10,040
+Now, as you learned that in order to load a route
+
+56
+00:03:10,040 --> 00:03:13,760
+and to display it, we need to go to our App.vue file,
+
+57
+00:03:13,760 --> 00:03:17,540
+and in there I will actually remove all the content
+
+58
+00:03:17,540 --> 00:03:21,550
+we had in there and just add router-view
+
+59
+00:03:21,550 --> 00:03:25,320
+so that we just switched between these two components
+
+60
+00:03:25,320 --> 00:03:27,970
+based on which route we selected.
+
+61
+00:03:27,970 --> 00:03:32,350
+In order to move back and forth between these components
+
+62
+00:03:32,350 --> 00:03:34,360
+from inside the running app,
+
+63
+00:03:34,360 --> 00:03:37,910
+I will actually also go to AllUsers
+
+64
+00:03:37,910 --> 00:03:42,323
+and add a router link to my CourseGoals.
+
+65
+00:03:43,780 --> 00:03:48,040
+So therefore, the two prop points at slash, goals,
+
+66
+00:03:48,040 --> 00:03:51,773
+because that was the path I'm handling here.
+
+67
+00:03:53,260 --> 00:03:54,920
+And I will copy that.
+
+68
+00:03:54,920 --> 00:03:57,550
+And in CourseGoals I'll add the same link,
+
+69
+00:03:57,550 --> 00:03:59,750
+but I'll go to just slash here,
+
+70
+00:03:59,750 --> 00:04:01,853
+which therefore goes to AllUsers.
+
+71
+00:04:03,890 --> 00:04:08,340
+If we save that, I got some complaints here
+
+72
+00:04:08,340 --> 00:04:09,300
+that I'm not using
+
+73
+00:04:09,300 --> 00:04:12,200
+the users list component anymore in App.vue.
+
+74
+00:04:12,200 --> 00:04:14,340
+And that's correct, I'm registering it here,
+
+75
+00:04:14,340 --> 00:04:17,100
+but I'm not doing anything with it in my template.
+
+76
+00:04:17,100 --> 00:04:20,420
+So we can comment this out and remove this import
+
+77
+00:04:20,420 --> 00:04:23,860
+or remove the components option entirely here.
+
+78
+00:04:23,860 --> 00:04:27,320
+And now with that saved, we see All Users
+
+79
+00:04:27,320 --> 00:04:30,520
+and we can switch between those routes.
+
+80
+00:04:30,520 --> 00:04:34,573
+That's all nice, but it has nothing to do with animations.
+
+81
+00:04:35,490 --> 00:04:38,650
+Well, I want to animate the transition
+
+82
+00:04:38,650 --> 00:04:40,820
+between these two routes.
+
+83
+00:04:40,820 --> 00:04:43,660
+And thankfully we can do this.
+
+84
+00:04:43,660 --> 00:04:46,740
+Now, one thought you could have
+
+85
+00:04:46,740 --> 00:04:51,740
+is that you wrap your router-view with transition.
+
+86
+00:04:52,600 --> 00:04:54,720
+I mean, it's a regular component.
+
+87
+00:04:54,720 --> 00:04:57,760
+And if we want to animate with Vue's help
+
+88
+00:04:57,760 --> 00:05:01,710
+between two components, like the button we saw earlier,
+
+89
+00:05:01,710 --> 00:05:04,730
+then we wrap the element with transition, right?
+
+90
+00:05:04,730 --> 00:05:07,210
+That's what we did previously in this course
+
+91
+00:05:07,210 --> 00:05:09,363
+when we wanted to animate components.
+
+92
+00:05:10,580 --> 00:05:14,880
+And we could then defines a new CSS classes here.
+
+93
+00:05:14,880 --> 00:05:17,903
+Route-enter-from.
+
+94
+00:05:20,050 --> 00:05:23,860
+Route-enter-active.
+
+95
+00:05:23,860 --> 00:05:26,690
+And route-enter-to.
+
+96
+00:05:26,690 --> 00:05:28,270
+And I want to use that animation,
+
+97
+00:05:28,270 --> 00:05:31,550
+so I will actually only use route-enter-active
+
+98
+00:05:31,550 --> 00:05:34,980
+and use my slide scale animation,
+
+99
+00:05:34,980 --> 00:05:37,070
+the key frames which are set here,
+
+100
+00:05:37,070 --> 00:05:42,070
+over .4 seconds and with an ease function
+
+101
+00:05:42,580 --> 00:05:44,900
+or ease out, let's say.
+
+102
+00:05:44,900 --> 00:05:49,350
+And then also define route-leave-active.
+
+103
+00:05:49,350 --> 00:05:52,520
+Of course, depending on which animation you want to build,
+
+104
+00:05:52,520 --> 00:05:56,430
+you could also add route-leave-from and route-leave-to.
+
+105
+00:05:56,430 --> 00:05:59,390
+But here I again, just want to apply an animation.
+
+106
+00:05:59,390 --> 00:06:01,540
+And that will be a slide scale
+
+107
+00:06:01,540 --> 00:06:03,833
+over the same duration with ease in.
+
+108
+00:06:05,110 --> 00:06:08,610
+And now, since I named these CSS classes
+
+109
+00:06:08,610 --> 00:06:10,860
+like this with route,
+
+110
+00:06:10,860 --> 00:06:15,860
+we could apply this name to this transition like that.
+
+111
+00:06:16,420 --> 00:06:19,460
+But since I always say could, and so on,
+
+112
+00:06:19,460 --> 00:06:23,000
+this probably is not how it's going to work.
+
+113
+00:06:23,000 --> 00:06:27,300
+And indeed, we do have some strange behavior here,
+
+114
+00:06:27,300 --> 00:06:31,540
+but we actually see that router-view can no longer be used
+
+115
+00:06:31,540 --> 00:06:34,180
+directly inside of transition.
+
+116
+00:06:34,180 --> 00:06:35,910
+Now, it says no longer,
+
+117
+00:06:35,910 --> 00:06:38,930
+because previously with older versions of Vue,
+
+118
+00:06:38,930 --> 00:06:40,140
+that did work.
+
+119
+00:06:40,140 --> 00:06:41,610
+So maybe if you learned that,
+
+120
+00:06:41,610 --> 00:06:44,033
+you are still used to this old way of doing it.
+
+121
+00:06:44,930 --> 00:06:48,370
+With Vue 3 this is no longer possible.
+
+122
+00:06:48,370 --> 00:06:50,070
+And we actually get the solution
+
+123
+00:06:50,070 --> 00:06:51,810
+here in the warning as well.
+
+124
+00:06:51,810 --> 00:06:54,640
+We need to restructure our code.
+
+125
+00:06:54,640 --> 00:06:59,640
+Transition now needs to go inside of our router-view.
+
+126
+00:06:59,810 --> 00:07:02,633
+So we should move transition inside there.
+
+127
+00:07:03,670 --> 00:07:05,870
+But this alone now all the won't do it
+
+128
+00:07:05,870 --> 00:07:09,500
+because while router-view supports getting content
+
+129
+00:07:09,500 --> 00:07:11,340
+that will be rendered inside of it,
+
+130
+00:07:11,340 --> 00:07:14,140
+now we also need to tell it
+
+131
+00:07:14,140 --> 00:07:17,510
+where to actually render the actual page,
+
+132
+00:07:17,510 --> 00:07:19,920
+the actual component that should be rendered
+
+133
+00:07:19,920 --> 00:07:21,983
+based on the route that is active.
+
+134
+00:07:22,830 --> 00:07:25,870
+And for that, we can use the scoped slots syntax
+
+135
+00:07:25,870 --> 00:07:28,350
+router-view uses under the hood.
+
+136
+00:07:28,350 --> 00:07:30,130
+Normally we don't need it,
+
+137
+00:07:30,130 --> 00:07:33,460
+but for transitions with routes, you do need it.
+
+138
+00:07:33,460 --> 00:07:35,760
+You can use this v-slot directive,
+
+139
+00:07:35,760 --> 00:07:37,860
+which I introduced earlier in the course
+
+140
+00:07:37,860 --> 00:07:40,120
+when we talked about slots,
+
+141
+00:07:40,120 --> 00:07:44,413
+to extract the slotProps you're getting here.
+
+142
+00:07:45,260 --> 00:07:48,160
+You get those by the router-view component,
+
+143
+00:07:48,160 --> 00:07:49,970
+which is built in.
+
+144
+00:07:49,970 --> 00:07:54,110
+And you can then use the dynamic component component
+
+145
+00:07:54,110 --> 00:07:56,970
+to bind it to slotProps.Component.
+
+146
+00:08:01,600 --> 00:08:05,460
+So slotProps have a property named Component
+
+147
+00:08:05,460 --> 00:08:08,640
+with a capital C, which holds the component
+
+148
+00:08:08,640 --> 00:08:12,680
+that should be loaded for the currently selected route.
+
+149
+00:08:12,680 --> 00:08:15,700
+And this strange looking syntax is what you need
+
+150
+00:08:15,700 --> 00:08:19,423
+to animate switches between these components.
+
+151
+00:08:20,670 --> 00:08:24,340
+If you now save this, you no longer get the warning.
+
+152
+00:08:24,340 --> 00:08:26,390
+And now this kind of works,
+
+153
+00:08:26,390 --> 00:08:29,220
+but of course this looks really stupid here, right?
+
+154
+00:08:29,220 --> 00:08:30,930
+I mean, it's just moving around
+
+155
+00:08:30,930 --> 00:08:35,929
+and we got two components on the page at the same time.
+
+156
+00:08:36,090 --> 00:08:38,409
+So this is not fully what we want,
+
+157
+00:08:38,409 --> 00:08:41,049
+but technically this is correct at least.
+
+158
+00:08:41,049 --> 00:08:42,900
+But one thing we want to change here
+
+159
+00:08:42,900 --> 00:08:45,150
+is something we already saw earlier
+
+160
+00:08:45,150 --> 00:08:47,290
+when we switched between two buttons.
+
+161
+00:08:47,290 --> 00:08:49,520
+We want to make sure that only one component
+
+162
+00:08:49,520 --> 00:08:52,900
+is shown on the page at the same time.
+
+163
+00:08:52,900 --> 00:08:55,390
+And you might remember that we can achieve this
+
+164
+00:08:55,390 --> 00:08:59,080
+by adding the mode prop to the transition component.
+
+165
+00:08:59,080 --> 00:09:03,210
+And there we add out-in and in-out.
+
+166
+00:09:03,210 --> 00:09:06,230
+And if we use out-in, we ensure that first,
+
+167
+00:09:06,230 --> 00:09:08,630
+the leaving component is animated
+
+168
+00:09:08,630 --> 00:09:13,200
+before then the entering component is animated.
+
+169
+00:09:13,200 --> 00:09:15,400
+So with that, if I reload,
+
+170
+00:09:15,400 --> 00:09:19,160
+now this leaves and then we have the new component.
+
+171
+00:09:19,160 --> 00:09:21,960
+I will admit it still looks strange,
+
+172
+00:09:21,960 --> 00:09:25,903
+but that's just because of the animation CSS code we set up.
+
+173
+00:09:27,670 --> 00:09:29,300
+If we use a different animation,
+
+174
+00:09:29,300 --> 00:09:32,380
+like the fade button classes we have here,
+
+175
+00:09:32,380 --> 00:09:36,250
+if I use this as a name here, fade button,
+
+176
+00:09:36,250 --> 00:09:37,613
+this will look nicer.
+
+177
+00:09:38,640 --> 00:09:41,380
+With that we've got a nice fade animation
+
+178
+00:09:41,380 --> 00:09:42,623
+between these routes.
+
+179
+00:09:43,750 --> 00:09:47,940
+So that is how you can animate route transitions.
+
+180
+00:09:47,940 --> 00:09:50,500
+Now, one thing you might have noticed before
+
+181
+00:09:50,500 --> 00:09:53,730
+is that when you used that other animation
+
+182
+00:09:53,730 --> 00:09:57,500
+which looked a bit strange, the route animation here,
+
+183
+00:09:57,500 --> 00:10:01,140
+we even saw that animation when we loaded the page
+
+184
+00:10:01,140 --> 00:10:03,460
+for the first time.
+
+185
+00:10:03,460 --> 00:10:06,310
+So you have this initial animation.
+
+186
+00:10:06,310 --> 00:10:09,270
+The reason for data's that with the vue-router,
+
+187
+00:10:09,270 --> 00:10:13,390
+technically the first act of route is an empty route.
+
+188
+00:10:13,390 --> 00:10:15,500
+And then when your page starts,
+
+189
+00:10:15,500 --> 00:10:17,820
+when your page is loaded for the first time,
+
+190
+00:10:17,820 --> 00:10:21,260
+it immediately switches to the route that should be used
+
+191
+00:10:21,260 --> 00:10:23,053
+for the given path in your URL.
+
+192
+00:10:24,330 --> 00:10:27,480
+That means that technically when the app starts,
+
+193
+00:10:27,480 --> 00:10:29,970
+the vue-router goes from no route
+
+194
+00:10:29,970 --> 00:10:33,870
+to the chosen route for to given path.
+
+195
+00:10:33,870 --> 00:10:35,980
+And hence it plays an animation
+
+196
+00:10:35,980 --> 00:10:39,000
+because we go from one component, nothing,
+
+197
+00:10:39,000 --> 00:10:40,943
+to the to be loaded component.
+
+198
+00:10:41,950 --> 00:10:46,190
+To avoid this behavior, you can go to main.js
+
+199
+00:10:46,190 --> 00:10:48,380
+where you register the router
+
+200
+00:10:48,380 --> 00:10:52,100
+and there you can actually use the router
+
+201
+00:10:52,100 --> 00:10:55,180
+to call the is ready method on it.
+
+202
+00:10:55,180 --> 00:10:57,300
+This method will let you know
+
+203
+00:10:57,300 --> 00:11:00,930
+when the router successfully evaluated
+
+204
+00:11:00,930 --> 00:11:02,753
+which page should be loaded.
+
+205
+00:11:04,250 --> 00:11:08,210
+This gives you a promise and hence you can call then on it.
+
+206
+00:11:08,210 --> 00:11:11,330
+And in the function you pass to this then block,
+
+207
+00:11:11,330 --> 00:11:14,950
+in this function the router will now not go
+
+208
+00:11:14,950 --> 00:11:18,520
+from the empty to the to be selected page.
+
+209
+00:11:18,520 --> 00:11:20,280
+But instead, at this point of time,
+
+210
+00:11:20,280 --> 00:11:22,680
+it is aware of the page that should be loaded
+
+211
+00:11:22,680 --> 00:11:27,120
+and it will therefore not make this initial transition.
+
+212
+00:11:27,120 --> 00:11:30,840
+So you can then mount your app inside of this function
+
+213
+00:11:30,840 --> 00:11:35,130
+to only mount and therefore render your app
+
+214
+00:11:35,130 --> 00:11:39,170
+once the router is fully set up and aware of the page
+
+215
+00:11:39,170 --> 00:11:40,860
+that should be loaded.
+
+216
+00:11:40,860 --> 00:11:42,880
+And if you do that and reload,
+
+217
+00:11:42,880 --> 00:11:45,010
+you don't have this initial animation.
+
+218
+00:11:45,010 --> 00:11:48,160
+Now you just have it if you switch routes.
+
+219
+00:11:48,160 --> 00:11:50,840
+And now I'm going back to the other animation
+
+220
+00:11:50,840 --> 00:11:52,400
+since that looked nicer,
+
+221
+00:11:52,400 --> 00:11:55,100
+so to the fade button animation here.
+
+222
+00:11:55,100 --> 00:11:56,020
+But that is it.
+
+223
+00:11:56,020 --> 00:11:59,530
+That is how you can animate the transition
+
+224
+00:11:59,530 --> 00:12:01,710
+between different routes.
+
+225
+00:12:01,710 --> 00:12:03,930
+It's a strange looking syntax maybe,
+
+226
+00:12:03,930 --> 00:12:07,910
+but you really only needed for this transition scenario.
+
+227
+00:12:07,910 --> 00:12:11,920
+But with that, you're now able to also animate changes
+
+228
+00:12:11,920 --> 00:12:13,433
+between different pages.
+

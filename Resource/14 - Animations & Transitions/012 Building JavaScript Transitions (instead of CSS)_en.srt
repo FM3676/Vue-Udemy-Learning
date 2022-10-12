@@ -1,0 +1,1144 @@
+1
+00:00:02,330 --> 00:00:07,190
+So let's now build an entire animation with JavaScript
+
+2
+00:00:07,190 --> 00:00:09,468
+instead of CSS.
+
+3
+00:00:09,468 --> 00:00:12,370
+And it will do that for this paragraph.
+
+4
+00:00:12,370 --> 00:00:15,070
+Therefore, I will actually remove all
+
+5
+00:00:15,070 --> 00:00:18,010
+those para dash classes.
+
+6
+00:00:18,010 --> 00:00:19,980
+I will simply delete them here
+
+7
+00:00:19,980 --> 00:00:22,990
+so that we no longer use those CSS classes
+
+8
+00:00:22,990 --> 00:00:25,510
+to control how this is being animated.
+
+9
+00:00:25,510 --> 00:00:28,580
+Instead, I now want to use JavaScript for that.
+
+10
+00:00:28,580 --> 00:00:31,437
+And that is something which is also supported by
+
+11
+00:00:31,437 --> 00:00:33,690
+the transition component.
+
+12
+00:00:33,690 --> 00:00:38,120
+Now typically, you will most often use CSS,
+
+13
+00:00:38,120 --> 00:00:41,960
+but using JavaScript instead can be useful
+
+14
+00:00:41,960 --> 00:00:44,460
+if you, for example, wanna use
+
+15
+00:00:44,460 --> 00:00:48,070
+a third party JavaScript based animation library
+
+16
+00:00:48,070 --> 00:00:49,680
+like GreenSock.
+
+17
+00:00:49,680 --> 00:00:52,400
+GreenSock has nothing to do with Vue,
+
+18
+00:00:52,400 --> 00:00:56,610
+but it is a powerful JavaScript library for orchestrating
+
+19
+00:00:56,610 --> 00:01:01,610
+and building animations, complex animations with JavaScript.
+
+20
+00:01:01,610 --> 00:01:04,310
+And that then would be a use case
+
+21
+00:01:04,310 --> 00:01:05,540
+where you might wanna build
+
+22
+00:01:05,540 --> 00:01:07,820
+your entire transition with JavaScript,
+
+23
+00:01:07,820 --> 00:01:11,140
+because you might want to leverage a library like this.
+
+24
+00:01:11,140 --> 00:01:14,580
+But even without such a library, you can use JavaScript
+
+25
+00:01:14,580 --> 00:01:17,110
+to animate this paragraph here, for example.
+
+26
+00:01:17,110 --> 00:01:19,890
+And that's exactly what we'll do now.
+
+27
+00:01:19,890 --> 00:01:22,390
+For that, we already added all those hooks
+
+28
+00:01:22,390 --> 00:01:24,670
+and you will need those hooks here.
+
+29
+00:01:24,670 --> 00:01:28,230
+You will need them because building an animation
+
+30
+00:01:28,230 --> 00:01:32,640
+with JavaScript requires those hooks here.
+
+31
+00:01:32,640 --> 00:01:35,850
+Because to some extent, they will still be called
+
+32
+00:01:35,850 --> 00:01:38,460
+even if you have no CSS code.
+
+33
+00:01:38,460 --> 00:01:40,928
+Even if you have no CSS Animation.
+
+34
+00:01:40,928 --> 00:01:45,500
+If I reload here, for example, and keep in mind
+
+35
+00:01:45,500 --> 00:01:49,270
+that I removed the CSS classes which were added previously.
+
+36
+00:01:49,270 --> 00:01:53,439
+We still see beforeEnter and afterEnter being called.
+
+37
+00:01:53,439 --> 00:01:56,230
+We have no actual transition.
+
+38
+00:01:56,230 --> 00:02:00,360
+Everything is instant, but those hooks are still called.
+
+39
+00:02:00,360 --> 00:02:02,940
+So those events on the transition component
+
+40
+00:02:02,940 --> 00:02:06,410
+are always emitted when the wrapped element is added
+
+41
+00:02:06,410 --> 00:02:08,229
+or removed to the DOM.
+
+42
+00:02:08,229 --> 00:02:11,890
+But without any CSS code that controls the animation,
+
+43
+00:02:11,890 --> 00:02:14,970
+they just execute instantly after each other.
+
+44
+00:02:14,970 --> 00:02:18,150
+Because of course, there is nothing to wait for.
+
+45
+00:02:18,150 --> 00:02:21,640
+But that's something we can change with JavaScript now.
+
+46
+00:02:21,640 --> 00:02:24,533
+For that and before enter, we could set up our
+
+47
+00:02:24,533 --> 00:02:27,343
+initial animation state.
+
+48
+00:02:29,230 --> 00:02:32,740
+For example, here, we could reach out to this element,
+
+49
+00:02:32,740 --> 00:02:33,920
+which is the element on
+
+50
+00:02:33,920 --> 00:02:36,360
+which we want to perform the animation.
+
+51
+00:02:36,360 --> 00:02:40,240
+And we could set a style here.
+
+52
+00:02:40,240 --> 00:02:42,780
+We could set the style property here
+
+53
+00:02:42,780 --> 00:02:46,720
+and give it an opacity of zero.
+
+54
+00:02:46,720 --> 00:02:50,890
+This is a way of programmatically setting the opacity off
+
+55
+00:02:50,890 --> 00:02:53,930
+this element to zero initially.
+
+56
+00:02:53,930 --> 00:02:55,820
+This is Vanilla JavaScript,
+
+57
+00:02:55,820 --> 00:02:58,420
+which we also can use here in Vue.
+
+58
+00:02:58,420 --> 00:03:00,340
+Now that's my initial style.
+
+59
+00:03:00,340 --> 00:03:03,427
+In enter, I now want to change this to one,
+
+60
+00:03:03,427 --> 00:03:07,822
+but not instantly, but over a certain duration.
+
+61
+00:03:07,822 --> 00:03:10,300
+And that's something we can build
+
+62
+00:03:10,300 --> 00:03:13,380
+by calling setInterval here.
+
+63
+00:03:13,380 --> 00:03:17,160
+SetInterval is a built-in JavaScript function,
+
+64
+00:03:17,160 --> 00:03:21,253
+which allows us to execute code every few milliseconds.
+
+65
+00:03:22,180 --> 00:03:25,940
+The second argument here is the amount of milliseconds
+
+66
+00:03:25,940 --> 00:03:29,030
+we wanna wait until the next code execution.
+
+67
+00:03:29,030 --> 00:03:31,063
+And here we could use 20.
+
+68
+00:03:31,910 --> 00:03:33,900
+At the first argument is a function
+
+69
+00:03:33,900 --> 00:03:38,220
+which will now be executed every 20 milliseconds.
+
+70
+00:03:38,220 --> 00:03:41,363
+And here we could gradually change the opacity.
+
+71
+00:03:42,960 --> 00:03:45,460
+We can do this by using our element
+
+72
+00:03:45,460 --> 00:03:47,370
+and setting its opacity,
+
+73
+00:03:47,370 --> 00:03:50,130
+but now not to a hard coded value,
+
+74
+00:03:50,130 --> 00:03:53,000
+but to a dynamically derived value.
+
+75
+00:03:53,000 --> 00:03:55,600
+And to dynamically derive a value based on
+
+76
+00:03:55,600 --> 00:03:58,290
+the number of intervals we already completed
+
+77
+00:03:58,290 --> 00:04:01,920
+or the number of function executions we already completed,
+
+78
+00:04:01,920 --> 00:04:04,930
+we can keep track of the current round, you could say.
+
+79
+00:04:04,930 --> 00:04:07,570
+Add a little helper variable named around here.
+
+80
+00:04:07,570 --> 00:04:12,465
+Start at one and set the opacity equal to round times
+
+81
+00:04:12,465 --> 00:04:14,620
+0.1, for example.
+
+82
+00:04:14,620 --> 00:04:17,800
+So in round one, we set it to 10% opacity.
+
+83
+00:04:17,800 --> 00:04:20,973
+In the next round, we'll set it to 20%.
+
+84
+00:04:23,720 --> 00:04:26,600
+Now we just need to increment the round
+
+85
+00:04:26,600 --> 00:04:29,550
+every time interval is called every time
+
+86
+00:04:29,550 --> 00:04:32,190
+this function is called by setInterval.
+
+87
+00:04:32,190 --> 00:04:34,290
+And we need an exit condition
+
+88
+00:04:34,290 --> 00:04:39,290
+and check if round is greater than 10,
+
+89
+00:04:39,290 --> 00:04:42,990
+at which point we already reached 100% opacity.
+
+90
+00:04:42,990 --> 00:04:44,563
+And if that's the case,
+
+91
+00:04:45,410 --> 00:04:50,090
+I want to call clearInterval and clear this interval.
+
+92
+00:04:50,090 --> 00:04:53,134
+We can do this by storing the interval,
+
+93
+00:04:53,134 --> 00:04:56,950
+or a unique ID pointing at that interval you could say,
+
+94
+00:04:56,950 --> 00:05:01,163
+in a constant and passing this to clearInterval.
+
+95
+00:05:03,220 --> 00:05:05,460
+So now the interval will be cleared,
+
+96
+00:05:05,460 --> 00:05:09,373
+will be stopped if we exceeded 10 rounds.
+
+97
+00:05:10,930 --> 00:05:14,040
+And now we should animate this over time.
+
+98
+00:05:14,040 --> 00:05:16,750
+But with that alone, we'll have a small problem.
+
+99
+00:05:16,750 --> 00:05:18,330
+It will work I will say that.
+
+100
+00:05:18,330 --> 00:05:23,300
+If I reload, we can see that the paragraph fades in, right?
+
+101
+00:05:23,300 --> 00:05:24,920
+That is something you can see.
+
+102
+00:05:24,920 --> 00:05:27,110
+And if it's too fast, you can slow it down
+
+103
+00:05:27,110 --> 00:05:30,010
+by only increasing this by 1%, let's say
+
+104
+00:05:30,010 --> 00:05:32,223
+and waiting for 100 rounds.
+
+105
+00:05:33,380 --> 00:05:35,800
+Now we'll wait two seconds in the end
+
+106
+00:05:35,800 --> 00:05:38,200
+until this is fully visible.
+
+107
+00:05:38,200 --> 00:05:40,143
+So if you save that and reload.
+
+108
+00:05:40,143 --> 00:05:43,790
+Now this fades in slowly here.
+
+109
+00:05:43,790 --> 00:05:46,390
+But you'll notice a problem here on the right.
+
+110
+00:05:46,390 --> 00:05:50,300
+If I reload, clear to console and click Toggle Paragraph,
+
+111
+00:05:50,300 --> 00:05:53,860
+it fades in over two seconds, but afterEnter
+
+112
+00:05:53,860 --> 00:05:56,220
+is actually called right at the start.
+
+113
+00:05:56,220 --> 00:05:57,590
+Watch again.
+
+114
+00:05:57,590 --> 00:05:59,260
+I click Toggle Paragraph
+
+115
+00:05:59,260 --> 00:06:01,970
+and afterEnter is called right away.
+
+116
+00:06:01,970 --> 00:06:04,340
+This might or might not matter to you.
+
+117
+00:06:04,340 --> 00:06:06,370
+Maybe it does not matter to you.
+
+118
+00:06:06,370 --> 00:06:08,720
+Maybe you don't care about this.
+
+119
+00:06:08,720 --> 00:06:11,380
+But actually the order is wrong as you can tell;
+
+120
+00:06:11,380 --> 00:06:12,810
+it's called too early.
+
+121
+00:06:12,810 --> 00:06:15,510
+And in some cases this might matter.
+
+122
+00:06:15,510 --> 00:06:17,160
+And this is not a bug.
+
+123
+00:06:17,160 --> 00:06:20,256
+But instead Vue has no chance of knowing
+
+124
+00:06:20,256 --> 00:06:22,877
+when it should call afterEnter.
+
+125
+00:06:22,877 --> 00:06:24,500
+To us it's obvious.
+
+126
+00:06:24,500 --> 00:06:27,840
+I mean, we're done with enter, once we in the end
+
+127
+00:06:27,840 --> 00:06:29,730
+make it into this if condition.
+
+128
+00:06:29,730 --> 00:06:33,240
+But that's something view doesn't really understand.
+
+129
+00:06:33,240 --> 00:06:35,200
+That's way too logical.
+
+130
+00:06:35,200 --> 00:06:38,810
+It doesn't parse and try to understand our code
+
+131
+00:06:38,810 --> 00:06:41,585
+and our reasons behind writing that code.
+
+132
+00:06:41,585 --> 00:06:45,120
+Instead, we have to tell you when we're done here.
+
+133
+00:06:45,120 --> 00:06:46,750
+And for that, enter,
+
+134
+00:06:46,750 --> 00:06:50,760
+actually receives a second argument automatically.
+
+135
+00:06:50,760 --> 00:06:55,470
+And that's a done function, which you can call whenever
+
+136
+00:06:55,470 --> 00:07:00,233
+you want to signal to Vue that you are done in this hook.
+
+137
+00:07:01,680 --> 00:07:02,950
+You don't need to call it
+
+138
+00:07:02,950 --> 00:07:06,290
+if you're having CSS-based animations
+
+139
+00:07:06,290 --> 00:07:09,170
+because then Vue is able to read the duration
+
+140
+00:07:09,170 --> 00:07:11,120
+in the CSS code.
+
+141
+00:07:11,120 --> 00:07:14,980
+But if you're not using CSS, if you have your own logic
+
+142
+00:07:14,980 --> 00:07:17,840
+and the duration is simply just made up
+
+143
+00:07:17,840 --> 00:07:21,020
+by incrementing round and checking this condition
+
+144
+00:07:21,020 --> 00:07:23,490
+and having a certain interval time here,
+
+145
+00:07:23,490 --> 00:07:25,960
+then you need to call done explicitly
+
+146
+00:07:25,960 --> 00:07:28,400
+to let Vue know when you're done.
+
+147
+00:07:28,400 --> 00:07:31,800
+So here after clearInterval, we call done.
+
+148
+00:07:31,800 --> 00:07:34,660
+We call this done argument as a function
+
+149
+00:07:34,660 --> 00:07:36,913
+to let you know when we're done.
+
+150
+00:07:38,510 --> 00:07:39,865
+If I reload here.
+
+151
+00:07:39,865 --> 00:07:44,260
+Now we can toggle the paragraph and you see afterEnter
+
+152
+00:07:44,260 --> 00:07:47,460
+is now really only called at a later point of time
+
+153
+00:07:47,460 --> 00:07:50,141
+once we are indeed done.
+
+154
+00:07:50,141 --> 00:07:53,340
+And this is now how you can control animations
+
+155
+00:07:53,340 --> 00:07:55,398
+with JavaScript.
+
+156
+00:07:55,398 --> 00:07:58,120
+And of course, we're not limited to controlling
+
+157
+00:07:58,120 --> 00:08:00,810
+the enter animation with JavaScript.
+
+158
+00:08:00,810 --> 00:08:03,630
+We can also write something similar for leaving.
+
+159
+00:08:03,630 --> 00:08:07,560
+And definitely feel free to write the equivalent for
+
+160
+00:08:07,560 --> 00:08:10,810
+this enter animation for the leave case.
+
+161
+00:08:10,810 --> 00:08:13,710
+So basically the opposite going from one to zero.
+
+162
+00:08:13,710 --> 00:08:16,720
+Here is a quick pause for you to pause the video
+
+163
+00:08:16,720 --> 00:08:18,160
+and try this on your own.
+
+164
+00:08:18,160 --> 00:08:19,960
+And there often will do it together.
+
+165
+00:08:22,560 --> 00:08:24,600
+So were are you successful?
+
+166
+00:08:24,600 --> 00:08:26,650
+Let's try to gather now.
+
+167
+00:08:26,650 --> 00:08:30,720
+And for that here in leave, I will basically use
+
+168
+00:08:30,720 --> 00:08:33,570
+the same logic as I had here for entering.
+
+169
+00:08:33,570 --> 00:08:37,839
+I'll copy this entire code and bring it over to leave.
+
+170
+00:08:37,839 --> 00:08:40,150
+But I'll do the opposite here.
+
+171
+00:08:40,150 --> 00:08:42,490
+I will basically
+
+172
+00:08:42,490 --> 00:08:47,490
+set my opacity to one minus this calculation,
+
+173
+00:08:48,006 --> 00:08:51,140
+so that we start at one and I reduce it
+
+174
+00:08:52,200 --> 00:08:53,680
+and they're all after we can leave
+
+175
+00:08:53,680 --> 00:08:55,880
+the rest of the code as it is.
+
+176
+00:08:55,880 --> 00:08:59,260
+However, in before leave, I of course also want to set
+
+177
+00:08:59,260 --> 00:09:03,140
+the initial opacity to one, though that is a bit redundant
+
+178
+00:09:03,140 --> 00:09:07,020
+because that is our end state and our initial state of
+
+179
+00:09:07,020 --> 00:09:09,970
+the rendered and attached element anyways.
+
+180
+00:09:09,970 --> 00:09:12,890
+Nonetheless, we can set it here to be very clear about
+
+181
+00:09:12,890 --> 00:09:15,390
+the fact that this is our starting state
+
+182
+00:09:15,390 --> 00:09:17,023
+for the leave animation.
+
+183
+00:09:18,650 --> 00:09:22,460
+And of course, we all need to accept this done argument here
+
+184
+00:09:22,460 --> 00:09:25,140
+in the leave method, so that we can call it here
+
+185
+00:09:25,140 --> 00:09:26,343
+when we are done.
+
+186
+00:09:27,320 --> 00:09:28,900
+Now, we can also of course,
+
+187
+00:09:28,900 --> 00:09:30,950
+work with different timings here,
+
+188
+00:09:30,950 --> 00:09:33,500
+a different amount of rounds if we wanted to.
+
+189
+00:09:33,500 --> 00:09:35,750
+But I'll leave everything as it is.
+
+190
+00:09:35,750 --> 00:09:37,970
+And with that, if I reload,
+
+191
+00:09:37,970 --> 00:09:41,860
+I can toggle the paragraph to animate it in.
+
+192
+00:09:41,860 --> 00:09:45,233
+And then I can also animate it out.
+
+193
+00:09:47,170 --> 00:09:51,450
+And that is how you can control animations with JavaScript.
+
+194
+00:09:51,450 --> 00:09:54,550
+Now, by the way, if this is animating in
+
+195
+00:09:54,550 --> 00:09:57,370
+and I then click toggle paragraph,
+
+196
+00:09:57,370 --> 00:10:01,770
+again, this automatically cancel and reverses it.
+
+197
+00:10:01,770 --> 00:10:05,113
+However, you'll also see it flickers a little bit.
+
+198
+00:10:06,340 --> 00:10:08,630
+And it's flickering, because in the end
+
+199
+00:10:08,630 --> 00:10:11,568
+it's playing two animations at the same time.
+
+200
+00:10:11,568 --> 00:10:15,810
+If we cancel the first animation that effectively just means
+
+201
+00:10:15,810 --> 00:10:17,930
+that the leave animation starts before
+
+202
+00:10:17,930 --> 00:10:21,640
+the entering animation finished or the other way around.
+
+203
+00:10:21,640 --> 00:10:24,310
+So then both animations are playing at the same time
+
+204
+00:10:25,210 --> 00:10:27,773
+resulting in that flickering which you saw here.
+
+205
+00:10:28,650 --> 00:10:31,103
+And that's also something we can prevent.
+
+206
+00:10:32,690 --> 00:10:36,927
+Because there is another useful event which is emitted by
+
+207
+00:10:36,927 --> 00:10:38,760
+the transition component.
+
+208
+00:10:38,760 --> 00:10:43,680
+And that is the enter dash canceled event
+
+209
+00:10:43,680 --> 00:10:48,066
+and the leave canceled event.
+
+210
+00:10:48,066 --> 00:10:51,590
+And here we can execute methods which are called whenever
+
+211
+00:10:51,590 --> 00:10:54,290
+the animation is canceled.
+
+212
+00:10:54,290 --> 00:10:56,640
+And by the way, those events are always emitted
+
+213
+00:10:56,640 --> 00:10:59,580
+when it's canceled, no matter if you are writing your logic
+
+214
+00:10:59,580 --> 00:11:01,910
+with JavaScript as we're doing it here.
+
+215
+00:11:01,910 --> 00:11:04,740
+Or if you would be using CSS as we did before.
+
+216
+00:11:04,740 --> 00:11:07,540
+Whenever one transition isn't finished,
+
+217
+00:11:07,540 --> 00:11:10,040
+when you start a new a transition,
+
+218
+00:11:10,040 --> 00:11:13,530
+the respective canceled event will be emitted.
+
+219
+00:11:13,530 --> 00:11:17,960
+So here we can have an enterCanceled method
+
+220
+00:11:17,960 --> 00:11:22,460
+and a leaveCanceled method that should be called.
+
+221
+00:11:22,460 --> 00:11:25,650
+Now let's add those two methods therefore.
+
+222
+00:11:25,650 --> 00:11:28,730
+EnterCanceled
+
+223
+00:11:29,710 --> 00:11:30,610
+and leaveCanceled.
+
+224
+00:11:32,620 --> 00:11:34,550
+And of course here we can also log
+
+225
+00:11:34,550 --> 00:11:36,040
+something to the console.
+
+226
+00:11:36,040 --> 00:11:39,090
+We also get the element here and we could change it.
+
+227
+00:11:39,090 --> 00:11:41,660
+But I want to do one important thing here.
+
+228
+00:11:41,660 --> 00:11:44,060
+If the enter animation gets canceled,
+
+229
+00:11:44,060 --> 00:11:47,860
+I want to cancel my enter interval here,
+
+230
+00:11:47,860 --> 00:11:51,100
+this interval, immediately before it completes.
+
+231
+00:11:51,100 --> 00:11:54,850
+So that it's not just cleared if the rounds reach 100
+
+232
+00:11:54,850 --> 00:11:59,150
+but that I also clear it if enterCanceled is triggered.
+
+233
+00:11:59,150 --> 00:12:01,910
+So that the enter animation is immediately canceled
+
+234
+00:12:01,910 --> 00:12:03,743
+when the leaf animation starts.
+
+235
+00:12:04,660 --> 00:12:07,930
+And I want to do the same in leaveCanceled.
+
+236
+00:12:07,930 --> 00:12:12,030
+The problem is that we store our interval in constants,
+
+237
+00:12:12,030 --> 00:12:16,160
+which are part of the enter and the leave methods.
+
+238
+00:12:16,160 --> 00:12:18,690
+So these constants are only available
+
+239
+00:12:18,690 --> 00:12:21,730
+inside of these methods and not available
+
+240
+00:12:21,730 --> 00:12:23,823
+inside of enter and leave canceled.
+
+241
+00:12:25,510 --> 00:12:27,500
+But the solution is simple.
+
+242
+00:12:27,500 --> 00:12:31,184
+These are regular methods in the methods property, right?
+
+243
+00:12:31,184 --> 00:12:33,920
+So, in the end, we can just use data property
+
+244
+00:12:33,920 --> 00:12:35,790
+to store those intervals.
+
+245
+00:12:35,790 --> 00:12:40,120
+And we can have our enterInterval here,
+
+246
+00:12:40,120 --> 00:12:41,510
+which initially is null.
+
+247
+00:12:41,510 --> 00:12:45,214
+And our leaveInterval, which initially is null.
+
+248
+00:12:45,214 --> 00:12:49,080
+And now we store the interval we create here
+
+249
+00:12:49,080 --> 00:12:50,490
+in the Enter method
+
+250
+00:12:51,530 --> 00:12:54,165
+in this enterInterval.
+
+251
+00:12:54,165 --> 00:12:58,529
+And we cleared this enterInterval here
+
+252
+00:12:58,529 --> 00:13:01,000
+and we do the same in the leave method.
+
+253
+00:13:01,000 --> 00:13:05,110
+There we store the interval in this leaveInterval.
+
+254
+00:13:05,966 --> 00:13:09,700
+And we cancel this leaveInterval.
+
+255
+00:13:12,210 --> 00:13:14,150
+We'll face a little problem here
+
+256
+00:13:14,150 --> 00:13:17,460
+because here we're accessing this leaveInterval
+
+257
+00:13:17,460 --> 00:13:20,920
+and this enterInterval inside of a nested function.
+
+258
+00:13:20,920 --> 00:13:25,650
+And in there to this keyword will unfortunately not refer to
+
+259
+00:13:25,650 --> 00:13:28,520
+the same thing to the Vue app object
+
+260
+00:13:28,520 --> 00:13:31,533
+as it does outside of this nested function.
+
+261
+00:13:32,530 --> 00:13:36,330
+The workaround is simple, we use an arrow function.
+
+262
+00:13:36,330 --> 00:13:39,540
+There to this keyword is not overwritten
+
+263
+00:13:39,540 --> 00:13:41,890
+and will therefore keep its context.
+
+264
+00:13:41,890 --> 00:13:45,000
+So make sure that in both setInterval calls
+
+265
+00:13:45,000 --> 00:13:47,033
+you use an arrow function.
+
+266
+00:13:48,048 --> 00:13:52,150
+And with that, we can now use leave and enter interval
+
+267
+00:13:52,150 --> 00:13:56,020
+those new data properties, also in the canceled methods.
+
+268
+00:13:56,020 --> 00:14:00,751
+And we can call clearInterval on this
+
+269
+00:14:00,751 --> 00:14:02,910
+enterInterval.
+
+270
+00:14:02,910 --> 00:14:07,613
+And in leaveCanceled, clearInterval on this
+
+271
+00:14:07,613 --> 00:14:08,780
+leaveInterval.
+
+272
+00:14:12,060 --> 00:14:13,483
+And if we save this,
+
+273
+00:14:14,390 --> 00:14:15,610
+yeah, my setup complains
+
+274
+00:14:15,610 --> 00:14:17,970
+that I'm never using the L property.
+
+275
+00:14:17,970 --> 00:14:21,610
+Well therefore for completeness sake, I will log it here.
+
+276
+00:14:21,610 --> 00:14:24,640
+Alternatively you omit it if you don't need it.
+
+277
+00:14:24,640 --> 00:14:26,970
+But I will just leave it here so that it is clear
+
+278
+00:14:26,970 --> 00:14:28,650
+that we would be getting it.
+
+279
+00:14:28,650 --> 00:14:32,080
+Log it here, save it, everything it saves now.
+
+280
+00:14:32,080 --> 00:14:35,358
+And now if I click Toggle Paragraph and click again,
+
+281
+00:14:35,358 --> 00:14:37,890
+now we have no flickering
+
+282
+00:14:37,890 --> 00:14:39,900
+because now we're canceling this.
+
+283
+00:14:39,900 --> 00:14:43,660
+We're clearing the interval and we're going back
+
+284
+00:14:43,660 --> 00:14:45,233
+to removing this therefore.
+
+285
+00:14:48,170 --> 00:14:52,110
+So this is now enter and leave canceled
+
+286
+00:14:52,110 --> 00:14:55,433
+that these events exist and what you can do with them.
+

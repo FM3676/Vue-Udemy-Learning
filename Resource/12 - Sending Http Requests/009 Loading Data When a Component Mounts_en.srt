@@ -1,0 +1,152 @@
+1
+00:00:02,170 --> 00:00:04,320
+Sending and getting data works,
+
+2
+00:00:04,320 --> 00:00:07,600
+and that was the main objective of this course.
+
+3
+00:00:07,600 --> 00:00:09,680
+But there is more we can add.
+
+4
+00:00:09,680 --> 00:00:12,390
+For example, when we reload this page,
+
+5
+00:00:12,390 --> 00:00:15,440
+we can of course always load all submitted experiences.
+
+6
+00:00:15,440 --> 00:00:17,470
+And that's the great thing by the way.
+
+7
+00:00:17,470 --> 00:00:21,090
+Now, when we reload the page the data isn't lost
+
+8
+00:00:21,090 --> 00:00:23,623
+because it is stored on this back-end server.
+
+9
+00:00:24,910 --> 00:00:28,060
+But when we reload, we might also want to fetch
+
+10
+00:00:28,060 --> 00:00:30,910
+all submitted experiences automatically,
+
+11
+00:00:30,910 --> 00:00:33,576
+without having to press this button first.
+
+12
+00:00:33,576 --> 00:00:36,450
+And that's something that's very easy to implement
+
+13
+00:00:36,450 --> 00:00:37,940
+in Vue.js.
+
+14
+00:00:37,940 --> 00:00:40,120
+In the user experiences component,
+
+15
+00:00:40,120 --> 00:00:42,680
+we have our code for fetching our data,
+
+16
+00:00:42,680 --> 00:00:44,930
+we have the load experiences method.
+
+17
+00:00:44,930 --> 00:00:48,390
+Well, of course we can also trigger this method,
+
+18
+00:00:48,390 --> 00:00:50,770
+not just when this button is clicked,
+
+19
+00:00:50,770 --> 00:00:54,450
+but when this entire component is loaded for the first time.
+
+20
+00:00:54,450 --> 00:00:56,250
+And how could we do that?
+
+21
+00:00:56,250 --> 00:00:59,600
+Well, you might remember this Vue lifecycle,
+
+22
+00:00:59,600 --> 00:01:03,070
+which every instance and therefore also every component has,
+
+23
+00:01:03,070 --> 00:01:04,553
+we can utilize that.
+
+24
+00:01:05,700 --> 00:01:08,170
+Every component follows that lifecycle
+
+25
+00:01:08,170 --> 00:01:11,565
+and therefore here in user experiences,
+
+26
+00:01:11,565 --> 00:01:15,950
+we can simply add, maybe here towards the bottom.
+
+27
+00:01:15,950 --> 00:01:19,483
+We can simply add the mounted hook, for example.
+
+28
+00:01:20,350 --> 00:01:23,530
+This will be triggered when the Vue app is mounted,
+
+29
+00:01:23,530 --> 00:01:25,550
+and that means when it's fully initialized
+
+30
+00:01:25,550 --> 00:01:27,730
+and ready to get started.
+
+31
+00:01:27,730 --> 00:01:32,260
+And here we could now trigger the load experiences method,
+
+32
+00:01:32,260 --> 00:01:36,315
+ensuring that when this component is becoming visible,
+
+33
+00:01:36,315 --> 00:01:40,483
+that then it will go ahead and load all experiences.
+
+34
+00:01:42,150 --> 00:01:44,373
+And if I do that and reload,
+
+35
+00:01:46,020 --> 00:01:49,130
+you see the experiences show up automatically
+
+36
+00:01:49,130 --> 00:01:53,190
+after a short while, without me pressing this button.
+
+37
+00:01:53,190 --> 00:01:56,580
+Now, so that is a useful improvement here, I would say.
+
+38
+00:01:56,580 --> 00:01:57,973
+What else could we improve?
+

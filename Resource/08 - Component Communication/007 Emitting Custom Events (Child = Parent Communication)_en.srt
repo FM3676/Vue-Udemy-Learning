@@ -1,0 +1,812 @@
+1
+00:00:02,110 --> 00:00:05,060
+So that's it for props for the moment.
+
+2
+00:00:05,060 --> 00:00:08,397
+We're using props to pass data from the app.vue file
+
+3
+00:00:08,397 --> 00:00:11,400
+into our FriendContact component.
+
+4
+00:00:11,400 --> 00:00:14,253
+Now what about communication from the component
+
+5
+00:00:14,253 --> 00:00:15,880
+to the parent?
+
+6
+00:00:15,880 --> 00:00:18,570
+A good example would be toggle favorite.
+
+7
+00:00:18,570 --> 00:00:21,862
+At the moment, this is kind of a dummy thing.
+
+8
+00:00:21,862 --> 00:00:25,890
+I'm setting it to true for every generated friend.
+
+9
+00:00:25,890 --> 00:00:29,700
+And we're not really managing it on a friend specific level.
+
+10
+00:00:29,700 --> 00:00:32,891
+Yes, I can toggle it for an individual friend,
+
+11
+00:00:32,891 --> 00:00:36,030
+but that only changes inside of the component.
+
+12
+00:00:36,030 --> 00:00:39,027
+In reality, just like the name, the phone number,
+
+13
+00:00:39,027 --> 00:00:40,910
+the email address.
+
+14
+00:00:40,910 --> 00:00:44,670
+is-favorite should not be set to true like this.
+
+15
+00:00:44,670 --> 00:00:47,930
+Instead, we should probably have a isFavorite property
+
+16
+00:00:47,930 --> 00:00:52,066
+on our friend object so that this data is really stored
+
+17
+00:00:52,066 --> 00:00:54,930
+on the input data, where we have the rest
+
+18
+00:00:54,930 --> 00:00:56,763
+of our friends data as well.
+
+19
+00:00:57,890 --> 00:01:01,733
+So we could have isFavorite here and also here.
+
+20
+00:01:03,770 --> 00:01:06,110
+That's what we typically would want to do
+
+21
+00:01:06,110 --> 00:01:07,310
+because the information,
+
+22
+00:01:07,310 --> 00:01:09,667
+whether a friend is a favorite of us or not
+
+23
+00:01:09,667 --> 00:01:13,220
+is just as important and friend specific
+
+24
+00:01:13,220 --> 00:01:16,760
+as its phone number and email address.
+
+25
+00:01:16,760 --> 00:01:19,300
+And it's not just something which we want to change here
+
+26
+00:01:19,300 --> 00:01:20,700
+inside of a component.
+
+27
+00:01:20,700 --> 00:01:23,690
+It should be part of our core friends data,
+
+28
+00:01:23,690 --> 00:01:27,610
+which could be coming from a database or anything like that.
+
+29
+00:01:27,610 --> 00:01:30,200
+Now we got isFavorite managed here,
+
+30
+00:01:30,200 --> 00:01:33,308
+and of course we can pass that down to our component,
+
+31
+00:01:33,308 --> 00:01:38,283
+but there, again, it just acts as an initial prop value,
+
+32
+00:01:38,283 --> 00:01:41,440
+which means if I click toggle favorite here,
+
+33
+00:01:41,440 --> 00:01:44,970
+that changes it inside of the FriendContact component,
+
+34
+00:01:44,970 --> 00:01:48,083
+but not inside of our core friends data.
+
+35
+00:01:49,210 --> 00:01:51,449
+Here of course, that is just some dummy data,
+
+36
+00:01:51,449 --> 00:01:54,100
+but if this would be coming from a database,
+
+37
+00:01:54,100 --> 00:01:56,590
+we probably would want to send it back
+
+38
+00:01:56,590 --> 00:01:58,520
+to that database as well.
+
+39
+00:01:58,520 --> 00:02:02,620
+So just changing it inside of that component is not enough.
+
+40
+00:02:02,620 --> 00:02:06,095
+We would also want to change it here in app.vue file
+
+41
+00:02:06,095 --> 00:02:09,233
+in our friends data, in our friends array.
+
+42
+00:02:10,250 --> 00:02:12,970
+So therefore, we now need communication
+
+43
+00:02:12,970 --> 00:02:16,890
+from the FriendContact component back to app.vue.
+
+44
+00:02:16,890 --> 00:02:19,542
+So basically the opposite of props.
+
+45
+00:02:19,542 --> 00:02:23,030
+Props allowed us to pass data from app.vue
+
+46
+00:02:23,030 --> 00:02:24,860
+to FriendContact.
+
+47
+00:02:24,860 --> 00:02:29,490
+Now we need a way of letting FriendContact tell app.vue
+
+48
+00:02:29,490 --> 00:02:32,040
+that the favorite status changed
+
+49
+00:02:32,040 --> 00:02:35,340
+and how could that work?
+
+50
+00:02:35,340 --> 00:02:37,013
+How could we implement that?
+
+51
+00:02:38,450 --> 00:02:43,120
+Well, how does it work for regular HTML elements?
+
+52
+00:02:43,120 --> 00:02:44,810
+If we click a button,
+
+53
+00:02:44,810 --> 00:02:47,600
+the button in the end wants to let us know
+
+54
+00:02:47,600 --> 00:02:49,260
+that it was clicked.
+
+55
+00:02:49,260 --> 00:02:54,030
+So the button emits a click event to which we can listen.
+
+56
+00:02:54,030 --> 00:02:57,180
+And it's the same for custom components in Vue.
+
+57
+00:02:57,180 --> 00:03:01,284
+If a component should talk to its parent and let the parent
+
+58
+00:03:01,284 --> 00:03:03,209
+know that something happened,
+
+59
+00:03:03,209 --> 00:03:05,878
+that component should emit an event
+
+60
+00:03:05,878 --> 00:03:08,780
+to which the parent can listen.
+
+61
+00:03:08,780 --> 00:03:12,262
+And indeed you can emit your own custom events
+
+62
+00:03:12,262 --> 00:03:15,060
+inside of your Vue components.
+
+63
+00:03:15,060 --> 00:03:19,275
+For example here, when toggleFavorite is triggered.
+
+64
+00:03:19,275 --> 00:03:22,032
+In this method, instead of changing
+
+65
+00:03:22,032 --> 00:03:26,797
+this internal friendIsFavorite data property,
+
+66
+00:03:26,797 --> 00:03:31,150
+we can use this and now a built in method,
+
+67
+00:03:31,150 --> 00:03:33,580
+which ships together with Vue
+
+68
+00:03:33,580 --> 00:03:36,240
+and therefore it starts with a dollar sign,
+
+69
+00:03:36,240 --> 00:03:39,808
+just like refs did in the behind the scenes module.
+
+70
+00:03:39,808 --> 00:03:43,683
+But now it's not refs, but emit, dollar sign emit.
+
+71
+00:03:44,690 --> 00:03:49,280
+That's a built in method, which you can call from inside
+
+72
+00:03:49,280 --> 00:03:52,980
+a Vue component under this keyword.
+
+73
+00:03:52,980 --> 00:03:56,910
+And this allows you to emit your own custom event
+
+74
+00:03:56,910 --> 00:03:58,580
+to which you then can listen
+
+75
+00:03:58,580 --> 00:04:00,763
+from inside the parent component.
+
+76
+00:04:02,340 --> 00:04:05,490
+Now emit wants at least one argument,
+
+77
+00:04:05,490 --> 00:04:09,130
+and that is the name of the custom event.
+
+78
+00:04:09,130 --> 00:04:11,780
+And here you can name this event, however you want.
+
+79
+00:04:11,780 --> 00:04:12,620
+It's your event.
+
+80
+00:04:12,620 --> 00:04:14,270
+So you can use any name you want.
+
+81
+00:04:15,400 --> 00:04:17,839
+And I'll use toggle-favorite.
+
+82
+00:04:17,839 --> 00:04:20,791
+Here the convention is to always use kebab case
+
+83
+00:04:20,791 --> 00:04:22,993
+no matter where you use it.
+
+84
+00:04:23,963 --> 00:04:27,190
+So that's different to props where in the component
+
+85
+00:04:27,190 --> 00:04:30,031
+that receives it, you use camel case
+
+86
+00:04:30,031 --> 00:04:34,410
+and you only use kebab case for passing in the values.
+
+87
+00:04:34,410 --> 00:04:37,700
+For events it's always kebab case.
+
+88
+00:04:37,700 --> 00:04:40,760
+So now we're emitting this toggle favorite event.
+
+89
+00:04:40,760 --> 00:04:44,133
+Our own component is emitting this custom event.
+
+90
+00:04:45,440 --> 00:04:47,600
+And what do you do with that?
+
+91
+00:04:47,600 --> 00:04:50,170
+Well, you listen to it just as you can listen
+
+92
+00:04:50,170 --> 00:04:51,840
+to clicks on buttons.
+
+93
+00:04:51,840 --> 00:04:55,930
+In the app.vue file, where we use our own component,
+
+94
+00:04:55,930 --> 00:05:00,800
+you can listen to it with v-on or the @ shorthand.
+
+95
+00:05:00,800 --> 00:05:04,577
+And here we can listen to toggle-favorite
+
+96
+00:05:04,577 --> 00:05:08,877
+and bind this to any JavaScript code that should execute
+
+97
+00:05:08,877 --> 00:05:11,203
+when this event is emitted.
+
+98
+00:05:13,300 --> 00:05:15,217
+Here, we could now add methods
+
+99
+00:05:15,217 --> 00:05:18,190
+to our Vue app config object,
+
+100
+00:05:18,190 --> 00:05:23,190
+and add a method named toggleFavoriteStatus, for example.
+
+101
+00:05:25,490 --> 00:05:30,490
+And then bind this method here to our toggle-favorite event.
+
+102
+00:05:32,440 --> 00:05:35,390
+And if we save that, that should work.
+
+103
+00:05:35,390 --> 00:05:37,500
+Of course at the moment, that does nothing,
+
+104
+00:05:37,500 --> 00:05:40,130
+but we also don't get an error.
+
+105
+00:05:40,130 --> 00:05:42,040
+And we can tell that it works
+
+106
+00:05:42,040 --> 00:05:44,750
+if we add an alert here
+
+107
+00:05:44,750 --> 00:05:47,560
+in that toggle favorite status method.
+
+108
+00:05:47,560 --> 00:05:52,110
+This works, which of course is not the final code,
+
+109
+00:05:52,110 --> 00:05:53,233
+but a good test.
+
+110
+00:05:54,380 --> 00:05:57,893
+Now you'll see, I get this alert if I click toggle favorite.
+
+111
+00:05:58,830 --> 00:06:01,140
+And that is how we can communicate back
+
+112
+00:06:01,140 --> 00:06:03,545
+from a component to its parent.
+
+113
+00:06:03,545 --> 00:06:05,283
+But of course we're not done.
+
+114
+00:06:06,190 --> 00:06:08,540
+We're now emitting a custom event,
+
+115
+00:06:08,540 --> 00:06:12,150
+but this event should probably carry some data
+
+116
+00:06:12,150 --> 00:06:15,850
+so that we also let the parent,
+
+117
+00:06:15,850 --> 00:06:20,420
+the app.vue file know which of the two contacts
+
+118
+00:06:20,420 --> 00:06:22,740
+changed its favorite status.
+
+119
+00:06:22,740 --> 00:06:27,253
+Because we got two and here we got no easy way of telling.
+
+120
+00:06:28,250 --> 00:06:31,148
+Well, in FriendContact.vue, when we emit
+
+121
+00:06:31,148 --> 00:06:33,980
+we can also pass a second argument.
+
+122
+00:06:33,980 --> 00:06:37,160
+Actually, you can pass as many arguments as you want.
+
+123
+00:06:37,160 --> 00:06:41,170
+And every extra argument will simply be data
+
+124
+00:06:41,170 --> 00:06:43,673
+that you pass together with your event.
+
+125
+00:06:44,900 --> 00:06:46,820
+So for example here,
+
+126
+00:06:46,820 --> 00:06:50,266
+we could expect that we get one extra prop,
+
+127
+00:06:50,266 --> 00:06:52,410
+the ID of the friend,
+
+128
+00:06:52,410 --> 00:06:56,463
+which is of type string and which should be required.
+
+129
+00:06:57,800 --> 00:07:00,853
+So I'm adding this extra prop definition.
+
+130
+00:07:01,860 --> 00:07:06,860
+In app.vue, we do have IDs so we can easily pass them in
+
+131
+00:07:07,560 --> 00:07:11,480
+simply by binding the newly defined ID prop
+
+132
+00:07:11,480 --> 00:07:14,223
+and passing in friends.id like this.
+
+133
+00:07:15,760 --> 00:07:19,070
+And now with the ID provided to FriendContact
+
+134
+00:07:19,070 --> 00:07:24,070
+on the ID prop, we can emit it here with our custom event.
+
+135
+00:07:24,920 --> 00:07:26,801
+This idea is now available
+
+136
+00:07:26,801 --> 00:07:30,993
+because I just added a prop named ID to this component.
+
+137
+00:07:32,030 --> 00:07:35,350
+And now the toggle favorite event, when it's emitted,
+
+138
+00:07:35,350 --> 00:07:38,290
+will carry this as an extra data.
+
+139
+00:07:38,290 --> 00:07:41,439
+And that will then be provided as a first argument
+
+140
+00:07:41,439 --> 00:07:44,983
+to a method that listens to this event.
+
+141
+00:07:46,480 --> 00:07:50,224
+So in app.vue, we're pointing at the toggleFavoriteStatus
+
+142
+00:07:50,224 --> 00:07:52,940
+method on our own event
+
+143
+00:07:52,940 --> 00:07:55,163
+and the toggleFavoriteStatus method
+
+144
+00:07:55,163 --> 00:07:59,300
+therefore will now receive this friend ID.
+
+145
+00:07:59,300 --> 00:08:01,790
+You can name this argument however you want here,
+
+146
+00:08:01,790 --> 00:08:06,492
+but you will get this second argument we're providing here
+
+147
+00:08:06,492 --> 00:08:08,950
+when we're emitting the custom event.
+
+148
+00:08:08,950 --> 00:08:13,060
+This ID is accepted here as a first parameter
+
+149
+00:08:13,060 --> 00:08:15,143
+in toggleFavoriteStatus.
+
+150
+00:08:17,040 --> 00:08:20,900
+And this now helps us identify the friend
+
+151
+00:08:20,900 --> 00:08:24,470
+where we want to change the favorite status.
+
+152
+00:08:24,470 --> 00:08:28,032
+So now we can reach out to our friends array
+
+153
+00:08:28,032 --> 00:08:30,500
+and use the built in find method,
+
+154
+00:08:30,500 --> 00:08:33,799
+which exists in JavaScript to find a friend
+
+155
+00:08:34,659 --> 00:08:38,059
+where friend ID is equal to the friend ID
+
+156
+00:08:38,059 --> 00:08:39,549
+we're getting here.
+
+157
+00:08:39,549 --> 00:08:42,559
+That's default JavaScript code for finding
+
+158
+00:08:42,559 --> 00:08:45,230
+that friend object in the friends array,
+
+159
+00:08:45,230 --> 00:08:48,310
+where the ID property holds the same value
+
+160
+00:08:48,310 --> 00:08:50,803
+as the friend ID argument we're getting here.
+
+161
+00:08:53,790 --> 00:08:58,790
+This is then the identifiedFriend we could name it.
+
+162
+00:08:59,780 --> 00:09:01,230
+And on that identifiedFriend,
+
+163
+00:09:02,290 --> 00:09:06,123
+we can now set isFavorite to what it's currently not.
+
+164
+00:09:09,010 --> 00:09:11,620
+And this will change that data.
+
+165
+00:09:11,620 --> 00:09:15,260
+And the cool thing is when that data changes,
+
+166
+00:09:15,260 --> 00:09:17,872
+Vue will detect this change
+
+167
+00:09:17,872 --> 00:09:21,260
+and it will then automatically pass the updated
+
+168
+00:09:21,260 --> 00:09:26,260
+favorite status back to the component and update DUI.
+
+169
+00:09:26,450 --> 00:09:29,520
+So now we never changed the favorite status
+
+170
+00:09:29,520 --> 00:09:32,280
+inside of the FriendContact component,
+
+171
+00:09:32,280 --> 00:09:35,400
+but we always changed it in the app.vue file.
+
+172
+00:09:35,400 --> 00:09:38,550
+And still, you will see that everything works.
+
+173
+00:09:38,550 --> 00:09:40,670
+The only change we'll need to make for that
+
+174
+00:09:40,670 --> 00:09:45,620
+is back in FriendContact, we now get rid of this
+
+175
+00:09:45,620 --> 00:09:49,663
+friendIsFavorite data property we added there before.
+
+176
+00:09:50,880 --> 00:09:53,920
+And instead we use our isFavorite prop,
+
+177
+00:09:53,920 --> 00:09:56,400
+which we're getting and which we're now changing
+
+178
+00:09:56,400 --> 00:09:58,093
+eventually in app.vue.
+
+179
+00:09:58,093 --> 00:10:01,110
+We're using this prop here in our template
+
+180
+00:10:02,210 --> 00:10:03,990
+because that will now work.
+
+181
+00:10:03,990 --> 00:10:07,076
+If we save that, you'll see I can toggle this
+
+182
+00:10:07,076 --> 00:10:09,710
+and Vue detects all the changes
+
+183
+00:10:09,710 --> 00:10:11,910
+and updates everything correctly.
+
+184
+00:10:11,910 --> 00:10:15,830
+And now we're using this unidirectional data flow
+
+185
+00:10:15,830 --> 00:10:17,610
+in both directions.
+
+186
+00:10:17,610 --> 00:10:21,460
+We're using it to pass prop data from app.vue
+
+187
+00:10:21,460 --> 00:10:22,743
+into our component,
+
+188
+00:10:23,770 --> 00:10:26,070
+but we're also using it the other way around
+
+189
+00:10:26,070 --> 00:10:29,950
+to emit a custom event inside of our own component
+
+190
+00:10:29,950 --> 00:10:32,020
+with the dollar sign emit method
+
+191
+00:10:32,020 --> 00:10:35,518
+and listen to this custom event in app.vue
+
+192
+00:10:35,518 --> 00:10:39,700
+to then make changes to the data in app.vue,
+
+193
+00:10:39,700 --> 00:10:42,210
+which we're storing in the data property
+
+194
+00:10:42,210 --> 00:10:47,210
+of our main app here, to then feed that updated data back
+
+195
+00:10:48,380 --> 00:10:52,350
+into our component where Vue will then see that something
+
+196
+00:10:52,350 --> 00:10:55,890
+changed and where Vue then updates the UI.
+
+197
+00:10:55,890 --> 00:10:58,820
+And this is how you work with components.
+
+198
+00:10:58,820 --> 00:11:00,260
+You can emit your own events
+
+199
+00:11:00,260 --> 00:11:01,760
+and you can set your own data.
+
+200
+00:11:02,650 --> 00:11:04,900
+It's actually quite similar to working
+
+201
+00:11:04,900 --> 00:11:06,977
+with default HTML elements,
+
+202
+00:11:06,977 --> 00:11:10,830
+just with the difference that you now control the code
+
+203
+00:11:10,830 --> 00:11:13,693
+behind the HTML element, so to say.
+

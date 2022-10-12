@@ -1,0 +1,116 @@
+1
+00:00:02,280 --> 00:00:03,700
+In the last module,
+
+2
+00:00:03,700 --> 00:00:06,890
+we had a look under the hood of Vue.
+
+3
+00:00:06,890 --> 00:00:08,890
+Maybe you skipped this module.
+
+4
+00:00:08,890 --> 00:00:11,430
+That's fine as well, but if you skipped it,
+
+5
+00:00:11,430 --> 00:00:14,000
+be aware that in that module,
+
+6
+00:00:14,000 --> 00:00:17,530
+I also talked about using multiple Vue apps
+
+7
+00:00:17,530 --> 00:00:20,610
+and I highlighted that those apps
+
+8
+00:00:20,610 --> 00:00:25,110
+would then not be connected, so that every Vue app you have,
+
+9
+00:00:25,110 --> 00:00:28,230
+which controls its part of the HTML page,
+
+10
+00:00:28,230 --> 00:00:30,763
+is totally independent from other apps.
+
+11
+00:00:31,810 --> 00:00:33,710
+Now, we're going to take this concept
+
+12
+00:00:33,710 --> 00:00:36,060
+of multiple apps one step further
+
+13
+00:00:36,060 --> 00:00:39,610
+and we're going to explore Vue components,
+
+14
+00:00:39,610 --> 00:00:42,960
+another core feature built into Vue,
+
+15
+00:00:42,960 --> 00:00:46,480
+which indeed builds up on all the other pieces
+
+16
+00:00:46,480 --> 00:00:47,970
+you learned about thus far.
+
+17
+00:00:47,970 --> 00:00:51,870
+So this is an important next step, because as you will see,
+
+18
+00:00:51,870 --> 00:00:54,320
+components will now be there
+
+19
+00:00:54,320 --> 00:00:56,920
+throughout the entire rest of the course,
+
+20
+00:00:56,920 --> 00:01:01,520
+and components are a super important concept in Vue,
+
+21
+00:01:01,520 --> 00:01:05,019
+but also in other alternative frameworks,
+
+22
+00:01:05,019 --> 00:01:07,120
+like Angular or React,
+
+23
+00:01:07,120 --> 00:01:11,250
+just in case you ever want to explore those as well.
+
+24
+00:01:11,250 --> 00:01:13,640
+In this module, we will therefore see
+
+25
+00:01:13,640 --> 00:01:15,740
+what exactly components are
+
+26
+00:01:15,740 --> 00:01:20,360
+and why we have this concept and how we use it of course.
+
+27
+00:01:20,360 --> 00:01:22,970
+And we'll start working with some components,
+
+28
+00:01:22,970 --> 00:01:27,030
+so that we get a first idea of what a component is
+
+29
+00:01:27,030 --> 00:01:28,523
+and what we can do with it.
+

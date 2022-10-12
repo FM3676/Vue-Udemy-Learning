@@ -1,0 +1,252 @@
+1
+00:00:02,210 --> 00:00:04,939
+Now let's move away from code for now.
+
+2
+00:00:04,939 --> 00:00:07,660
+And let's talk about our folder structure
+
+3
+00:00:07,660 --> 00:00:09,910
+and our file names here.
+
+4
+00:00:09,910 --> 00:00:13,650
+You probably just followed along and named your files
+
+5
+00:00:13,650 --> 00:00:14,980
+just like I did.
+
+6
+00:00:14,980 --> 00:00:17,640
+But the question is, why did I choose the names
+
+7
+00:00:17,640 --> 00:00:18,660
+I did choose?
+
+8
+00:00:18,660 --> 00:00:22,690
+And is this the most optimal folder structure?
+
+9
+00:00:22,690 --> 00:00:25,560
+There is an official Vue Style Guide.
+
+10
+00:00:25,560 --> 00:00:29,510
+On the Vue website, you can find it under Doc's Style Guide.
+
+11
+00:00:29,510 --> 00:00:33,720
+And here you will get recommendations on how your code
+
+12
+00:00:33,720 --> 00:00:37,170
+should look like, how you should name certain things.
+
+13
+00:00:37,170 --> 00:00:39,830
+There are essential rules which you basically
+
+14
+00:00:39,830 --> 00:00:41,200
+have to follow.
+
+15
+00:00:41,200 --> 00:00:43,900
+And then there are various levels of recommendations
+
+16
+00:00:43,900 --> 00:00:46,520
+like strongly recommended rules you might want to
+
+17
+00:00:46,520 --> 00:00:49,380
+consider following, and then just generally
+
+18
+00:00:49,380 --> 00:00:50,410
+recommended ones.
+
+19
+00:00:50,410 --> 00:00:53,210
+Now you can read through that to get an idea
+
+20
+00:00:53,210 --> 00:00:55,510
+for how you should name things.
+
+21
+00:00:55,510 --> 00:00:57,290
+For example, in data you'll learn that
+
+22
+00:00:57,290 --> 00:00:59,840
+components should be stored in files,
+
+23
+00:00:59,840 --> 00:01:02,040
+so one component per file.
+
+24
+00:01:02,040 --> 00:01:06,150
+You'll learn that you have base components, like the card
+
+25
+00:01:06,150 --> 00:01:08,700
+which you might use in different places,
+
+26
+00:01:08,700 --> 00:01:11,760
+which you then should name, BaseButton, BaseCard,
+
+27
+00:01:11,760 --> 00:01:14,690
+and so on, or AppButton AppCard,
+
+28
+00:01:14,690 --> 00:01:16,530
+whatever you prefer, here.
+
+29
+00:01:16,530 --> 00:01:19,330
+You will learn about single instance component names
+
+30
+00:01:19,330 --> 00:01:22,840
+like our header here, which I named TheHeader,
+
+31
+00:01:22,840 --> 00:01:26,620
+following the style guide here, where it's recommended
+
+32
+00:01:26,620 --> 00:01:29,730
+that if you have a component, which is only getting used
+
+33
+00:01:29,730 --> 00:01:32,790
+once in the entire app, the name should be
+
+34
+00:01:32,790 --> 00:01:36,810
+The, and then something that describes the component.
+
+35
+00:01:36,810 --> 00:01:40,410
+Now throughout the course, I will follow this style guide
+
+36
+00:01:40,410 --> 00:01:42,490
+as good as possible.
+
+37
+00:01:42,490 --> 00:01:45,690
+I will also say though, that from time to time,
+
+38
+00:01:45,690 --> 00:01:49,440
+I might deviate, to explain something in a better way
+
+39
+00:01:49,440 --> 00:01:52,230
+or to have an easier time explaining something,
+
+40
+00:01:52,230 --> 00:01:54,663
+but generally I follow that guide.
+
+41
+00:01:55,520 --> 00:01:58,190
+And you can go through it as well to get some ideas
+
+42
+00:01:58,190 --> 00:02:00,170
+on how you want to name your things.
+
+43
+00:02:00,170 --> 00:02:02,070
+And which kind of code you want to write
+
+44
+00:02:02,070 --> 00:02:04,623
+when you work with Vue on your own.
+
+45
+00:02:05,540 --> 00:02:08,900
+Be aware of though, that these are not technical rules,
+
+46
+00:02:08,900 --> 00:02:11,150
+but really just recommendations.
+
+47
+00:02:11,150 --> 00:02:15,280
+So if you don't want to follow a certain rule, that is fine.
+
+48
+00:02:15,280 --> 00:02:18,730
+It's your project, you don't have to adhere to those rules,
+
+49
+00:02:18,730 --> 00:02:20,920
+especially if you're working on your own.
+
+50
+00:02:20,920 --> 00:02:24,220
+If you are working in a bigger project with a team,
+
+51
+00:02:24,220 --> 00:02:26,580
+or if you are planning to share your code
+
+52
+00:02:26,580 --> 00:02:30,070
+with others though, you should consider following this guide
+
+53
+00:02:30,070 --> 00:02:33,600
+so that everyone is basically working with the same rules
+
+54
+00:02:33,600 --> 00:02:36,030
+in mind on the code base.
+
+55
+00:02:36,030 --> 00:02:38,170
+And that's all I want to say about the style guide
+
+56
+00:02:38,170 --> 00:02:40,650
+at this point, because this is a course where
+
+57
+00:02:40,650 --> 00:02:45,150
+I wanna teach you Vue and where I want to focus on Vue,
+
+58
+00:02:45,150 --> 00:02:47,770
+the framework and the features it offers.
+
+59
+00:02:47,770 --> 00:02:51,310
+And as I mentioned, I will follow this style guide anyways,
+
+60
+00:02:51,310 --> 00:02:53,920
+so by just following along with the lectures
+
+61
+00:02:53,920 --> 00:02:56,510
+and this course, you will automatically get a feeling
+
+62
+00:02:56,510 --> 00:02:59,210
+for how to name things, how to write code
+
+63
+00:02:59,210 --> 00:03:00,703
+and how to write good code.
+

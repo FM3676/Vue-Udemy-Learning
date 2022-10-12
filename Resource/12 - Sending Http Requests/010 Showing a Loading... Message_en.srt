@@ -1,0 +1,232 @@
+1
+00:00:02,110 --> 00:00:04,180
+Well, another thing would be nice to have
+
+2
+00:00:04,180 --> 00:00:06,170
+when we reload or loading the data
+
+3
+00:00:06,170 --> 00:00:08,670
+and typically it loads extremely fast here
+
+4
+00:00:08,670 --> 00:00:11,823
+because Firebase is fast and my internet is fast.
+
+5
+00:00:11,823 --> 00:00:15,210
+But of course you might be talking
+
+6
+00:00:15,210 --> 00:00:17,310
+to a server which is a bit slower
+
+7
+00:00:17,310 --> 00:00:20,520
+or maybe the users of your view application
+
+8
+00:00:20,520 --> 00:00:22,780
+have a slower internet connection.
+
+9
+00:00:22,780 --> 00:00:25,113
+So loading the data could take a while.
+
+10
+00:00:26,360 --> 00:00:28,900
+Therefor you might wanna show a loading spinner
+
+11
+00:00:28,900 --> 00:00:30,860
+or a loading message.
+
+12
+00:00:30,860 --> 00:00:33,780
+And that's something we can do here as well.
+
+13
+00:00:33,780 --> 00:00:35,810
+In our user experience component,
+
+14
+00:00:35,810 --> 00:00:38,660
+where we are loading and displaying the data,
+
+15
+00:00:38,660 --> 00:00:41,460
+we might only want to show this list of data
+
+16
+00:00:41,460 --> 00:00:43,860
+if we really did load data
+
+17
+00:00:43,860 --> 00:00:46,990
+and we wanna show a loading message and stat
+
+18
+00:00:46,990 --> 00:00:49,740
+if we are still loading data,
+
+19
+00:00:49,740 --> 00:00:51,800
+that's something we can easily implement
+
+20
+00:00:51,800 --> 00:00:56,530
+by adding a new data property is loading for example,
+
+21
+00:00:56,530 --> 00:00:58,483
+and let's set it to false initially.
+
+22
+00:00:59,870 --> 00:01:02,220
+Now, whenever load experiences is triggered
+
+23
+00:01:02,220 --> 00:01:05,235
+right at the beginning before we start fetching,
+
+24
+00:01:05,235 --> 00:01:08,420
+I wanna set this is loading to true
+
+25
+00:01:08,420 --> 00:01:11,030
+because we're now sending a HTTP request
+
+26
+00:01:11,030 --> 00:01:12,763
+and hence we're loading new data.
+
+27
+00:01:15,070 --> 00:01:16,960
+And then I wanna set it back to false
+
+28
+00:01:16,960 --> 00:01:20,080
+once we're done loading that in the end means
+
+29
+00:01:20,080 --> 00:01:24,100
+that here once we got our data,
+
+30
+00:01:24,100 --> 00:01:27,920
+I want to set this is loading back to false
+
+31
+00:01:27,920 --> 00:01:30,573
+because we're not loading anymore we got our data.
+
+32
+00:01:32,210 --> 00:01:33,760
+We gotta do it here
+
+33
+00:01:33,760 --> 00:01:38,050
+and not here at the end of the method after fetch,
+
+34
+00:01:38,050 --> 00:01:40,050
+because keep in mind,
+
+35
+00:01:40,050 --> 00:01:43,180
+JavaScript does not wait for fetch to finish
+
+36
+00:01:43,180 --> 00:01:47,420
+so the next line after fetch will execute immediately,
+
+37
+00:01:47,420 --> 00:01:49,960
+JavaScript will not wait for that to finish
+
+38
+00:01:49,960 --> 00:01:53,560
+it's just the code in these then functions
+
+39
+00:01:53,560 --> 00:01:55,970
+that will execute at a later point of time.
+
+40
+00:01:55,970 --> 00:01:58,393
+That's why we need to reset loading here.
+
+41
+00:02:00,260 --> 00:02:03,600
+And now we've got this is loading property which we can use.
+
+42
+00:02:03,600 --> 00:02:07,186
+We can check if we're not loading
+
+43
+00:02:07,186 --> 00:02:09,122
+that's when I wanna show my data.
+
+44
+00:02:10,320 --> 00:02:11,910
+And if I am loading,
+
+45
+00:02:11,910 --> 00:02:15,240
+I wanna show my loading spinner or in this case
+
+46
+00:02:15,240 --> 00:02:17,080
+if his loading is true
+
+47
+00:02:17,080 --> 00:02:20,330
+I will just show a loading text at least
+
+48
+00:02:20,330 --> 00:02:21,203
+like this.
+
+49
+00:02:24,520 --> 00:02:27,053
+Of course therefore here we can also use V-else.
+
+50
+00:02:28,000 --> 00:02:31,390
+And if we do that you really have to watch closely
+
+51
+00:02:31,390 --> 00:02:33,625
+because it will be super fast here,
+
+52
+00:02:33,625 --> 00:02:36,840
+but you briefly see a loading here, right?
+
+53
+00:02:36,840 --> 00:02:39,610
+You can see it for the fraction of a second.
+
+54
+00:02:39,610 --> 00:02:42,140
+So that's working we're showing a loading spinner
+
+55
+00:02:42,140 --> 00:02:44,820
+or a loading message whilst we are waiting
+
+56
+00:02:44,820 --> 00:02:46,253
+for the data to arrive.
+
+57
+00:02:47,950 --> 00:02:51,770
+Now, what about not having any data or getting an error?
+
+58
+00:02:51,770 --> 00:02:53,133
+How can we handle that?
+

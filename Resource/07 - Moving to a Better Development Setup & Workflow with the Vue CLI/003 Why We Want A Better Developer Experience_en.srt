@@ -1,0 +1,472 @@
+1
+00:00:02,380 --> 00:00:03,550
+Now, besides to need
+
+2
+00:00:03,550 --> 00:00:05,540
+for a web development server,
+
+3
+00:00:05,540 --> 00:00:08,876
+there also are other reasons for switching to a different,
+
+4
+00:00:08,876 --> 00:00:12,350
+to a better development setup,
+
+5
+00:00:12,350 --> 00:00:15,170
+because you might not have noticed it yet,
+
+6
+00:00:15,170 --> 00:00:19,540
+but actually you might want a better developer experience,
+
+7
+00:00:19,540 --> 00:00:23,240
+thus far the way we wrote code, it worked,
+
+8
+00:00:23,240 --> 00:00:25,550
+but it has certain flaws.
+
+9
+00:00:25,550 --> 00:00:28,190
+Our current way of writing and testing
+
+10
+00:00:28,190 --> 00:00:30,590
+the Vie App has flaws.
+
+11
+00:00:30,590 --> 00:00:32,850
+So let's see what our current state is.
+
+12
+00:00:32,850 --> 00:00:36,490
+At the moment, we always need to reload the page
+
+13
+00:00:36,490 --> 00:00:39,203
+whenever we make any change to our code.
+
+14
+00:00:40,410 --> 00:00:42,140
+So for example, here,
+
+15
+00:00:42,140 --> 00:00:46,600
+if I go to my JavaScript file, and let's say,
+
+16
+00:00:46,600 --> 00:00:48,913
+I do change some data here,
+
+17
+00:00:49,770 --> 00:00:52,250
+changed the name to Manuel Lorenzo
+
+18
+00:00:52,250 --> 00:00:53,880
+and when I see this on the page,
+
+19
+00:00:53,880 --> 00:00:57,930
+after saving the JavaScript file, I need to reload the page.
+
+20
+00:00:57,930 --> 00:01:00,420
+Now this might not sound like a bad thing,
+
+21
+00:01:00,420 --> 00:01:03,070
+I mean it's really easy and quick to do,
+
+22
+00:01:03,070 --> 00:01:07,180
+but if you're working on an application on a web application
+
+23
+00:01:07,180 --> 00:01:09,000
+for hours and days
+
+24
+00:01:09,000 --> 00:01:11,058
+and you're writing a lot of code and you wanna test
+
+25
+00:01:11,058 --> 00:01:12,700
+a lot of things,
+
+26
+00:01:12,700 --> 00:01:16,310
+always having to reload can be very annoying.
+
+27
+00:01:16,310 --> 00:01:18,650
+It's also worth noting that when you reload,
+
+28
+00:01:18,650 --> 00:01:22,710
+of course you lose all the state of your application.
+
+29
+00:01:22,710 --> 00:01:25,750
+If this was expanded and you reload,
+
+30
+00:01:25,750 --> 00:01:28,760
+you're back to the initial loading state again,
+
+31
+00:01:28,760 --> 00:01:31,130
+and those tiny things can add up
+
+32
+00:01:31,130 --> 00:01:34,500
+and actually cost you a lot of valuable time
+
+33
+00:01:34,500 --> 00:01:38,010
+and make development unnecessary, harder,
+
+34
+00:01:38,010 --> 00:01:39,970
+or simply take longer.
+
+35
+00:01:39,970 --> 00:01:42,063
+And that's not something you might want.
+
+36
+00:01:43,460 --> 00:01:47,860
+In addition at the moment in our IDE in our code editor,
+
+37
+00:01:47,860 --> 00:01:49,300
+Visual Studio Code,
+
+38
+00:01:49,300 --> 00:01:53,830
+the support we get by that tool is highly limited.
+
+39
+00:01:53,830 --> 00:01:57,301
+For example, the auto-completion is highly limited.
+
+40
+00:01:57,301 --> 00:02:00,683
+If I, for example, want to call Vue.createApp,
+
+41
+00:02:01,580 --> 00:02:03,850
+Visual Studio Code doesn't even understand
+
+42
+00:02:03,850 --> 00:02:06,750
+that there is a vue object available.
+
+43
+00:02:06,750 --> 00:02:07,940
+If I type a dot,
+
+44
+00:02:07,940 --> 00:02:11,230
+it doesn't know which methods I can call on this.
+
+45
+00:02:11,230 --> 00:02:14,730
+It suggests create app here because I used it before
+
+46
+00:02:14,730 --> 00:02:15,790
+in that file,
+
+47
+00:02:15,790 --> 00:02:19,280
+but if I didn't, it wouldn't know that it exists.
+
+48
+00:02:19,280 --> 00:02:21,380
+So that's all the something which is annoying.
+
+49
+00:02:21,380 --> 00:02:24,240
+It would be nicer to get better IDE support,
+
+50
+00:02:24,240 --> 00:02:27,890
+to get more IDE auto-completion and for example,
+
+51
+00:02:27,890 --> 00:02:30,220
+to also get warnings and errors,
+
+52
+00:02:30,220 --> 00:02:31,730
+if we add a typo.
+
+53
+00:02:31,730 --> 00:02:32,563
+At the moment,
+
+54
+00:02:32,563 --> 00:02:36,470
+if I call creatApp like this, because I forgot to E,
+
+55
+00:02:36,470 --> 00:02:40,230
+yes, the app won't work and we'll get an error here
+
+56
+00:02:40,230 --> 00:02:44,080
+in the browser into JavaScript console,
+
+57
+00:02:44,080 --> 00:02:47,290
+but we don't get any warning in the editor.
+
+58
+00:02:47,290 --> 00:02:50,200
+And it would be nice to get a better support here
+
+59
+00:02:50,200 --> 00:02:52,440
+so that we don't even try to run code,
+
+60
+00:02:52,440 --> 00:02:54,443
+which has a simple typo will like this.
+
+61
+00:02:55,800 --> 00:02:57,800
+Now last but not least thus far,
+
+62
+00:02:57,800 --> 00:03:02,720
+I always worked with one HTML and one JavaScript file,
+
+63
+00:03:02,720 --> 00:03:05,560
+and we could add more files and combine them,
+
+64
+00:03:05,560 --> 00:03:09,060
+but we would have to manage all those imports
+
+65
+00:03:09,060 --> 00:03:12,530
+with script source text, for example, manually.
+
+66
+00:03:12,530 --> 00:03:14,570
+And from multiple HTML files,
+
+67
+00:03:14,570 --> 00:03:16,700
+it wouldn't even be that easy
+
+68
+00:03:16,700 --> 00:03:19,430
+because whilst we could have multiple files,
+
+69
+00:03:19,430 --> 00:03:21,210
+if we switch between those files,
+
+70
+00:03:21,210 --> 00:03:24,010
+we would always in the end load a new page
+
+71
+00:03:24,010 --> 00:03:26,290
+and therefore lose all the states
+
+72
+00:03:26,290 --> 00:03:28,600
+that might've been saved in JavaScript.
+
+73
+00:03:28,600 --> 00:03:33,100
+So any intermediate results of calculations and so on.
+
+74
+00:03:33,100 --> 00:03:36,610
+So currently we're kind of limited regarding
+
+75
+00:03:36,610 --> 00:03:38,930
+how we can split our code,
+
+76
+00:03:38,930 --> 00:03:41,123
+how we can make our code more readable.
+
+77
+00:03:42,450 --> 00:03:44,360
+And of course at the moment having just
+
+78
+00:03:44,360 --> 00:03:46,530
+one JavaScript files works,
+
+79
+00:03:46,530 --> 00:03:48,480
+we don't have that much code,
+
+80
+00:03:48,480 --> 00:03:51,220
+but it's easy to imagine that as we build
+
+81
+00:03:51,220 --> 00:03:53,780
+more and more complex applications,
+
+82
+00:03:53,780 --> 00:03:55,320
+we have more and more code,
+
+83
+00:03:55,320 --> 00:03:59,120
+and we might want to split that code across multiple files
+
+84
+00:03:59,120 --> 00:04:02,860
+to make every file itself a bit more readable.
+
+85
+00:04:02,860 --> 00:04:05,770
+And for example, things like this template here,
+
+86
+00:04:05,770 --> 00:04:07,710
+which we have for this component,
+
+87
+00:04:07,710 --> 00:04:10,180
+having it in a string like this is a bit annoying,
+
+88
+00:04:10,180 --> 00:04:12,510
+but at the moment, it's all we can do.
+
+89
+00:04:12,510 --> 00:04:15,510
+We have no better way of defining this template,
+
+90
+00:04:15,510 --> 00:04:19,810
+we can't do it in the HTML file because for components,
+
+91
+00:04:19,810 --> 00:04:24,433
+we can't mount them to HTML as we do with Vue Apps.
+
+92
+00:04:26,490 --> 00:04:29,120
+So that's another thing that would be great
+
+93
+00:04:29,120 --> 00:04:30,890
+if we could get rid of it.
+
+94
+00:04:30,890 --> 00:04:33,360
+And therefore, our current state clearly
+
+95
+00:04:33,360 --> 00:04:36,460
+has some room for improvement.
+
+96
+00:04:36,460 --> 00:04:39,200
+Our wanted state might look like this.
+
+97
+00:04:39,200 --> 00:04:42,470
+It would be great if saved changes.
+
+98
+00:04:42,470 --> 00:04:44,900
+So whenever we change something in code
+
+99
+00:04:44,900 --> 00:04:48,450
+and we saved those changes would be auto-detected,
+
+100
+00:04:48,450 --> 00:04:51,220
+and then the page would automatically reload,
+
+101
+00:04:51,220 --> 00:04:54,840
+or maybe even better than that, not just reload,
+
+102
+00:04:54,840 --> 00:04:59,300
+but simply update that part of the page that did change
+
+103
+00:04:59,300 --> 00:05:02,470
+and therefore keep all our state around.
+
+104
+00:05:02,470 --> 00:05:05,320
+That would be great, it would save us a lot of time.
+
+105
+00:05:05,320 --> 00:05:06,875
+The IDE, so the code editor,
+
+106
+00:05:06,875 --> 00:05:10,790
+we're using should provide better auto-completion and hints
+
+107
+00:05:10,790 --> 00:05:14,620
+to make sure that we're able to find errors quicker
+
+108
+00:05:14,620 --> 00:05:18,230
+and avoid writing code that doesn't work.
+
+109
+00:05:18,230 --> 00:05:21,250
+And it would be great if we would have an easy time
+
+110
+00:05:21,250 --> 00:05:24,270
+splitting our code across multiple files,
+
+111
+00:05:24,270 --> 00:05:27,550
+defining the templates of components in a nicer way,
+
+112
+00:05:27,550 --> 00:05:31,090
+and using modern JavaScript features like ES modules
+
+113
+00:05:31,090 --> 00:05:33,680
+for export and import in JavaScript code
+
+114
+00:05:33,680 --> 00:05:35,353
+into each other for that.
+
+115
+00:05:35,353 --> 00:05:38,480
+That would be nice and that's our wanted state.
+
+116
+00:05:38,480 --> 00:05:43,140
+And that's exactly where the Vue CLI is able to help us.
+
+117
+00:05:43,140 --> 00:05:46,090
+So let's find out what exactly the view CLI is,
+
+118
+00:05:46,090 --> 00:05:48,083
+how it helps us and how we use it.
+

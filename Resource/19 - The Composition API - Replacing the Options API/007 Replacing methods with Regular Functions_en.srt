@@ -1,0 +1,556 @@
+1
+00:00:02,150 --> 00:00:05,270
+So we had to look at ref for single values
+
+2
+00:00:05,270 --> 00:00:10,070
+and reactive for objects if we wanna group values together
+
+3
+00:00:10,070 --> 00:00:12,960
+and want to ensure that we can edit properties
+
+4
+00:00:12,960 --> 00:00:16,293
+just like this, and still maintain reactivity.
+
+5
+00:00:17,400 --> 00:00:19,730
+Now, enough about ref and reactive.
+
+6
+00:00:19,730 --> 00:00:21,650
+We're going to see more of that
+
+7
+00:00:21,650 --> 00:00:25,490
+as we write more code with the Composition API.
+
+8
+00:00:25,490 --> 00:00:29,250
+But now let's actually come back to this simple slide here.
+
+9
+00:00:29,250 --> 00:00:33,810
+We learned that the data that's managed with the data option
+
+10
+00:00:33,810 --> 00:00:37,380
+can be replaced with ref and reactive.
+
+11
+00:00:37,380 --> 00:00:39,860
+Now we also have methods computed
+
+12
+00:00:39,860 --> 00:00:42,460
+and watch which I mentioned would be replaced.
+
+13
+00:00:42,460 --> 00:00:45,810
+So Let's now move on to methods here.
+
+14
+00:00:45,810 --> 00:00:50,270
+For that, let's say, we have a button here on this page,
+
+15
+00:00:50,270 --> 00:00:53,740
+and it will be a simple button with no particular styling.
+
+16
+00:00:53,740 --> 00:00:56,110
+And there I'll say change age.
+
+17
+00:00:56,110 --> 00:01:00,400
+And when we click it, I wanna change my age here.
+
+18
+00:01:00,400 --> 00:01:03,400
+So for that, of course, we can add a click listener.
+
+19
+00:01:03,400 --> 00:01:07,280
+And now, normally with the Options API,
+
+20
+00:01:07,280 --> 00:01:09,760
+we would point at a method here.
+
+21
+00:01:09,760 --> 00:01:14,760
+We would add our methods option, to this config object,
+
+22
+00:01:14,930 --> 00:01:18,540
+and then have something like set new age,
+
+23
+00:01:18,540 --> 00:01:20,020
+or any name like this.
+
+24
+00:01:20,020 --> 00:01:25,020
+And if we then had, age data property here,
+
+25
+00:01:25,520 --> 00:01:26,960
+like 31, initially,
+
+26
+00:01:26,960 --> 00:01:31,630
+we would set this age equal to 32, for example.
+
+27
+00:01:31,630 --> 00:01:34,300
+that is how we would do it with the Options API,
+
+28
+00:01:34,300 --> 00:01:36,843
+with data and methods combined.
+
+29
+00:01:38,010 --> 00:01:40,550
+Now we're using the Composition API,
+
+30
+00:01:40,550 --> 00:01:42,450
+and therefore we don't have data,
+
+31
+00:01:42,450 --> 00:01:44,340
+and we won't have methods.
+
+32
+00:01:44,340 --> 00:01:47,610
+But how can we then, call a function,
+
+33
+00:01:47,610 --> 00:01:52,080
+call some code to be executed, when an event occurs?
+
+34
+00:01:52,080 --> 00:01:54,243
+How do we bind click here?
+
+35
+00:01:55,210 --> 00:01:56,921
+Well, of course,
+
+36
+00:01:56,921 --> 00:02:00,130
+we could access user age,
+
+37
+00:02:00,130 --> 00:02:02,180
+and set a new value here.
+
+38
+00:02:02,180 --> 00:02:05,320
+You might remember that simple JavaScript expressions
+
+39
+00:02:05,320 --> 00:02:09,120
+like this, are allowed, and therefore we could do that.
+
+40
+00:02:09,120 --> 00:02:12,940
+So if I keep this code, and actually remove this timer,
+
+41
+00:02:12,940 --> 00:02:16,410
+because I no longer wanna update name and age with that,
+
+42
+00:02:16,410 --> 00:02:18,140
+so let's remove the timer.
+
+43
+00:02:18,140 --> 00:02:19,793
+So if I save that now,
+
+44
+00:02:20,970 --> 00:02:23,610
+we have the button, and it works.
+
+45
+00:02:23,610 --> 00:02:26,130
+But running all the code that should run
+
+46
+00:02:26,130 --> 00:02:29,180
+upon button clicks and form submissions,
+
+47
+00:02:29,180 --> 00:02:30,730
+in the template like this,
+
+48
+00:02:30,730 --> 00:02:33,730
+is definitely not what we wanna do.
+
+49
+00:02:33,730 --> 00:02:36,870
+It's a good practice to not put too much logic
+
+50
+00:02:36,870 --> 00:02:37,910
+into the template.
+
+51
+00:02:37,910 --> 00:02:41,120
+And if you consider more complex examples
+
+52
+00:02:41,120 --> 00:02:42,750
+like form submissions,
+
+53
+00:02:42,750 --> 00:02:45,510
+where you also wanna validate user input,
+
+54
+00:02:45,510 --> 00:02:47,710
+and maybe show alerts and so on,
+
+55
+00:02:47,710 --> 00:02:50,383
+then this absolutely would not be an option.
+
+56
+00:02:51,600 --> 00:02:54,370
+Instead, the solution is actually very simple,
+
+57
+00:02:54,370 --> 00:02:58,620
+though it might look strange when you see it the first time.
+
+58
+00:02:58,620 --> 00:02:59,980
+The setup method here,
+
+59
+00:02:59,980 --> 00:03:03,940
+is called when Vue sets up this component.
+
+60
+00:03:03,940 --> 00:03:06,160
+It's called only once.
+
+61
+00:03:06,160 --> 00:03:09,960
+And in this setup method, you basically define the data,
+
+62
+00:03:09,960 --> 00:03:12,620
+which should be available in your template.
+
+63
+00:03:12,620 --> 00:03:15,850
+Well, you cannot just define your data here,
+
+64
+00:03:15,850 --> 00:03:17,900
+you can also define the functions
+
+65
+00:03:17,900 --> 00:03:20,073
+that should be available to your template.
+
+66
+00:03:20,920 --> 00:03:22,470
+We can add a function here,
+
+67
+00:03:22,470 --> 00:03:24,840
+set new data could be the name,
+
+68
+00:03:24,840 --> 00:03:27,653
+and we can expose that to the template as well.
+
+69
+00:03:28,520 --> 00:03:31,292
+It might look strange that we define a function
+
+70
+00:03:31,292 --> 00:03:32,680
+(indistinct) of a method,
+
+71
+00:03:32,680 --> 00:03:35,280
+but this is regular JavaScript code.
+
+72
+00:03:35,280 --> 00:03:38,700
+We can create functions inside of functions.
+
+73
+00:03:38,700 --> 00:03:40,780
+This is absolutely fine.
+
+74
+00:03:40,780 --> 00:03:43,690
+And actually, we've set timeout before,
+
+75
+00:03:43,690 --> 00:03:45,220
+we did nothing different.
+
+76
+00:03:45,220 --> 00:03:47,590
+There we also had a function,
+
+77
+00:03:47,590 --> 00:03:49,790
+which we created on the fly here,
+
+78
+00:03:49,790 --> 00:03:51,690
+that's also just a function
+
+79
+00:03:51,690 --> 00:03:53,740
+to find (indistinct) of the setup method.
+
+80
+00:03:54,950 --> 00:03:57,490
+So defining a function here is fine,
+
+81
+00:03:57,490 --> 00:04:01,593
+and then this function, we could set user age equal to 32.
+
+82
+00:04:02,490 --> 00:04:06,260
+And now the question is, how do we expose this function,
+
+83
+00:04:06,260 --> 00:04:09,513
+to the template so that we can bind it to this click event?
+
+84
+00:04:10,770 --> 00:04:13,330
+Well, just as we expose data,
+
+85
+00:04:13,330 --> 00:04:15,810
+we can add a new key value pair,
+
+86
+00:04:15,810 --> 00:04:19,589
+to this object which we return here in the setup method
+
+87
+00:04:19,589 --> 00:04:22,130
+and, for example, have a set H key,
+
+88
+00:04:22,130 --> 00:04:25,030
+and point at set new data.
+
+89
+00:04:25,030 --> 00:04:29,963
+Or set new age maybe, and change the name up here as well.
+
+90
+00:04:31,440 --> 00:04:33,830
+And I'm not executing the function here,
+
+91
+00:04:33,830 --> 00:04:35,170
+I'm just pointing at it.
+
+92
+00:04:35,170 --> 00:04:38,740
+So I'm storing a pointer at this function,
+
+93
+00:04:38,740 --> 00:04:43,110
+in the set age property in this returned object.
+
+94
+00:04:43,110 --> 00:04:44,670
+And this returned object
+
+95
+00:04:44,670 --> 00:04:49,400
+simply holds all the things you can use in your template.
+
+96
+00:04:49,400 --> 00:04:52,410
+That may be data, like our user object,
+
+97
+00:04:52,410 --> 00:04:55,073
+but it may also be a pointer at a function.
+
+98
+00:04:56,150 --> 00:04:58,370
+So now we'll set H as the key here,
+
+99
+00:04:58,370 --> 00:05:03,263
+so therefore, we can bind, or click event here to set age.
+
+100
+00:05:04,630 --> 00:05:08,490
+And this will then trigger, the set new age function
+
+101
+00:05:08,490 --> 00:05:10,673
+at which we point in set age.
+
+102
+00:05:11,650 --> 00:05:15,020
+And therefore if I save that, and reload,
+
+103
+00:05:15,020 --> 00:05:17,300
+we can still change the age,
+
+104
+00:05:17,300 --> 00:05:19,740
+but now with this exposed function.
+
+105
+00:05:19,740 --> 00:05:21,020
+And that's really simple,
+
+106
+00:05:21,020 --> 00:05:24,560
+but this is how you expose functions
+
+107
+00:05:24,560 --> 00:05:26,860
+which you typically bind to click events,
+
+108
+00:05:26,860 --> 00:05:30,130
+but which you also can execute, just like that,
+
+109
+00:05:30,130 --> 00:05:32,900
+between interpolation for example.
+
+110
+00:05:32,900 --> 00:05:36,330
+That's how you expose them to your template.
+
+111
+00:05:36,330 --> 00:05:40,010
+You define them in setup and return them in your object.
+
+112
+00:05:40,010 --> 00:05:42,710
+And that's your replacement for methods in the end,
+
+113
+00:05:42,710 --> 00:05:44,670
+simple as that.
+
+114
+00:05:44,670 --> 00:05:48,250
+And of course, it does not just work with a reactive object,
+
+115
+00:05:48,250 --> 00:05:51,810
+but instead if we would go back to using refs,
+
+116
+00:05:51,810 --> 00:05:53,760
+so if I reverse this all,
+
+117
+00:05:53,760 --> 00:05:56,240
+and I go back to U name and U age
+
+118
+00:05:56,240 --> 00:05:59,180
+and having two refs instead of one object,
+
+119
+00:05:59,180 --> 00:06:04,180
+then of course we can also update our data here.
+
+120
+00:06:04,200 --> 00:06:07,713
+With U age value equal to 33 for example.
+
+121
+00:06:08,600 --> 00:06:10,450
+Now we just need to change
+
+122
+00:06:10,450 --> 00:06:12,129
+the code we exposed to the template,
+
+123
+00:06:12,129 --> 00:06:15,990
+because I went back to using two individual values.
+
+124
+00:06:15,990 --> 00:06:17,580
+So now we could again expose,
+
+125
+00:06:17,580 --> 00:06:21,003
+let's say a username and a age, like that.
+
+126
+00:06:22,470 --> 00:06:26,000
+Exposing these two refs, which are defined here,
+
+127
+00:06:26,000 --> 00:06:27,710
+where one of them has changed here,
+
+128
+00:06:27,710 --> 00:06:29,450
+through the value property,
+
+129
+00:06:29,450 --> 00:06:31,510
+which is watched by Vue as you learned.
+
+130
+00:06:31,510 --> 00:06:34,370
+And then in the template, we can use username,
+
+131
+00:06:34,370 --> 00:06:37,220
+and age to output both.
+
+132
+00:06:37,220 --> 00:06:39,340
+So username,
+
+133
+00:06:39,340 --> 00:06:41,173
+and age here.
+
+134
+00:06:42,350 --> 00:06:43,910
+And with that in place,
+
+135
+00:06:43,910 --> 00:06:47,150
+if we save this, this still works,
+
+136
+00:06:47,150 --> 00:06:49,253
+and updating also still works.
+
+137
+00:06:50,200 --> 00:06:52,710
+So that's how we can replace methods.
+
+138
+00:06:52,710 --> 00:06:57,040
+Of course you can define and return as many functions
+
+139
+00:06:57,040 --> 00:06:59,803
+as your component might need in the template.
+

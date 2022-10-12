@@ -1,0 +1,1113 @@
+1
+00:00:02,066 --> 00:00:03,900
+- [Narrator] So in order to switch to Vue,
+
+2
+00:00:03,900 --> 00:00:06,433
+I will mark all that code,
+
+3
+00:00:06,433 --> 00:00:07,966
+and comment it out.
+
+4
+00:00:07,966 --> 00:00:09,933
+Which you can do by selecting this all
+
+5
+00:00:09,933 --> 00:00:11,300
+and then going to Edit,
+
+6
+00:00:11,300 --> 00:00:14,333
+and then toggle line or block comment.
+
+7
+00:00:14,333 --> 00:00:16,600
+I used line comment here.
+
+8
+00:00:16,600 --> 00:00:19,666
+So now this code will not
+have any effect anymore.
+
+9
+00:00:19,666 --> 00:00:21,033
+I'm not deleting it
+
+10
+00:00:21,033 --> 00:00:23,633
+so that we can still
+see it and compare it.
+
+11
+00:00:23,633 --> 00:00:26,033
+Because now I wanna use Vue.
+
+12
+00:00:26,033 --> 00:00:28,533
+For that we first of all need to add Vue.
+
+13
+00:00:28,533 --> 00:00:30,833
+We need to import Vue.
+
+14
+00:00:30,833 --> 00:00:35,233
+We can
+do this from vuejs.org and on this page,
+
+15
+00:00:35,233 --> 00:00:38,400
+there is this "Install" link
+on which you can click,
+
+16
+00:00:38,966 --> 00:00:41,133
+which takes you
+to the official documentation
+
+17
+00:00:41,400 --> 00:00:44,966
+where you find instructions
+on how to create a Vue project.
+
+18
+00:00:45,733 --> 00:00:49,000
+By the way, in general,
+the official documentation is really good.
+
+19
+00:00:49,233 --> 00:00:53,366
+So in addition to taking this course,
+I can only recommend that you also dive
+
+20
+00:00:53,366 --> 00:00:57,133
+into the official documentation
+after going through this course
+
+21
+00:00:57,366 --> 00:01:00,166
+to dove deeper
+or refresh certain concepts.
+
+22
+00:01:00,500 --> 00:01:03,833
+But when it comes to setting up a project
+and getting started,
+
+23
+00:01:04,099 --> 00:01:06,233
+we're here in the quick start section
+
+24
+00:01:06,233 --> 00:01:09,400
+and you find different ways
+of creating a Vue project.
+
+25
+00:01:09,766 --> 00:01:13,133
+We will learn about different ways
+throughout this course,
+
+26
+00:01:13,400 --> 00:01:18,500
+but the easiest way is not to install
+packages, as it's mentioned up here.
+
+27
+00:01:18,533 --> 00:01:22,533
+We will do this later,
+but instead the easiest way to get started
+
+28
+00:01:22,800 --> 00:01:26,333
+is by simply adding
+an import to the Vue package
+
+29
+00:01:26,333 --> 00:01:28,933
+from a CDN to your page.
+
+30
+00:01:29,600 --> 00:01:32,500
+And for this,
+we can grab this script tag here,
+
+31
+00:01:32,500 --> 00:01:37,400
+which you find in the
+without built tools section and copy that.
+
+32
+00:01:38,733 --> 00:01:39,900
+And then with this
+
+33
+00:01:39,900 --> 00:01:43,666
+copied
+we add this into our index.html file,
+
+34
+00:01:43,966 --> 00:01:46,800
+and you should make sure
+that the link here
+
+35
+00:01:46,800 --> 00:01:49,600
+- this import link - ends with vue@3
+
+36
+00:01:50,866 --> 00:01:55,500
+or vue@next,
+which also gives you version 3.
+
+37
+00:01:55,766 --> 00:01:56,066
+So let's grab that,
+
+38
+00:01:56,066 --> 00:02:00,733
+go to index HTML and add
+that before your script here.
+
+39
+00:02:00,733 --> 00:02:04,300
+So before we execute app.js,
+
+40
+00:02:04,300 --> 00:02:09,300
+add this script with the Vue
+CDN above your own script.
+
+41
+00:02:10,566 --> 00:02:13,800
+That will your script allow to use Vue.
+
+42
+00:02:13,800 --> 00:02:16,700
+So now let's save this file.
+
+43
+00:02:16,700 --> 00:02:19,166
+In app.js we can use Vue.
+
+44
+00:02:19,166 --> 00:02:22,133
+And now what does use Vue mean?
+
+45
+00:02:22,133 --> 00:02:25,733
+With Vue, we can solve the same problem,
+
+46
+00:02:25,733 --> 00:02:27,233
+if you wanna call it like this,
+
+47
+00:02:27,233 --> 00:02:29,400
+in a totally different way.
+
+48
+00:02:29,400 --> 00:02:31,433
+In regular Java script,
+
+49
+00:02:31,433 --> 00:02:32,866
+which we used before,
+
+50
+00:02:32,866 --> 00:02:35,500
+we used a so-called imperative approach.
+
+51
+00:02:35,500 --> 00:02:39,700
+Which means we define every single step,
+
+52
+00:02:39,700 --> 00:02:41,333
+step by step,
+
+53
+00:02:41,333 --> 00:02:44,033
+which should be executed by the browser.
+
+54
+00:02:44,033 --> 00:02:45,433
+Get access to the button,
+
+55
+00:02:45,433 --> 00:02:46,966
+get access to the input element,
+
+56
+00:02:46,966 --> 00:02:48,866
+get access to the list element,
+
+57
+00:02:48,866 --> 00:02:50,466
+create a function,
+
+58
+00:02:50,466 --> 00:02:53,400
+add a click event handler to the button
+
+59
+00:02:53,400 --> 00:02:56,366
+and execute this function
+of a click occurs.
+
+60
+00:02:56,366 --> 00:02:57,933
+And in that function,
+
+61
+00:02:57,933 --> 00:02:59,600
+get access to the entered value,
+
+62
+00:02:59,600 --> 00:03:01,266
+create a list item element,
+
+63
+00:03:01,266 --> 00:03:02,866
+add the text content,
+
+64
+00:03:02,866 --> 00:03:04,466
+append this list item,
+
+65
+00:03:04,466 --> 00:03:06,000
+clear the value.
+
+66
+00:03:06,000 --> 00:03:06,966
+You see a pattern?
+
+67
+00:03:06,966 --> 00:03:09,366
+We define every single step.
+
+68
+00:03:09,366 --> 00:03:12,266
+With Vue, we have a
+totally different approach.
+
+69
+00:03:12,266 --> 00:03:16,766
+There, we define the desired end result,
+
+70
+00:03:16,766 --> 00:03:20,133
+and the data we will need in our Vue app,
+
+71
+00:03:20,133 --> 00:03:23,166
+and we will leave it
+up to Vue to figure out
+
+72
+00:03:23,166 --> 00:03:27,200
+what needs to be created or
+added or changed in the Dom
+
+73
+00:03:27,200 --> 00:03:28,666
+at which point of time.
+
+74
+00:03:29,566 --> 00:03:31,900
+And for that, we need
+to create a view app,
+
+75
+00:03:31,900 --> 00:03:35,233
+which takes control over our HTML code.
+
+76
+00:03:35,233 --> 00:03:37,333
+And we do this by calling Vue,
+
+77
+00:03:37,333 --> 00:03:40,366
+which is a global object
+that is available,
+
+78
+00:03:40,366 --> 00:03:42,433
+thanks to our view CDN import,
+
+79
+00:03:43,333 --> 00:03:44,400
+Vue.createApp.
+
+80
+00:03:46,533 --> 00:03:48,800
+So this global Vue object,
+
+81
+00:03:48,800 --> 00:03:50,566
+we can call createApp.
+
+82
+00:03:51,733 --> 00:03:54,833
+CreateApp takes an object,
+a JavaScript object,
+
+83
+00:03:54,833 --> 00:03:58,100
+where we configure this Vue app.
+
+84
+00:03:58,100 --> 00:03:59,733
+And when I say configure,
+
+85
+00:03:59,733 --> 00:04:02,700
+I mean things like setting
+up which kind of data
+
+86
+00:04:02,700 --> 00:04:04,733
+we will use in our Vue app.
+
+87
+00:04:04,733 --> 00:04:06,500
+For example, in this demo,
+
+88
+00:04:06,500 --> 00:04:09,366
+I plan on working with a list of goals.
+
+89
+00:04:09,366 --> 00:04:13,500
+So one piece of data which we'll
+need is that list of goals.
+
+90
+00:04:13,500 --> 00:04:15,466
+Another piece of data which we'll need
+
+91
+00:04:15,466 --> 00:04:17,666
+is what the user entered here.
+
+92
+00:04:17,666 --> 00:04:22,166
+And we define that data
+by adding a data property
+
+93
+00:04:22,166 --> 00:04:25,033
+to this object we pass to createApp,
+
+94
+00:04:25,033 --> 00:04:27,266
+and this has to be called data.
+
+95
+00:04:28,100 --> 00:04:31,100
+It actually holds a function as a value
+
+96
+00:04:31,100 --> 00:04:33,266
+and therefore in modern JavaScript,
+
+97
+00:04:33,266 --> 00:04:34,966
+we can also write it like this,
+
+98
+00:04:34,966 --> 00:04:36,566
+which is the exact same.
+
+99
+00:04:36,566 --> 00:04:38,266
+A property named data,
+
+100
+00:04:38,266 --> 00:04:40,866
+which has a function as a value.
+
+101
+00:04:40,866 --> 00:04:43,866
+This function must return an object.
+
+102
+00:04:43,866 --> 00:04:44,966
+And in this object,
+
+103
+00:04:44,966 --> 00:04:48,400
+we can then define the data
+our Vue app should be aware of.
+
+104
+00:04:48,400 --> 00:04:49,533
+As a side note,
+
+105
+00:04:49,533 --> 00:04:51,633
+if this is a bit too fast for you,
+
+106
+00:04:51,633 --> 00:04:52,466
+no worries.
+
+107
+00:04:52,466 --> 00:04:55,500
+We'll walk through all the
+basics in greater depth
+
+108
+00:04:55,500 --> 00:04:57,033
+in the next module.
+
+109
+00:04:57,033 --> 00:04:59,066
+This year is just a quick overview,
+
+110
+00:04:59,066 --> 00:05:01,133
+which is why I'm not diving super deep
+
+111
+00:05:01,133 --> 00:05:03,133
+into all these concepts at the moment.
+
+112
+00:05:03,133 --> 00:05:06,666
+We'll definitely do that
+in the next section though.
+
+113
+00:05:06,666 --> 00:05:08,500
+So we need to return an object here.
+
+114
+00:05:08,500 --> 00:05:09,633
+And in here, we can simply
+
+115
+00:05:09,633 --> 00:05:12,333
+add the data we wanna manage in this app.
+
+116
+00:05:12,333 --> 00:05:13,666
+This would be a goals array,
+
+117
+00:05:13,666 --> 00:05:17,033
+which initially is empty
+as a key value pair,
+
+118
+00:05:17,033 --> 00:05:18,600
+and the entered value,
+
+119
+00:05:18,600 --> 00:05:20,366
+which initially is an empty string.
+
+120
+00:05:21,300 --> 00:05:23,333
+And now these two pieces of data
+
+121
+00:05:23,333 --> 00:05:27,533
+are pieces of data Vue is aware of.
+
+122
+00:05:27,533 --> 00:05:30,166
+And that will become important later.
+
+123
+00:05:30,166 --> 00:05:33,300
+Now we can connect this entered value
+
+124
+00:05:33,300 --> 00:05:34,966
+with this input
+
+125
+00:05:34,966 --> 00:05:39,800
+by adding a special so-called
+directive on the input,
+
+126
+00:05:39,800 --> 00:05:42,300
+a special HTML attribute.
+
+127
+00:05:42,300 --> 00:05:46,666
+And that would be the V-model attribute.
+
+128
+00:05:46,666 --> 00:05:50,633
+That's not a default attribute,
+which is supported by HTML.
+
+129
+00:05:50,633 --> 00:05:53,500
+This will only be understood by Vue.
+
+130
+00:05:53,500 --> 00:05:55,033
+And as a value,
+
+131
+00:05:55,033 --> 00:05:57,600
+we repeat the name of this property,
+
+132
+00:05:57,600 --> 00:05:58,633
+entered value.
+
+133
+00:05:59,833 --> 00:06:01,600
+This will establish a connection
+
+134
+00:06:01,600 --> 00:06:04,766
+between this input and the
+value being entered there,
+
+135
+00:06:04,766 --> 00:06:06,700
+and this data property.
+
+136
+00:06:06,700 --> 00:06:08,800
+And Vue will manage this for us.
+
+137
+00:06:08,800 --> 00:06:11,666
+It will automatically listen
+to what the user enters
+
+138
+00:06:11,666 --> 00:06:14,366
+and it will automatically
+update this input
+
+139
+00:06:14,366 --> 00:06:18,400
+whenever we change entered
+value in code, for example.
+
+140
+00:06:18,400 --> 00:06:20,233
+And that's of course way more convenient,
+
+141
+00:06:20,233 --> 00:06:22,600
+than manually reaching out to the input
+
+142
+00:06:22,600 --> 00:06:24,500
+and managing all of that.
+
+143
+00:06:24,500 --> 00:06:27,033
+But this is just the first step.
+
+144
+00:06:27,033 --> 00:06:28,466
+Now upon a button,
+
+145
+00:06:28,466 --> 00:06:30,100
+we wanna make sure that we
+
+146
+00:06:30,100 --> 00:06:33,166
+get what's currently
+stored in entered value
+
+147
+00:06:33,166 --> 00:06:34,866
+and add this to goals.
+
+148
+00:06:35,900 --> 00:06:39,266
+For this we can add another key value pair
+
+149
+00:06:39,266 --> 00:06:42,466
+to this object we're passing to createApp,
+
+150
+00:06:42,466 --> 00:06:44,733
+and that's the methods key,
+
+151
+00:06:44,733 --> 00:06:47,233
+which now holds an object.
+
+152
+00:06:47,233 --> 00:06:50,133
+In here we can define methods,
+
+153
+00:06:50,133 --> 00:06:51,366
+functions,
+
+154
+00:06:51,366 --> 00:06:52,833
+that should be callable
+
+155
+00:06:52,833 --> 00:06:55,633
+from inside the HTML code.
+
+156
+00:06:55,633 --> 00:06:59,200
+So for example, here we
+can add an addGoal method,
+
+157
+00:06:59,200 --> 00:07:00,366
+and in there,
+
+158
+00:07:00,366 --> 00:07:05,233
+then reach out to Goals and
+add to currently entered value.
+
+159
+00:07:05,233 --> 00:07:07,666
+We can do this with this Goals
+
+160
+00:07:07,666 --> 00:07:09,000
+and then push,
+
+161
+00:07:09,000 --> 00:07:10,966
+since Goals is an array,
+
+162
+00:07:10,966 --> 00:07:13,266
+this entered value.
+
+163
+00:07:13,266 --> 00:07:17,033
+In case you're wondering why
+this refers to this object
+
+164
+00:07:17,033 --> 00:07:19,933
+Vue will establish the
+connection behind the scenes.
+
+165
+00:07:19,933 --> 00:07:21,966
+It does some magic for us here,
+
+166
+00:07:21,966 --> 00:07:23,333
+though throughout the course,
+
+167
+00:07:23,333 --> 00:07:27,666
+we are going to explore and
+also understand that magic.
+
+168
+00:07:27,666 --> 00:07:30,566
+Now addGoal should be triggered
+
+169
+00:07:30,566 --> 00:07:32,700
+whenever this button is clicked.
+
+170
+00:07:32,700 --> 00:07:36,966
+And instead of manually reaching
+out to the button element
+
+171
+00:07:36,966 --> 00:07:39,866
+and adding a click listener,
+as we did it before,
+
+172
+00:07:39,866 --> 00:07:41,966
+with just JavaScript,
+
+173
+00:07:41,966 --> 00:07:43,433
+with Vue,
+
+174
+00:07:43,433 --> 00:07:46,833
+we can simply add
+another special attribute
+
+175
+00:07:46,833 --> 00:07:48,366
+to the button element,
+
+176
+00:07:48,366 --> 00:07:51,933
+the V-on attribute.
+
+177
+00:07:51,933 --> 00:07:53,466
+Then we add a colon,
+
+178
+00:07:53,466 --> 00:07:56,133
+and then the name of the event
+to which we wanna listen,
+
+179
+00:07:56,133 --> 00:07:58,500
+in this case, click.
+
+180
+00:07:58,500 --> 00:08:00,266
+And then as a value,
+
+181
+00:08:00,266 --> 00:08:03,733
+we specify the name of the
+method that should be triggered
+
+182
+00:08:03,733 --> 00:08:04,766
+when the item
+
+183
+00:08:04,766 --> 00:08:08,166
+on which we added to this
+special attribute is clicked.
+
+184
+00:08:08,166 --> 00:08:09,166
+So in our case,
+
+185
+00:08:09,166 --> 00:08:11,566
+addGoal, just like this.
+
+186
+00:08:12,866 --> 00:08:15,866
+With that, Vue will
+make sure that addGoal,
+
+187
+00:08:15,866 --> 00:08:16,700
+this method,
+
+188
+00:08:16,700 --> 00:08:20,933
+gets executed whenever
+this button is clicked
+
+189
+00:08:20,933 --> 00:08:22,600
+and it will then automatically
+
+190
+00:08:22,600 --> 00:08:24,500
+give us the currently entered value,
+
+191
+00:08:24,500 --> 00:08:28,233
+and add it as a new value to Goals.
+
+192
+00:08:28,233 --> 00:08:31,466
+And now there's only
+one thing that remains.
+
+193
+00:08:31,466 --> 00:08:36,433
+We wanna output our Goals
+here in this unordered list.
+
+194
+00:08:36,433 --> 00:08:39,666
+And for that we wanna
+create list items here.
+
+195
+00:08:39,666 --> 00:08:41,765
+One for every goal.
+
+196
+00:08:41,765 --> 00:08:44,200
+And with Vue, as I mentioned,
+
+197
+00:08:44,200 --> 00:08:47,233
+we define the desired end result,
+
+198
+00:08:47,233 --> 00:08:49,133
+not how we get there.
+
+199
+00:08:49,133 --> 00:08:51,800
+So again, we wanna have
+a list item at the end,
+
+200
+00:08:51,800 --> 00:08:53,700
+that's our desired result.
+
+201
+00:08:53,700 --> 00:08:55,933
+But of course not just one.
+
+202
+00:08:55,933 --> 00:08:58,400
+And Vue get the V-for attribute,
+
+203
+00:08:58,400 --> 00:09:00,466
+which we can add on an element
+
+204
+00:09:00,466 --> 00:09:04,233
+to replicate this element multiple times.
+
+205
+00:09:04,233 --> 00:09:06,100
+And here between the double quotes,
+
+206
+00:09:06,100 --> 00:09:10,433
+we then need to write "goal in goals"
+
+207
+00:09:10,433 --> 00:09:14,133
+to in the end loop through
+all our goals here,
+
+208
+00:09:14,133 --> 00:09:17,033
+and create one list item per a goal.
+
+209
+00:09:17,033 --> 00:09:19,300
+And we get access to that goal,
+
+210
+00:09:19,300 --> 00:09:21,266
+for which we're currently creating one,
+
+211
+00:09:21,266 --> 00:09:23,466
+in this goal variable.
+
+212
+00:09:23,466 --> 00:09:25,633
+Now we can output this goal
+
+213
+00:09:25,633 --> 00:09:29,066
+with another special
+syntax understood by Vue.
+
+214
+00:09:29,066 --> 00:09:31,666
+And that's double curly braces,
+
+215
+00:09:31,666 --> 00:09:33,266
+opening and closing,
+
+216
+00:09:33,266 --> 00:09:34,566
+and between them,
+
+217
+00:09:34,566 --> 00:09:35,766
+goal.
+
+218
+00:09:35,766 --> 00:09:37,700
+So this name here.
+
+219
+00:09:38,966 --> 00:09:42,133
+And that will now replicate
+list item as often as needed,
+
+220
+00:09:42,133 --> 00:09:45,900
+and then put one goal per goal entry
+
+221
+00:09:45,900 --> 00:09:47,866
+we have in this goals array.
+
+222
+00:09:49,266 --> 00:09:51,933
+And if we now saved it all and reload,
+
+223
+00:09:51,933 --> 00:09:53,933
+you'll see absolutely nothing.
+
+224
+00:09:53,933 --> 00:09:56,666
+Instead, you just see
+that curly brace thing,
+
+225
+00:09:56,666 --> 00:09:58,433
+which I'd just entered.
+
+226
+00:09:58,433 --> 00:09:59,966
+The reason for that is that
+
+227
+00:09:59,966 --> 00:10:02,433
+this Vue code will be correct,
+
+228
+00:10:02,433 --> 00:10:06,933
+but Vue doesn't know where that
+code should have an effect,
+
+229
+00:10:06,933 --> 00:10:09,166
+where it should be applied.
+
+230
+00:10:09,166 --> 00:10:11,900
+That's why on this created app,
+
+231
+00:10:11,900 --> 00:10:14,400
+here, after the closing parentheses,
+
+232
+00:10:14,400 --> 00:10:16,066
+we need to call mount,
+
+233
+00:10:16,066 --> 00:10:19,333
+and let Vue know which part of the page
+
+234
+00:10:19,333 --> 00:10:21,833
+should be controlled by that Vue app.
+
+235
+00:10:22,666 --> 00:10:25,100
+And conveniently, I got a div here,
+
+236
+00:10:25,100 --> 00:10:26,566
+with the ID app,
+
+237
+00:10:26,566 --> 00:10:28,666
+which contains all the markup
+
+238
+00:10:28,666 --> 00:10:30,400
+that uses the Vue features
+
+239
+00:10:30,400 --> 00:10:32,433
+I explained over the last minutes,
+
+240
+00:10:32,433 --> 00:10:35,833
+where I use all the special
+attributes, for example.
+
+241
+00:10:35,833 --> 00:10:39,533
+This diff with the ID app
+contains all that code.
+
+242
+00:10:39,533 --> 00:10:44,100
+So it's this diff that should
+be controlled by this Vue app.
+
+243
+00:10:44,100 --> 00:10:45,666
+And therefore to mount,
+
+244
+00:10:45,666 --> 00:10:49,366
+we pass a string with a CSS selector,
+
+245
+00:10:49,366 --> 00:10:51,600
+selecting one element in the Dom.
+
+246
+00:10:51,600 --> 00:10:55,633
+And since we have the
+ID app on that dev here,
+
+247
+00:10:55,633 --> 00:11:00,400
+we can use the ID selector
+for the ID app like this.
+
+248
+00:11:00,400 --> 00:11:02,666
+With hash and then app.
+
+249
+00:11:03,666 --> 00:11:07,300
+And if we save this now and reload again,
+
+250
+00:11:07,300 --> 00:11:09,366
+now, it just looks differently.
+
+251
+00:11:09,366 --> 00:11:12,000
+And if I finished a course, that's added,
+
+252
+00:11:12,000 --> 00:11:15,566
+if I learn Vue, that's being added.
+
+253
+00:11:15,566 --> 00:11:18,000
+And if I wanna reset the input,
+
+254
+00:11:18,000 --> 00:11:21,466
+I can simply set this entered
+value to an empty string
+
+255
+00:11:21,466 --> 00:11:24,633
+and Vue will automatically
+reach out to the Dom
+
+256
+00:11:24,633 --> 00:11:26,733
+and make the required updates.
+
+257
+00:11:28,100 --> 00:11:29,000
+So again,
+
+258
+00:11:29,000 --> 00:11:31,733
+learn Vue, and it's clear.
+
+259
+00:11:31,733 --> 00:11:34,466
+Finish the course, and it's cleared.
+
+260
+00:11:34,466 --> 00:11:37,133
+And now this is Vue taking over.
+

@@ -1,0 +1,116 @@
+1
+00:00:02,190 --> 00:00:04,650
+So this is it for this module.
+
+2
+00:00:04,650 --> 00:00:07,500
+You'll learn how to send HTTP requests,
+
+3
+00:00:07,500 --> 00:00:11,143
+both to send data as well as to get data.
+
+4
+00:00:12,090 --> 00:00:15,330
+You'll learn how to work with their response data,
+
+5
+00:00:15,330 --> 00:00:17,860
+how to extract it, and how to show it.
+
+6
+00:00:17,860 --> 00:00:20,320
+You'll learn how to show a loading text
+
+7
+00:00:20,320 --> 00:00:21,683
+or a loading spinner.
+
+8
+00:00:24,320 --> 00:00:26,700
+You'll learn how to handle errors
+
+9
+00:00:26,700 --> 00:00:29,300
+in case something goes wrong.
+
+10
+00:00:29,300 --> 00:00:31,460
+And in general, you hopefully now have
+
+11
+00:00:31,460 --> 00:00:35,270
+an understanding why we might want such a backend,
+
+12
+00:00:35,270 --> 00:00:38,350
+at least for some applications which we're building,
+
+13
+00:00:38,350 --> 00:00:40,940
+and how you can communicate with the backend
+
+14
+00:00:40,940 --> 00:00:44,053
+behind the scenes from inside your Vue app.
+
+15
+00:00:45,070 --> 00:00:46,590
+Using the fetch function,
+
+16
+00:00:46,590 --> 00:00:50,720
+which is built into browsers, is just one way of doing it.
+
+17
+00:00:50,720 --> 00:00:53,880
+I also did mention the axios package before,
+
+18
+00:00:53,880 --> 00:00:55,630
+which is a third-party package
+
+19
+00:00:55,630 --> 00:00:57,780
+you could add to your project,
+
+20
+00:00:57,780 --> 00:01:00,240
+which also allows you to send such requests.
+
+21
+00:01:00,240 --> 00:01:02,170
+It just works a bit differently.
+
+22
+00:01:02,170 --> 00:01:06,200
+For example, there, catch will automatically also trigger
+
+23
+00:01:06,200 --> 00:01:09,370
+if you get back error responses,
+
+24
+00:01:09,370 --> 00:01:13,210
+so that extra handling we needed with the fetch function
+
+25
+00:01:13,210 --> 00:01:17,380
+would not be required with axios, but that's it.
+
+26
+00:01:17,380 --> 00:01:19,970
+We're going to see this in action in a course project
+
+27
+00:01:19,970 --> 00:01:22,720
+as well, but this hopefully gets you started
+
+28
+00:01:22,720 --> 00:01:24,800
+and now gives you everything you need
+
+29
+00:01:24,800 --> 00:01:29,733
+for you to start sending HTTP requests in your applications.
+

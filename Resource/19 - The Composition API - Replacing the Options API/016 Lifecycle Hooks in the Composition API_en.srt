@@ -1,0 +1,392 @@
+1
+00:00:02,160 --> 00:00:04,980
+So that's how we can go from the options API
+
+2
+00:00:04,980 --> 00:00:06,920
+to the composition API.
+
+3
+00:00:06,920 --> 00:00:10,890
+Data is replaced with refs and reactive,
+
+4
+00:00:10,890 --> 00:00:14,080
+methods are replaced with functions,
+
+5
+00:00:14,080 --> 00:00:15,570
+which you expose to the template
+
+6
+00:00:15,570 --> 00:00:17,500
+by returning them in that object,
+
+7
+00:00:17,500 --> 00:00:19,460
+which you return in setup.
+
+8
+00:00:19,460 --> 00:00:22,870
+Computed is replaced with the computed function,
+
+9
+00:00:22,870 --> 00:00:26,990
+and watchers are replaced with the watcher functions.
+
+10
+00:00:26,990 --> 00:00:28,810
+Provide inject is replaced
+
+11
+00:00:28,810 --> 00:00:31,283
+with the provide and inject functions.
+
+12
+00:00:32,790 --> 00:00:35,250
+Now there's one more thing I wanna dive into
+
+13
+00:00:35,250 --> 00:00:38,250
+before we apply that all to a bigger project.
+
+14
+00:00:38,250 --> 00:00:41,130
+And that are lifecycle hooks.
+
+15
+00:00:41,130 --> 00:00:44,790
+There we have, for example, beforeCreate
+
+16
+00:00:44,790 --> 00:00:47,560
+and created in the options API,
+
+17
+00:00:47,560 --> 00:00:52,170
+and we could simply add those methods to our config object.
+
+18
+00:00:52,170 --> 00:00:54,653
+How does this look like with the composition API?
+
+19
+00:00:55,800 --> 00:00:57,340
+With the composition API,
+
+20
+00:00:57,340 --> 00:00:59,990
+we don't add those lifecycle hooks
+
+21
+00:00:59,990 --> 00:01:02,860
+to our component config object anymore,
+
+22
+00:01:02,860 --> 00:01:06,940
+instead we have functions which we can import from vue,
+
+23
+00:01:06,940 --> 00:01:09,840
+which you can call inside of the setup method.
+
+24
+00:01:09,840 --> 00:01:12,500
+But for beforeCreate and created
+
+25
+00:01:12,500 --> 00:01:14,450
+there actually is no equivalent,
+
+26
+00:01:14,450 --> 00:01:17,060
+because these hooks are not needed here,
+
+27
+00:01:17,060 --> 00:01:21,080
+because the setup method basically runs at the same time
+
+28
+00:01:21,080 --> 00:01:25,220
+beforeCreate and created ran in the past.
+
+29
+00:01:25,220 --> 00:01:27,340
+So setup replaces these hooks.
+
+30
+00:01:27,340 --> 00:01:30,870
+Whatever you would have done in created or beforeCreate
+
+31
+00:01:30,870 --> 00:01:33,563
+should be done in the setup method itself.
+
+32
+00:01:34,970 --> 00:01:38,680
+Now for beforeMount and mounted, it's different.
+
+33
+00:01:38,680 --> 00:01:43,380
+There we have the onBeforeMount and onMounted functions
+
+34
+00:01:43,380 --> 00:01:45,850
+which can be imported from vue.
+
+35
+00:01:45,850 --> 00:01:48,630
+For beforeUpdate and updated it's similar
+
+36
+00:01:48,630 --> 00:01:51,570
+and the same for beforeUnmount and unmounted.
+
+37
+00:01:51,570 --> 00:01:55,110
+Here we have onBeforeUnmount and onUnmounted.
+
+38
+00:01:55,110 --> 00:01:56,930
+So you see a pattern here.
+
+39
+00:01:56,930 --> 00:01:59,080
+Let's not also have a look at that in code.
+
+40
+00:02:00,130 --> 00:02:03,000
+Back here, let's say in the user data component,
+
+41
+00:02:03,000 --> 00:02:06,950
+as I mentioned, we're now not going to add created
+
+42
+00:02:06,950 --> 00:02:11,640
+and mounted and so on here to our options object.
+
+43
+00:02:11,640 --> 00:02:14,800
+Instead, we're going to add them here in setup
+
+44
+00:02:14,800 --> 00:02:17,530
+by importing the required hooks.
+
+45
+00:02:17,530 --> 00:02:18,600
+Now as I mentioned,
+
+46
+00:02:18,600 --> 00:02:21,990
+there is no onBeforeCreate and so on,
+
+47
+00:02:21,990 --> 00:02:24,550
+but there is a onBeforeMount,
+
+48
+00:02:24,550 --> 00:02:26,653
+there is a onMounted, onBeforeUpdate, onUpdated,
+
+49
+00:02:31,487 --> 00:02:35,403
+and onBeforeUnmount as well as onUnmounted.
+
+50
+00:02:37,020 --> 00:02:40,020
+And I quickly restructure this to make it easier to read.
+
+51
+00:02:40,020 --> 00:02:42,880
+These are the lifecycle hook functions,
+
+52
+00:02:42,880 --> 00:02:44,723
+which we can import from vue.
+
+53
+00:02:46,090 --> 00:02:48,540
+Now how do we use them in setup?
+
+54
+00:02:48,540 --> 00:02:50,510
+In setup, you simply call them
+
+55
+00:02:50,510 --> 00:02:55,080
+like for example onBeforeMount, like this,
+
+56
+00:02:55,080 --> 00:02:57,300
+and you pass a function to them
+
+57
+00:02:57,300 --> 00:03:00,080
+and this function will now be executed
+
+58
+00:03:00,080 --> 00:03:02,403
+whenever this lifecycle hook is due.
+
+59
+00:03:04,280 --> 00:03:07,090
+So here I can console log beforeMount
+
+60
+00:03:08,280 --> 00:03:11,483
+or onBeforeMount, whatever you want.
+
+61
+00:03:12,540 --> 00:03:15,160
+And we can now repeat this.
+
+62
+00:03:15,160 --> 00:03:17,097
+We also have onMounted,
+
+63
+00:03:19,220 --> 00:03:21,547
+so here I will print onMounted.
+
+64
+00:03:23,280 --> 00:03:25,503
+We also have onBeforeUpdate,
+
+65
+00:03:28,980 --> 00:03:31,143
+so we print onBeforeUpdate.
+
+66
+00:03:33,020 --> 00:03:36,410
+We have onUpdated,
+
+67
+00:03:36,410 --> 00:03:38,837
+so here we can print onUpdated.
+
+68
+00:03:40,660 --> 00:03:42,873
+And we have onBeforeUnmount
+
+69
+00:03:45,280 --> 00:03:47,543
+and print onBeforeUnmount
+
+70
+00:03:48,830 --> 00:03:51,290
+as well as here onUnmounted
+
+71
+00:03:54,300 --> 00:03:56,730
+oops I mean here onUnmounted
+
+72
+00:03:58,400 --> 00:04:00,333
+and print onUnmounted.
+
+73
+00:04:03,384 --> 00:04:06,230
+If we now saved it all and reload,
+
+74
+00:04:06,230 --> 00:04:09,830
+we see onBeforeMount and onMounted here,
+
+75
+00:04:09,830 --> 00:04:12,830
+if I clear the console and click change age,
+
+76
+00:04:12,830 --> 00:04:15,210
+we also see onBeforeUpdate,
+
+77
+00:04:15,210 --> 00:04:18,850
+then our watcher runs and then onUpdated thereafter,
+
+78
+00:04:18,850 --> 00:04:21,399
+once the update was applied to the template
+
+79
+00:04:21,399 --> 00:04:23,260
+and to the real DOM.
+
+80
+00:04:23,260 --> 00:04:24,550
+Well, and for unMounting,
+
+81
+00:04:24,550 --> 00:04:26,870
+we would need to get rid of user data,
+
+82
+00:04:26,870 --> 00:04:30,020
+which we can do with an if statement,
+
+83
+00:04:30,020 --> 00:04:31,740
+for example, with v-if.
+
+84
+00:04:31,740 --> 00:04:35,460
+If we now had some condition here that could get false,
+
+85
+00:04:35,460 --> 00:04:38,150
+this component would be removed from the DOM
+
+86
+00:04:38,150 --> 00:04:39,820
+and when that happens,
+
+87
+00:04:39,820 --> 00:04:42,323
+the onUnmount hooks would be called.
+
+88
+00:04:43,710 --> 00:04:46,030
+But I think the pattern should be clear here.
+
+89
+00:04:46,030 --> 00:04:47,740
+We see those logs here
+
+90
+00:04:47,740 --> 00:04:51,620
+and we see that this is how you can register code
+
+91
+00:04:51,620 --> 00:04:53,180
+that should be executed
+
+92
+00:04:53,180 --> 00:04:57,210
+at different phases of the lifecycle of a component.
+
+93
+00:04:57,210 --> 00:04:59,920
+You simply call those special functions
+
+94
+00:04:59,920 --> 00:05:01,770
+which you import from vue,
+
+95
+00:05:01,770 --> 00:05:04,080
+and you pass your function that holds
+
+96
+00:05:04,080 --> 00:05:07,550
+your to be executed code to those functions.
+
+97
+00:05:07,550 --> 00:05:10,220
+And that's how you work with lifecycle hooks
+
+98
+00:05:10,220 --> 00:05:11,823
+in the composition API.
+

@@ -1,0 +1,532 @@
+1
+00:00:02,150 --> 00:00:05,656
+So, exactly is Vuex?
+
+2
+00:00:05,656 --> 00:00:10,500
+Vuex is a library for managing global state.
+
+3
+00:00:10,500 --> 00:00:12,780
+Okay, that's a nice sentence.
+
+4
+00:00:12,780 --> 00:00:14,180
+What does it mean?
+
+5
+00:00:14,180 --> 00:00:15,840
+What's state?
+
+6
+00:00:15,840 --> 00:00:19,090
+State could simply be translated with data,
+
+7
+00:00:19,090 --> 00:00:23,850
+data your application needs and data that affects
+
+8
+00:00:23,850 --> 00:00:26,530
+what the user sees on the screen.
+
+9
+00:00:26,530 --> 00:00:30,560
+So, you can think of state as reactive data,
+
+10
+00:00:30,560 --> 00:00:34,450
+data which may change and where such changes
+
+11
+00:00:34,450 --> 00:00:37,630
+then should trigger something on the screen.
+
+12
+00:00:37,630 --> 00:00:41,630
+And Vue.js is all about this reactivity, of course,
+
+13
+00:00:41,630 --> 00:00:43,590
+as you learn throughout the course.
+
+14
+00:00:43,590 --> 00:00:47,620
+But managing data, state, that affects
+
+15
+00:00:47,620 --> 00:00:51,310
+different components of your app can be tricky.
+
+16
+00:00:51,310 --> 00:00:52,940
+For that it's important though,
+
+17
+00:00:52,940 --> 00:00:56,740
+to differentiate between two main kinds of state,
+
+18
+00:00:56,740 --> 00:00:59,473
+local state and global state.
+
+19
+00:01:00,670 --> 00:01:04,830
+Local state is the state the data
+
+20
+00:01:04,830 --> 00:01:07,110
+you manage inside of one component,
+
+21
+00:01:07,110 --> 00:01:11,620
+which only affects this one component and possibly,
+
+22
+00:01:11,620 --> 00:01:15,590
+indirectly through props, also a child component.
+
+23
+00:01:15,590 --> 00:01:18,370
+Here examples could be user input
+
+24
+00:01:18,370 --> 00:01:21,940
+that was entered into input elements, or for example,
+
+25
+00:01:21,940 --> 00:01:25,940
+a button that shows or hides some container.
+
+26
+00:01:25,940 --> 00:01:27,810
+And I got an example for you.
+
+27
+00:01:27,810 --> 00:01:31,350
+This is a course project we built a little bit earlier
+
+28
+00:01:31,350 --> 00:01:35,020
+in the course after the main component sections.
+
+29
+00:01:35,020 --> 00:01:37,340
+It's this learning resource manager
+
+30
+00:01:38,780 --> 00:01:42,470
+and in there in the AddResource.Vue file
+
+31
+00:01:42,470 --> 00:01:45,940
+in the AddResource component, we, for example,
+
+32
+00:01:45,940 --> 00:01:49,480
+have a form where we fetch user input.
+
+33
+00:01:49,480 --> 00:01:53,950
+And that user input, as well as the overall form validity
+
+34
+00:01:53,950 --> 00:01:56,210
+only matters to this component.
+
+35
+00:01:56,210 --> 00:02:00,720
+Here for example we have this inputisInvalid data
+
+36
+00:02:00,720 --> 00:02:04,490
+and therefore that would be the state of that component
+
+37
+00:02:04,490 --> 00:02:09,490
+which influences whether or not we show this dialogue.
+
+38
+00:02:10,889 --> 00:02:15,590
+So, this inputisInvalid data piece is state
+
+39
+00:02:15,590 --> 00:02:18,730
+because it affects what the user sees on the screen.
+
+40
+00:02:18,730 --> 00:02:21,130
+We show or don't show this dialogue.
+
+41
+00:02:21,130 --> 00:02:24,090
+And it really only matters to this component.
+
+42
+00:02:24,090 --> 00:02:27,050
+We manage it internally in this component.
+
+43
+00:02:27,050 --> 00:02:29,913
+So, that would be an example for a local state.
+
+44
+00:02:30,870 --> 00:02:35,417
+On the other hand, global state is state data
+
+45
+00:02:36,280 --> 00:02:41,280
+that affects multiple components, possibly the entire app.
+
+46
+00:02:41,800 --> 00:02:45,060
+So, data which you need in a lot of different places.
+
+47
+00:02:45,060 --> 00:02:49,440
+Examples here could be the user authentication status,
+
+48
+00:02:49,440 --> 00:02:52,070
+whether a user is logged in or not,
+
+49
+00:02:52,070 --> 00:02:54,850
+shopping card items which might be presented
+
+50
+00:02:54,850 --> 00:02:59,470
+in different parts of the app, and similar examples.
+
+51
+00:02:59,470 --> 00:03:01,790
+Again, in this app I just showed you
+
+52
+00:03:01,790 --> 00:03:04,760
+an example for a global state could be found
+
+53
+00:03:04,760 --> 00:03:07,710
+in the TheResources.vue file.
+
+54
+00:03:07,710 --> 00:03:11,510
+In there I got these stored resources
+
+55
+00:03:11,510 --> 00:03:15,250
+and those stored resources are changed
+
+56
+00:03:15,250 --> 00:03:18,154
+through the addResource method, for example,
+
+57
+00:03:18,154 --> 00:03:20,790
+but this method is triggered
+
+58
+00:03:20,790 --> 00:03:24,580
+from inside another component and the StoredResources
+
+59
+00:03:24,580 --> 00:03:28,020
+are also used in other components of this app.
+
+60
+00:03:28,020 --> 00:03:32,313
+So, this is an app wide, or at least a multicomponent state.
+
+61
+00:03:33,270 --> 00:03:37,090
+It's data that's used across multiple components.
+
+62
+00:03:37,090 --> 00:03:41,580
+And it's the global state where Vuex can help us.
+
+63
+00:03:41,580 --> 00:03:43,400
+Because thus far, for example,
+
+64
+00:03:43,400 --> 00:03:45,610
+in this app I just showed you,
+
+65
+00:03:45,610 --> 00:03:50,610
+we managed this state through provide and inject.
+
+66
+00:03:50,850 --> 00:03:53,856
+And this works, and this is not necessarily bad,
+
+67
+00:03:53,856 --> 00:03:56,600
+but it has a couple of drawbacks
+
+68
+00:03:56,600 --> 00:03:59,520
+which might or might not matter to you.
+
+69
+00:03:59,520 --> 00:04:02,670
+One potential disadvantage for example,
+
+70
+00:04:02,670 --> 00:04:05,670
+is that you end up with all the data
+
+71
+00:04:05,670 --> 00:04:09,430
+and all the methods to change the data in one component.
+
+72
+00:04:09,430 --> 00:04:12,470
+In this case, the TheResources component,
+
+73
+00:04:12,470 --> 00:04:14,650
+which therefore gets rather big
+
+74
+00:04:14,650 --> 00:04:17,500
+and which has a lot of data and a lot of methods
+
+75
+00:04:17,500 --> 00:04:20,209
+inside of it, which isn't really needed
+
+76
+00:04:20,209 --> 00:04:22,440
+for the template of that component,
+
+77
+00:04:22,440 --> 00:04:25,790
+but which is simply needed in other components.
+
+78
+00:04:25,790 --> 00:04:27,800
+So, getting such a big component,
+
+79
+00:04:27,800 --> 00:04:30,062
+which manages cross components state,
+
+80
+00:04:30,062 --> 00:04:34,540
+that can be hard to maintain as your application grows
+
+81
+00:04:34,540 --> 00:04:36,470
+and as you maybe have more and more
+
+82
+00:04:36,470 --> 00:04:38,053
+global state to manage.
+
+83
+00:04:38,990 --> 00:04:41,690
+In addition, provide and inject
+
+84
+00:04:41,690 --> 00:04:46,690
+can have some tricky problems regarding reactivity.
+
+85
+00:04:46,790 --> 00:04:50,080
+It depends on which data you provide and inject.
+
+86
+00:04:50,080 --> 00:04:52,210
+And whilst there are solutions
+
+87
+00:04:52,210 --> 00:04:54,530
+for all possible problems you could face,
+
+88
+00:04:54,530 --> 00:04:58,723
+a solution like Vuex in the end might be the best solution.
+
+89
+00:04:59,640 --> 00:05:03,010
+Now, why exactly is Vuex a good solution though?
+
+90
+00:05:03,010 --> 00:05:04,993
+Why might it be worth a look?
+
+91
+00:05:05,850 --> 00:05:08,650
+As I just outlined, managing app wide
+
+92
+00:05:08,650 --> 00:05:11,320
+or global state can be difficult.
+
+93
+00:05:11,320 --> 00:05:13,860
+You end up with such fat components,
+
+94
+00:05:13,860 --> 00:05:15,650
+which have a lot of logic in them,
+
+95
+00:05:15,650 --> 00:05:18,490
+which isn't needed for the component's template,
+
+96
+00:05:18,490 --> 00:05:20,890
+but in other components of the app.
+
+97
+00:05:20,890 --> 00:05:23,890
+You also might have unpredictable behavior
+
+98
+00:05:23,890 --> 00:05:26,330
+in your application because it's not always
+
+99
+00:05:26,330 --> 00:05:30,143
+immediately obvious where state gets changed
+
+100
+00:05:30,143 --> 00:05:33,124
+or maybe it's possible to change state
+
+101
+00:05:33,124 --> 00:05:36,570
+in ways that you don't want it to be changed.
+
+102
+00:05:36,570 --> 00:05:40,010
+It also could be error prone because accidental
+
+103
+00:05:40,010 --> 00:05:43,460
+or missed state updates could happen.
+
+104
+00:05:43,460 --> 00:05:47,040
+Coming back to this example in the component
+
+105
+00:05:47,040 --> 00:05:51,610
+where we inject the resources, we get the resources array,
+
+106
+00:05:51,610 --> 00:05:55,250
+which we also manage in TheResources.vue.
+
+107
+00:05:55,250 --> 00:05:58,300
+Now, theoretically, we could edit this array
+
+108
+00:05:58,300 --> 00:06:00,700
+in the place where it is injected,
+
+109
+00:06:00,700 --> 00:06:04,920
+and we would be editing the exact same array in memory.
+
+110
+00:06:04,920 --> 00:06:08,530
+We're not doing this here, but you could do it accidentally,
+
+111
+00:06:08,530 --> 00:06:11,060
+or maybe because a colleague is working on the code
+
+112
+00:06:11,060 --> 00:06:12,783
+who isn't paying close attention.
+
+113
+00:06:13,680 --> 00:06:15,700
+And that is exactly what I mean with
+
+114
+00:06:15,700 --> 00:06:18,520
+it being unpredictable or error prone.
+
+115
+00:06:18,520 --> 00:06:20,800
+You can edit data in places
+
+116
+00:06:20,800 --> 00:06:22,870
+where it shouldn't really be edited.
+
+117
+00:06:22,870 --> 00:06:24,290
+Of course, if you're working on your own,
+
+118
+00:06:24,290 --> 00:06:25,620
+this might not be a problem,
+
+119
+00:06:25,620 --> 00:06:27,890
+but in bigger projects and in bigger teams,
+
+120
+00:06:27,890 --> 00:06:29,253
+it could become a problem.
+
+121
+00:06:30,120 --> 00:06:32,530
+And that's exactly where Vuex helps us
+
+122
+00:06:32,530 --> 00:06:37,530
+because with Vuex, we outsource the state management.
+
+123
+00:06:37,660 --> 00:06:40,460
+It's no longer in such fat components,
+
+124
+00:06:40,460 --> 00:06:42,610
+instead it's in a separate place,
+
+125
+00:06:42,610 --> 00:06:44,833
+detached from the components.
+
+126
+00:06:45,840 --> 00:06:48,684
+It's also a more predictable because Vuex has
+
+127
+00:06:48,684 --> 00:06:52,870
+some clear rules on where state should be managed
+
+128
+00:06:52,870 --> 00:06:55,760
+and how it should be updated and shared.
+
+129
+00:06:55,760 --> 00:06:58,610
+And therefore it's also less error prone
+
+130
+00:06:58,610 --> 00:07:01,510
+because we have that clearly defined data flow,
+
+131
+00:07:01,510 --> 00:07:03,680
+which we have to adhere.
+
+132
+00:07:03,680 --> 00:07:05,920
+So, that's the what and why.
+
+133
+00:07:05,920 --> 00:07:09,963
+Now let's install Vuex and let's get started using it.
+

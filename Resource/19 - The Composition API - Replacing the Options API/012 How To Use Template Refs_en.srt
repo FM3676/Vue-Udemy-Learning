@@ -1,0 +1,336 @@
+1
+00:00:02,150 --> 00:00:04,140
+Let's start with refs.
+
+2
+00:00:04,140 --> 00:00:07,640
+And now I don't mean refs in the setup method,
+
+3
+00:00:07,640 --> 00:00:10,490
+which are our reactive values.
+
+4
+00:00:10,490 --> 00:00:15,193
+But I mean, refs referring to elements in our template.
+
+5
+00:00:16,390 --> 00:00:20,120
+Let's say for the LastName, for whatever reason,
+
+6
+00:00:20,120 --> 00:00:22,133
+we don't want to use the model.
+
+7
+00:00:23,000 --> 00:00:26,541
+Instead here, I want to use set a ref
+
+8
+00:00:26,541 --> 00:00:27,708
+LastNameInput.
+
+9
+00:00:28,680 --> 00:00:31,450
+And I want to use the approach you saw a couple of times
+
+10
+00:00:31,450 --> 00:00:34,510
+throughout the course, where I read the value
+
+11
+00:00:34,510 --> 00:00:38,460
+from an input by using this $ ref's variable
+
+12
+00:00:38,460 --> 00:00:42,700
+inside of some method in our config object.
+
+13
+00:00:42,700 --> 00:00:45,500
+So let's say we want to do the same here.
+
+14
+00:00:45,500 --> 00:00:47,610
+So we have a button here,
+
+15
+00:00:47,610 --> 00:00:52,610
+Set Name, where upon a click,
+
+16
+00:00:53,270 --> 00:00:56,230
+I want to call some setName function,
+
+17
+00:00:56,230 --> 00:00:59,580
+and that function should then set the LastName.
+
+18
+00:00:59,580 --> 00:01:02,080
+Actually therefore, I will name it setLastName
+
+19
+00:01:03,365 --> 00:01:05,013
+and name the function setLastName.
+
+20
+00:01:06,540 --> 00:01:09,930
+Now, of course, first of all, we created that function.
+
+21
+00:01:09,930 --> 00:01:13,513
+So we add a new function in the setup method setLastName.
+
+22
+00:01:15,060 --> 00:01:17,420
+This function receives no arguments.
+
+23
+00:01:17,420 --> 00:01:21,292
+But in here, I now want to set LastName.Value,
+
+24
+00:01:21,292 --> 00:01:25,290
+referring to the value prop of my LastName ref here
+
+25
+00:01:25,290 --> 00:01:28,410
+equal to the value stored in this input.
+
+26
+00:01:28,410 --> 00:01:32,650
+And for this, historically, with the options API,
+
+27
+00:01:32,650 --> 00:01:35,670
+we would have used this $refs,
+
+28
+00:01:35,670 --> 00:01:39,040
+and then our ref name here, which is LastNameInput.value
+
+29
+00:01:43,150 --> 00:01:45,230
+This won't work here though, because
+
+30
+00:01:45,230 --> 00:01:48,840
+inside of the setup method, you don't have access to this
+
+31
+00:01:48,840 --> 00:01:50,050
+as you're used to.
+
+32
+00:01:50,050 --> 00:01:54,170
+You won't find $refs thing there.
+
+33
+00:01:54,170 --> 00:01:58,290
+Instead, the approach is the other way around you could say.
+
+34
+00:01:58,290 --> 00:02:02,180
+Now you've defined your refs, including your template refs
+
+35
+00:02:02,180 --> 00:02:04,670
+like this one, in the setup method.
+
+36
+00:02:04,670 --> 00:02:08,130
+There is no differentiation between your own refs
+
+37
+00:02:08,130 --> 00:02:11,330
+that manage your own data, and refs you want to bind
+
+38
+00:02:11,330 --> 00:02:12,873
+to some DOM element.
+
+39
+00:02:14,010 --> 00:02:16,940
+So here you simply create a new ref LastNameInput
+
+40
+00:02:20,300 --> 00:02:21,653
+by calling ref.
+
+41
+00:02:23,380 --> 00:02:26,670
+The initial value here is now because initially
+
+42
+00:02:26,670 --> 00:02:30,360
+this is not bound to any element in the template.
+
+43
+00:02:30,360 --> 00:02:34,770
+But now we can simply expose LastNameInput to the template
+
+44
+00:02:34,770 --> 00:02:36,400
+by returning it here.
+
+45
+00:02:36,400 --> 00:02:39,870
+Maybe instead of LastName, which we now don't need
+
+46
+00:02:39,870 --> 00:02:41,480
+in the template anymore.
+
+47
+00:02:41,480 --> 00:02:45,151
+We now expose LastNameInput, and also already
+
+48
+00:02:45,151 --> 00:02:48,230
+the setLastName function here.
+
+49
+00:02:48,230 --> 00:02:51,020
+So expose this function as well.
+
+50
+00:02:51,020 --> 00:02:54,023
+So now this new ref and this function is exposed.
+
+51
+00:02:55,000 --> 00:02:59,130
+And now LastNameInput is bound to this input here
+
+52
+00:02:59,130 --> 00:03:01,380
+because we're using the same name here.
+
+53
+00:03:01,380 --> 00:03:03,840
+And you still assign a ref like this,
+
+54
+00:03:03,840 --> 00:03:07,120
+just a string with the ref name that you created
+
+55
+00:03:07,120 --> 00:03:08,730
+in your setup function.
+
+56
+00:03:08,730 --> 00:03:12,440
+So LastName and put here, once it's exposed to the template
+
+57
+00:03:12,440 --> 00:03:16,660
+like this is then available under that name
+
+58
+00:03:16,660 --> 00:03:20,730
+for this special a ref prop, which you can set
+
+59
+00:03:20,730 --> 00:03:23,230
+on any DOM element of your choice.
+
+60
+00:03:23,230 --> 00:03:25,780
+And Vue will make the connection behind the scenes.
+
+61
+00:03:27,210 --> 00:03:31,000
+And with that, we'll be able to go to our setLastName
+
+62
+00:03:31,000 --> 00:03:34,620
+function here, and simply get the value from that input
+
+63
+00:03:34,620 --> 00:03:39,513
+by accessing LastNameInput.value.value.
+
+64
+00:03:40,860 --> 00:03:44,810
+Now this might look strange, this .value.value thing,
+
+65
+00:03:44,810 --> 00:03:48,100
+keep in mind you always get access to the value of a ref
+
+66
+00:03:48,100 --> 00:03:50,020
+with .value.
+
+67
+00:03:50,020 --> 00:03:54,030
+And the value of this ref will be a pointer
+
+68
+00:03:54,030 --> 00:03:56,890
+at this input element object.
+
+69
+00:03:56,890 --> 00:04:00,520
+And this object in turn will also have a value property,
+
+70
+00:04:00,520 --> 00:04:02,240
+holding the user input.
+
+71
+00:04:02,240 --> 00:04:05,260
+So the second .value is getting access to
+
+72
+00:04:05,260 --> 00:04:08,340
+that value property of the input element object,
+
+73
+00:04:08,340 --> 00:04:12,310
+the first .value gets access to the value of our ref,
+
+74
+00:04:12,310 --> 00:04:14,543
+which then is that input element object.
+
+75
+00:04:15,900 --> 00:04:17,980
+With that we get access to the user input,
+
+76
+00:04:17,980 --> 00:04:21,079
+and we're setting our LastName equal to it.
+
+77
+00:04:21,079 --> 00:04:25,130
+And therefore, with all of that if we save this and reload,
+
+78
+00:04:25,130 --> 00:04:29,690
+I can enter max here, my watcher fires and I see max here.
+
+79
+00:04:29,690 --> 00:04:31,700
+But if I type here in the LastName,
+
+80
+00:04:31,700 --> 00:04:33,580
+this does not update automatically,
+
+81
+00:04:33,580 --> 00:04:36,080
+because we removed two way binding.
+
+82
+00:04:36,080 --> 00:04:40,570
+Instead, I can now click setLastName, and it works.
+
+83
+00:04:40,570 --> 00:04:42,823
+And it also of course, triggers the watcher.
+
+84
+00:04:44,500 --> 00:04:47,083
+So that's how we can work with template refs.
+

@@ -1,0 +1,196 @@
+1
+00:00:02,331 --> 00:00:03,800
+[Maximilian Schwarzmüller]To wire up the button,
+
+2
+00:00:03,800 --> 00:00:06,103
+we can add a method here.
+
+3
+00:00:07,130 --> 00:00:09,630
+Add one could be the method name.
+
+4
+00:00:09,630 --> 00:00:11,480
+And it's the method I want to trigger
+
+5
+00:00:11,480 --> 00:00:13,650
+upon click on this button,
+
+6
+00:00:13,650 --> 00:00:16,320
+just as we learned it before in this course.
+
+7
+00:00:16,320 --> 00:00:19,393
+Now in here we can access this stores and store,
+
+8
+00:00:20,840 --> 00:00:23,150
+access the state and there to counter
+
+9
+00:00:23,150 --> 00:00:24,763
+and increment it like this.
+
+10
+00:00:25,960 --> 00:00:28,560
+We can, by the way, also outsource this here
+
+11
+00:00:28,560 --> 00:00:31,530
+into a computed property, If we want to.
+
+12
+00:00:31,530 --> 00:00:33,630
+We can add a computed property name it
+
+13
+00:00:33,630 --> 00:00:35,980
+counter or whatever you want,
+
+14
+00:00:35,980 --> 00:00:39,730
+doesn't have to be counter and in their return
+
+15
+00:00:39,730 --> 00:00:42,233
+this dollar sign store state counter.
+
+16
+00:00:43,760 --> 00:00:47,120
+And now we can use this counter here.
+
+17
+00:00:47,120 --> 00:00:48,580
+Save everything.
+
+18
+00:00:48,580 --> 00:00:50,033
+If we now go back,
+
+19
+00:00:51,220 --> 00:00:52,580
+we can click Add one,
+
+20
+00:00:52,580 --> 00:00:56,970
+and this now updates with help of Vuex.
+
+21
+00:00:56,970 --> 00:01:00,150
+Now Vuex has way more to offer than just that.
+
+22
+00:01:00,150 --> 00:01:03,050
+But this already shows us how it works
+
+23
+00:01:03,050 --> 00:01:07,750
+in a nutshell how you work with Vuex state in a nutshell.
+
+24
+00:01:07,750 --> 00:01:09,090
+And the great thing is
+
+25
+00:01:09,090 --> 00:01:11,760
+that you now can really add any component you want,
+
+26
+00:01:11,760 --> 00:01:14,530
+like the counter.Vue.
+
+27
+00:01:14,530 --> 00:01:17,310
+And in there, we can
+
+28
+00:01:17,310 --> 00:01:19,913
+add this h free tag.
+
+29
+00:01:20,820 --> 00:01:23,500
+So let's add it in the template of the counter.
+
+30
+00:01:23,500 --> 00:01:27,650
+And in there, I then add this computed property.
+
+31
+00:01:27,650 --> 00:01:31,410
+So this computed property dot calculates the counter
+
+32
+00:01:31,410 --> 00:01:34,963
+counted from app Vue and added in the counter Vue.
+
+33
+00:01:36,510 --> 00:01:41,363
+And if we now register the counter here in app Vue,
+
+34
+00:01:48,720 --> 00:01:51,850
+like this, and like this,
+
+35
+00:01:51,850 --> 00:01:54,200
+we can add it here above the button
+
+36
+00:01:55,390 --> 00:01:56,393
+just like that.
+
+37
+00:01:57,890 --> 00:01:59,530
+Save everything
+
+38
+00:01:59,530 --> 00:02:02,010
+and it will still work as before, if I reload.
+
+39
+00:02:02,010 --> 00:02:03,350
+This still works,
+
+40
+00:02:03,350 --> 00:02:07,140
+because it's really a global store a global state
+
+41
+00:02:07,140 --> 00:02:11,050
+that can be accessed from any component
+
+42
+00:02:11,050 --> 00:02:14,223
+without injection without passing props around.
+
+43
+00:02:15,110 --> 00:02:18,030
+Now, this doesn't replace props in general,
+
+44
+00:02:18,030 --> 00:02:21,270
+to a direct child, you typically want to pass props
+
+45
+00:02:21,270 --> 00:02:24,240
+if you would parent component, half the data.
+
+46
+00:02:24,240 --> 00:02:26,410
+But for application wide state,
+
+47
+00:02:26,410 --> 00:02:29,420
+like here for our counter Vuex is great
+
+48
+00:02:29,420 --> 00:02:31,620
+because without any extra setup,
+
+49
+00:02:31,620 --> 00:02:34,283
+we can tap into the state and use it.
+

@@ -1,0 +1,704 @@
+1
+00:00:02,190 --> 00:00:05,380
+So how could we implement the fetch mechanism?
+
+2
+00:00:05,380 --> 00:00:07,600
+It's clear that data should be fetched
+
+3
+00:00:07,600 --> 00:00:09,890
+when we visit this coaches page
+
+4
+00:00:09,890 --> 00:00:11,773
+or when we click refresh.
+
+5
+00:00:12,690 --> 00:00:16,010
+So therefore we wanna initiate data fetching
+
+6
+00:00:16,010 --> 00:00:18,290
+when the coaches list component
+
+7
+00:00:18,290 --> 00:00:20,810
+is loaded onto the screen.
+
+8
+00:00:20,810 --> 00:00:24,400
+Right because that is what we need to coach data.
+
+9
+00:00:24,400 --> 00:00:27,280
+And it's true. We wanna initiate it here,
+
+10
+00:00:27,280 --> 00:00:30,020
+but initiate doesn't mean that we have
+
+11
+00:00:30,020 --> 00:00:32,800
+to do the entire sense, the request
+
+12
+00:00:32,800 --> 00:00:35,730
+and parse the response logic here.
+
+13
+00:00:35,730 --> 00:00:38,320
+Instead, we can still leverage view X
+
+14
+00:00:38,320 --> 00:00:40,890
+for that, because there, we still managed
+
+15
+00:00:40,890 --> 00:00:44,520
+to coach data once it is in our app locally.
+
+16
+00:00:44,520 --> 00:00:48,030
+And therefore here, we could also add an action
+
+17
+00:00:48,030 --> 00:00:49,490
+for fetching data
+
+18
+00:00:49,490 --> 00:00:52,973
+and a mutation for then using that fetched data.
+
+19
+00:00:53,920 --> 00:00:55,640
+And that is a great approach
+
+20
+00:00:55,640 --> 00:00:58,550
+because it allows us to do all the heavy lifting
+
+21
+00:00:58,550 --> 00:01:00,520
+of sending the HTTP request
+
+22
+00:01:00,520 --> 00:01:02,021
+and parsing the response
+
+23
+00:01:02,021 --> 00:01:04,620
+out of a component into view X.
+
+24
+00:01:04,620 --> 00:01:07,290
+And that allows us to keep our components lean,
+
+25
+00:01:07,290 --> 00:01:08,453
+which is always good.
+
+26
+00:01:09,820 --> 00:01:12,560
+So therefore, we can add a new mutation
+
+27
+00:01:12,560 --> 00:01:15,230
+in our coaches mutations fall,
+
+28
+00:01:15,230 --> 00:01:19,760
+and maybe named as mutation set coaches,
+
+29
+00:01:19,760 --> 00:01:22,120
+because I wanna set my local coaches
+
+30
+00:01:22,120 --> 00:01:25,040
+into view X state queue to coaches,
+
+31
+00:01:25,040 --> 00:01:28,040
+we will have fetched from Firebase.
+
+32
+00:01:28,040 --> 00:01:31,020
+So here we get our state and our payload,
+
+33
+00:01:31,020 --> 00:01:32,510
+and we can assume that
+
+34
+00:01:32,510 --> 00:01:34,770
+the payload is a list of coaches.
+
+35
+00:01:34,770 --> 00:01:39,223
+So we can just set our coaches equal to payload.
+
+36
+00:01:40,940 --> 00:01:43,360
+Now the action will be more interesting.
+
+37
+00:01:43,360 --> 00:01:46,890
+Here i wanna add a new action, a second action,
+
+38
+00:01:46,890 --> 00:01:51,190
+which is the load coaches action.
+
+39
+00:01:51,190 --> 00:01:52,400
+Where we get a context
+
+40
+00:01:52,400 --> 00:01:54,990
+and then also probably a payload.
+
+41
+00:01:54,990 --> 00:01:57,430
+And here we wanna send the request
+
+42
+00:01:57,430 --> 00:02:00,550
+to load to coaches from Firebase.
+
+43
+00:02:00,550 --> 00:02:02,320
+And this action will be dispatched
+
+44
+00:02:02,320 --> 00:02:04,170
+from any component that wants
+
+45
+00:02:04,170 --> 00:02:07,030
+to trigger this loading process.
+
+46
+00:02:07,030 --> 00:02:08,850
+So here we wanna send a request
+
+47
+00:02:10,240 --> 00:02:13,960
+to the same URL as we used for storing data.
+
+48
+00:02:13,960 --> 00:02:17,470
+So we can copy this part here
+
+49
+00:02:17,470 --> 00:02:19,360
+of the old fetch request
+
+50
+00:02:19,360 --> 00:02:21,540
+and use it here again.
+
+51
+00:02:21,540 --> 00:02:23,380
+We don't need a second argument though,
+
+52
+00:02:23,380 --> 00:02:26,780
+because here I'm fine with a get request.
+
+53
+00:02:26,780 --> 00:02:28,540
+I again, wanna use a sync await
+
+54
+00:02:28,540 --> 00:02:31,010
+instead of then and so on.
+
+55
+00:02:31,010 --> 00:02:33,400
+So therefore here we can adjust a wait this
+
+56
+00:02:33,400 --> 00:02:35,763
+and store the response in a new constant.
+
+57
+00:02:38,570 --> 00:02:39,560
+In the next line
+
+58
+00:02:39,560 --> 00:02:41,750
+we can then get our response data.
+
+59
+00:02:41,750 --> 00:02:45,943
+So response data by a waiting response.json,
+
+60
+00:02:46,900 --> 00:02:49,250
+and once stat is parsed
+
+61
+00:02:49,250 --> 00:02:51,260
+we can again check if
+
+62
+00:02:51,260 --> 00:02:53,940
+the response is maybe not okay,
+
+63
+00:02:53,940 --> 00:02:56,210
+and then do any kind of error handling,
+
+64
+00:02:56,210 --> 00:02:58,390
+which I will again not do here,
+
+65
+00:02:58,390 --> 00:03:00,760
+but which we can implement later.
+
+66
+00:03:00,760 --> 00:03:03,400
+Again, let's assume that everything works though.
+
+67
+00:03:03,400 --> 00:03:04,380
+And therefore now
+
+68
+00:03:04,380 --> 00:03:07,380
+we can almost commit our mutation,
+
+69
+00:03:07,380 --> 00:03:10,190
+but there's one other thing we got to do first.
+
+70
+00:03:10,190 --> 00:03:11,710
+We need to transform
+
+71
+00:03:11,710 --> 00:03:13,620
+the data we're fetching such that
+
+72
+00:03:13,620 --> 00:03:15,623
+it has the format we need here.
+
+73
+00:03:16,480 --> 00:03:18,800
+Because when we get data from Firebase,
+
+74
+00:03:18,800 --> 00:03:21,580
+we'll get it as one big object.
+
+75
+00:03:21,580 --> 00:03:24,920
+And we rather wanna have an array of coaches,
+
+76
+00:03:24,920 --> 00:03:27,050
+not just one big object.
+
+77
+00:03:27,050 --> 00:03:28,070
+And actually there,
+
+78
+00:03:28,070 --> 00:03:29,720
+I also noticed one other thing,
+
+79
+00:03:29,720 --> 00:03:32,360
+I don't wanna fetch the coaches
+
+80
+00:03:32,360 --> 00:03:34,240
+for just one user ID.
+
+81
+00:03:34,240 --> 00:03:36,680
+Instead, I wanna fetch all coaches
+
+82
+00:03:36,680 --> 00:03:38,243
+from the coaches node.
+
+83
+00:03:39,660 --> 00:03:41,590
+So that we fetch all the coaches
+
+84
+00:03:41,590 --> 00:03:45,030
+we eventually have here below coaches,
+
+85
+00:03:45,030 --> 00:03:47,510
+but that will be one big object then
+
+86
+00:03:47,510 --> 00:03:50,540
+where we have to coach IDs as property names
+
+87
+00:03:50,540 --> 00:03:53,480
+and then nested objects with the coach data.
+
+88
+00:03:53,480 --> 00:03:56,160
+And that's not the format we need here.
+
+89
+00:03:56,160 --> 00:03:58,140
+So we need to transform this first
+
+90
+00:03:58,140 --> 00:04:00,010
+and for derby country to help her
+
+91
+00:04:00,010 --> 00:04:03,100
+constant here, coaches, which is an MTI rate.
+
+92
+00:04:03,100 --> 00:04:05,340
+And then with a four in loop,
+
+93
+00:04:05,340 --> 00:04:08,800
+we can go through our entire response data,
+
+94
+00:04:08,800 --> 00:04:11,660
+which will be this object full of coaches,
+
+95
+00:04:11,660 --> 00:04:15,660
+where we then get each coach ID as a key here,
+
+96
+00:04:15,660 --> 00:04:16,880
+and then simply construct
+
+97
+00:04:16,880 --> 00:04:19,170
+a new coach object here,
+
+98
+00:04:19,170 --> 00:04:20,737
+which has the same format as
+
+99
+00:04:20,737 --> 00:04:22,670
+the coach data we use here
+
+100
+00:04:22,670 --> 00:04:25,310
+when we store a coach. So first name, last name
+
+101
+00:04:25,310 --> 00:04:26,630
+and so on.
+
+102
+00:04:26,630 --> 00:04:31,200
+Let's just copy that and bring it down there.
+
+103
+00:04:31,200 --> 00:04:33,520
+And now it's that first name equal
+
+104
+00:04:33,520 --> 00:04:36,970
+to response data forward the given key,
+
+105
+00:04:36,970 --> 00:04:38,520
+forward the given coach ID
+
+106
+00:04:38,520 --> 00:04:40,610
+at which we're currently looking at
+
+107
+00:04:40,610 --> 00:04:44,683
+in this iteration.first name,
+
+108
+00:04:46,030 --> 00:04:48,000
+accessing the first name property
+
+109
+00:04:48,000 --> 00:04:49,360
+of the nested object
+
+110
+00:04:49,360 --> 00:04:51,833
+for this coach with this ID,
+
+111
+00:04:52,720 --> 00:04:55,500
+because every coach has this first name property
+
+112
+00:04:55,500 --> 00:04:56,443
+on Firebase.
+
+113
+00:04:57,680 --> 00:04:59,733
+And we repeat this game,
+
+114
+00:05:00,940 --> 00:05:03,710
+for the last name
+
+115
+00:05:05,550 --> 00:05:10,550
+and also here for the description,
+
+116
+00:05:10,810 --> 00:05:15,050
+here of course for the hourly rate
+
+117
+00:05:15,050 --> 00:05:19,130
+and its hourly rate here on Firebase as well,
+
+118
+00:05:19,130 --> 00:05:22,573
+and also for the areas.
+
+119
+00:05:24,190 --> 00:05:26,350
+And we now also need to add to the ID here.
+
+120
+00:05:26,350 --> 00:05:29,280
+And that's just our key for this iteration.
+
+121
+00:05:29,280 --> 00:05:32,300
+Right because key will be this ID.
+
+122
+00:05:32,300 --> 00:05:34,460
+That's the main object for which we loop
+
+123
+00:05:34,460 --> 00:05:35,700
+with all these keys.
+
+124
+00:05:35,700 --> 00:05:38,163
+And therefore key will be our coach ID.
+
+125
+00:05:39,650 --> 00:05:41,340
+Yeah, that's looking good.
+
+126
+00:05:41,340 --> 00:05:43,560
+So now we build this coach.
+
+127
+00:05:43,560 --> 00:05:46,490
+We can then reach out to these coaches array.
+
+128
+00:05:46,490 --> 00:05:48,010
+There's help array here
+
+129
+00:05:48,010 --> 00:05:51,360
+and push this coach into disarray.
+
+130
+00:05:51,360 --> 00:05:53,700
+And now we dare after having an array
+
+131
+00:05:53,700 --> 00:05:56,503
+full of correctly formatted coaches.
+
+132
+00:05:57,590 --> 00:05:59,620
+And therefore now we can
+
+133
+00:05:59,620 --> 00:06:04,010
+commit set coaches
+
+134
+00:06:04,010 --> 00:06:06,343
+and set our coaches here.
+
+135
+00:06:08,280 --> 00:06:09,703
+As to coaches reloaded.
+
+136
+00:06:10,830 --> 00:06:12,170
+And I'm getting an error now
+
+137
+00:06:12,170 --> 00:06:14,510
+that I'm not using payload and that's correct.
+
+138
+00:06:14,510 --> 00:06:15,523
+So let's remove it.
+
+139
+00:06:17,090 --> 00:06:19,940
+Now we have to load coaches action
+
+140
+00:06:19,940 --> 00:06:23,020
+and we can now dispatch this in coaches list.
+
+141
+00:06:23,020 --> 00:06:25,710
+Here i wanna dispatch it when this component loads
+
+142
+00:06:25,710 --> 00:06:28,033
+and also when the refresh button is clicked.
+
+143
+00:06:29,020 --> 00:06:31,643
+So therefore we can add a new method here.
+
+144
+00:06:33,060 --> 00:06:36,900
+Load coaches and in there reach out
+
+145
+00:06:36,900 --> 00:06:38,003
+to the store.
+
+146
+00:06:38,850 --> 00:06:42,677
+Dispatch coaches/loadcoaches.
+
+147
+00:06:45,670 --> 00:06:49,453
+Load coaches was the action name defined here.
+
+148
+00:06:50,950 --> 00:06:52,300
+Like that.
+
+149
+00:06:52,300 --> 00:06:53,640
+And load coaches.
+
+150
+00:06:53,640 --> 00:06:55,770
+This method should now be triggered
+
+151
+00:06:55,770 --> 00:06:57,890
+when this component is created.
+
+152
+00:06:57,890 --> 00:06:59,430
+So therefore we can add
+
+153
+00:06:59,430 --> 00:07:02,220
+the created life cycle hook here,
+
+154
+00:07:02,220 --> 00:07:03,920
+that created life cycle method,
+
+155
+00:07:03,920 --> 00:07:05,270
+which view executes
+
+156
+00:07:05,270 --> 00:07:07,130
+when this component is created.
+
+157
+00:07:07,130 --> 00:07:09,920
+And in there, we can point at this load coaches
+
+158
+00:07:09,920 --> 00:07:11,023
+and execute that.
+
+159
+00:07:12,690 --> 00:07:14,720
+And in addition, I wanna do it when
+
+160
+00:07:14,720 --> 00:07:16,670
+this button is pressed.
+
+161
+00:07:16,670 --> 00:07:19,670
+So we can bind the refresh button,
+
+162
+00:07:19,670 --> 00:07:21,060
+the click event there
+
+163
+00:07:21,060 --> 00:07:22,710
+to load coaches,
+
+164
+00:07:22,710 --> 00:07:23,960
+the method we just added.
+
+165
+00:07:25,140 --> 00:07:27,630
+If we now give this a try and reload,
+
+166
+00:07:27,630 --> 00:07:28,720
+if it loads up,
+
+167
+00:07:28,720 --> 00:07:31,250
+we see the old dummy data briefly,
+
+168
+00:07:31,250 --> 00:07:33,600
+but then we see the coach
+
+169
+00:07:33,600 --> 00:07:35,380
+and then the register as coach button
+
+170
+00:07:35,380 --> 00:07:37,170
+also goes away.
+
+171
+00:07:37,170 --> 00:07:38,760
+Now of course the flickering here
+
+172
+00:07:38,760 --> 00:07:40,420
+is not what we want though.
+
+173
+00:07:40,420 --> 00:07:42,110
+So as a next step,
+
+174
+00:07:42,110 --> 00:07:44,740
+we can work on showing a loading spinner
+
+175
+00:07:44,740 --> 00:07:46,610
+and maybe also ensure
+
+176
+00:07:46,610 --> 00:07:49,383
+that we handle errors in a nicer way.
+

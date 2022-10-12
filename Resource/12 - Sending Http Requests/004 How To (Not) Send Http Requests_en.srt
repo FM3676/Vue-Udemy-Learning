@@ -1,0 +1,408 @@
+1
+00:00:02,040 --> 00:00:03,500
+So with Firebase set up,
+
+2
+00:00:03,500 --> 00:00:06,880
+how do we communicate with it or with any backend
+
+3
+00:00:06,880 --> 00:00:08,403
+from inside our Vue App?
+
+4
+00:00:09,410 --> 00:00:11,440
+We actually, accidentally,
+
+5
+00:00:11,440 --> 00:00:16,050
+already saw a way of sending HTTP requests earlier.
+
+6
+00:00:16,050 --> 00:00:20,010
+In our form, the learning survey component here in the form,
+
+7
+00:00:20,010 --> 00:00:21,990
+there we have a submit button.
+
+8
+00:00:21,990 --> 00:00:24,990
+And I mentioned earlier in the course
+
+9
+00:00:24,990 --> 00:00:27,540
+that we wanna prevent the browser default
+
+10
+00:00:27,540 --> 00:00:29,380
+when that form is being submitted
+
+11
+00:00:29,380 --> 00:00:33,283
+because if we don't do this, a HTTP request would be sent.
+
+12
+00:00:34,260 --> 00:00:38,170
+If I remove the prevent modifier here, temporarily,
+
+13
+00:00:38,170 --> 00:00:43,170
+reload and click Submit, watch this reload icon here.
+
+14
+00:00:43,350 --> 00:00:47,060
+You see it briefly turned into a cross.
+
+15
+00:00:47,060 --> 00:00:48,600
+Every time I click this,
+
+16
+00:00:48,600 --> 00:00:52,860
+what happens is that the browser uses its default behavior
+
+17
+00:00:52,860 --> 00:00:55,623
+which is, to send a HTTP request.
+
+18
+00:00:56,840 --> 00:00:58,200
+The problem just is,
+
+19
+00:00:58,200 --> 00:01:01,240
+it's not sending that request to our backend,
+
+20
+00:01:01,240 --> 00:01:03,300
+to our Firebase servers,
+
+21
+00:01:03,300 --> 00:01:06,403
+but instead it sends the request to the same address
+
+22
+00:01:06,403 --> 00:01:08,823
+that was used for serving this page.
+
+23
+00:01:09,660 --> 00:01:14,520
+And with Vue applications that is typically not the page
+
+24
+00:01:14,520 --> 00:01:16,390
+that should handle this request.
+
+25
+00:01:16,390 --> 00:01:20,420
+In this case it's our local computer and our local computer
+
+26
+00:01:20,420 --> 00:01:24,200
+does not have any code expecting this request.
+
+27
+00:01:24,200 --> 00:01:27,193
+So therefore this default request goes into the white.
+
+28
+00:01:29,040 --> 00:01:31,250
+Now you could be building applications
+
+29
+00:01:31,250 --> 00:01:33,500
+where you also use Vue,
+
+30
+00:01:33,500 --> 00:01:37,130
+where your Vue App is served by the same server
+
+31
+00:01:37,130 --> 00:01:39,010
+that should be handling the request.
+
+32
+00:01:39,010 --> 00:01:41,773
+In that case this browser default might be fine.
+
+33
+00:01:42,890 --> 00:01:45,210
+But in the vast majority of cases,
+
+34
+00:01:45,210 --> 00:01:48,630
+you'll have a separate server for your Vue App,
+
+35
+00:01:48,630 --> 00:01:52,610
+which is just delivering this Vue App to your users,
+
+36
+00:01:52,610 --> 00:01:55,980
+then you have free handling of the user data.
+
+37
+00:01:55,980 --> 00:01:58,220
+And that's exactly the scenario
+
+38
+00:01:58,220 --> 00:02:01,250
+where you don't want this browser default,
+
+39
+00:02:01,250 --> 00:02:03,310
+but where instead you wanna prevent it
+
+40
+00:02:03,310 --> 00:02:07,130
+and handle the submitted data in JavaScript with Vue.
+
+41
+00:02:07,130 --> 00:02:09,488
+For example, also to validate it
+
+42
+00:02:09,488 --> 00:02:12,560
+and show such a client site error message.
+
+43
+00:02:12,560 --> 00:02:15,620
+So show this error paragraph, for example,
+
+44
+00:02:15,620 --> 00:02:17,590
+that is something you might wanna do.
+
+45
+00:02:17,590 --> 00:02:20,890
+And once you validate it you then wanna take the data
+
+46
+00:02:20,890 --> 00:02:23,750
+and send it to the server of your choice,
+
+47
+00:02:23,750 --> 00:02:26,300
+not necessarily to the same server
+
+48
+00:02:26,300 --> 00:02:28,053
+that is serving this application.
+
+49
+00:02:28,990 --> 00:02:31,123
+And that's exactly what we wanna do here.
+
+50
+00:02:31,960 --> 00:02:35,270
+So how do we send a request to Firebase then,
+
+51
+00:02:35,270 --> 00:02:38,610
+which is our chosen backend in this case?
+
+52
+00:02:38,610 --> 00:02:41,380
+Well, the nice thing about this Firebase servers
+
+53
+00:02:41,380 --> 00:02:43,320
+and they're the real time database
+
+54
+00:02:43,320 --> 00:02:47,160
+is that it has this HTTP address which you see here.
+
+55
+00:02:47,160 --> 00:02:50,870
+And if you send the request of a specific format
+
+56
+00:02:50,870 --> 00:02:55,050
+to this address, the data will automatically be picked up
+
+57
+00:02:55,050 --> 00:02:58,093
+by Firebase and will be written to a database.
+
+58
+00:02:59,310 --> 00:03:03,000
+Now, it might look like we're directly talking
+
+59
+00:03:03,000 --> 00:03:06,270
+to a database with that, but we actually aren't.
+
+60
+00:03:06,270 --> 00:03:10,280
+This is a HTTP address that leads to some server side code,
+
+61
+00:03:10,280 --> 00:03:13,720
+which we can't see, which was written by the Firebase team,
+
+62
+00:03:13,720 --> 00:03:17,640
+which passes the request that will be sent by us
+
+63
+00:03:17,640 --> 00:03:22,090
+and then extracts data and then writes it to a database.
+
+64
+00:03:22,090 --> 00:03:25,110
+So for us, it will look like we're directly talking
+
+65
+00:03:25,110 --> 00:03:28,130
+to a database, but we actually aren't.
+
+66
+00:03:28,130 --> 00:03:31,630
+But this is the address or part of the address
+
+67
+00:03:31,630 --> 00:03:34,090
+to which we wanna send the request.
+
+68
+00:03:34,090 --> 00:03:35,950
+And of course make sure you pick the address
+
+69
+00:03:35,950 --> 00:03:38,980
+you are seeing in your dashboard. Not mine.
+
+70
+00:03:38,980 --> 00:03:41,820
+This address will not be available anymore when you're
+
+71
+00:03:41,820 --> 00:03:42,883
+viewing this course.
+
+72
+00:03:44,430 --> 00:03:46,630
+So we wanna send a request to that.
+
+73
+00:03:46,630 --> 00:03:48,930
+But how do we now send the request
+
+74
+00:03:48,930 --> 00:03:51,283
+from inside our Vue code here?
+
+75
+00:03:52,730 --> 00:03:55,390
+Well, there are a couple of options.
+
+76
+00:03:55,390 --> 00:03:59,340
+We can use third party packages like axios,
+
+77
+00:03:59,340 --> 00:04:03,280
+which is a very popular JavaScript package for sending
+
+78
+00:04:03,280 --> 00:04:06,900
+HTTP requests from inside JavaScript.
+
+79
+00:04:06,900 --> 00:04:09,910
+It's very powerful and very easy to use
+
+80
+00:04:09,910 --> 00:04:11,523
+and definitely worth a look.
+
+81
+00:04:12,684 --> 00:04:16,130
+Alternatively, browsers also have built-in methods
+
+82
+00:04:16,130 --> 00:04:18,279
+for sending HTTP requests.
+
+83
+00:04:18,279 --> 00:04:21,610
+Precisely there is the fetch method,
+
+84
+00:04:21,610 --> 00:04:24,640
+which sounds like it's only there to fetch data
+
+85
+00:04:24,640 --> 00:04:27,610
+but it's actually a function that allows us to send data
+
+86
+00:04:27,610 --> 00:04:29,023
+to servers as well.
+
+87
+00:04:30,280 --> 00:04:33,870
+Fetch takes a URL as a first argument
+
+88
+00:04:33,870 --> 00:04:37,470
+and then we can configure it to get data from that URL
+
+89
+00:04:37,470 --> 00:04:39,703
+or to send data to that URL.
+
+90
+00:04:40,540 --> 00:04:43,380
+And I'm going to work with Fetch here
+
+91
+00:04:43,380 --> 00:04:45,020
+since it's built into the browser,
+
+92
+00:04:45,020 --> 00:04:49,063
+but you could absolutely also look into packages like axios.
+
+93
+00:04:50,050 --> 00:04:53,310
+Both axios and fetch will send so-called
+
+94
+00:04:53,310 --> 00:04:56,250
+behind the scenes HTTP requests.
+
+95
+00:04:56,250 --> 00:04:59,490
+That means that we won't reload the page,
+
+96
+00:04:59,490 --> 00:05:03,300
+our application will not be killed and restarted,
+
+97
+00:05:03,300 --> 00:05:06,411
+instead the Vue application will continue running
+
+98
+00:05:06,411 --> 00:05:11,120
+and the HTTP request is just sent well behind the scenes
+
+99
+00:05:11,120 --> 00:05:12,990
+to our backend.
+
+100
+00:05:12,990 --> 00:05:15,700
+And that's exactly the behavior we want here.
+
+101
+00:05:15,700 --> 00:05:19,600
+We want to ensure that our request is sent
+
+102
+00:05:19,600 --> 00:05:21,963
+without restarting the application.
+

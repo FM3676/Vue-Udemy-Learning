@@ -1,0 +1,860 @@
+1
+00:00:02,250 --> 00:00:05,330
+So, I always emphasized that transition
+
+2
+00:00:05,330 --> 00:00:08,140
+must only have one direct child element,
+
+3
+00:00:08,140 --> 00:00:09,240
+and because of that,
+
+4
+00:00:09,240 --> 00:00:13,510
+we had to change our Base Modal a little bit here,
+
+5
+00:00:13,510 --> 00:00:15,040
+to ensure that transition
+
+6
+00:00:15,040 --> 00:00:17,633
+has only one direct child element.
+
+7
+00:00:19,250 --> 00:00:22,720
+Well, actually there are exceptions to that rule,
+
+8
+00:00:22,720 --> 00:00:24,950
+there is a scenario where you might
+
+9
+00:00:24,950 --> 00:00:27,936
+have more than one direct child element,
+
+10
+00:00:27,936 --> 00:00:29,720
+and here it is.
+
+11
+00:00:29,720 --> 00:00:33,210
+In App Vue, I'm going to add a new Div
+
+12
+00:00:33,210 --> 00:00:34,860
+with a class of container,
+
+13
+00:00:34,860 --> 00:00:37,060
+simply to show you a new example
+
+14
+00:00:37,060 --> 00:00:38,650
+inside of that Div.
+
+15
+00:00:38,650 --> 00:00:41,010
+And here, I'll add a good, old button,
+
+16
+00:00:41,010 --> 00:00:44,390
+but now we'll animate the button itself,
+
+17
+00:00:44,390 --> 00:00:46,860
+and I'll have a button here,
+
+18
+00:00:46,860 --> 00:00:49,670
+where I say, "Show Users.", and below that,
+
+19
+00:00:49,670 --> 00:00:53,720
+a second button, where I say, "Hide Users.".
+
+20
+00:00:53,720 --> 00:00:55,840
+Well, at the moment we got no users,
+
+21
+00:00:55,840 --> 00:00:58,170
+but for the moment, I simply want to switch
+
+22
+00:00:58,170 --> 00:01:00,470
+between these two buttons when we click them,
+
+23
+00:01:00,470 --> 00:01:03,950
+so that we simply animate the switch
+
+24
+00:01:03,950 --> 00:01:07,350
+from show to hide, and back,
+
+25
+00:01:07,350 --> 00:01:09,040
+because we worked with buttons
+
+26
+00:01:09,040 --> 00:01:11,430
+that change their text before,
+
+27
+00:01:11,430 --> 00:01:13,690
+but whenever we had such a button,
+
+28
+00:01:13,690 --> 00:01:16,510
+the text on the button changed instantly,
+
+29
+00:01:16,510 --> 00:01:18,600
+and we had no animation for that.
+
+30
+00:01:18,600 --> 00:01:19,560
+You might not need that,
+
+31
+00:01:19,560 --> 00:01:22,360
+but if you do, you can build this
+
+32
+00:01:22,360 --> 00:01:24,103
+with the transition component.
+
+33
+00:01:25,220 --> 00:01:26,053
+So first of all,
+
+34
+00:01:26,053 --> 00:01:28,420
+let's make sure we switch between these buttons,
+
+35
+00:01:28,420 --> 00:01:30,810
+for that we can add click listeners here,
+
+36
+00:01:30,810 --> 00:01:33,690
+point at Show Users, on the first button,
+
+37
+00:01:33,690 --> 00:01:37,200
+and then here at Hide Users.
+
+38
+00:01:37,200 --> 00:01:39,390
+So, Show Users and Hide Users,
+
+39
+00:01:39,390 --> 00:01:42,203
+these are 2 methods we now need to add,
+
+40
+00:01:43,250 --> 00:01:45,650
+and we also need a new data property here,
+
+41
+00:01:45,650 --> 00:01:49,190
+which controls in which mode we are at the moment,
+
+42
+00:01:49,190 --> 00:01:53,120
+users are visible, could be the name of that property,
+
+43
+00:01:53,120 --> 00:01:55,050
+initially it's false let's say,
+
+44
+00:01:55,050 --> 00:01:59,020
+and then we have a method, Show Users,
+
+45
+00:01:59,020 --> 00:02:04,020
+where I simply set these users are visible to true,
+
+46
+00:02:04,150 --> 00:02:07,380
+and Hide Users, which is that other method
+
+47
+00:02:07,380 --> 00:02:09,930
+we're pointing at from the other button,
+
+48
+00:02:09,930 --> 00:02:13,043
+and here we can set users are visible to false.
+
+49
+00:02:14,730 --> 00:02:16,780
+So, this is just some dummy code,
+
+50
+00:02:16,780 --> 00:02:19,620
+but with that, we are controlling the users
+
+51
+00:02:19,620 --> 00:02:22,943
+are visible property here, the data property,
+
+52
+00:02:23,800 --> 00:02:27,000
+and we can now control which button should be visible
+
+53
+00:02:27,000 --> 00:02:29,040
+based on that property.
+
+54
+00:02:29,040 --> 00:02:31,650
+The first button here should be visible
+
+55
+00:02:31,650 --> 00:02:34,800
+if users are visible,
+
+56
+00:02:34,800 --> 00:02:36,480
+is false,
+
+57
+00:02:36,480 --> 00:02:38,380
+because if they are not visible,
+
+58
+00:02:38,380 --> 00:02:40,860
+I want to show the Show Users button,
+
+59
+00:02:40,860 --> 00:02:42,143
+so that we show them.
+
+60
+00:02:43,090 --> 00:02:44,490
+The other button there for
+
+61
+00:02:44,490 --> 00:02:47,320
+is shown if users are visible, is true.
+
+62
+00:02:47,320 --> 00:02:49,210
+If we see the users at the moment,
+
+63
+00:02:49,210 --> 00:02:51,263
+I want to show a Hide Users button.
+
+64
+00:02:52,210 --> 00:02:53,860
+With that, if we save this,
+
+65
+00:02:53,860 --> 00:02:55,310
+we got this new button,
+
+66
+00:02:55,310 --> 00:02:58,310
+we can click it to switch between these buttons.
+
+67
+00:02:58,310 --> 00:03:00,730
+In reality, that of course would do something else
+
+68
+00:03:00,730 --> 00:03:04,160
+on the page as well, show a list of users for example,
+
+69
+00:03:04,160 --> 00:03:06,830
+but here I just want to focus on the transition
+
+70
+00:03:06,830 --> 00:03:09,010
+between these 2 buttons,
+
+71
+00:03:09,010 --> 00:03:12,280
+and I already said it on the transition.
+
+72
+00:03:12,280 --> 00:03:14,860
+At the moment, it's an instant change,
+
+73
+00:03:14,860 --> 00:03:17,340
+which might or might not be what you want,
+
+74
+00:03:17,340 --> 00:03:18,640
+but if you don't want it,
+
+75
+00:03:18,640 --> 00:03:20,490
+if you want to animate this,
+
+76
+00:03:20,490 --> 00:03:24,700
+you can use the transition component for that,
+
+77
+00:03:24,700 --> 00:03:27,233
+and wrap it around these 2 buttons,
+
+78
+00:03:28,210 --> 00:03:30,000
+and you heard that right,
+
+79
+00:03:30,000 --> 00:03:33,240
+around these 2 buttons.
+
+80
+00:03:33,240 --> 00:03:35,020
+There is one exception,
+
+81
+00:03:35,020 --> 00:03:37,940
+where you are allowed to have more than one
+
+82
+00:03:37,940 --> 00:03:41,560
+direct child element inside of your transition component,
+
+83
+00:03:41,560 --> 00:03:43,740
+and that is the exception here.
+
+84
+00:03:43,740 --> 00:03:44,820
+The exception is,
+
+85
+00:03:44,820 --> 00:03:48,670
+if of the child elements you have in your transition,
+
+86
+00:03:48,670 --> 00:03:51,086
+you're guaranteed that at most one
+
+87
+00:03:51,086 --> 00:03:55,400
+is added to the real dom at the same time,
+
+88
+00:03:55,400 --> 00:03:56,850
+and that's the case here.
+
+89
+00:03:56,850 --> 00:03:59,660
+We got 2 alternatives If statements,
+
+90
+00:03:59,660 --> 00:04:01,350
+and therefore we guarantee
+
+91
+00:04:01,350 --> 00:04:03,620
+that only one of these 2 buttons
+
+92
+00:04:03,620 --> 00:04:06,823
+will be added to the real dom at a time.
+
+93
+00:04:07,760 --> 00:04:10,320
+So, if you use transition around elements
+
+94
+00:04:10,320 --> 00:04:12,180
+where only one is added,
+
+95
+00:04:12,180 --> 00:04:14,020
+then this is okay.
+
+96
+00:04:14,020 --> 00:04:18,100
+If there is a chance of both buttons being added
+
+97
+00:04:18,100 --> 00:04:19,720
+to the page at the same,
+
+98
+00:04:19,720 --> 00:04:21,329
+then this is not okay.
+
+99
+00:04:21,329 --> 00:04:23,950
+So, if we had the same If condition here,
+
+100
+00:04:23,950 --> 00:04:25,320
+then this would not be okay,
+
+101
+00:04:25,320 --> 00:04:28,770
+because now both buttons would be part of the page,
+
+102
+00:04:28,770 --> 00:04:31,870
+but if we have the opposite If conditions here,
+
+103
+00:04:31,870 --> 00:04:33,233
+then this is okay.
+
+104
+00:04:34,420 --> 00:04:36,913
+Now, let's add a nice, little transition here.
+
+105
+00:04:38,250 --> 00:04:41,640
+Fade-button is the prefix I will use here,
+
+106
+00:04:41,640 --> 00:04:44,420
+but as always, this is totally up to you,
+
+107
+00:04:44,420 --> 00:04:47,850
+and now down there in the style code,
+
+108
+00:04:47,850 --> 00:04:48,900
+maybe here,
+
+109
+00:04:48,900 --> 00:04:53,173
+I'll add fade-button-enter-from,
+
+110
+00:04:54,600 --> 00:04:56,128
+and then copy this to all
+
+111
+00:04:56,128 --> 00:04:58,670
+the active,
+
+112
+00:04:58,670 --> 00:05:00,423
+and two classes,
+
+113
+00:05:01,460 --> 00:05:03,010
+and let's say we want to start
+
+114
+00:05:03,010 --> 00:05:05,580
+with an invisible button,
+
+115
+00:05:05,580 --> 00:05:09,590
+then we want to go to a visible button,
+
+116
+00:05:09,590 --> 00:05:11,720
+and we want to animate this
+
+117
+00:05:11,720 --> 00:05:13,680
+with the transition property
+
+118
+00:05:13,680 --> 00:05:16,240
+where we watch the opacity property,
+
+119
+00:05:16,240 --> 00:05:18,870
+and whenever that changes, because it does here.
+
+120
+00:05:18,870 --> 00:05:20,175
+Whenever that changes,
+
+121
+00:05:20,175 --> 00:05:25,175
+let's see us animate that change over 0.3 seconds,
+
+122
+00:05:25,230 --> 00:05:27,260
+and now we can also add the classes
+
+123
+00:05:27,260 --> 00:05:28,620
+for removing a button,
+
+124
+00:05:28,620 --> 00:05:30,090
+and now for the first time,
+
+125
+00:05:30,090 --> 00:05:31,910
+I will reuse some code,
+
+126
+00:05:31,910 --> 00:05:34,080
+because my Enter-From state
+
+127
+00:05:34,080 --> 00:05:36,900
+is also my Leave-To state.
+
+128
+00:05:36,900 --> 00:05:38,550
+My Enter-To state
+
+129
+00:05:38,550 --> 00:05:43,230
+is also my Leave-From state,
+
+130
+00:05:43,230 --> 00:05:46,560
+and I will have a separate active state though,
+
+131
+00:05:46,560 --> 00:05:49,170
+because I want to use a different easing function,
+
+132
+00:05:49,170 --> 00:05:52,610
+so Fade-Button-Leave-Active,
+
+133
+00:05:52,610 --> 00:05:55,090
+there I set up a transition
+
+134
+00:05:55,090 --> 00:05:58,410
+watching the opacity over 0.3 seconds
+
+135
+00:05:58,410 --> 00:06:01,030
+with an ease-in function.
+
+136
+00:06:01,030 --> 00:06:02,930
+If I would use ease-out here,
+
+137
+00:06:02,930 --> 00:06:04,770
+we could of course also have merged it
+
+138
+00:06:04,770 --> 00:06:06,330
+with this CSS rule,
+
+139
+00:06:06,330 --> 00:06:08,123
+but I want to use ease-in here.
+
+140
+00:06:09,370 --> 00:06:11,500
+So now, here I am reusing a little bit of code,
+
+141
+00:06:11,500 --> 00:06:13,620
+instead of writing everything twice,
+
+142
+00:06:13,620 --> 00:06:15,910
+I did it before to be more explicit,
+
+143
+00:06:15,910 --> 00:06:17,700
+but now I think we got the idea,
+
+144
+00:06:17,700 --> 00:06:19,590
+so we can write less code here,
+
+145
+00:06:19,590 --> 00:06:21,593
+and now if I now save that,
+
+146
+00:06:22,770 --> 00:06:23,970
+we got an error.
+
+147
+00:06:23,970 --> 00:06:26,740
+Transition expects exactly one child element
+
+148
+00:06:26,740 --> 00:06:27,960
+or an component.
+
+149
+00:06:27,960 --> 00:06:30,950
+Now, I just emphasized that it would be fine
+
+150
+00:06:30,950 --> 00:06:32,310
+to have multiple elements,
+
+151
+00:06:32,310 --> 00:06:33,930
+if we guarantee that only one
+
+152
+00:06:33,930 --> 00:06:35,424
+is shown at the same time.
+
+153
+00:06:35,424 --> 00:06:36,685
+Well, the problem is,
+
+154
+00:06:36,685 --> 00:06:41,600
+Vue doesn't understand that these If conditions here
+
+155
+00:06:41,600 --> 00:06:44,160
+guarantee us that only one button is added.
+
+156
+00:06:44,160 --> 00:06:47,233
+It doesn't analyze the If conditions.
+
+157
+00:06:48,380 --> 00:06:52,090
+So, in order to give Vue a clear signal
+
+158
+00:06:52,090 --> 00:06:56,030
+that it's either that or that component,
+
+159
+00:06:56,030 --> 00:06:58,760
+we should use V-Else here,
+
+160
+00:06:58,760 --> 00:07:00,610
+because V-Else is pretty clear.
+
+161
+00:07:00,610 --> 00:07:02,620
+With V-Else, we guarantee
+
+162
+00:07:02,620 --> 00:07:07,346
+that only this or this component is shown,
+
+163
+00:07:07,346 --> 00:07:10,110
+that we'll never have both on the screen
+
+164
+00:07:10,110 --> 00:07:11,253
+at the same time.
+
+165
+00:07:12,660 --> 00:07:14,523
+So, now with that added,
+
+166
+00:07:15,400 --> 00:07:16,560
+this works,
+
+167
+00:07:16,560 --> 00:07:21,210
+and now you see we have this smooth transition here
+
+168
+00:07:21,210 --> 00:07:23,330
+when a button is removed, it fades out,
+
+169
+00:07:23,330 --> 00:07:26,000
+when it's added, it fades in,
+
+170
+00:07:26,000 --> 00:07:27,690
+but of course, it's also ugly,
+
+171
+00:07:27,690 --> 00:07:31,200
+because it jumps, and during the transition,
+
+172
+00:07:31,200 --> 00:07:33,690
+we actually have both buttons on the screen,
+
+173
+00:07:33,690 --> 00:07:35,090
+which by the way, is okay here,
+
+174
+00:07:35,090 --> 00:07:37,313
+because this is now controlled by Vue.
+
+175
+00:07:38,710 --> 00:07:41,300
+So, this is certainly not what we want.
+
+176
+00:07:41,300 --> 00:07:44,060
+We want this fade transition,
+
+177
+00:07:44,060 --> 00:07:47,040
+but we don't want both buttons at the same time
+
+178
+00:07:47,040 --> 00:07:48,220
+on the screen.
+
+179
+00:07:48,220 --> 00:07:50,610
+Instead, one button should fade out,
+
+180
+00:07:50,610 --> 00:07:52,620
+and then the other button should fade in,
+
+181
+00:07:52,620 --> 00:07:54,250
+that's the idea,
+
+182
+00:07:54,250 --> 00:07:56,930
+and that's also something that you can control.
+
+183
+00:07:56,930 --> 00:08:00,100
+You can add the mode prop here
+
+184
+00:08:00,100 --> 00:08:01,910
+to the transition component,
+
+185
+00:08:01,910 --> 00:08:04,550
+and mode knows two values,
+
+186
+00:08:04,550 --> 00:08:07,360
+in-out, and out-in,
+
+187
+00:08:07,360 --> 00:08:09,430
+and this controls whether first,
+
+188
+00:08:09,430 --> 00:08:12,210
+the leaving element should be animated,
+
+189
+00:08:12,210 --> 00:08:14,770
+or the new element.
+
+190
+00:08:14,770 --> 00:08:16,713
+So if I set this to in-out,
+
+191
+00:08:19,050 --> 00:08:19,883
+and reload,
+
+192
+00:08:19,883 --> 00:08:21,940
+we got the same behavior as before,
+
+193
+00:08:21,940 --> 00:08:23,680
+or a similar behavior.
+
+194
+00:08:23,680 --> 00:08:25,510
+Now, the addition of the button
+
+195
+00:08:25,510 --> 00:08:27,020
+is animated first,
+
+196
+00:08:27,020 --> 00:08:28,793
+and then the button is removed.
+
+197
+00:08:29,840 --> 00:08:33,309
+We can switch this to out-in,
+
+198
+00:08:33,309 --> 00:08:35,450
+and now we will have a better behavior,
+
+199
+00:08:35,450 --> 00:08:37,630
+without in, if we reload,
+
+200
+00:08:37,630 --> 00:08:40,690
+Vue will first animate the removal of the button,
+
+201
+00:08:40,690 --> 00:08:42,330
+and then animate the addition
+
+202
+00:08:42,330 --> 00:08:44,039
+of the new button.
+
+203
+00:08:44,039 --> 00:08:46,050
+So, this allows you to control
+
+204
+00:08:46,050 --> 00:08:48,670
+which element should be animated first,
+
+205
+00:08:48,670 --> 00:08:51,370
+instead of animating both at the same time,
+
+206
+00:08:51,370 --> 00:08:55,060
+which gave us this undesirable output.
+
+207
+00:08:55,060 --> 00:08:57,880
+Now, we're having a smooth animation
+
+208
+00:08:57,880 --> 00:08:59,440
+with help of transition,
+
+209
+00:08:59,440 --> 00:09:01,550
+and multiple child elements,
+
+210
+00:09:01,550 --> 00:09:02,967
+which is okay as you'll learn,
+
+211
+00:09:02,967 --> 00:09:05,570
+if you know that only one of them
+
+212
+00:09:05,570 --> 00:09:07,560
+will be active at the same time,
+
+213
+00:09:07,560 --> 00:09:09,870
+and you can give a clear signal
+
+214
+00:09:09,870 --> 00:09:12,140
+with V-If, V-Else, to Vue
+
+215
+00:09:12,140 --> 00:09:13,490
+that this will be the case.
+

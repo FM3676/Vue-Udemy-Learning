@@ -1,0 +1,484 @@
+1
+00:00:02,469 --> 00:00:04,100
+Now as I mentioned before,
+
+2
+00:00:04,100 --> 00:00:06,970
+I also want to be able to delete friends.
+
+3
+00:00:06,970 --> 00:00:10,620
+And for that, let's say in the FriendContact.vue component,
+
+4
+00:00:10,620 --> 00:00:14,150
+I will add a third button, besides the other buttons,
+
+5
+00:00:14,150 --> 00:00:15,240
+which we already have.
+
+6
+00:00:15,240 --> 00:00:16,800
+Let's say below this list,
+
+7
+00:00:16,800 --> 00:00:19,890
+which we have in every friend contact item,
+
+8
+00:00:19,890 --> 00:00:24,710
+there I'll add a new button where I say Delete,
+
+9
+00:00:24,710 --> 00:00:27,520
+and I want to do what this name implies.
+
+10
+00:00:27,520 --> 00:00:29,860
+So of course, I wanna listen to a click
+
+11
+00:00:29,860 --> 00:00:34,383
+and then for example, trigger the deleteFriend method.
+
+12
+00:00:35,320 --> 00:00:37,170
+And in this method,
+
+13
+00:00:37,170 --> 00:00:40,690
+which we add in a FriendContact.vue file,
+
+14
+00:00:40,690 --> 00:00:42,983
+in this method, we now wanna do what?
+
+15
+00:00:43,910 --> 00:00:44,840
+Well, in the end,
+
+16
+00:00:44,840 --> 00:00:47,350
+we need to emit a custom event again,
+
+17
+00:00:47,350 --> 00:00:51,270
+because the friends array is managed in App.vue
+
+18
+00:00:53,000 --> 00:00:55,110
+and if we wanna delete a friend,
+
+19
+00:00:55,110 --> 00:00:57,810
+we need to delete it from this array,
+
+20
+00:00:57,810 --> 00:01:00,763
+because it's this array which we're rendering with v-for.
+
+21
+00:01:02,290 --> 00:01:06,430
+So instead of FriendContact, we basically just need to,
+
+22
+00:01:06,430 --> 00:01:09,480
+you could say forward the information
+
+23
+00:01:09,480 --> 00:01:12,130
+that the user clicked the delete button here.
+
+24
+00:01:12,130 --> 00:01:13,020
+So here, we again,
+
+25
+00:01:13,020 --> 00:01:17,690
+just call this emit, dollar sign emit, with any event name
+
+26
+00:01:17,690 --> 00:01:20,093
+of your choice, like delete.
+
+27
+00:01:22,600 --> 00:01:25,430
+Now, if that is all you're doing, of course,
+
+28
+00:01:25,430 --> 00:01:29,360
+you can also not use a separate method like this,
+
+29
+00:01:29,360 --> 00:01:32,400
+though you absolutely can do it, nothing wrong with it.
+
+30
+00:01:32,400 --> 00:01:37,350
+But you can also not do that and instead go to your template
+
+31
+00:01:37,350 --> 00:01:41,730
+and just call emit in here, like this
+
+32
+00:01:41,730 --> 00:01:45,463
+and here without this keyword, like always in the template.
+
+33
+00:01:46,780 --> 00:01:49,350
+This is just an alternative and it's up to you,
+
+34
+00:01:49,350 --> 00:01:53,920
+what you prefer, I'm doing both for toggleFavorite.
+
+35
+00:01:53,920 --> 00:01:57,789
+I am taking this extra method in which I call this.$`emit
+
+36
+00:01:57,789 --> 00:02:00,570
+and for delete, I'm now not doing this
+
+37
+00:02:00,570 --> 00:02:03,913
+and I'm instead directly calling emit in the template.
+
+38
+00:02:05,850 --> 00:02:09,610
+Nonetheless, you wanna add this to your emits array
+
+39
+00:02:09,610 --> 00:02:12,940
+to make it clear that this friend contact component
+
+40
+00:02:12,940 --> 00:02:17,270
+has a delete event which will be emitted at some point.
+
+41
+00:02:17,270 --> 00:02:19,920
+And now we can listen to this custom event
+
+42
+00:02:19,920 --> 00:02:22,310
+on this FriendContact component.
+
+43
+00:02:22,310 --> 00:02:25,330
+So in the place where we are using that component.
+
+44
+00:02:25,330 --> 00:02:27,550
+In this case, again, the App.vue file,
+
+45
+00:02:27,550 --> 00:02:32,480
+and in here, we can listen to the delete event with @delete
+
+46
+00:02:32,480 --> 00:02:35,870
+on this component, and then point at a method
+
+47
+00:02:35,870 --> 00:02:38,250
+that should handle this,
+
+48
+00:02:38,250 --> 00:02:41,853
+deleteContact sounds like a fitting method names to me.
+
+49
+00:02:43,590 --> 00:02:48,590
+So now in App.vue, I'll add this deleteContact method
+
+50
+00:02:49,210 --> 00:02:52,080
+and in here, I now want to remove that contact
+
+51
+00:02:52,080 --> 00:02:53,600
+from my array.
+
+52
+00:02:53,600 --> 00:02:54,873
+Now what's missing here?
+
+53
+00:02:56,450 --> 00:02:59,620
+Well, some identification criteria, right?
+
+54
+00:02:59,620 --> 00:03:02,950
+We need to know which contact should be deleted.
+
+55
+00:03:02,950 --> 00:03:05,803
+So just as before for toggling the Favoritestatus,
+
+56
+00:03:06,660 --> 00:03:09,510
+it would be good to get the idea of the friend
+
+57
+00:03:09,510 --> 00:03:11,170
+that should be deleted.
+
+58
+00:03:11,170 --> 00:03:13,380
+And therefore all the justice before,
+
+59
+00:03:13,380 --> 00:03:15,830
+we can go to FriendContact.vue,
+
+60
+00:03:15,830 --> 00:03:19,020
+and pass this as a second argument to emit,
+
+61
+00:03:19,020 --> 00:03:23,393
+and forward the id Prop, which we are getting here,
+
+62
+00:03:24,660 --> 00:03:27,793
+so refer to that here and pass it with delete.
+
+63
+00:03:29,750 --> 00:03:33,920
+So now in App.vue, here in deleteContact,
+
+64
+00:03:33,920 --> 00:03:36,350
+we now want to find the friend with that id
+
+65
+00:03:36,350 --> 00:03:38,053
+and delete him or her.
+
+66
+00:03:38,960 --> 00:03:41,830
+And an elegant way of doing that in JavaScript
+
+67
+00:03:41,830 --> 00:03:44,610
+when you have an array and you want to delete an array
+
+68
+00:03:44,610 --> 00:03:46,970
+based on some information you have about the item
+
+69
+00:03:46,970 --> 00:03:50,940
+that should be removed is you can overwrite the array
+
+70
+00:03:50,940 --> 00:03:53,380
+and assign a new value to this property
+
+71
+00:03:53,380 --> 00:03:54,830
+that stores the array.
+
+72
+00:03:54,830 --> 00:03:56,980
+So the friends property in this case,
+
+73
+00:03:56,980 --> 00:04:00,980
+and use the old array but called the filter method on it.
+
+74
+00:04:00,980 --> 00:04:05,300
+Filter is a method that's built into JavaScript,
+
+75
+00:04:05,300 --> 00:04:08,860
+which will return a new array based on the array
+
+76
+00:04:08,860 --> 00:04:10,660
+on which you're calling it.
+
+77
+00:04:10,660 --> 00:04:13,590
+And it will return the array on which you are calling it,
+
+78
+00:04:13,590 --> 00:04:17,100
+except for the elements you are filtering out.
+
+79
+00:04:17,100 --> 00:04:19,410
+For that filter wants a function,
+
+80
+00:04:19,410 --> 00:04:21,290
+which you provide as an argument,
+
+81
+00:04:21,290 --> 00:04:23,760
+and if that function returns true,
+
+82
+00:04:23,760 --> 00:04:25,530
+an element is kept around,
+
+83
+00:04:25,530 --> 00:04:27,460
+if that function returns false,
+
+84
+00:04:27,460 --> 00:04:29,560
+the element is deleted.
+
+85
+00:04:29,560 --> 00:04:33,350
+It's a function which will receive the element as an input,
+
+86
+00:04:33,350 --> 00:04:36,120
+automatically by JavaScript, so this will run
+
+87
+00:04:36,120 --> 00:04:38,900
+for every friend in friends and JavaScript
+
+88
+00:04:38,900 --> 00:04:41,860
+will feed in every friend step by step.
+
+89
+00:04:41,860 --> 00:04:44,370
+And we should return true if you wanna keep the item
+
+90
+00:04:44,370 --> 00:04:47,990
+or false otherwise and this arrow function syntax
+
+91
+00:04:47,990 --> 00:04:51,280
+is just a different way of writing a function in JavaScript,
+
+92
+00:04:51,280 --> 00:04:55,590
+by the way, and here, I can therefore now check
+
+93
+00:04:55,590 --> 00:04:58,406
+if the friend.id is not equal
+
+94
+00:04:58,406 --> 00:05:00,453
+to the friendId I'm getting here.
+
+95
+00:05:01,840 --> 00:05:06,080
+I'm checking for non-equality, because if it is equal,
+
+96
+00:05:06,080 --> 00:05:07,530
+I want to keep it.
+
+97
+00:05:07,530 --> 00:05:09,470
+So in checking for non equality,
+
+98
+00:05:09,470 --> 00:05:14,290
+I ensure that if the ids are equal, I return false,
+
+99
+00:05:14,290 --> 00:05:17,623
+because if they are equal, I want to remove that friend.
+
+100
+00:05:18,810 --> 00:05:21,200
+And I mentioned that items are dropped
+
+101
+00:05:21,200 --> 00:05:24,430
+if we return false here, so I wanna return false
+
+102
+00:05:24,430 --> 00:05:26,003
+if we find a matching id.
+
+103
+00:05:27,520 --> 00:05:30,180
+With that, we generate a brand new friends array,
+
+104
+00:05:30,180 --> 00:05:33,770
+which is the old array minus the friend with this Id
+
+105
+00:05:33,770 --> 00:05:37,760
+and then we store that back into our friends data property,
+
+106
+00:05:37,760 --> 00:05:40,630
+Vue will then detect this change in friends,
+
+107
+00:05:40,630 --> 00:05:44,430
+it will see that friends changed, it will rerender that list
+
+108
+00:05:44,430 --> 00:05:46,803
+and update the UI appropriately.
+
+109
+00:05:48,410 --> 00:05:49,923
+So if we now save that,
+
+110
+00:05:51,110 --> 00:05:54,640
+and I click on Delete here on Manuel,
+
+111
+00:05:54,640 --> 00:05:56,480
+you'll see Manuel is gone
+
+112
+00:05:56,480 --> 00:05:58,520
+and of course, we can also delete Julie.
+
+113
+00:05:58,520 --> 00:06:00,570
+If we reload the data as back,
+
+114
+00:06:00,570 --> 00:06:01,920
+because all of that is of course,
+
+115
+00:06:01,920 --> 00:06:05,310
+just happening in JavaScript and therefore in memory.
+
+116
+00:06:05,310 --> 00:06:07,840
+But later, we will also see how we can send
+
+117
+00:06:07,840 --> 00:06:10,850
+such data to a server and store it permanently
+
+118
+00:06:10,850 --> 00:06:12,690
+on a server site database.
+
+119
+00:06:12,690 --> 00:06:15,800
+But for the moment, this is a huge step forward,
+
+120
+00:06:15,800 --> 00:06:19,150
+because it shows us what we can do with components
+
+121
+00:06:19,150 --> 00:06:21,693
+and we got more practice with components now.
+

@@ -1,0 +1,280 @@
+1
+00:00:02,240 --> 00:00:04,168
+Now that's it for the course,
+
+2
+00:00:04,168 --> 00:00:06,370
+this was a lot of content.
+
+3
+00:00:06,370 --> 00:00:07,450
+So definitely,
+
+4
+00:00:07,450 --> 00:00:10,530
+it's time for some Congratulations,
+
+5
+00:00:10,530 --> 00:00:12,290
+you did an amazing job.
+
+6
+00:00:12,290 --> 00:00:14,450
+You pulled through this entire course.
+
+7
+00:00:14,450 --> 00:00:18,210
+And you therefore learned a ton about view.
+
+8
+00:00:18,210 --> 00:00:20,790
+This course obviously has a lot of content
+
+9
+00:00:20,790 --> 00:00:21,970
+because it's well,
+
+10
+00:00:21,970 --> 00:00:23,210
+the complete guide on view
+
+11
+00:00:23,210 --> 00:00:27,220
+and not that I do cover some parts only guide.
+
+12
+00:00:27,220 --> 00:00:29,400
+But that was a lot of content to digest
+
+13
+00:00:29,400 --> 00:00:31,704
+and therefore the obvious question is,
+
+14
+00:00:31,704 --> 00:00:33,570
+how should you continue?
+
+15
+00:00:33,570 --> 00:00:36,300
+How can you make sure that you don't lose the knowledge
+
+16
+00:00:36,300 --> 00:00:37,870
+you gained in this course?
+
+17
+00:00:37,870 --> 00:00:41,210
+Maybe you lost some concepts already.
+
+18
+00:00:41,210 --> 00:00:43,370
+And that wouldn't be horrible by the way,
+
+19
+00:00:43,370 --> 00:00:45,336
+that would be totally normal.
+
+20
+00:00:45,336 --> 00:00:48,178
+Well, here are some next steps I recommend.
+
+21
+00:00:48,178 --> 00:00:51,440
+The most important step as boring as it is,
+
+22
+00:00:51,440 --> 00:00:54,990
+is that you practice, practice and well guess what?
+
+23
+00:00:54,990 --> 00:00:56,690
+Practice.
+
+24
+00:00:56,690 --> 00:00:59,880
+Also revisit course lectures and modules,
+
+25
+00:00:59,880 --> 00:01:03,260
+So that concepts which you have forgotten by now,
+
+26
+00:01:03,260 --> 00:01:05,349
+are refreshed.
+
+27
+00:01:05,349 --> 00:01:08,270
+And then use all of that to do the assignments
+
+28
+00:01:08,270 --> 00:01:09,770
+you find in this course,
+
+29
+00:01:09,770 --> 00:01:12,560
+to rebuild the course project
+
+30
+00:01:12,560 --> 00:01:14,414
+without looking at the solution first,
+
+31
+00:01:14,414 --> 00:01:16,150
+but instead on your own,
+
+32
+00:01:16,150 --> 00:01:19,530
+and then maybe go through the solution again with me,
+
+33
+00:01:19,530 --> 00:01:21,980
+so that you can see how you build it,
+
+34
+00:01:21,980 --> 00:01:25,390
+where that differs compared to my approach,
+
+35
+00:01:25,390 --> 00:01:27,840
+and why maybe something might not be working.
+
+36
+00:01:27,840 --> 00:01:30,803
+Maybe something is also better than the way I built it.
+
+37
+00:01:31,860 --> 00:01:34,830
+But also explored the official docs.
+
+38
+00:01:34,830 --> 00:01:38,720
+This course covers all the core concepts view
+
+39
+00:01:38,720 --> 00:01:41,200
+has to offer in great depth.
+
+40
+00:01:41,200 --> 00:01:42,840
+But of course, this does not mean that
+
+41
+00:01:42,840 --> 00:01:45,740
+it's the only resource on view out there.
+
+42
+00:01:45,740 --> 00:01:48,380
+The official docs are really well written,
+
+43
+00:01:48,380 --> 00:01:50,760
+and a great resource to dig deeper
+
+44
+00:01:50,760 --> 00:01:53,483
+or quickly look up a certain concept.
+
+45
+00:01:54,420 --> 00:01:57,440
+But last but not least you can only grow as a developer,
+
+46
+00:01:57,440 --> 00:01:59,320
+if you build stuff.
+
+47
+00:01:59,320 --> 00:02:02,680
+You need to build demo and dummy projects,
+
+48
+00:02:02,680 --> 00:02:06,320
+maybe build clones of popular websites,
+
+49
+00:02:06,320 --> 00:02:09,080
+build your own simplified Facebook site,
+
+50
+00:02:09,080 --> 00:02:10,870
+at least the front end of it,
+
+51
+00:02:10,870 --> 00:02:14,010
+and dive into challenging problems.
+
+52
+00:02:14,010 --> 00:02:15,670
+And then don't give up.
+
+53
+00:02:15,670 --> 00:02:20,080
+But look for solutions with Google with Stack Overflow,
+
+54
+00:02:20,080 --> 00:02:22,610
+Maybe with the community you find linked
+
+55
+00:02:22,610 --> 00:02:24,360
+at the beginning of this course,
+
+56
+00:02:24,360 --> 00:02:27,460
+there are plenty of resources for that.
+
+57
+00:02:27,460 --> 00:02:32,110
+And all of that will allow you to grow as a view developer.
+
+58
+00:02:32,110 --> 00:02:34,950
+You can also dig into some average view courses
+
+59
+00:02:34,950 --> 00:02:37,080
+like my next course,
+
+60
+00:02:37,080 --> 00:02:40,736
+which uses a technology that builds up on view to build
+
+61
+00:02:40,736 --> 00:02:44,530
+view applications where some code is actually rendered
+
+62
+00:02:44,530 --> 00:02:47,660
+on the server and not just in the browser.
+
+63
+00:02:47,660 --> 00:02:50,720
+All these things can be great next steps.
+
+64
+00:02:50,720 --> 00:02:53,160
+And with the very solid foundation you gained
+
+65
+00:02:53,160 --> 00:02:54,270
+in this course,
+
+66
+00:02:54,270 --> 00:02:57,150
+you have everything you need to take these steps.
+
+67
+00:02:57,150 --> 00:02:59,030
+I wish you all the best for this,
+
+68
+00:02:59,030 --> 00:03:02,370
+and I really want to thank you for being part of the course,
+
+69
+00:03:02,370 --> 00:03:04,910
+and for allowing me to be part of your journey
+
+70
+00:03:04,910 --> 00:03:05,943
+in this course.
+

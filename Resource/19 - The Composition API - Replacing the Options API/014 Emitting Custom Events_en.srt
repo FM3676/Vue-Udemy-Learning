@@ -1,0 +1,208 @@
+1
+00:00:02,140 --> 00:00:03,910
+Now, setup does not just get
+
+2
+00:00:03,910 --> 00:00:05,689
+this props parameter.
+
+3
+00:00:05,689 --> 00:00:07,760
+It also gets a second parameter.
+
+4
+00:00:07,760 --> 00:00:11,280
+A second argument is always fed in by vue
+
+5
+00:00:11,280 --> 00:00:14,200
+and that's the context object.
+
+6
+00:00:14,200 --> 00:00:15,807
+We can console.log(context) here
+
+7
+00:00:16,750 --> 00:00:18,200
+to see what's inside of that.
+
+8
+00:00:19,740 --> 00:00:22,040
+If I saved that and reload,
+
+9
+00:00:22,040 --> 00:00:23,530
+it looks like an empty object,
+
+10
+00:00:23,530 --> 00:00:24,750
+but actually if we inspect it,
+
+11
+00:00:24,750 --> 00:00:27,600
+we see three important properties in there.
+
+12
+00:00:27,600 --> 00:00:30,463
+Attrs, emit and slots.
+
+13
+00:00:31,590 --> 00:00:35,760
+attrs are any fall through attributes you might have.
+
+14
+00:00:35,760 --> 00:00:39,580
+So if you set something like let's say,
+
+15
+00:00:39,580 --> 00:00:43,030
+a class here on user data
+
+16
+00:00:43,030 --> 00:00:46,140
+and class is not a prop you define here,
+
+17
+00:00:46,140 --> 00:00:49,300
+then it's automatically a fall through prop.
+
+18
+00:00:49,300 --> 00:00:51,630
+It's an optional prop you could say.
+
+19
+00:00:51,630 --> 00:00:54,090
+Here in this case, actually, if I reload,
+
+20
+00:00:54,090 --> 00:00:57,240
+I will get a warning because there's fall through behavior
+
+21
+00:00:57,240 --> 00:01:00,500
+doesn't really work if you have multiple route nodes.
+
+22
+00:01:00,500 --> 00:01:05,373
+But if I wrap this in one route node here, like that,
+
+23
+00:01:07,240 --> 00:01:09,680
+and then reload, the warning is gone
+
+24
+00:01:09,680 --> 00:01:13,230
+and now under attrs, if we inspect the Target,
+
+25
+00:01:13,230 --> 00:01:16,670
+we see our class here with the test value.
+
+26
+00:01:16,670 --> 00:01:19,070
+So that's attrs it's properties,
+
+27
+00:01:19,070 --> 00:01:21,120
+which you didn't define as properties,
+
+28
+00:01:21,120 --> 00:01:22,883
+which just fall through.
+
+29
+00:01:23,940 --> 00:01:27,460
+slots would give you access to any slot data
+
+30
+00:01:27,460 --> 00:01:29,420
+you might have in your component.
+
+31
+00:01:29,420 --> 00:01:31,690
+This of course is a component without slots
+
+32
+00:01:31,690 --> 00:01:33,650
+but if you had a slot in there,
+
+33
+00:01:33,650 --> 00:01:36,430
+you could access the slots data programmatically,
+
+34
+00:01:36,430 --> 00:01:39,203
+through that slot property on context.
+
+35
+00:01:40,270 --> 00:01:41,990
+And emit is a function,
+
+36
+00:01:41,990 --> 00:01:44,680
+which you can call to emit a custom event
+
+37
+00:01:44,680 --> 00:01:47,090
+because of course, that's also something
+
+38
+00:01:47,090 --> 00:01:48,720
+you often need to do.
+
+39
+00:01:48,720 --> 00:01:51,460
+And with the options API,
+
+40
+00:01:51,460 --> 00:01:54,570
+we always use this dollar sign $emit.
+
+41
+00:01:54,570 --> 00:01:56,230
+Now, since this keyword,
+
+42
+00:01:56,230 --> 00:01:58,630
+as you learned isn't available here.
+
+43
+00:01:58,630 --> 00:02:02,610
+This dollar sign emit is not available in the setup method.
+
+44
+00:02:02,610 --> 00:02:06,580
+Still of course you might have code that needs to emit.
+
+45
+00:02:06,580 --> 00:02:09,490
+In that case, you have context emit
+
+46
+00:02:09,490 --> 00:02:13,270
+and that works just like this emit.
+
+47
+00:02:13,270 --> 00:02:17,110
+So if you had a safe data custom event, for example,
+
+48
+00:02:17,110 --> 00:02:19,310
+with some data you wanna emit,
+
+49
+00:02:19,310 --> 00:02:23,970
+the equivalent to this options API syntax would be
+
+50
+00:02:23,970 --> 00:02:27,553
+this syntax here with context emit.
+
+51
+00:02:28,670 --> 00:02:29,860
+We don't need it here,
+
+52
+00:02:29,860 --> 00:02:31,763
+but it is worth being aware of that.
+

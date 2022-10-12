@@ -1,0 +1,424 @@
+1
+00:00:02,090 --> 00:00:04,430
+So let's work on the pages.
+
+2
+00:00:04,430 --> 00:00:05,910
+Here in the source folder,
+
+3
+00:00:05,910 --> 00:00:07,960
+I'll add a new pages folder,
+
+4
+00:00:07,960 --> 00:00:09,440
+which will hold the components
+
+5
+00:00:09,440 --> 00:00:12,170
+that are loaded as pages through routing.
+
+6
+00:00:12,170 --> 00:00:15,740
+It's not a must-do to use a pages folder for that
+
+7
+00:00:15,740 --> 00:00:18,180
+but I like to set those components apart
+
+8
+00:00:18,180 --> 00:00:19,440
+from the other components,
+
+9
+00:00:19,440 --> 00:00:21,400
+which are not loaded as pages.
+
+10
+00:00:21,400 --> 00:00:23,920
+That's just personal preference though.
+
+11
+00:00:23,920 --> 00:00:27,540
+And in there, I'll actually add two subfolders.
+
+12
+00:00:27,540 --> 00:00:31,900
+A coaches subfolder and a requests subfolder
+
+13
+00:00:31,900 --> 00:00:35,340
+because these are the two main features we have in this app
+
+14
+00:00:35,340 --> 00:00:38,393
+and will have different pages for these different features.
+
+15
+00:00:39,560 --> 00:00:41,690
+And in the pages folder itself,
+
+16
+00:00:41,690 --> 00:00:46,040
+I'll also add a file, the NotFound.vue component,
+
+17
+00:00:46,040 --> 00:00:48,490
+which will be our Not Found page.
+
+18
+00:00:48,490 --> 00:00:50,980
+In the coaches subfolder,
+
+19
+00:00:50,980 --> 00:00:53,450
+we can then add all the coach pages
+
+20
+00:00:53,450 --> 00:00:56,106
+and that would be the page for all the coaches
+
+21
+00:00:56,106 --> 00:00:58,320
+for a specific coach
+
+22
+00:00:58,320 --> 00:01:01,600
+and for registering as a coach.
+
+23
+00:01:01,600 --> 00:01:03,160
+And for requests,
+
+24
+00:01:03,160 --> 00:01:05,820
+the pages will be the contact page here
+
+25
+00:01:05,820 --> 00:01:08,970
+and the open requests page.
+
+26
+00:01:08,970 --> 00:01:11,190
+So let's start with the coaches pages.
+
+27
+00:01:11,190 --> 00:01:16,190
+Here, I wanna have a CoachesList.vue component.
+
+28
+00:01:16,350 --> 00:01:19,200
+CoachDetail.vue component.
+
+29
+00:01:19,200 --> 00:01:24,200
+And a CoachRegistration.vue component.
+
+30
+00:01:25,150 --> 00:01:29,750
+In requests, that would be ContactCoach.vue
+
+31
+00:01:29,750 --> 00:01:34,120
+and RequestsReceieved.vue.
+
+32
+00:01:34,120 --> 00:01:36,810
+Now, obviously, how you name these files,
+
+33
+00:01:36,810 --> 00:01:40,500
+how you name these components is 100% up to you.
+
+34
+00:01:40,500 --> 00:01:43,070
+You don't have to use the same naming I do here,
+
+35
+00:01:43,070 --> 00:01:44,950
+it's just my personal preference.
+
+36
+00:01:44,950 --> 00:01:46,593
+Not something you have to use.
+
+37
+00:01:48,420 --> 00:01:50,949
+Now, all these components are created.
+
+38
+00:01:50,949 --> 00:01:53,620
+Obviously though, they're all empty.
+
+39
+00:01:53,620 --> 00:01:56,520
+Nonetheless, we can wire them up to the router file already
+
+40
+00:01:56,520 --> 00:01:59,450
+and then fill them with live step by step.
+
+41
+00:01:59,450 --> 00:02:01,210
+So for that here in router.js,
+
+42
+00:02:01,210 --> 00:02:03,970
+I'm going to import all those page components,
+
+43
+00:02:03,970 --> 00:02:06,200
+like the CoachDetail component
+
+44
+00:02:06,200 --> 00:02:11,200
+from ./pages/coaches/CoachDetail.vue
+
+45
+00:02:11,830 --> 00:02:15,130
+and well, all the other files as well.
+
+46
+00:02:15,130 --> 00:02:20,130
+CoachesList from pages/coaches/CoachesList.vue.
+
+47
+00:02:22,620 --> 00:02:24,370
+And CoachRegistration
+
+48
+00:02:25,507 --> 00:02:30,507
+from the pages/coaches/CoachRegistration.vue file.
+
+49
+00:02:32,090 --> 00:02:37,090
+Import ContactCoach from pages/coaches,
+
+50
+00:02:38,371 --> 00:02:42,267
+not coaches, sorry, requests/ContactCoach.vue.
+
+51
+00:02:43,780 --> 00:02:46,507
+And import RequestsReceived
+
+52
+00:02:50,003 --> 00:02:55,003
+from ./pages/requests/RequestsReceived.vue.
+
+53
+00:02:55,540 --> 00:02:57,900
+And last but not least, import NotFound
+
+54
+00:02:59,610 --> 00:03:03,883
+from pages/NotFound.vue.
+
+55
+00:03:04,890 --> 00:03:06,750
+Okay, these are all the components.
+
+56
+00:03:06,750 --> 00:03:08,790
+So now we can wire them up to the routes.
+
+57
+00:03:08,790 --> 00:03:10,530
+For the /coaches route,
+
+58
+00:03:10,530 --> 00:03:13,840
+we wanna load the CoachesList component.
+
+59
+00:03:13,840 --> 00:03:17,850
+For coaches/:id, that would be the CoachDetail component.
+
+60
+00:03:17,850 --> 00:03:19,540
+For contacting a coach,
+
+61
+00:03:19,540 --> 00:03:22,233
+that would be the ContactCoach component.
+
+62
+00:03:22,233 --> 00:03:23,930
+For registering, that would be
+
+63
+00:03:23,930 --> 00:03:27,014
+the CoachRegistration component.
+
+64
+00:03:27,014 --> 00:03:30,590
+For requests, so for the requests we received,
+
+65
+00:03:30,590 --> 00:03:32,960
+that would be the RequestsReceived component.
+
+66
+00:03:32,960 --> 00:03:35,230
+And here it's the NotFound component.
+
+67
+00:03:35,230 --> 00:03:38,180
+So now with that, we registered all components.
+
+68
+00:03:38,180 --> 00:03:40,170
+Now we can fill them with life.
+
+69
+00:03:40,170 --> 00:03:41,674
+Before we do that though,
+
+70
+00:03:41,674 --> 00:03:44,350
+we need one other important component.
+
+71
+00:03:44,350 --> 00:03:46,960
+The app component, the main component
+
+72
+00:03:46,960 --> 00:03:49,793
+that holds all the other components in the end.
+
+73
+00:03:50,710 --> 00:03:52,850
+So therefore, next to main.js,
+
+74
+00:03:52,850 --> 00:03:54,900
+I'll add a App.vue file
+
+75
+00:03:54,900 --> 00:03:57,220
+and this will be, of course, the main entry point
+
+76
+00:03:57,220 --> 00:03:59,490
+of our application so to say.
+
+77
+00:03:59,490 --> 00:04:02,650
+Here, I wanna render my router-view.
+
+78
+00:04:02,650 --> 00:04:04,590
+So in the template here,
+
+79
+00:04:04,590 --> 00:04:06,850
+I want to output router-view
+
+80
+00:04:06,850 --> 00:04:08,900
+so that we tell the view router
+
+81
+00:04:08,900 --> 00:04:12,870
+where to render these different components we registered
+
+82
+00:04:12,870 --> 00:04:17,870
+and it's the App file I wanna import here in main.js.
+
+83
+00:04:17,990 --> 00:04:22,000
+So import App from App.vue
+
+84
+00:04:22,000 --> 00:04:25,880
+to load the App here as our main App.
+
+85
+00:04:25,880 --> 00:04:27,520
+In addition, we of course, also need
+
+86
+00:04:27,520 --> 00:04:29,680
+to make this app aware of the router,
+
+87
+00:04:29,680 --> 00:04:32,650
+so besides importing App.vue here,
+
+88
+00:04:32,650 --> 00:04:37,650
+I'll also import router from ./router.js
+
+89
+00:04:37,660 --> 00:04:39,740
+and store the App here
+
+90
+00:04:41,240 --> 00:04:42,360
+in a constant
+
+91
+00:04:42,360 --> 00:04:45,030
+and on that app, we can then use router
+
+92
+00:04:45,030 --> 00:04:47,540
+so that we really use the router in this app.
+
+93
+00:04:47,540 --> 00:04:49,570
+And now we're done with the routing
+
+94
+00:04:49,570 --> 00:04:51,423
+and we're all set to continue.
+
+95
+00:04:52,930 --> 00:04:54,740
+So with all that out of the way,
+
+96
+00:04:54,740 --> 00:04:57,804
+now it's time to fill it all with life.
+
+97
+00:04:57,804 --> 00:04:59,600
+And it's totally up to you
+
+98
+00:04:59,600 --> 00:05:02,085
+what filling this with life means.
+
+99
+00:05:02,085 --> 00:05:05,430
+We'll definitely need a couple of different things here
+
+100
+00:05:05,430 --> 00:05:06,540
+but in the end,
+
+101
+00:05:06,540 --> 00:05:10,320
+I would say that when we visit just our domain,
+
+102
+00:05:10,320 --> 00:05:12,340
+we redirect to /coaches,
+
+103
+00:05:12,340 --> 00:05:15,360
+so that is probably the first page we're going to see
+
+104
+00:05:15,360 --> 00:05:19,570
+if we use this page, this application in a normal way.
+
+105
+00:05:19,570 --> 00:05:22,890
+So maybe we should start with CoachesList,
+
+106
+00:05:22,890 --> 00:05:25,633
+at least with a very basic first version of it.
+

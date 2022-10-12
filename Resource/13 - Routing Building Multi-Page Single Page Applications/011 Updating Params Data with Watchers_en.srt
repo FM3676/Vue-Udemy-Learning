@@ -1,0 +1,548 @@
+1
+00:00:02,190 --> 00:00:04,540
+Route parameters are useful,
+
+2
+00:00:04,540 --> 00:00:07,090
+but they also can be tricky.
+
+3
+00:00:07,090 --> 00:00:08,660
+There are various aspects
+
+4
+00:00:08,660 --> 00:00:09,970
+you should be aware of
+
+5
+00:00:09,970 --> 00:00:12,420
+which you might or might not want
+
+6
+00:00:12,420 --> 00:00:15,460
+to change or take care about.
+
+7
+00:00:15,460 --> 00:00:16,329
+Here's one gotcha
+
+8
+00:00:16,329 --> 00:00:18,100
+Which you could face in an application.
+
+9
+00:00:18,100 --> 00:00:19,240
+We don't face it here,
+
+10
+00:00:19,240 --> 00:00:22,013
+but I can add it so that we do face it.
+
+11
+00:00:22,860 --> 00:00:24,820
+Let's say on TeamMembers...
+
+12
+00:00:24,820 --> 00:00:26,080
+So on the component,
+
+13
+00:00:26,080 --> 00:00:28,740
+we load for this route with the parameter.
+
+14
+00:00:28,740 --> 00:00:30,860
+Let's say in there,
+
+15
+00:00:30,860 --> 00:00:32,060
+we actually,
+
+16
+00:00:32,060 --> 00:00:33,980
+for whatever reason,
+
+17
+00:00:33,980 --> 00:00:35,883
+have another router link,
+
+18
+00:00:38,020 --> 00:00:39,417
+which says,
+
+19
+00:00:39,417 --> 00:00:40,647
+"Go to...
+
+20
+00:00:40,647 --> 00:00:42,260
+"Team two,"
+
+21
+00:00:42,260 --> 00:00:44,380
+which always goes to slash teams,
+
+22
+00:00:44,380 --> 00:00:45,620
+slash T2,
+
+23
+00:00:45,620 --> 00:00:47,320
+which is the idea of the Team two.
+
+24
+00:00:48,160 --> 00:00:50,430
+Now this is a very constructed scenario,
+
+25
+00:00:50,430 --> 00:00:53,010
+but you could absolutely have an app
+
+26
+00:00:53,010 --> 00:00:57,210
+where on the page that was loaded for a given parameter,
+
+27
+00:00:57,210 --> 00:00:59,460
+you wanna go to the same page
+
+28
+00:00:59,460 --> 00:01:01,910
+with a different value for that parameter.
+
+29
+00:01:01,910 --> 00:01:05,853
+And that's what I'm trying to emulate or to simulate here.
+
+30
+00:01:06,960 --> 00:01:08,213
+So if I save this,
+
+31
+00:01:09,670 --> 00:01:10,503
+we got this,
+
+32
+00:01:10,503 --> 00:01:12,810
+"Go to Team two," link here.
+
+33
+00:01:12,810 --> 00:01:14,850
+Now, if we are on the page for team two,
+
+34
+00:01:14,850 --> 00:01:16,600
+of course, this does nothing.
+
+35
+00:01:16,600 --> 00:01:19,740
+But if we are on the page for Team one...
+
+36
+00:01:19,740 --> 00:01:22,400
+Oh, this also does nothing.
+
+37
+00:01:22,400 --> 00:01:24,610
+And that's the gotcha I'm talking about.
+
+38
+00:01:24,610 --> 00:01:26,800
+If you are on the page
+
+39
+00:01:26,800 --> 00:01:29,470
+that was loaded for a dynamic parameter,
+
+40
+00:01:29,470 --> 00:01:33,050
+if you then wanna go to a different page,
+
+41
+00:01:33,050 --> 00:01:35,790
+say with a different value for this parameter,
+
+42
+00:01:35,790 --> 00:01:38,260
+which in the end of course is kind of the same page,
+
+43
+00:01:38,260 --> 00:01:40,870
+at least the same view component,
+
+44
+00:01:40,870 --> 00:01:42,870
+you face this problem here.
+
+45
+00:01:42,870 --> 00:01:45,670
+Now you should be aware that if I go to Team one,
+
+46
+00:01:45,670 --> 00:01:47,640
+we have T1 in the URL.
+
+47
+00:01:47,640 --> 00:01:49,030
+And if we then click this link,
+
+48
+00:01:49,030 --> 00:01:51,550
+this does change to T2.
+
+49
+00:01:51,550 --> 00:01:54,120
+But the date on the screen doesn't update.
+
+50
+00:01:54,120 --> 00:01:55,203
+Is this a bug?
+
+51
+00:01:56,040 --> 00:01:57,410
+Well, it's not a bug.
+
+52
+00:01:57,410 --> 00:02:00,290
+It's an intended behavior.
+
+53
+00:02:00,290 --> 00:02:03,300
+The view router does not destroy
+
+54
+00:02:03,300 --> 00:02:06,590
+and rebuild the components that were loaded
+
+55
+00:02:06,590 --> 00:02:08,229
+when you navigate around.
+
+56
+00:02:08,229 --> 00:02:10,639
+It's more efficient to cash them
+
+57
+00:02:10,639 --> 00:02:13,070
+than to always destroy and rebuild them
+
+58
+00:02:13,070 --> 00:02:15,230
+when the URL changes.
+
+59
+00:02:15,230 --> 00:02:17,100
+But that's the problem here.
+
+60
+00:02:17,100 --> 00:02:20,510
+I'm loading my data for the team members in created.
+
+61
+00:02:20,510 --> 00:02:23,430
+And this is called when this component is,
+
+62
+00:02:23,430 --> 00:02:24,450
+well, guess what,
+
+63
+00:02:24,450 --> 00:02:26,050
+created.
+
+64
+00:02:26,050 --> 00:02:27,250
+Now, as I just said,
+
+65
+00:02:27,250 --> 00:02:31,080
+the view router does not destroy and recreate the component
+
+66
+00:02:31,080 --> 00:02:34,050
+just because the URL changed.
+
+67
+00:02:34,050 --> 00:02:37,270
+Therefore, the code in created does not run again
+
+68
+00:02:37,270 --> 00:02:38,883
+when the URL changed.
+
+69
+00:02:39,830 --> 00:02:41,770
+Hence if you are on the page,
+
+70
+00:02:41,770 --> 00:02:43,530
+which you now want to load again,
+
+71
+00:02:43,530 --> 00:02:45,050
+but with different data,
+
+72
+00:02:45,050 --> 00:02:46,660
+with a different parameter.
+
+73
+00:02:46,660 --> 00:02:47,493
+By default,
+
+74
+00:02:47,493 --> 00:02:49,253
+the view router will do nothing.
+
+75
+00:02:50,400 --> 00:02:52,400
+That's of course not what we want here.
+
+76
+00:02:52,400 --> 00:02:55,593
+How can we react to this changed URL?
+
+77
+00:02:56,460 --> 00:02:57,293
+Well, in the end,
+
+78
+00:02:57,293 --> 00:02:59,340
+when the URL changes,
+
+79
+00:02:59,340 --> 00:03:01,850
+one other important thing changes.
+
+80
+00:03:01,850 --> 00:03:04,820
+This dollar sign route property.
+
+81
+00:03:04,820 --> 00:03:08,070
+It holds the latest information about the loaded route,
+
+82
+00:03:08,070 --> 00:03:11,500
+and it will update when the URL changes.
+
+83
+00:03:11,500 --> 00:03:14,050
+So this dollar sign route object
+
+84
+00:03:14,050 --> 00:03:17,890
+will always hold the latest parameter, for example.
+
+85
+00:03:17,890 --> 00:03:19,380
+And therefore,
+
+86
+00:03:19,380 --> 00:03:22,010
+you can add a watcher here,
+
+87
+00:03:22,010 --> 00:03:25,193
+and you can watch dollar sign route here.
+
+88
+00:03:26,470 --> 00:03:28,580
+So this built-in property,
+
+89
+00:03:28,580 --> 00:03:30,570
+you can watch that for changes.
+
+90
+00:03:30,570 --> 00:03:33,000
+And this watcher will now run
+
+91
+00:03:33,000 --> 00:03:35,510
+whenever to route changed.
+
+92
+00:03:35,510 --> 00:03:37,600
+So here you get the new value then,
+
+93
+00:03:37,600 --> 00:03:39,970
+the new route you could say.
+
+94
+00:03:39,970 --> 00:03:41,343
+And in here,
+
+95
+00:03:42,590 --> 00:03:45,770
+we can now run this logic again.
+
+96
+00:03:45,770 --> 00:03:46,603
+So therefore,
+
+97
+00:03:46,603 --> 00:03:48,460
+to not duplicate to code,
+
+98
+00:03:48,460 --> 00:03:51,683
+I will actually add methods here,
+
+99
+00:03:54,160 --> 00:03:55,903
+load TeamMembers,
+
+100
+00:03:57,490 --> 00:03:59,530
+and put my code in there,
+
+101
+00:03:59,530 --> 00:04:01,950
+and call load team members here,
+
+102
+00:04:01,950 --> 00:04:04,446
+in created manually,
+
+103
+00:04:04,446 --> 00:04:07,373
+and also call it here in my watcher.
+
+104
+00:04:08,270 --> 00:04:11,500
+So that I load this method and run this method,
+
+105
+00:04:11,500 --> 00:04:13,010
+which loads my TeamMembers
+
+106
+00:04:13,010 --> 00:04:14,670
+when the component is created,
+
+107
+00:04:14,670 --> 00:04:16,463
+but also when route changed.
+
+108
+00:04:18,079 --> 00:04:20,000
+Now, one thing I want to do here, though,
+
+109
+00:04:20,000 --> 00:04:22,310
+I wanna pass my new route
+
+110
+00:04:26,840 --> 00:04:29,200
+as our argument to load TeamMembers.
+
+111
+00:04:29,200 --> 00:04:30,033
+And here,
+
+112
+00:04:30,033 --> 00:04:30,980
+when we call it and create it,
+
+113
+00:04:30,980 --> 00:04:33,480
+I'll pass this dollar sign route.
+
+114
+00:04:33,480 --> 00:04:36,270
+So I wanna pass the route object as our argument,
+
+115
+00:04:36,270 --> 00:04:38,320
+and add it the method a little bit,
+
+116
+00:04:38,320 --> 00:04:41,010
+so that we get our route object here,
+
+117
+00:04:41,010 --> 00:04:44,293
+and I will replace this route with just route.
+
+118
+00:04:45,810 --> 00:04:46,710
+It's not a must do,
+
+119
+00:04:46,710 --> 00:04:47,740
+but I wanna do it here
+
+120
+00:04:47,740 --> 00:04:50,480
+so that we get the route from outside,
+
+121
+00:04:50,480 --> 00:04:51,450
+so to say,
+
+122
+00:04:51,450 --> 00:04:53,500
+seen from inside this method
+
+123
+00:04:53,500 --> 00:04:55,140
+and we pass it as our argument
+
+124
+00:04:55,140 --> 00:04:56,340
+when we call the method.
+
+125
+00:04:57,730 --> 00:04:58,563
+With that,
+
+126
+00:04:58,563 --> 00:05:00,960
+if I save this and reload,
+
+127
+00:05:00,960 --> 00:05:04,670
+our links here on the Team's page still work.
+
+128
+00:05:04,670 --> 00:05:06,500
+But if I click on go to Team two,
+
+129
+00:05:06,500 --> 00:05:08,330
+now this page updates
+
+130
+00:05:08,330 --> 00:05:12,930
+because now we're watching changes on the route.
+
+131
+00:05:12,930 --> 00:05:15,940
+And this is just one way of making this work though.
+
+132
+00:05:15,940 --> 00:05:17,450
+It's a perfectly fine way,
+
+133
+00:05:17,450 --> 00:05:18,770
+but it's not the only way.
+
+134
+00:05:18,770 --> 00:05:22,530
+Because there is another problem you could face here,
+
+135
+00:05:22,530 --> 00:05:26,090
+or another thing about this TeamMembers component
+
+136
+00:05:26,090 --> 00:05:27,480
+you might not like.
+
+137
+00:05:27,480 --> 00:05:28,723
+Let's see what that is.
+

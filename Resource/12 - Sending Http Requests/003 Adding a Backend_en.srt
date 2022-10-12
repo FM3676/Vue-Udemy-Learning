@@ -1,0 +1,300 @@
+1
+00:00:02,120 --> 00:00:05,230
+So, obviously, we need a back end.
+
+2
+00:00:05,230 --> 00:00:06,663
+Now creating a back end,
+
+3
+00:00:06,663 --> 00:00:09,548
+that is something you could take an entire course on
+
+4
+00:00:09,548 --> 00:00:12,328
+because for writing server side code,
+
+5
+00:00:12,328 --> 00:00:15,420
+for writing code that runs on a server
+
+6
+00:00:15,420 --> 00:00:18,350
+and for connecting a database to that code.
+
+7
+00:00:18,350 --> 00:00:20,880
+There are dedicated programming languages
+
+8
+00:00:20,880 --> 00:00:23,500
+like Node.js or PHP.
+
+9
+00:00:23,500 --> 00:00:24,580
+And you can for example,
+
+10
+00:00:24,580 --> 00:00:27,673
+take my Node.js course if you want to learn all about that.
+
+11
+00:00:28,660 --> 00:00:30,827
+This course focuses on view
+
+12
+00:00:30,827 --> 00:00:33,330
+and therefore I want to keep that focus
+
+13
+00:00:33,330 --> 00:00:37,060
+so we're not going to write our own server side code here.
+
+14
+00:00:37,060 --> 00:00:39,080
+Instead we're going to use Firebase
+
+15
+00:00:39,080 --> 00:00:42,390
+which is a service that gives us a back end
+
+16
+00:00:42,390 --> 00:00:44,960
+where we don't have to write any code
+
+17
+00:00:44,960 --> 00:00:47,042
+to get started with storing data.
+
+18
+00:00:47,042 --> 00:00:49,980
+I will emphasize though that this is not
+
+19
+00:00:49,980 --> 00:00:52,070
+just a database which we're using.
+
+20
+00:00:52,070 --> 00:00:53,971
+It's a complete back end service.
+
+21
+00:00:53,971 --> 00:00:56,560
+It is like if you had your own server
+
+22
+00:00:56,560 --> 00:00:58,167
+with your own logic on it.
+
+23
+00:00:58,167 --> 00:01:00,770
+Just in this case, already pre-written
+
+24
+00:01:00,770 --> 00:01:02,403
+and pre-configured for you.
+
+25
+00:01:03,530 --> 00:01:05,788
+The good thing about Firebase, which is a service
+
+26
+00:01:05,788 --> 00:01:08,960
+offered by Google, is that you can get started
+
+27
+00:01:08,960 --> 00:01:10,560
+for free with it.
+
+28
+00:01:10,560 --> 00:01:13,827
+You can start for free and what we're going to do here
+
+29
+00:01:13,827 --> 00:01:16,180
+is possible for free.
+
+30
+00:01:16,180 --> 00:01:17,992
+And that's why I'm using this service.
+
+31
+00:01:17,992 --> 00:01:22,830
+All you need for this service is a Google account.
+
+32
+00:01:22,830 --> 00:01:24,440
+So make sure you create one
+
+33
+00:01:24,440 --> 00:01:27,540
+and then log in here into that console,
+
+34
+00:01:27,540 --> 00:01:29,313
+into the Firebase console.
+
+35
+00:01:30,460 --> 00:01:33,980
+Once you are logged in and in this Firebase console,
+
+36
+00:01:33,980 --> 00:01:36,340
+you can add a new project
+
+37
+00:01:36,340 --> 00:01:37,926
+and give it any name of your choice.
+
+38
+00:01:37,926 --> 00:01:40,690
+I'll name it vue-http-demo
+
+39
+00:01:40,690 --> 00:01:42,720
+but this name is up to you.
+
+40
+00:01:42,720 --> 00:01:44,760
+Click continue.
+
+41
+00:01:44,760 --> 00:01:46,010
+You can disable this,
+
+42
+00:01:46,010 --> 00:01:48,290
+you don't need that here, the analytics.
+
+43
+00:01:48,290 --> 00:01:50,530
+And then create this project.
+
+44
+00:01:50,530 --> 00:01:53,800
+Now Firebase is a service that has way more to offer
+
+45
+00:01:53,800 --> 00:01:56,310
+than what we are going to use.
+
+46
+00:01:56,310 --> 00:01:59,453
+Nonetheless it has all we need here to have a dummy back end
+
+47
+00:01:59,453 --> 00:02:02,480
+and that's why we're going to be using it.
+
+48
+00:02:02,480 --> 00:02:05,070
+We're also going to use this Firebase service
+
+49
+00:02:05,070 --> 00:02:08,530
+in a way that is typical for communicating with a back end.
+
+50
+00:02:08,530 --> 00:02:11,009
+So that what you learn here will also apply
+
+51
+00:02:11,009 --> 00:02:13,750
+to any other back end you might be using.
+
+52
+00:02:13,750 --> 00:02:15,848
+That's another reason why I chose Firebase.
+
+53
+00:02:15,848 --> 00:02:19,660
+So now, we're in the Firebase console
+
+54
+00:02:19,660 --> 00:02:22,141
+and here we want to go to database
+
+55
+00:02:22,141 --> 00:02:25,075
+because we are going to use the database part
+
+56
+00:02:25,075 --> 00:02:27,000
+of the Firebase service.
+
+57
+00:02:27,000 --> 00:02:29,020
+It's just one of the offerings they have
+
+58
+00:02:29,020 --> 00:02:31,510
+but here we need a database.
+
+59
+00:02:31,510 --> 00:02:34,477
+And we are not going to use the Cloud Firestore here
+
+60
+00:02:34,477 --> 00:02:37,140
+but instead this real time database.
+
+61
+00:02:37,140 --> 00:02:39,140
+It's bit easier to use and it has
+
+62
+00:02:39,140 --> 00:02:41,910
+a nice rest API which is a specific
+
+63
+00:02:41,910 --> 00:02:46,643
+interface we can use for sending our http request to it.
+
+64
+00:02:46,643 --> 00:02:50,280
+It's very easy to use and therefore a great choice here.
+
+65
+00:02:50,280 --> 00:02:52,580
+So let's create such a real time database
+
+66
+00:02:52,580 --> 00:02:54,713
+and make sure you start in test mode.
+
+67
+00:02:55,620 --> 00:02:56,633
+Click enable,
+
+68
+00:02:58,930 --> 00:03:00,140
+and here we go.
+
+69
+00:03:00,140 --> 00:03:02,670
+Now, you should see something like this on the screen
+
+70
+00:03:02,670 --> 00:03:05,483
+and for the moment that is all we need.
+
+71
+00:03:05,483 --> 00:03:07,400
+Now let's leave it at that
+
+72
+00:03:07,400 --> 00:03:10,340
+and let's go back to our view app.
+
+73
+00:03:10,340 --> 00:03:12,600
+And here, we are now going to see
+
+74
+00:03:12,600 --> 00:03:17,329
+how we can send http requests to this Firebase back end
+
+75
+00:03:17,329 --> 00:03:19,763
+and how we're not going to do it.
+

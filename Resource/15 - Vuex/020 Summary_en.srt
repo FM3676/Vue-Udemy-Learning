@@ -1,0 +1,104 @@
+1
+00:00:02,120 --> 00:00:04,150
+So that's it for this module.
+
+2
+00:00:04,150 --> 00:00:06,360
+You learned what Vuex is,
+
+3
+00:00:06,360 --> 00:00:09,240
+why you might want to use it, and how it works.
+
+4
+00:00:09,240 --> 00:00:11,750
+It's all about having that central state,
+
+5
+00:00:11,750 --> 00:00:13,620
+which you manipulate through actions
+
+6
+00:00:13,620 --> 00:00:16,993
+and mutations and which you get through getters.
+
+7
+00:00:18,230 --> 00:00:20,250
+You learned how to set all of it up,
+
+8
+00:00:20,250 --> 00:00:22,760
+and how to manage more complex states
+
+9
+00:00:22,760 --> 00:00:26,950
+with multiple modules and different folder structures.
+
+10
+00:00:26,950 --> 00:00:28,810
+You also learned about the map getters
+
+11
+00:00:28,810 --> 00:00:31,150
+and map actions helpers.
+
+12
+00:00:31,150 --> 00:00:34,530
+Now Vuex in a nutshell isn't too complex.
+
+13
+00:00:34,530 --> 00:00:38,230
+Yes, you need to write some extra code to manage state,
+
+14
+00:00:38,230 --> 00:00:41,610
+but their after you have a clearly defined flow,
+
+15
+00:00:41,610 --> 00:00:44,620
+a clear structure for managing state.
+
+16
+00:00:44,620 --> 00:00:47,120
+And as you can absolutely see in this demo
+
+17
+00:00:47,120 --> 00:00:49,040
+and the demo before,
+
+18
+00:00:49,040 --> 00:00:52,440
+sharing state and manipulating it from anywhere
+
+19
+00:00:52,440 --> 00:00:56,520
+in your app in a clearly defined way is super easy
+
+20
+00:00:56,520 --> 00:00:58,680
+with Vuex in the end.
+
+21
+00:00:58,680 --> 00:01:02,830
+And that's why Vuex can be very helpful in bigger projects
+
+22
+00:01:02,830 --> 00:01:06,560
+and why it can make managing state a breeze.
+
+23
+00:01:06,560 --> 00:01:09,350
+It's much nicer then provide and eject
+
+24
+00:01:09,350 --> 00:01:11,750
+at least in my opinion, in bigger projects,
+
+25
+00:01:11,750 --> 00:01:15,650
+and can therefore definitely help you write any application
+
+26
+00:01:15,650 --> 00:01:17,623
+of any size you want.
+

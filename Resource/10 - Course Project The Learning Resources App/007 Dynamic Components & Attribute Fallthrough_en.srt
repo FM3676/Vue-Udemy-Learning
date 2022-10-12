@@ -1,0 +1,660 @@
+1
+00:00:02,150 --> 00:00:03,850
+So as a next step
+
+2
+00:00:03,850 --> 00:00:06,560
+I want to allow the user of this web app
+
+3
+00:00:06,560 --> 00:00:10,740
+to actually add his or her own learning resources.
+
+4
+00:00:10,740 --> 00:00:12,300
+So for that we need a form
+
+5
+00:00:12,300 --> 00:00:16,660
+where users can enter a title, a description and a link
+
+6
+00:00:16,660 --> 00:00:19,920
+and I actually want to give the user two buttons
+
+7
+00:00:19,920 --> 00:00:23,600
+which can be used to switch between this view here
+
+8
+00:00:23,600 --> 00:00:26,350
+where we see the list of learning resources
+
+9
+00:00:26,350 --> 00:00:29,203
+and that form which we still have to create.
+
+10
+00:00:30,580 --> 00:00:33,520
+So therefore I will start by adding a new component
+
+11
+00:00:33,520 --> 00:00:38,520
+in learning resources, and that's the add resource.view file
+
+12
+00:00:38,540 --> 00:00:40,350
+which is the component where
+
+13
+00:00:40,350 --> 00:00:42,910
+eventually new resources can be added.
+
+14
+00:00:42,910 --> 00:00:44,570
+And for the moment in the template
+
+15
+00:00:44,570 --> 00:00:47,010
+I'll just add a h2 tag
+
+16
+00:00:47,010 --> 00:00:51,920
+where I simply wanna say add resource
+
+17
+00:00:51,920 --> 00:00:54,480
+so that we can identify this component
+
+18
+00:00:54,480 --> 00:00:55,680
+when it's on the screen.
+
+19
+00:00:56,620 --> 00:00:58,220
+Because I actually wanna start
+
+20
+00:00:58,220 --> 00:01:00,440
+working on another component first,
+
+21
+00:01:00,440 --> 00:01:05,069
+and that's the theresources.view component.
+
+22
+00:01:05,069 --> 00:01:08,810
+I chose this naming because we'll only use that once
+
+23
+00:01:08,810 --> 00:01:10,290
+in the entire application
+
+24
+00:01:10,290 --> 00:01:12,590
+and it will be a main entry point
+
+25
+00:01:12,590 --> 00:01:15,400
+of our resources area here.
+
+26
+00:01:15,400 --> 00:01:19,070
+And the idea of the the resources component
+
+27
+00:01:19,070 --> 00:01:22,800
+is that in there we in the end have tabs you could say,
+
+28
+00:01:22,800 --> 00:01:24,870
+we got two buttons that allow us
+
+29
+00:01:24,870 --> 00:01:29,060
+to switch between stored resources and add resource.
+
+30
+00:01:29,060 --> 00:01:31,430
+So therefore in that resources
+
+31
+00:01:31,430 --> 00:01:34,350
+I'm of course also adding a template.
+
+32
+00:01:34,350 --> 00:01:38,550
+And in that template, I now wanna have these two buttons.
+
+33
+00:01:38,550 --> 00:01:41,680
+I'll actually wrap them in the base card component
+
+34
+00:01:41,680 --> 00:01:44,960
+because I wanna have that card look around the buttons.
+
+35
+00:01:44,960 --> 00:01:48,720
+And in there we can add a base button.
+
+36
+00:01:48,720 --> 00:01:51,060
+We'll add two base buttons to be precise,
+
+37
+00:01:51,060 --> 00:01:52,970
+and so I'll copy that.
+
+38
+00:01:52,970 --> 00:01:56,470
+And the first button says stored resources,
+
+39
+00:01:56,470 --> 00:02:00,380
+so this button takes us to the stored resources component.
+
+40
+00:02:00,380 --> 00:02:03,100
+The second button says add resource
+
+41
+00:02:03,100 --> 00:02:05,690
+because that, you guessed it will take us to the
+
+42
+00:02:05,690 --> 00:02:07,393
+add resources component.
+
+43
+00:02:09,169 --> 00:02:10,560
+And how could we implement this now?
+
+44
+00:02:10,560 --> 00:02:13,023
+How could we implement this tabs feature?
+
+45
+00:02:13,920 --> 00:02:17,510
+We can actually use the dynamic component feature
+
+46
+00:02:17,510 --> 00:02:20,640
+you learned about in the last course module.
+
+47
+00:02:20,640 --> 00:02:24,450
+So for that, in the script part here
+
+48
+00:02:24,450 --> 00:02:29,130
+I will add my data property to store some data
+
+49
+00:02:29,130 --> 00:02:31,830
+that belongs to this component only.
+
+50
+00:02:31,830 --> 00:02:36,830
+And here I wanna manage the currently selected tab.
+
+51
+00:02:37,080 --> 00:02:39,810
+Of course that name here is up to you.
+
+52
+00:02:39,810 --> 00:02:43,500
+And I'll start with the stored-resources tab,
+
+53
+00:02:43,500 --> 00:02:46,780
+but this can also be changed to add resource
+
+54
+00:02:46,780 --> 00:02:48,200
+and then I'll use that
+
+55
+00:02:48,200 --> 00:02:51,433
+to later switch between the two components.
+
+56
+00:02:52,510 --> 00:02:54,390
+So now I also want a method of course
+
+57
+00:02:54,390 --> 00:02:57,250
+which allows me to change the selected tab.
+
+58
+00:02:57,250 --> 00:02:59,400
+So let's add this methods option
+
+59
+00:02:59,400 --> 00:03:01,740
+to this configuration object,
+
+60
+00:03:01,740 --> 00:03:05,930
+and here I'll add a set selected tab method
+
+61
+00:03:05,930 --> 00:03:07,180
+where I get the tab
+
+62
+00:03:07,180 --> 00:03:09,280
+that should be selected as our argument,
+
+63
+00:03:09,280 --> 00:03:12,783
+and then we can set this selected tab equal to tab.
+
+64
+00:03:13,840 --> 00:03:17,300
+Now where should this method be called?
+
+65
+00:03:17,300 --> 00:03:19,320
+That would be our buttons.
+
+66
+00:03:19,320 --> 00:03:22,210
+So here on the first button, upon a click
+
+67
+00:03:22,210 --> 00:03:26,460
+I want to call this method.
+
+68
+00:03:26,460 --> 00:03:29,090
+So I will point at set selected tab
+
+69
+00:03:29,090 --> 00:03:31,390
+and tell you how to execute it.
+
+70
+00:03:31,390 --> 00:03:33,760
+Here you should then execute it
+
+71
+00:03:33,760 --> 00:03:36,523
+with an argument of stored resources.
+
+72
+00:03:37,750 --> 00:03:39,680
+And here for add resource,
+
+73
+00:03:39,680 --> 00:03:44,680
+I'll also add a click and set selected tab to add resource.
+
+74
+00:03:46,910 --> 00:03:50,130
+And now let's take a quick pause here at this point
+
+75
+00:03:50,130 --> 00:03:52,080
+because I'm doing something here
+
+76
+00:03:52,080 --> 00:03:54,930
+which we actually haven't done before.
+
+77
+00:03:54,930 --> 00:03:57,170
+And do you see what that is?
+
+78
+00:03:57,170 --> 00:03:59,983
+It has nothing to do with dynamic components.
+
+79
+00:04:01,140 --> 00:04:05,040
+I'm adding a click listener on base button.
+
+80
+00:04:05,040 --> 00:04:08,460
+Well, on the one hand this might not be too fancy,
+
+81
+00:04:08,460 --> 00:04:10,480
+we added click listeners to buttons
+
+82
+00:04:10,480 --> 00:04:12,340
+for all the entire course.
+
+83
+00:04:12,340 --> 00:04:15,170
+But keep in mind, this is no regular button.
+
+84
+00:04:15,170 --> 00:04:17,839
+This is our own custom component,
+
+85
+00:04:17,839 --> 00:04:20,600
+why can't I add a click listener on it?
+
+86
+00:04:20,600 --> 00:04:24,800
+I mean, click after all is not a custom event
+
+87
+00:04:24,800 --> 00:04:26,220
+I'm emitting in there.
+
+88
+00:04:26,220 --> 00:04:28,130
+If we have a look at the base button,
+
+89
+00:04:28,130 --> 00:04:30,830
+this component doesn't emit any event,
+
+90
+00:04:30,830 --> 00:04:34,060
+and here on this button, on the native HTML button
+
+91
+00:04:34,060 --> 00:04:35,663
+there is no click listener.
+
+92
+00:04:36,920 --> 00:04:41,280
+This is actually a special behavior Vue has.
+
+93
+00:04:41,280 --> 00:04:46,280
+When you add props or event listeners on custom components,
+
+94
+00:04:46,630 --> 00:04:50,150
+then by default they fall through
+
+95
+00:04:50,150 --> 00:04:52,170
+to the root level element
+
+96
+00:04:52,170 --> 00:04:54,633
+in that custom components template.
+
+97
+00:04:55,890 --> 00:05:00,010
+So if I add any props or event listeners
+
+98
+00:05:00,010 --> 00:05:02,430
+to base button for example,
+
+99
+00:05:02,430 --> 00:05:05,600
+they will fall through and will be applied
+
+100
+00:05:05,600 --> 00:05:10,240
+to the root HTML element in base button's template,
+
+101
+00:05:10,240 --> 00:05:13,710
+which in this case is the native HTML button.
+
+102
+00:05:13,710 --> 00:05:16,190
+So this click listener here
+
+103
+00:05:16,190 --> 00:05:21,190
+falls through to this native button here in this template.
+
+104
+00:05:21,750 --> 00:05:25,910
+So it's automatically added to this button you could say,
+
+105
+00:05:25,910 --> 00:05:27,760
+that's happening behind the scenes.
+
+106
+00:05:27,760 --> 00:05:30,530
+And that's an important behavior of Vue.js
+
+107
+00:05:30,530 --> 00:05:32,170
+which I'm utilizing here.
+
+108
+00:05:32,170 --> 00:05:33,860
+Which we haven't seen before
+
+109
+00:05:33,860 --> 00:05:37,510
+because we didn't really have a great place for using that,
+
+110
+00:05:37,510 --> 00:05:40,340
+but here it's absolutely something that helps us
+
+111
+00:05:40,340 --> 00:05:42,363
+for wrapping this button.
+
+112
+00:05:43,260 --> 00:05:45,460
+So with that we can add this click listener here
+
+113
+00:05:45,460 --> 00:05:49,830
+and change the selected tab upon clicks on those buttons.
+
+114
+00:05:49,830 --> 00:05:53,170
+Now of course I don't just want you change that data here,
+
+115
+00:05:53,170 --> 00:05:57,730
+I also want to reflect the change in the user interface.
+
+116
+00:05:57,730 --> 00:06:01,730
+To be precise I want to render either the stored resources
+
+117
+00:06:01,730 --> 00:06:04,520
+or the add resource component.
+
+118
+00:06:04,520 --> 00:06:07,590
+And therefore below my base card here,
+
+119
+00:06:07,590 --> 00:06:11,020
+I'll now add the built in component, component
+
+120
+00:06:11,020 --> 00:06:13,790
+which is that component you use for
+
+121
+00:06:13,790 --> 00:06:15,733
+dynamic components as you learned.
+
+122
+00:06:17,090 --> 00:06:19,690
+And here we bind the is prop
+
+123
+00:06:19,690 --> 00:06:23,470
+to tell you which actual component should be rendered here.
+
+124
+00:06:23,470 --> 00:06:26,910
+So we need to pass the HTML element tag
+
+125
+00:06:26,910 --> 00:06:28,850
+off our custom component.
+
+126
+00:06:28,850 --> 00:06:31,400
+Now that's why I'm using my tags here
+
+127
+00:06:31,400 --> 00:06:35,510
+as selected tabs stored resources and add resource
+
+128
+00:06:35,510 --> 00:06:39,550
+that will be my custom component HTML tags.
+
+129
+00:06:39,550 --> 00:06:42,693
+And therefore here we can point at selected tab.
+
+130
+00:06:43,780 --> 00:06:46,060
+Of course this will now only work
+
+131
+00:06:46,060 --> 00:06:49,410
+if we register my own components here though.
+
+132
+00:06:49,410 --> 00:06:53,430
+Because currently add resource is registered nowhere,
+
+133
+00:06:53,430 --> 00:06:58,040
+and stored resources is registered in the app.vue file.
+
+134
+00:06:58,040 --> 00:06:59,870
+Now if we register it there,
+
+135
+00:06:59,870 --> 00:07:02,620
+it's really only available there in the template,
+
+136
+00:07:02,620 --> 00:07:04,900
+it's not available anywhere else.
+
+137
+00:07:04,900 --> 00:07:06,930
+So to ensure that stored resources
+
+138
+00:07:06,930 --> 00:07:10,160
+can be used here in their resources,
+
+139
+00:07:10,160 --> 00:07:12,060
+I'll remove it from here
+
+140
+00:07:12,060 --> 00:07:14,330
+because we'll not need it here anymore.
+
+141
+00:07:14,330 --> 00:07:17,070
+If we would we could register it there as well.
+
+142
+00:07:17,070 --> 00:07:20,980
+You can register a component locally in multiple components,
+
+143
+00:07:20,980 --> 00:07:22,720
+but we won't need it here.
+
+144
+00:07:22,720 --> 00:07:25,920
+Instead I now go to the resources
+
+145
+00:07:25,920 --> 00:07:29,210
+import stored resources here,
+
+146
+00:07:29,210 --> 00:07:33,140
+though I need to adjust the import path
+
+147
+00:07:33,140 --> 00:07:36,130
+because actually the stored resources.view file
+
+148
+00:07:36,130 --> 00:07:40,590
+is now in the same folder as the resources.view.
+
+149
+00:07:40,590 --> 00:07:42,423
+And then here in components,
+
+150
+00:07:44,910 --> 00:07:48,540
+I want to register stored resources.
+
+151
+00:07:48,540 --> 00:07:49,710
+And the same of course
+
+152
+00:07:49,710 --> 00:07:53,780
+for the newly added add resource component
+
+153
+00:07:53,780 --> 00:07:57,710
+imported from add resource.view.
+
+154
+00:07:57,710 --> 00:08:01,173
+And then register it here as a local component.
+
+155
+00:08:03,320 --> 00:08:05,160
+Now we'll be able to render both
+
+156
+00:08:05,160 --> 00:08:07,540
+but we'll have a couple of problems.
+
+157
+00:08:07,540 --> 00:08:09,760
+Now for one in app view,
+
+158
+00:08:09,760 --> 00:08:13,610
+I no longer can use this stored resources component,
+
+159
+00:08:13,610 --> 00:08:16,460
+so we should remove it there from the template.
+
+160
+00:08:16,460 --> 00:08:21,370
+But in addition, stored resources also wants a prop.
+
+161
+00:08:21,370 --> 00:08:23,710
+It wants this resources prop
+
+162
+00:08:23,710 --> 00:08:27,170
+which I use for looping through all the resources.
+
+163
+00:08:27,170 --> 00:08:30,300
+And now that we're using a dynamic component here,
+
+164
+00:08:30,300 --> 00:08:33,059
+I'm no longer passing that prop.
+
+165
+00:08:33,059 --> 00:08:35,693
+So how can we work around that next?
+

@@ -1,0 +1,568 @@
+1
+00:00:02,220 --> 00:00:03,520
+Now up to this point,
+
+2
+00:00:03,520 --> 00:00:07,320
+I always just worked with my main Vue app here.
+
+3
+00:00:07,320 --> 00:00:09,810
+Typically, of course, you have multiple components.
+
+4
+00:00:09,810 --> 00:00:11,780
+Let's say we have a separate component
+
+5
+00:00:11,780 --> 00:00:13,700
+for the user data here,
+
+6
+00:00:13,700 --> 00:00:16,505
+so we could create a components folder,
+
+7
+00:00:16,505 --> 00:00:19,890
+and in there have a UserData.vue file.
+
+8
+00:00:19,890 --> 00:00:21,570
+And here in the template,
+
+9
+00:00:21,570 --> 00:00:26,477
+I want to have my age two tag with the username.
+
+10
+00:00:30,360 --> 00:00:35,360
+And I want to have my age free tag with my age.
+
+11
+00:00:40,030 --> 00:00:42,020
+Now we can add a script here
+
+12
+00:00:42,020 --> 00:00:44,030
+and we can expect some props here
+
+13
+00:00:44,030 --> 00:00:46,810
+because that data should come from outside,
+
+14
+00:00:46,810 --> 00:00:48,100
+username and age.
+
+15
+00:00:48,100 --> 00:00:52,573
+So we could add a username and age prop here,
+
+16
+00:00:53,480 --> 00:00:57,050
+and now simply go back to App.vue
+
+17
+00:00:57,050 --> 00:01:00,250
+and import this user data component
+
+18
+00:01:00,250 --> 00:01:05,250
+from ./components/UserData.vue,
+
+19
+00:01:09,480 --> 00:01:13,130
+and register it with the components option.
+
+20
+00:01:13,130 --> 00:01:16,460
+And as I mentioned before, you still have this option,
+
+21
+00:01:16,460 --> 00:01:18,530
+this does not go into the setup method,
+
+22
+00:01:18,530 --> 00:01:20,580
+you keep your option here.
+
+23
+00:01:20,580 --> 00:01:23,750
+So we register UserData here, this new component,
+
+24
+00:01:23,750 --> 00:01:26,320
+and we can then use it here,
+
+25
+00:01:26,320 --> 00:01:30,490
+user-data, opening and closing,
+
+26
+00:01:30,490 --> 00:01:33,610
+and bind those props, userName and age.
+
+27
+00:01:38,110 --> 00:01:43,110
+And I'll bind userName to my userName computed ref,
+
+28
+00:01:44,150 --> 00:01:48,060
+which is exposed here in the return to object
+
+29
+00:01:48,060 --> 00:01:52,870
+to the template, and bind age to this age ref,
+
+30
+00:01:52,870 --> 00:01:54,263
+which we're also exposing.
+
+31
+00:01:55,730 --> 00:01:59,823
+And that, therefore, all just works, as you can tell.
+
+32
+00:02:02,460 --> 00:02:06,300
+However, maybe we wanna do more in this component.
+
+33
+00:02:06,300 --> 00:02:10,669
+Maybe here we wanna use the setup method as well,
+
+34
+00:02:10,669 --> 00:02:13,500
+because maybe we don't get the userName like this,
+
+35
+00:02:13,500 --> 00:02:18,340
+but instead we get the first name and last name separated,
+
+36
+00:02:18,340 --> 00:02:21,000
+and we want to compute it here in the setup method.
+
+37
+00:02:21,000 --> 00:02:24,410
+Well, first of all, let's maybe not use the setup method,
+
+38
+00:02:24,410 --> 00:02:26,980
+but a good old computed option.
+
+39
+00:02:26,980 --> 00:02:30,050
+So let's use the Options API here.
+
+40
+00:02:30,050 --> 00:02:33,170
+Then we could have a userName computed property,
+
+41
+00:02:33,170 --> 00:02:35,510
+since that's what I'm using here in the template,
+
+42
+00:02:35,510 --> 00:02:39,827
+and simply return this dot firstName + blank,
+
+43
+00:02:39,827 --> 00:02:44,180
++ this dot lastName, right?
+
+44
+00:02:44,180 --> 00:02:45,680
+This is how we could do this
+
+45
+00:02:45,680 --> 00:02:49,040
+in a regular component, using the Options API,
+
+46
+00:02:49,040 --> 00:02:51,600
+if we get two props and we wanna merge it
+
+47
+00:02:51,600 --> 00:02:53,063
+into one computed prop.
+
+48
+00:02:54,470 --> 00:02:57,720
+Now, we just need to bind first and last name.
+
+49
+00:02:57,720 --> 00:03:02,720
+So in App.vue, I now bind first-name and last-name,
+
+50
+00:03:04,130 --> 00:03:08,240
+and the values here should be my firstName ref
+
+51
+00:03:08,240 --> 00:03:10,970
+and my lastName ref.
+
+52
+00:03:10,970 --> 00:03:13,610
+And we now need to ensure that both are exposed
+
+53
+00:03:13,610 --> 00:03:14,930
+to the template.
+
+54
+00:03:14,930 --> 00:03:17,770
+The firsName ref already is,
+
+55
+00:03:17,770 --> 00:03:20,250
+but the lastName ref is not anymore.
+
+56
+00:03:20,250 --> 00:03:23,230
+So let's re add lastName to the object,
+
+57
+00:03:23,230 --> 00:03:25,330
+which we are returning in setup,
+
+58
+00:03:25,330 --> 00:03:27,803
+so that this is available in the template.
+
+59
+00:03:28,890 --> 00:03:33,890
+And now firstName and lastName are forwarded to user data.
+
+60
+00:03:34,310 --> 00:03:39,130
+And if I saved that, this just works,
+
+61
+00:03:39,130 --> 00:03:41,800
+and this might or might not be a surprise,
+
+62
+00:03:41,800 --> 00:03:44,140
+but there's a very important message here.
+
+63
+00:03:44,140 --> 00:03:49,140
+You can absolutely mix the Options and the Composition API.
+
+64
+00:03:49,160 --> 00:03:52,820
+App.vue uses the Composition API.
+
+65
+00:03:52,820 --> 00:03:55,820
+UserData.vue uses the Options API,
+
+66
+00:03:55,820 --> 00:03:59,570
+and there is nothing wrong with it, absolutely nothing.
+
+67
+00:03:59,570 --> 00:04:03,540
+Just because you used the Composition API in one component,
+
+68
+00:04:03,540 --> 00:04:05,560
+does not mean you have to use it
+
+69
+00:04:05,560 --> 00:04:08,080
+in all components, it's optional.
+
+70
+00:04:08,080 --> 00:04:11,800
+You can use it wherever it makes sense to you.
+
+71
+00:04:11,800 --> 00:04:15,700
+So, it is absolutely fine to use the Options API
+
+72
+00:04:15,700 --> 00:04:19,072
+and therefore the computed option here, in UserData.
+
+73
+00:04:20,470 --> 00:04:23,210
+And you'll see that those ref values
+
+74
+00:04:23,210 --> 00:04:25,440
+are extracted correctly by Vue,
+
+75
+00:04:25,440 --> 00:04:29,733
+and forwarded as values for first and last name props.
+
+76
+00:04:30,710 --> 00:04:33,270
+Nonetheless, even though we don't have to,
+
+77
+00:04:33,270 --> 00:04:36,800
+let's say we wanna migrate to the Composition API
+
+78
+00:04:36,800 --> 00:04:38,820
+inside of UserData as well.
+
+79
+00:04:38,820 --> 00:04:41,400
+So, instead of using computed here,
+
+80
+00:04:41,400 --> 00:04:46,400
+we import computed from the Vue framework like this,
+
+81
+00:04:47,760 --> 00:04:50,463
+and we then add our setup method.
+
+82
+00:04:51,460 --> 00:04:55,720
+Here, we got our uName, let's say,
+
+83
+00:04:55,720 --> 00:04:57,640
+of course, this name is up to you.
+
+84
+00:04:57,640 --> 00:05:00,900
+And we derive it by calling computed
+
+85
+00:05:00,900 --> 00:05:03,350
+and passing a function to computed,
+
+86
+00:05:03,350 --> 00:05:07,660
+where we now return, well return what?
+
+87
+00:05:07,660 --> 00:05:09,980
+We wanna get access to our props here,
+
+88
+00:05:09,980 --> 00:05:11,587
+firstName and lastName.
+
+89
+00:05:12,570 --> 00:05:15,810
+In the computed option, we did it with the, this keyword,
+
+90
+00:05:15,810 --> 00:05:18,950
+but I can tell you, and I told you before,
+
+91
+00:05:18,950 --> 00:05:22,040
+that this will not work like that.
+
+92
+00:05:22,040 --> 00:05:24,640
+So if we try to use the, this, keyword
+
+93
+00:05:24,640 --> 00:05:28,150
+and get access to our props here, this won't work.
+
+94
+00:05:28,150 --> 00:05:29,710
+We can still give it a try.
+
+95
+00:05:29,710 --> 00:05:33,420
+Let's return username here as an object,
+
+96
+00:05:33,420 --> 00:05:36,120
+and point at the computed uName property,
+
+97
+00:05:36,120 --> 00:05:39,806
+so that in the template, userName is available,
+
+98
+00:05:39,806 --> 00:05:42,500
+and let's save this.
+
+99
+00:05:42,500 --> 00:05:46,090
+And you'll notice that I can reload and get an error,
+
+100
+00:05:46,090 --> 00:05:50,120
+cannot read property firstName of undefined.
+
+101
+00:05:50,120 --> 00:05:53,660
+So, trying to access firstName on this fails,
+
+102
+00:05:53,660 --> 00:05:57,243
+because this is undefined at this point,
+
+103
+00:05:58,230 --> 00:06:01,810
+because setup basically gets called too early by Vue.
+
+104
+00:06:01,810 --> 00:06:03,030
+At this point of time,
+
+105
+00:06:03,030 --> 00:06:05,573
+the Vue instance object, doesn't exist yet.
+
+106
+00:06:07,470 --> 00:06:10,040
+So we don't have access to props like that.
+
+107
+00:06:10,040 --> 00:06:12,720
+Still, of course, we do get access to props
+
+108
+00:06:12,720 --> 00:06:15,322
+because setup actually is a method
+
+109
+00:06:15,322 --> 00:06:18,990
+that accepts two arguments.
+
+110
+00:06:18,990 --> 00:06:23,170
+The first parameter we get here, is the props parameter.
+
+111
+00:06:23,170 --> 00:06:25,530
+It's an object full of the props
+
+112
+00:06:25,530 --> 00:06:27,180
+you're getting in this component.
+
+113
+00:06:28,020 --> 00:06:31,523
+And therefore, you can simply access props.firstName,
+
+114
+00:06:31,523 --> 00:06:34,546
+and props.lastName, like this.
+
+115
+00:06:34,546 --> 00:06:37,300
+Now you can name this argument however you want,
+
+116
+00:06:37,300 --> 00:06:39,110
+by the way, it's your method.
+
+117
+00:06:39,110 --> 00:06:42,060
+So any name of your choice is fine,
+
+118
+00:06:42,060 --> 00:06:43,370
+but I'll go with, props,
+
+119
+00:06:43,370 --> 00:06:46,760
+and I'll stick to props throughout this course here.
+
+120
+00:06:46,760 --> 00:06:49,080
+And with that, if we saved it and reload,
+
+121
+00:06:49,080 --> 00:06:53,573
+now it's working again, as you can tell.
+
+122
+00:06:55,330 --> 00:06:58,700
+So, to setup method receives this props argument
+
+123
+00:06:58,700 --> 00:07:01,560
+automatically passed in by Vue.
+
+124
+00:07:01,560 --> 00:07:03,930
+If your component gets no props,
+
+125
+00:07:03,930 --> 00:07:05,560
+it's simply an empty object.
+
+126
+00:07:05,560 --> 00:07:07,480
+You'll always get this props thing,
+
+127
+00:07:07,480 --> 00:07:10,830
+but it can be empty if you don't have any props.
+
+128
+00:07:10,830 --> 00:07:12,627
+Here we do have three props,
+
+129
+00:07:12,627 --> 00:07:16,320
+and therefore they're all part of this props object.
+
+130
+00:07:16,320 --> 00:07:19,320
+And whenever props should change from outside,
+
+131
+00:07:19,320 --> 00:07:23,260
+this change is all propagated here to the setup method
+
+132
+00:07:23,260 --> 00:07:25,920
+and computed, for example, will pick up
+
+133
+00:07:25,920 --> 00:07:29,710
+that props changed, and will recalculated uName.
+
+134
+00:07:29,710 --> 00:07:34,710
+As you can tell, if I type here, it updates up here,
+
+135
+00:07:34,710 --> 00:07:36,970
+which is in that different component.
+
+136
+00:07:36,970 --> 00:07:40,130
+So props, by default, are reactive,
+
+137
+00:07:40,130 --> 00:07:42,420
+not the individual values in there,
+
+138
+00:07:42,420 --> 00:07:44,610
+but the props object as a whole.
+
+139
+00:07:44,610 --> 00:07:47,680
+So whenever the props object as a whole changes,
+
+140
+00:07:47,680 --> 00:07:50,300
+which will happen whenever one of the prop changes,
+
+141
+00:07:50,300 --> 00:07:53,650
+Vue will notice this, and will rerun any code
+
+142
+00:07:53,650 --> 00:07:55,603
+that depends on props.
+

@@ -1,0 +1,296 @@
+1
+00:00:02,150 --> 00:00:05,200
+So this is how you can reuse functionality
+
+2
+00:00:05,200 --> 00:00:08,920
+across components when using the Composition API.
+
+3
+00:00:08,920 --> 00:00:11,830
+Now, we can do more than what we're doing thus far.
+
+4
+00:00:11,830 --> 00:00:15,210
+For example, we can of course still also
+
+5
+00:00:15,210 --> 00:00:17,600
+setup other things in setup.
+
+6
+00:00:17,600 --> 00:00:21,580
+We're not limited to just using our reuse logic here.
+
+7
+00:00:21,580 --> 00:00:24,030
+We could again import
+
+8
+00:00:24,030 --> 00:00:28,560
+ref here, from vue. If we had some other data
+
+9
+00:00:28,560 --> 00:00:32,240
+that should be changeable, and create our extra ref here,
+
+10
+00:00:32,240 --> 00:00:36,350
+like the alertTitle, which could be a ref
+
+11
+00:00:36,350 --> 00:00:40,033
+with a starting value of Delete User?
+
+12
+00:00:41,760 --> 00:00:44,210
+And here theoretically, I don't need a ref
+
+13
+00:00:44,210 --> 00:00:47,410
+because I won't add any logic to ever change this.
+
+14
+00:00:47,410 --> 00:00:48,980
+But I wanna show you that you could,
+
+15
+00:00:48,980 --> 00:00:51,170
+of course, have extra refs
+
+16
+00:00:51,170 --> 00:00:53,800
+as well as computed properties and watchers,
+
+17
+00:00:53,800 --> 00:00:56,250
+and anything else you can use in the setup function,
+
+18
+00:00:56,250 --> 00:00:59,593
+no matter if you are using a custom hook or not.
+
+19
+00:01:00,570 --> 00:01:02,150
+But with that I can for example,
+
+20
+00:01:02,150 --> 00:01:04,310
+also expose my alertTitle,
+
+21
+00:01:05,650 --> 00:01:09,250
+here, with the return statement to my template
+
+22
+00:01:09,250 --> 00:01:13,373
+and bind the title here, to alertTitle.
+
+23
+00:01:14,776 --> 00:01:16,210
+But we can absolutely do this.
+
+24
+00:01:16,210 --> 00:01:18,300
+And this is kind of a similar thing
+
+25
+00:01:18,300 --> 00:01:21,120
+to what I did before with the mixins.
+
+26
+00:01:21,120 --> 00:01:23,150
+There, the mixin was automatically
+
+27
+00:01:23,150 --> 00:01:25,070
+merged with your other options.
+
+28
+00:01:25,070 --> 00:01:28,010
+Here, we kind of manually merge it
+
+29
+00:01:28,010 --> 00:01:31,400
+by simply doing one thing with our custom hook
+
+30
+00:01:31,400 --> 00:01:34,713
+and doing other things in the rest of our setup function.
+
+31
+00:01:36,050 --> 00:01:38,650
+Now, our custom hook is also able
+
+32
+00:01:38,650 --> 00:01:40,800
+to receive arguments by the way,
+
+33
+00:01:40,800 --> 00:01:45,690
+here I got a custom hook function, which returns something
+
+34
+00:01:45,690 --> 00:01:49,050
+and your hooks will typically always return something
+
+35
+00:01:49,050 --> 00:01:51,400
+because you wanna do stuff into hook
+
+36
+00:01:51,400 --> 00:01:54,600
+which then can still be exposed to your template.
+
+37
+00:01:54,600 --> 00:01:57,720
+And for that, your hook needs to make these things available
+
+38
+00:01:57,720 --> 00:02:00,960
+to the setup method where it's getting called,
+
+39
+00:02:00,960 --> 00:02:04,340
+but your hooks can also take arguments.
+
+40
+00:02:04,340 --> 00:02:07,390
+For example, let's say for Delete User,
+
+41
+00:02:07,390 --> 00:02:09,300
+the default starting value
+
+42
+00:02:09,300 --> 00:02:12,760
+for alertIsVisible should be true.
+
+43
+00:02:12,760 --> 00:02:15,420
+So that by default, the alert is opened.
+
+44
+00:02:15,420 --> 00:02:18,560
+This might not make much sense from an app perspective,
+
+45
+00:02:18,560 --> 00:02:20,580
+but it's a great practice.
+
+46
+00:02:20,580 --> 00:02:23,730
+With mixins, this was kind of tricky.
+
+47
+00:02:23,730 --> 00:02:27,120
+With hooks, it's easy. It's your own function.
+
+48
+00:02:27,120 --> 00:02:29,850
+So of course, useAlert may accept
+
+49
+00:02:29,850 --> 00:02:32,720
+as many parameters as you need.
+
+50
+00:02:32,720 --> 00:02:35,370
+For example, startingVisibility.
+
+51
+00:02:36,500 --> 00:02:38,310
+The name of course is up to you.
+
+52
+00:02:38,310 --> 00:02:40,640
+You can even assign a default value here,
+
+53
+00:02:40,640 --> 00:02:43,000
+let's say false, so that you don't have
+
+54
+00:02:43,000 --> 00:02:46,593
+to pass in a value for this parameter when coding useAlert.
+
+55
+00:02:48,210 --> 00:02:50,680
+This is a modern JavaScript feature,
+
+56
+00:02:50,680 --> 00:02:52,573
+default parameter values.
+
+57
+00:02:53,570 --> 00:02:56,240
+But now we can use this and assign this here
+
+58
+00:02:56,240 --> 00:02:58,543
+to our ref as a starting value.
+
+59
+00:02:59,550 --> 00:03:01,570
+And now since we have a default value,
+
+60
+00:03:01,570 --> 00:03:04,173
+we can still code useAlert as before,
+
+61
+00:03:05,090 --> 00:03:06,710
+but we can also code it
+
+62
+00:03:06,710 --> 00:03:10,100
+and pass an extra argument in, for this parameter.
+
+63
+00:03:10,100 --> 00:03:12,470
+So pass in true as a value
+
+64
+00:03:12,470 --> 00:03:16,030
+for this parameter instead of Delete User.
+
+65
+00:03:16,030 --> 00:03:18,340
+And as a result, if I save that,
+
+66
+00:03:18,340 --> 00:03:21,270
+we start with the model opened
+
+67
+00:03:21,270 --> 00:03:23,623
+for the Delete User component,
+
+68
+00:03:24,500 --> 00:03:28,200
+because of that different argument I passed in here.
+
+69
+00:03:28,200 --> 00:03:31,480
+So your custom hooks are really flexible
+
+70
+00:03:31,480 --> 00:03:34,340
+you can accept any arguments you might need,
+
+71
+00:03:34,340 --> 00:03:37,840
+and you can use all the Composition API features in there,
+
+72
+00:03:37,840 --> 00:03:39,790
+do whatever that hook needs to do,
+
+73
+00:03:39,790 --> 00:03:42,990
+and then return to the component where you wanna
+
+74
+00:03:42,990 --> 00:03:46,343
+use the hook, what that hook should expose to the component.
+

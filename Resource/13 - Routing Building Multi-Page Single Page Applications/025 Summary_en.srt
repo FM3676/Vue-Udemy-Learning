@@ -1,0 +1,176 @@
+1
+00:00:02,150 --> 00:00:04,670
+Now, that's it for the Vue router.
+
+2
+00:00:04,670 --> 00:00:07,810
+You learned why we need routing and how to set up routing,
+
+3
+00:00:07,810 --> 00:00:09,880
+you learned how to register routes,
+
+4
+00:00:09,880 --> 00:00:12,350
+that there is a lot you can configure there.
+
+5
+00:00:12,350 --> 00:00:15,840
+You can set up re-directs, paths, names, metadata,
+
+6
+00:00:15,840 --> 00:00:18,240
+multiple components that should be loaded,
+
+7
+00:00:18,240 --> 00:00:20,600
+nested routes with children.
+
+8
+00:00:20,600 --> 00:00:23,890
+We learned how to work with dynamic path segments,
+
+9
+00:00:23,890 --> 00:00:25,710
+to use route parameters,
+
+10
+00:00:25,710 --> 00:00:28,230
+which we can extract in the loaded components,
+
+11
+00:00:28,230 --> 00:00:31,251
+how we can pass those route parameters as props
+
+12
+00:00:31,251 --> 00:00:33,906
+into the to-be-loaded components.
+
+13
+00:00:33,906 --> 00:00:35,340
+And, much more.
+
+14
+00:00:35,340 --> 00:00:37,610
+We learned about all those navigation guards,
+
+15
+00:00:37,610 --> 00:00:40,600
+and about controlling the scroll behavior.
+
+16
+00:00:40,600 --> 00:00:44,330
+We learned how to navigate with router-link
+
+17
+00:00:44,330 --> 00:00:47,400
+or also, programmatically
+
+18
+00:00:47,400 --> 00:00:52,280
+with the $router property and the push method.
+
+19
+00:00:52,280 --> 00:00:55,330
+We learned how we can describe the location we want to
+
+20
+00:00:55,330 --> 00:01:00,330
+go to, for example, by setting up a string path
+
+21
+00:01:00,810 --> 00:01:03,680
+to which we want to go, or by passing such an object
+
+22
+00:01:03,680 --> 00:01:06,770
+using the name, adding params and possibly adding
+
+23
+00:01:06,770 --> 00:01:08,380
+a query parameter.
+
+24
+00:01:08,380 --> 00:01:12,360
+With all of that, you can provide a great user experience,
+
+25
+00:01:12,360 --> 00:01:16,390
+you can make sure that users don't lose unsaved changes,
+
+26
+00:01:16,390 --> 00:01:19,220
+you can make sure that you have URL's
+
+27
+00:01:19,220 --> 00:01:23,340
+and paths in the URL's that relate to the content
+
+28
+00:01:23,340 --> 00:01:25,020
+that's visible on the screen,
+
+29
+00:01:25,020 --> 00:01:29,350
+and you got sharable URL's, which you can copy and paste
+
+30
+00:01:29,350 --> 00:01:33,253
+to load exactly that place off your Vue application,
+
+31
+00:01:33,253 --> 00:01:36,993
+even though it's still a single page application.
+
+32
+00:01:37,960 --> 00:01:39,800
+These are all the things you learned here,
+
+33
+00:01:39,800 --> 00:01:42,270
+and I can absolutely recommend that you go through
+
+34
+00:01:42,270 --> 00:01:46,050
+this module again if some things aren't clear,
+
+35
+00:01:46,050 --> 00:01:47,970
+or maybe in a couple of weeks,
+
+36
+00:01:47,970 --> 00:01:50,850
+so that you make sure you don't forget all those things
+
+37
+00:01:50,850 --> 00:01:52,080
+which you learned here.
+
+38
+00:01:52,080 --> 00:01:55,090
+Because, you will need the Vue router in any bigger
+
+39
+00:01:55,090 --> 00:01:57,120
+application you are going to build.
+
+40
+00:01:57,120 --> 00:01:59,890
+And, speaking of that, we are going to build
+
+41
+00:01:59,890 --> 00:02:02,070
+such a bigger application,
+
+42
+00:02:02,070 --> 00:02:04,750
+so that we can practice all the things we learned
+
+43
+00:02:04,750 --> 00:02:08,009
+thus far and also see the router in action,
+
+44
+00:02:08,009 --> 00:02:10,402
+in a more realistic application.
+

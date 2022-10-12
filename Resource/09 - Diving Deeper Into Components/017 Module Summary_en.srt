@@ -1,0 +1,284 @@
+1
+00:00:02,440 --> 00:00:05,070
+That was another long module
+
+2
+00:00:05,070 --> 00:00:06,540
+about components.
+
+3
+00:00:06,540 --> 00:00:08,800
+But we're never done with components.
+
+4
+00:00:08,800 --> 00:00:12,170
+We now know all the core features you need to know
+
+5
+00:00:12,170 --> 00:00:15,360
+and in the next module, we are going to practice
+
+6
+00:00:15,360 --> 00:00:17,700
+all the features we learned in this
+
+7
+00:00:17,700 --> 00:00:21,720
+and the previous modules by building a complete project.
+
+8
+00:00:21,720 --> 00:00:23,450
+A complete app.
+
+9
+00:00:23,450 --> 00:00:25,500
+Now in this module, we had a look at
+
+10
+00:00:25,500 --> 00:00:28,320
+component registration and styles.
+
+11
+00:00:28,320 --> 00:00:30,060
+And you learned that components
+
+12
+00:00:30,060 --> 00:00:34,120
+can be registered globally or locally.
+
+13
+00:00:34,120 --> 00:00:37,010
+Globally with the app component method,
+
+14
+00:00:37,010 --> 00:00:39,560
+locally by importing them and adding them
+
+15
+00:00:39,560 --> 00:00:42,880
+to the components option in the conflict object
+
+16
+00:00:42,880 --> 00:00:45,040
+of a component or app.
+
+17
+00:00:45,040 --> 00:00:49,160
+You should prefer local registration for most components.
+
+18
+00:00:49,160 --> 00:00:51,480
+But if you have components which you are using
+
+19
+00:00:51,480 --> 00:00:54,020
+in a lot of different places off your app,
+
+20
+00:00:54,020 --> 00:00:57,883
+then of course global registration makes a lot of sense.
+
+21
+00:00:59,000 --> 00:01:00,680
+We also had a look at styling
+
+22
+00:01:00,680 --> 00:01:04,580
+and styling can also be global or scoped.
+
+23
+00:01:04,580 --> 00:01:08,280
+Global styles affect all HTML elements,
+
+24
+00:01:08,280 --> 00:01:10,810
+no matter in which component they are.
+
+25
+00:01:10,810 --> 00:01:15,200
+And scoped styles only affect the HTML elements
+
+26
+00:01:15,200 --> 00:01:19,770
+in the template off the component where you are using them.
+
+27
+00:01:19,770 --> 00:01:23,560
+You should prefer scoped styles for most components.
+
+28
+00:01:23,560 --> 00:01:27,250
+But definitely set up global application wide styles,
+
+29
+00:01:27,250 --> 00:01:31,370
+like a font family in a unscoped style tag
+
+30
+00:01:31,370 --> 00:01:33,323
+in your app.Vue file.
+
+31
+00:01:34,900 --> 00:01:39,050
+We also had a look at slots, another key feature.
+
+32
+00:01:39,050 --> 00:01:42,270
+Slots can in the end be used as a placeholder
+
+33
+00:01:42,270 --> 00:01:44,280
+for dynamic HTML code
+
+34
+00:01:44,280 --> 00:01:49,030
+which can then be inserted from outside into a component.
+
+35
+00:01:49,030 --> 00:01:50,930
+You can have single slots.
+
+36
+00:01:50,930 --> 00:01:52,760
+You can have multiple slots
+
+37
+00:01:52,760 --> 00:01:55,210
+where you then also need names.
+
+38
+00:01:55,210 --> 00:01:58,680
+Only one slot may stay unnamed.
+
+39
+00:01:58,680 --> 00:02:02,390
+You can provide default content for slots,
+
+40
+00:02:02,390 --> 00:02:04,470
+which will be used as a fallback
+
+41
+00:02:04,470 --> 00:02:08,449
+if no content is provided for that slot from outside.
+
+42
+00:02:08,449 --> 00:02:10,960
+And we learned about scope slots
+
+43
+00:02:10,960 --> 00:02:13,323
+for some advanced use cases.
+
+44
+00:02:14,680 --> 00:02:17,280
+Slots are another key feature
+
+45
+00:02:17,280 --> 00:02:21,920
+which unlock rapper components like cards or dialogs,
+
+46
+00:02:21,920 --> 00:02:25,503
+and you will see them in action again in the next module.
+
+47
+00:02:26,590 --> 00:02:29,140
+We also have dynamic components.
+
+48
+00:02:29,140 --> 00:02:31,820
+Dynamic components is a feature built in
+
+49
+00:02:31,820 --> 00:02:34,933
+to view unlocked with the built-in component.
+
+50
+00:02:36,110 --> 00:02:38,700
+This can be used to dynamically swap it
+
+51
+00:02:38,700 --> 00:02:41,320
+for different components you defined.
+
+52
+00:02:41,320 --> 00:02:44,910
+And you can also control the caching of that component
+
+53
+00:02:44,910 --> 00:02:47,570
+with the built-in keep alive component
+
+54
+00:02:47,570 --> 00:02:49,730
+as you learned it in this module.
+
+55
+00:02:49,730 --> 00:02:53,470
+We will also use this feature in the next course module.
+
+56
+00:02:53,470 --> 00:02:55,903
+So, in the project we're going to build there.
+
+57
+00:02:57,290 --> 00:03:00,120
+Now last but not least, we have a look at teleport
+
+58
+00:03:00,120 --> 00:03:02,300
+and the official style guide.
+
+59
+00:03:02,300 --> 00:03:06,780
+Teleport is another built-in component which can be used to
+
+60
+00:03:06,780 --> 00:03:09,900
+manipulate the DOM structure and control
+
+61
+00:03:09,900 --> 00:03:12,820
+where something is added to the real DOM,
+
+62
+00:03:12,820 --> 00:03:15,100
+whilst keeping your component hierarchy.
+
+63
+00:03:15,100 --> 00:03:17,603
+So that will not be changed by teleport.
+
+64
+00:03:19,039 --> 00:03:19,872
+And last but not least,
+
+65
+00:03:19,872 --> 00:03:22,360
+I introduced you to the official style guide.
+
+66
+00:03:22,360 --> 00:03:25,030
+And you might want to consider following that
+
+67
+00:03:25,030 --> 00:03:26,810
+or at least have a look at it
+
+68
+00:03:26,810 --> 00:03:29,720
+to keep your code clean and understandable.
+
+69
+00:03:29,720 --> 00:03:31,460
+And that's it for this module.
+
+70
+00:03:31,460 --> 00:03:33,670
+In the next module we're going to practice
+
+71
+00:03:33,670 --> 00:03:36,793
+what we learned here and in the previous modules.
+

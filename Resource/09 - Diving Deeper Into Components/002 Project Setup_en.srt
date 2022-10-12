@@ -1,0 +1,220 @@
+1
+00:00:02,160 --> 00:00:04,700
+I got a another starting project for you,
+
+2
+00:00:04,700 --> 00:00:07,620
+which you'll find attached to this lecture, of course.
+
+3
+00:00:07,620 --> 00:00:09,870
+In there run npm install.
+
+4
+00:00:09,870 --> 00:00:13,130
+Once you downloaded it to install all the dependencies
+
+5
+00:00:13,130 --> 00:00:16,100
+and then with npm run serv like always,
+
+6
+00:00:16,100 --> 00:00:18,400
+you can bring up that development server
+
+7
+00:00:18,400 --> 00:00:20,533
+and see this application on the screen.
+
+8
+00:00:21,730 --> 00:00:23,760
+And here is what you should see on the screen
+
+9
+00:00:23,760 --> 00:00:28,120
+once you load that, it's a very basic dummy application.
+
+10
+00:00:28,120 --> 00:00:32,710
+It has no real purpose and it also has no interactivity.
+
+11
+00:00:32,710 --> 00:00:36,030
+We can't do anything on this page as a user,
+
+12
+00:00:36,030 --> 00:00:39,560
+but it allows me to dive deeper into components
+
+13
+00:00:39,560 --> 00:00:42,390
+and show you some other core features.
+
+14
+00:00:42,390 --> 00:00:45,220
+And we're then going to build a complete application
+
+15
+00:00:45,220 --> 00:00:49,250
+from scratch and a more realistic application, of course,
+
+16
+00:00:49,250 --> 00:00:53,410
+in the next module once we covered those important features,
+
+17
+00:00:53,410 --> 00:00:56,250
+we're going to talk about in this module.
+
+18
+00:00:56,250 --> 00:00:58,140
+So let's dive into those features
+
+19
+00:00:58,140 --> 00:00:59,500
+and let me quickly walk you
+
+20
+00:00:59,500 --> 00:01:01,780
+through this dummy application here,
+
+21
+00:01:01,780 --> 00:01:03,990
+so that we're all on the same page.
+
+22
+00:01:03,990 --> 00:01:07,320
+In main.js I'm importing and registering
+
+23
+00:01:07,320 --> 00:01:10,270
+a couple of components, the components you find here.
+
+24
+00:01:10,270 --> 00:01:13,160
+In App.vue I'm using The-Header-Component,
+
+25
+00:01:13,160 --> 00:01:15,130
+there's Badge-List-Component,
+
+26
+00:01:15,130 --> 00:01:17,590
+and also the User-Info-Component.
+
+27
+00:01:17,590 --> 00:01:21,920
+To user-info, we're passing some data via props.
+
+28
+00:01:21,920 --> 00:01:25,040
+The data here is coming from inside the data object
+
+29
+00:01:25,040 --> 00:01:27,710
+we have in our App.vue files,
+
+30
+00:01:27,710 --> 00:01:31,330
+so in this configuration for our main app.
+
+31
+00:01:31,330 --> 00:01:34,160
+And then in the components, in UserInfo,
+
+32
+00:01:34,160 --> 00:01:35,970
+I'm getting those props
+
+33
+00:01:35,970 --> 00:01:38,580
+and then I'm just outputting them here.
+
+34
+00:01:38,580 --> 00:01:40,840
+I'm using the Base-Badge-Component here
+
+35
+00:01:40,840 --> 00:01:43,900
+and I'm passing more props to that.
+
+36
+00:01:43,900 --> 00:01:47,650
+The Base-Badge-Component also just has some basic markup.
+
+37
+00:01:47,650 --> 00:01:50,580
+It's responsible for displaying these badges here,
+
+38
+00:01:50,580 --> 00:01:53,980
+ADMIN and AUTHOR, which you can see on the screen.
+
+39
+00:01:53,980 --> 00:01:56,120
+And in the Base-Badge-Component,
+
+40
+00:01:56,120 --> 00:01:58,110
+I just got a computed property
+
+41
+00:01:58,110 --> 00:02:01,600
+for deriving this dynamic CSS class object,
+
+42
+00:02:01,600 --> 00:02:05,050
+which is bound to the class attribute here.
+
+43
+00:02:05,050 --> 00:02:06,950
+And I also got some styling.
+
+44
+00:02:06,950 --> 00:02:07,783
+Actually,
+
+45
+00:02:07,783 --> 00:02:10,650
+I got some styling in a couple of those components.
+
+46
+00:02:10,650 --> 00:02:14,450
+The Badge-List-Component just shows all available badges
+
+47
+00:02:14,450 --> 00:02:15,900
+in an onward of list.
+
+48
+00:02:15,900 --> 00:02:18,270
+So here we're using the base-badge again.
+
+49
+00:02:18,270 --> 00:02:21,170
+So we're not just using BaseBadge in the UserInfo,
+
+50
+00:02:21,170 --> 00:02:23,410
+but also in the Badge-List-Component.
+
+51
+00:02:23,410 --> 00:02:26,520
+And The-Header-Component is a very simple component
+
+52
+00:02:26,520 --> 00:02:29,490
+where I just render and style the header,
+
+53
+00:02:29,490 --> 00:02:31,240
+we're seeing on this page.
+
+54
+00:02:31,240 --> 00:02:34,240
+So let's now see what we can learn about components,
+
+55
+00:02:34,240 --> 00:02:36,033
+which we haven't learned already.
+

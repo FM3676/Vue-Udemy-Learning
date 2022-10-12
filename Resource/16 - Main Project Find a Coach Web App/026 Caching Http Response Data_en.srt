@@ -1,0 +1,684 @@
+1
+00:00:02,140 --> 00:00:03,910
+Now, this was a long module
+
+2
+00:00:03,910 --> 00:00:07,060
+and this course's project is pretty much done,
+
+3
+00:00:07,060 --> 00:00:11,320
+but there's one final tweak I wanna do or implement.
+
+4
+00:00:11,320 --> 00:00:14,450
+At the moment in this app, we don't really need Vue X.
+
+5
+00:00:14,450 --> 00:00:16,040
+Whenever we visit a page,
+
+6
+00:00:16,040 --> 00:00:18,573
+we load all the data we need anyways.
+
+7
+00:00:19,490 --> 00:00:22,570
+And especially here on the coaches page,
+
+8
+00:00:22,570 --> 00:00:24,280
+I'm not sure about that.
+
+9
+00:00:24,280 --> 00:00:27,660
+It's not likely that new coaches will be signing up
+
+10
+00:00:27,660 --> 00:00:29,360
+all the time and we therefore
+
+11
+00:00:29,360 --> 00:00:31,460
+always need to load the latest data,
+
+12
+00:00:31,460 --> 00:00:34,010
+whenever we go back to this page.
+
+13
+00:00:34,010 --> 00:00:37,070
+We could in stat cache data locally
+
+14
+00:00:37,070 --> 00:00:41,620
+and only refresh it after let's say a minute or so,
+
+15
+00:00:41,620 --> 00:00:44,630
+or once we manually clicked the refresh button
+
+16
+00:00:45,720 --> 00:00:48,760
+and that's something we can easily implement with Vue X.
+
+17
+00:00:48,760 --> 00:00:52,210
+And then again, all the shows us why we might need
+
+18
+00:00:52,210 --> 00:00:54,220
+locally managed state,
+
+19
+00:00:54,220 --> 00:00:55,790
+which we do with Vue X
+
+20
+00:00:55,790 --> 00:00:59,150
+side by side with service side managed data.
+
+21
+00:00:59,150 --> 00:01:03,070
+Because currently we almost replaced Vue X with Firebase
+
+22
+00:01:03,070 --> 00:01:05,340
+and that's not the idea.
+
+23
+00:01:05,340 --> 00:01:07,300
+So what could we do here to not fetch
+
+24
+00:01:07,300 --> 00:01:09,280
+new coach data all the time.
+
+25
+00:01:09,280 --> 00:01:11,683
+And instead reuse the existing data.
+
+26
+00:01:12,600 --> 00:01:15,600
+In our coaches module in the state,
+
+27
+00:01:15,600 --> 00:01:17,760
+besides managing the coaches,
+
+28
+00:01:17,760 --> 00:01:22,760
+we could add a last fetch key, which initially is null.
+
+29
+00:01:23,810 --> 00:01:27,100
+Now last fetch should hold a timestamp.
+
+30
+00:01:27,100 --> 00:01:29,010
+It should save a timestamp.
+
+31
+00:01:29,010 --> 00:01:31,763
+Whenever we fetched new data.
+
+32
+00:01:32,640 --> 00:01:34,993
+For that, we can add a new mutation,
+
+33
+00:01:36,010 --> 00:01:41,010
+which we name set Fetch Timestamp, for example,
+
+34
+00:01:41,350 --> 00:01:43,140
+where I get access to my state.
+
+35
+00:01:43,140 --> 00:01:45,310
+And where I then say, state last Fetch,
+
+36
+00:01:45,310 --> 00:01:48,270
+which is this new data property we just added
+
+37
+00:01:48,270 --> 00:01:51,500
+equal to new Date.get Time.
+
+38
+00:01:51,500 --> 00:01:55,030
+And this gives us the current time and date
+
+39
+00:01:55,030 --> 00:01:57,410
+as a timestamp, as a big number,
+
+40
+00:01:57,410 --> 00:02:00,150
+basically the time in milliseconds
+
+41
+00:02:00,150 --> 00:02:01,890
+since the beginning of time,
+
+42
+00:02:01,890 --> 00:02:05,293
+which in JavaScript is at the beginning of 1970.
+
+43
+00:02:06,270 --> 00:02:08,820
+So now we store this time snapshot
+
+44
+00:02:08,820 --> 00:02:11,093
+this timestamp in last fetch.
+
+45
+00:02:12,000 --> 00:02:16,130
+Now we can commit this action whenever we fetched data.
+
+46
+00:02:16,130 --> 00:02:18,410
+So in our actions,
+
+47
+00:02:18,410 --> 00:02:20,130
+here in load coaches,
+
+48
+00:02:20,130 --> 00:02:22,240
+that's where we fetched data.
+
+49
+00:02:22,240 --> 00:02:26,450
+There at the end, we can commit more than one mutation
+
+50
+00:02:26,450 --> 00:02:28,630
+and we can also commit
+
+51
+00:02:28,630 --> 00:02:32,460
+our new mutation set, fetch, timestamp,
+
+52
+00:02:32,460 --> 00:02:33,643
+which we just added.
+
+53
+00:02:35,030 --> 00:02:38,170
+And we don't need to provide any payload here
+
+54
+00:02:38,170 --> 00:02:41,920
+because set, fetch, timestamp doesn't need any.
+
+55
+00:02:41,920 --> 00:02:43,930
+So now we store that timestamp
+
+56
+00:02:43,930 --> 00:02:45,890
+when we lost fetched the data.
+
+57
+00:02:45,890 --> 00:02:47,570
+Why am I doing that?
+
+58
+00:02:47,570 --> 00:02:51,140
+Because now we can add a Getter to this coaches module,
+
+59
+00:02:51,140 --> 00:02:54,313
+which we may be name, should Update.
+
+60
+00:02:56,110 --> 00:03:00,720
+And here I in the end, want to get my last fetch timestamp
+
+61
+00:03:00,720 --> 00:03:04,023
+and find out if it is, let's say less than a minute ago.
+
+62
+00:03:05,500 --> 00:03:06,800
+So here we get our state
+
+63
+00:03:08,030 --> 00:03:09,948
+and then we get last fetched by accessing
+
+64
+00:03:09,948 --> 00:03:11,013
+state.lastFetch.
+
+65
+00:03:12,560 --> 00:03:16,730
+And we, first of all, check if last fetch is faulty.
+
+66
+00:03:16,730 --> 00:03:18,920
+For example, at the beginning, it's null.
+
+67
+00:03:18,920 --> 00:03:20,650
+If that's the case I return true
+
+68
+00:03:20,650 --> 00:03:22,370
+because then we should update.
+
+69
+00:03:22,370 --> 00:03:25,213
+If we have no timestamp yet we should update.
+
+70
+00:03:26,640 --> 00:03:29,040
+Else, if we do have a time stamp,
+
+71
+00:03:29,040 --> 00:03:31,690
+I need to find out if it's more than a minute ago,
+
+72
+00:03:31,690 --> 00:03:34,190
+so we can get a current timestamp now
+
+73
+00:03:35,230 --> 00:03:38,440
+by getting you date get time.
+
+74
+00:03:38,440 --> 00:03:41,163
+So that's the timestamp when we use the Getter.
+
+75
+00:03:42,810 --> 00:03:44,760
+And now we can return
+
+76
+00:03:44,760 --> 00:03:47,230
+the result of comparing the current timestamp
+
+77
+00:03:47,230 --> 00:03:49,390
+with the storage timestamp.
+
+78
+00:03:49,390 --> 00:03:54,390
+We simply, deduct last fetch from the current timestamp,
+
+79
+00:03:56,390 --> 00:04:01,390
+divide that by 1000 and check if that's greater than 60.
+
+80
+00:04:02,300 --> 00:04:05,040
+That means that it's more than a minute ago.
+
+81
+00:04:05,040 --> 00:04:08,800
+This will return true if it's more than a minute ago.
+
+82
+00:04:08,800 --> 00:04:12,290
+So we then should update again, it returns false,
+
+83
+00:04:12,290 --> 00:04:13,970
+so we shouldn't update again,
+
+84
+00:04:13,970 --> 00:04:15,613
+if it's less than a minute ago,
+
+85
+00:04:16,870 --> 00:04:18,260
+divided by 1000,
+
+86
+00:04:18,260 --> 00:04:21,012
+because both these numbers are in milliseconds.
+
+87
+00:04:22,160 --> 00:04:23,750
+So now it should update yields true.
+
+88
+00:04:23,750 --> 00:04:27,620
+If we should fetch again and false otherwise.
+
+89
+00:04:27,620 --> 00:04:30,973
+And where exactly do we use should update now?
+
+90
+00:04:32,310 --> 00:04:35,360
+Well, in the actions of the coaches module.
+
+91
+00:04:35,360 --> 00:04:39,320
+Here in load coaches, before we send the request,
+
+92
+00:04:39,320 --> 00:04:42,830
+I wanna check if we actually should fetch coaches.
+
+93
+00:04:42,830 --> 00:04:45,440
+So we can check if context,
+
+94
+00:04:45,440 --> 00:04:46,373
+Getters,
+
+95
+00:04:48,000 --> 00:04:49,420
+should update
+
+96
+00:04:49,420 --> 00:04:51,780
+is true or to be precise,
+
+97
+00:04:51,780 --> 00:04:53,343
+if it's not true.
+
+98
+00:04:54,200 --> 00:04:57,030
+If it's not true, I will just return here.
+
+99
+00:04:57,030 --> 00:04:59,340
+I will not continue with the rest of the code
+
+100
+00:04:59,340 --> 00:05:01,950
+and therefore, we will not send the request.
+
+101
+00:05:01,950 --> 00:05:03,790
+Instead, we'll stick to the data
+
+102
+00:05:03,790 --> 00:05:06,680
+which we currently have in our store.
+
+103
+00:05:06,680 --> 00:05:08,483
+So we'll not fetch again then.
+
+104
+00:05:09,350 --> 00:05:11,350
+If should update is true.
+
+105
+00:05:11,350 --> 00:05:13,350
+This if statement will be skipped
+
+106
+00:05:13,350 --> 00:05:15,283
+and we will fetch data again.
+
+107
+00:05:16,910 --> 00:05:19,790
+By doing that, if I saved it, if I reload,
+
+108
+00:05:19,790 --> 00:05:23,300
+we fetch data, but if I then go to requests and come back,
+
+109
+00:05:23,300 --> 00:05:27,500
+you see no loading spinner, because now we don't load again.
+
+110
+00:05:27,500 --> 00:05:29,900
+And after a minute you would see it again.
+
+111
+00:05:29,900 --> 00:05:31,210
+Then it would fetch it again
+
+112
+00:05:31,210 --> 00:05:32,923
+and store it for another minute.
+
+113
+00:05:34,330 --> 00:05:37,260
+But refreshing with the refresh button should work.
+
+114
+00:05:37,260 --> 00:05:39,630
+We should always be able to do that.
+
+115
+00:05:39,630 --> 00:05:41,590
+So in order to implement that,
+
+116
+00:05:41,590 --> 00:05:44,570
+I will actually change this action a little bit
+
+117
+00:05:44,570 --> 00:05:47,370
+and expect a payload,
+
+118
+00:05:47,370 --> 00:05:49,430
+which holds a property that tells me
+
+119
+00:05:49,430 --> 00:05:52,030
+that I absolutely do have to fetch again.
+
+120
+00:05:52,030 --> 00:05:55,320
+So which overrides the scatter basically.
+
+121
+00:05:55,320 --> 00:05:58,710
+Here, we can simply add an additional check in this
+
+122
+00:05:58,710 --> 00:06:01,070
+if condition here, and check if
+
+123
+00:06:01,070 --> 00:06:06,070
+payload let's say has a false refresh property,
+
+124
+00:06:07,460 --> 00:06:09,260
+and if it doesn't have that,
+
+125
+00:06:09,260 --> 00:06:13,180
+if that's false and we should not update,
+
+126
+00:06:13,180 --> 00:06:15,080
+then we skip this.
+
+127
+00:06:15,080 --> 00:06:19,310
+Otherwise, if either does is true or this true,
+
+128
+00:06:19,310 --> 00:06:22,343
+this if check will be skipped and we will fetch again.
+
+129
+00:06:23,660 --> 00:06:28,370
+So now we will be able to set a false refresh payload
+
+130
+00:06:28,370 --> 00:06:29,420
+to this action.
+
+131
+00:06:29,420 --> 00:06:32,270
+And if it's true, we will fetch again,
+
+132
+00:06:32,270 --> 00:06:35,040
+no matter if it's more or less than a minute ago,
+
+133
+00:06:35,040 --> 00:06:36,283
+since we last did it.
+
+134
+00:06:37,970 --> 00:06:40,340
+Now we just need to make sure this payload is passed
+
+135
+00:06:40,340 --> 00:06:41,660
+into this action.
+
+136
+00:06:41,660 --> 00:06:44,070
+And for that, we can go to coaches list,
+
+137
+00:06:44,070 --> 00:06:46,550
+which is where this action is dispatched.
+
+138
+00:06:46,550 --> 00:06:49,840
+And here in load coaches,
+
+139
+00:06:49,840 --> 00:06:52,900
+we now wanna pass this payload.
+
+140
+00:06:52,900 --> 00:06:56,103
+The false refresh key.
+
+141
+00:06:57,600 --> 00:06:58,960
+And this should be false,
+
+142
+00:06:58,960 --> 00:07:02,000
+if load catches is called from inside
+
+143
+00:07:02,000 --> 00:07:03,730
+there created lifecycle hook,
+
+144
+00:07:03,730 --> 00:07:06,690
+because there I wanna use the caching,
+
+145
+00:07:06,690 --> 00:07:08,990
+but false refresh should be true,
+
+146
+00:07:08,990 --> 00:07:10,870
+if this is called through the button
+
+147
+00:07:10,870 --> 00:07:13,803
+Through this refresh button in the template.
+
+148
+00:07:14,960 --> 00:07:17,380
+So therefore we simply need to make this load
+
+149
+00:07:18,420 --> 00:07:21,360
+coaches method a bit more flexible.
+
+150
+00:07:21,360 --> 00:07:24,000
+We can add a refresh parameter
+
+151
+00:07:24,000 --> 00:07:26,793
+and set this to false as a default value.
+
+152
+00:07:27,760 --> 00:07:31,310
+This is supported modern JavaScript syntax
+
+153
+00:07:31,310 --> 00:07:34,680
+and provide, refresh this parameter
+
+154
+00:07:34,680 --> 00:07:37,593
+as a value to false refresh in our payload.
+
+155
+00:07:38,730 --> 00:07:43,290
+And that way, if we call load coaches without an argument,
+
+156
+00:07:43,290 --> 00:07:46,430
+the default value of false will be used,
+
+157
+00:07:46,430 --> 00:07:49,630
+but we can ignore all the call load coaches
+
+158
+00:07:49,630 --> 00:07:51,070
+when we click the button
+
+159
+00:07:51,070 --> 00:07:55,453
+manually and pass in true, which false is a refresh.
+
+160
+00:07:57,470 --> 00:08:01,090
+So if we do that and save that and reload,
+
+161
+00:08:01,090 --> 00:08:04,320
+it fetches this initially because the time has passed,
+
+162
+00:08:04,320 --> 00:08:05,510
+but not thereafter.
+
+163
+00:08:05,510 --> 00:08:08,030
+But if I click refresh, we force that
+
+164
+00:08:08,030 --> 00:08:09,940
+and we do refresh everything
+
+165
+00:08:09,940 --> 00:08:12,090
+and load our data again.
+
+166
+00:08:12,090 --> 00:08:15,700
+And that's just a tiny tweak and optional addition,
+
+167
+00:08:15,700 --> 00:08:17,500
+but I think it makes sense here.
+
+168
+00:08:17,500 --> 00:08:19,700
+And it hopefully shows you what you can do with
+
+169
+00:08:19,700 --> 00:08:22,970
+Vue, a backend and Vue X.
+
+170
+00:08:22,970 --> 00:08:25,290
+And of course, that's just the tip of the iceberg.
+
+171
+00:08:25,290 --> 00:08:26,840
+You can do much more than that.
+

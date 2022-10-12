@@ -1,0 +1,304 @@
+1
+00:00:02,240 --> 00:00:04,830
+I want to come back to this navigation here.
+
+2
+00:00:04,830 --> 00:00:07,440
+We're currently using router link to have a way of
+
+3
+00:00:07,440 --> 00:00:11,253
+getting to different parts of our page here from inside
+
+4
+00:00:11,253 --> 00:00:12,700
+our app.
+
+5
+00:00:12,700 --> 00:00:15,860
+So to have different links that lead to different pages.
+
+6
+00:00:15,860 --> 00:00:18,620
+This is a very common way of navigating around.
+
+7
+00:00:18,620 --> 00:00:21,290
+Sometimes, though, you also need to navigate
+
+8
+00:00:21,290 --> 00:00:22,810
+programmatically.
+
+9
+00:00:22,810 --> 00:00:26,390
+Let's say for whatever reason on the user's list
+
+10
+00:00:26,390 --> 00:00:29,870
+page here, above this under list you had
+
+11
+00:00:29,870 --> 00:00:34,010
+a button, where I say confirm.
+
+12
+00:00:34,010 --> 00:00:35,713
+So this is a button, not a link.
+
+13
+00:00:37,760 --> 00:00:42,240
+We see it here, now it's obviously totally unstalled
+
+14
+00:00:42,240 --> 00:00:45,130
+but it's good enough for what I want to show you.
+
+15
+00:00:45,130 --> 00:00:48,020
+Let's say upon clicking this button
+
+16
+00:00:48,020 --> 00:00:49,810
+you want to run some code.
+
+17
+00:00:49,810 --> 00:00:54,350
+So we have a method here in our methods option,
+
+18
+00:00:54,350 --> 00:00:57,490
+confirm input, whatever.
+
+19
+00:00:57,490 --> 00:01:01,520
+Here you do something you store some data in
+
+20
+00:01:01,520 --> 00:01:04,870
+a variable, you send some data to a server.
+
+21
+00:01:04,870 --> 00:01:07,320
+You're doing something important.
+
+22
+00:01:07,320 --> 00:01:11,330
+Once you're done with that, you want to change the page.
+
+23
+00:01:11,330 --> 00:01:15,150
+This is actually a common scenario that you want to navigate
+
+24
+00:01:15,150 --> 00:01:18,100
+away once some task finished.
+
+25
+00:01:18,100 --> 00:01:21,810
+Here it's just a dummy example but in bigger apps
+
+26
+00:01:21,810 --> 00:01:25,930
+you could have real use cases, where a form is submitted
+
+27
+00:01:25,930 --> 00:01:29,220
+and once it is submitted you want to navigate the user
+
+28
+00:01:29,220 --> 00:01:30,410
+away from there.
+
+29
+00:01:30,410 --> 00:01:33,190
+It's also something we'll see in action later
+
+30
+00:01:33,190 --> 00:01:35,540
+in the main course project.
+
+31
+00:01:35,540 --> 00:01:37,690
+So here we don't want to use a link because
+
+32
+00:01:37,690 --> 00:01:40,240
+we don't just want to navigate away we
+
+33
+00:01:40,240 --> 00:01:42,160
+also want to do something else.
+
+34
+00:01:42,160 --> 00:01:46,150
+Hence we have a button, which triggers our confirm input
+
+35
+00:01:46,150 --> 00:01:47,860
+method here up on a click.
+
+36
+00:01:47,860 --> 00:01:51,539
+There we then do our important stuff but then at the end
+
+37
+00:01:51,539 --> 00:01:53,533
+we want to navigate away.
+
+38
+00:01:54,370 --> 00:01:57,660
+So we want to navigate away programmatically.
+
+39
+00:01:57,660 --> 00:02:00,620
+We don't have a link on the page which the user clicks
+
+40
+00:02:00,620 --> 00:02:02,640
+but we want to trigger the navigation
+
+41
+00:02:02,640 --> 00:02:05,970
+from inside the JavaScript code from inside
+
+42
+00:02:05,970 --> 00:02:08,463
+our component config object.
+
+43
+00:02:09,330 --> 00:02:10,863
+How can we do this?
+
+44
+00:02:12,180 --> 00:02:16,540
+Since we're using the router here on our view app
+
+45
+00:02:16,540 --> 00:02:20,250
+we have a special property available in our
+
+46
+00:02:20,250 --> 00:02:22,240
+component config objects.
+
+47
+00:02:22,240 --> 00:02:24,980
+We can access it through the this keyword, and
+
+48
+00:02:24,980 --> 00:02:29,763
+there we have dollar sign router available.
+
+49
+00:02:30,980 --> 00:02:33,070
+Dollar sign router is available
+
+50
+00:02:33,070 --> 00:02:36,360
+because we added the router package.
+
+51
+00:02:36,360 --> 00:02:40,963
+On this router we now got various methods, which we can use.
+
+52
+00:02:42,500 --> 00:02:45,870
+For a navigating programmatically we, for example,
+
+53
+00:02:45,870 --> 00:02:48,550
+got the push method to push a
+
+54
+00:02:48,550 --> 00:02:52,300
+new route onto this routing history.
+
+55
+00:02:52,300 --> 00:02:55,940
+So simply to add a new route to this routing memory
+
+56
+00:02:55,940 --> 00:02:57,233
+the browser keeps.
+
+57
+00:02:58,410 --> 00:03:01,340
+Push in the simplest form
+
+58
+00:03:01,340 --> 00:03:04,930
+takes a string, which again, has just
+
+59
+00:03:04,930 --> 00:03:07,100
+the path in it to which you want to go.
+
+60
+00:03:07,100 --> 00:03:09,453
+So slash teams for example.
+
+61
+00:03:10,810 --> 00:03:15,810
+If I do that and save this and reload I can click confirm
+
+62
+00:03:16,130 --> 00:03:20,980
+and you see we go to slash teams then because of push.
+
+63
+00:03:20,980 --> 00:03:24,030
+Now there also are other methods on the router,
+
+64
+00:03:24,030 --> 00:03:25,130
+which you can access.
+
+65
+00:03:25,130 --> 00:03:27,210
+For example, you got back
+
+66
+00:03:28,342 --> 00:03:30,470
+or forward to basically
+
+67
+00:03:30,470 --> 00:03:33,600
+emulate the back and forward buttons in the browser.
+
+68
+00:03:33,600 --> 00:03:35,450
+You got more methods, which you of course,
+
+69
+00:03:35,450 --> 00:03:37,890
+can find in the official docs.
+
+70
+00:03:37,890 --> 00:03:42,010
+But here we need push for programmatic navigation.
+
+71
+00:03:42,010 --> 00:03:45,800
+So with that if you click this confirm button
+
+72
+00:03:45,800 --> 00:03:49,160
+we're taken to the Teams page programmatically
+
+73
+00:03:49,160 --> 00:03:51,840
+For any cases, where you have some code,
+
+74
+00:03:51,840 --> 00:03:54,648
+that should execute before you want to navigate;
+
+75
+00:03:54,648 --> 00:03:57,040
+programmatic navigation with the
+
+76
+00:03:57,040 --> 00:03:59,433
+dollar sign router is your friend.
+

@@ -1,0 +1,208 @@
+1
+00:00:02,180 --> 00:00:05,750
+Dynamic components are definitely an interesting feature
+
+2
+00:00:05,750 --> 00:00:08,860
+which can help you add certain features to your apps
+
+3
+00:00:08,860 --> 00:00:10,650
+in an easier way.
+
+4
+00:00:10,650 --> 00:00:13,320
+But here is an additional thing you should know
+
+5
+00:00:13,320 --> 00:00:15,580
+about dynamic components.
+
+6
+00:00:15,580 --> 00:00:19,423
+Let's say in Manage Goals, we had an input field.
+
+7
+00:00:20,530 --> 00:00:25,150
+Let's actually say we have a rapping div here, like this.
+
+8
+00:00:25,150 --> 00:00:28,800
+And then in here, we also have a input field
+
+9
+00:00:28,800 --> 00:00:32,470
+where the user is able to enter some goal name.
+
+10
+00:00:32,470 --> 00:00:34,570
+Now, this is just a dummy input field,
+
+11
+00:00:34,570 --> 00:00:37,120
+we're not doing anything with its value here.
+
+12
+00:00:37,120 --> 00:00:40,220
+But it would be realistic that we have one component
+
+13
+00:00:40,220 --> 00:00:41,810
+or multiple components
+
+14
+00:00:41,810 --> 00:00:44,220
+where the user is able to enter something
+
+15
+00:00:44,220 --> 00:00:47,040
+and that we then load this component dynamically
+
+16
+00:00:47,040 --> 00:00:48,730
+with component.
+
+17
+00:00:48,730 --> 00:00:51,660
+Now here's the problem we'll face with that.
+
+18
+00:00:51,660 --> 00:00:54,177
+In Manage Goals we have the input field,
+
+19
+00:00:54,177 --> 00:00:58,540
+but if I enter a goal here and then before I save it,
+
+20
+00:00:58,540 --> 00:01:01,800
+I decide to go back to Active Goals
+
+21
+00:01:01,800 --> 00:01:04,150
+and then I come back to Manage Goals.
+
+22
+00:01:04,150 --> 00:01:06,980
+You see what I entered is lost.
+
+23
+00:01:06,980 --> 00:01:08,210
+And the reason for that is
+
+24
+00:01:08,210 --> 00:01:11,020
+that when we switch our components,
+
+25
+00:01:11,020 --> 00:01:13,460
+the old component is really destroyed
+
+26
+00:01:13,460 --> 00:01:15,650
+and removed from the DOM.
+
+27
+00:01:15,650 --> 00:01:16,630
+And that of course means
+
+28
+00:01:16,630 --> 00:01:19,640
+that anything we entered here into this input field
+
+29
+00:01:19,640 --> 00:01:21,660
+is lost if we switch away
+
+30
+00:01:21,660 --> 00:01:25,040
+because the input field is removed from the DOM.
+
+31
+00:01:25,040 --> 00:01:27,210
+And when we go back to Manage Goals,
+
+32
+00:01:27,210 --> 00:01:29,683
+a brand new input field is added again.
+
+33
+00:01:30,920 --> 00:01:33,390
+Now this is maybe not what you want
+
+34
+00:01:33,390 --> 00:01:35,600
+and Vue has a solution for that as well.
+
+35
+00:01:35,600 --> 00:01:40,600
+It has another built in component, the keep-alive component.
+
+36
+00:01:40,910 --> 00:01:45,143
+And you can wrap that around your dynamic component.
+
+37
+00:01:46,510 --> 00:01:50,590
+So keep-alive works together with this component component,
+
+38
+00:01:50,590 --> 00:01:53,350
+with this dynamic component concept.
+
+39
+00:01:53,350 --> 00:01:55,750
+And it does what the name implies.
+
+40
+00:01:55,750 --> 00:01:59,000
+Keep-alive allows you to tell Vue
+
+41
+00:01:59,000 --> 00:02:04,000
+that components should not be removed and deleted entirely
+
+42
+00:02:04,740 --> 00:02:08,600
+but that instead their state should be saved.
+
+43
+00:02:08,600 --> 00:02:12,060
+That they should be cached behind the scenes.
+
+44
+00:02:12,060 --> 00:02:17,060
+So with keep-alive added here, if we go back and reload,
+
+45
+00:02:17,220 --> 00:02:22,000
+if I enter some goal here and I go back to Active Goals
+
+46
+00:02:22,000 --> 00:02:26,580
+and then back to Manage Goals, this text is still here
+
+47
+00:02:26,580 --> 00:02:29,950
+because behind the scenes, it was not entirely deleted
+
+48
+00:02:29,950 --> 00:02:32,630
+but Vue kept all the information around
+
+49
+00:02:32,630 --> 00:02:36,160
+ensuring that we're not losing this content here.
+
+50
+00:02:36,160 --> 00:02:38,180
+And it depends on what you're building,
+
+51
+00:02:38,180 --> 00:02:40,410
+whether you want keep-alive or not.
+
+52
+00:02:40,410 --> 00:02:42,773
+But it's good to know that it exists.
+

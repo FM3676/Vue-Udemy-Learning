@@ -1,0 +1,508 @@
+1
+00:00:02,180 --> 00:00:03,580
+So let's work on the feedback,
+
+2
+00:00:03,580 --> 00:00:05,330
+we're providing to the user
+
+3
+00:00:05,330 --> 00:00:06,980
+both in the error case
+
+4
+00:00:06,980 --> 00:00:08,660
+as well as whilst we're
+
+5
+00:00:08,660 --> 00:00:10,723
+waiting for the request to be sent.
+
+6
+00:00:11,710 --> 00:00:13,160
+Now in our action,
+
+7
+00:00:13,160 --> 00:00:14,160
+the signup action,
+
+8
+00:00:14,160 --> 00:00:15,420
+I'm using async await,
+
+9
+00:00:15,420 --> 00:00:17,230
+therefore as you learnt already,
+
+10
+00:00:17,230 --> 00:00:19,920
+this always returns a promise.
+
+11
+00:00:19,920 --> 00:00:22,300
+Sometimes it returns a promise that fails,
+
+12
+00:00:22,300 --> 00:00:25,003
+for example, if we throw this manual error.
+
+13
+00:00:26,410 --> 00:00:29,120
+So with that we can go back to UserAuth
+
+14
+00:00:29,120 --> 00:00:31,510
+and there add two new keys
+
+15
+00:00:31,510 --> 00:00:33,040
+to the data we're managing here.
+
+16
+00:00:33,040 --> 00:00:36,380
+isLoading, which is false initially
+
+17
+00:00:36,380 --> 00:00:38,800
+and error which is null initially
+
+18
+00:00:40,610 --> 00:00:42,323
+and in submit form,
+
+19
+00:00:43,310 --> 00:00:45,830
+if we make it past the validation step,
+
+20
+00:00:45,830 --> 00:00:48,010
+I'll set this isLoading to true
+
+21
+00:00:48,920 --> 00:00:51,740
+and then once we're done dispatching here,
+
+22
+00:00:51,740 --> 00:00:55,260
+I'll set this isLoading to false.
+
+23
+00:00:55,260 --> 00:00:57,270
+Now for that we need to wait for this action
+
+24
+00:00:57,270 --> 00:00:58,520
+to finish though,
+
+25
+00:00:58,520 --> 00:01:01,590
+otherwise we set this instantly to false,
+
+26
+00:01:01,590 --> 00:01:03,040
+after this has been dispatched
+
+27
+00:01:03,040 --> 00:01:04,879
+without waiting for the response
+
+28
+00:01:04,879 --> 00:01:09,210
+and therefore I'll this into an async function as well,
+
+29
+00:01:09,210 --> 00:01:11,439
+async method submitForm
+
+30
+00:01:11,439 --> 00:01:14,893
+and we can then await this dispatching action.
+
+31
+00:01:16,920 --> 00:01:20,050
+In addition, we can wrap this all
+
+32
+00:01:20,050 --> 00:01:22,230
+with try catch,
+
+33
+00:01:22,230 --> 00:01:23,850
+this if block here,
+
+34
+00:01:23,850 --> 00:01:25,640
+so that we catch any error
+
+35
+00:01:25,640 --> 00:01:26,800
+that might be thrown
+
+36
+00:01:27,700 --> 00:01:31,650
+and we can then set this error equal to error.message
+
+37
+00:01:31,650 --> 00:01:34,820
+or to a fallback message of
+
+38
+00:01:34,820 --> 00:01:38,580
+Fail to authenticate, try later,
+
+39
+00:01:38,580 --> 00:01:39,530
+anything like that.
+
+40
+00:01:42,210 --> 00:01:43,070
+You can of course
+
+41
+00:01:43,070 --> 00:01:46,310
+also fine tune the error message you're throwing here
+
+42
+00:01:46,310 --> 00:01:47,573
+inside of your action.
+
+43
+00:01:49,270 --> 00:01:52,620
+Check your login data, for example
+
+44
+00:01:52,620 --> 00:01:54,220
+but you can also be more specific
+
+45
+00:01:54,220 --> 00:01:56,800
+for example by drilling into that response object
+
+46
+00:01:56,800 --> 00:01:58,760
+you get back from Firebase.
+
+47
+00:01:58,760 --> 00:02:00,410
+Here you can really fine tune this
+
+48
+00:02:00,410 --> 00:02:01,940
+to your requirements
+
+49
+00:02:03,150 --> 00:02:05,430
+but with that back and user off,
+
+50
+00:02:05,430 --> 00:02:06,710
+we try catch this,
+
+51
+00:02:06,710 --> 00:02:07,960
+we set the error.
+
+52
+00:02:07,960 --> 00:02:10,590
+Now we just need to reflect the loading state
+
+53
+00:02:10,590 --> 00:02:13,990
+and the error on the user interface
+
+54
+00:02:13,990 --> 00:02:18,613
+and I will do that with help of my base dialog.
+
+55
+00:02:19,900 --> 00:02:21,410
+I'll add a base dialog here
+
+56
+00:02:21,410 --> 00:02:23,230
+and wrap this all into a div
+
+57
+00:02:23,230 --> 00:02:26,610
+so that we don't have multiple root level components
+
+58
+00:02:26,610 --> 00:02:27,640
+because as you learnt,
+
+59
+00:02:27,640 --> 00:02:32,640
+that's not something the transition component wants
+
+60
+00:02:33,150 --> 00:02:35,370
+but then I have a base dialog here,
+
+61
+00:02:35,370 --> 00:02:38,450
+where I actually wanna show a loading spinner
+
+62
+00:02:38,450 --> 00:02:40,750
+and therefore I'll use this fixed prop,
+
+63
+00:02:40,750 --> 00:02:44,350
+which we also have on the base dialog,
+
+64
+00:02:44,350 --> 00:02:45,330
+you might remember
+
+65
+00:02:45,330 --> 00:02:46,720
+that I talked about that
+
+66
+00:02:46,720 --> 00:02:49,660
+when I added the base dialog component.
+
+67
+00:02:49,660 --> 00:02:53,680
+It ensures that the dialog can't be dismissed
+
+68
+00:02:53,680 --> 00:02:56,520
+and I'll bind show to isLoading,
+
+69
+00:02:56,520 --> 00:02:57,920
+as long as we're loading
+
+70
+00:02:57,920 --> 00:02:59,690
+this dialog will be shown
+
+71
+00:02:59,690 --> 00:03:01,890
+and inside of that dialog,
+
+72
+00:03:01,890 --> 00:03:03,410
+I then have a paragraph,
+
+73
+00:03:03,410 --> 00:03:08,230
+where I say authenticating
+
+74
+00:03:10,610 --> 00:03:13,470
+and below that I show my base spinner
+
+75
+00:03:15,090 --> 00:03:17,130
+and I'll add another base dialogue,
+
+76
+00:03:17,130 --> 00:03:19,193
+which I wanna show in the error case.
+
+77
+00:03:20,810 --> 00:03:22,430
+By the way, on this other dialog,
+
+78
+00:03:22,430 --> 00:03:25,580
+I'll first of all also set a title,
+
+79
+00:03:25,580 --> 00:03:27,653
+where I also say authenticating,
+
+80
+00:03:29,230 --> 00:03:31,910
+I guess we can then get rid of the paragraph though.
+
+81
+00:03:31,910 --> 00:03:33,020
+So let's get rid of that,
+
+82
+00:03:33,020 --> 00:03:33,980
+just show the spinner
+
+83
+00:03:33,980 --> 00:03:35,730
+and say Authenticating in the title
+
+84
+00:03:36,670 --> 00:03:39,950
+but now back to the other dialog here.
+
+85
+00:03:39,950 --> 00:03:43,990
+I wanna show this if we do have an error,
+
+86
+00:03:43,990 --> 00:03:46,080
+so with this double exclamation mark trick,
+
+87
+00:03:46,080 --> 00:03:49,560
+I ensure that this true or false value
+
+88
+00:03:49,560 --> 00:03:51,343
+is converted to a Boolean.
+
+89
+00:03:52,720 --> 00:03:54,280
+Can set the title here to
+
+90
+00:03:54,280 --> 00:03:56,090
+An error occurred
+
+91
+00:03:59,270 --> 00:04:01,490
+and then inside of that dialogue,
+
+92
+00:04:01,490 --> 00:04:02,880
+I add a paragraph
+
+93
+00:04:02,880 --> 00:04:06,133
+where I output my error message like this.
+
+94
+00:04:07,970 --> 00:04:08,803
+With that added,
+
+95
+00:04:08,803 --> 00:04:10,400
+if we save it all
+
+96
+00:04:10,400 --> 00:04:11,610
+and go back,
+
+97
+00:04:11,610 --> 00:04:13,480
+go to sign up mode
+
+98
+00:04:13,480 --> 00:04:16,950
+and I entered the same email address as before
+
+99
+00:04:18,310 --> 00:04:19,142
+and I click Sign up,
+
+100
+00:04:19,142 --> 00:04:19,976
+we see that spinner
+
+101
+00:04:19,976 --> 00:04:22,142
+and then that error dialog.
+
+102
+00:04:23,560 --> 00:04:26,330
+Dismissing doesn't work at the moment as I can see,
+
+103
+00:04:26,330 --> 00:04:28,610
+because obviously we should listen
+
+104
+00:04:28,610 --> 00:04:32,650
+to the closed event on the error dialog,
+
+105
+00:04:32,650 --> 00:04:33,483
+not on the other one,
+
+106
+00:04:33,483 --> 00:04:36,860
+because the loading dialog is dismissed automatically
+
+107
+00:04:36,860 --> 00:04:39,660
+but the error dialog should be dismissed by us
+
+108
+00:04:39,660 --> 00:04:41,690
+with a handle error method,
+
+109
+00:04:41,690 --> 00:04:43,430
+we should add,
+
+110
+00:04:43,430 --> 00:04:46,990
+in which we simply reset our error data property.
+
+111
+00:04:46,990 --> 00:04:48,800
+So here I'll add handleError
+
+112
+00:04:48,800 --> 00:04:50,440
+in the methods of this component
+
+113
+00:04:50,440 --> 00:04:53,090
+and set this error back to null.
+
+114
+00:04:53,090 --> 00:04:54,840
+With that it's a false value
+
+115
+00:04:54,840 --> 00:04:58,073
+and then this will no longer show the dialog.
+
+116
+00:04:58,930 --> 00:05:00,120
+So with that,
+
+117
+00:05:00,120 --> 00:05:01,610
+back in the app,
+
+118
+00:05:01,610 --> 00:05:05,433
+if I again try this with an email I already used, we fail,
+
+119
+00:05:07,690 --> 00:05:09,693
+if I use a valid email,
+
+120
+00:05:10,780 --> 00:05:12,963
+for signing up we succeed.
+
+121
+00:05:13,810 --> 00:05:14,930
+So that works now,
+
+122
+00:05:14,930 --> 00:05:16,800
+we got that visual feedback.
+
+123
+00:05:16,800 --> 00:05:19,700
+We also might want to redirect the user thereafter
+
+124
+00:05:19,700 --> 00:05:22,580
+but that's also something I'll focus on later
+
+125
+00:05:22,580 --> 00:05:24,420
+because what I wanna do at the moment,
+
+126
+00:05:24,420 --> 00:05:26,730
+is also make login work
+
+127
+00:05:26,730 --> 00:05:28,853
+and then do something with the token.
+

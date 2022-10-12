@@ -1,0 +1,832 @@
+1
+00:00:02,140 --> 00:00:04,860
+So now added navigation in different forms,
+
+2
+00:00:04,860 --> 00:00:06,890
+it's time to explore more things
+
+3
+00:00:06,890 --> 00:00:10,200
+we can configure here on our route configurations.
+
+4
+00:00:10,200 --> 00:00:12,700
+And there's one especially important feature,
+
+5
+00:00:12,700 --> 00:00:14,510
+which you need in many apps,
+
+6
+00:00:14,510 --> 00:00:16,400
+which you're going to build.
+
+7
+00:00:16,400 --> 00:00:19,600
+We get this team members component here, right?
+
+8
+00:00:19,600 --> 00:00:22,520
+And in this team members component,
+
+9
+00:00:22,520 --> 00:00:24,490
+I wanna render the different members
+
+10
+00:00:24,490 --> 00:00:27,020
+of a team we selected
+
+11
+00:00:27,020 --> 00:00:29,310
+now at the moment, this is kind of a dummy component,
+
+12
+00:00:29,310 --> 00:00:31,040
+which we're not even using.
+
+13
+00:00:31,040 --> 00:00:33,310
+It has some built in dummy data
+
+14
+00:00:33,310 --> 00:00:36,240
+and we're not rendering this component anywhere.
+
+15
+00:00:36,240 --> 00:00:37,700
+Now a common scenario,
+
+16
+00:00:37,700 --> 00:00:39,830
+which you have in many apps is
+
+17
+00:00:39,830 --> 00:00:42,120
+that you might have another route here
+
+18
+00:00:43,430 --> 00:00:46,300
+for a path of /teams.
+
+19
+00:00:46,300 --> 00:00:48,450
+But now not just that path,
+
+20
+00:00:48,450 --> 00:00:50,110
+we already have a route for that
+
+21
+00:00:50,110 --> 00:00:52,420
+and you should only have one route per path
+
+22
+00:00:52,420 --> 00:00:55,810
+and instead we use /teams/
+
+23
+00:00:55,810 --> 00:00:59,143
+and now we want to have some dynamic ID here.
+
+24
+00:01:00,500 --> 00:01:05,330
+So did we support pops like teams T1,
+
+25
+00:01:05,330 --> 00:01:08,520
+if T1 would be a team ID or a T2
+
+26
+00:01:08,520 --> 00:01:12,700
+and we would load the same component with different data
+
+27
+00:01:12,700 --> 00:01:14,830
+for these different teams.
+
+28
+00:01:14,830 --> 00:01:19,830
+So we need a dynamic route with a so-called route parameter,
+
+29
+00:01:20,700 --> 00:01:23,680
+and that's a feature supported by the view router.
+
+30
+00:01:23,680 --> 00:01:28,470
+You can define a dynamic path segment by adding a colon,
+
+31
+00:01:28,470 --> 00:01:30,230
+and then any name of your choice.
+
+32
+00:01:30,230 --> 00:01:32,690
+For example, team ID.
+
+33
+00:01:32,690 --> 00:01:35,770
+Now that means that this route will become active
+
+34
+00:01:35,770 --> 00:01:40,770
+if the user enters /teams and then anything thereafter,
+
+35
+00:01:41,490 --> 00:01:44,060
+therefore the order matters by the way,
+
+36
+00:01:44,060 --> 00:01:48,930
+if you had another route here /teams/new,
+
+37
+00:01:48,930 --> 00:01:52,700
+so not a dynamic segment, but simply the text new,
+
+38
+00:01:52,700 --> 00:01:56,760
+you should put this first because otherwise this path here
+
+39
+00:01:56,760 --> 00:01:59,130
+this route would match this route as well,
+
+40
+00:01:59,130 --> 00:02:02,740
+because new would be interpreted as a team ID.
+
+41
+00:02:02,740 --> 00:02:04,560
+Now we don't need the new route here.
+
+42
+00:02:04,560 --> 00:02:07,030
+I just wanted to make you aware of this and make
+
+43
+00:02:07,030 --> 00:02:10,139
+you aware of how these different routes will be parsed
+
+44
+00:02:10,139 --> 00:02:12,030
+and prioritized.
+
+45
+00:02:12,030 --> 00:02:13,690
+Here we don't need this new route though,
+
+46
+00:02:13,690 --> 00:02:16,850
+but we want to set up this dynamic route here
+
+47
+00:02:16,850 --> 00:02:19,600
+with the dynamic route parameter.
+
+48
+00:02:19,600 --> 00:02:22,970
+So here I wanna load a component and the component
+
+49
+00:02:22,970 --> 00:02:25,090
+that should be loaded is a component
+
+50
+00:02:25,090 --> 00:02:29,360
+we need to import the team members component
+
+51
+00:02:29,360 --> 00:02:34,360
+from /components/teams/teamMembers.Vue
+
+52
+00:02:36,310 --> 00:02:39,563
+that's the component that should be loaded here.
+
+53
+00:02:41,580 --> 00:02:44,580
+And with that, if we now save this,
+
+54
+00:02:44,580 --> 00:02:49,580
+we can enter teams/T1 and reload this component
+
+55
+00:02:49,950 --> 00:02:52,630
+the same for anything here.
+
+56
+00:02:52,630 --> 00:02:53,990
+It's always the same component,
+
+57
+00:02:53,990 --> 00:02:58,310
+because anything after teams/ will be interpreted
+
+58
+00:02:58,310 --> 00:03:01,373
+as a value for this dynamic segment.
+
+59
+00:03:02,350 --> 00:03:03,183
+Now at the moment,
+
+60
+00:03:03,183 --> 00:03:06,230
+it's always the same component with the same dummy data,
+
+61
+00:03:06,230 --> 00:03:10,060
+but now we can change this because we will get access
+
+62
+00:03:10,060 --> 00:03:11,890
+to this concrete value,
+
+63
+00:03:11,890 --> 00:03:14,890
+which is used for this route parameter
+
+64
+00:03:14,890 --> 00:03:16,500
+for displace holder here.
+
+65
+00:03:16,500 --> 00:03:18,850
+We can get access for the concrete value
+
+66
+00:03:18,850 --> 00:03:22,180
+the user entered inside off the component
+
+67
+00:03:22,180 --> 00:03:23,380
+that is being loaded.
+
+68
+00:03:23,380 --> 00:03:25,593
+So inside of team members,
+
+69
+00:03:26,600 --> 00:03:30,170
+I don't want to use my dummy team data here.
+
+70
+00:03:30,170 --> 00:03:33,160
+Instead, we do have dummy team data
+
+71
+00:03:33,160 --> 00:03:35,930
+for all teams to find an app view.
+
+72
+00:03:35,930 --> 00:03:40,170
+Here we got teams and we got users.
+
+73
+00:03:40,170 --> 00:03:43,570
+And for every team we have a list of members.
+
+74
+00:03:43,570 --> 00:03:45,570
+Now, my idea is simple.
+
+75
+00:03:45,570 --> 00:03:49,680
+When one of these free supported team Ids
+
+76
+00:03:49,680 --> 00:03:51,350
+is being entered here
+
+77
+00:03:52,500 --> 00:03:57,380
+in the URL after teams as a value for this route parameter,
+
+78
+00:03:57,380 --> 00:03:59,810
+I wanna load the appropriate team,
+
+79
+00:03:59,810 --> 00:04:02,520
+find out which members we have in that team
+
+80
+00:04:02,520 --> 00:04:05,980
+and also load the appropriate users.
+
+81
+00:04:05,980 --> 00:04:08,300
+Now we are already providing teams
+
+82
+00:04:08,300 --> 00:04:10,520
+and users here in app view.
+
+83
+00:04:10,520 --> 00:04:13,900
+So we can inject both in team members
+
+84
+00:04:13,900 --> 00:04:15,550
+and we'll need to do that.
+
+85
+00:04:15,550 --> 00:04:17,563
+So that we, get access to that data.
+
+86
+00:04:18,410 --> 00:04:23,410
+So here I will add inject and inject users and teams.
+
+87
+00:04:26,270 --> 00:04:29,570
+Now we just need a way of getting access
+
+88
+00:04:29,570 --> 00:04:32,880
+to this dynamic segment, the user entered.
+
+89
+00:04:32,880 --> 00:04:35,450
+So to the concrete value that was entered
+
+90
+00:04:35,450 --> 00:04:37,780
+for this route parameter,
+
+91
+00:04:37,780 --> 00:04:42,630
+and we could do it as in the created lifecycle hook.
+
+92
+00:04:42,630 --> 00:04:45,270
+That will be called when the component is created
+
+93
+00:04:45,270 --> 00:04:47,040
+before it's shown on the screen.
+
+94
+00:04:47,040 --> 00:04:49,770
+But once all the data is available,
+
+95
+00:04:49,770 --> 00:04:52,270
+so here in created,
+
+96
+00:04:52,270 --> 00:04:55,030
+we can now get access to the inject the data,
+
+97
+00:04:55,030 --> 00:04:59,690
+but also, and that's the good thing to our routing data.
+
+98
+00:04:59,690 --> 00:05:03,160
+And for this, we got another special property,
+
+99
+00:05:03,160 --> 00:05:04,530
+which is available.
+
+100
+00:05:04,530 --> 00:05:08,900
+We saw $router, which gave us access to the overall router.
+
+101
+00:05:08,900 --> 00:05:11,220
+We also have $route.
+
+102
+00:05:11,220 --> 00:05:13,083
+So without an r at the end,
+
+103
+00:05:14,100 --> 00:05:17,380
+the route is available in this component
+
+104
+00:05:17,380 --> 00:05:20,350
+because this component is loaded through the router,
+
+105
+00:05:20,350 --> 00:05:22,880
+and then the route gives us access
+
+106
+00:05:22,880 --> 00:05:25,210
+to various pieces of information.
+
+107
+00:05:25,210 --> 00:05:28,130
+For example, to the path that was responsible
+
+108
+00:05:28,130 --> 00:05:29,550
+for loading this page,
+
+109
+00:05:29,550 --> 00:05:33,420
+which in this case would be something like /teams
+
+110
+00:05:33,420 --> 00:05:35,053
+and then the concrete team id.
+
+111
+00:05:36,070 --> 00:05:39,490
+So we could parse the team id from that path,
+
+112
+00:05:39,490 --> 00:05:41,193
+but we don't even have to do that.
+
+113
+00:05:42,330 --> 00:05:46,460
+We have another property available, the parent's property.
+
+114
+00:05:46,460 --> 00:05:49,160
+This holds all the route parameters
+
+115
+00:05:49,160 --> 00:05:52,200
+that were used for getting to this page.
+
+116
+00:05:52,200 --> 00:05:56,010
+And in this case, we have one route parameter for this page.
+
+117
+00:05:56,010 --> 00:05:59,820
+Everything that starts a colon here is a route parameter.
+
+118
+00:05:59,820 --> 00:06:02,760
+And the name you chose here will be the name
+
+119
+00:06:02,760 --> 00:06:06,110
+by which you can extract the value provided by the user.
+
+120
+00:06:06,110 --> 00:06:08,310
+So in my case, the name is teamId.
+
+121
+00:06:08,310 --> 00:06:09,870
+And hence here in team members,
+
+122
+00:06:09,870 --> 00:06:11,763
+I can access params.teamId.
+
+123
+00:06:13,750 --> 00:06:16,940
+If you chose a different name in your routing conflict here
+
+124
+00:06:16,940 --> 00:06:18,370
+after the colon,
+
+125
+00:06:18,370 --> 00:06:20,893
+you have to use the same different name here.
+
+126
+00:06:22,200 --> 00:06:23,033
+So with that,
+
+127
+00:06:23,033 --> 00:06:27,360
+we got our team Id and I'm storing it in an extra constant.
+
+128
+00:06:27,360 --> 00:06:31,130
+And we can now use the team Id to find the correct team
+
+129
+00:06:31,130 --> 00:06:33,420
+in this injected team's array.
+
+130
+00:06:33,420 --> 00:06:37,470
+So here I got the selected team, let's say
+
+131
+00:06:37,470 --> 00:06:40,120
+by accessing teams, this.teams.
+
+132
+00:06:40,120 --> 00:06:42,030
+So the injected teams array,
+
+133
+00:06:42,030 --> 00:06:43,870
+and then their defined method,
+
+134
+00:06:43,870 --> 00:06:45,860
+which is a built in array method,
+
+135
+00:06:45,860 --> 00:06:49,253
+which needs a function that executes on every array element,
+
+136
+00:06:50,190 --> 00:06:53,210
+which gets the team for which has currently running
+
+137
+00:06:53,210 --> 00:06:54,560
+as an argument.
+
+138
+00:06:54,560 --> 00:06:56,680
+And it will run for all the teams in there
+
+139
+00:06:56,680 --> 00:06:58,550
+and which should return true
+
+140
+00:06:58,550 --> 00:07:00,330
+if it's the team we're looking for.
+
+141
+00:07:00,330 --> 00:07:01,520
+And that would be the case.
+
+142
+00:07:01,520 --> 00:07:05,480
+If the team Id is equal to the team Id we got here.
+
+143
+00:07:05,480 --> 00:07:08,233
+So this helps us select the right team.
+
+144
+00:07:09,290 --> 00:07:12,600
+Of course, we might have entered an Id, which doesn't exist,
+
+145
+00:07:12,600 --> 00:07:14,760
+but let's ignore this case for now.
+
+146
+00:07:14,760 --> 00:07:17,510
+And let's instead then once we got a team,
+
+147
+00:07:17,510 --> 00:07:19,820
+find the members in there.
+
+148
+00:07:19,820 --> 00:07:22,180
+Now for that, of course in every team,
+
+149
+00:07:22,180 --> 00:07:23,890
+we've got the members key,
+
+150
+00:07:23,890 --> 00:07:28,523
+which holds Ids of members we find in users.
+
+151
+00:07:30,290 --> 00:07:34,677
+So we got our members by accessing selectedTeam.members
+
+152
+00:07:36,070 --> 00:07:38,490
+But now we want to reach out to users
+
+153
+00:07:38,490 --> 00:07:42,550
+and find the full user entries for those members
+
+154
+00:07:42,550 --> 00:07:45,323
+because members is just an array full of Ids.
+
+155
+00:07:46,480 --> 00:07:48,960
+And for that, I will write a simple loop here.
+
+156
+00:07:48,960 --> 00:07:51,740
+I will have my selected members here,
+
+157
+00:07:51,740 --> 00:07:53,910
+which is an empty array initially.
+
+158
+00:07:53,910 --> 00:07:58,550
+Then I go through all the members
+
+159
+00:07:58,550 --> 00:08:02,703
+of my members array, which is this array full of Ids.
+
+160
+00:08:03,690 --> 00:08:07,220
+And it will then reach out to my users.
+
+161
+00:08:07,220 --> 00:08:09,080
+So to do some check that user's array
+
+162
+00:08:09,080 --> 00:08:11,183
+for every member Id I got.
+
+163
+00:08:13,260 --> 00:08:18,260
+And find the user where the user ID is equal to member.
+
+164
+00:08:18,870 --> 00:08:22,350
+Keep in mind member is just a number user Id
+
+165
+00:08:22,350 --> 00:08:25,903
+because we have a bunch of user Ids in members.
+
+166
+00:08:29,430 --> 00:08:33,730
+This then is my selected user,
+
+167
+00:08:33,730 --> 00:08:35,750
+or at least one selected user.
+
+168
+00:08:35,750 --> 00:08:39,490
+So I added two selected members by pushing
+
+169
+00:08:39,490 --> 00:08:44,490
+it onto this array, like this.
+
+170
+00:08:45,740 --> 00:08:48,310
+So this goes through all the member Ids.
+
+171
+00:08:48,310 --> 00:08:49,890
+We got for the given team.
+
+172
+00:08:49,890 --> 00:08:51,540
+And we then select the user,
+
+173
+00:08:51,540 --> 00:08:53,790
+the full user object for every user Id
+
+174
+00:08:53,790 --> 00:08:57,430
+we got in our team and then I added to selected members.
+
+175
+00:08:57,430 --> 00:08:59,010
+So that selected members
+
+176
+00:08:59,010 --> 00:09:01,893
+then is an array full of full user objects.
+
+177
+00:09:02,990 --> 00:09:04,280
+Well, and that's then something
+
+178
+00:09:04,280 --> 00:09:06,410
+I wanna store in a data property here
+
+179
+00:09:06,410 --> 00:09:08,060
+because I need to team name
+
+180
+00:09:08,060 --> 00:09:11,430
+and a member's data property in my template.
+
+181
+00:09:11,430 --> 00:09:13,180
+So we'll add both here.
+
+182
+00:09:13,180 --> 00:09:15,090
+Team name initially is an empty array
+
+183
+00:09:15,090 --> 00:09:16,530
+and empty string I mean,
+
+184
+00:09:16,530 --> 00:09:19,320
+and members is an empty array.
+
+185
+00:09:19,320 --> 00:09:23,780
+And then here in created, I set this members.
+
+186
+00:09:23,780 --> 00:09:27,667
+So my data property equal to my selected members
+
+187
+00:09:30,020 --> 00:09:30,853
+I got here.
+
+188
+00:09:30,853 --> 00:09:34,250
+So to this array filled with the concrete member objects
+
+189
+00:09:34,250 --> 00:09:39,250
+and I set this team name equal to selected team.
+
+190
+00:09:41,350 --> 00:09:44,750
+And then on every team, we got a name property.
+
+191
+00:09:44,750 --> 00:09:48,643
+So I can access .name here.
+
+192
+00:09:49,640 --> 00:09:51,820
+And with that, if we save this,
+
+193
+00:09:51,820 --> 00:09:55,350
+if we enter something like Teams T1,
+
+194
+00:09:55,350 --> 00:09:58,823
+I see nothing because I have an error here.
+
+195
+00:09:59,980 --> 00:10:03,260
+Kind of read property, push of undefined.
+
+196
+00:10:03,260 --> 00:10:06,920
+Yeah, here it's not this selected members in this for-loop,
+
+197
+00:10:06,920 --> 00:10:08,390
+it's just selected members
+
+198
+00:10:08,390 --> 00:10:12,210
+because this is a local constant, my bad.
+
+199
+00:10:12,210 --> 00:10:14,923
+So selectedMembers.push is correct here.
+
+200
+00:10:16,500 --> 00:10:19,950
+And with that if you've then reload, this looks better.
+
+201
+00:10:19,950 --> 00:10:22,550
+And now I see Max Schwarz and Praveen Kumar
+
+202
+00:10:22,550 --> 00:10:26,420
+for team T1 for T2 I see different members
+
+203
+00:10:26,420 --> 00:10:29,960
+and for T3, I also see different members.
+
+204
+00:10:29,960 --> 00:10:33,690
+So now this works now of course it would be nice
+
+205
+00:10:33,690 --> 00:10:37,320
+if we could not just get there by manually entering a URL.
+
+206
+00:10:37,320 --> 00:10:38,210
+But for example,
+
+207
+00:10:38,210 --> 00:10:41,620
+by clicking these buttons on the teams page
+
+208
+00:10:41,620 --> 00:10:44,320
+and therefore that's what we're going to work on next.
+

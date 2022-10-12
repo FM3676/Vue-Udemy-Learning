@@ -1,0 +1,416 @@
+1
+00:00:02,080 --> 00:00:05,760
+We're using v-for with an array like this.
+
+2
+00:00:05,760 --> 00:00:08,910
+And that is honestly also probably
+
+3
+00:00:08,910 --> 00:00:11,130
+the most common way of using it.
+
+4
+00:00:11,130 --> 00:00:14,710
+But v-for has a couple of interesting variations.
+
+5
+00:00:14,710 --> 00:00:16,970
+For one, you can, for example,
+
+6
+00:00:16,970 --> 00:00:19,810
+pull out more than just the array item.
+
+7
+00:00:19,810 --> 00:00:23,400
+You can also get the index off the item in the array.
+
+8
+00:00:23,400 --> 00:00:27,510
+And doing so is simple, you just wrap your item,
+
+9
+00:00:27,510 --> 00:00:29,400
+which you're pulling out off the array,
+
+10
+00:00:29,400 --> 00:00:32,512
+with every iteration between parentheses,
+
+11
+00:00:33,960 --> 00:00:35,720
+and then add a comma.
+
+12
+00:00:35,720 --> 00:00:38,370
+And now you can add a second item here,
+
+13
+00:00:38,370 --> 00:00:39,480
+give it any name you want,
+
+14
+00:00:39,480 --> 00:00:43,690
+like index or idx and going forward.
+
+15
+00:00:43,690 --> 00:00:47,140
+Index here, and this will be the index off this item.
+
+16
+00:00:47,140 --> 00:00:49,940
+So that's another syntex supported by Vue,
+
+17
+00:00:49,940 --> 00:00:51,800
+getting not just the item itself,
+
+18
+00:00:51,800 --> 00:00:54,583
+but also its index with this notation.
+
+19
+00:00:56,360 --> 00:00:59,270
+And now here we could, for example, add a dash
+
+20
+00:00:59,270 --> 00:01:02,830
+and that's not special Vue syntex, that's just a dash.
+
+21
+00:01:02,830 --> 00:01:07,480
+And then again add interpolation to all the output index,
+
+22
+00:01:07,480 --> 00:01:08,483
+if we want to.
+
+23
+00:01:09,520 --> 00:01:11,370
+I'll quickly reformat that.
+
+24
+00:01:11,370 --> 00:01:13,840
+And if I saved it and reload,
+
+25
+00:01:13,840 --> 00:01:17,350
+if I start adding goals, you see here,
+
+26
+00:01:17,350 --> 00:01:19,510
+this has the index zero because it was
+
+27
+00:01:19,510 --> 00:01:24,510
+the first goal I added, master Vue has index one and so on.
+
+28
+00:01:24,530 --> 00:01:26,660
+So that can also be useful in cases
+
+29
+00:01:26,660 --> 00:01:28,223
+where you need the index.
+
+30
+00:01:29,310 --> 00:01:34,260
+Now you can also loop through more than just arrays.
+
+31
+00:01:34,260 --> 00:01:37,450
+You can also loop through objects.
+
+32
+00:01:37,450 --> 00:01:42,170
+Now here, goals, is an array, and you will probably most
+
+33
+00:01:42,170 --> 00:01:45,080
+often loop through arrays,
+
+34
+00:01:45,080 --> 00:01:47,450
+but in case you had a different scenario,
+
+35
+00:01:47,450 --> 00:01:50,460
+you can also loop through objects.
+
+36
+00:01:50,460 --> 00:01:53,100
+I'll quickly add a second onward list here
+
+37
+00:01:53,100 --> 00:01:57,630
+with a second list item with a second v-for.
+
+38
+00:01:57,630 --> 00:02:00,560
+And here I wanna loop for an object,
+
+39
+00:02:00,560 --> 00:02:03,570
+where I have my name and my age.
+
+40
+00:02:03,570 --> 00:02:05,420
+You could of course create that
+
+41
+00:02:05,420 --> 00:02:07,970
+in your data property in the Vue app,
+
+42
+00:02:07,970 --> 00:02:11,200
+I'm doing it here in HTML, quick and dirty.
+
+43
+00:02:11,200 --> 00:02:13,340
+But of course, if this would be a real app
+
+44
+00:02:13,340 --> 00:02:15,760
+and a real example, you might wanna move that
+
+45
+00:02:15,760 --> 00:02:17,363
+into your JavaScript code.
+
+46
+00:02:18,950 --> 00:02:20,920
+But now we have this object here,
+
+47
+00:02:20,920 --> 00:02:24,218
+and I wanna to loop through it and it's properties.
+
+48
+00:02:24,218 --> 00:02:26,550
+v-for supports that as well.
+
+49
+00:02:26,550 --> 00:02:30,000
+Again, with the in keyword, and here
+
+50
+00:02:30,000 --> 00:02:32,970
+I had to reload by the way, that's why it's empty
+
+51
+00:02:32,970 --> 00:02:33,803
+on the right again,
+
+52
+00:02:33,803 --> 00:02:37,450
+but here you can now get your different values stored
+
+53
+00:02:37,450 --> 00:02:41,080
+in the different properties and output those between
+
+54
+00:02:41,980 --> 00:02:44,690
+the list text with interpolation again.
+
+55
+00:02:44,690 --> 00:02:47,980
+And if you saved it and reload, you'll see Max and 31,
+
+56
+00:02:47,980 --> 00:02:51,043
+because these are the values of those properties.
+
+57
+00:02:53,250 --> 00:02:54,820
+Now, just how you can get the
+
+58
+00:02:54,820 --> 00:02:57,440
+index for looping through arrays,
+
+59
+00:02:57,440 --> 00:02:59,340
+you can also get the key name
+
+60
+00:02:59,340 --> 00:03:01,370
+when looping through objects,
+
+61
+00:03:01,370 --> 00:03:03,480
+by wrapping this into parentheses,
+
+62
+00:03:03,480 --> 00:03:05,810
+and then the second element you can pull out of
+
+63
+00:03:05,810 --> 00:03:07,960
+this loop is the key.
+
+64
+00:03:07,960 --> 00:03:11,130
+So that here, you could also output
+
+65
+00:03:11,130 --> 00:03:14,930
+the key with interpolation, then maybe a colon,
+
+66
+00:03:14,930 --> 00:03:17,830
+which has just plain text and then the value.
+
+67
+00:03:17,830 --> 00:03:21,813
+And now you would see name, colon, Max, age, colon, 31.
+
+68
+00:03:24,530 --> 00:03:25,880
+And if you needed it,
+
+69
+00:03:25,880 --> 00:03:28,130
+you could also get the index here,
+
+70
+00:03:28,130 --> 00:03:31,770
+though of course, that will probably rarely be the case,
+
+71
+00:03:31,770 --> 00:03:33,830
+but that is also supported here.
+
+72
+00:03:33,830 --> 00:03:37,490
+So you can also get the index just by adding it
+
+73
+00:03:37,490 --> 00:03:41,810
+as a third element here, if you're looping through objects.
+
+74
+00:03:41,810 --> 00:03:44,970
+We don't really need it here for this demo app,
+
+75
+00:03:44,970 --> 00:03:47,050
+but of course it is important for you
+
+76
+00:03:47,050 --> 00:03:49,850
+to be aware of what v-for can do.
+
+77
+00:03:49,850 --> 00:03:52,030
+And well, looping through objects
+
+78
+00:03:52,030 --> 00:03:54,370
+is one of the things it that can do.
+
+79
+00:03:54,370 --> 00:03:56,420
+I'm nonetheless going to comment this out
+
+80
+00:03:56,420 --> 00:03:57,770
+because we don't need it here,
+
+81
+00:03:57,770 --> 00:03:59,290
+but you should be aware of it.
+
+82
+00:03:59,290 --> 00:04:00,800
+You should be aware of the fact
+
+83
+00:04:00,800 --> 00:04:04,260
+that v-for can be used with object as well,
+
+84
+00:04:04,260 --> 00:04:07,330
+and that you can retrieve the value or the value
+
+85
+00:04:07,330 --> 00:04:11,453
+and the key or value, key and index if you needed that.
+
+86
+00:04:13,640 --> 00:04:17,000
+One other thing you can do with v-for,
+
+87
+00:04:17,000 --> 00:04:20,019
+is you can loop through a range of numbers.
+
+88
+00:04:20,019 --> 00:04:22,163
+You can also use it like this,
+
+89
+00:04:23,540 --> 00:04:27,560
+and then output the numbers one to 10, for example.
+
+90
+00:04:27,560 --> 00:04:29,620
+So whenever you need something like this,
+
+91
+00:04:29,620 --> 00:04:31,610
+looping through a range of numbers
+
+92
+00:04:31,610 --> 00:04:34,270
+by simply using v-for with in,
+
+93
+00:04:34,270 --> 00:04:37,700
+and then some number, that also works.
+
+94
+00:04:37,700 --> 00:04:39,470
+Again, not something we need here,
+
+95
+00:04:39,470 --> 00:04:42,000
+but something you should be aware of, since well,
+
+96
+00:04:42,000 --> 00:04:44,430
+that is also something you can do with v-for,
+
+97
+00:04:44,430 --> 00:04:46,680
+And who knows, maybe you need exactly
+
+98
+00:04:46,680 --> 00:04:49,930
+this behavior in your next application.
+
+99
+00:04:49,930 --> 00:04:52,430
+With that however, I'm going to comment this out
+
+100
+00:04:52,430 --> 00:04:55,480
+and I'm going back to our demo application
+
+101
+00:04:55,480 --> 00:04:59,970
+with the course goals here, we're now able to add goals
+
+102
+00:04:59,970 --> 00:05:03,860
+and to output them here in our list, and that's great.
+
+103
+00:05:03,860 --> 00:05:07,240
+Now let's also make sure that we can remove items
+
+104
+00:05:07,240 --> 00:05:10,313
+from the list to make this truly dynamic.
+

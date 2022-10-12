@@ -1,0 +1,372 @@
+1
+00:00:02,350 --> 00:00:04,040
+What if we wanted to use
+
+2
+00:00:04,040 --> 00:00:06,810
+the dollar sign route object?
+
+3
+00:00:06,810 --> 00:00:09,940
+Maybe, also because we're not just interested
+
+4
+00:00:09,940 --> 00:00:11,840
+in our route parameters,
+
+5
+00:00:11,840 --> 00:00:14,803
+but in the query parameters or in the path.
+
+6
+00:00:15,960 --> 00:00:17,410
+Now, as mentioned before,
+
+7
+00:00:17,410 --> 00:00:19,710
+that this key word does not exist here.
+
+8
+00:00:19,710 --> 00:00:22,400
+So we can't access this dollar sign route,
+
+9
+00:00:22,400 --> 00:00:25,463
+and we can't access this dollars sign router,
+
+10
+00:00:26,460 --> 00:00:29,380
+but we can import something
+
+11
+00:00:31,350 --> 00:00:34,193
+from vue-router that will help us.
+
+12
+00:00:35,060 --> 00:00:39,270
+We can import a couple of built in hooks,
+
+13
+00:00:39,270 --> 00:00:41,770
+also called composables.
+
+14
+00:00:41,770 --> 00:00:46,250
+Now what are hooks or composables?
+
+15
+00:00:46,250 --> 00:00:47,890
+In the end these are different terms
+
+16
+00:00:47,890 --> 00:00:50,600
+for a special kind of function,
+
+17
+00:00:50,600 --> 00:00:54,560
+hooks, composables, custom composition functions.
+
+18
+00:00:54,560 --> 00:00:58,550
+These are special functions written in JavaScript,
+
+19
+00:00:58,550 --> 00:01:01,660
+which are built for the composition API.
+
+20
+00:01:01,660 --> 00:01:05,300
+So for being used inside of the setup method,
+
+21
+00:01:05,300 --> 00:01:10,050
+these functions internally typically use some composition
+
+22
+00:01:10,050 --> 00:01:13,153
+API features like Refs or Computed.
+
+23
+00:01:14,150 --> 00:01:19,150
+In a separate module later about reusing functionality
+
+24
+00:01:19,350 --> 00:01:22,070
+you will learn how to build your own hooks,
+
+25
+00:01:22,070 --> 00:01:24,960
+your own custom composition functions
+
+26
+00:01:24,960 --> 00:01:28,600
+here the vue-router team did this for us.
+
+27
+00:01:28,600 --> 00:01:31,810
+And it's giving us a couple of functions,
+
+28
+00:01:31,810 --> 00:01:34,060
+a couple of composition functions,
+
+29
+00:01:34,060 --> 00:01:36,160
+also called hooks or composables,
+
+30
+00:01:36,160 --> 00:01:39,650
+which you can call inside of the setup method
+
+31
+00:01:39,650 --> 00:01:42,330
+to then get access to certain features
+
+32
+00:01:42,330 --> 00:01:46,880
+that work together nicely with the composition API
+
+33
+00:01:46,880 --> 00:01:48,920
+and useRoute, for example,
+
+34
+00:01:48,920 --> 00:01:51,910
+allows us to get access to this route object,
+
+35
+00:01:51,910 --> 00:01:53,333
+here like this.
+
+36
+00:01:54,930 --> 00:01:59,090
+If we do this, I can console log route here.
+
+37
+00:01:59,090 --> 00:02:02,630
+And if I do that, save this, and reload
+
+38
+00:02:02,630 --> 00:02:07,350
+and opened that console we see that is a reactive object
+
+39
+00:02:07,350 --> 00:02:11,002
+and there for a proxy with all that route data in there.
+
+40
+00:02:11,840 --> 00:02:13,760
+And since it's reactive,
+
+41
+00:02:13,760 --> 00:02:17,300
+we can of course watch it or use it in computer props
+
+42
+00:02:17,300 --> 00:02:19,740
+to update any data that depends on it,
+
+43
+00:02:19,740 --> 00:02:21,970
+whenever route changes.
+
+44
+00:02:21,970 --> 00:02:24,820
+So with that instead of props PID,
+
+45
+00:02:24,820 --> 00:02:28,000
+we could also use route parents PID here
+
+46
+00:02:29,210 --> 00:02:31,130
+that would be possible.
+
+47
+00:02:31,130 --> 00:02:33,273
+And then of course we don't need props.
+
+48
+00:02:35,400 --> 00:02:40,100
+So if we use that go to the carpet, it works just as before,
+
+49
+00:02:40,100 --> 00:02:43,400
+but now using this route object,
+
+50
+00:02:43,400 --> 00:02:47,170
+which we get with help of the useRoute hook
+
+51
+00:02:47,170 --> 00:02:49,750
+or custom composition function
+
+52
+00:02:49,750 --> 00:02:51,800
+also sometimes called composable,
+
+53
+00:02:51,800 --> 00:02:53,310
+whatever you wanna call it,
+
+54
+00:02:53,310 --> 00:02:56,733
+which is provided by the vue-router package.
+
+55
+00:02:57,800 --> 00:03:00,740
+And another composable another hook
+
+56
+00:03:00,740 --> 00:03:03,310
+which is also provided by vue-router
+
+57
+00:03:03,310 --> 00:03:05,900
+can help us with the programmatic navigation
+
+58
+00:03:05,900 --> 00:03:10,480
+and add product here in submit form in this function
+
+59
+00:03:10,480 --> 00:03:13,480
+I wanna navigate to the all products page
+
+60
+00:03:13,480 --> 00:03:16,550
+As soon as a product has been added
+
+61
+00:03:16,550 --> 00:03:18,820
+in the options API world,
+
+62
+00:03:18,820 --> 00:03:22,480
+we would use this router push
+
+63
+00:03:22,480 --> 00:03:26,180
+and then go to slash products, for example.
+
+64
+00:03:26,180 --> 00:03:28,350
+In the composition API world,
+
+65
+00:03:28,350 --> 00:03:32,460
+the, this keyword doesn't exist and hence this doesn't work,
+
+66
+00:03:32,460 --> 00:03:35,400
+but again, the vue-router team has got us covered
+
+67
+00:03:36,270 --> 00:03:39,660
+from vue-router,
+
+68
+00:03:39,660 --> 00:03:41,997
+we can import useRouter,
+
+69
+00:03:43,780 --> 00:03:45,870
+so not to useRoute like before,
+
+70
+00:03:45,870 --> 00:03:47,573
+but now use router.
+
+71
+00:03:48,970 --> 00:03:53,970
+And we can call this anywhere in our setup method like this,
+
+72
+00:03:56,070 --> 00:03:58,363
+to get access to this router object.
+
+73
+00:03:59,350 --> 00:04:02,950
+And now we can simply call router push
+
+74
+00:04:02,950 --> 00:04:06,110
+using that router object we create
+
+75
+00:04:06,110 --> 00:04:08,870
+by calling that custom composition function
+
+76
+00:04:08,870 --> 00:04:11,083
+provided by the vue-router team.
+
+77
+00:04:12,660 --> 00:04:16,113
+So if we now save that and go to add product,
+
+78
+00:04:17,110 --> 00:04:19,452
+and I enter some data,
+
+79
+00:04:21,110 --> 00:04:22,300
+and click add product,
+
+80
+00:04:22,300 --> 00:04:26,080
+we're navigated to the all products page.
+
+81
+00:04:26,080 --> 00:04:28,780
+And that is all I wanted to show here.
+
+82
+00:04:28,780 --> 00:04:32,410
+This is how you can use the vue-router in components
+
+83
+00:04:32,410 --> 00:04:35,130
+that use the composition API.
+
+84
+00:04:35,130 --> 00:04:38,320
+Generally, the router works just as before
+
+85
+00:04:38,320 --> 00:04:40,430
+you define routes in the same way,
+
+86
+00:04:40,430 --> 00:04:43,620
+and you can use all the features you learn about.
+
+87
+00:04:43,620 --> 00:04:46,370
+But when it comes to dynamic parameters
+
+88
+00:04:46,370 --> 00:04:49,530
+possibly passed to a component as props
+
+89
+00:04:49,530 --> 00:04:54,340
+or when it comes to using the route or router object,
+
+90
+00:04:54,340 --> 00:04:57,040
+this is how you can use these features
+
+91
+00:04:57,040 --> 00:04:59,730
+by using the custom composition functions
+
+92
+00:04:59,730 --> 00:05:03,980
+provided by the vue-router package or by using props
+
+93
+00:05:03,980 --> 00:05:06,467
+as I showed it to you a couple of minutes ago.
+

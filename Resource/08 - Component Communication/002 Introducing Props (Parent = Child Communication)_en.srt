@@ -1,0 +1,832 @@
+1
+00:00:02,310 --> 00:00:05,080
+So, I am back in this project
+
+2
+00:00:05,080 --> 00:00:06,930
+we set up in the last module,
+
+3
+00:00:06,930 --> 00:00:08,300
+you'll find it attached,
+
+4
+00:00:08,300 --> 00:00:10,200
+make sure to run NPM install
+
+5
+00:00:10,200 --> 00:00:11,410
+and start your server
+
+6
+00:00:11,410 --> 00:00:14,043
+with NPM run server if you just downloaded it.
+
+7
+00:00:15,470 --> 00:00:17,550
+And you should see this on the screen
+
+8
+00:00:17,550 --> 00:00:20,390
+on localhost 8080 here.
+
+9
+00:00:20,390 --> 00:00:24,490
+So, this is the dummy application we work thus far,
+
+10
+00:00:24,490 --> 00:00:26,720
+and we're using a component here,
+
+11
+00:00:26,720 --> 00:00:29,440
+we're using the friend contact component,
+
+12
+00:00:29,440 --> 00:00:33,223
+which we define here in main JS with app component.
+
+13
+00:00:35,200 --> 00:00:38,880
+Now this friend contact component has one problem,
+
+14
+00:00:38,880 --> 00:00:40,680
+it has one flaw.
+
+15
+00:00:40,680 --> 00:00:42,750
+The data which we're outputting here,
+
+16
+00:00:42,750 --> 00:00:44,350
+the name of the friend,
+
+17
+00:00:44,350 --> 00:00:46,730
+the phone number, the email address,
+
+18
+00:00:46,730 --> 00:00:51,190
+all of that is stored here inside of the component
+
+19
+00:00:51,190 --> 00:00:54,010
+in this friend data property.
+
+20
+00:00:54,010 --> 00:00:56,960
+Now, that's a pattern we used a lot throughout this course.
+
+21
+00:00:56,960 --> 00:00:59,960
+We stored the data a Vue app needs
+
+22
+00:00:59,960 --> 00:01:01,800
+inside of that app.
+
+23
+00:01:01,800 --> 00:01:04,900
+But for components, it often is a bit different.
+
+24
+00:01:04,900 --> 00:01:09,390
+There, you sometimes want to create a reusable component,
+
+25
+00:01:09,390 --> 00:01:12,760
+which contains the markup and certain logic,
+
+26
+00:01:12,760 --> 00:01:15,860
+like here, the logic for toggling the list
+
+27
+00:01:15,860 --> 00:01:17,070
+with help of the button,
+
+28
+00:01:17,070 --> 00:01:19,760
+so that should be part of the component.
+
+29
+00:01:19,760 --> 00:01:23,410
+But some data should be received from outside
+
+30
+00:01:23,410 --> 00:01:27,620
+and with from outside I mean that the app
+
+31
+00:01:27,620 --> 00:01:30,690
+or component which is using this component,
+
+32
+00:01:30,690 --> 00:01:33,250
+so in our case, our main app here,
+
+33
+00:01:33,250 --> 00:01:35,810
+here, where we are using that component,
+
+34
+00:01:35,810 --> 00:01:40,530
+that app here should pass data into our component,
+
+35
+00:01:40,530 --> 00:01:43,680
+so that when we use our component twice,
+
+36
+00:01:43,680 --> 00:01:46,200
+we can use it with different data
+
+37
+00:01:46,200 --> 00:01:48,410
+in each component instance,
+
+38
+00:01:48,410 --> 00:01:51,683
+so in each HTML element we're creating here.
+
+39
+00:01:52,610 --> 00:01:56,740
+So that the first contact outputs the data about manual
+
+40
+00:01:56,740 --> 00:01:59,290
+and the second time we use the component,
+
+41
+00:01:59,290 --> 00:02:02,500
+we for example, output data about Julie.
+
+42
+00:02:02,500 --> 00:02:03,840
+That would be great
+
+43
+00:02:03,840 --> 00:02:06,340
+if we could use a component like this,
+
+44
+00:02:06,340 --> 00:02:09,400
+if we could use it as a reusable
+
+45
+00:02:09,400 --> 00:02:12,500
+and configurable HTML element.
+
+46
+00:02:12,500 --> 00:02:15,490
+And at the moment it's kind of reusable
+
+47
+00:02:15,490 --> 00:02:18,340
+but every usage contains the same data,
+
+48
+00:02:18,340 --> 00:02:20,963
+which is why we see Manuel Lorenz twice.
+
+49
+00:02:21,930 --> 00:02:24,890
+Now of course, there is a solution for this
+
+50
+00:02:24,890 --> 00:02:28,040
+because this is such a crucial concept,
+
+51
+00:02:28,040 --> 00:02:31,640
+being able to configure the same component
+
+52
+00:02:31,640 --> 00:02:32,880
+with different data
+
+53
+00:02:32,880 --> 00:02:34,580
+when you use it multiple times,
+
+54
+00:02:34,580 --> 00:02:36,350
+that is a core concept
+
+55
+00:02:36,350 --> 00:02:39,920
+and therefore it is something we can implement with Vue,
+
+56
+00:02:39,920 --> 00:02:42,780
+with a concept called props.
+
+57
+00:02:42,780 --> 00:02:45,120
+Now what are props about?
+
+58
+00:02:45,120 --> 00:02:48,490
+Props is short for properties
+
+59
+00:02:48,490 --> 00:02:53,330
+and you can think of props like custom HTML attributes.
+
+60
+00:02:53,330 --> 00:02:56,790
+For example here, in App.vue,
+
+61
+00:02:56,790 --> 00:02:59,470
+it would be nice if we could pass data
+
+62
+00:02:59,470 --> 00:03:01,370
+to our first friend contact.
+
+63
+00:03:01,370 --> 00:03:05,790
+Let's say we would pass in the name
+
+64
+00:03:05,790 --> 00:03:08,140
+and that would be Manuel Lorenz.
+
+65
+00:03:08,140 --> 00:03:11,810
+We would pass in the phone number
+
+66
+00:03:11,810 --> 00:03:14,783
+and that would be some number here.
+
+67
+00:03:15,690 --> 00:03:19,300
+And we would pass in the email address
+
+68
+00:03:19,300 --> 00:03:24,300
+and that would be manuel@localhost.com for example.
+
+69
+00:03:24,760 --> 00:03:27,560
+And I'm going to hit that reformat shortcut
+
+70
+00:03:27,560 --> 00:03:31,800
+to reformat it into this more readable version here.
+
+71
+00:03:31,800 --> 00:03:32,840
+But it would be nice
+
+72
+00:03:32,840 --> 00:03:37,230
+if we could use our friend contact component like this.
+
+73
+00:03:37,230 --> 00:03:41,060
+And then here for the second friend contact component usage,
+
+74
+00:03:41,060 --> 00:03:43,910
+we could pass in the same attributes,
+
+75
+00:03:43,910 --> 00:03:45,800
+but with different data.
+
+76
+00:03:45,800 --> 00:03:48,830
+So we could copy that and add it here,
+
+77
+00:03:48,830 --> 00:03:51,670
+but now on that second friend contact,
+
+78
+00:03:51,670 --> 00:03:54,360
+pass in Julie Jones,
+
+79
+00:03:54,360 --> 00:03:59,360
+with some data of our choice here,
+
+80
+00:04:00,630 --> 00:04:02,770
+and hear julie@localhost.
+
+81
+00:04:02,770 --> 00:04:05,113
+It would be nice if we could use it like this.
+
+82
+00:04:06,970 --> 00:04:08,920
+Now, if we save that it works
+
+83
+00:04:08,920 --> 00:04:11,820
+but of course we don't see that data on the screen.
+
+84
+00:04:11,820 --> 00:04:13,430
+Because, yes, indeed,
+
+85
+00:04:13,430 --> 00:04:16,100
+you can set your own attributes,
+
+86
+00:04:16,100 --> 00:04:19,890
+those so called props on components,
+
+87
+00:04:19,890 --> 00:04:22,630
+but in order to use them inside of the component,
+
+88
+00:04:22,630 --> 00:04:24,440
+you also need to write some code
+
+89
+00:04:24,440 --> 00:04:26,200
+inside of the component file,
+
+90
+00:04:26,200 --> 00:04:29,393
+so in this case, inside of friend contact.
+
+91
+00:04:30,300 --> 00:04:35,067
+You basically should make Vue aware of the attributes
+
+92
+00:04:35,067 --> 00:04:39,123
+of the props that you want to accept on your component.
+
+93
+00:04:40,640 --> 00:04:41,920
+So in our case,
+
+94
+00:04:41,920 --> 00:04:44,450
+we want to make Vue aware of name,
+
+95
+00:04:44,450 --> 00:04:48,500
+of phone number and of email address.
+
+96
+00:04:48,500 --> 00:04:50,820
+And we can make Vue aware of this
+
+97
+00:04:50,820 --> 00:04:53,270
+by going to our component file,
+
+98
+00:04:53,270 --> 00:04:55,070
+into the config object,
+
+99
+00:04:55,070 --> 00:04:58,390
+and by adding a specific new key here,
+
+100
+00:04:58,390 --> 00:05:01,610
+a new property which we haven't learned about before,
+
+101
+00:05:01,610 --> 00:05:03,920
+the props property.
+
+102
+00:05:03,920 --> 00:05:07,750
+And in its simplest form, this takes an array.
+
+103
+00:05:07,750 --> 00:05:10,090
+I'm saying in its simplest form
+
+104
+00:05:10,090 --> 00:05:12,980
+because we will later also learn about different ways
+
+105
+00:05:12,980 --> 00:05:14,640
+of using that.
+
+106
+00:05:14,640 --> 00:05:18,050
+But in the simplest form, we pass in an array,
+
+107
+00:05:18,050 --> 00:05:22,610
+and in here, we should now specify all the props.
+
+108
+00:05:22,610 --> 00:05:25,410
+So, all the custom attributes, you could say,
+
+109
+00:05:25,410 --> 00:05:29,250
+we want to accept on this component.
+
+110
+00:05:29,250 --> 00:05:31,220
+And in our case, that would be name,
+
+111
+00:05:31,220 --> 00:05:33,610
+phone number and email address.
+
+112
+00:05:33,610 --> 00:05:36,770
+So we could add name, as a string,
+
+113
+00:05:36,770 --> 00:05:39,900
+you add your props as strings to this array.
+
+114
+00:05:39,900 --> 00:05:41,840
+So we add name,
+
+115
+00:05:41,840 --> 00:05:45,310
+and then phone number, written like this.
+
+116
+00:05:45,310 --> 00:05:47,100
+I'll come back to that in a second.
+
+117
+00:05:47,100 --> 00:05:50,020
+And email address also written like this.
+
+118
+00:05:50,020 --> 00:05:51,630
+Now why is phone number
+
+119
+00:05:51,630 --> 00:05:53,920
+and email address written like this?
+
+120
+00:05:53,920 --> 00:05:58,130
+Because, what we define here as props,
+
+121
+00:05:58,130 --> 00:06:01,490
+will be available, just like data properties,
+
+122
+00:06:01,490 --> 00:06:03,380
+in this entire Vue component,
+
+123
+00:06:03,380 --> 00:06:05,700
+including in the template.
+
+124
+00:06:05,700 --> 00:06:08,110
+So, we could now refer to this
+
+125
+00:06:08,110 --> 00:06:09,660
+with the "this" keyword.
+
+126
+00:06:09,660 --> 00:06:11,690
+Here in the method if we needed it,
+
+127
+00:06:11,690 --> 00:06:16,690
+we could refer to this phone number for example.
+
+128
+00:06:16,750 --> 00:06:18,450
+And that's why we write it like this
+
+129
+00:06:18,450 --> 00:06:19,890
+and not with a dash,
+
+130
+00:06:19,890 --> 00:06:21,030
+because with a dash,
+
+131
+00:06:21,030 --> 00:06:24,360
+this would be an invalid JavaScript property name,
+
+132
+00:06:24,360 --> 00:06:26,800
+this would be invalid JavaScript code.
+
+133
+00:06:26,800 --> 00:06:29,480
+And therefore props in your component
+
+134
+00:06:29,480 --> 00:06:32,520
+should be defined in this camel case.
+
+135
+00:06:32,520 --> 00:06:37,520
+And Vue automatically translates props defined like this
+
+136
+00:06:38,380 --> 00:06:41,240
+into versions like this with a dash,
+
+137
+00:06:41,240 --> 00:06:44,450
+so using this kebab case with a dash between words.
+
+138
+00:06:44,450 --> 00:06:47,300
+And indeed, in your HTML template,
+
+139
+00:06:47,300 --> 00:06:49,950
+you should use this kebab case notation.
+
+140
+00:06:49,950 --> 00:06:52,550
+So here you should not use phone number,
+
+141
+00:06:52,550 --> 00:06:54,420
+but phone dash number.
+
+142
+00:06:54,420 --> 00:06:57,620
+To be in line with the rest of your HTML code,
+
+143
+00:06:57,620 --> 00:07:01,553
+which also uses lowercase kebab case syntax.
+
+144
+00:07:02,600 --> 00:07:04,590
+Might sound confusing at first,
+
+145
+00:07:04,590 --> 00:07:05,920
+but it is really simple,
+
+146
+00:07:05,920 --> 00:07:08,850
+in your HTML code, use this kebab case
+
+147
+00:07:08,850 --> 00:07:11,060
+for props in your component.
+
+148
+00:07:11,060 --> 00:07:13,870
+When you define the props, this component receives,
+
+149
+00:07:13,870 --> 00:07:15,603
+use camel case instead.
+
+150
+00:07:16,730 --> 00:07:18,690
+But the more important takeaway,
+
+151
+00:07:18,690 --> 00:07:22,900
+besides that notation, is how that works.
+
+152
+00:07:22,900 --> 00:07:24,960
+Now we're letting Vue know
+
+153
+00:07:24,960 --> 00:07:29,150
+that our friend contact component has three props,
+
+154
+00:07:29,150 --> 00:07:30,940
+which it wants to receive.
+
+155
+00:07:30,940 --> 00:07:33,330
+So three custom attributes,
+
+156
+00:07:33,330 --> 00:07:37,090
+which can be set when that component is used
+
+157
+00:07:37,090 --> 00:07:40,313
+as an HTML element, like we're doing it here.
+
+158
+00:07:41,700 --> 00:07:44,310
+And now, inside of that component,
+
+159
+00:07:44,310 --> 00:07:45,950
+inside of the component file,
+
+160
+00:07:45,950 --> 00:07:48,560
+we can work with these three props.
+
+161
+00:07:48,560 --> 00:07:50,920
+As I just explained, we can work with them
+
+162
+00:07:50,920 --> 00:07:53,750
+just as we can work with data properties.
+
+163
+00:07:53,750 --> 00:07:56,260
+So inside of our JavaScript code,
+
+164
+00:07:56,260 --> 00:08:01,010
+we can use this to access to different props,
+
+165
+00:08:01,010 --> 00:08:03,150
+or, of course, in our template,
+
+166
+00:08:03,150 --> 00:08:04,850
+we can use some as well.
+
+167
+00:08:04,850 --> 00:08:06,930
+And now we can say that here,
+
+168
+00:08:06,930 --> 00:08:10,100
+we want to output name, just name,
+
+169
+00:08:10,100 --> 00:08:15,040
+not props.name or this.name but just name.
+
+170
+00:08:15,040 --> 00:08:18,440
+Just like we're using details are visible here,
+
+171
+00:08:18,440 --> 00:08:20,060
+which is a data property,
+
+172
+00:08:20,060 --> 00:08:23,020
+we use props in exactly the same way.
+
+173
+00:08:23,020 --> 00:08:25,340
+And therefore, as a side note,
+
+174
+00:08:25,340 --> 00:08:26,670
+you should of course make sure
+
+175
+00:08:26,670 --> 00:08:29,120
+that you don't have any name clashes there.
+
+176
+00:08:29,120 --> 00:08:31,200
+If you define something as a prop,
+
+177
+00:08:31,200 --> 00:08:33,760
+you shouldn't use the exact same name
+
+178
+00:08:33,760 --> 00:08:37,000
+in your data properties or computed properties.
+
+179
+00:08:37,000 --> 00:08:38,232
+That's just a side note.
+
+180
+00:08:39,830 --> 00:08:41,730
+But now here we can use name.
+
+181
+00:08:41,730 --> 00:08:46,030
+Here, we can use phone number,
+
+182
+00:08:46,030 --> 00:08:51,030
+and here we can use email address, like this.
+
+183
+00:08:52,690 --> 00:08:54,850
+And if we do that and save it all,
+
+184
+00:08:54,850 --> 00:08:57,830
+now we see the components twice,
+
+185
+00:08:57,830 --> 00:09:01,550
+but now every component works stand-alone
+
+186
+00:09:01,550 --> 00:09:04,750
+and has its own data.
+
+187
+00:09:04,750 --> 00:09:06,680
+And that is the amazing part here,
+
+188
+00:09:06,680 --> 00:09:08,070
+that's the amazing thing.
+
+189
+00:09:08,070 --> 00:09:09,640
+This now hopefully shows you
+
+190
+00:09:09,640 --> 00:09:13,410
+why components are such a great concept in Vue
+
+191
+00:09:13,410 --> 00:09:15,800
+and in programming in general.
+
+192
+00:09:15,800 --> 00:09:18,710
+Now we can define the markup
+
+193
+00:09:18,710 --> 00:09:21,960
+and the logic for our component once,
+
+194
+00:09:21,960 --> 00:09:25,070
+but then use it as often as needed
+
+195
+00:09:25,070 --> 00:09:26,980
+with different kinds of data
+
+196
+00:09:26,980 --> 00:09:28,810
+in our other components,
+
+197
+00:09:28,810 --> 00:09:31,493
+or in our main app as we're doing it here.
+
+198
+00:09:32,980 --> 00:09:35,650
+We built our own HTML element
+
+199
+00:09:35,650 --> 00:09:38,333
+with its own markup and its own logic.
+
+200
+00:09:39,840 --> 00:09:41,680
+And we made it configurable
+
+201
+00:09:41,680 --> 00:09:43,900
+to ensure that the same element
+
+202
+00:09:43,900 --> 00:09:47,770
+can be used multiple times with different data.
+
+203
+00:09:47,770 --> 00:09:50,860
+So props is a core concept,
+
+204
+00:09:50,860 --> 00:09:52,950
+we're going to use it all the time
+
+205
+00:09:52,950 --> 00:09:54,450
+throughout the entire course.
+
+206
+00:09:54,450 --> 00:09:56,370
+And it's the core concept
+
+207
+00:09:56,370 --> 00:09:59,230
+to make components really useful
+
+208
+00:09:59,230 --> 00:10:01,083
+and really powerful.
+

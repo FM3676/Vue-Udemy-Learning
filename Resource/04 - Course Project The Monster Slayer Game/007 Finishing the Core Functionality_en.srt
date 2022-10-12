@@ -1,0 +1,476 @@
+1
+00:00:01,752 --> 00:00:05,000
+I wanna start with the empty health bars
+
+2
+00:00:05,000 --> 00:00:07,410
+and for that we have our computed properties
+
+3
+00:00:07,410 --> 00:00:09,690
+with the Barstyles, right?
+
+4
+00:00:09,690 --> 00:00:11,820
+Well, we could change those a little bit
+
+5
+00:00:11,820 --> 00:00:14,520
+and tweak them to make sure that we set
+
+6
+00:00:14,520 --> 00:00:19,520
+our bar widths to exactly Zero percent if the game is over,
+
+7
+00:00:20,120 --> 00:00:23,760
+that should be fairly easy to do here because we can check
+
+8
+00:00:23,760 --> 00:00:27,780
+if this monsterHealth in the monsterBarstyles,
+
+9
+00:00:27,780 --> 00:00:31,010
+if monsterHealth is smaller than zero.
+
+10
+00:00:31,010 --> 00:00:33,970
+If that's the case I want to return an object
+
+11
+00:00:33,970 --> 00:00:36,800
+where the width is set to zero percent
+
+12
+00:00:36,800 --> 00:00:39,090
+so that we set it exactly to zero,
+
+13
+00:00:39,090 --> 00:00:40,960
+a negative value can't be displayed,
+
+14
+00:00:40,960 --> 00:00:43,280
+So we need to set it to exactly zero
+
+15
+00:00:44,620 --> 00:00:46,690
+and only otherwise I returned
+
+16
+00:00:46,690 --> 00:00:49,010
+the dynamically calculated health,
+
+17
+00:00:49,010 --> 00:00:50,160
+and we can do the same here.
+
+18
+00:00:50,160 --> 00:00:52,210
+Check the playerHealth,
+
+19
+00:00:52,210 --> 00:00:57,210
+whoops step playerHealth, if it's smaller than zero,
+
+20
+00:00:58,440 --> 00:01:02,860
+then I wanna return width of zero percent
+
+21
+00:01:02,860 --> 00:01:05,393
+and otherwise return the actual value.
+
+22
+00:01:07,420 --> 00:01:10,460
+With that If I reload and I quickly try to end the game,
+
+23
+00:01:10,460 --> 00:01:13,750
+you see now my health bar is empty now that I lost
+
+24
+00:01:13,750 --> 00:01:17,243
+and if I try to win here real quick,
+
+25
+00:01:21,960 --> 00:01:24,110
+You'll see now to Monster Health is zero.
+
+26
+00:01:24,110 --> 00:01:25,950
+So that seems to work.
+
+27
+00:01:25,950 --> 00:01:28,560
+Now for restarting the Game.
+
+28
+00:01:28,560 --> 00:01:31,700
+We could add a button in our Game Over box
+
+29
+00:01:31,700 --> 00:01:33,623
+below the h3 text.
+
+30
+00:01:36,060 --> 00:01:37,810
+A simple button like this,
+
+31
+00:01:37,810 --> 00:01:40,677
+where we say "Start New Game".
+
+32
+00:01:41,650 --> 00:01:43,960
+Now this button should do what the name implies.
+
+33
+00:01:43,960 --> 00:01:46,673
+It should start a new game, when clicked.
+
+34
+00:01:48,420 --> 00:01:50,870
+for that of course, we need a method,
+
+35
+00:01:50,870 --> 00:01:53,760
+because we need a new action which we can trigger
+
+36
+00:01:53,760 --> 00:01:56,400
+from inside our HTML code.
+
+37
+00:01:56,400 --> 00:01:58,430
+Hence, I'll add a new method here.
+
+38
+00:01:58,430 --> 00:02:01,200
+The position of the method does not matter by the way,
+
+39
+00:02:01,200 --> 00:02:04,750
+you can add it the end, in between or at the beginning.
+
+40
+00:02:04,750 --> 00:02:07,290
+And I'll just add it here because Start Game
+
+41
+00:02:07,290 --> 00:02:09,889
+sounds like it should be at the beginning.
+
+42
+00:02:09,889 --> 00:02:12,510
+And in here, I now essentially
+
+43
+00:02:12,510 --> 00:02:14,980
+wanna reset all those parameters,
+
+44
+00:02:14,980 --> 00:02:18,680
+so playerHealth, monsterHealth, currentRound, and winner,
+
+45
+00:02:18,680 --> 00:02:22,690
+this should all be reset when we start a new game.
+
+46
+00:02:22,690 --> 00:02:27,690
+So therefore we can set the playerHealth back to 100,
+
+47
+00:02:28,840 --> 00:02:32,660
+set the monsterHealth back to 100,
+
+48
+00:02:32,660 --> 00:02:36,750
+set the winner back to null because we have no winner.
+
+49
+00:02:36,750 --> 00:02:39,680
+And of course all those set the currentRound back to zero
+
+50
+00:02:39,680 --> 00:02:42,320
+because we start a new game again.
+
+51
+00:02:42,320 --> 00:02:44,610
+And now it's starts game,
+
+52
+00:02:44,610 --> 00:02:47,690
+that should be triggered when this button here is clicked.
+
+53
+00:02:47,690 --> 00:02:51,330
+So we simply add a click listener as we did it many times
+
+54
+00:02:52,228 --> 00:02:53,873
+before and point at start game.
+
+55
+00:02:55,660 --> 00:02:58,730
+And if we now save that and reload, let's give it a try.
+
+56
+00:02:58,730 --> 00:03:03,320
+Let's try to end this game here and see who wins.
+
+57
+00:03:03,320 --> 00:03:05,390
+It's a draw, but we have start new game.
+
+58
+00:03:05,390 --> 00:03:06,260
+And if I click this,
+
+59
+00:03:06,260 --> 00:03:10,470
+you see the health bars update and a new game begins.
+
+60
+00:03:10,470 --> 00:03:12,513
+So this is working here.
+
+61
+00:03:14,440 --> 00:03:16,963
+Let's also see if we can lose.
+
+62
+00:03:18,360 --> 00:03:20,810
+Yes, and this all works.
+
+63
+00:03:20,810 --> 00:03:25,500
+So now we got this Start New Game functionality as well.
+
+64
+00:03:25,500 --> 00:03:28,070
+We got the game working therefore,
+
+65
+00:03:28,070 --> 00:03:31,240
+but the surrender button is missing,
+
+66
+00:03:31,240 --> 00:03:33,710
+when we want to well, surrender.
+
+67
+00:03:33,710 --> 00:03:36,520
+And the battle log is missing.
+
+68
+00:03:36,520 --> 00:03:39,060
+A log which I wanna have at the bottom of the page,
+
+69
+00:03:39,060 --> 00:03:42,350
+which simply shows every action that happened.
+
+70
+00:03:42,350 --> 00:03:44,004
+So every damage dealt, every health point healed,
+
+71
+00:03:44,004 --> 00:03:45,896
+that should show up here
+
+72
+00:03:45,896 --> 00:03:47,364
+and I'll implement the surrender button right away
+
+73
+00:03:47,364 --> 00:03:52,364
+in this lecture already because it will be super easy.
+
+74
+00:03:52,820 --> 00:03:55,650
+If we add a new surrender method,
+
+75
+00:03:55,650 --> 00:03:58,360
+which we of course need to be able to do anything,
+
+76
+00:03:58,360 --> 00:03:59,980
+when that button is pressed.
+
+77
+00:03:59,980 --> 00:04:03,410
+I want to set the winner equal to monster,
+
+78
+00:04:03,410 --> 00:04:07,860
+because if the player surrenders the monster won.
+
+79
+00:04:07,860 --> 00:04:10,390
+Alternatively, we could also set the playerHealth
+
+80
+00:04:10,390 --> 00:04:13,340
+to a negative value, but I don't want to do that here.
+
+81
+00:04:13,340 --> 00:04:16,300
+I don't want to kill the player with, well,
+
+82
+00:04:16,300 --> 00:04:19,040
+by setting the health to zero or something like that,
+
+83
+00:04:19,040 --> 00:04:20,339
+the player simply surrenders.
+
+84
+00:04:20,339 --> 00:04:23,700
+So we just set the winter to monster and we're good.
+
+85
+00:04:23,700 --> 00:04:26,060
+And now we can go back to index HTML
+
+86
+00:04:26,060 --> 00:04:27,770
+and on the surrender button.
+
+87
+00:04:27,770 --> 00:04:30,310
+We bind it with a click listener,
+
+88
+00:04:30,310 --> 00:04:33,963
+to the newly added surrender method, just like that.
+
+89
+00:04:35,300 --> 00:04:38,593
+If we now save that and reload, if I click surrender,
+
+90
+00:04:39,470 --> 00:04:41,193
+I can start a new game.
+
+91
+00:04:42,490 --> 00:04:45,420
+One thing, however is not ideal.
+
+92
+00:04:45,420 --> 00:04:46,670
+Even if I surrender,
+
+93
+00:04:46,670 --> 00:04:50,640
+I can still press attack and the health bar still update.
+
+94
+00:04:50,640 --> 00:04:55,640
+So we might want to disable all those game action buttons.
+
+95
+00:04:55,690 --> 00:05:00,290
+If the game is over or remove the controls entirely,
+
+96
+00:05:00,290 --> 00:05:03,410
+if the game is over and that's actually something I will do
+
+97
+00:05:03,410 --> 00:05:05,870
+here to finish this lecture,
+
+98
+00:05:05,870 --> 00:05:09,340
+we do show this Game Over container.
+
+99
+00:05:09,340 --> 00:05:13,160
+If we do have a winner with V-if.
+
+100
+00:05:13,160 --> 00:05:18,160
+Now this section is a direct neighbor of this section.
+
+101
+00:05:18,190 --> 00:05:21,220
+So here we could make sure that this only shows up
+
+102
+00:05:21,220 --> 00:05:24,680
+if we don't have a winner with, not winner.
+
+103
+00:05:24,680 --> 00:05:29,050
+So if winner is falsely or since it is a direct neighbor
+
+104
+00:05:29,050 --> 00:05:33,540
+by using V-else so that we only have those game controls,
+
+105
+00:05:33,540 --> 00:05:35,400
+if we don't have a winner yet.
+
+106
+00:05:35,400 --> 00:05:39,500
+And if we do have a winner will not have the game controls.
+
+107
+00:05:39,500 --> 00:05:42,220
+So if I save that again and I surrender,
+
+108
+00:05:42,220 --> 00:05:44,220
+now the game controls are gone
+
+109
+00:05:44,220 --> 00:05:45,720
+and I have to start a new game
+
+110
+00:05:47,047 --> 00:05:48,330
+to bring them back and the same happens
+
+111
+00:05:49,689 --> 00:05:50,522
+If we lose the game naturally.
+
+112
+00:05:50,522 --> 00:05:51,355
+The game controls are gone
+
+113
+00:05:51,355 --> 00:05:53,020
+and we have to start a new game.
+
+114
+00:05:53,020 --> 00:05:56,150
+And with that I think the Core Game functionality
+
+115
+00:05:56,150 --> 00:05:57,460
+is finished now.
+
+116
+00:05:57,460 --> 00:06:00,370
+And next we can work on that battle log,
+
+117
+00:06:00,370 --> 00:06:03,010
+again as always feel free to implement something
+
+118
+00:06:03,010 --> 00:06:04,170
+on your own there,
+
+119
+00:06:04,170 --> 00:06:06,563
+we'll do it together in the next lecture.
+

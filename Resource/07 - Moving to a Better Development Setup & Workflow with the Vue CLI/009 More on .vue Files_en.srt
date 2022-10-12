@@ -1,0 +1,136 @@
+1
+00:00:02,490 --> 00:00:05,010
+So now that we got this extension installed,
+
+2
+00:00:05,010 --> 00:00:06,570
+that we've got our project created,
+
+3
+00:00:06,570 --> 00:00:08,780
+and a running development server,
+
+4
+00:00:08,780 --> 00:00:11,460
+let's see what else we got here in the source folder.
+
+5
+00:00:11,460 --> 00:00:14,910
+We got this .vue file which maybe is still something
+
+6
+00:00:14,910 --> 00:00:17,360
+you need to get used to, but in the end,
+
+7
+00:00:17,360 --> 00:00:20,140
+that's just a file that contains the configuration
+
+8
+00:00:20,140 --> 00:00:22,170
+for a Vue app or a component,
+
+9
+00:00:22,170 --> 00:00:25,310
+and then, the template for that app or a component.
+
+10
+00:00:25,310 --> 00:00:28,710
+So what we previously defined just in the DOM
+
+11
+00:00:28,710 --> 00:00:32,340
+in the HTML file or as a template string,
+
+12
+00:00:32,340 --> 00:00:34,230
+which was pretty unreadable,
+
+13
+00:00:34,230 --> 00:00:38,090
+what we defined like this before is now simply defined
+
+14
+00:00:38,090 --> 00:00:41,320
+in such a template tag in a .vue file,
+
+15
+00:00:41,320 --> 00:00:43,283
+in such a single-file component.
+
+16
+00:00:44,150 --> 00:00:46,950
+You also got a assets folder with a little image,
+
+17
+00:00:46,950 --> 00:00:50,880
+that's in general where you would add images your app needs,
+
+18
+00:00:50,880 --> 00:00:54,970
+and a components folder holding another Vue component.
+
+19
+00:00:54,970 --> 00:00:57,370
+Now, the exact code you're seeing here
+
+20
+00:00:57,370 --> 00:01:01,440
+and also here might differ over time, by the way,
+
+21
+00:01:01,440 --> 00:01:03,540
+but you should have some component
+
+22
+00:01:03,540 --> 00:01:05,370
+in your components folder,
+
+23
+00:01:05,370 --> 00:01:08,010
+and that is indeed how we will write Vue apps
+
+24
+00:01:08,010 --> 00:01:09,540
+for the rest of the course.
+
+25
+00:01:09,540 --> 00:01:12,370
+We'll split our code into components
+
+26
+00:01:12,370 --> 00:01:15,060
+and compose our user interface
+
+27
+00:01:15,060 --> 00:01:19,453
+and the entire Vue app by combining those components.
+
+28
+00:01:20,340 --> 00:01:22,130
+And I'd say that's already enough
+
+29
+00:01:22,130 --> 00:01:23,720
+of the talking about the setup.
+
+30
+00:01:23,720 --> 00:01:26,840
+We now understand why we have it and how it works.
+
+31
+00:01:26,840 --> 00:01:29,120
+Let's now go back to components
+
+32
+00:01:29,120 --> 00:01:33,520
+and build up on such a Vue CLI-generated project
+
+33
+00:01:33,520 --> 00:01:35,860
+to dive deeper into components
+
+34
+00:01:35,860 --> 00:01:37,993
+and again, learn more about Vue.
+

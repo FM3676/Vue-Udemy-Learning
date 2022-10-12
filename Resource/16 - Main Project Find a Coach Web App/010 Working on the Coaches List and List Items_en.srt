@@ -1,0 +1,832 @@
+1
+00:00:02,190 --> 00:00:03,700
+So let's now work on the components
+
+2
+00:00:03,700 --> 00:00:04,533
+we need here.
+
+3
+00:00:04,533 --> 00:00:08,060
+And I'm going to start with the coach items here.
+
+4
+00:00:08,060 --> 00:00:10,210
+For that I wanna use a separate component,
+
+5
+00:00:10,210 --> 00:00:13,760
+because we'll have quite a lot of markup and styling
+
+6
+00:00:13,760 --> 00:00:17,260
+related to this part, related to this list items,
+
+7
+00:00:17,260 --> 00:00:20,230
+and I don't wanna put that all into coach's list,
+
+8
+00:00:20,230 --> 00:00:22,480
+even though that of course would work.
+
+9
+00:00:22,480 --> 00:00:24,270
+I mean, technically you can build
+
+10
+00:00:24,270 --> 00:00:27,240
+an entire Vue app with just one component,
+
+11
+00:00:27,240 --> 00:00:30,500
+but the idea behind components is to split your code
+
+12
+00:00:30,500 --> 00:00:33,310
+into smaller reusable pieces.
+
+13
+00:00:33,310 --> 00:00:35,460
+Therefore, in components,
+
+14
+00:00:35,460 --> 00:00:38,120
+I'll add a new sub-folder, coaches,
+
+15
+00:00:38,120 --> 00:00:42,460
+where all the coach-related components should go in.
+
+16
+00:00:42,460 --> 00:00:46,053
+For example, the CoachItem.vue file.
+
+17
+00:00:48,860 --> 00:00:51,430
+Now, in this CoachItem.vue file,
+
+18
+00:00:51,430 --> 00:00:53,850
+I want to define my template, which is a list item,
+
+19
+00:00:53,850 --> 00:00:55,570
+or which holds a list item.
+
+20
+00:00:55,570 --> 00:00:58,770
+And in there, I now wanna output all that coach data.
+
+21
+00:00:58,770 --> 00:01:03,530
+For example, in a h3 tag, the name of the coach.
+
+22
+00:01:03,530 --> 00:01:07,170
+Here, I will interpolate the full name.
+
+23
+00:01:07,170 --> 00:01:08,540
+And this doesn't exist yet,
+
+24
+00:01:08,540 --> 00:01:10,740
+but we'll add the logic to make sure
+
+25
+00:01:10,740 --> 00:01:13,553
+we will have such a full name property at the end.
+
+26
+00:01:14,500 --> 00:01:16,853
+Then below that, a h4 tag,
+
+27
+00:01:18,680 --> 00:01:20,820
+and I recommend that you use the same tags
+
+28
+00:01:20,820 --> 00:01:24,190
+so that the styling which I provide works for you as well.
+
+29
+00:01:24,190 --> 00:01:25,640
+Technically, of course, you can use
+
+30
+00:01:25,640 --> 00:01:28,600
+any tags you want and any structure you want,
+
+31
+00:01:28,600 --> 00:01:31,630
+but here in the h4 tag, I wanna output dollar,
+
+32
+00:01:31,630 --> 00:01:34,260
+then the rate which we get for this coach,
+
+33
+00:01:34,260 --> 00:01:38,763
+/hour to show the rate this coach charges.
+
+34
+00:01:40,540 --> 00:01:43,890
+Then I will actually add a div here,
+
+35
+00:01:43,890 --> 00:01:47,700
+where I wanna output the areas of expertise of that coach.
+
+36
+00:01:47,700 --> 00:01:49,710
+Because the dummy data I gave you
+
+37
+00:01:49,710 --> 00:01:53,570
+already has this areas property,
+
+38
+00:01:53,570 --> 00:01:57,220
+which holds an array with some clearly defined keys,
+
+39
+00:01:57,220 --> 00:02:00,170
+frontend, backend, and career,
+
+40
+00:02:00,170 --> 00:02:01,860
+which are the areas of expertise
+
+41
+00:02:01,860 --> 00:02:03,423
+I wanna support in this app,
+
+42
+00:02:04,510 --> 00:02:06,980
+where a coach can be an expert.
+
+43
+00:02:06,980 --> 00:02:09,070
+I'm an expert in all these areas, of course.
+
+44
+00:02:09,070 --> 00:02:12,243
+Julie, for example, is an expert in career and frontend.
+
+45
+00:02:13,810 --> 00:02:17,920
+And I wanna output that here in CoachItem in that div.
+
+46
+00:02:17,920 --> 00:02:20,250
+Here, I wanna go through these areas
+
+47
+00:02:20,250 --> 00:02:23,670
+and render a batch for every area,
+
+48
+00:02:23,670 --> 00:02:27,410
+so to show which areas of expertise this coach has.
+
+49
+00:02:27,410 --> 00:02:30,380
+For the moment, I'll simply add a span here,
+
+50
+00:02:30,380 --> 00:02:35,380
+and add v-for on that to go through the area in areas,
+
+51
+00:02:35,500 --> 00:02:39,350
+so to go through all the areas of expertise of a coach,
+
+52
+00:02:39,350 --> 00:02:42,990
+add the key, which is the area itself,
+
+53
+00:02:42,990 --> 00:02:44,850
+because it's unique anyways,
+
+54
+00:02:44,850 --> 00:02:48,850
+a coach can't be an expert in the same area twice.
+
+55
+00:02:48,850 --> 00:02:51,593
+And I then simply want to,
+
+56
+00:02:52,600 --> 00:02:56,163
+for the moment, output my area like this.
+
+57
+00:02:57,900 --> 00:03:00,560
+This will also become a separate component in the future,
+
+58
+00:03:00,560 --> 00:03:02,820
+but for the moment I'll leave it like this.
+
+59
+00:03:02,820 --> 00:03:07,820
+And then below that I'll have a div with a class of actions
+
+60
+00:03:10,330 --> 00:03:13,330
+where I wanna render two buttons in the end,
+
+61
+00:03:13,330 --> 00:03:15,730
+or two links, we could say.
+
+62
+00:03:15,730 --> 00:03:19,310
+One to contact the coach, and to, therefore,
+
+63
+00:03:19,310 --> 00:03:21,900
+go to this contact route,
+
+64
+00:03:21,900 --> 00:03:25,140
+and one to view the details of a coach
+
+65
+00:03:25,140 --> 00:03:26,653
+and go to this detail route.
+
+66
+00:03:27,690 --> 00:03:31,563
+So therefore here I'll add a router link,
+
+67
+00:03:32,840 --> 00:03:35,850
+like this, and on the first router link,
+
+68
+00:03:35,850 --> 00:03:40,850
+we're going to go to /coaches/ and then the coach ID.
+
+69
+00:03:43,720 --> 00:03:45,170
+So that should be dynamic.
+
+70
+00:03:45,170 --> 00:03:47,240
+For the moment I'll hard-code it though.
+
+71
+00:03:47,240 --> 00:03:50,690
+/contact and say Contact here.
+
+72
+00:03:50,690 --> 00:03:53,780
+And the second link will then show us the details,
+
+73
+00:03:53,780 --> 00:03:56,020
+so I will say View Details here,
+
+74
+00:03:56,020 --> 00:04:00,563
+and there, I wanna go to just /coaches/ that coach ID.
+
+75
+00:04:01,500 --> 00:04:03,370
+Again, I'll soon make this dynamic,
+
+76
+00:04:03,370 --> 00:04:06,203
+because, of course, the ID shouldn't be hard-coded here.
+
+77
+00:04:07,300 --> 00:04:09,400
+That's the general markup.
+
+78
+00:04:09,400 --> 00:04:10,960
+Now, for the styling,
+
+79
+00:04:10,960 --> 00:04:14,300
+we're going to use some scoped CSS style,
+
+80
+00:04:14,300 --> 00:04:17,450
+and attached you'll find the Coach Item CSS file,
+
+81
+00:04:17,450 --> 00:04:19,750
+which contains those prepared styles,
+
+82
+00:04:19,750 --> 00:04:22,603
+which you can simply paste between your style tags.
+
+83
+00:04:25,400 --> 00:04:28,990
+And with that added, we can add a script here,
+
+84
+00:04:28,990 --> 00:04:32,250
+and now make sure that this coach item works.
+
+85
+00:04:32,250 --> 00:04:35,700
+The plan is to use this coach item in a coach list.
+
+86
+00:04:35,700 --> 00:04:37,793
+So we will receive all the data we need
+
+87
+00:04:37,793 --> 00:04:39,830
+through props in the end,
+
+88
+00:04:39,830 --> 00:04:42,680
+because we're going to render the coach item here.
+
+89
+00:04:42,680 --> 00:04:44,760
+Here we have all the coach data,
+
+90
+00:04:44,760 --> 00:04:47,140
+so we can then pass the coach data,
+
+91
+00:04:47,140 --> 00:04:50,680
+which we need in coach item, through props.
+
+92
+00:04:50,680 --> 00:04:52,080
+And we would do it like this
+
+93
+00:04:52,080 --> 00:04:55,050
+because the data for a specific coach,
+
+94
+00:04:55,050 --> 00:04:56,800
+especially in such a list,
+
+95
+00:04:56,800 --> 00:05:00,040
+is of course not managed with Vuex.
+
+96
+00:05:00,040 --> 00:05:03,650
+This is not application wide state or anything like that.
+
+97
+00:05:03,650 --> 00:05:07,040
+It's really just internal local state
+
+98
+00:05:07,040 --> 00:05:10,340
+in this loop here, in this v-for loop.
+
+99
+00:05:10,340 --> 00:05:13,483
+And therefore that is a clear case for props.
+
+100
+00:05:14,780 --> 00:05:17,460
+Hence here we'll get some props,
+
+101
+00:05:17,460 --> 00:05:19,420
+and I want the ID of the coach,
+
+102
+00:05:19,420 --> 00:05:22,830
+we need that to construct this link.
+
+103
+00:05:22,830 --> 00:05:26,693
+I want the first name and the last name,
+
+104
+00:05:28,130 --> 00:05:32,013
+I want to have the rate and the areas of expertise.
+
+105
+00:05:33,550 --> 00:05:36,730
+And then we can add a couple of computed properties here
+
+106
+00:05:36,730 --> 00:05:38,740
+to make our life easier.
+
+107
+00:05:38,740 --> 00:05:41,020
+For example, for the full name,
+
+108
+00:05:41,020 --> 00:05:44,343
+which of course is a combination of first and last name,
+
+109
+00:05:45,190 --> 00:05:48,780
+for that, I'll add a full name computed property here
+
+110
+00:05:48,780 --> 00:05:53,780
+and return this.firstName + a blank + this.lastName,
+
+111
+00:05:55,080 --> 00:05:56,930
+but also maybe for those links,
+
+112
+00:05:56,930 --> 00:05:59,590
+which shouldn't be hard-coded.
+
+113
+00:05:59,590 --> 00:06:02,257
+Here we could add a coachContactLink
+
+114
+00:06:04,270 --> 00:06:07,230
+computed property, where we return
+
+115
+00:06:10,050 --> 00:06:15,050
+/coaches/ and then the ID.
+
+116
+00:06:17,260 --> 00:06:19,820
+So this ID refers to this ID prop
+
+117
+00:06:19,820 --> 00:06:23,320
+which we're getting, plus /contact.
+
+118
+00:06:23,320 --> 00:06:25,090
+This will then construct a path
+
+119
+00:06:25,090 --> 00:06:30,090
+like /coaches/c1/contact, for example,
+
+120
+00:06:31,430 --> 00:06:35,370
+and another computed property, the coachDetailsLink,
+
+121
+00:06:37,250 --> 00:06:42,250
+where I wanna return /coaches/ then again the ID,
+
+122
+00:06:44,360 --> 00:06:47,080
+but then slash nothing, because here we just want
+
+123
+00:06:47,080 --> 00:06:49,733
+to go to something like this.
+
+124
+00:06:51,500 --> 00:06:54,100
+Now we can also replace /coaches here,
+
+125
+00:06:54,100 --> 00:06:56,810
+if we want to, it's not necessary,
+
+126
+00:06:56,810 --> 00:06:59,490
+but to make this component a bit more flexible
+
+127
+00:06:59,490 --> 00:07:02,800
+in case we should ever change this /coaches path
+
+128
+00:07:02,800 --> 00:07:06,467
+to a different one, we can use this.$route.path
+
+129
+00:07:06,467 --> 00:07:10,560
++ '/' to use whatever the current path is
+
+130
+00:07:10,560 --> 00:07:13,683
+as a starting point to then build a longer path.
+
+131
+00:07:14,680 --> 00:07:17,690
+This is totally optional,
+
+132
+00:07:17,690 --> 00:07:20,570
+but it ensures that if we ever change our path
+
+133
+00:07:20,570 --> 00:07:25,570
+from /coaches to something else in our route config,
+
+134
+00:07:25,900 --> 00:07:27,870
+we don't have to adjust everything
+
+135
+00:07:27,870 --> 00:07:29,920
+in this specific component.
+
+136
+00:07:29,920 --> 00:07:31,620
+So that's why I'm doing this here.
+
+137
+00:07:33,170 --> 00:07:35,190
+And now it's the coachContactLink,
+
+138
+00:07:35,190 --> 00:07:37,710
+which I wanna bind to to here.
+
+139
+00:07:37,710 --> 00:07:42,697
+So I wanna bind to with a colon to coachContactLink
+
+140
+00:07:43,730 --> 00:07:47,900
+and bind to here with a colon to coachDetailsLink.
+
+141
+00:07:49,410 --> 00:07:50,350
+And with that, we should have
+
+142
+00:07:50,350 --> 00:07:52,783
+a reusable coach item component.
+
+143
+00:07:54,360 --> 00:07:58,813
+Now back in the coaches list component here,
+
+144
+00:07:59,900 --> 00:08:02,270
+I will replace this list item
+
+145
+00:08:02,270 --> 00:08:07,220
+with my coach item component, which we just created.
+
+146
+00:08:07,220 --> 00:08:09,280
+But, of course, for that, we first of all need
+
+147
+00:08:09,280 --> 00:08:12,560
+to register this component, so that Vue knows it.
+
+148
+00:08:12,560 --> 00:08:15,870
+And of course it will be a local component in coaches list
+
+149
+00:08:15,870 --> 00:08:17,740
+because we only use it there.
+
+150
+00:08:17,740 --> 00:08:22,530
+So I will import CoachItem from going up one level,
+
+151
+00:08:22,530 --> 00:08:26,550
+going up another level, because we're in the coaches folder
+
+152
+00:08:26,550 --> 00:08:27,790
+in the pages folder.
+
+153
+00:08:27,790 --> 00:08:30,200
+And then diving into the components folder,
+
+154
+00:08:30,200 --> 00:08:33,222
+going to coaches, going to CoachItem.vue,
+
+155
+00:08:34,200 --> 00:08:37,970
+and here in this Vue components config object here,
+
+156
+00:08:37,970 --> 00:08:42,970
+we add components and add our CoachItem component here.
+
+157
+00:08:43,851 --> 00:08:46,950
+And with that, we can use it like this in the template.
+
+158
+00:08:46,950 --> 00:08:50,330
+And here, of course, we now want to loop with v-for.
+
+159
+00:08:50,330 --> 00:08:52,907
+So coach in filteredCoaches,
+
+160
+00:08:54,250 --> 00:08:56,600
+bind the key to coach.id,
+
+161
+00:08:56,600 --> 00:08:59,380
+but now all the paths, all the other props
+
+162
+00:08:59,380 --> 00:09:00,810
+which we need here.
+
+163
+00:09:00,810 --> 00:09:05,810
+So for example the ID, bind it to coach.id again,
+
+164
+00:09:05,810 --> 00:09:08,330
+then pass in the first name.
+
+165
+00:09:08,330 --> 00:09:12,683
+So first-name and bind that to coach.firstName,
+
+166
+00:09:16,790 --> 00:09:19,790
+we format that to make it a bit easier to read,
+
+167
+00:09:19,790 --> 00:09:22,010
+bind the last name, by the way,
+
+168
+00:09:22,010 --> 00:09:23,540
+I'm using this Kebab case here
+
+169
+00:09:23,540 --> 00:09:25,873
+as I explained it earlier in the course,
+
+170
+00:09:27,290 --> 00:09:28,893
+and bind this to coach.lastName.
+
+171
+00:09:31,250 --> 00:09:34,260
+And then bind the rate to coach.rate,
+
+172
+00:09:34,260 --> 00:09:39,260
+sorry, hourlyRate, because on our coach data,
+
+173
+00:09:39,390 --> 00:09:41,650
+if we have a look at that in the state,
+
+174
+00:09:41,650 --> 00:09:44,790
+it's the hourly rate property, which holds the rate.
+
+175
+00:09:44,790 --> 00:09:49,000
+So hourly rate is what we have to access here
+
+176
+00:09:50,450 --> 00:09:52,240
+in coaches list.
+
+177
+00:09:52,240 --> 00:09:56,403
+And bind the areas to coach.areas.
+
+178
+00:09:57,560 --> 00:09:59,530
+And if we do that and save it,
+
+179
+00:09:59,530 --> 00:10:01,850
+we should see these coaches.
+
+180
+00:10:01,850 --> 00:10:03,860
+This is clearly not super beautiful,
+
+181
+00:10:03,860 --> 00:10:05,363
+but it is a start.
+
+182
+00:10:07,230 --> 00:10:09,190
+Now, to make this a bit nicer,
+
+183
+00:10:09,190 --> 00:10:13,080
+in coaches list, I'll also add some scoped styling
+
+184
+00:10:14,280 --> 00:10:17,783
+and attached you'll find a CoachesList.CSS file,
+
+185
+00:10:18,810 --> 00:10:20,480
+where you find two styles,
+
+186
+00:10:20,480 --> 00:10:23,180
+which you should copy into that style tag.
+
+187
+00:10:23,180 --> 00:10:25,530
+With that, at least the bullet points are gone.
+
+188
+00:10:26,400 --> 00:10:28,460
+But it's taking up the entire width here
+
+189
+00:10:28,460 --> 00:10:30,440
+and it's going from edge to edge,
+
+190
+00:10:30,440 --> 00:10:31,970
+even if I zoom out a bit.
+
+191
+00:10:31,970 --> 00:10:36,060
+And I would rather want that card look here.
+
+192
+00:10:36,060 --> 00:10:38,100
+I want to have these items in a box
+
+193
+00:10:38,100 --> 00:10:40,900
+with a light drop shadow.
+
+194
+00:10:40,900 --> 00:10:42,920
+Yeah, I want to have this typical card look,
+
+195
+00:10:42,920 --> 00:10:45,320
+which we also saw earlier in the course already.
+
+196
+00:10:46,270 --> 00:10:47,890
+And I want that card look
+
+197
+00:10:47,890 --> 00:10:50,140
+in other parts of this app as well.
+
+198
+00:10:50,140 --> 00:10:52,610
+For example, the filter should later also be
+
+199
+00:10:52,610 --> 00:10:56,343
+in such a card, and other parts on other pages as well.
+
+200
+00:10:57,270 --> 00:10:59,030
+Therefore, as a next step,
+
+201
+00:10:59,030 --> 00:11:02,340
+I'll build this card-based component,
+
+202
+00:11:02,340 --> 00:11:05,440
+which we can then use in different parts of the app.
+
+203
+00:11:05,440 --> 00:11:06,273
+And whilst we're at it,
+
+204
+00:11:06,273 --> 00:11:09,610
+we'll also build a button-based component,
+
+205
+00:11:09,610 --> 00:11:11,300
+because we have a lot of buttons,
+
+206
+00:11:11,300 --> 00:11:14,670
+and also links that should look like buttons,
+
+207
+00:11:14,670 --> 00:11:16,560
+like Contact and View Details.
+
+208
+00:11:16,560 --> 00:11:19,633
+And therefore, this is something that makes sense as well.
+

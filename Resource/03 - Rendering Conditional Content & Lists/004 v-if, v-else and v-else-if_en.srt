@@ -1,0 +1,336 @@
+1
+00:00:02,070 --> 00:00:04,050
+There are a couple of things that are worth knowing
+
+2
+00:00:04,050 --> 00:00:08,130
+about v-if. For one, you can have any expression in here
+
+3
+00:00:08,130 --> 00:00:10,780
+that deals a truthy or falsy value,
+
+4
+00:00:10,780 --> 00:00:13,260
+just as in a regular if statement.
+
+5
+00:00:13,260 --> 00:00:16,010
+In here, you can also check whatever you want,
+
+6
+00:00:16,010 --> 00:00:18,890
+and it will be interpreted as truthy or falsy
+
+7
+00:00:18,890 --> 00:00:21,180
+by JavaScript. You can, of course,
+
+8
+00:00:21,180 --> 00:00:26,180
+also combine conditions here with end, or or, that works.
+
+9
+00:00:27,510 --> 00:00:30,020
+You can also point at a computed property,
+
+10
+00:00:30,020 --> 00:00:32,540
+you can point at a data property,
+
+11
+00:00:32,540 --> 00:00:34,130
+you can execute a method here
+
+12
+00:00:34,130 --> 00:00:38,270
+as long as that method returns a truthy or falsy value.
+
+13
+00:00:38,270 --> 00:00:39,733
+That is all possible.
+
+14
+00:00:40,640 --> 00:00:44,230
+But besides that, which should be fairly obvious,
+
+15
+00:00:44,230 --> 00:00:48,090
+since it's really just like if in your HTML code,
+
+16
+00:00:48,090 --> 00:00:52,460
+so it works like if in JavaScript just in HTML.
+
+17
+00:00:52,460 --> 00:00:56,010
+But besides that, there also is another directive
+
+18
+00:00:56,010 --> 00:00:59,560
+you can use in conjunction with v-if. Because, of course,
+
+19
+00:00:59,560 --> 00:01:03,310
+we don't just want to show this paragraph conditionally,
+
+20
+00:01:03,310 --> 00:01:06,090
+we also want to show the list conditionally.
+
+21
+00:01:06,090 --> 00:01:10,600
+And, we only want to show this list if we do have goals.
+
+22
+00:01:10,600 --> 00:01:12,590
+That means we can add v-if if on that too,
+
+23
+00:01:12,590 --> 00:01:16,040
+and we can check if goals length is greater than zero.
+
+24
+00:01:16,040 --> 00:01:18,490
+Because only if it's greater than zero,
+
+25
+00:01:18,490 --> 00:01:21,130
+only then we want to show this list.
+
+26
+00:01:21,130 --> 00:01:22,390
+If we save and reload,
+
+27
+00:01:22,390 --> 00:01:24,993
+we therefore only see the paragraph initially.
+
+28
+00:01:25,980 --> 00:01:27,830
+But if I then add a goal,
+
+29
+00:01:27,830 --> 00:01:29,850
+the paragraph disappears. And instead,
+
+30
+00:01:29,850 --> 00:01:32,863
+we see the list with that dummy goal initially.
+
+31
+00:01:34,670 --> 00:01:37,570
+This works and there's nothing wrong with it.
+
+32
+00:01:37,570 --> 00:01:41,640
+But, essentially, this is a little bit like the else case
+
+33
+00:01:41,640 --> 00:01:43,700
+in a JavaScript if statement, right?
+
+34
+00:01:43,700 --> 00:01:47,060
+And, there you can also have else and even else if.
+
+35
+00:01:47,060 --> 00:01:49,123
+That's all supported in JavaScript.
+
+36
+00:01:50,030 --> 00:01:54,520
+And, Vue also supports this in HTML with its directives.
+
+37
+00:01:54,520 --> 00:01:57,790
+Instead of repeating v-if here, which you can do.
+
+38
+00:01:57,790 --> 00:02:01,830
+But instead of doing that, you can also specify v-else.
+
+39
+00:02:01,830 --> 00:02:05,880
+The only important thing is that v-else has to be used
+
+40
+00:02:05,880 --> 00:02:09,360
+on an element that comes directly after
+
+41
+00:02:09,360 --> 00:02:11,870
+an element with v-if on it.
+
+42
+00:02:11,870 --> 00:02:14,320
+You can't have another element in between.
+
+43
+00:02:14,320 --> 00:02:16,380
+If we have a paragraph in between,
+
+44
+00:02:16,380 --> 00:02:17,773
+that would not work.
+
+45
+00:02:18,660 --> 00:02:23,660
+V-else needs to be used on a direct neighbor element
+
+46
+00:02:23,750 --> 00:02:25,720
+of the element which has v-if.
+
+47
+00:02:25,720 --> 00:02:28,960
+This works, an element in between breaks it.
+
+48
+00:02:28,960 --> 00:02:30,450
+But with that I can reload
+
+49
+00:02:31,330 --> 00:02:33,653
+and get the same behavior as before.
+
+50
+00:02:34,530 --> 00:02:36,460
+Now, sometimes you also have scenarios
+
+51
+00:02:36,460 --> 00:02:39,740
+where you have multiple possible conditions.
+
+52
+00:02:39,740 --> 00:02:43,670
+And, that's why you'll also have a v-else-if condition,
+
+53
+00:02:43,670 --> 00:02:46,280
+where you can check if goals length is, let's say,
+
+54
+00:02:46,280 --> 00:02:50,270
+greater than zero. And, then you could have another element
+
+55
+00:02:50,270 --> 00:02:52,810
+with v-else in case that's not met,
+
+56
+00:02:52,810 --> 00:02:57,050
+and that's not met with your fallback content.
+
+57
+00:02:57,050 --> 00:03:00,370
+In this case, that would kick in for a negative length,
+
+58
+00:03:00,370 --> 00:03:02,060
+which, of course, can't occur,
+
+59
+00:03:02,060 --> 00:03:04,880
+but I'm just showing this as an example.
+
+60
+00:03:04,880 --> 00:03:09,880
+So, v-if, v-else-if and v-else can be used to control
+
+61
+00:03:10,520 --> 00:03:14,140
+which parts of your HTML code
+
+62
+00:03:14,140 --> 00:03:17,690
+are really showing up on the final page.
+
+63
+00:03:17,690 --> 00:03:19,320
+And, I want to emphasize
+
+64
+00:03:19,320 --> 00:03:22,000
+that it's not just about showing and hiding stuff.
+
+65
+00:03:22,000 --> 00:03:25,470
+It's really about including those elements in the DOM
+
+66
+00:03:25,470 --> 00:03:26,830
+or not including them.
+
+67
+00:03:26,830 --> 00:03:30,170
+It's really about attaching and detaching.
+
+68
+00:03:30,170 --> 00:03:32,690
+If you inspect this paragraph,
+
+69
+00:03:32,690 --> 00:03:37,170
+you, of course, see that this paragraph is there,
+
+70
+00:03:37,170 --> 00:03:38,863
+but there is no list below it.
+
+71
+00:03:39,800 --> 00:03:43,820
+Now, if I add a goal, like finish the course,
+
+72
+00:03:43,820 --> 00:03:45,910
+watch what happens when I press the button.
+
+73
+00:03:45,910 --> 00:03:48,070
+Watch here on the right side.
+
+74
+00:03:48,070 --> 00:03:51,310
+You see, now the unread list was added,
+
+75
+00:03:51,310 --> 00:03:54,063
+and the paragraph completely disappeared.
+
+76
+00:03:54,980 --> 00:03:57,350
+Now, because of v-if and v-else combined,
+
+77
+00:03:57,350 --> 00:04:00,800
+by the way, Vue also doesn't need the place holder anymore.
+
+78
+00:04:00,800 --> 00:04:02,720
+But that's just a side note.
+
+79
+00:04:02,720 --> 00:04:03,710
+So, that's v-if,
+
+80
+00:04:03,710 --> 00:04:06,100
+and it's very, very, very useful
+
+81
+00:04:06,100 --> 00:04:08,210
+for showing content conditionally,
+
+82
+00:04:08,210 --> 00:04:11,130
+which turns out is something you'll need
+
+83
+00:04:11,130 --> 00:04:13,770
+in a lot of applications you're going to build.
+
+84
+00:04:13,770 --> 00:04:16,683
+And, this is how easy it is to implement it with Vue.
+

@@ -1,0 +1,532 @@
+1
+00:00:02,170 --> 00:00:04,846
+We also got checkboxes
+
+2
+00:00:05,890 --> 00:00:07,939
+and radio buttons.
+
+3
+00:00:07,939 --> 00:00:10,100
+The difference being that for checkboxes,
+
+4
+00:00:10,100 --> 00:00:13,610
+we can select as many as we want at the same time
+
+5
+00:00:13,610 --> 00:00:16,210
+for radio buttons we can only select one
+
+6
+00:00:16,210 --> 00:00:20,370
+at the same time if they share the same name attribute,
+
+7
+00:00:20,370 --> 00:00:21,433
+which they do here.
+
+8
+00:00:23,150 --> 00:00:26,060
+So, we can add data properties for this as well,
+
+9
+00:00:26,060 --> 00:00:30,360
+because it turns out we can use v-model here as well.
+
+10
+00:00:30,360 --> 00:00:33,710
+So we got our interest checkboxes
+
+11
+00:00:33,710 --> 00:00:37,300
+and then our how radio buttons.
+
+12
+00:00:37,300 --> 00:00:40,520
+Hence I'll add two new data properties here.
+
+13
+00:00:40,520 --> 00:00:44,630
+Interest and set this to null initially
+
+14
+00:00:44,630 --> 00:00:47,730
+and how and set this to null initially.
+
+15
+00:00:47,730 --> 00:00:50,080
+And how can we now use v-model for that?
+
+16
+00:00:51,550 --> 00:00:54,510
+Well, we simply go to our inputs.
+
+17
+00:00:54,510 --> 00:00:56,860
+Let's start with the checkboxes.
+
+18
+00:00:56,860 --> 00:01:01,090
+And then on every input we can add v-model.
+
+19
+00:01:01,090 --> 00:01:03,830
+By the way, you don't always have to add it at the end.
+
+20
+00:01:03,830 --> 00:01:06,623
+You can add it anywhere in this attribute list.
+
+21
+00:01:07,770 --> 00:01:10,470
+And now simply reference the data property
+
+22
+00:01:10,470 --> 00:01:13,490
+where this should be stored, in my case interest.
+
+23
+00:01:13,490 --> 00:01:17,230
+And we do this on every input here on every checkbox
+
+24
+00:01:17,230 --> 00:01:18,960
+and the same for the radio buttons.
+
+25
+00:01:18,960 --> 00:01:22,920
+Here it's how that was the data property I added.
+
+26
+00:01:22,920 --> 00:01:26,253
+So let's do that here on all the radio buttons.
+
+27
+00:01:27,810 --> 00:01:31,000
+And with that added let's see what's inside those values
+
+28
+00:01:31,000 --> 00:01:32,970
+when we submit the form.
+
+29
+00:01:32,970 --> 00:01:34,950
+So here I'll console.log
+
+30
+00:01:36,590 --> 00:01:39,130
+my checkboxes
+
+31
+00:01:39,130 --> 00:01:42,770
+and then thereafter console.log this.interest
+
+32
+00:01:42,770 --> 00:01:44,330
+to see what's in there.
+
+33
+00:01:44,330 --> 00:01:47,630
+And I will console.log the Radio buttons
+
+34
+00:01:48,700 --> 00:01:52,223
+and then console.log this.how to see what was in there.
+
+35
+00:01:53,170 --> 00:01:55,703
+And I also wanna reset that.
+
+36
+00:01:56,860 --> 00:02:00,370
+So thereafter I'll set this.interest back to null
+
+37
+00:02:00,370 --> 00:02:02,333
+and this.how back to null.
+
+38
+00:02:03,910 --> 00:02:05,933
+And we will see whether that works.
+
+39
+00:02:06,920 --> 00:02:10,460
+If I save that, this is what we got.
+
+40
+00:02:10,460 --> 00:02:12,350
+Now, it's like news
+
+41
+00:02:12,350 --> 00:02:17,020
+and oh, it's now always selecting everything here.
+
+42
+00:02:17,020 --> 00:02:18,343
+So what's wrong here?
+
+43
+00:02:20,610 --> 00:02:23,230
+Well, if you got multiple checkboxes
+
+44
+00:02:24,120 --> 00:02:26,250
+with the same name as I do here,
+
+45
+00:02:26,250 --> 00:02:30,360
+this automatically creates a group of those checkboxes.
+
+46
+00:02:30,360 --> 00:02:33,430
+This is fine, but we need to handle it differently.
+
+47
+00:02:33,430 --> 00:02:34,490
+In this case,
+
+48
+00:02:34,490 --> 00:02:37,930
+we should create an empty array as a starting value here
+
+49
+00:02:37,930 --> 00:02:41,181
+and Vue will then add all the checked elements
+
+50
+00:02:41,181 --> 00:02:42,348
+to this array.
+
+51
+00:02:44,320 --> 00:02:47,773
+So we do this here and we reset it to an empty array here.
+
+52
+00:02:50,160 --> 00:02:51,920
+We now reload.
+
+53
+00:02:51,920 --> 00:02:54,720
+We can check these individually.
+
+54
+00:02:54,720 --> 00:02:58,070
+However, you'll notice that it still behaves strangely.
+
+55
+00:02:58,070 --> 00:03:02,113
+If I, for example uncheck one then all get unchecked.
+
+56
+00:03:02,950 --> 00:03:05,740
+Because we need to make one adjustment here
+
+57
+00:03:07,210 --> 00:03:11,920
+we need to add values to those checkboxes here.
+
+58
+00:03:11,920 --> 00:03:14,330
+And these values need to differ
+
+59
+00:03:14,330 --> 00:03:17,480
+because otherwise Vue doesn't know which value to add
+
+60
+00:03:17,480 --> 00:03:18,680
+to this array.
+
+61
+00:03:18,680 --> 00:03:21,110
+So here I'll add a value of news,
+
+62
+00:03:21,110 --> 00:03:24,030
+here a value of tutorials,
+
+63
+00:03:24,030 --> 00:03:27,033
+and then here a value of nothing.
+
+64
+00:03:27,920 --> 00:03:30,670
+And I'll reformat this to make it a bit easier to read.
+
+65
+00:03:31,640 --> 00:03:33,160
+So these are my checkboxes
+
+66
+00:03:33,160 --> 00:03:35,900
+and I edited this value attribute now,
+
+67
+00:03:35,900 --> 00:03:38,380
+which is a default HTML attribute
+
+68
+00:03:38,380 --> 00:03:41,420
+giving every checkbox a unique identifier,
+
+69
+00:03:41,420 --> 00:03:43,123
+which is used behind the scenes.
+
+70
+00:03:45,210 --> 00:03:47,370
+And it will already do the same here
+
+71
+00:03:49,470 --> 00:03:52,430
+for the radio buttons.
+
+72
+00:03:52,430 --> 00:03:55,630
+I'll also give those individual values.
+
+73
+00:03:55,630 --> 00:03:59,170
+For example, the first one receives a value of video.
+
+74
+00:03:59,170 --> 00:04:02,520
+Next one receives blogs.
+
+75
+00:04:02,520 --> 00:04:05,580
+And the last one here receives other.
+
+76
+00:04:05,580 --> 00:04:06,780
+And then I'll save that.
+
+77
+00:04:09,410 --> 00:04:13,290
+If we now reload this again, I can check them individually.
+
+78
+00:04:13,290 --> 00:04:15,660
+and they now really work on their own
+
+79
+00:04:15,660 --> 00:04:17,300
+also the radio buttons.
+
+80
+00:04:17,300 --> 00:04:19,240
+And if we save this,
+
+81
+00:04:19,240 --> 00:04:23,100
+we see for the radio buttons, video was selected,
+
+82
+00:04:23,100 --> 00:04:26,870
+thereafter it was cleared because we reset everything,
+
+83
+00:04:26,870 --> 00:04:29,500
+but that was what I did select before.
+
+84
+00:04:29,500 --> 00:04:33,690
+And for the checkboxes, we get this proxy object
+
+85
+00:04:33,690 --> 00:04:38,570
+which in the end under target has the values I had checked.
+
+86
+00:04:38,570 --> 00:04:39,870
+And just to double-check this,
+
+87
+00:04:39,870 --> 00:04:41,910
+let's pick Nothing and Tutorials here
+
+88
+00:04:41,910 --> 00:04:44,110
+and Blogs on the radio buttons.
+
+89
+00:04:44,110 --> 00:04:46,970
+If I save this we see blogs for the radio buttons
+
+90
+00:04:46,970 --> 00:04:50,360
+and for the checkboxes, we see nothing and tutorial.
+
+91
+00:04:50,360 --> 00:04:53,143
+So we got the keys here in an array then.
+
+92
+00:04:54,560 --> 00:04:56,410
+And that's how we can extract values
+
+93
+00:04:56,410 --> 00:04:59,120
+from checkboxes and radio buttons
+
+94
+00:04:59,120 --> 00:05:03,963
+also with v-model and with help of the value attribute.
+
+95
+00:05:05,070 --> 00:05:08,000
+Now there's all the one other case we could cover here.
+
+96
+00:05:08,000 --> 00:05:10,520
+What if you had a single checkbox?
+
+97
+00:05:10,520 --> 00:05:13,760
+And for that I'll actually add a new div here
+
+98
+00:05:13,760 --> 00:05:15,770
+with class form-control,
+
+99
+00:05:15,770 --> 00:05:19,210
+right above the div with the submit button.
+
+100
+00:05:19,210 --> 00:05:24,090
+And in there we can add a input of type checkbox.
+
+101
+00:05:24,090 --> 00:05:28,340
+Give it an id of confirm-terms maybe,
+
+102
+00:05:28,340 --> 00:05:31,150
+and a name of confirm-terms,
+
+103
+00:05:31,150 --> 00:05:33,320
+because that's what I wanna use it for.
+
+104
+00:05:33,320 --> 00:05:35,573
+I'll add a label thereafter and say,
+
+105
+00:05:36,870 --> 00:05:40,210
+Agree to terms of use?
+
+106
+00:05:40,210 --> 00:05:44,420
+and point at the confirm-terms input
+
+107
+00:05:44,420 --> 00:05:46,460
+with the for attribute.
+
+108
+00:05:46,460 --> 00:05:48,820
+And now how can we get this value?
+
+109
+00:05:48,820 --> 00:05:51,250
+This is now not a group of checkboxes
+
+110
+00:05:51,250 --> 00:05:54,173
+but a single checkbox for that given name.
+
+111
+00:05:55,740 --> 00:05:58,750
+Well we can of course also use v-model here.
+
+112
+00:05:58,750 --> 00:06:01,720
+If I add a confirm prop here
+
+113
+00:06:01,720 --> 00:06:03,680
+and set this to false initially.
+
+114
+00:06:03,680 --> 00:06:07,430
+A confirm property I mean, in my data object.
+
+115
+00:06:07,430 --> 00:06:09,700
+We can bind this with v-model.
+
+116
+00:06:09,700 --> 00:06:11,620
+So here on this input,
+
+117
+00:06:11,620 --> 00:06:15,483
+which we just added, I'll add v-model and point at confirm.
+
+118
+00:06:17,130 --> 00:06:19,600
+And now let's output this as well.
+
+119
+00:06:19,600 --> 00:06:22,120
+I will console.log confirm
+
+120
+00:06:23,540 --> 00:06:27,750
+and then console.log this.confirm here.
+
+121
+00:06:27,750 --> 00:06:30,433
+So pointing at the data property we just added.
+
+122
+00:06:32,070 --> 00:06:35,163
+And thereafter I'll set this.confirm equal to false again.
+
+123
+00:06:37,000 --> 00:06:40,140
+If we now save that and reload, here's our box.
+
+124
+00:06:40,140 --> 00:06:43,550
+And if I check this and save data, you see we get true.
+
+125
+00:06:43,550 --> 00:06:45,963
+And then since I said to false, it's reset.
+
+126
+00:06:47,230 --> 00:06:50,560
+So if you have a list, if you have a group of checkboxes
+
+127
+00:06:50,560 --> 00:06:53,820
+which share the same name attribute value,
+
+128
+00:06:53,820 --> 00:06:56,760
+then you get an array where all the check values
+
+129
+00:06:56,760 --> 00:06:57,943
+will be elements in.
+
+130
+00:06:59,350 --> 00:07:02,570
+If you have a single checkbox for a given name value,
+
+131
+00:07:02,570 --> 00:07:05,160
+then you get true or false.
+
+132
+00:07:05,160 --> 00:07:08,300
+And that's now really all you need to know about checkboxes,
+
+133
+00:07:08,300 --> 00:07:11,513
+v-model and how to work with this in Vue.
+

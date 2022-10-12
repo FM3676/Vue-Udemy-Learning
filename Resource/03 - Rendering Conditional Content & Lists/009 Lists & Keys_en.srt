@@ -1,0 +1,648 @@
+1
+00:00:02,160 --> 00:00:04,830
+We're almost done with VF and V-for,
+
+2
+00:00:04,830 --> 00:00:08,640
+but here's one important addition related to V-for
+
+3
+00:00:08,640 --> 00:00:11,600
+which you have to be aware of since...
+
+4
+00:00:11,600 --> 00:00:16,219
+Well, you can see strange bucks if you're not aware of it.
+
+5
+00:00:16,219 --> 00:00:19,760
+Let's say our goal and index here
+
+6
+00:00:19,760 --> 00:00:23,520
+is actually in a paragraph, inside of the list items.
+
+7
+00:00:23,520 --> 00:00:24,663
+So it looks like this.
+
+8
+00:00:26,070 --> 00:00:31,070
+Hence if I, Master Vue here, we see it like this.
+
+9
+00:00:32,150 --> 00:00:35,447
+Now let's say besides that, we also have input here
+
+10
+00:00:37,860 --> 00:00:39,333
+where we can enter some text.
+
+11
+00:00:40,350 --> 00:00:42,200
+And let's also make sure
+
+12
+00:00:42,200 --> 00:00:44,150
+we can actually enter something here,
+
+13
+00:00:44,150 --> 00:00:47,780
+because right now, if I reload and add this,
+
+14
+00:00:47,780 --> 00:00:49,730
+you'll see whenever I click in there,
+
+15
+00:00:49,730 --> 00:00:53,140
+I also click on the list item and therefore it's removed.
+
+16
+00:00:53,140 --> 00:00:56,300
+We can avoid this by adding a click listener here,
+
+17
+00:00:56,300 --> 00:00:58,603
+where we add the stop modifier.
+
+18
+00:00:59,460 --> 00:01:01,720
+You learned about event modifiers before,
+
+19
+00:01:01,720 --> 00:01:03,940
+and this stops propagation.
+
+20
+00:01:03,940 --> 00:01:06,830
+So it makes sure that when we click on the input,
+
+21
+00:01:06,830 --> 00:01:09,240
+the click is only processed there
+
+22
+00:01:09,240 --> 00:01:12,793
+and the disc click event on the list item is not triggered.
+
+23
+00:01:14,030 --> 00:01:17,670
+We don't have to specify any code that should be executed
+
+24
+00:01:17,670 --> 00:01:21,060
+if all we wanna do is stop the event.
+
+25
+00:01:21,060 --> 00:01:25,250
+So now if I reload, we can Master View,
+
+26
+00:01:25,250 --> 00:01:27,300
+click in there and type.
+
+27
+00:01:27,300 --> 00:01:31,070
+But I didn't do that to just show you the stop modifier,
+
+28
+00:01:31,070 --> 00:01:32,750
+even though it's good to know.
+
+29
+00:01:32,750 --> 00:01:35,520
+Instead of let me show you a strange bug
+
+30
+00:01:35,520 --> 00:01:38,103
+that you can experience with that.
+
+31
+00:01:39,440 --> 00:01:44,440
+I will also add, Finish the course as another goal,
+
+32
+00:01:46,090 --> 00:01:51,090
+and now I will actually type in here something.
+
+33
+00:01:53,300 --> 00:01:54,730
+So in the first goal.
+
+34
+00:01:54,730 --> 00:01:57,913
+And now click on it so that this goal gets deleted.
+
+35
+00:01:58,910 --> 00:02:00,180
+And isn't that strange?
+
+36
+00:02:00,180 --> 00:02:03,740
+Something is still there on the second goal.
+
+37
+00:02:03,740 --> 00:02:05,120
+The first one was deleted.
+
+38
+00:02:05,120 --> 00:02:07,490
+So the new first one is the old second one
+
+39
+00:02:07,490 --> 00:02:09,870
+and it kept something around.
+
+40
+00:02:09,870 --> 00:02:13,580
+Might look like a cool feature, but it's actually a buck.
+
+41
+00:02:13,580 --> 00:02:15,040
+This might become more obvious
+
+42
+00:02:15,040 --> 00:02:17,830
+if I reload and try this again.
+
+43
+00:02:17,830 --> 00:02:20,540
+Master Vue, Finish the course
+
+44
+00:02:20,540 --> 00:02:22,630
+and now let's do it the other way round.
+
+45
+00:02:22,630 --> 00:02:24,990
+Let's enter something here in the second goal
+
+46
+00:02:24,990 --> 00:02:26,863
+and remove the first one.
+
+47
+00:02:28,830 --> 00:02:30,530
+Now Finish the course,
+
+48
+00:02:30,530 --> 00:02:34,110
+had something in this input field a few seconds ago
+
+49
+00:02:34,110 --> 00:02:36,300
+until we deleted the first goal.
+
+50
+00:02:36,300 --> 00:02:38,340
+Now the old second goal,
+
+51
+00:02:38,340 --> 00:02:40,820
+Finish the course, is the new first goal,
+
+52
+00:02:40,820 --> 00:02:44,780
+but it lost the input which we had in these input field.
+
+53
+00:02:44,780 --> 00:02:47,830
+And this is definitely not what you want.
+
+54
+00:02:47,830 --> 00:02:50,740
+You could argue that this is a niche scenario,
+
+55
+00:02:50,740 --> 00:02:54,420
+but the problem that causes this is actually a bigger one,
+
+56
+00:02:54,420 --> 00:02:56,830
+which can also lead to performance issues
+
+57
+00:02:56,830 --> 00:02:59,430
+if you don't fix it properly.
+
+58
+00:02:59,430 --> 00:03:01,300
+The problem here is simple,
+
+59
+00:03:01,300 --> 00:03:05,120
+Vue updates the list when you add and remove items,
+
+60
+00:03:05,120 --> 00:03:07,300
+it renders the list in the real Dom
+
+61
+00:03:07,300 --> 00:03:09,610
+and updates it as required.
+
+62
+00:03:09,610 --> 00:03:14,480
+And it tries to do that such that it optimizes performance.
+
+63
+00:03:14,480 --> 00:03:18,620
+That also means that it reuses Dom elements.
+
+64
+00:03:18,620 --> 00:03:23,620
+So if we have two goals here, two Dom elements
+
+65
+00:03:24,010 --> 00:03:26,340
+and I delete the first one,
+
+66
+00:03:26,340 --> 00:03:29,640
+Vue will actually not re-render the entire list.
+
+67
+00:03:29,640 --> 00:03:32,550
+It will also not delete the first Dom element
+
+68
+00:03:32,550 --> 00:03:34,350
+and move to the second one around.
+
+69
+00:03:34,350 --> 00:03:38,620
+Instead it basically takes the content of the second element
+
+70
+00:03:38,620 --> 00:03:41,620
+and moves it into the first Dom element.
+
+71
+00:03:41,620 --> 00:03:46,620
+And that explains why if I enter some text here,
+
+72
+00:03:47,260 --> 00:03:50,880
+that text is lost if I delete the first element.
+
+73
+00:03:50,880 --> 00:03:54,130
+Because the first Dom element is not actually removed
+
+74
+00:03:54,130 --> 00:03:56,420
+instead the content of the second one.
+
+75
+00:03:56,420 --> 00:03:59,150
+And with content, I mean the dynamic content.
+
+76
+00:03:59,150 --> 00:04:01,400
+So this part with the curly braces,
+
+77
+00:04:01,400 --> 00:04:04,243
+is moved into the old first Dom element.
+
+78
+00:04:05,380 --> 00:04:08,460
+The input element in the first Dom element
+
+79
+00:04:08,460 --> 00:04:10,280
+is still the old one
+
+80
+00:04:10,280 --> 00:04:14,960
+because the entire list item is still the old first element.
+
+81
+00:04:14,960 --> 00:04:18,310
+Just the dynamic content was moved around
+
+82
+00:04:18,310 --> 00:04:20,579
+and that's why we lose the input
+
+83
+00:04:20,579 --> 00:04:22,470
+we had on the second element
+
+84
+00:04:22,470 --> 00:04:24,470
+when the content of the second element
+
+85
+00:04:24,470 --> 00:04:27,623
+moves to the old first element's, Dom element.
+
+86
+00:04:28,680 --> 00:04:31,663
+I hope I could make it clear what the problem here is.
+
+87
+00:04:33,080 --> 00:04:36,140
+Now this occurs because Vue reuse this elements,
+
+88
+00:04:36,140 --> 00:04:38,430
+which generally is good.
+
+89
+00:04:38,430 --> 00:04:43,080
+But sometimes it needs to be able to tell elements apart.
+
+90
+00:04:43,080 --> 00:04:46,430
+Now the problem is since they all have the same element,
+
+91
+00:04:46,430 --> 00:04:50,300
+the same Dom element, they are all LI elements.
+
+92
+00:04:50,300 --> 00:04:53,850
+There is no unique identification criteria
+
+93
+00:04:53,850 --> 00:04:56,020
+for every rendered Dom element.
+
+94
+00:04:56,020 --> 00:04:58,010
+Yes, the content is different,
+
+95
+00:04:58,010 --> 00:05:00,810
+but thankfully Vue is not going ahead
+
+96
+00:05:00,810 --> 00:05:03,770
+and comparing all the content with each other.
+
+97
+00:05:03,770 --> 00:05:06,860
+That would be super performance intensive.
+
+98
+00:05:06,860 --> 00:05:08,490
+Instead, long story short,
+
+99
+00:05:08,490 --> 00:05:11,380
+there is a simple extra attribute,
+
+100
+00:05:11,380 --> 00:05:15,080
+which is a non default HTML attribute,
+
+101
+00:05:15,080 --> 00:05:20,050
+which you can add on elements on which you also use V-for.
+
+102
+00:05:20,050 --> 00:05:22,443
+And that's the key attribute.
+
+103
+00:05:23,290 --> 00:05:24,670
+The key attribute,
+
+104
+00:05:24,670 --> 00:05:28,830
+I'm going to say it again is not a default HTML attribute,
+
+105
+00:05:28,830 --> 00:05:33,340
+instead it is an attribute understood and detected by Vue.
+
+106
+00:05:33,340 --> 00:05:36,470
+It's optional, but it is a good idea to add it
+
+107
+00:05:36,470 --> 00:05:38,490
+whenever you're using V-for.
+
+108
+00:05:38,490 --> 00:05:41,000
+And actually you will also later in the course
+
+109
+00:05:41,000 --> 00:05:44,390
+see that there are many scenarios where you must use it.
+
+110
+00:05:44,390 --> 00:05:48,680
+So it's already a good habit to start using it on all items
+
+111
+00:05:48,680 --> 00:05:50,960
+where you're using V-for.
+
+112
+00:05:50,960 --> 00:05:55,020
+And key, once a unique identification criteria
+
+113
+00:05:55,020 --> 00:05:57,900
+for every item it's outputting here.
+
+114
+00:05:57,900 --> 00:06:02,060
+Therefore, we wanna bind it to a dynamic value with V-bind
+
+115
+00:06:02,060 --> 00:06:05,090
+or the short end, just a colon.
+
+116
+00:06:05,090 --> 00:06:06,910
+And now in here, we need something
+
+117
+00:06:06,910 --> 00:06:09,523
+that uniquely identifies every goal.
+
+118
+00:06:10,710 --> 00:06:13,920
+You might be inclined to say the index does that
+
+119
+00:06:13,920 --> 00:06:16,560
+because every goal has its own index.
+
+120
+00:06:16,560 --> 00:06:20,460
+But well, keep in mind that if I have two goals
+
+121
+00:06:20,460 --> 00:06:22,530
+and I delete the first one,
+
+122
+00:06:22,530 --> 00:06:25,800
+the old second one now has index zero.
+
+123
+00:06:25,800 --> 00:06:29,130
+The index doesn't really belong to the goal content.
+
+124
+00:06:29,130 --> 00:06:31,500
+The index is always the same.
+
+125
+00:06:31,500 --> 00:06:35,490
+The first item always has index zero, for example.
+
+126
+00:06:35,490 --> 00:06:39,070
+So the index isn't strictly attached to the element value
+
+127
+00:06:39,070 --> 00:06:40,490
+in the array.
+
+128
+00:06:40,490 --> 00:06:43,950
+So the index is not really a good thing to use here.
+
+129
+00:06:43,950 --> 00:06:47,640
+Instead in this case, we could use the goal text itself.
+
+130
+00:06:47,640 --> 00:06:49,880
+Of course we could enter the same goal text
+
+131
+00:06:49,880 --> 00:06:52,940
+more than once here, but let's assume that's not the case.
+
+132
+00:06:52,940 --> 00:06:54,293
+Then goal is good.
+
+133
+00:06:55,150 --> 00:06:58,380
+More realistic examples, would be IDs
+
+134
+00:06:58,380 --> 00:07:02,740
+that you might, for example, already have in your database.
+
+135
+00:07:02,740 --> 00:07:04,440
+And you will see later in the course,
+
+136
+00:07:04,440 --> 00:07:07,870
+once we also talk to a backend and to a database,
+
+137
+00:07:07,870 --> 00:07:11,460
+that in most cases you do have a unique ID.
+
+138
+00:07:11,460 --> 00:07:15,020
+So getting such a unique key per list item,
+
+139
+00:07:15,020 --> 00:07:17,523
+in reality isn't too difficult.
+
+140
+00:07:19,100 --> 00:07:21,530
+But here I'll simply use the goal text.
+
+141
+00:07:21,530 --> 00:07:25,600
+And if I now reload and enter, Finish the course
+
+142
+00:07:25,600 --> 00:07:27,663
+and Master Vue,
+
+143
+00:07:28,650 --> 00:07:30,780
+you will see that if I type something here
+
+144
+00:07:30,780 --> 00:07:34,260
+in the second goal, and I then delete the first one,
+
+145
+00:07:34,260 --> 00:07:38,080
+now the input moved together with the second one.
+
+146
+00:07:38,080 --> 00:07:40,660
+Because now Vue was able to tell
+
+147
+00:07:40,660 --> 00:07:43,150
+the different Dom elements apart
+
+148
+00:07:43,150 --> 00:07:46,000
+and detect that the first Dom element
+
+149
+00:07:46,000 --> 00:07:49,660
+now needs to be removed in order to not lose any data
+
+150
+00:07:49,660 --> 00:07:51,493
+attached to the second element.
+
+151
+00:07:52,430 --> 00:07:55,410
+And that was a very thorough and long explanation
+
+152
+00:07:55,410 --> 00:07:57,630
+with a lot of behind the scenes stuff.
+
+153
+00:07:57,630 --> 00:07:59,880
+If there's one key takeaway,
+
+154
+00:07:59,880 --> 00:08:04,210
+again, no pun intended, it is that you should add such a key
+
+155
+00:08:04,210 --> 00:08:06,810
+with a unique identification criteria
+
+156
+00:08:06,810 --> 00:08:09,210
+when you're using V-for.
+
+157
+00:08:09,210 --> 00:08:11,660
+You should add it to help Vue
+
+158
+00:08:11,660 --> 00:08:13,550
+tell the different elements apart
+
+159
+00:08:13,550 --> 00:08:17,440
+and make sure that state like such entered value
+
+160
+00:08:17,440 --> 00:08:18,930
+is not getting lost.
+
+161
+00:08:18,930 --> 00:08:22,120
+And also to help you behind the scenes,
+
+162
+00:08:22,120 --> 00:08:24,630
+do more performance optimizations.
+

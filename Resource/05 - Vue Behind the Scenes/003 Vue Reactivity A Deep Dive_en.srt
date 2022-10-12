@@ -1,0 +1,652 @@
+1
+00:00:02,050 --> 00:00:04,207
+For a second, I will leave Vue
+
+2
+00:00:04,207 --> 00:00:06,830
+to dive into that proxy thing,
+
+3
+00:00:06,830 --> 00:00:08,790
+which is built into JavaScript,
+
+4
+00:00:08,790 --> 00:00:10,880
+which Vue uses.
+
+5
+00:00:10,880 --> 00:00:13,690
+And let's leave the Vue world here
+
+6
+00:00:13,690 --> 00:00:15,850
+and write some vanilla JavaScript.
+
+7
+00:00:15,850 --> 00:00:17,530
+We have a variable message
+
+8
+00:00:17,530 --> 00:00:18,870
+where I say Hello!
+
+9
+00:00:18,870 --> 00:00:21,710
+So this is a regular JavaScript variable.
+
+10
+00:00:21,710 --> 00:00:24,130
+It has nothing to do with Vue.
+
+11
+00:00:24,130 --> 00:00:26,380
+Now, the interesting thing about JavaScript
+
+12
+00:00:26,380 --> 00:00:30,363
+is that if I now have a new longMessage,
+
+13
+00:00:32,170 --> 00:00:34,240
+which is my old message
+
+14
+00:00:34,240 --> 00:00:36,830
+plus let's say World,
+
+15
+00:00:36,830 --> 00:00:40,210
+I can, of course, console.log that here
+
+16
+00:00:40,210 --> 00:00:42,420
+and we would see Hello! World!
+
+17
+00:00:42,420 --> 00:00:46,270
+If I save that, open the console,
+
+18
+00:00:46,270 --> 00:00:49,390
+and reload, we see Hello! World! here.
+
+19
+00:00:49,390 --> 00:00:52,010
+Now that shouldn't be too surprising.
+
+20
+00:00:52,010 --> 00:00:54,580
+But now if we change message thereafter
+
+21
+00:00:55,440 --> 00:01:00,090
+to Hello and a couple of exclamation marks,
+
+22
+00:01:00,090 --> 00:01:04,959
+if I console.log longMessage again
+
+23
+00:01:04,959 --> 00:01:07,900
+and I reload, I still get Hello, World!
+
+24
+00:01:07,900 --> 00:01:10,710
+I don't get all these exclamation marks here.
+
+25
+00:01:10,710 --> 00:01:15,250
+Instead, I just have one exclamation mark after Hello!
+
+26
+00:01:15,250 --> 00:01:20,180
+Because JavaScript by default is not reactive.
+
+27
+00:01:20,180 --> 00:01:21,800
+That is really just something
+
+28
+00:01:21,800 --> 00:01:23,990
+which Vue adds for us.
+
+29
+00:01:23,990 --> 00:01:26,940
+JavaScript by default is not reactive.
+
+30
+00:01:26,940 --> 00:01:30,230
+If we have a calculation, like we have it here,
+
+31
+00:01:30,230 --> 00:01:32,090
+where we use a variable
+
+32
+00:01:32,090 --> 00:01:34,640
+and we change that variable thereafter,
+
+33
+00:01:34,640 --> 00:01:36,710
+that calculation here
+
+34
+00:01:36,710 --> 00:01:38,530
+is not re-executed.
+
+35
+00:01:38,530 --> 00:01:41,700
+JavaScript doesn't note that message changed
+
+36
+00:01:41,700 --> 00:01:43,483
+and that it was used here.
+
+37
+00:01:45,500 --> 00:01:47,670
+So that is how JavaScript works
+
+38
+00:01:47,670 --> 00:01:49,560
+and Vue works differently.
+
+39
+00:01:49,560 --> 00:01:51,680
+Vue has a built-in mechanism
+
+40
+00:01:51,680 --> 00:01:54,380
+to be aware when message changed
+
+41
+00:01:54,380 --> 00:01:55,840
+so that parts of the app
+
+42
+00:01:55,840 --> 00:01:58,850
+that rely on message can be updated.
+
+43
+00:01:58,850 --> 00:02:01,870
+And as mentioned for that, it uses proxies.
+
+44
+00:02:01,870 --> 00:02:04,723
+So let's see how proxies could work.
+
+45
+00:02:05,860 --> 00:02:07,770
+For that, let me remove that
+
+46
+00:02:07,770 --> 00:02:11,070
+and let's create an object, data,
+
+47
+00:02:11,070 --> 00:02:13,150
+which is just an empty JavaScript object,
+
+48
+00:02:13,150 --> 00:02:15,220
+again not related to Vue.
+
+49
+00:02:15,220 --> 00:02:18,033
+And let's put the message in here, Hello!
+
+50
+00:02:20,230 --> 00:02:24,900
+Now we can wrap this object with a proxy in JavaScript
+
+51
+00:02:24,900 --> 00:02:27,560
+by creating a new Proxy.
+
+52
+00:02:27,560 --> 00:02:30,300
+And that is a constructor function built
+
+53
+00:02:30,300 --> 00:02:32,500
+into modern JavaScript.
+
+54
+00:02:32,500 --> 00:02:34,670
+Therefore, make sure you're testing this code
+
+55
+00:02:34,670 --> 00:02:37,093
+in a modern browser like Chrome.
+
+56
+00:02:38,150 --> 00:02:41,160
+Now, we can store that proxy in a constant
+
+57
+00:02:41,160 --> 00:02:44,610
+and this proxy wants the object it should wrap.
+
+58
+00:02:44,610 --> 00:02:46,940
+In this case, data.
+
+59
+00:02:46,940 --> 00:02:49,380
+But it does not just want this.
+
+60
+00:02:49,380 --> 00:02:53,300
+Instead, it wants a second object as a second argument
+
+61
+00:02:53,300 --> 00:02:56,760
+and that will be an object full of handlers
+
+62
+00:02:56,760 --> 00:02:59,120
+for that wrapped object.
+
+63
+00:02:59,120 --> 00:03:01,080
+Now, I'll come back to what that is in a second.
+
+64
+00:03:01,080 --> 00:03:05,530
+Let's first of all create such a handler object here.
+
+65
+00:03:05,530 --> 00:03:09,780
+This handler object can now use certain features.
+
+66
+00:03:09,780 --> 00:03:12,720
+It can set up so-called traps,
+
+67
+00:03:12,720 --> 00:03:14,920
+which proxies support.
+
+68
+00:03:14,920 --> 00:03:18,530
+For example, set traps.
+
+69
+00:03:18,530 --> 00:03:21,280
+You do this by adding a set function here
+
+70
+00:03:21,280 --> 00:03:24,090
+in the handler and as a argument,
+
+71
+00:03:24,090 --> 00:03:27,963
+you will automatically receive a target,
+
+72
+00:03:28,920 --> 00:03:31,343
+a key and a value.
+
+73
+00:03:32,700 --> 00:03:34,700
+Now, to understand what this does,
+
+74
+00:03:34,700 --> 00:03:37,543
+let's console.log target,
+
+75
+00:03:40,523 --> 00:03:44,223
+key and value here.
+
+76
+00:03:45,390 --> 00:03:47,900
+And let's now pass this handler object
+
+77
+00:03:47,900 --> 00:03:51,960
+as a second argument to our proxy.
+
+78
+00:03:51,960 --> 00:03:54,960
+Now, it's said that the proxy would wrap this object,
+
+79
+00:03:54,960 --> 00:03:57,110
+this data object, the first argument,
+
+80
+00:03:57,110 --> 00:03:58,720
+and indeed it does.
+
+81
+00:03:58,720 --> 00:04:03,110
+So on the proxy, we can indeed access message
+
+82
+00:04:03,110 --> 00:04:06,210
+just as if we would have a message property
+
+83
+00:04:06,210 --> 00:04:08,370
+on the created proxy object
+
+84
+00:04:08,370 --> 00:04:09,960
+because actually, we will.
+
+85
+00:04:09,960 --> 00:04:11,910
+It wraps this data object.
+
+86
+00:04:11,910 --> 00:04:13,580
+This object has a message.
+
+87
+00:04:13,580 --> 00:04:15,623
+So the proxy also has one.
+
+88
+00:04:16,610 --> 00:04:18,140
+And we can set this to Hello
+
+89
+00:04:18,140 --> 00:04:20,700
+with a couple of exclamation marks.
+
+90
+00:04:20,700 --> 00:04:22,620
+Now, let's save and reload
+
+91
+00:04:22,620 --> 00:04:24,660
+and what you should see here
+
+92
+00:04:24,660 --> 00:04:27,960
+is that you get three console.log messages
+
+93
+00:04:27,960 --> 00:04:30,280
+because we have three console.logs here.
+
+94
+00:04:30,280 --> 00:04:34,330
+The first one, the target is essentially the object
+
+95
+00:04:34,330 --> 00:04:36,310
+that was wrapped here.
+
+96
+00:04:36,310 --> 00:04:38,930
+That's just your object that was wrapped.
+
+97
+00:04:38,930 --> 00:04:41,590
+The second one, the key,
+
+98
+00:04:41,590 --> 00:04:46,350
+is the property that you just set a new value to.
+
+99
+00:04:46,350 --> 00:04:48,800
+And the third one, the value,
+
+100
+00:04:48,800 --> 00:04:50,850
+is the value that was set.
+
+101
+00:04:50,850 --> 00:04:52,370
+And that hopefully shows you
+
+102
+00:04:52,370 --> 00:04:54,140
+what a handler does.
+
+103
+00:04:54,140 --> 00:04:57,740
+With that, we can define a setter function,
+
+104
+00:04:57,740 --> 00:05:02,720
+which is triggered whenever a property is set
+
+105
+00:05:02,720 --> 00:05:05,520
+to a new value on this proxy
+
+106
+00:05:05,520 --> 00:05:08,640
+and then we can find out which property that is,
+
+107
+00:05:08,640 --> 00:05:10,350
+what the new value is
+
+108
+00:05:10,350 --> 00:05:12,943
+and which original object we wrapped.
+
+109
+00:05:14,180 --> 00:05:19,180
+And we could then use this if we had another property here.
+
+110
+00:05:19,310 --> 00:05:21,120
+Let's say a longMessage,
+
+111
+00:05:21,120 --> 00:05:23,663
+which initially is Hello! World!
+
+112
+00:05:24,640 --> 00:05:27,880
+But we want to ensure that longMessage changes
+
+113
+00:05:27,880 --> 00:05:29,630
+if message changed.
+
+114
+00:05:29,630 --> 00:05:31,453
+Let's say that's our goal.
+
+115
+00:05:32,780 --> 00:05:34,680
+Now, by using a proxy,
+
+116
+00:05:34,680 --> 00:05:39,060
+and setting up such a handler with a so-called set trap,
+
+117
+00:05:39,060 --> 00:05:40,630
+we can implement this.
+
+118
+00:05:40,630 --> 00:05:43,930
+We can check if the key we're setting
+
+119
+00:05:43,930 --> 00:05:48,930
+is message, so if we're setting the message property,
+
+120
+00:05:50,460 --> 00:05:52,250
+and if we do,
+
+121
+00:05:52,250 --> 00:05:53,780
+we want to set
+
+122
+00:05:56,110 --> 00:05:57,970
+target.longMessage
+
+123
+00:06:00,350 --> 00:06:05,350
+equal to the new value we assigned for message, plus World!
+
+124
+00:06:07,930 --> 00:06:09,800
+And thereafter, we also wanna make sure
+
+125
+00:06:09,800 --> 00:06:12,130
+that the message property itself is set,
+
+126
+00:06:12,130 --> 00:06:15,793
+so we set target.message equal to value.
+
+127
+00:06:17,200 --> 00:06:19,680
+And the interesting thing can now be seen
+
+128
+00:06:19,680 --> 00:06:24,460
+if we console.log proxy.longMessage thereafter here
+
+129
+00:06:24,460 --> 00:06:27,970
+at the end after setting the message to Hello
+
+130
+00:06:27,970 --> 00:06:29,760
+with multiple exclamation marks
+
+131
+00:06:29,760 --> 00:06:32,940
+and after updating our handler here.
+
+132
+00:06:32,940 --> 00:06:34,160
+If we now reload,
+
+133
+00:06:34,160 --> 00:06:38,060
+we see that down there from line 40,
+
+134
+00:06:38,060 --> 00:06:39,720
+we're outputting the longMessage,
+
+135
+00:06:39,720 --> 00:06:43,899
+which now picks up all those extra exclamation marks.
+
+136
+00:06:43,899 --> 00:06:47,610
+So longMessage was updated when we set message.
+
+137
+00:06:47,610 --> 00:06:51,100
+So here we built our own reactive system
+
+138
+00:06:51,100 --> 00:06:53,210
+for tracking one property
+
+139
+00:06:53,210 --> 00:06:55,600
+and updating another property
+
+140
+00:06:55,600 --> 00:07:00,430
+when that one property, the message property here, changed.
+
+141
+00:07:00,430 --> 00:07:03,040
+And in a nutshell, and of course,
+
+142
+00:07:03,040 --> 00:07:05,240
+with a couple of simplifications,
+
+143
+00:07:05,240 --> 00:07:08,421
+that is what Vue does under the hood.
+
+144
+00:07:08,421 --> 00:07:12,410
+It keeps track of all your data properties here
+
+145
+00:07:12,410 --> 00:07:15,870
+and whenever such a property changes,
+
+146
+00:07:15,870 --> 00:07:18,770
+it updates the part of your app
+
+147
+00:07:18,770 --> 00:07:20,720
+where that property was used.
+
+148
+00:07:20,720 --> 00:07:24,400
+For example, it knows that it needs to update this paragraph
+
+149
+00:07:24,400 --> 00:07:26,870
+where you're using the message.
+
+150
+00:07:26,870 --> 00:07:31,080
+And it does that by wrapping your properties with proxies
+
+151
+00:07:31,080 --> 00:07:34,140
+so that it has a chance of finding out
+
+152
+00:07:34,140 --> 00:07:36,436
+when you're setting a new value.
+
+153
+00:07:36,436 --> 00:07:38,930
+That is how Vue works.
+
+154
+00:07:38,930 --> 00:07:42,020
+And of course, it has a way more complex way
+
+155
+00:07:42,020 --> 00:07:44,660
+of doing that than I did I down there.
+
+156
+00:07:44,660 --> 00:07:47,590
+And of course, it also has computed properties
+
+157
+00:07:47,590 --> 00:07:51,760
+and watchers which are triggered when a property changes.
+
+158
+00:07:51,760 --> 00:07:55,200
+But that's just the in-a-nutshell approach,
+
+159
+00:07:55,200 --> 00:07:57,740
+which hopefully gives you an idea
+
+160
+00:07:57,740 --> 00:08:00,250
+of how Vue works under the hood
+
+161
+00:08:00,250 --> 00:08:03,220
+so that this magic, which Vue adds
+
+162
+00:08:03,220 --> 00:08:07,130
+and which is amazing is a bit less magic
+
+163
+00:08:07,130 --> 00:08:08,513
+in a positive way.
+

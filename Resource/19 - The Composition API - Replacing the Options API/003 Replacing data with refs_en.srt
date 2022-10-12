@@ -1,0 +1,924 @@
+1
+00:00:01,734 --> 00:00:06,110
+So let's now dive into the Composition API.
+
+2
+00:00:06,110 --> 00:00:08,970
+I already mentioned that we're talking about data,
+
+3
+00:00:08,970 --> 00:00:11,290
+methods, computed and watch,
+
+4
+00:00:11,290 --> 00:00:13,850
+that we're talking about these four options,
+
+5
+00:00:13,850 --> 00:00:15,670
+from the Options API,
+
+6
+00:00:15,670 --> 00:00:18,540
+which will now be handled differently
+
+7
+00:00:18,540 --> 00:00:20,370
+in the Composition API.
+
+8
+00:00:20,370 --> 00:00:22,880
+These four options are in the end,
+
+9
+00:00:22,880 --> 00:00:25,450
+going to be replaced with code
+
+10
+00:00:25,450 --> 00:00:29,000
+we're going to write in the new setup option.
+
+11
+00:00:29,000 --> 00:00:32,840
+A new setup method, we can add to our object
+
+12
+00:00:32,840 --> 00:00:36,403
+our component or Vue app configuration object.
+
+13
+00:00:37,430 --> 00:00:38,630
+On the other hand,
+
+14
+00:00:38,630 --> 00:00:43,110
+that means that all the other options we also learned about.
+
+15
+00:00:43,110 --> 00:00:46,370
+Props emits, components,
+
+16
+00:00:46,370 --> 00:00:50,140
+those remain untouched by the Composition API.
+
+17
+00:00:50,140 --> 00:00:52,350
+So there, nothing changes
+
+18
+00:00:52,350 --> 00:00:56,260
+what you learn about these options does not change.
+
+19
+00:00:56,260 --> 00:00:58,710
+The only other part which will also change,
+
+20
+00:00:58,710 --> 00:01:00,470
+which is not on this slide,
+
+21
+00:01:00,470 --> 00:01:02,550
+will be the lifecycle methods,
+
+22
+00:01:02,550 --> 00:01:05,379
+but I'll come back to those later.
+
+23
+00:01:05,379 --> 00:01:07,030
+Now let's start with data,
+
+24
+00:01:07,030 --> 00:01:09,250
+and let's see how we replace data
+
+25
+00:01:09,250 --> 00:01:12,953
+with the Composition API and this setup method.
+
+26
+00:01:14,160 --> 00:01:17,370
+For this attached you find a very simple project.
+
+27
+00:01:17,370 --> 00:01:20,690
+It just has one app, a Vue file at the moment.
+
+28
+00:01:20,690 --> 00:01:22,880
+Which is also very simple.
+
+29
+00:01:22,880 --> 00:01:24,750
+I'm just out putting a userName here,
+
+30
+00:01:24,750 --> 00:01:29,560
+which for the moment is hard-coded into my data option.
+
+31
+00:01:29,560 --> 00:01:31,510
+But it's still the date of option,
+
+32
+00:01:31,510 --> 00:01:34,360
+so we're not using the Composition API yet.
+
+33
+00:01:34,360 --> 00:01:35,650
+Got some styling here
+
+34
+00:01:35,650 --> 00:01:37,850
+and if you install all the dependencies
+
+35
+00:01:37,850 --> 00:01:42,090
+and then start your development server with npm run serve,
+
+36
+00:01:42,090 --> 00:01:45,190
+you see this here on the screen.
+
+37
+00:01:45,190 --> 00:01:47,530
+Now let's see what the equivalent
+
+38
+00:01:47,530 --> 00:01:51,820
+to this data option would be, if we used a Composition API
+
+39
+00:01:51,820 --> 00:01:55,110
+And therefore I'll comment data out and instead,
+
+40
+00:01:55,110 --> 00:01:59,980
+the first thing I'll do is I will add this setup method.
+
+41
+00:01:59,980 --> 00:02:04,250
+This is this new method we can add since Vue version three,
+
+42
+00:02:04,250 --> 00:02:07,790
+in our component config objects.
+
+43
+00:02:07,790 --> 00:02:09,699
+And again, if we had something like
+
+44
+00:02:09,699 --> 00:02:13,550
+local components registered in the components option,
+
+45
+00:02:13,550 --> 00:02:17,960
+or if we had props here, that would remain untouched,
+
+46
+00:02:17,960 --> 00:02:20,140
+that would stay here.
+
+47
+00:02:20,140 --> 00:02:21,740
+But we now added setup
+
+48
+00:02:21,740 --> 00:02:25,120
+and now the goal is to replace the data we managed here,
+
+49
+00:02:25,120 --> 00:02:28,600
+so userName, with something new,
+
+50
+00:02:28,600 --> 00:02:31,610
+so that we still can output it in the template.
+
+51
+00:02:31,610 --> 00:02:36,060
+And there we got two new features offered by Vue,
+
+52
+00:02:36,060 --> 00:02:38,480
+that help us with managing data.
+
+53
+00:02:38,480 --> 00:02:41,830
+We need to import them from Vue,
+
+54
+00:02:41,830 --> 00:02:43,860
+so we need to add the import statement
+
+55
+00:02:43,860 --> 00:02:47,010
+to import something from Vue
+
+56
+00:02:47,010 --> 00:02:50,600
+and the something would be put between a curly braces here
+
+57
+00:02:50,600 --> 00:02:52,250
+is ref.
+
+58
+00:02:52,250 --> 00:02:53,840
+Now, this is a import sin tax,
+
+59
+00:02:53,840 --> 00:02:57,370
+which imports one of many things exported by Vue
+
+60
+00:02:57,370 --> 00:02:59,710
+and here were importing ref.
+
+61
+00:02:59,710 --> 00:03:00,740
+Now what's ref?
+
+62
+00:03:00,740 --> 00:03:04,070
+We learned about refs earlier in the course.
+
+63
+00:03:04,070 --> 00:03:06,070
+For the moment, let's ignore that,
+
+64
+00:03:06,070 --> 00:03:09,550
+ref is slightly related to what we learned about refs
+
+65
+00:03:09,550 --> 00:03:10,660
+in the past,
+
+66
+00:03:10,660 --> 00:03:12,880
+but still on the other hand, it's something new.
+
+67
+00:03:12,880 --> 00:03:15,720
+So let's ignore would be know about refs thus far.
+
+68
+00:03:15,720 --> 00:03:17,453
+It's a different concept here,
+
+69
+00:03:18,680 --> 00:03:22,750
+because red is a function which we now can call
+
+70
+00:03:22,750 --> 00:03:24,660
+inside of setup.
+
+71
+00:03:24,660 --> 00:03:28,210
+And ref creates a so-called reference
+
+72
+00:03:28,210 --> 00:03:32,430
+but now not just a reference to some DOM element
+
+73
+00:03:32,430 --> 00:03:36,040
+but instead, a value which we can reference,
+
+74
+00:03:36,040 --> 00:03:39,750
+which we can use in our template for example.
+
+75
+00:03:39,750 --> 00:03:44,580
+So ref creates a value, but not any kind of value.
+
+76
+00:03:44,580 --> 00:03:47,410
+Instead a reactive value,
+
+77
+00:03:47,410 --> 00:03:50,670
+where Vue will find out when we change it.
+
+78
+00:03:50,670 --> 00:03:53,200
+Where Vue is able to watch it
+
+79
+00:03:53,200 --> 00:03:57,290
+and where Vue then is able to update the template
+
+80
+00:03:57,290 --> 00:03:59,910
+at the DOM, when that value changes
+
+81
+00:03:59,910 --> 00:04:01,833
+and is being used in the template.
+
+82
+00:04:03,190 --> 00:04:05,810
+But ref like this actually does nothing.
+
+83
+00:04:05,810 --> 00:04:08,130
+It creates a value as I mentioned,
+
+84
+00:04:08,130 --> 00:04:12,110
+so we should store it in some variable or constant.
+
+85
+00:04:12,110 --> 00:04:14,778
+And we are not going to use the this keyword here,
+
+86
+00:04:14,778 --> 00:04:18,310
+because whilst it technically would be available,
+
+87
+00:04:18,310 --> 00:04:19,610
+in the setup method,
+
+88
+00:04:19,610 --> 00:04:22,420
+since this is still a method in this object,
+
+89
+00:04:22,420 --> 00:04:24,450
+this here is actually
+
+90
+00:04:24,450 --> 00:04:27,830
+not referring to the Vue config object
+
+91
+00:04:27,830 --> 00:04:30,600
+as it does in methods, for example.
+
+92
+00:04:30,600 --> 00:04:35,600
+Because setup is a method executed by Vue very early
+
+93
+00:04:35,790 --> 00:04:38,930
+during the component initialization process.
+
+94
+00:04:38,930 --> 00:04:40,540
+At a point of time,
+
+95
+00:04:40,540 --> 00:04:43,720
+where this component hasn't been initialized yet
+
+96
+00:04:43,720 --> 00:04:47,030
+and therefore this actually won't give us access
+
+97
+00:04:47,030 --> 00:04:49,290
+to all the things we're used to.
+
+98
+00:04:49,290 --> 00:04:53,610
+It doesn't give us access to props if we had any and so on.
+
+99
+00:04:53,610 --> 00:04:56,390
+So we don't use this here in the setup method.
+
+100
+00:04:56,390 --> 00:04:59,890
+And we're not going to store this value in a property
+
+101
+00:04:59,890 --> 00:05:01,873
+of this overall config object.
+
+102
+00:05:02,870 --> 00:05:04,590
+Instead were just going to store it
+
+103
+00:05:04,590 --> 00:05:07,630
+in a plain vanilla variable or constant
+
+104
+00:05:07,630 --> 00:05:09,330
+and here and going for a constant
+
+105
+00:05:09,330 --> 00:05:11,310
+and I will name it userName
+
+106
+00:05:12,350 --> 00:05:17,020
+so now the ref thing here is stored in this constant.
+
+107
+00:05:17,020 --> 00:05:19,800
+Now I said ref creates a reactive value
+
+108
+00:05:19,800 --> 00:05:22,140
+but what is the actual value here?
+
+109
+00:05:22,140 --> 00:05:25,560
+We might wanna store a number or in this case a string,
+
+110
+00:05:25,560 --> 00:05:26,920
+our name.
+
+111
+00:05:26,920 --> 00:05:30,710
+Well you can pass the actual value which you wanna store,
+
+112
+00:05:30,710 --> 00:05:33,490
+as our argument to this ref function.
+
+113
+00:05:33,490 --> 00:05:35,860
+So here I'll pass Maximilian
+
+114
+00:05:36,960 --> 00:05:40,960
+and this now creates a reactive string you could say,
+
+115
+00:05:40,960 --> 00:05:43,210
+under the hood, it creates an object.
+
+116
+00:05:43,210 --> 00:05:46,010
+This string is stored in that object
+
+117
+00:05:46,010 --> 00:05:48,240
+and Vue will watch this object,
+
+118
+00:05:48,240 --> 00:05:51,410
+so that whenever we assign a new value
+
+119
+00:05:51,410 --> 00:05:53,270
+instead of that original string.
+
+120
+00:05:53,270 --> 00:05:58,120
+Vue will be aware of it and is able to update the DOM.
+
+121
+00:05:58,120 --> 00:06:02,670
+But step-by-step, at the moment this code simply won't work.
+
+122
+00:06:02,670 --> 00:06:04,900
+If we try to save this we get an error.
+
+123
+00:06:04,900 --> 00:06:08,770
+That userName is created, but never used.
+
+124
+00:06:08,770 --> 00:06:11,570
+And it's true, we have that userName constant,
+
+125
+00:06:11,570 --> 00:06:14,140
+but we're not doing anything with it.
+
+126
+00:06:14,140 --> 00:06:17,040
+You might think that we're using it here in the template
+
+127
+00:06:17,040 --> 00:06:19,500
+but actually that's not how it works.
+
+128
+00:06:19,500 --> 00:06:22,810
+It was the case with the options API
+
+129
+00:06:22,810 --> 00:06:25,600
+that you had access to all your data properties,
+
+130
+00:06:25,600 --> 00:06:28,580
+your computed properties and your methods,
+
+131
+00:06:28,580 --> 00:06:30,433
+in the DOM just like that.
+
+132
+00:06:31,370 --> 00:06:35,010
+This is not the case for some constants
+
+133
+00:06:35,010 --> 00:06:37,070
+you might have in you're setup method.
+
+134
+00:06:37,070 --> 00:06:38,740
+If you have a constant here,
+
+135
+00:06:38,740 --> 00:06:42,570
+it's not available in your DOM, in your template.
+
+136
+00:06:42,570 --> 00:06:45,240
+Instead you need to do one extra step.
+
+137
+00:06:45,240 --> 00:06:49,790
+You need to return what you want to expose
+
+138
+00:06:49,790 --> 00:06:52,600
+to the template of this component
+
+139
+00:06:52,600 --> 00:06:54,940
+this config object belongs to.
+
+140
+00:06:54,940 --> 00:06:58,500
+And you always return an object here.
+
+141
+00:06:58,500 --> 00:07:01,960
+So in setup, you return an object
+
+142
+00:07:01,960 --> 00:07:05,140
+and into this object we'll put all the things
+
+143
+00:07:05,140 --> 00:07:06,993
+we wanna expose to the template.
+
+144
+00:07:07,990 --> 00:07:12,120
+So here we want to access a userName thing
+
+145
+00:07:12,120 --> 00:07:14,820
+and therefore in this returned object
+
+146
+00:07:14,820 --> 00:07:17,570
+we should add a userName key
+
+147
+00:07:17,570 --> 00:07:20,630
+and the value we wanna store under that key,
+
+148
+00:07:20,630 --> 00:07:23,290
+is the value stored in this constant.
+
+149
+00:07:23,290 --> 00:07:24,910
+Which is all the names, userName
+
+150
+00:07:24,910 --> 00:07:27,230
+but we could have chose a different name here.
+
+151
+00:07:27,230 --> 00:07:30,537
+And to avoid confusion, let's maybe name this uName
+
+152
+00:07:30,537 --> 00:07:32,637
+and therefore all the name are uName here.
+
+153
+00:07:33,620 --> 00:07:35,870
+So here I'm referring to this constant.
+
+154
+00:07:35,870 --> 00:07:37,800
+Here I'm naming this userName
+
+155
+00:07:37,800 --> 00:07:40,453
+because I'm accessing userName in my template.
+
+156
+00:07:41,340 --> 00:07:44,030
+And what I expose in this returned object
+
+157
+00:07:44,030 --> 00:07:47,040
+is now available in this template
+
+158
+00:07:47,040 --> 00:07:49,810
+and if I save this now, and reload,
+
+159
+00:07:49,810 --> 00:07:54,253
+everything works and we see Maximilian here, on our page.
+
+160
+00:07:55,670 --> 00:07:58,210
+So that's how we create and store a value
+
+161
+00:07:58,210 --> 00:08:00,110
+with the Composition API.
+
+162
+00:08:00,110 --> 00:08:02,060
+We use this ref method.
+
+163
+00:08:02,060 --> 00:08:06,030
+Now, actually you wouldn't even need the ref method,
+
+164
+00:08:06,030 --> 00:08:10,100
+if I remove it and I store a normal string here.
+
+165
+00:08:10,100 --> 00:08:13,350
+If I save that, I get an error that I'm importing ref
+
+166
+00:08:13,350 --> 00:08:14,930
+and I'm not using it,
+
+167
+00:08:14,930 --> 00:08:17,270
+so let's com it out the import real quick,
+
+168
+00:08:17,270 --> 00:08:20,940
+but then if I saved that it, then all the words.
+
+169
+00:08:20,940 --> 00:08:22,913
+So why do I need ref then?
+
+170
+00:08:24,750 --> 00:08:27,450
+Well because I already said that this,
+
+171
+00:08:27,450 --> 00:08:31,730
+if we created with ref, would be a reactive value
+
+172
+00:08:31,730 --> 00:08:34,200
+and that's the next thing I want to show you here.
+
+173
+00:08:34,200 --> 00:08:36,330
+Let's say we have a timer here.
+
+174
+00:08:36,330 --> 00:08:39,570
+We use set timeout, which is built into the browser
+
+175
+00:08:39,570 --> 00:08:43,830
+and after two seconds, we execute a function here.
+
+176
+00:08:43,830 --> 00:08:47,500
+And in this function I wanna assign a new value
+
+177
+00:08:47,500 --> 00:08:49,253
+to my uName constant.
+
+178
+00:08:50,400 --> 00:08:52,420
+Now here's how we're not going to do it.
+
+179
+00:08:52,420 --> 00:08:57,120
+We're not going to say uName equal your new value.
+
+180
+00:08:57,120 --> 00:09:00,500
+For one, that's not allowed because this is a constant.
+
+181
+00:09:00,500 --> 00:09:02,690
+Of course we could turn it into a variable
+
+182
+00:09:02,690 --> 00:09:04,800
+and now we could assign a new value,
+
+183
+00:09:04,800 --> 00:09:07,750
+but now we would overwrite the old ref
+
+184
+00:09:07,750 --> 00:09:11,500
+with a simple new string, so we would lose the ref.
+
+185
+00:09:11,500 --> 00:09:12,600
+And you want a ref
+
+186
+00:09:12,600 --> 00:09:15,700
+because the ref has some built-in mechanisms
+
+187
+00:09:15,700 --> 00:09:19,050
+to let Vue know about changes to that value
+
+188
+00:09:19,050 --> 00:09:21,500
+because if we do it like this,
+
+189
+00:09:21,500 --> 00:09:23,280
+you will notice that if I saved this
+
+190
+00:09:23,280 --> 00:09:25,940
+and I reload, after two seconds,
+
+191
+00:09:25,940 --> 00:09:28,510
+nothing happens on the screen.
+
+192
+00:09:28,510 --> 00:09:30,190
+We always see Maximilian here.
+
+193
+00:09:30,190 --> 00:09:34,370
+Never Max, now I do assign a new value to uName
+
+194
+00:09:34,370 --> 00:09:35,680
+after two seconds,
+
+195
+00:09:35,680 --> 00:09:39,343
+but this new value is never picked up by Vue.
+
+196
+00:09:40,200 --> 00:09:42,310
+The setup method only runs once,
+
+197
+00:09:42,310 --> 00:09:44,640
+so we never return a new object
+
+198
+00:09:44,640 --> 00:09:47,480
+with the new value to the template.
+
+199
+00:09:47,480 --> 00:09:49,650
+And that's exactly why we need a ref
+
+200
+00:09:49,650 --> 00:09:50,970
+and that's what we can use a const
+
+201
+00:09:50,970 --> 00:09:53,200
+because I'm never going to assign a new value
+
+202
+00:09:53,200 --> 00:09:54,880
+to uName like this.
+
+203
+00:09:54,880 --> 00:09:58,720
+Instead, we can use uName which holds this ref
+
+204
+00:09:58,720 --> 00:10:01,670
+and acts as a value property.
+
+205
+00:10:01,670 --> 00:10:05,410
+I mentioned that the ref function creates an object
+
+206
+00:10:05,410 --> 00:10:09,570
+and under the hood, that's an object with a value property.
+
+207
+00:10:09,570 --> 00:10:13,210
+The value, you pass to the ref function here.
+
+208
+00:10:13,210 --> 00:10:16,290
+Is stored under that value property.
+
+209
+00:10:16,290 --> 00:10:18,560
+And you can assign the new value,
+
+210
+00:10:18,560 --> 00:10:21,990
+queue this value property, in this uName object.
+
+211
+00:10:21,990 --> 00:10:24,310
+For example, Max.
+
+212
+00:10:24,310 --> 00:10:28,080
+And if you do that, then Vue will pick it up
+
+213
+00:10:28,080 --> 00:10:31,370
+and will update the DOM and the template.
+
+214
+00:10:31,370 --> 00:10:35,020
+You see this changes to Max after two seconds
+
+215
+00:10:35,020 --> 00:10:36,540
+and that's why we use a ref here.
+
+216
+00:10:36,540 --> 00:10:41,160
+it's a reactive value and we can manage any value here.
+
+217
+00:10:41,160 --> 00:10:45,420
+A string, a number, a bullion, whatever you want.
+
+218
+00:10:45,420 --> 00:10:48,690
+Vue will watch it and will pick up changes
+
+219
+00:10:48,690 --> 00:10:52,033
+to reflect them in the DOM as it does here.
+
+220
+00:10:53,150 --> 00:10:56,450
+Now one word about the template here by the way.
+
+221
+00:10:56,450 --> 00:10:59,280
+You don't access dot value here,
+
+222
+00:10:59,280 --> 00:11:02,960
+because Vue will automatically drill into that value prop
+
+223
+00:11:02,960 --> 00:11:07,960
+if you expose a ref in your return object
+
+224
+00:11:07,990 --> 00:11:09,200
+in the setup method.
+
+225
+00:11:09,200 --> 00:11:11,470
+So here userName points at a ref
+
+226
+00:11:11,470 --> 00:11:14,130
+and we need to use the value property,
+
+227
+00:11:14,130 --> 00:11:15,990
+if we wanna set a new value.
+
+228
+00:11:15,990 --> 00:11:18,580
+But if we pass our ref to the template,
+
+229
+00:11:18,580 --> 00:11:21,840
+Vue will automatically read the value property,
+
+230
+00:11:21,840 --> 00:11:24,300
+so in the template you don't use dot value
+
+231
+00:11:24,300 --> 00:11:27,683
+but just the ref as a whole and Vue will do the rest.
+

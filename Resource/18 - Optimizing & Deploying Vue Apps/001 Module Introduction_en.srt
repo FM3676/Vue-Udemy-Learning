@@ -1,0 +1,96 @@
+1
+00:00:02,270 --> 00:00:03,780
+Up to this point in this course,
+
+2
+00:00:03,780 --> 00:00:06,290
+we always build projects locally.
+
+3
+00:00:06,290 --> 00:00:09,230
+We tested them locally on an address
+
+4
+00:00:09,230 --> 00:00:11,320
+like localhost8080.
+
+5
+00:00:11,320 --> 00:00:14,330
+We had our local development server running
+
+6
+00:00:14,330 --> 00:00:17,920
+in our projects to test the code we wrote
+
+7
+00:00:17,920 --> 00:00:20,210
+to see our application in action,
+
+8
+00:00:20,210 --> 00:00:22,450
+and that of course is totally normal.
+
+9
+00:00:22,450 --> 00:00:23,470
+You're in development.
+
+10
+00:00:23,470 --> 00:00:26,880
+You do develop locally on your machine,
+
+11
+00:00:26,880 --> 00:00:30,040
+but of course ultimately your goal is not
+
+12
+00:00:30,040 --> 00:00:34,170
+to have your Vue application locally on your computer,
+
+13
+00:00:34,170 --> 00:00:35,680
+but you want to deploy it.
+
+14
+00:00:35,680 --> 00:00:38,050
+You want to bring it onto other servers
+
+15
+00:00:38,050 --> 00:00:40,630
+and share it with other users.
+
+16
+00:00:40,630 --> 00:00:43,800
+And therefore this module will be about deploying
+
+17
+00:00:43,800 --> 00:00:46,960
+and optimizing Vue apps so that we can get
+
+18
+00:00:46,960 --> 00:00:49,690
+from development to production.
+
+19
+00:00:49,690 --> 00:00:53,340
+And you will learn what exactly deployment means
+
+20
+00:00:53,340 --> 00:00:56,440
+and which files you need to upload where
+
+21
+00:00:56,440 --> 00:00:58,240
+to share your Vue app.
+
+22
+00:00:58,240 --> 00:01:01,140
+We will have a look at optimization techniques
+
+23
+00:01:01,140 --> 00:01:04,150
+or deployment steps you could say,
+
+24
+00:01:04,150 --> 00:01:08,713
+and we'll see all of that in action and a concrete example.
+

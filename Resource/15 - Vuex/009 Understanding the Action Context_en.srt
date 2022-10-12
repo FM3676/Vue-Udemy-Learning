@@ -1,0 +1,160 @@
+1
+00:00:02,290 --> 00:00:03,960
+So actions are important
+
+2
+00:00:03,960 --> 00:00:06,510
+for asynchronous code, and in general,
+
+3
+00:00:06,510 --> 00:00:09,650
+it is a good practice to use actions.
+
+4
+00:00:09,650 --> 00:00:14,020
+Now, I did mention that we have this context, object
+
+5
+00:00:14,020 --> 00:00:16,400
+which we get as an argument automatically,
+
+6
+00:00:16,400 --> 00:00:19,590
+and that it's full of interesting things.
+
+7
+00:00:19,590 --> 00:00:22,670
+Thus far we're only using the commit method though.
+
+8
+00:00:22,670 --> 00:00:24,743
+So what's inside of context as well?
+
+9
+00:00:25,620 --> 00:00:28,170
+Well, we can simply console log context
+
+10
+00:00:28,170 --> 00:00:30,160
+to have a look into it.
+
+11
+00:00:30,160 --> 00:00:34,180
+So now I log it in increase so if I run, Add 10,
+
+12
+00:00:34,180 --> 00:00:36,550
+here is the log.
+
+13
+00:00:36,550 --> 00:00:40,420
+And we see we got this commit method, which we already saw,
+
+14
+00:00:40,420 --> 00:00:43,470
+but we see a couple of other interesting things.
+
+15
+00:00:43,470 --> 00:00:46,650
+Let's ignore route getters and route state for now,
+
+16
+00:00:46,650 --> 00:00:48,920
+but let's have a look at dispatch.
+
+17
+00:00:48,920 --> 00:00:53,363
+You can also dispatch a number action from inside an action.
+
+18
+00:00:54,270 --> 00:00:57,660
+This can be helpful if you're sending an HTTP request,
+
+19
+00:00:57,660 --> 00:01:01,120
+and if it succeeds, you wanna trigger a success action,
+
+20
+00:01:01,120 --> 00:01:02,390
+if you get an error,
+
+21
+00:01:02,390 --> 00:01:05,519
+you wanna trigger an error handling action.
+
+22
+00:01:05,519 --> 00:01:07,300
+Then you could have one action
+
+23
+00:01:07,300 --> 00:01:09,990
+that dispatches multiple other actions
+
+24
+00:01:09,990 --> 00:01:13,883
+in reaction to different results of HTTP request.
+
+25
+00:01:15,050 --> 00:01:16,760
+You can also access getters
+
+26
+00:01:16,760 --> 00:01:19,800
+in case your action needs some calculated value,
+
+27
+00:01:19,800 --> 00:01:21,563
+which would arrive in some getter.
+
+28
+00:01:23,920 --> 00:01:26,790
+And you can also directly tap into the state,
+
+29
+00:01:26,790 --> 00:01:29,900
+in case getting access to the getters might not be enough.
+
+30
+00:01:29,900 --> 00:01:31,720
+You should not manipulate
+
+31
+00:01:31,720 --> 00:01:34,520
+the state from inside the action though.
+
+32
+00:01:34,520 --> 00:01:36,733
+Always use a mutation for that.
+
+33
+00:01:38,180 --> 00:01:41,160
+So that's context and these are actions
+
+34
+00:01:41,160 --> 00:01:42,793
+and with state,
+
+35
+00:01:44,420 --> 00:01:46,340
+mutations,
+
+36
+00:01:46,340 --> 00:01:49,180
+actions and getters,
+
+37
+00:01:49,180 --> 00:01:52,370
+we get the core concepts vuex uses
+
+38
+00:01:52,370 --> 00:01:55,980
+to manage state application wide
+
+39
+00:01:55,980 --> 00:01:58,010
+which you can then use conveniently
+
+40
+00:01:58,010 --> 00:02:00,263
+from inside any component.
+

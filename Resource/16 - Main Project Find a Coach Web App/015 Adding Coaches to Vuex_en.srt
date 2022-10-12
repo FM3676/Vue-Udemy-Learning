@@ -1,0 +1,1120 @@
+1
+00:00:02,070 --> 00:00:04,410
+So it's time to edit our state
+
+2
+00:00:04,410 --> 00:00:06,600
+and add more coaches.
+
+3
+00:00:06,600 --> 00:00:08,550
+We now got the form in place
+
+4
+00:00:08,550 --> 00:00:10,650
+so we got all we need
+
+5
+00:00:10,650 --> 00:00:11,860
+inside of that form.
+
+6
+00:00:11,860 --> 00:00:13,480
+Inside of the coach form component,
+
+7
+00:00:13,480 --> 00:00:17,440
+we now just need to expose the data that was entered,
+
+8
+00:00:17,440 --> 00:00:20,330
+so this form data here,
+
+9
+00:00:20,330 --> 00:00:22,750
+to the components that uses coach form
+
+10
+00:00:22,750 --> 00:00:25,073
+which is the coach registration component.
+
+11
+00:00:26,160 --> 00:00:29,350
+Theoretically we could also directly reach out
+
+12
+00:00:29,350 --> 00:00:32,299
+to the store from inside of coach form
+
+13
+00:00:32,299 --> 00:00:35,400
+because ultimately we can interact with Vuex stores
+
+14
+00:00:35,400 --> 00:00:36,840
+from any component.
+
+15
+00:00:36,840 --> 00:00:41,380
+But I like this component to be reusable and independent
+
+16
+00:00:41,380 --> 00:00:43,460
+and just work with its parent
+
+17
+00:00:43,460 --> 00:00:47,180
+even though we only use it in one part of this app here.
+
+18
+00:00:47,180 --> 00:00:49,330
+This is just a personal decision though
+
+19
+00:00:49,330 --> 00:00:51,900
+so I will make sure that this component robber
+
+20
+00:00:51,900 --> 00:00:54,410
+emits an event and let's the parent know
+
+21
+00:00:54,410 --> 00:00:56,630
+about the data that was entered.
+
+22
+00:00:56,630 --> 00:00:57,890
+And then the parent,
+
+23
+00:00:57,890 --> 00:01:00,830
+so the coach registration component in this case
+
+24
+00:01:00,830 --> 00:01:03,720
+will do the communication with Vuex.
+
+25
+00:01:03,720 --> 00:01:06,763
+But that's just one possible way of approaching this.
+
+26
+00:01:07,770 --> 00:01:10,220
+However with that, in coach form,
+
+27
+00:01:10,220 --> 00:01:12,900
+I'll emit here in submit form,
+
+28
+00:01:12,900 --> 00:01:15,020
+I'll emit safe data
+
+29
+00:01:15,020 --> 00:01:16,890
+and emit the form data.
+
+30
+00:01:16,890 --> 00:01:20,150
+And yes this data is not validated at the moment,
+
+31
+00:01:20,150 --> 00:01:21,913
+we'll add this later.
+
+32
+00:01:22,950 --> 00:01:24,630
+So now this is emitted
+
+33
+00:01:24,630 --> 00:01:25,610
+and that of course means
+
+34
+00:01:25,610 --> 00:01:28,560
+that we should also add the emits option here
+
+35
+00:01:28,560 --> 00:01:31,823
+and make it clear that we emit safe data.
+
+36
+00:01:32,830 --> 00:01:34,750
+And once we did all of that,
+
+37
+00:01:34,750 --> 00:01:37,300
+inside of coach registration
+
+38
+00:01:37,300 --> 00:01:40,890
+we can accept this incoming data.
+
+39
+00:01:40,890 --> 00:01:45,000
+So there on the coach form we can listen to save data,
+
+40
+00:01:45,000 --> 00:01:47,880
+which is that custom event we're emitting
+
+41
+00:01:47,880 --> 00:01:51,673
+and call maybe a method named saveData here.
+
+42
+00:01:52,830 --> 00:01:55,220
+Of course we have yet to add this method.
+
+43
+00:01:55,220 --> 00:01:58,070
+So here I'll add methods,
+
+44
+00:01:58,070 --> 00:01:59,390
+saveData.
+
+45
+00:01:59,390 --> 00:02:01,330
+And in here we'll get that formData
+
+46
+00:02:02,920 --> 00:02:07,920
+which we pass with the event here in coach form.
+
+47
+00:02:08,009 --> 00:02:11,620
+We get this as a parameter therefore in the save data method
+
+48
+00:02:11,620 --> 00:02:15,770
+which we bind to this event in coach registration.
+
+49
+00:02:15,770 --> 00:02:18,020
+And that's good because we need that data here
+
+50
+00:02:18,020 --> 00:02:20,490
+to communicate with our store.
+
+51
+00:02:20,490 --> 00:02:24,250
+So now we wanna add a new coach in our Vuex store
+
+52
+00:02:24,250 --> 00:02:26,910
+and that of course means one thing,
+
+53
+00:02:26,910 --> 00:02:29,580
+we need to add mutations and actions
+
+54
+00:02:29,580 --> 00:02:32,230
+because you shouldn't directly change your state
+
+55
+00:02:32,230 --> 00:02:33,253
+from outside.
+
+56
+00:02:34,260 --> 00:02:39,260
+Hence here in this empty mutations object in mutations.js
+
+57
+00:02:40,310 --> 00:02:43,073
+I'll add a new mutation, registerCoach.
+
+58
+00:02:44,290 --> 00:02:46,870
+You could of course also name this add coach
+
+59
+00:02:46,870 --> 00:02:48,143
+if you preferred this.
+
+60
+00:02:49,010 --> 00:02:53,500
+And in there I get my state and my payload
+
+61
+00:02:53,500 --> 00:02:56,440
+and I now reach out to state coaches
+
+62
+00:02:56,440 --> 00:02:59,663
+and push the pay load as a new coach.
+
+63
+00:03:01,010 --> 00:03:03,470
+Now actually that would be invalid though,
+
+64
+00:03:03,470 --> 00:03:05,070
+or not really great.
+
+65
+00:03:05,070 --> 00:03:09,220
+Because we must keep in mind that payload ultimately
+
+66
+00:03:09,220 --> 00:03:12,630
+is just the foreign data I'm setting up in coach form
+
+67
+00:03:12,630 --> 00:03:17,300
+and there I have first, last and desc as key names.
+
+68
+00:03:17,300 --> 00:03:19,840
+That's not in line with the key names
+
+69
+00:03:19,840 --> 00:03:21,563
+I have in the rest of my data.
+
+70
+00:03:22,610 --> 00:03:24,070
+That's no problem though,
+
+71
+00:03:24,070 --> 00:03:26,950
+because we have to add an action anyways
+
+72
+00:03:26,950 --> 00:03:30,333
+and I'll transform that data instead of ...
+
+73
+00:03:31,320 --> 00:03:33,270
+So here in the actions.js file
+
+74
+00:03:33,270 --> 00:03:38,270
+we now can register coach or add a register coach action
+
+75
+00:03:38,780 --> 00:03:42,630
+and there we'll get context and also pay load
+
+76
+00:03:42,630 --> 00:03:45,240
+or we can also name this data.
+
+77
+00:03:45,240 --> 00:03:46,790
+It's our method
+
+78
+00:03:46,790 --> 00:03:50,100
+so we can name the parameters however we want.
+
+79
+00:03:50,100 --> 00:03:52,400
+And that will be this foreign data in the end.
+
+80
+00:03:53,280 --> 00:03:56,690
+And here I'll then construct my coach data
+
+81
+00:03:56,690 --> 00:03:59,420
+where my coach or whatever you wanna name it
+
+82
+00:03:59,420 --> 00:04:03,130
+as a new object which now has a first name,
+
+83
+00:04:03,130 --> 00:04:05,380
+which points at data.first,
+
+84
+00:04:05,380 --> 00:04:09,350
+which has a last name which is data.last,
+
+85
+00:04:09,350 --> 00:04:12,790
+which has a description which is data.desc,
+
+86
+00:04:12,790 --> 00:04:14,500
+which has an hourly rate
+
+87
+00:04:14,500 --> 00:04:19,500
+which is data.rate
+
+88
+00:04:19,820 --> 00:04:22,993
+and areas which is data.areas.
+
+89
+00:04:24,620 --> 00:04:27,750
+I also want to add an ID here
+
+90
+00:04:27,750 --> 00:04:29,760
+and for that of course
+
+91
+00:04:29,760 --> 00:04:33,030
+we can use new date to ISOstring
+
+92
+00:04:33,030 --> 00:04:34,980
+to generate an ID like this
+
+93
+00:04:34,980 --> 00:04:38,120
+or we hard code this to c3,
+
+94
+00:04:38,120 --> 00:04:39,520
+which of course is not perfect
+
+95
+00:04:39,520 --> 00:04:43,050
+because that means that as soon as we register twice,
+
+96
+00:04:43,050 --> 00:04:45,410
+we have two coaches with the same ID,
+
+97
+00:04:45,410 --> 00:04:47,640
+but that shouldn't be allowed anyways.
+
+98
+00:04:47,640 --> 00:04:50,770
+You should be able to register more than once.
+
+99
+00:04:50,770 --> 00:04:53,450
+So I will hard code this for now,
+
+100
+00:04:53,450 --> 00:04:55,940
+later we'll send it to a server
+
+101
+00:04:55,940 --> 00:04:59,310
+and the server will give us a better real ID.
+
+102
+00:04:59,310 --> 00:05:03,713
+But for the moment we can use this dummy hard coded ID here.
+
+103
+00:05:05,360 --> 00:05:07,310
+So now we got this coach data
+
+104
+00:05:07,310 --> 00:05:10,883
+and now I can context commit,
+
+105
+00:05:10,883 --> 00:05:12,870
+register coach
+
+106
+00:05:12,870 --> 00:05:17,303
+and commit this mutation with that transformed coach data.
+
+107
+00:05:18,170 --> 00:05:20,020
+And therefore now in this mutation,
+
+108
+00:05:20,020 --> 00:05:22,720
+adding this data like this is okay
+
+109
+00:05:22,720 --> 00:05:26,693
+because that now is in the same format as the other coaches.
+
+110
+00:05:28,380 --> 00:05:30,970
+So now we got this register coach action
+
+111
+00:05:30,970 --> 00:05:33,360
+and we can therefore now dispatch this
+
+112
+00:05:33,360 --> 00:05:35,950
+in the coach registration component
+
+113
+00:05:35,950 --> 00:05:38,650
+whenever safe data is executed.
+
+114
+00:05:38,650 --> 00:05:43,170
+Here we can use this store dispatch
+
+115
+00:05:43,170 --> 00:05:47,080
+and then dispatch coaches/register coach,
+
+116
+00:05:47,080 --> 00:05:48,600
+this is the name space,
+
+117
+00:05:48,600 --> 00:05:51,280
+this is the action name.
+
+118
+00:05:51,280 --> 00:05:52,910
+And of course not just like this
+
+119
+00:05:52,910 --> 00:05:55,200
+but also provide a second argument
+
+120
+00:05:55,200 --> 00:05:57,030
+which is that data we're getting
+
+121
+00:05:58,090 --> 00:06:01,040
+and that should now be adding a new coach
+
+122
+00:06:01,040 --> 00:06:04,070
+once we've filled out all the details.
+
+123
+00:06:04,070 --> 00:06:07,010
+So with that if I now reload here
+
+124
+00:06:07,850 --> 00:06:11,060
+and I enter Max Schwarz,
+
+125
+00:06:11,060 --> 00:06:12,870
+this is a test.
+
+126
+00:06:12,870 --> 00:06:15,250
+15 and backend.
+
+127
+00:06:15,250 --> 00:06:18,320
+If I register and go back to all coaches,
+
+128
+00:06:18,320 --> 00:06:20,300
+we see that data down there
+
+129
+00:06:20,300 --> 00:06:22,450
+and of course we can also view the details.
+
+130
+00:06:24,010 --> 00:06:25,900
+Now maybe it would be nice
+
+131
+00:06:25,900 --> 00:06:28,590
+if we would automatically be forwarded
+
+132
+00:06:28,590 --> 00:06:30,720
+once we submitted that form,
+
+133
+00:06:30,720 --> 00:06:33,880
+be forwarded to that all coaches page I mean,
+
+134
+00:06:33,880 --> 00:06:36,350
+and that's something we can simply implement
+
+135
+00:06:36,350 --> 00:06:39,780
+by going back to save data in coach registration,
+
+136
+00:06:39,780 --> 00:06:44,780
+and using this $router.push to push us to /coaches.
+
+137
+00:06:46,040 --> 00:06:48,940
+Or use something which I haven't shown you before
+
+138
+00:06:48,940 --> 00:06:51,493
+and that's the replace method on the router.
+
+139
+00:06:52,380 --> 00:06:54,460
+It's also navigating us away,
+
+140
+00:06:54,460 --> 00:06:55,700
+just like push,
+
+141
+00:06:55,700 --> 00:06:58,110
+but the difference is that we can't go back
+
+142
+00:06:58,110 --> 00:07:01,080
+to the page we came from thereafter.
+
+143
+00:07:01,080 --> 00:07:02,310
+And that's good because here
+
+144
+00:07:02,310 --> 00:07:04,340
+I don't want to go back to the form
+
+145
+00:07:04,340 --> 00:07:06,130
+once it is submitted.
+
+146
+00:07:06,130 --> 00:07:08,893
+So that's why I'm using replace instead of push here.
+
+147
+00:07:10,060 --> 00:07:12,060
+Now with that out of the way,
+
+148
+00:07:12,060 --> 00:07:13,020
+let's try this again.
+
+149
+00:07:13,020 --> 00:07:14,370
+Let's reload,
+
+150
+00:07:14,370 --> 00:07:15,630
+and every time we reload,
+
+151
+00:07:15,630 --> 00:07:17,930
+we lose our generated coach by the way
+
+152
+00:07:17,930 --> 00:07:21,330
+because it's only stored temporarily in memory
+
+153
+00:07:21,330 --> 00:07:23,919
+that's why we later add HTTP in the server
+
+154
+00:07:23,919 --> 00:07:27,650
+so that's why we lose it when we reload at the moment.
+
+155
+00:07:27,650 --> 00:07:28,900
+But that's good because that means
+
+156
+00:07:28,900 --> 00:07:31,530
+we can register the same coach again
+
+157
+00:07:31,530 --> 00:07:33,718
+without having an ID clash.
+
+158
+00:07:33,718 --> 00:07:35,193
+This is a test,
+
+159
+00:07:36,410 --> 00:07:37,420
+add that data
+
+160
+00:07:37,420 --> 00:07:40,713
+and now if I register I'm forwarded to this page.
+
+161
+00:07:42,110 --> 00:07:43,430
+Now I think it would be good
+
+162
+00:07:43,430 --> 00:07:46,300
+if this button would not be available anymore
+
+163
+00:07:46,300 --> 00:07:48,540
+as soon as we did register though.
+
+164
+00:07:48,540 --> 00:07:52,800
+And therefore I want to make sure that we are aware
+
+165
+00:07:52,800 --> 00:07:55,990
+of when that user signed up.
+
+166
+00:07:55,990 --> 00:07:57,850
+And I want to make sure
+
+167
+00:07:57,850 --> 00:08:02,850
+that we can check for the user being a coach by using Vuex.
+
+168
+00:08:03,530 --> 00:08:06,110
+In the root index tray as follows,
+
+169
+00:08:06,110 --> 00:08:07,350
+the store folder.
+
+170
+00:08:07,350 --> 00:08:10,340
+We currently just register the coaches module.
+
+171
+00:08:10,340 --> 00:08:14,220
+Here I actually now want to also have some root state
+
+172
+00:08:14,220 --> 00:08:17,230
+and that I want to manage the ID of the user
+
+173
+00:08:17,230 --> 00:08:19,020
+who's using this app.
+
+174
+00:08:19,020 --> 00:08:20,560
+At the moment,
+
+175
+00:08:20,560 --> 00:08:22,750
+this ID is of course hard coded.
+
+176
+00:08:22,750 --> 00:08:24,650
+I'll use c3 here.
+
+177
+00:08:24,650 --> 00:08:28,550
+Later, after the authentication course module,
+
+178
+00:08:28,550 --> 00:08:31,130
+we will actually have a real user ID here.
+
+179
+00:08:31,130 --> 00:08:32,720
+For the moment it's this dummy ID,
+
+180
+00:08:32,720 --> 00:08:34,520
+but that's okay.
+
+181
+00:08:34,520 --> 00:08:36,880
+So we'll have a use ID here
+
+182
+00:08:36,880 --> 00:08:39,960
+and that user ID should now be used
+
+183
+00:08:39,960 --> 00:08:41,860
+when we sign up as a coach.
+
+184
+00:08:41,860 --> 00:08:44,600
+But should thereafter be used to verify
+
+185
+00:08:44,600 --> 00:08:48,200
+whether we already got a coach with that ID.
+
+186
+00:08:48,200 --> 00:08:52,040
+Now first of all here in coach's actions,
+
+187
+00:08:52,040 --> 00:08:54,680
+I no longer wanna hard code the ID here
+
+188
+00:08:54,680 --> 00:08:57,480
+but instead use this user ID.
+
+189
+00:08:57,480 --> 00:08:58,833
+So for that,
+
+190
+00:08:58,833 --> 00:09:02,400
+thankfully we can use our context
+
+191
+00:09:02,400 --> 00:09:05,160
+and access the root getters here.
+
+192
+00:09:05,160 --> 00:09:08,290
+Now we just need a root getter that gives us this ID.
+
+193
+00:09:08,290 --> 00:09:11,170
+So in the root.js index file here
+
+194
+00:09:11,170 --> 00:09:15,540
+I'll add getters and then add a user ID getter
+
+195
+00:09:15,540 --> 00:09:18,860
+where I just return state user ID
+
+196
+00:09:18,860 --> 00:09:20,793
+and get state as a parameter.
+
+197
+00:09:22,190 --> 00:09:25,600
+And now we can use this root getter here in this action
+
+198
+00:09:25,600 --> 00:09:29,003
+by accessing context rootGetters.userid
+
+199
+00:09:29,003 --> 00:09:31,000
+so that we use the real user ID here
+
+200
+00:09:31,940 --> 00:09:34,610
+and then here in the coach getters
+
+201
+00:09:34,610 --> 00:09:37,040
+we can add a isCoach getter
+
+202
+00:09:37,040 --> 00:09:39,790
+which returns true if the user already is a coach
+
+203
+00:09:39,790 --> 00:09:41,313
+and falls otherwise,
+
+204
+00:09:42,500 --> 00:09:44,310
+and her we can utilize the fact
+
+205
+00:09:44,310 --> 00:09:46,930
+that we get the state in a getter
+
+206
+00:09:46,930 --> 00:09:50,678
+but also other getters and also the rootState
+
+207
+00:09:50,678 --> 00:09:52,900
+and the rootGetters.
+
+208
+00:09:52,900 --> 00:09:55,800
+That's what I showed you in the Vuex module.
+
+209
+00:09:55,800 --> 00:09:59,950
+And therefore here we wanna get our coaches
+
+210
+00:09:59,950 --> 00:10:03,720
+by accessing getters.coaches or state coaches,
+
+211
+00:10:03,720 --> 00:10:05,860
+doesn't really make a difference here.
+
+212
+00:10:05,860 --> 00:10:08,620
+And then we wanna look through those coaches
+
+213
+00:10:08,620 --> 00:10:12,500
+and see if we got a coach with our user ID
+
+214
+00:10:12,500 --> 00:10:14,670
+which we can get from rootGetters.
+
+215
+00:10:14,670 --> 00:10:18,497
+We get our userID by accessing rootGetters.userId.
+
+216
+00:10:20,560 --> 00:10:24,810
+And then we can return coaches.some
+
+217
+00:10:24,810 --> 00:10:27,590
+which is a built in method that returns true
+
+218
+00:10:27,590 --> 00:10:31,410
+if some coach fulfills a criteria
+
+219
+00:10:31,410 --> 00:10:33,590
+and here we run a function every coach
+
+220
+00:10:33,590 --> 00:10:37,147
+and return true if coach.id is equal to userId.
+
+221
+00:10:38,660 --> 00:10:40,350
+With that this will return true
+
+222
+00:10:40,350 --> 00:10:42,670
+if we find at least one coach
+
+223
+00:10:42,670 --> 00:10:45,150
+that has our user ID as ID
+
+224
+00:10:45,150 --> 00:10:47,363
+which means we are a coach already.
+
+225
+00:10:49,290 --> 00:10:51,500
+Now I got two unused parameters here
+
+226
+00:10:51,500 --> 00:10:55,340
+which this specific project set up wouldn't like.
+
+227
+00:10:55,340 --> 00:11:00,340
+So here I'll use an underscore and _2 as parameter names
+
+228
+00:11:01,730 --> 00:11:03,420
+which is a specific convention
+
+229
+00:11:03,420 --> 00:11:07,130
+that signals the ... of this project
+
+230
+00:11:07,130 --> 00:11:08,910
+that I have to take these arguments
+
+231
+00:11:08,910 --> 00:11:10,813
+but I'm deliberately not using them.
+
+232
+00:11:12,040 --> 00:11:14,700
+Well and with that we hopefully get true here
+
+233
+00:11:14,700 --> 00:11:16,953
+if we have a coach with our ID.
+
+234
+00:11:18,040 --> 00:11:20,410
+Of course the downside of this approach by the way,
+
+235
+00:11:20,410 --> 00:11:22,810
+is that we always go through all coaches
+
+236
+00:11:22,810 --> 00:11:25,250
+to check whether we are a coach or not
+
+237
+00:11:25,250 --> 00:11:27,690
+so an alternative way of solving this
+
+238
+00:11:27,690 --> 00:11:29,710
+would be to simply add a new state
+
+239
+00:11:29,710 --> 00:11:31,920
+to our a coaches state here
+
+240
+00:11:31,920 --> 00:11:36,920
+where we say UserIsCoach where we set this to true
+
+241
+00:11:37,680 --> 00:11:39,650
+as soon as the user signed up.
+
+242
+00:11:39,650 --> 00:11:41,670
+This is absolutely an alternative.
+
+243
+00:11:41,670 --> 00:11:44,660
+I'll still go with the other approach to also show that,
+
+244
+00:11:44,660 --> 00:11:47,060
+but it's up to you which approach you wanna use.
+
+245
+00:11:48,180 --> 00:11:49,560
+With that however,
+
+246
+00:11:49,560 --> 00:11:51,990
+I have this isCoach getter
+
+247
+00:11:51,990 --> 00:11:54,420
+and now in coach registration
+
+248
+00:11:54,420 --> 00:11:58,190
+we can also add computed properties
+
+249
+00:11:58,190 --> 00:12:01,620
+and add a isCoach computed property
+
+250
+00:12:01,620 --> 00:12:04,060
+where I return the result of reaching out
+
+251
+00:12:04,060 --> 00:12:06,340
+to this store.getters
+
+252
+00:12:06,340 --> 00:12:08,073
+coaches/isCoach.
+
+253
+00:12:09,680 --> 00:12:12,670
+Which is that new getter we just worked on.
+
+254
+00:12:12,670 --> 00:12:16,080
+And now we can use the isCoach property
+
+255
+00:12:16,080 --> 00:12:20,320
+to control whoever we wanna show this register button or not
+
+256
+00:12:20,320 --> 00:12:23,260
+but I'm in the wrong component as I noticed
+
+257
+00:12:23,260 --> 00:12:25,990
+so let's cut that and removed that.
+
+258
+00:12:25,990 --> 00:12:28,190
+It's in the coaches list of course,
+
+259
+00:12:28,190 --> 00:12:31,850
+here we have this register as coach button
+
+260
+00:12:31,850 --> 00:12:34,590
+so here in computed,
+
+261
+00:12:34,590 --> 00:12:38,933
+I wanna add this isCoach computed property I just worked on.
+
+262
+00:12:39,950 --> 00:12:42,460
+And now we can use isCoach here
+
+263
+00:12:42,460 --> 00:12:47,240
+with the v=if to only show this button if not is coach.
+
+264
+00:12:47,240 --> 00:12:49,593
+So if the user is not a coach yet.
+
+265
+00:12:50,880 --> 00:12:52,490
+With that if we save this,
+
+266
+00:12:52,490 --> 00:12:53,850
+if I reload
+
+267
+00:12:53,850 --> 00:12:55,180
+the button's available.
+
+268
+00:12:55,180 --> 00:12:58,140
+But if I do now sign up here as a coach
+
+269
+00:12:59,630 --> 00:13:03,240
+this hopefully is no longer the case thereafter.
+
+270
+00:13:03,240 --> 00:13:04,470
+Now the button is gone
+
+271
+00:13:04,470 --> 00:13:06,393
+because now I am a coach.
+
+272
+00:13:07,330 --> 00:13:10,890
+So now adding a coach or registering as a coach works
+
+273
+00:13:10,890 --> 00:13:13,890
+at least in this dummy version.
+
+274
+00:13:13,890 --> 00:13:18,410
+But with that our core coach feature is pretty much done,
+
+275
+00:13:18,410 --> 00:13:21,450
+there's just one thing missing if I reload,
+
+276
+00:13:21,450 --> 00:13:23,600
+I want to add validation to this form
+
+277
+00:13:23,600 --> 00:13:26,150
+so that we can't submit and empty form
+
+278
+00:13:26,150 --> 00:13:28,380
+because that won't work for us.
+
+279
+00:13:28,380 --> 00:13:30,530
+So that's what we're going to work on next
+
+280
+00:13:30,530 --> 00:13:34,863
+before we do work on the context and requests features.
+

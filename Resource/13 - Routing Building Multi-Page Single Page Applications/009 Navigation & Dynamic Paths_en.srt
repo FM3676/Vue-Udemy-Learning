@@ -1,0 +1,208 @@
+1
+00:00:02,090 --> 00:00:03,969
+And for that, we should go to this
+
+2
+00:00:03,969 --> 00:00:07,210
+teams list component, and there we see
+
+3
+00:00:07,210 --> 00:00:09,380
+it's the teams item which is being rendered,
+
+4
+00:00:09,380 --> 00:00:12,570
+which holds this button, which turns out to be a link,
+
+5
+00:00:12,570 --> 00:00:15,870
+and this link currently is a regular anchor tag,
+
+6
+00:00:15,870 --> 00:00:18,323
+and I instead want to use what?
+
+7
+00:00:19,320 --> 00:00:23,400
+A router link, that reaches to this route,
+
+8
+00:00:23,400 --> 00:00:27,180
+but of course where the ID of the team is different
+
+9
+00:00:27,180 --> 00:00:29,930
+for every different team item.
+
+10
+00:00:29,930 --> 00:00:32,250
+So, we're going to replace the anchor tag
+
+11
+00:00:32,250 --> 00:00:34,103
+with router link here,
+
+12
+00:00:35,180 --> 00:00:36,753
+like this,
+
+13
+00:00:38,380 --> 00:00:42,463
+and now set the two property to what.
+
+14
+00:00:43,817 --> 00:00:45,980
+Previously it was just slash teams, but now it needs to be
+
+15
+00:00:45,980 --> 00:00:50,660
+slash teams, and then the ID, but the ID is different
+
+16
+00:00:50,660 --> 00:00:52,463
+for every teams item.
+
+17
+00:00:53,950 --> 00:00:57,210
+Well, first of all, we should get the ID as a prop here.
+
+18
+00:00:57,210 --> 00:01:00,770
+I will add ID as a prop, so that we have it available
+
+19
+00:01:00,770 --> 00:01:02,640
+instead of the team's item component,
+
+20
+00:01:02,640 --> 00:01:06,140
+because without having the ID of a team, it will be hard
+
+21
+00:01:06,140 --> 00:01:08,303
+to construct the correct link here.
+
+22
+00:01:09,210 --> 00:01:12,690
+So in teams list where I loop for my teams items,
+
+23
+00:01:12,690 --> 00:01:15,360
+I will actually bind ID to "team.id"
+
+24
+00:01:15,360 --> 00:01:17,480
+so that we have the ID available
+
+25
+00:01:17,480 --> 00:01:19,333
+in this teams item component.
+
+26
+00:01:21,320 --> 00:01:24,320
+But with that, we still need to build this link.
+
+27
+00:01:24,320 --> 00:01:29,070
+And we can do this, because two does not just have to
+
+28
+00:01:29,070 --> 00:01:33,140
+be set like this, you can also bind it to a dynamic value,
+
+29
+00:01:33,140 --> 00:01:37,860
+with the bind, or the shorthand, ":to".
+
+30
+00:01:37,860 --> 00:01:41,470
+And now this points at a JavaScript expression,
+
+31
+00:01:41,470 --> 00:01:44,590
+or simply at a data property, whatever you have,
+
+32
+00:01:44,590 --> 00:01:48,410
+and here we could then derive the full path
+
+33
+00:01:48,410 --> 00:01:51,670
+you wanna go to, by combining slash teams
+
+34
+00:01:51,670 --> 00:01:54,440
+which is a string here, with single quotes,
+
+35
+00:01:54,440 --> 00:01:57,400
+since this is now a JavaScript expression,
+
+36
+00:01:57,400 --> 00:02:00,800
+slash, and then plus ID.
+
+37
+00:02:00,800 --> 00:02:05,090
+This constructs this URL, this path,
+
+38
+00:02:05,090 --> 00:02:08,960
+where ID is different for every usage of teams item.
+
+39
+00:02:08,960 --> 00:02:11,143
+So for every usage of this component.
+
+40
+00:02:12,250 --> 00:02:15,160
+And hence, if I now save this and we reload,
+
+41
+00:02:15,160 --> 00:02:17,110
+we get different links here,
+
+42
+00:02:17,110 --> 00:02:21,640
+which lead us to the different team members.
+
+43
+00:02:21,640 --> 00:02:24,373
+So, that is working.
+
+44
+00:02:25,420 --> 00:02:28,970
+And of course, we could now also take this, and outsource it
+
+45
+00:02:28,970 --> 00:02:30,660
+from inside our template here,
+
+46
+00:02:30,660 --> 00:02:35,030
+into a computed property, to have less logic in a template,
+
+47
+00:02:35,030 --> 00:02:39,270
+and have our team members link computed property,
+
+48
+00:02:39,270 --> 00:02:41,960
+for example, where we return
+
+49
+00:02:43,610 --> 00:02:47,080
+this generated URL, and then here
+
+50
+00:02:47,080 --> 00:02:49,663
+we point at team members link.
+
+51
+00:02:51,380 --> 00:02:53,823
+That of course is 100% optional.
+
+52
+00:02:55,030 --> 00:02:58,563
+So with that, if I reload, this still works.
+

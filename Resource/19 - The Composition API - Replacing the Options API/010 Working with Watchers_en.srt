@@ -1,0 +1,404 @@
+1
+00:00:02,070 --> 00:00:05,840
+So, now let's have a look at the last option
+
+2
+00:00:05,840 --> 00:00:09,570
+we want to replace, and that's the watch option.
+
+3
+00:00:09,570 --> 00:00:12,100
+Watch can be useful for running some code,
+
+4
+00:00:12,100 --> 00:00:15,200
+like setting up behind the scenes HTTP requests
+
+5
+00:00:15,200 --> 00:00:17,083
+when some data changes.
+
+6
+00:00:18,350 --> 00:00:21,130
+Of course, I don't want to send that HTTP request
+
+7
+00:00:21,130 --> 00:00:22,150
+in the simple app here,
+
+8
+00:00:22,150 --> 00:00:25,400
+but I still want to show you a how watch works.
+
+9
+00:00:25,400 --> 00:00:30,400
+Normally, you add your watch option here,
+
+10
+00:00:30,650 --> 00:00:32,409
+which watch is object,
+
+11
+00:00:32,409 --> 00:00:34,840
+and in there, you could then watch age,
+
+12
+00:00:34,840 --> 00:00:36,890
+by adding a method of the same name,
+
+13
+00:00:36,890 --> 00:00:40,030
+so watch this age property by adding such a method,
+
+14
+00:00:40,030 --> 00:00:43,990
+you would get the new value whenever watch triggers,
+
+15
+00:00:43,990 --> 00:00:48,830
+and then you could console log val here, for example.
+
+16
+00:00:48,830 --> 00:00:50,963
+That's what you could do with watch.
+
+17
+00:00:52,570 --> 00:00:55,040
+Well, obviously that's not what we're doing now,
+
+18
+00:00:55,040 --> 00:01:00,040
+instead we import a new thing from view
+
+19
+00:01:00,430 --> 00:01:04,822
+and that thing is another function, the watch function.
+
+20
+00:01:06,540 --> 00:01:10,100
+The watch function is all the part of the Composition API
+
+21
+00:01:10,100 --> 00:01:12,900
+and the watch function allows us to register
+
+22
+00:01:12,900 --> 00:01:16,300
+a watcher inside of this setup method.
+
+23
+00:01:16,300 --> 00:01:19,480
+And yes, it's quite normal that you have a lot of things
+
+24
+00:01:19,480 --> 00:01:22,970
+in this setup method, as you can tell already.
+
+25
+00:01:22,970 --> 00:01:27,340
+So in here, let's say here, for example,
+
+26
+00:01:27,340 --> 00:01:31,810
+after we defined our refs, we can call watch.
+
+27
+00:01:31,810 --> 00:01:35,200
+Now, watch wants two arguments here,
+
+28
+00:01:35,200 --> 00:01:40,200
+the first argument, is a dependency of watch,
+
+29
+00:01:40,420 --> 00:01:45,190
+telling watch when it should execute the watcher function,
+
+30
+00:01:45,190 --> 00:01:49,020
+and for example, here we could pass the uAge ref.
+
+31
+00:01:49,020 --> 00:01:52,750
+So this ref is now a dependency of watch.
+
+32
+00:01:52,750 --> 00:01:55,810
+The second argument is the actual function
+
+33
+00:01:55,810 --> 00:01:57,900
+that should be called then.
+
+34
+00:01:57,900 --> 00:02:00,460
+Now, we need to specify this dependency
+
+35
+00:02:00,460 --> 00:02:02,660
+because with the Options API,
+
+36
+00:02:02,660 --> 00:02:06,840
+the dependency was just the name of the watch method.
+
+37
+00:02:06,840 --> 00:02:09,639
+Now, it's just watch as a function,
+
+38
+00:02:09,639 --> 00:02:11,830
+so to still let watch know
+
+39
+00:02:11,830 --> 00:02:14,200
+when the watcher function should run,
+
+40
+00:02:14,200 --> 00:02:17,630
+we need to specify the pendency first.
+
+41
+00:02:17,630 --> 00:02:19,120
+So, that's uAge,
+
+42
+00:02:19,120 --> 00:02:23,083
+and then whenever uAge changes, this function is executed.
+
+43
+00:02:24,600 --> 00:02:25,500
+In this function,
+
+44
+00:02:25,500 --> 00:02:29,440
+we now actually get two arguments automatically by watch,
+
+45
+00:02:29,440 --> 00:02:33,490
+and that's the new value and the old value.
+
+46
+00:02:33,490 --> 00:02:37,080
+So, we get to the value of uAge before it changed,
+
+47
+00:02:37,080 --> 00:02:39,193
+and then after the change.
+
+48
+00:02:40,470 --> 00:02:45,470
+And here we can console log old age plus old value,
+
+49
+00:02:47,240 --> 00:02:50,830
+and then also console log
+
+50
+00:02:52,790 --> 00:02:57,123
+new age plus new value, like this.
+
+51
+00:02:59,310 --> 00:03:00,290
+And that's all.
+
+52
+00:03:00,290 --> 00:03:03,940
+If we now save this and reload,
+
+53
+00:03:03,940 --> 00:03:06,570
+nothing is printed here, as you can tell.
+
+54
+00:03:06,570 --> 00:03:10,250
+But if I now click change age, which changes the age,
+
+55
+00:03:10,250 --> 00:03:13,010
+we see old age, 31,
+
+56
+00:03:13,010 --> 00:03:14,730
+new age, 33,
+
+57
+00:03:14,730 --> 00:03:18,840
+because our watch are executed since we changed age,
+
+58
+00:03:18,840 --> 00:03:20,493
+which is our dependency here.
+
+59
+00:03:22,040 --> 00:03:26,110
+Actually, you can also specify more than one dependency,
+
+60
+00:03:26,110 --> 00:03:29,860
+so that you even gain more flexibility than with watch,
+
+61
+00:03:29,860 --> 00:03:34,023
+the Options API, by passing an array of dependencies here.
+
+62
+00:03:35,440 --> 00:03:38,110
+Then here, you could specify uAge,
+
+63
+00:03:39,260 --> 00:03:43,760
+and let's say uName as a dependency,
+
+64
+00:03:43,760 --> 00:03:46,870
+and therefore, let's move watch below uName,
+
+65
+00:03:46,870 --> 00:03:48,903
+so that we do have access to it.
+
+66
+00:03:49,770 --> 00:03:54,150
+So now, either when age or does computed ref changes,
+
+67
+00:03:54,150 --> 00:03:57,600
+when either of these two changes, this function executes,
+
+68
+00:03:57,600 --> 00:03:59,320
+and then we actually also get
+
+69
+00:03:59,320 --> 00:04:02,890
+different kinds of values here, as arguments.
+
+70
+00:04:02,890 --> 00:04:07,670
+We get our new values here and our old values.
+
+71
+00:04:07,670 --> 00:04:10,180
+We now get a raise for both arguments
+
+72
+00:04:10,180 --> 00:04:12,230
+because we have more than one dependency.
+
+73
+00:04:13,340 --> 00:04:17,380
+So our old age now is old values,
+
+74
+00:04:17,380 --> 00:04:19,200
+and then the first element,
+
+75
+00:04:19,200 --> 00:04:22,170
+since the age is our first dependency
+
+76
+00:04:22,170 --> 00:04:26,400
+and our new age is new values, and then the first element.
+
+77
+00:04:26,400 --> 00:04:28,780
+Because if you have more than one dependency,
+
+78
+00:04:28,780 --> 00:04:32,090
+you get more than one value for these arguments,
+
+79
+00:04:32,090 --> 00:04:33,930
+and the order of values here,
+
+80
+00:04:33,930 --> 00:04:36,173
+follows the order of your dependencies.
+
+81
+00:04:37,300 --> 00:04:39,680
+Hence, of course, if you want to,
+
+82
+00:04:39,680 --> 00:04:42,680
+we can also copy those console log statements
+
+83
+00:04:42,680 --> 00:04:46,130
+and output the old name, which has old values,
+
+84
+00:04:46,130 --> 00:04:48,490
+and then the second element,
+
+85
+00:04:48,490 --> 00:04:51,620
+and new name, which is new values,
+
+86
+00:04:51,620 --> 00:04:53,163
+and then the second element.
+
+87
+00:04:55,565 --> 00:04:59,300
+Now with that saved, if we reload,
+
+88
+00:04:59,300 --> 00:05:00,970
+I can change the age
+
+89
+00:05:00,970 --> 00:05:02,960
+and you'll see old age, new age
+
+90
+00:05:02,960 --> 00:05:05,150
+and nothing for old name and new name,
+
+91
+00:05:05,150 --> 00:05:07,570
+because there we didn't enter anything.
+
+92
+00:05:07,570 --> 00:05:11,150
+But if I now start typing here, maybe just one character,
+
+93
+00:05:11,150 --> 00:05:13,100
+we see the watcher fires again,
+
+94
+00:05:13,100 --> 00:05:16,410
+because now the age didn't change, but the name did.
+
+95
+00:05:16,410 --> 00:05:20,610
+So, you even gain more flexibility with this watch function,
+
+96
+00:05:20,610 --> 00:05:24,490
+because now, unlike in the Options API,
+
+97
+00:05:24,490 --> 00:05:28,770
+where you always had just one dependency per watcher,
+
+98
+00:05:28,770 --> 00:05:31,500
+you can now have multiple dependencies
+
+99
+00:05:31,500 --> 00:05:34,230
+that trigger this watcher function.
+
+100
+00:05:34,230 --> 00:05:36,360
+And that's how you replace watch
+
+101
+00:05:36,360 --> 00:05:40,333
+with this watch function when using the Composition API.
+

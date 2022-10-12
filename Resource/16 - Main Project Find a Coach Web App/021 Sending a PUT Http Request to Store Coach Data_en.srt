@@ -1,0 +1,848 @@
+1
+00:00:02,130 --> 00:00:03,469
+So up to this point,
+
+2
+00:00:03,469 --> 00:00:06,790
+all the data we're working with is dummy data.
+
+3
+00:00:06,790 --> 00:00:08,180
+And it's not permanent.
+
+4
+00:00:08,180 --> 00:00:13,150
+If we register ourselves as a coach, once the app reloads,
+
+5
+00:00:13,150 --> 00:00:14,300
+it's no longer there.
+
+6
+00:00:14,300 --> 00:00:15,710
+The data is lost.
+
+7
+00:00:15,710 --> 00:00:19,200
+In addition, of course, it's only here on our computer.
+
+8
+00:00:19,200 --> 00:00:21,950
+If this would be a web app running on a server,
+
+9
+00:00:21,950 --> 00:00:25,320
+being served to users all over the world,
+
+10
+00:00:25,320 --> 00:00:28,530
+every user would only see his or her own data
+
+11
+00:00:28,530 --> 00:00:30,560
+and not the data of other users,
+
+12
+00:00:30,560 --> 00:00:32,810
+which of course is totally not the idea
+
+13
+00:00:32,810 --> 00:00:34,560
+behind an app like this.
+
+14
+00:00:34,560 --> 00:00:38,883
+I wanna see all coaches from all over the world after all.
+
+15
+00:00:40,300 --> 00:00:43,450
+That's why we now need HTTP and why we need a backend
+
+16
+00:00:43,450 --> 00:00:45,973
+and a server on which we can store the data.
+
+17
+00:00:47,150 --> 00:00:49,500
+For that, I'll again use Firebase,
+
+18
+00:00:49,500 --> 00:00:51,650
+not because it's the only option,
+
+19
+00:00:51,650 --> 00:00:54,520
+but because it doesn't require us to write
+
+20
+00:00:54,520 --> 00:00:56,990
+any server side code and this of course
+
+21
+00:00:56,990 --> 00:01:00,310
+is no server side code course, so that's great.
+
+22
+00:01:00,310 --> 00:01:03,120
+And because we can get started for free.
+
+23
+00:01:03,120 --> 00:01:06,110
+If you wanna use it for your real projects though,
+
+24
+00:01:06,110 --> 00:01:08,650
+of course, definitely check out the pricing page
+
+25
+00:01:08,650 --> 00:01:10,360
+to learn what costs money,
+
+26
+00:01:10,360 --> 00:01:13,530
+and how much you can get for free.
+
+27
+00:01:13,530 --> 00:01:15,880
+Now you need to log in with your Google account
+
+28
+00:01:15,880 --> 00:01:18,410
+and then go to the Firebase console,
+
+29
+00:01:18,410 --> 00:01:22,340
+and then there's simply create a new project which I did.
+
+30
+00:01:22,340 --> 00:01:26,090
+And they're, you should then go to real time database
+
+31
+00:01:26,090 --> 00:01:30,283
+to make sure you use this database for your project.
+
+32
+00:01:31,310 --> 00:01:33,550
+Now, for the moment, this is empty.
+
+33
+00:01:33,550 --> 00:01:37,550
+When it gets created, make sure you create it in test mode
+
+34
+00:01:37,550 --> 00:01:40,570
+and ensure that your rules over there
+
+35
+00:01:40,570 --> 00:01:42,313
+look something like this.
+
+36
+00:01:43,330 --> 00:01:46,400
+They should not say false here or anything like that.
+
+37
+00:01:47,670 --> 00:01:50,020
+Instead, they should look something like this.
+
+38
+00:01:50,020 --> 00:01:53,150
+And with that done, we can now get started
+
+39
+00:01:53,150 --> 00:01:56,500
+and use this as a backend to which we send requests
+
+40
+00:01:56,500 --> 00:01:58,570
+from inside our View App.
+
+41
+00:01:58,570 --> 00:02:00,470
+And now of course, the question is
+
+42
+00:02:00,470 --> 00:02:03,620
+where do we wanna send which request?
+
+43
+00:02:03,620 --> 00:02:05,700
+Well, in the end, it's quite simple.
+
+44
+00:02:05,700 --> 00:02:09,080
+In our app, when we were just there as a coach,
+
+45
+00:02:09,080 --> 00:02:12,073
+we wanna send the request as soon as this is done.
+
+46
+00:02:13,010 --> 00:02:14,790
+When we're on the coaches' page,
+
+47
+00:02:14,790 --> 00:02:18,610
+we wanna fetch all the coaches and also re fetched them
+
+48
+00:02:18,610 --> 00:02:20,883
+whenever their refresh button is pressed.
+
+49
+00:02:22,440 --> 00:02:25,340
+On requests, we wanna fetch all requests
+
+50
+00:02:26,760 --> 00:02:28,650
+and we wanna send a request
+
+51
+00:02:28,650 --> 00:02:31,660
+once this contact form is submitted.
+
+52
+00:02:31,660 --> 00:02:35,390
+So in the end, this aligns with our Vuex store.
+
+53
+00:02:35,390 --> 00:02:39,830
+In coaches, when we have this register coach action,
+
+54
+00:02:39,830 --> 00:02:42,760
+we wanna send the request to create a coach.
+
+55
+00:02:42,760 --> 00:02:46,110
+In requests, when contact coach is submitted,
+
+56
+00:02:46,110 --> 00:02:49,260
+we wanna send a request to add this coach on the server,
+
+57
+00:02:49,260 --> 00:02:53,460
+and then we'll need a couple of requests to fetch data.
+
+58
+00:02:53,460 --> 00:02:58,180
+I still wanna use Vuex to manage my data in the View App
+
+59
+00:02:58,180 --> 00:03:01,610
+and I wanna use Vuex for sending those requests.
+
+60
+00:03:01,610 --> 00:03:04,483
+And therefore let's maybe start with coaches.
+
+61
+00:03:05,440 --> 00:03:08,510
+Here in actions in register coach,
+
+62
+00:03:08,510 --> 00:03:11,470
+we're creating our coach data object at the moment,
+
+63
+00:03:11,470 --> 00:03:14,800
+and that's the object that should be sent to Firebase.
+
+64
+00:03:14,800 --> 00:03:17,760
+So therefore, here, we wanna send the request.
+
+65
+00:03:17,760 --> 00:03:20,480
+We can do this with the fetch function
+
+66
+00:03:20,480 --> 00:03:22,840
+that's built into the browser.
+
+67
+00:03:22,840 --> 00:03:26,220
+It takes a string which is the URL
+
+68
+00:03:26,220 --> 00:03:28,040
+to which the request should be sent,
+
+69
+00:03:28,040 --> 00:03:31,443
+which is this URL in your real time database,
+
+70
+00:03:32,380 --> 00:03:35,070
+where at least that's a part of the URL,
+
+71
+00:03:35,070 --> 00:03:37,320
+but then you can add any segment thereafter
+
+72
+00:03:37,320 --> 00:03:40,870
+for example, slash coaches and then for Firebase,
+
+73
+00:03:40,870 --> 00:03:42,950
+you need to add dot json at the end,
+
+74
+00:03:42,950 --> 00:03:46,533
+but that's only a Firebase thing, nothing Vue specifically.
+
+75
+00:03:48,240 --> 00:03:50,230
+So this will send the request there,
+
+76
+00:03:50,230 --> 00:03:53,520
+but by default, that will be a get request.
+
+77
+00:03:53,520 --> 00:03:56,780
+A get request is useful for getting data,
+
+78
+00:03:56,780 --> 00:04:00,320
+but here we wanna store a coach data.
+
+79
+00:04:00,320 --> 00:04:03,390
+Hence we need a second argument, an object
+
+80
+00:04:03,390 --> 00:04:06,770
+where we configured the kind of request we wanna send.
+
+81
+00:04:06,770 --> 00:04:08,340
+We can do this with the method key,
+
+82
+00:04:08,340 --> 00:04:10,543
+and we could set this to POST,
+
+83
+00:04:11,490 --> 00:04:13,700
+but I actually don't want to.
+
+84
+00:04:13,700 --> 00:04:16,300
+Because here's one assumption which I'll make.
+
+85
+00:04:16,300 --> 00:04:18,240
+The idea of the coach
+
+86
+00:04:18,240 --> 00:04:22,240
+will exist before we register as a coach.
+
+87
+00:04:22,240 --> 00:04:25,700
+Because later we'll add authentication to this app
+
+88
+00:04:25,700 --> 00:04:29,320
+and you will need to sign up before you can register
+
+89
+00:04:29,320 --> 00:04:31,460
+as a coach anyways.
+
+90
+00:04:31,460 --> 00:04:33,980
+So you need to sign up and then in addition,
+
+91
+00:04:33,980 --> 00:04:36,383
+you can also become a coach if you want to.
+
+92
+00:04:37,960 --> 00:04:42,130
+Therefore, I assume we already got the user ID
+
+93
+00:04:42,130 --> 00:04:43,900
+who wants to become a coach.
+
+94
+00:04:43,900 --> 00:04:45,260
+And we kind of do.
+
+95
+00:04:45,260 --> 00:04:49,070
+In our roots state, we got this dummy user ID.
+
+96
+00:04:49,070 --> 00:04:51,820
+Now later, once we added authentication,
+
+97
+00:04:51,820 --> 00:04:55,950
+this will no longer be a dummy ID, but for the moment it is.
+
+98
+00:04:55,950 --> 00:04:58,880
+So for the moment, I'll just take this.
+
+99
+00:04:58,880 --> 00:05:02,430
+So in this action here, we already get this ID here.
+
+100
+00:05:02,430 --> 00:05:06,380
+I'll no longer add it as ID field in the coach data
+
+101
+00:05:06,380 --> 00:05:11,380
+instead all stored in a separate constant user ID like this
+
+102
+00:05:14,410 --> 00:05:18,920
+and then actually here point at slash coaches slash
+
+103
+00:05:19,830 --> 00:05:23,830
+and then this user ID to create a separate entry on Firebase
+
+104
+00:05:23,830 --> 00:05:25,373
+for just this user.
+
+105
+00:05:26,520 --> 00:05:29,890
+Now to conveniently add this user ID into this string,
+
+106
+00:05:29,890 --> 00:05:33,090
+I'll use back ticks instead of single quotes here,
+
+107
+00:05:33,090 --> 00:05:36,090
+which allows us to use this JavaScript feature
+
+108
+00:05:36,090 --> 00:05:38,570
+of injecting data into a string like this
+
+109
+00:05:38,570 --> 00:05:41,543
+with this dollar sign coli brace syntax.
+
+110
+00:05:43,430 --> 00:05:46,870
+So now we send the request to Firebase slash coaches
+
+111
+00:05:46,870 --> 00:05:50,120
+slash this user ID slash json.
+
+112
+00:05:50,120 --> 00:05:52,410
+And I'll send a put request,
+
+113
+00:05:52,410 --> 00:05:55,680
+which tells Firebase that data in there will be overwritten
+
+114
+00:05:55,680 --> 00:05:59,683
+if it existed or will be created if it didn't exist yet.
+
+115
+00:06:00,610 --> 00:06:03,310
+And the difference to POST is that with POST,
+
+116
+00:06:03,310 --> 00:06:06,000
+a new entry would be added all the time,
+
+117
+00:06:06,000 --> 00:06:07,360
+which I don't want to do here.
+
+118
+00:06:07,360 --> 00:06:10,923
+I only wanna have one coach entry per user.
+
+119
+00:06:12,650 --> 00:06:14,130
+Now we still need a body though.
+
+120
+00:06:14,130 --> 00:06:15,800
+We need to attach some data.
+
+121
+00:06:15,800 --> 00:06:20,800
+And that is the JSON stringifyed version of our coach data.
+
+122
+00:06:21,250 --> 00:06:25,740
+So that converts this object into this JSON format,
+
+123
+00:06:25,740 --> 00:06:28,373
+which we need to send along with the request.
+
+124
+00:06:29,910 --> 00:06:33,680
+So this sends a put request to this URL with this data.
+
+125
+00:06:33,680 --> 00:06:35,650
+And now we, of course only wanna continue
+
+126
+00:06:35,650 --> 00:06:38,360
+with the next steps once this is done.
+
+127
+00:06:38,360 --> 00:06:41,140
+Now fetch returns a promise as you learned.
+
+128
+00:06:41,140 --> 00:06:44,470
+So we can use then to define the code
+
+129
+00:06:44,470 --> 00:06:46,770
+that should execute once this request,
+
+130
+00:06:46,770 --> 00:06:48,453
+once this promise is done.
+
+131
+00:06:49,490 --> 00:06:53,340
+Or we use an alternative, a more modern syntax,
+
+132
+00:06:53,340 --> 00:06:56,320
+the async await syntax.
+
+133
+00:06:56,320 --> 00:06:59,640
+It makes your code look like it's a regular code
+
+134
+00:06:59,640 --> 00:07:02,490
+without promises, though it still uses promises
+
+135
+00:07:02,490 --> 00:07:03,400
+behind the scenes.
+
+136
+00:07:03,400 --> 00:07:06,730
+But it's a bit easier to write and maybe also to understand
+
+137
+00:07:06,730 --> 00:07:10,480
+so that's why I wanna switch to that different syntax here.
+
+138
+00:07:10,480 --> 00:07:13,870
+To use it, we need to add the async keyword
+
+139
+00:07:13,870 --> 00:07:16,420
+in front of our method name,
+
+140
+00:07:16,420 --> 00:07:19,220
+and then we can use the await keyword
+
+141
+00:07:19,220 --> 00:07:20,680
+in front of our promise.
+
+142
+00:07:20,680 --> 00:07:23,233
+So in front of the result of calling fetch.
+
+143
+00:07:24,180 --> 00:07:26,910
+Then we can store to result in a regular variable
+
+144
+00:07:26,910 --> 00:07:30,310
+or a constant and it will actually only be stored
+
+145
+00:07:30,310 --> 00:07:31,870
+when this is done.
+
+146
+00:07:31,870 --> 00:07:35,100
+So it's a bit like putting this into the vent block
+
+147
+00:07:35,100 --> 00:07:38,200
+we saw before, but now the code is,
+
+148
+00:07:38,200 --> 00:07:40,400
+well working without the vent block.
+
+149
+00:07:40,400 --> 00:07:42,573
+It's transformed behind the scenes though.
+
+150
+00:07:43,710 --> 00:07:46,290
+So that's the response we get back from the request.
+
+151
+00:07:46,290 --> 00:07:49,480
+And the next line will now only execute
+
+152
+00:07:49,480 --> 00:07:51,140
+once this request is done.
+
+153
+00:07:51,140 --> 00:07:53,350
+So here we know we'll have a response
+
+154
+00:07:53,350 --> 00:07:57,510
+and then we can get our response data
+
+155
+00:07:57,510 --> 00:08:00,360
+by a waiting response.json,
+
+156
+00:08:00,360 --> 00:08:03,500
+because the response, this object has a JSON method,
+
+157
+00:08:03,500 --> 00:08:05,450
+which all the returns a promise.
+
+158
+00:08:05,450 --> 00:08:06,750
+So we await that
+
+159
+00:08:06,750 --> 00:08:09,923
+and then we got the post response data eventually.
+
+160
+00:08:11,960 --> 00:08:16,370
+We can then check if the response should not be okay.
+
+161
+00:08:16,370 --> 00:08:19,080
+The response object has an okay field,
+
+162
+00:08:19,080 --> 00:08:21,910
+which indicates whether the response is okay or not.
+
+163
+00:08:21,910 --> 00:08:26,280
+And then here, we had an error if that would execute,
+
+164
+00:08:26,280 --> 00:08:29,630
+but we'll take care about error handling later.
+
+165
+00:08:29,630 --> 00:08:32,090
+So for the moment, I'll do nothing there.
+
+166
+00:08:32,090 --> 00:08:35,690
+Instead, I assume that it always works for this moment
+
+167
+00:08:35,690 --> 00:08:38,140
+and then thereafter we can commit our data.
+
+168
+00:08:38,140 --> 00:08:41,220
+Actually I'll commit a different kind of data,
+
+169
+00:08:41,220 --> 00:08:45,410
+I'll commit an object where I copy coach data
+
+170
+00:08:45,410 --> 00:08:46,900
+with the spread operator.
+
+171
+00:08:46,900 --> 00:08:49,900
+So I take all the key value pairs in coach data
+
+172
+00:08:49,900 --> 00:08:52,290
+and merge them into a new object.
+
+173
+00:08:52,290 --> 00:08:57,070
+But in addition, I add an ID field, which holds the user ID.
+
+174
+00:08:57,070 --> 00:09:00,020
+I did not wanna send this along to the server
+
+175
+00:09:00,020 --> 00:09:03,120
+because I already store it under that ID
+
+176
+00:09:03,120 --> 00:09:05,110
+in a separate node on the server.
+
+177
+00:09:05,110 --> 00:09:07,973
+So I would then just be using the ID twice there,
+
+178
+00:09:09,530 --> 00:09:12,480
+but I definitely do want to add it
+
+179
+00:09:12,480 --> 00:09:15,170
+to my locally committed data here
+
+180
+00:09:15,170 --> 00:09:18,410
+so that we still have the coach ID quickly available
+
+181
+00:09:18,410 --> 00:09:21,963
+in our data object here in Vuex.
+
+182
+00:09:23,750 --> 00:09:26,450
+So then committing still works as before
+
+183
+00:09:26,450 --> 00:09:30,223
+and this will only execute once all these promises are done.
+
+184
+00:09:31,550 --> 00:09:34,610
+By the way, I'm not doing anything with response data here,
+
+185
+00:09:34,610 --> 00:09:38,430
+so I guess we can also delete this or comment this out.
+
+186
+00:09:38,430 --> 00:09:40,850
+Now data should be stored on the server
+
+187
+00:09:40,850 --> 00:09:43,460
+when we register as a coach.
+
+188
+00:09:43,460 --> 00:09:45,070
+Let's give this a try.
+
+189
+00:09:45,070 --> 00:09:50,070
+Let's reload, click register as coach and enter your data.
+
+190
+00:09:51,640 --> 00:09:56,070
+I'm a web developer online instructor,
+
+191
+00:09:56,070 --> 00:09:58,963
+and I love sharing mine knowledge.
+
+192
+00:09:59,810 --> 00:10:04,810
+Hourly rate, check the boxes, click register,
+
+193
+00:10:05,330 --> 00:10:07,510
+and we see nothing here,
+
+194
+00:10:07,510 --> 00:10:10,370
+but after a short while we see the coach appear
+
+195
+00:10:10,370 --> 00:10:12,160
+and that kind of looks good.
+
+196
+00:10:12,160 --> 00:10:14,950
+Now, if we check Firebase, we see a coach's node
+
+197
+00:10:14,950 --> 00:10:18,930
+with our dummy coach ID and then below that the data
+
+198
+00:10:18,930 --> 00:10:20,543
+that belongs to that coach.
+
+199
+00:10:21,440 --> 00:10:24,883
+So this is looking very good, submitting the data worked.
+
+200
+00:10:25,800 --> 00:10:28,680
+Now, there are a couple of areas we could improve.
+
+201
+00:10:28,680 --> 00:10:33,210
+For one, for example, we were redirected here
+
+202
+00:10:33,210 --> 00:10:35,640
+and we only saw the coach show up
+
+203
+00:10:35,640 --> 00:10:38,543
+after a couple of milliseconds or seconds.
+
+204
+00:10:39,410 --> 00:10:41,370
+But in addition, in general,
+
+205
+00:10:41,370 --> 00:10:44,150
+we're not fetching the coach data here.
+
+206
+00:10:44,150 --> 00:10:47,883
+If I reload this app, I still see just the dummy coaches.
+
+207
+00:10:48,730 --> 00:10:51,620
+Now that we got at least one real coach,
+
+208
+00:10:51,620 --> 00:10:54,500
+it would be nicer to fetch that, right?
+
+209
+00:10:54,500 --> 00:10:56,830
+So that is what we should do next.
+
+210
+00:10:56,830 --> 00:10:59,500
+Make sure that we don't just store
+
+211
+00:10:59,500 --> 00:11:01,150
+coach data on the backend,
+
+212
+00:11:01,150 --> 00:11:03,023
+but that we also fetch it from there.
+

@@ -1,0 +1,316 @@
+1
+00:00:02,270 --> 00:00:03,960
+Now, how can vue help us
+
+2
+00:00:03,960 --> 00:00:07,120
+with this snapping behavior we got here,
+
+3
+00:00:07,120 --> 00:00:09,740
+which is not too nice to look at?
+
+4
+00:00:09,740 --> 00:00:12,230
+It adds a never special clause
+
+5
+00:00:12,230 --> 00:00:14,890
+when you're using transition group.
+
+6
+00:00:14,890 --> 00:00:17,720
+So when it's actually controlling multiple elements,
+
+7
+00:00:17,720 --> 00:00:19,300
+instead of just one.
+
+8
+00:00:19,300 --> 00:00:21,570
+Because you might not notice it actually,
+
+9
+00:00:21,570 --> 00:00:24,150
+whilst we're only adding and removing one element
+
+10
+00:00:24,150 --> 00:00:25,610
+at a time here,
+
+11
+00:00:25,610 --> 00:00:30,150
+we are animating multiple elements simultaneously
+
+12
+00:00:30,150 --> 00:00:32,310
+because the other elements also need
+
+13
+00:00:32,310 --> 00:00:35,950
+to switch their position when a new item is added.
+
+14
+00:00:35,950 --> 00:00:37,750
+And that's why we use transition group.
+
+15
+00:00:37,750 --> 00:00:40,903
+It is capable of animating multiple elements.
+
+16
+00:00:42,250 --> 00:00:44,960
+And it gives us a special clause therefore
+
+17
+00:00:44,960 --> 00:00:47,160
+which allows us to control the animation
+
+18
+00:00:47,160 --> 00:00:48,750
+of the other elements,
+
+19
+00:00:48,750 --> 00:00:51,080
+which are not getting added or removed,
+
+20
+00:00:51,080 --> 00:00:53,820
+but which also might need to move around
+
+21
+00:00:53,820 --> 00:00:55,960
+to make place for the new element
+
+22
+00:00:55,960 --> 00:00:59,340
+or to fill up the space of the leaving element.
+
+23
+00:00:59,340 --> 00:01:03,160
+And the special clause we add here is our prefix.
+
+24
+00:01:03,160 --> 00:01:05,363
+So user list in this case,
+
+25
+00:01:06,300 --> 00:01:08,620
+since that's the prefix we defined here
+
+26
+00:01:08,620 --> 00:01:10,820
+with the name property,
+
+27
+00:01:10,820 --> 00:01:11,680
+and then
+
+28
+00:01:13,700 --> 00:01:15,790
+dash move.
+
+29
+00:01:15,790 --> 00:01:18,230
+That's another special CSS clause,
+
+30
+00:01:18,230 --> 00:01:22,060
+which vue will add to all the other elements,
+
+31
+00:01:22,060 --> 00:01:24,173
+which are not entering or leaving.
+
+32
+00:01:25,910 --> 00:01:27,710
+And even better than that,
+
+33
+00:01:27,710 --> 00:01:30,250
+vue will automatically move them
+
+34
+00:01:30,250 --> 00:01:33,230
+to their new place under the hood,
+
+35
+00:01:33,230 --> 00:01:36,220
+by using the transform CSS property.
+
+36
+00:01:36,220 --> 00:01:37,820
+That's just something you have to know.
+
+37
+00:01:37,820 --> 00:01:40,690
+Vue will use transform under the hood
+
+38
+00:01:40,690 --> 00:01:42,050
+for moving the elements,
+
+39
+00:01:42,050 --> 00:01:45,743
+which are not added or removed around to their new position.
+
+40
+00:01:47,020 --> 00:01:49,360
+And therefore, here in the move class,
+
+41
+00:01:49,360 --> 00:01:52,560
+we can actually transition the transform property
+
+42
+00:01:52,560 --> 00:01:53,950
+on those elements.
+
+43
+00:01:53,950 --> 00:01:58,440
+Let's say over dot eight seconds with a ease function.
+
+44
+00:01:58,440 --> 00:02:02,100
+So just ease to distribute the time evenly.
+
+45
+00:02:02,100 --> 00:02:04,300
+Now, if we save that and go back,
+
+46
+00:02:04,300 --> 00:02:08,433
+we'll be able to see that if we reload and add a new user.
+
+47
+00:02:10,210 --> 00:02:11,580
+Praveen, for example.
+
+48
+00:02:11,580 --> 00:02:14,390
+You see the upper elements move smoothly
+
+49
+00:02:14,390 --> 00:02:15,593
+to their new position.
+
+50
+00:02:16,770 --> 00:02:20,550
+Now, if you reload and try this for removing though,
+
+51
+00:02:20,550 --> 00:02:23,820
+we still have this snapping behavior.
+
+52
+00:02:23,820 --> 00:02:27,310
+There's one thing we got to fix for that to work
+
+53
+00:02:27,310 --> 00:02:30,880
+on the leave active clause.
+
+54
+00:02:30,880 --> 00:02:33,380
+So, which is added to the leaving element.
+
+55
+00:02:33,380 --> 00:02:37,233
+We need to add a position of absolute.
+
+56
+00:02:38,920 --> 00:02:43,920
+Once we add that to the leaving element, and I reload,
+
+57
+00:02:44,110 --> 00:02:47,450
+now you'll see the other elements move as well.
+
+58
+00:02:47,450 --> 00:02:50,120
+And they move to their new position.
+
+59
+00:02:50,120 --> 00:02:51,880
+Now, the rest of the page jumps
+
+60
+00:02:51,880 --> 00:02:54,140
+but that's something we can't avoid here.
+
+61
+00:02:54,140 --> 00:02:55,630
+But inside of that list,
+
+62
+00:02:55,630 --> 00:03:00,373
+we have a smooth animation for entering items.
+
+63
+00:03:01,989 --> 00:03:04,630
+But also for leaving items
+
+64
+00:03:04,630 --> 00:03:08,090
+and for the rest of the list for all the items
+
+65
+00:03:08,090 --> 00:03:10,880
+that need to move to a new position.
+
+66
+00:03:10,880 --> 00:03:14,160
+And that is how transition group can help us here.
+
+67
+00:03:14,160 --> 00:03:17,550
+It allows us to animate items in a list,
+
+68
+00:03:17,550 --> 00:03:19,960
+multiple items at the same time,
+
+69
+00:03:19,960 --> 00:03:22,840
+it allows us to move items smoothly,
+
+70
+00:03:22,840 --> 00:03:25,126
+even if they're not directly affected.
+
+71
+00:03:25,126 --> 00:03:28,660
+So even if they're not the added or removed item.
+
+72
+00:03:28,660 --> 00:03:32,450
+And therefore, it is the component you should use
+
+73
+00:03:32,450 --> 00:03:35,030
+if you want to add multiple items.
+
+74
+00:03:35,030 --> 00:03:39,290
+If you have one item or two alternating items you want
+
+75
+00:03:39,290 --> 00:03:41,210
+to animate, transition
+
+76
+00:03:41,210 --> 00:03:42,973
+is the component you should use.
+
+77
+00:03:43,950 --> 00:03:46,410
+Because that component is optimized
+
+78
+00:03:46,410 --> 00:03:48,330
+for animating single items
+
+79
+00:03:48,330 --> 00:03:51,513
+or alternating items like these two buttons.
+

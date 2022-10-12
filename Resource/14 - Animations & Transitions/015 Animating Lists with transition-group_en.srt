@@ -1,0 +1,560 @@
+1
+00:00:02,140 --> 00:00:02,973
+In the end,
+
+2
+00:00:02,973 --> 00:00:04,740
+what we want to do here is
+
+3
+00:00:04,740 --> 00:00:07,320
+we want to wrap this list item
+
+4
+00:00:07,320 --> 00:00:08,840
+with transition,
+
+5
+00:00:08,840 --> 00:00:11,130
+because we wanna animate
+
+6
+00:00:11,130 --> 00:00:15,260
+the addition and removal of list items,
+
+7
+00:00:15,260 --> 00:00:16,800
+but it will have a problem.
+
+8
+00:00:16,800 --> 00:00:18,640
+It's not just one list item
+
+9
+00:00:18,640 --> 00:00:20,070
+because of before,
+
+10
+00:00:20,070 --> 00:00:23,080
+we'll have multiple list items here.
+
+11
+00:00:23,080 --> 00:00:25,100
+And therefore, transition won't work
+
+12
+00:00:25,100 --> 00:00:26,520
+because transition is steered
+
+13
+00:00:26,520 --> 00:00:28,313
+to work with one element.
+
+14
+00:00:29,720 --> 00:00:31,650
+But Vue has got us covered.
+
+15
+00:00:31,650 --> 00:00:35,220
+It has the transition group component.
+
+16
+00:00:35,220 --> 00:00:37,490
+In addition to transition,
+
+17
+00:00:37,490 --> 00:00:39,140
+transition group,
+
+18
+00:00:39,140 --> 00:00:40,620
+as the name suggests,
+
+19
+00:00:40,620 --> 00:00:43,450
+is there to work with multiple elements
+
+20
+00:00:43,450 --> 00:00:46,830
+and it can also animate multiple elements
+
+21
+00:00:46,830 --> 00:00:48,410
+at the same time.
+
+22
+00:00:48,410 --> 00:00:50,190
+So it's great for lists
+
+23
+00:00:51,040 --> 00:00:52,170
+where in this case,
+
+24
+00:00:52,170 --> 00:00:55,490
+we only add or remove one user at the same time,
+
+25
+00:00:55,490 --> 00:00:57,200
+but of course you could have other lists
+
+26
+00:00:57,200 --> 00:00:58,490
+where multiple items
+
+27
+00:00:58,490 --> 00:01:00,830
+are added or removed at the same time.
+
+28
+00:01:00,830 --> 00:01:03,810
+And that is why transition group is great for lists.
+
+29
+00:01:03,810 --> 00:01:07,280
+It is capable of animating individual lists items,
+
+30
+00:01:07,280 --> 00:01:10,253
+but also multiple items at the same time.
+
+31
+00:01:12,520 --> 00:01:14,220
+There's one important thing you gotta know
+
+32
+00:01:14,220 --> 00:01:16,270
+about transition group, though.
+
+33
+00:01:16,270 --> 00:01:20,180
+Transition to components used before in the end,
+
+34
+00:01:20,180 --> 00:01:23,290
+renders no element to the Dom.
+
+35
+00:01:23,290 --> 00:01:25,220
+It's just here in the template
+
+36
+00:01:25,220 --> 00:01:27,470
+to give Vue some instructions,
+
+37
+00:01:27,470 --> 00:01:30,810
+but you don't see it in the actual Dom.
+
+38
+00:01:30,810 --> 00:01:33,250
+If we inspect show users,
+
+39
+00:01:33,250 --> 00:01:35,050
+which is the button we're animating,
+
+40
+00:01:35,050 --> 00:01:37,923
+there is no transition component here in the Dom.
+
+41
+00:01:38,960 --> 00:01:41,360
+Now that will be different for this list
+
+42
+00:01:41,360 --> 00:01:43,260
+and transition group, though.
+
+43
+00:01:43,260 --> 00:01:46,280
+Transition group will render
+
+44
+00:01:46,280 --> 00:01:48,660
+an element to the Dom in the end,
+
+45
+00:01:48,660 --> 00:01:50,770
+and you can control which element it is
+
+46
+00:01:50,770 --> 00:01:53,280
+by giving it detect prop.
+
+47
+00:01:53,280 --> 00:01:56,350
+And here we want to unordered list.
+
+48
+00:01:56,350 --> 00:01:58,950
+So we, in the end replace our wrapper here,
+
+49
+00:01:58,950 --> 00:02:00,770
+the unordered list
+
+50
+00:02:00,770 --> 00:02:02,840
+with transition group,
+
+51
+00:02:02,840 --> 00:02:05,080
+giving it a tag off UL,
+
+52
+00:02:05,080 --> 00:02:08,453
+and you can use any valid HTML element here.
+
+53
+00:02:09,690 --> 00:02:12,313
+You can also use a custom component here.
+
+54
+00:02:13,370 --> 00:02:14,310
+Now besides that
+
+55
+00:02:14,310 --> 00:02:16,860
+it works pretty much like transition, though.
+
+56
+00:02:16,860 --> 00:02:20,030
+It also adds those CSS classes
+
+57
+00:02:20,030 --> 00:02:21,620
+to the elements which are added
+
+58
+00:02:21,620 --> 00:02:22,630
+or removed.
+
+59
+00:02:22,630 --> 00:02:25,970
+It dives into the CSS code to see how long
+
+60
+00:02:25,970 --> 00:02:27,150
+an animation takes.
+
+61
+00:02:27,150 --> 00:02:29,500
+So here I'll add name prop
+
+62
+00:02:29,500 --> 00:02:32,280
+and give it a name of user list.
+
+63
+00:02:32,280 --> 00:02:33,830
+And that is then the prefix
+
+64
+00:02:33,830 --> 00:02:35,960
+in front of the enter-from,
+
+65
+00:02:35,960 --> 00:02:37,160
+enter-active,
+
+66
+00:02:37,160 --> 00:02:38,630
+enter-to clauses,
+
+67
+00:02:38,630 --> 00:02:40,480
+everything you already learned about.
+
+68
+00:02:42,070 --> 00:02:45,750
+So here in my styling,
+
+69
+00:02:45,750 --> 00:02:47,430
+I will now add user lists,
+
+70
+00:02:47,430 --> 00:02:49,200
+enter-from,
+
+71
+00:02:49,200 --> 00:02:50,440
+copy that,
+
+72
+00:02:50,440 --> 00:02:52,250
+and then also add
+
+73
+00:02:52,250 --> 00:02:53,680
+enter-active
+
+74
+00:02:53,680 --> 00:02:55,200
+and enter-to.
+
+75
+00:02:55,200 --> 00:02:56,390
+And now as so often,
+
+76
+00:02:56,390 --> 00:02:57,540
+it's totally up to you
+
+77
+00:02:57,540 --> 00:02:59,500
+what you want to add here.
+
+78
+00:02:59,500 --> 00:03:03,040
+I will add an opacity of zero here
+
+79
+00:03:03,040 --> 00:03:05,200
+and transform my items
+
+80
+00:03:05,200 --> 00:03:10,000
+to translate them along the X-axis
+
+81
+00:03:10,000 --> 00:03:11,280
+and move it a little bit further
+
+82
+00:03:11,280 --> 00:03:12,193
+to the left.
+
+83
+00:03:13,600 --> 00:03:15,500
+And that's my starting position
+
+84
+00:03:15,500 --> 00:03:17,243
+when an item is added.
+
+85
+00:03:18,330 --> 00:03:20,550
+In enter-to,
+
+86
+00:03:20,550 --> 00:03:23,920
+I will then set this to zero
+
+87
+00:03:23,920 --> 00:03:26,660
+and the opacity to one of course.
+
+88
+00:03:26,660 --> 00:03:28,910
+And in enter-active,
+
+89
+00:03:28,910 --> 00:03:31,500
+we can add the transition property
+
+90
+00:03:31,500 --> 00:03:35,790
+and watch for changes in all
+
+91
+00:03:35,790 --> 00:03:37,130
+CSS properties,
+
+92
+00:03:37,130 --> 00:03:38,700
+which might change.
+
+93
+00:03:38,700 --> 00:03:40,410
+And in this case only opacity
+
+94
+00:03:40,410 --> 00:03:42,480
+and transform will change
+
+95
+00:03:43,640 --> 00:03:45,460
+and then add a duration.
+
+96
+00:03:45,460 --> 00:03:47,890
+And I'll go for one second here
+
+97
+00:03:47,890 --> 00:03:50,480
+and then also an easing function
+
+98
+00:03:50,480 --> 00:03:52,063
+and I'll go for ease-out.
+
+99
+00:03:53,870 --> 00:03:54,820
+And if we do that,
+
+100
+00:03:54,820 --> 00:03:56,230
+you will see
+
+101
+00:03:56,230 --> 00:03:58,040
+if I reload and I add
+
+102
+00:04:00,350 --> 00:04:03,250
+Praveen, for click add user,
+
+103
+00:04:03,250 --> 00:04:04,680
+this is a smooth animation
+
+104
+00:04:04,680 --> 00:04:06,950
+for adding this element.
+
+105
+00:04:06,950 --> 00:04:07,783
+Now, of course,
+
+106
+00:04:07,783 --> 00:04:11,340
+we also get animation for removing elements
+
+107
+00:04:11,340 --> 00:04:12,300
+for that all,
+
+108
+00:04:12,300 --> 00:04:13,133
+in the end,
+
+109
+00:04:13,133 --> 00:04:16,680
+just copy my enter classes
+
+110
+00:04:16,680 --> 00:04:19,959
+and add my leave classes here.
+
+111
+00:04:19,959 --> 00:04:21,260
+So leave-from,
+
+112
+00:04:21,260 --> 00:04:22,093
+leave-to,
+
+113
+00:04:22,093 --> 00:04:22,926
+leave-active.
+
+114
+00:04:22,926 --> 00:04:26,190
+And I want to leave-from opacity one
+
+115
+00:04:26,190 --> 00:04:29,880
+and no change on the X-axis
+
+116
+00:04:29,880 --> 00:04:30,713
+and therefore,
+
+117
+00:04:30,713 --> 00:04:31,670
+We can also merge this with
+
+118
+00:04:31,670 --> 00:04:33,560
+the enter-to clause because
+
+119
+00:04:33,560 --> 00:04:34,543
+it's the same.
+
+120
+00:04:36,710 --> 00:04:37,790
+On leave-active.
+
+121
+00:04:37,790 --> 00:04:39,490
+I want to have an ease-in,
+
+122
+00:04:39,490 --> 00:04:42,040
+easing function instead of ease-out
+
+123
+00:04:42,040 --> 00:04:43,710
+and on leave-to,
+
+124
+00:04:43,710 --> 00:04:46,340
+I want to go to an opacity of zero,
+
+125
+00:04:46,340 --> 00:04:48,963
+but then move it 30 pixels to the right.
+
+126
+00:04:50,320 --> 00:04:53,050
+So it's not the same as the enter-from state.
+
+127
+00:04:53,050 --> 00:04:55,390
+There we had minus 30 pixels.
+
+128
+00:04:55,390 --> 00:04:58,590
+Here I have plus 30 pixels.
+
+129
+00:04:58,590 --> 00:05:00,610
+And if I do that and saved us,
+
+130
+00:05:00,610 --> 00:05:02,310
+if I click an item,
+
+131
+00:05:02,310 --> 00:05:05,283
+you see it's animated out like this,
+
+132
+00:05:06,670 --> 00:05:08,340
+which is nice,
+
+133
+00:05:08,340 --> 00:05:11,180
+but you might notice that the list jumps,
+
+134
+00:05:11,180 --> 00:05:12,540
+when an item is removed,
+
+135
+00:05:12,540 --> 00:05:13,730
+the other elements,
+
+136
+00:05:13,730 --> 00:05:16,260
+snap in place there after,
+
+137
+00:05:16,260 --> 00:05:17,700
+and thankfully,
+
+138
+00:05:17,700 --> 00:05:19,840
+Vue actually has a solution
+
+139
+00:05:19,840 --> 00:05:21,360
+for that as well.
+
+140
+00:05:21,360 --> 00:05:23,883
+It helps us avoid such snapping.
+

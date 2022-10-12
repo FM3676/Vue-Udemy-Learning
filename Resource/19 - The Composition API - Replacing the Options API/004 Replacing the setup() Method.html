@@ -1,0 +1,23 @@
+<p>Adding a <code>setup()</code> method to the exported object (as shown in the previous)&nbsp;section can get annoying if you're using the composition API&nbsp;in many components. Especially since you also need to add <code>export default { ... }</code> and return any values that should be available in the <code>&lt;template&gt;</code>&nbsp;of the component.</p><p>Vue.js offers an alternative syntax:&nbsp;You can use <code>&lt;script setup&gt;</code> instead of manually adding a <code>setup()</code>&nbsp;method.</p><p>The following code:</p><pre class="prettyprint linenums">&lt;script&gt;
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const uName =&nbsp;ref('Maximilian');
+
+    setTimeout(function()&nbsp;{
+      uName.value =&nbsp;'Max';
+    }, 2000);
+
+    return { uName };
+  }
+}
+&lt;/script&gt;</pre><p>could be replaced with:</p><pre class="prettyprint linenums">&lt;script setup&gt;
+import { ref } from 'vue';
+
+const uName =&nbsp;ref('Maximilian');
+
+setTimeout(function()&nbsp;{
+  uName.value =&nbsp;'Max';
+}, 2000);
+&lt;/script&gt;</pre><p>You can learn more about <code>&lt;script setup&gt;</code>&nbsp;<a href="https://vuejs.org/api/sfc-script-setup.html" rel="noopener noreferrer" target="_blank">here</a>.</p><p>Both syntaxes can be used and you can simply go with your personal favorite. This course was recorded before <code>&lt;script setup&gt;</code>&nbsp;was added, hence I&nbsp;use the <code>setup()</code>&nbsp;method throughout this course. All Vue and&nbsp;Composition API concepts apply either way though. Therefore, what you learn in this course still works in the same way, no matter if you're using <code>&lt;script setup&gt;</code>&nbsp;or the <code>setup()</code> method.</p>
